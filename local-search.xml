@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  
+  
+  
+  <entry>
+    <title>热烈庆祝，正式开始更新！</title>
+    <link href="/2023/11/27/hello-world/"/>
+    <url>/2023/11/27/hello-world/</url>
+    
+    <content type="html"><![CDATA[]]></content>
+    
+    
+    <categories>
+      
+      <category>Intro</category>
+      
+      <category>New</category>
+      
+      <category>Lucky</category>
+      
+    </categories>
+    
+    
+  </entry>
+  
+  
+  
+  
+  
+  
+  <entry>
+    <title>about</title>
+    <link href="/"/>
+    <url>/</url>
+    
+    <content type="html"><![CDATA[<h2 id="关于我的Information"><a href="#关于我的Information" class="headerlink" title="关于我的Information"></a>关于我的Information</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs Python">Config=[<br>    &#123;<br>        NAME=<span class="hljs-string">&quot;Chiam Zhang&quot;</span><br>       UNIVERSITY=<span class="hljs-string">&quot;UCAS&quot;</span><br>        EMAIL=<span class="hljs-string">&quot;chiam_zhang@foxmail.com&quot;</span><br>    &#125;<br>]<br></code></pre></td></tr></table></figure><h2 id="关于Chiam的介绍"><a href="#关于Chiam的介绍" class="headerlink" title="关于Chiam的介绍"></a>关于Chiam的介绍</h2><ul><li>待补充</li></ul>]]></content>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title></title>
+    <link href="/"/>
+    <url>/</url>
+    
+    <content type="html"><![CDATA[<footer id="footer" role="contentinfo">    <div class="divider">        <div class="wall"></div>        <img class="animals" src="/img/footer_animals.webp" alt="Footer Animals">    </div>    <div class="container" data-index="450">        <p>            <a href="https://chiamzhang.github.io" target="_blank">Chiam</a>            <i class="iconfont icon-love"></i>            <a href="#" target="_blank">Wh</a>        </p>        <p>            Powered by             <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>            <i class="iconfont icon-pen"></i>            Theme             <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a>        </p>    </div></footer><p>Copyright © 2017-2023 <a href="https://www.bytecho.net/">字节星球</a><p><i class="fa fa-server"></i> <a href="https://status.yuelaigroup.com/" target="_blank">状态</a> <a        href="https://tongji.baidu.com/" target="_blank">统计</a> <a href="https://www.travellings.cn/go.html"        target="_blank">开往</a> <a href="https://moshanghua.net" target="_blank">小陌</a> <a        href="https://www.bytecho.net/url/dusays.com/" target="_blank">杜老师说</a> <a        href="https://www.bytecho.net/url/www.helingqi.com/" target="_blank">禾令奇</a> • <a        href="http://beian.miit.gov.cn" target="_blank">蜀ICP备20024203号</a> • <img        src="https://cdn.bytecho.net/usr/themes/Mirages/images/gonganwangbei.png" height="18" alt="公网安备图标"        style="vertical-align: text-bottom"> <a        href="https://www.beian.gov.cn/portal/registerSystemInfo?recordcode=51102802000028"        target="_blank">川公网安备51102802000028号</a></p><a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a><i class="iconfont icon-love"></i><a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a>]]></content>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title></title>
+    <link href="/"/>
+    <url>/</url>
+    
+    <content type="html"><![CDATA[#footer {    display: flex;    flex-direction: column;    position: relative;    width: 100%!important;    padding: 0!important;    margin: 0!important;}#footer .divider {    width: 100%;    top: 0px;    position: relative;    margin-top: 1.25rem;}#footer .divider .animals {    max-width: min(974px, 100vw);    margin: 0 auto;    display: block;    position: relative;}#footer .divider .animals {    user-select: none;     -moz-user-select: none;     -webkit-user-drag: none;     -webkit-user-select: none;     -ms-user-select: none; }#footer .divider .wall {    height: 36px;    bottom: 0px;    width: 100%;    position: absolute;    max-width: none;    background: url(/img/wall.webp) repeat;    background-size: auto 100%;}@media (max-width: 768px) {    #footer .divider .wall {        height: 4vw;    }}#footer .container {    display: flex;    flex-direction: column;    margin: 0;    max-width: none;    padding: 1.25rem 20px;    background-color: #4e443e;    color: #bdb3aa;    font-size: 15px;    font-weight: bold;    line-height: 22px;}.footer-inner{    padding: 3rem 0 0 0;}#footer .container a {    color: #bdb3aa;  /* 设置超链接的文字颜色 */    text-decoration: none;  /* 去除超链接的下划线 */}#footer .container a:hover {    color: #ffffff;  /* 设置超链接悬停时的文字颜色 */}]]></content>
+    
+  </entry>
+  
+  
+  
+</search>

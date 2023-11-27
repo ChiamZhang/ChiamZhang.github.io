@@ -1,0 +1,67 @@
+#footer {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    width: 100%!important;
+    padding: 0!important;
+    margin: 0!important;
+}
+#footer .divider {
+    width: 100%;
+    top: 0px;
+    position: relative;
+    margin-top: 1.25rem;
+}
+#footer .divider .animals {
+    max-width: min(974px, 100vw);
+    margin: 0 auto;
+    display: block;
+    position: relative;
+}
+#footer .divider .animals {
+    user-select: none; 
+    -moz-user-select: none; 
+    -webkit-user-drag: none; 
+    -webkit-user-select: none; 
+    -ms-user-select: none; 
+}
+#footer .divider .wall {
+    height: 36px;
+    bottom: 0px;
+    width: 100%;
+    position: absolute;
+    max-width: none;
+    background: url(/img/wall.webp) repeat;
+    background-size: auto 100%;
+}
+@media (max-width: 768px) {
+    #footer .divider .wall {
+        height: 4vw;
+    }
+}
+
+#footer .container {
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    max-width: none;
+    padding: 1.25rem 20px;
+    background-color: #4e443e;
+    color: #bdb3aa;
+    font-size: 15px;
+    font-weight: bold;
+    line-height: 22px;
+}
+
+
+.footer-inner{
+    padding: 3rem 0 0 0;
+}
+#footer .container a {
+    color: #bdb3aa;  /* 设置超链接的文字颜色 */
+    text-decoration: none;  /* 去除超链接的下划线 */
+}
+
+#footer .container a:hover {
+    color: #ffffff;  /* 设置超链接悬停时的文字颜色 */
+}
