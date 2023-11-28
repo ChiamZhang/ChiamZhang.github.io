@@ -31,7 +31,7 @@
     width: 100%;
     position: absolute;
     max-width: none;
-    background: url(https://img-blog.csdnimg.cn/118441fd56ce4a5e87779cb97c33fa7b.webp) repeat;
+    background: url(/img/wall.webp) repeat;
     background-size: auto 100%;
 }
 @media (max-width: 768px) {
@@ -45,17 +45,17 @@
     flex-direction: column;
     margin: 0;
     max-width: none;
-    padding: 1.25rem 20px;
+    padding: 1rem 0 0 0;
     background-color: #4e443e;
     color: #bdb3aa;
-    font-size: 15px;
+    font-size: 12px;
     font-weight: bold;
-    line-height: 22px;
+    line-height: 10px;
 }
 
 
 .footer-inner{
-    padding: 3rem 0 0 0;
+    padding: 1rem 0 0 0;
 }
 #footer .container a {
     color: #bdb3aa;  /* 设置超链接的文字颜色 */
