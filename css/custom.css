@@ -31,7 +31,7 @@
     width: 100%;
     position: absolute;
     max-width: none;
-    background: url(/img/wall.webp) repeat;
+    background: url(https://img-blog.csdnimg.cn/118441fd56ce4a5e87779cb97c33fa7b.webp) repeat;
     background-size: auto 100%;
 }
 @media (max-width: 768px) {
