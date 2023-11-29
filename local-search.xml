@@ -45,6 +45,17 @@
     <link href="/"/>
     <url>/</url>
     
+    <content type="html"><![CDATA[#footer {    display: flex;    flex-direction: column;    position: relative;    width: 100%!important;    padding: 0!important;    margin: 0!important;}#footer .divider {    width: 100%;    top: 0px;    position: relative;    margin-top: 1.25rem;}#footer .divider .animals {    max-width: min(974px, 100vw);    margin: 0 auto;    display: block;    position: relative;}#footer .divider .animals {    user-select: none;     -moz-user-select: none;     -webkit-user-drag: none;     -webkit-user-select: none;     -ms-user-select: none; }#footer .divider .wall {    height: 36px;    bottom: 0px;    width: 100%;    position: absolute;    max-width: none;    background: url(/img/wall.webp) repeat;    background-size: auto 100%;}@media (max-width: 768px) {    #footer .divider .wall {        height: 4vw;    }}#footer .container {    display: flex;    flex-direction: column;    margin: 0;    max-width: none;    padding: 1rem 0 0 0;    background-color: #4e443e;    color: #bdb3aa;    font-size: 12px;    font-weight: bold;    line-height: 10px;}.footer-inner{    padding: 1rem 0 0 0;}#footer .container a {    color: #bdb3aa;  /* 设置超链接的文字颜色 */    text-decoration: none;  /* 去除超链接的下划线 */}#footer .container a:hover {    color: #ffffff;  /* 设置超链接悬停时的文字颜色 */}]]></content>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title></title>
+    <link href="/"/>
+    <url>/</url>
+    
     <content type="html"><![CDATA[<footer id="footer" role="contentinfo">    <div class="divider">        <div class="wall"></div>        <img class="animals" src="/img/footer_animals.webp" alt="Footer Animals">    </div>    <div class="container" data-index="450">                    <a href="https://chiamzhang.github.io" target="_blank">Chiam</a>            <i class="iconfont icon-love"></i>            <a href="#" target="_blank">Wh</a>            <br/>            Powered by             <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>            <i class="iconfont icon-pen"></i>            Theme             <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a>        </div></footer><!-- <p>Copyright © 2017-2023 <a href="https://www.bytecho.net/">字节星球</a><p><i class="fa fa-server"></i> <a href="https://status.yuelaigroup.com/" target="_blank">状态</a> <a        href="https://tongji.baidu.com/" target="_blank">统计</a> <a href="https://www.travellings.cn/go.html"        target="_blank">开往</a> <a href="https://moshanghua.net" target="_blank">小陌</a> <a        href="https://www.bytecho.net/url/dusays.com/" target="_blank">杜老师说</a> <a        href="https://www.bytecho.net/url/www.helingqi.com/" target="_blank">禾令奇</a> • <a        href="http://beian.miit.gov.cn" target="_blank">蜀ICP备20024203号</a> • <img        src="https://cdn.bytecho.net/usr/themes/Mirages/images/gonganwangbei.png" height="18" alt="公网安备图标"        style="vertical-align: text-bottom"> <a        href="https://www.beian.gov.cn/portal/registerSystemInfo?recordcode=51102802000028"        target="_blank">川公网安备51102802000028号</a></p> --><a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a><i class="iconfont icon-love"></i><a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a>]]></content>
     
   </entry>
@@ -56,7 +67,18 @@
     <link href="/"/>
     <url>/</url>
     
-    <content type="html"><![CDATA[#footer {    display: flex;    flex-direction: column;    position: relative;    width: 100%!important;    padding: 0!important;    margin: 0!important;}#footer .divider {    width: 100%;    top: 0px;    position: relative;    margin-top: 1.25rem;}#footer .divider .animals {    max-width: min(974px, 100vw);    margin: 0 auto;    display: block;    position: relative;}#footer .divider .animals {    user-select: none;     -moz-user-select: none;     -webkit-user-drag: none;     -webkit-user-select: none;     -ms-user-select: none; }#footer .divider .wall {    height: 36px;    bottom: 0px;    width: 100%;    position: absolute;    max-width: none;    background: url(/img/wall.webp) repeat;    background-size: auto 100%;}@media (max-width: 768px) {    #footer .divider .wall {        height: 4vw;    }}#footer .container {    display: flex;    flex-direction: column;    margin: 0;    max-width: none;    padding: 1rem 0 0 0;    background-color: #4e443e;    color: #bdb3aa;    font-size: 12px;    font-weight: bold;    line-height: 10px;}.footer-inner{    padding: 1rem 0 0 0;}#footer .container a {    color: #bdb3aa;  /* 设置超链接的文字颜色 */    text-decoration: none;  /* 去除超链接的下划线 */}#footer .container a:hover {    color: #ffffff;  /* 设置超链接悬停时的文字颜色 */}]]></content>
+    <content type="html"><![CDATA[ var OriginTitle = document.title; var titleTime; document.addEventListener('visibilitychange', function () {     if (document.hidden) {         $('[rel="icon"]').attr('href', "/img/trhx2.png");         document.title = 'ヽ(●-`Д´-)ノ你丑你就走！';         clearTimeout(titleTime);     }     else {         $('[rel="icon"]').attr('href', "/img/trhx2.png");         document.title = 'ヾ(Ő∀Ő3)ノ你帅就回来！' + OriginTitle;         titleTime = setTimeout(function () {             document.title = OriginTitle;         }, 2000);     } });]]></content>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title></title>
+    <link href="/"/>
+    <url>/</url>
+    
+    <content type="html"><![CDATA[var a_idx = 0;jQuery(document).ready(function($) {    $("body").click(function(e) {        var a = new Array        ("Prosperity", "Democracy", "Civility", "Harmony", "Freedom", "Equality", "Justice", "RuleOfLaw", "Patriotism", "Dedication", "Integrity", "Friendship");        var $i = $("<span/>").text(a[a_idx]);        a_idx = (a_idx + 1) % a.length;        var x = e.pageX,        y = e.pageY;         $i.css({            "z-index": 5,            "top": y - 20,            "left": x,            "position": "absolute",            "font-weight": "bold",            "color": color16()        });        $("body").append($i);        $i.animate({            "top": y - 180,            "opacity": 0        },            3000,            function() {                $i.remove();            });    });    setTimeout('delay()', 2000);});function delay() {    $(".buryit").removeAttr("onclick");}function color16(){//十六进制颜色随机    var r = Math.floor(Math.random()*256);    var g = Math.floor(Math.random()*256);    var b = Math.floor(Math.random()*256);    var color = '#'+r.toString(16)+g.toString(16)+b.toString(16);    return color;}]]></content>
     
   </entry>
   
