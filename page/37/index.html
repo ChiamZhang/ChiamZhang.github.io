@@ -1,0 +1,1101 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/Mine.jpg">
+  <link rel="icon" href="/img/Mine.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Chiam">
+  <meta name="keywords" content="算法，安全">
+  
+    <meta name="description" content="欲买桂花同载酒，终不似，少年游">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Chiam 的个人主页">
+<meta property="og:url" content="http://example.com/page/37/index.html">
+<meta property="og:site_name" content="Chiam 的个人主页">
+<meta property="og:description" content="欲买桂花同载酒，终不似，少年游">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:author" content="Chiam">
+<meta property="article:tag" content="算法，安全">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>Chiam 的个人主页</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.5-a","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":"❡"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":2},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 100vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Chiam&#39;s Blogs</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/PartyAnimals.webp') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="&lt;font color=White &gt;life&amp;nbsp;&lt;/font&gt;  &lt;font color=White &gt;is&amp;nbsp;&lt;/font&gt;  &lt;font color=White &gt;struggle!!&lt;/font&gt;"></span>
+          
+        </div>
+
+        
+      </div>
+
+      
+        <div class="scroll-down-bar">
+          <i class="iconfont icon-arrowdown"></i>
+        </div>
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      <div class="container nopadding-x-md">
+        <div id="board"
+          style="margin-top: 0">
+          
+          <div class="container">
+            <div class="row">
+              <div class="col-12 col-md-10 m-auto">
+                
+
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/2023/12/06/%E3%80%8E%E7%AE%97%E6%B3%95-ACM%E7%AB%9E%E8%B5%9B-%E5%9B%BE%E8%AE%BA%E3%80%8F2-SAT-HDUHDOJ1814PeacefulCommission/" target="_self">
+          <img src="/img/helloworld.png" srcset="/img/loading.gif" lazyload alt="『算法-ACM竞赛-图论』2-SAT-HDUHDOJ1814PeacefulCommission">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2023/12/06/%E3%80%8E%E7%AE%97%E6%B3%95-ACM%E7%AB%9E%E8%B5%9B-%E5%9B%BE%E8%AE%BA%E3%80%8F2-SAT-HDUHDOJ1814PeacefulCommission/" target="_self">
+          『算法-ACM竞赛-图论』2-SAT-HDUHDOJ1814PeacefulCommission
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt " href="/2023/12/06/%E3%80%8E%E7%AE%97%E6%B3%95-ACM%E7%AB%9E%E8%B5%9B-%E5%9B%BE%E8%AE%BA%E3%80%8F2-SAT-HDUHDOJ1814PeacefulCommission/" target="_self">
+        <div>
+          『算法-ACM 竞赛-图论』2-SAT-HDUHDOJ1814PeacefulCommission图论–2-SAT–HDU&#x2F;HDOJ 1814 Peaceful CommissionPeaceful CommissionTime Limit: 10000&#x2F;5000 MS (Java&#x2F;Others) Memory Limit: 32768&#x2F;32768 K (J
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2023-12-06 00:11" pubdate>
+              2023-12-06
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E7%AE%97%E6%B3%95/" class="category-chain-item">算法</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/%E7%AE%97%E6%B3%95/ACM%E7%AB%9E%E8%B5%9B/" class="category-chain-item">ACM竞赛</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/%E7%AE%97%E6%B3%95/ACM%E7%AB%9E%E8%B5%9B/%E5%9B%BE%E8%AE%BA/" class="category-chain-item">图论</a>
+  
+  
+
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/2023/12/06/%E3%80%8E%E7%AE%97%E6%B3%95-ACM%E7%AB%9E%E8%B5%9B-%E5%9B%BE%E8%AE%BA%E3%80%8F2-SAT-HDOJHDU1824Let&#39;sgohome/" target="_self">
+          <img src="/img/helloworld.png" srcset="/img/loading.gif" lazyload alt="『算法-ACM竞赛-图论』2-SAT-HDOJHDU1824Let&#39;sgohome">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2023/12/06/%E3%80%8E%E7%AE%97%E6%B3%95-ACM%E7%AB%9E%E8%B5%9B-%E5%9B%BE%E8%AE%BA%E3%80%8F2-SAT-HDOJHDU1824Let&#39;sgohome/" target="_self">
+          『算法-ACM竞赛-图论』2-SAT-HDOJHDU1824Let&#39;sgohome
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt " href="/2023/12/06/%E3%80%8E%E7%AE%97%E6%B3%95-ACM%E7%AB%9E%E8%B5%9B-%E5%9B%BE%E8%AE%BA%E3%80%8F2-SAT-HDOJHDU1824Let&#39;sgohome/" target="_self">
+        <div>
+          『算法-ACM 竞赛-图论』2-SAT-HDOJHDU1824Let’sgohome图论–2-SAT–HDOJ&#x2F;HDU 1824 Let’s go homeProblem Description小时候，乡愁是一枚小小的邮票，我在这头，母亲在那头。—— 余光中 集训是辛苦的，道路是坎坷的，休息还是必须的。经过一段时间的训练，lcy 决定让大家回家放松一下，但是训练还是得照常进行，lcy 想
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2023-12-06 00:11" pubdate>
+              2023-12-06
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E7%AE%97%E6%B3%95/" class="category-chain-item">算法</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/%E7%AE%97%E6%B3%95/ACM%E7%AB%9E%E8%B5%9B/" class="category-chain-item">ACM竞赛</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/%E7%AE%97%E6%B3%95/ACM%E7%AB%9E%E8%B5%9B/%E5%9B%BE%E8%AE%BA/" class="category-chain-item">图论</a>
+  
+  
+
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/2023/12/06/%E3%80%8E%E7%AE%97%E6%B3%95-ACM%E7%AB%9E%E8%B5%9B-%E5%9B%BE%E8%AE%BA%E3%80%8F%EF%BC%88%E6%8A%80%E5%B7%A7%EF%BC%89%E8%B6%85%E7%BA%A7%E6%BA%90%E7%82%B9%E4%B8%8E%E8%B6%85%E7%BA%A7%E6%B1%87%E7%82%B9/" target="_self">
+          <img src="/img/helloworld.png" srcset="/img/loading.gif" lazyload alt="『算法-ACM竞赛-图论』（技巧）超级源点与超级汇点">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2023/12/06/%E3%80%8E%E7%AE%97%E6%B3%95-ACM%E7%AB%9E%E8%B5%9B-%E5%9B%BE%E8%AE%BA%E3%80%8F%EF%BC%88%E6%8A%80%E5%B7%A7%EF%BC%89%E8%B6%85%E7%BA%A7%E6%BA%90%E7%82%B9%E4%B8%8E%E8%B6%85%E7%BA%A7%E6%B1%87%E7%82%B9/" target="_self">
+          『算法-ACM竞赛-图论』（技巧）超级源点与超级汇点
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt " href="/2023/12/06/%E3%80%8E%E7%AE%97%E6%B3%95-ACM%E7%AB%9E%E8%B5%9B-%E5%9B%BE%E8%AE%BA%E3%80%8F%EF%BC%88%E6%8A%80%E5%B7%A7%EF%BC%89%E8%B6%85%E7%BA%A7%E6%BA%90%E7%82%B9%E4%B8%8E%E8%B6%85%E7%BA%A7%E6%B1%87%E7%82%B9/" target="_self">
+        <div>
+          『算法-ACM 竞赛-图论』（技巧）超级源点与超级汇点图论–（技巧）超级源点与超级汇点背景：给出题目，在一张图中有多个点起点，一个终点，求所有起点到终点的最短距离。 解题方法： 1.跑 N 边单源最短路，但是这样是不行的肯定超时。 2.floyd 求出所有最短路，枚举每个起点到终点的距离，这个似乎比法 1 更慢。 3.反向建边，反向跑一遍 Dijkstra，或者 SPFA，这样就能求到终点到起点的
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2023-12-06 00:11" pubdate>
+              2023-12-06
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E7%AE%97%E6%B3%95/" class="category-chain-item">算法</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/%E7%AE%97%E6%B3%95/ACM%E7%AB%9E%E8%B5%9B/" class="category-chain-item">ACM竞赛</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/%E7%AE%97%E6%B3%95/ACM%E7%AB%9E%E8%B5%9B/%E5%9B%BE%E8%AE%BA/" class="category-chain-item">图论</a>
+  
+  
+
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/2023/12/06/%E3%80%8E%E7%AE%97%E6%B3%95-ACM%E7%AB%9E%E8%B5%9B-%E5%8E%86%E7%A8%8B%E3%80%8F%E8%B5%B0%E4%BA%86/" target="_self">
+          <img src="/img/helloworld.png" srcset="/img/loading.gif" lazyload alt="『算法-ACM竞赛-历程』走了">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2023/12/06/%E3%80%8E%E7%AE%97%E6%B3%95-ACM%E7%AB%9E%E8%B5%9B-%E5%8E%86%E7%A8%8B%E3%80%8F%E8%B5%B0%E4%BA%86/" target="_self">
+          『算法-ACM竞赛-历程』走了
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt " href="/2023/12/06/%E3%80%8E%E7%AE%97%E6%B3%95-ACM%E7%AB%9E%E8%B5%9B-%E5%8E%86%E7%A8%8B%E3%80%8F%E8%B5%B0%E4%BA%86/" target="_self">
+        <div>
+          『算法-ACM 竞赛-历程』走了终于痛定思痛的决定放弃了，遭不住了。想说的很多，对不起的人，也有很多，我想继续逃避下去，我不想在面对了，也有想骂的人，总之要走了，ACM 真的是非常好的地方，不得不说再见了，再见了赛场。别人是退役，而我是太菜了，自己都不想看到自己。再见！以后再写吧，最近挺烦的。
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2023-12-06 00:11" pubdate>
+              2023-12-06
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E7%AE%97%E6%B3%95/" class="category-chain-item">算法</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/%E7%AE%97%E6%B3%95/ACM%E7%AB%9E%E8%B5%9B/" class="category-chain-item">ACM竞赛</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/%E7%AE%97%E6%B3%95/ACM%E7%AB%9E%E8%B5%9B/%E5%8E%86%E7%A8%8B/" class="category-chain-item">历程</a>
+  
+  
+
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/2023/12/06/%E3%80%8E%E7%AE%97%E6%B3%95-ACM%E7%AB%9E%E8%B5%9B-%E5%8E%86%E7%A8%8B%E3%80%8F%E8%AE%AD%E7%BB%83%E6%97%A5%E8%AE%B08.22/" target="_self">
+          <img src="/img/helloworld.png" srcset="/img/loading.gif" lazyload alt="『算法-ACM竞赛-历程』训练日记8.22">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2023/12/06/%E3%80%8E%E7%AE%97%E6%B3%95-ACM%E7%AB%9E%E8%B5%9B-%E5%8E%86%E7%A8%8B%E3%80%8F%E8%AE%AD%E7%BB%83%E6%97%A5%E8%AE%B08.22/" target="_self">
+          『算法-ACM竞赛-历程』训练日记8.22
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt " href="/2023/12/06/%E3%80%8E%E7%AE%97%E6%B3%95-ACM%E7%AB%9E%E8%B5%9B-%E5%8E%86%E7%A8%8B%E3%80%8F%E8%AE%AD%E7%BB%83%E6%97%A5%E8%AE%B08.22/" target="_self">
+        <div>
+          『算法-ACM 竞赛-历程』训练日记 8.228 月 22 日训练日记昨天还是做题，补题。学具体知识没怎么学，主要还是看在看 DP，线性 DP 的种类层出不穷，有点难，状态有时候真的找不出来，补完题今天主要看 DP，和老师发的资料。然后就是检讨自己，他们真的是好强啊，自己感觉自己是蒟蒻，做题又 WA 又慢，有时候还不出题，思路没有那么清晰，做题的时候，还是得多刷 Codeforece。
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2023-12-06 00:11" pubdate>
+              2023-12-06
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E7%AE%97%E6%B3%95/" class="category-chain-item">算法</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/%E7%AE%97%E6%B3%95/ACM%E7%AB%9E%E8%B5%9B/" class="category-chain-item">ACM竞赛</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/%E7%AE%97%E6%B3%95/ACM%E7%AB%9E%E8%B5%9B/%E5%8E%86%E7%A8%8B/" class="category-chain-item">历程</a>
+  
+  
+
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/2023/12/06/%E3%80%8E%E7%AE%97%E6%B3%95-ACM%E7%AB%9E%E8%B5%9B-%E5%8E%86%E7%A8%8B%E3%80%8F%E8%AE%AD%E7%BB%83%E6%97%A5%E8%AE%B08.3/" target="_self">
+          <img src="/img/helloworld.png" srcset="/img/loading.gif" lazyload alt="『算法-ACM竞赛-历程』训练日记8.3">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2023/12/06/%E3%80%8E%E7%AE%97%E6%B3%95-ACM%E7%AB%9E%E8%B5%9B-%E5%8E%86%E7%A8%8B%E3%80%8F%E8%AE%AD%E7%BB%83%E6%97%A5%E8%AE%B08.3/" target="_self">
+          『算法-ACM竞赛-历程』训练日记8.3
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt " href="/2023/12/06/%E3%80%8E%E7%AE%97%E6%B3%95-ACM%E7%AB%9E%E8%B5%9B-%E5%8E%86%E7%A8%8B%E3%80%8F%E8%AE%AD%E7%BB%83%E6%97%A5%E8%AE%B08.3/" target="_self">
+        <div>
+          『算法-ACM 竞赛-历程』训练日记 8.3上午看了一上午的 KMP 算法，讲真的真的有点难，没看懂，后缀数组的的倍增算法，也很难，背板子都好背，理解起来，到现在都不知道他是干嘛的，下午看了线段 rmq，看了各种线段树问题，模板也敲出来，区间和，区间最大最小值，区间 GCD,区间最大子段和，就等着 A 题，直到题目出来才发现对 A 题知之甚少，原来线段树可以这么玩，也想到了用数表示 2 进制下的数
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2023-12-06 00:11" pubdate>
+              2023-12-06
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E7%AE%97%E6%B3%95/" class="category-chain-item">算法</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/%E7%AE%97%E6%B3%95/ACM%E7%AB%9E%E8%B5%9B/" class="category-chain-item">ACM竞赛</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/%E7%AE%97%E6%B3%95/ACM%E7%AB%9E%E8%B5%9B/%E5%8E%86%E7%A8%8B/" class="category-chain-item">历程</a>
+  
+  
+
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/2023/12/06/%E3%80%8E%E7%AE%97%E6%B3%95-ACM%E7%AB%9E%E8%B5%9B-%E5%8E%86%E7%A8%8B%E3%80%8F%E8%AE%AD%E7%BB%83%E6%97%A5%E8%AE%B0.9.29/" target="_self">
+          <img src="/img/helloworld.png" srcset="/img/loading.gif" lazyload alt="『算法-ACM竞赛-历程』训练日记.9.29">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2023/12/06/%E3%80%8E%E7%AE%97%E6%B3%95-ACM%E7%AB%9E%E8%B5%9B-%E5%8E%86%E7%A8%8B%E3%80%8F%E8%AE%AD%E7%BB%83%E6%97%A5%E8%AE%B0.9.29/" target="_self">
+          『算法-ACM竞赛-历程』训练日记.9.29
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt " href="/2023/12/06/%E3%80%8E%E7%AE%97%E6%B3%95-ACM%E7%AB%9E%E8%B5%9B-%E5%8E%86%E7%A8%8B%E3%80%8F%E8%AE%AD%E7%BB%83%E6%97%A5%E8%AE%B0.9.29/" target="_self">
+        <div>
+          『算法-ACM 竞赛-历程』训练日记.9.299 月 29 日总结倍增没学会，导致 LCA 和 ST 算法都不是很清楚，知道是怎么回事这个算法，但是不找点题做一做我永远是不可能学会的，包括其他算法，时间问题，很难说，上学期有个小屋，能够自己在那里安心学习，现在要做的是调整个人，自己喜欢独处做正事，在训练室稍微的有点学不进去，以后还是找一间教室学习，挨着宿舍也近，偷着学习和熬夜学习是我比较喜欢的，因
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2023-12-06 00:11" pubdate>
+              2023-12-06
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E7%AE%97%E6%B3%95/" class="category-chain-item">算法</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/%E7%AE%97%E6%B3%95/ACM%E7%AB%9E%E8%B5%9B/" class="category-chain-item">ACM竞赛</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/%E7%AE%97%E6%B3%95/ACM%E7%AB%9E%E8%B5%9B/%E5%8E%86%E7%A8%8B/" class="category-chain-item">历程</a>
+  
+  
+
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/2023/12/06/%E3%80%8E%E7%AE%97%E6%B3%95-ACM%E7%AB%9E%E8%B5%9B-%E5%8E%86%E7%A8%8B%E3%80%8F%E8%A2%AB%E9%92%89%E5%9C%A8%E5%8E%86%E5%8F%B2%E7%9A%84%E8%80%BB%E8%BE%B1%E6%9F%B1%E4%B8%8A/" target="_self">
+          <img src="/img/helloworld.png" srcset="/img/loading.gif" lazyload alt="『算法-ACM竞赛-历程』被钉在历史的耻辱柱上">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2023/12/06/%E3%80%8E%E7%AE%97%E6%B3%95-ACM%E7%AB%9E%E8%B5%9B-%E5%8E%86%E7%A8%8B%E3%80%8F%E8%A2%AB%E9%92%89%E5%9C%A8%E5%8E%86%E5%8F%B2%E7%9A%84%E8%80%BB%E8%BE%B1%E6%9F%B1%E4%B8%8A/" target="_self">
+          『算法-ACM竞赛-历程』被钉在历史的耻辱柱上
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt " href="/2023/12/06/%E3%80%8E%E7%AE%97%E6%B3%95-ACM%E7%AB%9E%E8%B5%9B-%E5%8E%86%E7%A8%8B%E3%80%8F%E8%A2%AB%E9%92%89%E5%9C%A8%E5%8E%86%E5%8F%B2%E7%9A%84%E8%80%BB%E8%BE%B1%E6%9F%B1%E4%B8%8A/" target="_self">
+        <div>
+          『算法-ACM 竞赛-历程』被钉在历史的耻辱柱上 1800 干
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2023-12-06 00:11" pubdate>
+              2023-12-06
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E7%AE%97%E6%B3%95/" class="category-chain-item">算法</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/%E7%AE%97%E6%B3%95/ACM%E7%AB%9E%E8%B5%9B/" class="category-chain-item">ACM竞赛</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/%E7%AE%97%E6%B3%95/ACM%E7%AB%9E%E8%B5%9B/%E5%8E%86%E7%A8%8B/" class="category-chain-item">历程</a>
+  
+  
+
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/2023/12/06/%E3%80%8E%E7%AE%97%E6%B3%95-ACM%E7%AB%9E%E8%B5%9B-%E5%8E%86%E7%A8%8B%E3%80%8F%E6%88%91%E6%83%B3solo%E8%87%AA%E5%B7%B1%E4%B8%80%E4%B8%AA%E4%BA%BA%EF%BC%81/" target="_self">
+          <img src="/img/helloworld.png" srcset="/img/loading.gif" lazyload alt="『算法-ACM竞赛-历程』我想solo自己一个人！">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2023/12/06/%E3%80%8E%E7%AE%97%E6%B3%95-ACM%E7%AB%9E%E8%B5%9B-%E5%8E%86%E7%A8%8B%E3%80%8F%E6%88%91%E6%83%B3solo%E8%87%AA%E5%B7%B1%E4%B8%80%E4%B8%AA%E4%BA%BA%EF%BC%81/" target="_self">
+          『算法-ACM竞赛-历程』我想solo自己一个人！
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt " href="/2023/12/06/%E3%80%8E%E7%AE%97%E6%B3%95-ACM%E7%AB%9E%E8%B5%9B-%E5%8E%86%E7%A8%8B%E3%80%8F%E6%88%91%E6%83%B3solo%E8%87%AA%E5%B7%B1%E4%B8%80%E4%B8%AA%E4%BA%BA%EF%BC%81/" target="_self">
+        <div>
+          『算法-ACM 竞赛-历程』我想 solo 自己一个人！区域赛之后你就该走了，现在你告诉我，没精力不打了，我真谢谢你！今年就 TM 的没有一点舒心的地方！父母分居，队友出走，队伍解散，白天家里两个外甥很吵，鼻窦炎复发，喜欢的妹子也追不到，整夜失眠，逃避现实！
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2023-12-06 00:11" pubdate>
+              2023-12-06
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E7%AE%97%E6%B3%95/" class="category-chain-item">算法</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/%E7%AE%97%E6%B3%95/ACM%E7%AB%9E%E8%B5%9B/" class="category-chain-item">ACM竞赛</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/%E7%AE%97%E6%B3%95/ACM%E7%AB%9E%E8%B5%9B/%E5%8E%86%E7%A8%8B/" class="category-chain-item">历程</a>
+  
+  
+
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/2023/12/06/%E3%80%8E%E7%AE%97%E6%B3%95-ACM%E7%AB%9E%E8%B5%9B-%E5%8E%86%E7%A8%8B%E3%80%8F%E6%80%BB%E7%BB%932/" target="_self">
+          <img src="/img/helloworld.png" srcset="/img/loading.gif" lazyload alt="『算法-ACM竞赛-历程』总结2">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2023/12/06/%E3%80%8E%E7%AE%97%E6%B3%95-ACM%E7%AB%9E%E8%B5%9B-%E5%8E%86%E7%A8%8B%E3%80%8F%E6%80%BB%E7%BB%932/" target="_self">
+          『算法-ACM竞赛-历程』总结2
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt " href="/2023/12/06/%E3%80%8E%E7%AE%97%E6%B3%95-ACM%E7%AB%9E%E8%B5%9B-%E5%8E%86%E7%A8%8B%E3%80%8F%E6%80%BB%E7%BB%932/" target="_self">
+        <div>
+          『算法-ACM 竞赛-历程』总结 2离上次总结过了一周了，CF 比赛场数不够始终，不能把 CF 上到 1600 更别提，1800，好的方面是状态能找回。从今天开始，一天一套 Div2，直到 1600 分之后在一天一套 Div1，不能是夸下海口，而不付诸实际行动。
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2023-12-06 00:11" pubdate>
+              2023-12-06
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E7%AE%97%E6%B3%95/" class="category-chain-item">算法</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/%E7%AE%97%E6%B3%95/ACM%E7%AB%9E%E8%B5%9B/" class="category-chain-item">ACM竞赛</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/%E7%AE%97%E6%B3%95/ACM%E7%AB%9E%E8%B5%9B/%E5%8E%86%E7%A8%8B/" class="category-chain-item">历程</a>
+  
+  
+
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+      </div>
+    </article>
+  </div>
+
+
+
+  <nav aria-label="navigation">
+    <span class="pagination" id="pagination">
+      <a class="extend prev" rel="prev" href="/page/36/#board"><i class="iconfont icon-arrowleft"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/35/#board">35</a><a class="page-number" href="/page/36/#board">36</a><span class="page-number current">37</span><a class="page-number" href="/page/38/#board">38</a><a class="page-number" href="/page/39/#board">39</a><span class="space">&hellip;</span><a class="page-number" href="/page/75/#board">75</a><a class="extend next" rel="next" href="/page/38/#board"><i class="iconfont icon-arrowright"></i></a>
+    </span>
+  </nav>
+
+
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <footer id="footer" role="contentinfo"> <div class="divider"> <div class="wall"></div> <img class="animals" src="/img/footer_animals_new.png" srcset="/img/loading.gif" lazyload alt="Footer Animals"> </div> <div class="container" data-index="450"> <p> <a href="https://chiamzhang.github.io" target="_blank">DogEgg</a> <i class="iconfont icon-love"></i> <a href="#" target="_blank">LittePig</a> </p> <p> Powered by  <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-pen"></i> Theme  <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> </p> </div> </footer> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+  
+<script src="/js/love.js"></script>
+<script src="/js/funnyTitle.js"></script>
+<script src="/js/backTop.js"></script>
+<script src="//cdn.jsdelivr.net/gh/bynotes/texiao/source/js/xiaoxuehua.js"></script>
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"left","width":150,"height":150,"hOffset":20,"vOffset":0},"mobile":{"show":false,"scale":0.5},"react":{"opacity":0.9},"log":false});</script></body>
+</html>
