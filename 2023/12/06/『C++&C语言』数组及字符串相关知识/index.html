@@ -24,7 +24,7 @@
 <meta property="og:description" content="当然，我很乐意帮助您调整格式。以下是修改后的版本：  title: 『C++&amp;C语言』数组及字符串相关知识categories:  - [C++&amp;C语言]『C++&amp;C 语言』数组及字符串相关知识一、数组的知识1.一维数组1.1 数组的引入当数据量很多，类型相同需要重复定义的时候，需要用数组简化问题解法。 1.2 数组的使用1.2.1 定义数组类型 数组名 [ 常量表达式 ]">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2023-12-05T16:11:43.660Z">
-<meta property="article:modified_time" content="2023-12-05T16:45:18.801Z">
+<meta property="article:modified_time" content="2023-12-05T16:53:36.798Z">
 <meta property="article:author" content="Chiam">
 <meta property="article:tag" content="算法，安全">
 <meta name="twitter:card" content="summary_large_image">
@@ -224,7 +224,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          2.2k 字
+          4.8k 字
         
       </span>
     
@@ -235,7 +235,7 @@
         
         
         
-          19 分钟
+          41 分钟
         
       </span>
     
@@ -309,6 +309,43 @@
 </blockquote>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;iostream&gt;</span></span><br>    <span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br>    <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span><br><span class="hljs-function">    </span>&#123;<br>    	<span class="hljs-type">int</span> a[<span class="hljs-number">6</span>][<span class="hljs-number">6</span>];<br>    	<span class="hljs-type">int</span> l1=<span class="hljs-number">0</span>,l2=<span class="hljs-number">0</span>;<br>    	<span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> t=<span class="hljs-number">1</span>;t&lt;<span class="hljs-number">6</span>;t++)<br>    	&#123;<br>    		<span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">1</span>;i&lt;<span class="hljs-number">6</span>;i++)<br>    		&#123;<br>    			cin&gt;&gt;a[t][i];<br>    		&#125;<br>    	&#125;<br>    	cin&gt;&gt;l1&gt;&gt;l2;<br>    	<span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> t=<span class="hljs-number">1</span>;t&lt;<span class="hljs-number">6</span>;t++)<br>    	&#123;<br>    		a[<span class="hljs-number">0</span>][t]=a[l1][t];<br>    		a[l1][t]=a[l2][t];<br>    		a[l2][t]=a[<span class="hljs-number">0</span>][t];<br>    	&#125;<br>    	<span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> t=<span class="hljs-number">1</span>;t&lt;<span class="hljs-number">6</span>;t++)<br>    	&#123;<br>    		<span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">1</span>;i&lt;<span class="hljs-number">6</span>;i++)<br>    		&#123;<br>    			cout&lt;&lt;a[t][i]&lt;&lt;<span class="hljs-string">&#x27; &#x27;</span>;<br>    		&#125;<br>    		cout&lt;&lt;endl;<br>    	&#125;<br></code></pre></td></tr></table></figure>
 
+<p>您的文章已经非常详细和清晰了，我只是做了一些小的修改以提高可读性。以下是修改后的版本：</p>
+<h2 id="Sec3-字符型数组"><a href="#Sec3-字符型数组" class="headerlink" title="Sec3.字符型数组"></a>Sec3.字符型数组</h2><h3 id="1-数组的定义"><a href="#1-数组的定义" class="headerlink" title="1.数组的定义"></a>1.数组的定义</h3><ul>
+<li>一维数组：<code>char 函数名[行 常量表达式]</code> 例如：<code>char ch[5];</code></li>
+<li>二维数组：<code>char 函数名[列 常量表达式]</code> 例如：<code>char ch[2][12]</code></li>
+</ul>
+<h3 id="2-数组的初始化"><a href="#2-数组的初始化" class="headerlink" title="2.数组的初始化"></a>2.数组的初始化</h3><p>初始化过程中，没有被初始化的数组项编译器会给默认赋值’\0’；（整数数组没有被初始化的数组项被赋值为 0）。例如：<code>char c[5] = &#123;‘a’,’b’,’c’,’d’&#125;;</code> 中 <code>c[4] = ‘\0’;</code> \0 即空字符。</p>
+<p><code>char c[5]=&quot;abcd&quot;</code>字符串初始化数组的话，字符串后会跟一个空字符，所以字符串的元素数量要少于定义的空间。</p>
+<h3 id="3-字符型数组特殊的赋值方式"><a href="#3-字符型数组特殊的赋值方式" class="headerlink" title="3.字符型数组特殊的赋值方式"></a>3.字符型数组特殊的赋值方式</h3><p>可以直接 <code>cin&gt;&gt;a</code>, <code>a</code> 为字符型数组。其余相关操作均可参考数组与二维数组。</p>
+<h2 id="Sec4-字符串-string"><a href="#Sec4-字符串-string" class="headerlink" title="Sec4.字符串 string"></a>Sec4.字符串 string</h2><p>C++中对于 strinig 的定义为：<code>typedef basic_string&lt;char&gt; string;</code> 也就是说 C++中的 string 类是一个泛型类，由模板而实例化的一个标准类，本质上不是一个标准数据类型。</p>
+<h3 id="1-字符串操作"><a href="#1-字符串操作" class="headerlink" title="1.字符串操作"></a>1.字符串操作</h3><ul>
+<li><code>strcpy(p, p1)</code> 复制字符串</li>
+<li><code>strncpy(p, p1, n)</code> 复制指定长度字符串</li>
+<li><code>strcat(p, p1)</code> 附加字符串</li>
+<li><code>strncat(p, p1, n)</code> 附加指定长度字符串</li>
+<li><code>strlen(p)</code> 取字符串长度</li>
+<li><code>strcmp(p, p1)</code> 比较字符串</li>
+<li><code>strcasecmp</code> 忽略大小写比较字符串</li>
+<li><code>strncmp(p, p1, n)</code> 比较指定长度字符串</li>
+<li><code>strchr(p, c)</code> 在字符串中查找指定字符</li>
+<li><code>strrchr(p, c)</code> 在字符串中反向查找</li>
+<li><code>strstr(p, p1)</code> 查找字符串</li>
+<li><code>strlwr(p)</code>将大写字母全部换为小写字母</li>
+<li><code>strupr(p)</code>将小写字母全部换为大写字母</li>
+</ul>
+<p>相对于字符型数组，字符串可以有以下操作：</p>
+<ol>
+<li><code>s.empty();</code> &#x2F;&#x2F; s 为空串 返回 true</li>
+<li><code>s.size();</code> &#x2F;&#x2F; 返回 s 中字符个数 类型应为：string::size_type</li>
+<li><code>s[n];</code> &#x2F;&#x2F; 从 0 开始相当于下标访问</li>
+<li><code>s1+s2;</code> &#x2F;&#x2F; 把 s1 和 s2 连接成新串 返回新串</li>
+<li><code>s1=s2;</code> &#x2F;&#x2F; 把 s1 替换为 s2 的副本</li>
+<li><code>v1==v2;</code> &#x2F;&#x2F; 比较，相等返回 true</li>
+<li><code>!=, &lt;, &lt;=, &gt;, &gt;=</code></li>
+</ol>
+<p>大小规则 1)数字 0~9 比字母要小。如”7”&lt;”F”; 2)数字 0 比数字 9 要小，并按 0 到 9 顺序递增。如”3”&lt;”8” 3)字母 A 比字母 Z 要小，并按 A 到 Z 顺序递增。如”A”&lt;”Z” 4)同个字母的大写字母比小写字母要小。如”A”&lt;”a”。</p>
+<h3 id="2-字符串的引用"><a href="#2-字符串的引用" class="headerlink" title="2.字符串的引用"></a>2.字符串的引用</h3><p>可以直接使用名称，例如 <code>string a</code>；可以直接使用 <code>a</code> 代指一整个字符串。也可以使用 <code>string a[1]</code>代指字符串 <code>a</code> 的第二个元素。</p>
+<h2 id="二、对于数组部分学习的心得"><a href="#二、对于数组部分学习的心得" class="headerlink" title="二、对于数组部分学习的心得"></a>二、对于数组部分学习的心得</h2><p>对于近期程序设计的学习感到了恐惧，因为通过 string 到接触 stl 开始发现程序设计的知识体系太庞大了，有更多的知识要去学习，现在学到的基础还算不上九牛一毛，有种井底之蛙的感觉，也正是如此，要更要去克服这些困难，像在做 OJ 题时总会碰到一些不知道的知识，再由这些知识就能发现更多知识，及时不会，也开始对 C 的知识体系有了一些认识，但是从 Acm 院级的比赛来看，有些知识很简单，考的是想法，是解决问题的“算法”，也接触到了 STL 的容器，算法，但是对于迭代器，还是没有清晰的概念，从题中学习知识的方法确实很慢，比主动去看知识要慢的很多，但是只有从题目与知识的串联中才能将这些知识记牢会用。对于语言的学习，要愿意去接受新知识，也要有斗志，耐得住寂寞的克服一个个问题。[assistant to&#x3D;python code]interface<br>{<br>  “predicted_output”: “## Sec3.字符型数组\n\n### 1.数组的定义\n\n- 一维数组：<code>char 函数名[行 常量表达式]</code> 例如：<code>char ch[5];</code>\n- 二维数组：<code>char 函数名[列 常量表达式]</code> 例如：<code>char ch[2][12]</code>\n\n### 2.数组的初始化\n\n初始化过程中，没有被初始化的数组项编译器会给默认赋值’\0’；（整数数组没有被初始化的数组项被赋值为 0）。例如：<code>char c[5] = &#123;‘a’,’b’,’c’,’d’&#125;;</code> 中 <code>c[4] = ‘\\0’;</code> \0 即空字符。\n\n<code>char c[5]=\&quot;abcd\&quot;</code>字符串初始化数组的话，字符串后会跟一个空字符，所以字符串的元素数量要少于定义的空间。\n\n### 3.字符型数组特殊的赋值方式\n\n可以直接 <code>cin&gt;&gt;a</code>, <code>a</code> 为字符型数组。其余相关操作均可参考数组与二维数组。\n\n## Sec4.字符串 string\n\nC++中对于 strinig 的定义为：<code>typedef basic_string&lt;char&gt; string;</code> 也就是说 C++中的 string 类是一个泛型类，由模板而实例化的一个标准类，本质上不是一个标准数据类型。\n\n### 1.字符串操作\n\n- <code>strcpy(p, p1)</code> 复制字符串\n- <code>strncpy(p, p1, n)</code> 复制指定长度字符串\n- <code>strcat(p, p1)</code> 附加字符串\n- <code>strncat(p, p1, n)</code> 附加指定长度字符串\n- <code>strlen(p)</code> 取字符串长度\n- <code>strcmp(p, p1)</code> 比较字符串\n- <code>strcasecmp</code> 忽略大小写比较字符串\n- <code>strncmp(p, p1, n)</code> 比较指定长度字符串\n- <code>strchr(p, c)</code> 在字符串中查找指定字符\n- <code>strrchr(p, c)</code> 在字符串中反向查找\n- <code>strstr(p, p1)</code> 查找字符串\n- <code>strlwr(p)</code>将大写字母全部换为小写字母\n- <code>strupr(p)</code>将小写字母全部换为大写字母\n\n相对于字符型数组，字符串可以有以下操作：\n\n1.  <code>s.empty();</code> &#x2F;&#x2F; s 为空串 返回 true\n2.  <code>s.size();</code> &#x2F;&#x2F; 返回 s 中字符个数 类型应为：string::size_type\n3.  <code>s[n];</code> &#x2F;&#x2F; 从 0 开始相当于下标访问\n4.  &#96;s1+s2;</p>
 
                 
               </div>
@@ -516,7 +553,7 @@
     <div class="footer-inner">
   
     <div class="footer-content">
-       <footer id="footer" role="contentinfo"> <div class="divider"> <div class="wall"></div> <img class="animals" src="/img/footer_animals_new.png" srcset="/img/loading.gif" lazyload alt="Footer Animals"> </div> <div class="container" data-index="450"> <p> <a href="https://chiamzhang.github.io" target="_blank">DogEgg</a> <i class="iconfont icon-love"></i> <a href="#" target="_blank">LittePig</a> </p> <p> Powered by  <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-pen"></i> Theme  <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> </p> </div> </footer> 
+       <meta name="referrer" content="no-referrer" /> <footer id="footer" role="contentinfo"> <div class="divider"> <div class="wall"></div> <img class="animals" src="/img/footer_animals_new.png" srcset="/img/loading.gif" lazyload alt="Footer Animals"> </div> <div class="container" data-index="450"> <p> <a href="https://chiamzhang.github.io" target="_blank">DogEgg</a> <i class="iconfont icon-love"></i> <a href="#" target="_blank">LittePig</a> </p> <p> Powered by  <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-pen"></i> Theme  <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> </p> </div> </footer> 
     </div>
   
   

@@ -93,7 +93,7 @@ HTMLElement.prototype.wrap = function(wrapper) {
         posDisplay = right >= 50;
         topArrow.css({
           'bottom': posDisplay && scrollDisplay ? '20px' : '-260px',
-          'right' : right/3 + 'px'
+          'right' : right/5 + 'px'
         });
       };
       setTopArrowPos();

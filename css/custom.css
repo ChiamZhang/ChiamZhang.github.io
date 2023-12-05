@@ -156,8 +156,8 @@
     -webkit-box-shadow: none;
     -moz-box-shadow: none;
     box-shadow: none;
-    margin: 0 0 0 100rem;
-    padding: 0px 0px 0px 100px; 
+    margin: 0 0 0 0rem;
+    padding: 0px 0px 0px 0px; 
     animation-name: scroll-top;
     animation-duration: 1s;
     animation-delay: 0.1s;
@@ -191,7 +191,7 @@
     background: url(/img/party-animals-backtop_min.webp) no-repeat;
     background-size: contain;
     border-radius: 0;
-    margin: 0 0 0 100rem;
+    margin: 0 0 0 0rem;
     padding: 0px 10rem 0px 0; 
  
 }
