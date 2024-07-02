@@ -1,7 +1,7 @@
 
 
 <!DOCTYPE html>
-<html lang="zh-CN" data-default-color-scheme=auto>
+<html lang="en" data-default-color-scheme=auto>
 
 
 
@@ -14,27 +14,27 @@
   
   <meta name="theme-color" content="#2f4154">
   <meta name="author" content="Chiam">
-  <meta name="keywords" content="算法，安全">
+  <meta name="keywords" content="Algorithms，Cybersecurity">
   
     <meta name="description" content="『设计模式』小伙你的穿搭很潮！-装饰者模式23 种设计模式+额外常用设计模式汇总 (持续更新）  装饰模式（Decorator）：又名包装模式。装饰模式以对客户端透明的方式扩展对象的功能，是继承关系的一个替代方案。 装饰模式常常被称为包裹模式，就是因为每一个具体装饰类都将下一个具体装饰类或者具体构成类包裹起来。 包含角色  抽象构成（Component）角色 给出一个抽象接口，以规范准备接收附加责">
 <meta property="og:type" content="article">
 <meta property="og:title" content="『设计模式』小伙你的穿搭很潮！-装饰者模式">
 <meta property="og:url" content="http://example.com/2023/12/06/%E3%80%8E%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E3%80%8F%E5%B0%8F%E4%BC%99%E4%BD%A0%E7%9A%84%E7%A9%BF%E6%90%AD%E5%BE%88%E6%BD%AE%EF%BC%81-%E8%A3%85%E9%A5%B0%E8%80%85%E6%A8%A1%E5%BC%8F/index.html">
-<meta property="og:site_name" content="Chiam 的个人主页">
+<meta property="og:site_name" content="Homepage of Chiam">
 <meta property="og:description" content="『设计模式』小伙你的穿搭很潮！-装饰者模式23 种设计模式+额外常用设计模式汇总 (持续更新）  装饰模式（Decorator）：又名包装模式。装饰模式以对客户端透明的方式扩展对象的功能，是继承关系的一个替代方案。 装饰模式常常被称为包裹模式，就是因为每一个具体装饰类都将下一个具体装饰类或者具体构成类包裹起来。 包含角色  抽象构成（Component）角色 给出一个抽象接口，以规范准备接收附加责">
-<meta property="og:locale" content="zh_CN">
+<meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/20200618023052308.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/20200418185911661.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzQ2MDIyNA==,size_16,color_FFFFFF,t_70">
 <meta property="article:published_time" content="2023-12-05T16:11:45.166Z">
 <meta property="article:modified_time" content="2023-12-05T16:20:19.349Z">
 <meta property="article:author" content="Chiam">
-<meta property="article:tag" content="算法，安全">
+<meta property="article:tag" content="Algorithms，Cybersecurity">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://img-blog.csdnimg.cn/20200618023052308.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70">
   
   
   
-  <title>『设计模式』小伙你的穿搭很潮！-装饰者模式 - Chiam 的个人主页</title>
+  <title>『设计模式』小伙你的穿搭很潮！-装饰者模式 - Homepage of Chiam</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -122,7 +122,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/">
                 
-                <span>首页</span>
+                <span>Home</span>
               </a>
             </li>
           
@@ -134,7 +134,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/archives/">
                 
-                <span>归档</span>
+                <span>Archives</span>
               </a>
             </li>
           
@@ -146,7 +146,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/categories/">
                 
-                <span>分类</span>
+                <span>Categories</span>
               </a>
             </li>
           
@@ -158,7 +158,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/about/">
                 
-                <span>关于</span>
+                <span>About</span>
               </a>
             </li>
           
@@ -170,7 +170,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/links/">
                 
-                <span>友链</span>
+                <span>Links</span>
               </a>
             </li>
           
@@ -216,7 +216,7 @@
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
         <time datetime="2023-12-06 00:11" pubdate>
-          2023年12月6日 凌晨
+          December 6, 2023 am
         </time>
       </span>
     
@@ -227,7 +227,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          4.3k 字
+          4.3k words
         
       </span>
     
@@ -238,7 +238,7 @@
         
         
         
-          37 分钟
+          37 mins
         
       </span>
     
@@ -493,26 +493,26 @@ Favor Composition Over Inheritance</p>
     <div class="license-meta">
       
         <div class="license-meta-item">
-          <div>作者</div>
+          <div>Author</div>
           <div>Chiam</div>
         </div>
       
       
         <div class="license-meta-item license-meta-date">
-          <div>发布于</div>
-          <div>2023年12月6日</div>
+          <div>Posted on</div>
+          <div>December 6, 2023</div>
         </div>
       
       
       
         <div class="license-meta-item">
-          <div>许可协议</div>
+          <div>Licensed under</div>
           <div>
             
               
               
                 <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
-                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
                     <i class="iconfont icon-by"></i>
                   </span>
                 </a>
@@ -535,7 +535,7 @@ Favor Composition Over Inheritance</p>
                       <a href="/2023/12/06/%E3%80%8E%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E3%80%8F%E5%B0%8F%E8%80%81%E5%BC%9F%E4%BD%A0%E7%8C%9C%E4%B8%8D%E9%80%8F%E6%88%91%EF%BC%9F-%20%E4%BB%A3%E7%90%86%E6%A8%A1%E5%BC%8F/" title="『设计模式』小老弟你猜不透我？- 代理模式">
                         <i class="iconfont icon-arrowleft"></i>
                         <span class="hidden-mobile">『设计模式』小老弟你猜不透我？- 代理模式</span>
-                        <span class="visible-mobile">上一篇</span>
+                        <span class="visible-mobile">Previous</span>
                       </a>
                     
                   </article>
@@ -544,7 +544,7 @@ Favor Composition Over Inheritance</p>
                     
                       <a href="/2023/12/06/%E3%80%8E%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E3%80%8F%E5%A4%A7%E8%AF%9D%E8%A5%BF%E6%B8%B8%E7%9A%84%E7%A7%BB%E9%AD%82%E5%A4%A7%E6%B3%95%E7%AB%9F%E7%A7%BB%E5%87%BA%E6%9D%A5%E4%BA%86%E6%A1%A5%E6%8E%A5%E6%A8%A1%E5%BC%8F/" title="『设计模式』大话西游的移魂大法竟移出来了桥接模式">
                         <span class="hidden-mobile">『设计模式』大话西游的移魂大法竟移出来了桥接模式</span>
-                        <span class="visible-mobile">下一篇</span>
+                        <span class="visible-mobile">Next</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
                     
@@ -596,7 +596,7 @@ Favor Composition Over Inheritance</p>
     <div id="toc">
   <p class="toc-header">
     <i class="iconfont icon-list"></i>
-    <span>目录</span>
+    <span>Table of Contents</span>
   </p>
   <div class="toc-body" id="toc-body"></div>
 </div>
@@ -652,7 +652,7 @@ Favor Composition Over Inheritance</p>
   <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
         <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -660,7 +660,7 @@ Favor Composition Over Inheritance</p>
       <div class="modal-body mx-3">
         <div class="md-form mb-5">
           <input type="text" id="local-search-input" class="form-control validate">
-          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
         </div>
         <div class="list-group" id="local-search-result"></div>
       </div>
@@ -677,7 +677,7 @@ Favor Composition Over Inheritance</p>
     <div class="footer-inner">
   
     <div class="footer-content">
-       <meta name="referrer" content="no-referrer" /> <footer id="footer" role="contentinfo"> <div class="divider"> <div class="wall"></div> <img class="animals" src="/img/footer_animals_new.png" srcset="/img/loading.gif" lazyload alt="Footer Animals"> </div> <div class="container" data-index="450"> <p> <a href="https://chiamzhang.github.io" target="_blank">DogEgg</a> <i class="iconfont icon-love"></i> <a href="#" target="_blank">LittePig</a> </p> <p> Powered by  <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-pen"></i> Theme  <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> </p> </div> </footer> 
+       <meta name="referrer" content="no-referrer" /> <footer id="footer" role="contentinfo"> <meta name="referrer" content="no-referrer" /> <div class="divider"> <div class="wall"></div> <img class="animals" src="/img/footer_animals_new.png" srcset="/img/loading.gif" lazyload alt="Footer Animals"> </div> <div class="container" data-index="450"> <p> <a href="https://chiamzhang.github.io" target="_blank">DogEgg</a> <i class="iconfont icon-love"></i> <a href="#" target="_blank">LittePig</a> </p> <p> Powered by  <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-pen"></i> Theme  <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> </p> </div> </footer> 
     </div>
   
   
@@ -846,7 +846,7 @@ Favor Composition Over Inheritance</p>
   
 
   <noscript>
-    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
   </noscript>
-<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"left","width":150,"height":150,"hOffset":20,"vOffset":0},"mobile":{"show":false,"scale":0.5},"react":{"opacity":0.9},"log":false});</script></body>
+</body>
 </html>
