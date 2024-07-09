@@ -1,0 +1,798 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/Mine.jpg">
+  <link rel="icon" href="/img/Mine.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Chiam">
+  <meta name="keywords" content="Algorithms，Cybersecurity">
+  
+    <meta name="description" content="『Python』Python 编译成计算机可执行文件（Windows 计算机可执行文件 exe,Linux 计算机可执行文件 elf,Mac 计算机可执行文件 mach-O）@[toc] 背景：Python 程序都是脚本的方式，一般是在解析器里运行，如果要想要给别的计算机使用，需要提前安装 Python 解析器和相关包才可以运行，为了在 Windows（或其它系统里） 里方便发布，我们将.py文件">
+<meta property="og:type" content="article">
+<meta property="og:title" content="『Python』Python编译成计算机可执行文件（Windows计算机可执行文件exe,Linux 计算机可执行文件elf,Mac计算机可执行文件mach-O）">
+<meta property="og:url" content="http://example.com/2024/06/29/%E3%80%8EPython%E3%80%8FPython%E7%BC%96%E8%AF%91%E6%88%90%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%8F%AF%E6%89%A7%E8%A1%8C%E6%96%87%E4%BB%B6%EF%BC%88Windows%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%8F%AF%E6%89%A7%E8%A1%8C%E6%96%87%E4%BB%B6exe,Linux%20%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%8F%AF%E6%89%A7%E8%A1%8C%E6%96%87%E4%BB%B6elf,Mac%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%8F%AF%E6%89%A7%E8%A1%8C%E6%96%87%E4%BB%B6mach-O%EF%BC%89/index.html">
+<meta property="og:site_name" content="Homepage of Chiam">
+<meta property="og:description" content="『Python』Python 编译成计算机可执行文件（Windows 计算机可执行文件 exe,Linux 计算机可执行文件 elf,Mac 计算机可执行文件 mach-O）@[toc] 背景：Python 程序都是脚本的方式，一般是在解析器里运行，如果要想要给别的计算机使用，需要提前安装 Python 解析器和相关包才可以运行，为了在 Windows（或其它系统里） 里方便发布，我们将.py文件">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200601074844194.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200601074829642.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200601075047579.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/202006010753067.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200601075442567.png">
+<meta property="article:published_time" content="2024-06-29T13:16:53.763Z">
+<meta property="article:modified_time" content="2023-12-05T16:17:48.930Z">
+<meta property="article:author" content="Chiam">
+<meta property="article:tag" content="Algorithms，Cybersecurity">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20200601074844194.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70">
+  
+  
+  
+  <title>『Python』Python编译成计算机可执行文件（Windows计算机可执行文件exe,Linux 计算机可执行文件elf,Mac计算机可执行文件mach-O） - Homepage of Chiam</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.5-a","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":"❡"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":2},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Chiam&#39;s Blogs</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                
+                <span>Home</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                
+                <span>Archives</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                
+                <span>Categories</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                
+                <span>About</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                
+                <span>Links</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="『Python』Python编译成计算机可执行文件（Windows计算机可执行文件exe,Linux 计算机可执行文件elf,Mac计算机可执行文件mach-O）"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-06-29 21:16" pubdate>
+          June 29, 2024 pm
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          6.1k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          51 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">『Python』Python编译成计算机可执行文件（Windows计算机可执行文件exe,Linux 计算机可执行文件elf,Mac计算机可执行文件mach-O）</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="『Python』Python-编译成计算机可执行文件（Windows-计算机可执行文件-exe-Linux-计算机可执行文件-elf-Mac-计算机可执行文件-mach-O）"><a href="#『Python』Python-编译成计算机可执行文件（Windows-计算机可执行文件-exe-Linux-计算机可执行文件-elf-Mac-计算机可执行文件-mach-O）" class="headerlink" title="『Python』Python 编译成计算机可执行文件（Windows 计算机可执行文件 exe,Linux 计算机可执行文件 elf,Mac 计算机可执行文件 mach-O）"></a>『Python』Python 编译成计算机可执行文件（Windows 计算机可执行文件 exe,Linux 计算机可执行文件 elf,Mac 计算机可执行文件 mach-O）</h1><p>@[toc]</p>
+<h4 id="背景："><a href="#背景：" class="headerlink" title="背景："></a>背景：</h4><p>Python 程序都是脚本的方式，一般是在解析器里运行，如果要想要给别的计算机使用，需要提前安装 Python 解析器和相关包才可以运行，为了在 Windows（或其它系统里） 里方便发布，我们将<code>.py</code>文件,编译成一个可执行文件，并且打包所需要库文件，只需要点击一个可执行文件运行，而无需安装 Python 和相关库文件。这样发布给用户使用何不美哉。</p>
+<h4 id="我们的主角-：PyInstaller"><a href="#我们的主角-：PyInstaller" class="headerlink" title="我们的主角 ：PyInstaller"></a>我们的主角 ：PyInstaller</h4><p>PyInstaller 是一个十分有用的第三方库，可以用来打包 python 应用程序，打包完的程序就可以在没有安装 Python 解释器的机器上运行了。</p>
+<p>PyInstaller 将 Python 应用程序冻结（打包）在 Windows，GNU &#x2F; Linux，Mac OS X，FreeBSD，Solaris 和 AIX 下的独立可执行文件中。<br>与类似工具相比，PyInstaller 的主要优势在于 PyInstaller 可与 Python 2.7 和 3.5-3.7 一起使用；由于透明压缩，它可生成较小的可执行文件；它是完全多平台的；并且使用 OS 支持来加载动态库，从而确保完全兼容。</p>
+<p>PyInstaller 的主要目标是开箱即用地与第三方软件包兼容。这意味着，使用 PyInstaller，使外部软件包正常工作所需的所有技巧已 集成在 PyInstaller 本身中，因此无需用户干预。您将不需要在 Wiki 中寻找技巧，也可以对文件或设置脚本进行自定义修改。例如，完全支持 PyQt，Django 或 matplotlib 之类的库，而无需手动处理插件或外部数据文件。</p>
+<h4 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h4><h5 id="1-安装-pyinstaller"><a href="#1-安装-pyinstaller" class="headerlink" title="1.安装 pyinstaller"></a>1.安装 pyinstaller</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java">pip install pyinstaller<br></code></pre></td></tr></table></figure>
+
+<h5 id="2-进入安装工作环境"><a href="#2-进入安装工作环境" class="headerlink" title="2.进入安装工作环境"></a>2.进入安装工作环境</h5><ol>
+<li><p>Win+R 运行打开 CMD<br><img src="https://img-blog.csdnimg.cn/20200601074844194.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20200601074829642.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+</li>
+<li><p>进入工作目录，即所编译<code>.py</code>文件的路径<br>右键点击 Python 文件，属性中即可获得路径。<br><img src="https://img-blog.csdnimg.cn/20200601075047579.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br><strong>利用 cd 命令进入工作目录：</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java">cd C:\Users\张小胖\Desktop<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://img-blog.csdnimg.cn/202006010753067.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+</li>
+</ol>
+<h5 id="3-生成不自定义图标的-exe-文件"><a href="#3-生成不自定义图标的-exe-文件" class="headerlink" title="3. 生成不自定义图标的 exe 文件"></a>3. 生成不自定义图标的 exe 文件</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java">pyinstaller -F -w game.py  （-F表示打包单个文件，-w是为了打开exe时候不弹出黑框）<br></code></pre></td></tr></table></figure>
+
+<h5 id="4-生成带自定义图标的-exe-文件"><a href="#4-生成带自定义图标的-exe-文件" class="headerlink" title="4.生成带自定义图标的 exe 文件"></a>4.生成带自定义图标的 exe 文件</h5><p><img src="https://img-blog.csdnimg.cn/20200601075442567.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python">pyinstaller -F -w -i use.ico demo.py  （-i用来设置编译成exe文件的图标，后面跟.ico格式的图片文件）<br></code></pre></td></tr></table></figure>
+
+<table>
+<caption>
+ <h1>PyInstaller 支持的常用选项</caption>
+<tbody>
+<tr>
+<th>
+-h，--help</th>
+<th>
+查看该模块的帮助信息</th>
+</tr>
+<tr>
+<td>
+-F，-onefile</td>
+<td>
+产生单个的可执行文件</td>
+</tr>
+<tr>
+<td>
+-D，--onedir</td>
+<td>
+产生一个目录（包含多个文件）作为可执行程序</td>
+</tr>
+<tr>
+<td>
+-a，--ascii</td>
+<td>
+不包含 Unicode 字符集支持</td>
+</tr>
+<tr>
+<td>
+-d，--debug</td>
+<td>
+产生 debug 版本的可执行文件</td>
+</tr>
+<tr>
+<td>
+-w，--windowed，--noconsolc</td>
+<td>
+指定程序运行时不显示命令行窗口（仅对 Windows 有效）</td>
+</tr>
+<tr>
+<td>
+-c，--nowindowed，--console</td>
+<td>
+指定使用命令行窗口运行程序（仅对 Windows 有效）</td>
+</tr>
+<tr>
+<td>
+-o DIR，--out=DIR</td>
+<td>
+指定 spec 文件的生成目录。如果没有指定，则默认使用当前目录来生成 spec 文件</td>
+</tr>
+<tr>
+<td>
+-p DIR，--path=DIR</td>
+<td>
+设置 Python 导入模块的路径（和设置 PYTHONPATH 环境变量的作用相似）。也可使用路径分隔符（Windows 使用分号，Linux 使用冒号）来分隔多个路径</td>
+</tr>
+<tr>
+<td>
+-n NAME，--name=NAME</td>
+<td>
+指定项目（产生的 spec）名字。如果省略该选项，那么第一个脚本的主文件名将作为 spec 的名字</td>
+</tr>
+</tbody>
+</table>
+
+<h4 id="PyInstaller-会对脚本进行解析，并做出如下动作："><a href="#PyInstaller-会对脚本进行解析，并做出如下动作：" class="headerlink" title="PyInstaller 会对脚本进行解析，并做出如下动作："></a>PyInstaller 会对脚本进行解析，并做出如下动作：</h4><ol>
+<li><p>在工作目录生成 helloworld.spec 文件；</p>
+</li>
+<li><p>创建一个 build 文件夹；</p>
+</li>
+<li><p>写入一些日志文件和中间流程文件到 build 文件夹；</p>
+</li>
+<li><p>创建 dist 文件夹；</p>
+</li>
+<li><p>生成可执行文件到 dist 文件夹；</p>
+</li>
+<li><p>如果编译中出现错误，会生成 debug.log 的日志文件；</p>
+</li>
+</ol>
+<h5 id="内部流程"><a href="#内部流程" class="headerlink" title="内部流程"></a>内部流程</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br></pre></td><td class="code"><pre><code class="hljs java">C:\Users\张小胖\Desktop&gt;pyinstaller -F -w demo.py<br><span class="hljs-number">46</span> INFO: PyInstaller: <span class="hljs-number">3.6</span><br><span class="hljs-number">47</span> INFO: Python: <span class="hljs-number">3.8</span><span class="hljs-number">.2</span><br><span class="hljs-number">47</span> INFO: Platform: Windows-<span class="hljs-number">10</span>-<span class="hljs-number">10.0</span><span class="hljs-number">.18362</span>-SP0<br><span class="hljs-number">49</span> INFO: wrote C:\Users\张小胖\Desktop\demo.spec<br><span class="hljs-number">50</span> INFO: UPX is not available.<br><span class="hljs-number">51</span> INFO: Extending PYTHONPATH with paths<br>[<span class="hljs-string">&#x27;C:\\Users\\张小胖\\Desktop&#x27;</span>, <span class="hljs-string">&#x27;C:\\Users\\张小胖\\Desktop&#x27;</span>]<br><span class="hljs-number">51</span> INFO: checking Analysis<br><span class="hljs-number">52</span> INFO: Building Analysis because Analysis-<span class="hljs-number">00.</span>toc is non existent<br><span class="hljs-number">52</span> INFO: Initializing <span class="hljs-keyword">module</span> dependency graph...<br><span class="hljs-number">54</span> INFO: Caching <span class="hljs-keyword">module</span> graph hooks...<br><span class="hljs-number">78</span> INFO: Analyzing base_library.zip ...<br><span class="hljs-number">2072</span> INFO: Processing pre-find <span class="hljs-keyword">module</span> path hook   distutils<br><span class="hljs-number">2073</span> INFO: distutils: retargeting to non-venv dir <span class="hljs-string">&#x27;c:\\users\\张小胖\\appdata\\local\\programs\\python\\python38\\lib&#x27;</span><br><span class="hljs-number">4270</span> INFO: Caching <span class="hljs-keyword">module</span> dependency graph...<br><span class="hljs-number">4365</span> INFO: running Analysis Analysis-<span class="hljs-number">00.</span>toc<br><span class="hljs-number">4367</span> INFO: Adding Microsoft.Windows.Common-Controls to dependent assemblies of <span class="hljs-keyword">final</span> executable<br>  required by c:\users\张小胖\appdata\local\programs\python\python38\python.exe<br><span class="hljs-number">4630</span> INFO: Analyzing C:\Users\张小胖\Desktop\demo.py<br><span class="hljs-number">4757</span> INFO: Processing pre-safe <span class="hljs-keyword">import</span> <span class="hljs-keyword">module</span> hook   urllib3.packages.six.moves<br>c:\users\张小胖\appdata\local\programs\python\python38\lib\site-packages\selenium\webdriver\firefox\firefox_profile.py:<span class="hljs-number">208</span>: SyntaxWarning: <span class="hljs-string">&quot;is&quot;</span> with a literal. Did you mean <span class="hljs-string">&quot;==&quot;</span>?<br>  <span class="hljs-keyword">if</span> setting is None or setting is <span class="hljs-string">&#x27;&#x27;</span>:<br><span class="hljs-number">6324</span> INFO: Processing <span class="hljs-keyword">module</span> hooks...<br><span class="hljs-number">6324</span> INFO: Loading <span class="hljs-keyword">module</span> hook <span class="hljs-string">&quot;hook-certifi.py&quot;</span>...<br><span class="hljs-number">6327</span> INFO: Loading <span class="hljs-keyword">module</span> hook <span class="hljs-string">&quot;hook-distutils.py&quot;</span>...<br><span class="hljs-number">6330</span> INFO: Loading <span class="hljs-keyword">module</span> hook <span class="hljs-string">&quot;hook-encodings.py&quot;</span>...<br><span class="hljs-number">6390</span> INFO: Loading <span class="hljs-keyword">module</span> hook <span class="hljs-string">&quot;hook-lib2to3.py&quot;</span>...<br><span class="hljs-number">6396</span> INFO: Loading <span class="hljs-keyword">module</span> hook <span class="hljs-string">&quot;hook-pydoc.py&quot;</span>...<br><span class="hljs-number">6397</span> INFO: Loading <span class="hljs-keyword">module</span> hook <span class="hljs-string">&quot;hook-selenium.py&quot;</span>...<br><span class="hljs-number">6408</span> INFO: Loading <span class="hljs-keyword">module</span> hook <span class="hljs-string">&quot;hook-sysconfig.py&quot;</span>...<br><span class="hljs-number">6409</span> INFO: Loading <span class="hljs-keyword">module</span> hook <span class="hljs-string">&quot;hook-xml.dom.domreg.py&quot;</span>...<br><span class="hljs-number">6410</span> INFO: Loading <span class="hljs-keyword">module</span> hook <span class="hljs-string">&quot;hook-xml.etree.cElementTree.py&quot;</span>...<br><span class="hljs-number">6416</span> INFO: Loading <span class="hljs-keyword">module</span> hook <span class="hljs-string">&quot;hook-xml.py&quot;</span>...<br><span class="hljs-number">6418</span> INFO: Loading <span class="hljs-keyword">module</span> hook <span class="hljs-string">&quot;hook-_tkinter.py&quot;</span>...<br><span class="hljs-number">6555</span> INFO: checking Tree<br><span class="hljs-number">6555</span> INFO: Building Tree because Tree-<span class="hljs-number">00.</span>toc is non existent<br><span class="hljs-number">6556</span> INFO: Building Tree Tree-<span class="hljs-number">00.</span>toc<br><span class="hljs-number">6668</span> INFO: checking Tree<br><span class="hljs-number">6668</span> INFO: Building Tree because Tree-<span class="hljs-number">01.</span>toc is non existent<br><span class="hljs-number">6669</span> INFO: Building Tree Tree-<span class="hljs-number">01.</span>toc<br><span class="hljs-number">6723</span> INFO: Looking <span class="hljs-keyword">for</span> ctypes DLLs<br><span class="hljs-number">6755</span> INFO: Analyzing run-time hooks ...<br><span class="hljs-number">6759</span> INFO: Including run-time hook <span class="hljs-string">&#x27;pyi_rth__tkinter.py&#x27;</span><br><span class="hljs-number">6762</span> INFO: Including run-time hook <span class="hljs-string">&#x27;pyi_rth_multiprocessing.py&#x27;</span><br><span class="hljs-number">6765</span> INFO: Including run-time hook <span class="hljs-string">&#x27;pyi_rth_certifi.py&#x27;</span><br><span class="hljs-number">6775</span> INFO: Looking <span class="hljs-keyword">for</span> dynamic libraries<br><span class="hljs-number">6862</span> WARNING: lib not found: pywintypes38.dll dependency of c:\users\张小胖\appdata\local\programs\python\python38\lib\site-packages\win32\win32evtlog.pyd<br><span class="hljs-number">6870</span> WARNING: lib not found: pywintypes38.dll dependency of c:\users\张小胖\appdata\local\programs\python\python38\lib\site-packages\win32\win32api.pyd<br><span class="hljs-number">6925</span> WARNING: lib not found: pywintypes38.dll dependency of c:\users\张小胖\appdata\local\programs\python\python38\lib\site-packages\win32\win32wnet.pyd<br><span class="hljs-number">7017</span> INFO: Looking <span class="hljs-keyword">for</span> eggs<br><span class="hljs-number">7018</span> INFO: Using Python library c:\users\张小胖\appdata\local\programs\python\python38\python38.dll<br><span class="hljs-number">7019</span> INFO: Found binding redirects:<br>[]<br><span class="hljs-number">7025</span> INFO: Warnings written to C:\Users\张小胖\Desktop\build\demo\warn-demo.txt<br><span class="hljs-number">7089</span> INFO: Graph cross-reference written to C:\Users\张小胖\Desktop\build\demo\xref-demo.html<br><span class="hljs-number">7130</span> INFO: checking PYZ<br><span class="hljs-number">7130</span> INFO: Building PYZ because PYZ-<span class="hljs-number">00.</span>toc is non existent<br><span class="hljs-number">7134</span> INFO: Building <span class="hljs-title function_">PYZ</span> <span class="hljs-params">(ZlibArchive)</span> C:\Users\张小胖\Desktop\build\demo\PYZ-<span class="hljs-number">00.</span>pyz<br><span class="hljs-number">7971</span> INFO: Building <span class="hljs-title function_">PYZ</span> <span class="hljs-params">(ZlibArchive)</span> C:\Users\张小胖\Desktop\build\demo\PYZ-<span class="hljs-number">00.</span>pyz completed successfully.<br><span class="hljs-number">7989</span> INFO: checking PKG<br><span class="hljs-number">7989</span> INFO: Building PKG because PKG-<span class="hljs-number">00.</span>toc is non existent<br><span class="hljs-number">7989</span> INFO: Building <span class="hljs-title function_">PKG</span> <span class="hljs-params">(CArchive)</span> PKG-<span class="hljs-number">00.</span>pkg<br><span class="hljs-number">10434</span> INFO: Building <span class="hljs-title function_">PKG</span> <span class="hljs-params">(CArchive)</span> PKG-<span class="hljs-number">00.</span>pkg completed successfully.<br><span class="hljs-number">10460</span> INFO: Bootloader c:\users\张小胖\appdata\local\programs\python\python38\lib\site-packages\PyInstaller\bootloader\Windows-64bit\runw.exe<br><span class="hljs-number">10460</span> INFO: checking EXE<br><span class="hljs-number">10460</span> INFO: Building EXE because EXE-<span class="hljs-number">00.</span>toc is non existent<br><span class="hljs-number">10461</span> INFO: Building EXE from EXE-<span class="hljs-number">00.</span>toc<br><span class="hljs-number">10463</span> INFO: Appending archive to EXE C:\Users\张小胖\Desktop\dist\demo.exe<br><span class="hljs-number">10474</span> INFO: Building EXE from EXE-<span class="hljs-number">00.</span>toc completed successfully.<br></code></pre></td></tr></table></figure>
+
+<br>
+
+<blockquote>
+<p><strong>写在最后：</strong><br>Name:风骨散人，目前是一名双非在校大学生，预计考研，热爱编程，热爱技术，喜欢分享，知识无界，希望我的分享可以帮到你！名字的含义：我想有一天我能有能力随心所欲不逾矩，不总是向生活低头，有能力让家人拥有富足的生活而不是为了生计而到处奔波。“世人慌慌张张，不过是图碎银几两。偏偏这碎银几两，能解世间惆怅，可让父母安康，可护幼子成长 …”<br><strong>文章主要内容：</strong><br>Python,C++,C 语言,JAVA,C#等语言的教程<br>ACM 题解、模板、算法等，主要是数据结构，数学和图论<br>设计模式，数据库，计算机网络，操作系统，计算机组成原理<br>Python 爬虫、深度学习、机器学习<br>计算机系<strong>408</strong>考研的所有专业课内容<br><strong>目前还在更新中，先关注不迷路。微信公众号，cnblogs（博客园），CSDN 同名“风骨散人”</strong></p>
+</blockquote>
+<blockquote>
+<p>如果有什么想看的，可以私信我，如果在能力范围内，我会发布相应的博文！<br>感谢大家的阅读！😘 你的点赞、收藏、关注是对我最大的鼓励！</p>
+</blockquote>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Python/" class="category-chain-item">Python</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>『Python』Python编译成计算机可执行文件（Windows计算机可执行文件exe,Linux 计算机可执行文件elf,Mac计算机可执行文件mach-O）</div>
+      <div>http://example.com/2024/06/29/『Python』Python编译成计算机可执行文件（Windows计算机可执行文件exe,Linux 计算机可执行文件elf,Mac计算机可执行文件mach-O）/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>Chiam</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>June 29, 2024</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>Licensed under</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2024/06/29/%E3%80%8EPython%E3%80%8F%E5%86%99%E4%BB%A3%E7%A0%81%EF%BC%9F%E7%A8%8B%E5%BA%8F%E7%8C%BF%EF%BC%9F%E4%BD%A0%E4%B8%8D%E8%83%BD%E4%B8%8D%E6%87%82%E7%9A%84%E5%85%AB%E5%A4%A7%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%E7%9A%84Python%E5%AE%9E%E7%8E%B0/" title="『Python』写代码？程序猿？你不能不懂的八大排序算法的Python实现">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">『Python』写代码？程序猿？你不能不懂的八大排序算法的Python实现</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/06/29/%E3%80%8EPython%E3%80%8Fpython%20%E5%BC%B9%E7%AA%97%E3%80%81%E6%8F%90%E7%A4%BA%E5%92%8C%E8%AD%A6%E5%91%8A%E6%A1%86MessageBox%E9%83%A8%E4%BB%B6/" title="『Python』python 弹窗、提示和警告框MessageBox部件">
+                        <span class="hidden-mobile">『Python』python 弹窗、提示和警告框MessageBox部件</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"fIfc7WqUDZohlQuPc2lz5mJy-MdYXbMMI","appKey":"zjlAG3ZA3o4cBHVAkjzc2Z20","path":"window.location.pathname","placeholder":"留言仅限讨论，禁止广告等行为","avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"https://fifc7wqu.api.lncldglobal.com","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>Table of Contents</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <meta name="referrer" content="no-referrer" /> <footer id="footer" role="contentinfo"> <meta name="referrer" content="no-referrer" /> <div class="divider"> <div class="wall"></div> <img class="animals" src="/img/footer_animals_new.png" srcset="/img/loading.gif" lazyload alt="Footer Animals"> </div> <div class="container" data-index="450"> <p> <a href="https://chiamzhang.github.io" target="_blank">DogEgg</a> <i class="iconfont icon-love"></i> <a href="#" target="_blank">LittePig</a> </p> <p> Powered by  <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-pen"></i> Theme  <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> </p> </div> </footer> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+  
+<script src="/js/love.js"></script>
+<script src="/js/funnyTitle.js"></script>
+<script src="/js/backTop.js"></script>
+<script src="//cdn.jsdelivr.net/gh/bynotes/texiao/source/js/xiaoxuehua.js"></script>
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>
