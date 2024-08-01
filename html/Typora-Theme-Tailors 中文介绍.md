@@ -1,4 +1,8 @@
-# [返回主页](https://chiamzhang.github.io)
+## [返回博客主页](https://chiamzhang.github.io)
+
+## [GitHub 下载链接 DownLoad](https://github.com/ChiamZhang/TyporaTheme-Tailors)
+
+---
 
 # Typora-Theme-Tailors 介绍
 
@@ -56,7 +60,7 @@
 ## 引用样式
 
 
-> 集大家之所长，改大家之所短。
+> 欲买桂花同载酒，终不似少年游！
 
 ## 内联样式
 

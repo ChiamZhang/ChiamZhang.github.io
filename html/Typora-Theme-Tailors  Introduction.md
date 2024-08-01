@@ -1,4 +1,8 @@
-# [Go Back To Blogs Home Page](chiamzhang.github.io)
+## [Go Back To Blogs Home Page](chiamzhang.github.io)
+
+## [Github Release DownLoad](https://github.com/ChiamZhang/TyporaTheme-Tailors)
+
+---
 
 # Typora-Theme-Tailors  Introduction
 
@@ -54,7 +58,7 @@ This theme is inspired by my two favorite themes:
 
 ## Blockquote Style
 
-> Absorb everyone's strengths and modify everyone's shortcomings.
+> 欲买桂花同载酒，终不似少年游！
 
 ## Inline Styles
 
