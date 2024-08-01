@@ -1,4 +1,4 @@
-## [Go Back To Blogs Home Page](chiamzhang.github.io)
+## [Go Back To Blogs Home Page](https://chiamzhang.github.io/)
 
 ## [Github Release DownLoad](https://github.com/ChiamZhang/TyporaTheme-Tailors)
 
