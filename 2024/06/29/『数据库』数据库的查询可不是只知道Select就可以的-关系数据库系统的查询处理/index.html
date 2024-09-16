@@ -1,0 +1,949 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/Mine.jpg">
+  <link rel="icon" href="/img/Mine.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Chiam">
+  <meta name="keywords" content="Algorithms，Cybersecurity">
+  
+    <meta name="description" content="『数据库』数据库的查询可不是只知道 Select 就可以的-关系数据库系统的查询处理数据库从入门到精通：戳我 关系数据库系统的查询处理一、关系数据库系统的查询处理1.查询处理步骤关系数据库管理系统查询处理阶段 ：1）查询分析 ：对查询语句进行扫描、词法分 析和语法分析  词法分析：从查询语句中识别出正确的语言符号 语法分析：进行语法检查  2）查询检查  查询检查的任务合法权检查视图转换安全性检查">
+<meta property="og:type" content="article">
+<meta property="og:title" content="『数据库』数据库的查询可不是只知道Select就可以的-关系数据库系统的查询处理">
+<meta property="og:url" content="https://chiamzhang.github.io/2024/06/29/%E3%80%8E%E6%95%B0%E6%8D%AE%E5%BA%93%E3%80%8F%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9A%84%E6%9F%A5%E8%AF%A2%E5%8F%AF%E4%B8%8D%E6%98%AF%E5%8F%AA%E7%9F%A5%E9%81%93Select%E5%B0%B1%E5%8F%AF%E4%BB%A5%E7%9A%84-%E5%85%B3%E7%B3%BB%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E7%9A%84%E6%9F%A5%E8%AF%A2%E5%A4%84%E7%90%86/index.html">
+<meta property="og:site_name" content="Homepage of Chiam">
+<meta property="og:description" content="『数据库』数据库的查询可不是只知道 Select 就可以的-关系数据库系统的查询处理数据库从入门到精通：戳我 关系数据库系统的查询处理一、关系数据库系统的查询处理1.查询处理步骤关系数据库管理系统查询处理阶段 ：1）查询分析 ：对查询语句进行扫描、词法分 析和语法分析  词法分析：从查询语句中识别出正确的语言符号 语法分析：进行语法检查  2）查询检查  查询检查的任务合法权检查视图转换安全性检查">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200610235414779.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200610235519307.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200610235559394.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/2020061023571089.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200610235806143.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200610235851643.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200611000010986.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200611000023563.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200611000042438.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200611000135890.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200611000228910.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200611000239651.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200611000353606.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200611000422638.png">
+<meta property="article:published_time" content="2024-06-29T13:16:53.861Z">
+<meta property="article:modified_time" content="2023-12-05T16:18:12.920Z">
+<meta property="article:author" content="Chiam">
+<meta property="article:tag" content="Algorithms，Cybersecurity">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20200610235414779.png">
+  
+  
+  
+  <title>『数据库』数据库的查询可不是只知道Select就可以的-关系数据库系统的查询处理 - Homepage of Chiam</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"chiamzhang.github.io","root":"/","version":"1.9.5-a","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":"❡"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":2},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
+
+
+<body>
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Chiam&#39;s Blogs</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                
+                <span>Home</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                
+                <span>Archives</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                
+                <span>Categories</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                
+                <span>About</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                
+                <span>Links</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="『数据库』数据库的查询可不是只知道Select就可以的-关系数据库系统的查询处理"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-06-29 21:16" pubdate>
+          June 29, 2024 pm
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          5.9k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          49 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">『数据库』数据库的查询可不是只知道Select就可以的-关系数据库系统的查询处理</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="『数据库』数据库的查询可不是只知道-Select-就可以的-关系数据库系统的查询处理"><a href="#『数据库』数据库的查询可不是只知道-Select-就可以的-关系数据库系统的查询处理" class="headerlink" title="『数据库』数据库的查询可不是只知道 Select 就可以的-关系数据库系统的查询处理"></a>『数据库』数据库的查询可不是只知道 Select 就可以的-关系数据库系统的查询处理</h1><p>数据库从入门到精通：<a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_43627118/article/details/105027257">戳我</a></p>
+<h2 id="关系数据库系统的查询处理"><a href="#关系数据库系统的查询处理" class="headerlink" title="关系数据库系统的查询处理"></a>关系数据库系统的查询处理</h2><p><strong>一、关系数据库系统的查询处理</strong><br><strong>1.查询处理步骤</strong><br>关系数据库管理系统查询处理阶段 ：<br><strong>1）查询分析</strong> ：对查询语句进行扫描、词法分 析和语法分析</p>
+<ul>
+<li>词法分析：从查询语句中识别出正确的语言符号</li>
+<li>语法分析：进行语法检查</li>
+</ul>
+<p><strong>2）查询检查</strong></p>
+<ul>
+<li>查询检查的任务<br>合法权检查<br>视图转换<br>安全性检查<br>完整性初步检查</li>
+<li>根据数据字典中有关的模式定义检查语句中的数据库对象，如关系名、属性名是否存在和有效</li>
+<li>如果是对视图的操作，则要用视图消解方法把对视图的操作转换成对基本表的操作</li>
+<li>根据数据字典中的用户权限和完整性约束定义对 用户的存取权限进行检查</li>
+<li>检查通过后把 SQL 查询语句转换成内部表示，即等价的&#x3D;&#x3D;关系代数表达式&#x3D;&#x3D;。</li>
+<li>关系数据库管理系统一般都用查询树，也称为&#x3D;&#x3D;语法分析树&#x3D;&#x3D;来表示扩展的关系代数表达式。</li>
+</ul>
+<p><strong>3）查询优化</strong>：选择一个高效执行的查询处理策略<br>查询优化分类：</p>
+<ul>
+<li>代数优化&#x2F;逻辑优化：指关系代数表达式的优化</li>
+<li>物理优化：指存取路径和底层操作算法的选择</li>
+</ul>
+<p>查询优化的选择依据：</p>
+<ul>
+<li>基于规则(rule based)</li>
+<li>基于代价(cost based)</li>
+<li>基于语义(semantic based)</li>
+</ul>
+<p><strong>4）查询执行</strong>：</p>
+<ul>
+<li>依据优化器得到的执行策略生成查询执行计划</li>
+<li>代码生成器(code generator)生成执行查询计划 的代码</li>
+<li>两种执行方法：自顶向下；自底向上。</li>
+</ul>
+<p><strong>2.实现查询操作的算法示例</strong><br><strong>1）选择操作的实现</strong><br>&#x3D;&#x3D;全表扫描方法 (Table Scan)&#x3D;&#x3D;</p>
+<ul>
+<li>对查询的基本表顺序扫描，逐一检查每个元组是否满足 选择条件，把满足条件的元组作为结果输出。</li>
+<li>适合小表，不适合大表。</li>
+</ul>
+<p>&#x3D;&#x3D;索引扫描方法 (Index Scan)&#x3D;&#x3D;</p>
+<ul>
+<li>适合于选择条件中的属性上有索引(例如 B+树索引或 Hash 索引)。</li>
+<li>通过索引先找到满足条件的元组主码或元组指针，再通过元组指针直接在查询的基本表中找到元组。</li>
+</ul>
+<p><strong>2）连接操作的实现</strong><br>连接操作是查询处理中最耗时的操作之一。</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs csharp">[例]<br>SELECT *<br>FROM Student, SC<br>WHERE Student.Sno=SC.Sno;<br></code></pre></td></tr></table></figure>
+
+<p>&#x3D;&#x3D;嵌套循环算法(nested loop join)&#x3D;&#x3D;</p>
+<ul>
+<li>对外层循环(Student 表)的每一个元组(s)，检索内层循 环(SC 表)中的每一个元组(sc)</li>
+<li>检查这两个元组在连接属性(Sno)上是否相等</li>
+<li>如果满足连接条件，则串接后作为结果输出，直到外 层循环表中的元组处理完为止。</li>
+</ul>
+<p>&#x3D;&#x3D;排序-合并算法(sort-merge join 或 merge join)&#x3D;&#x3D;</p>
+<ul>
+<li>如果连接的表没有排好序，先对 Student 表和 SC 表按 连接属性 Sno 排序</li>
+<li>取 Student 表中第一个 Sno，依次扫描 SC 表中具有相 同 Sno 的元组</li>
+<li>当扫描到 Sno 不相同的第一个 SC 元组时，返回 Student 表扫描它的下一个元组，再扫描 SC 表中具有 相同 Sno 的元组，把它们连接起来</li>
+<li>重复上述步骤直到 Student 表扫描完</li>
+</ul>
+<p><strong>注意：</strong></p>
+<ul>
+<li>Student 表和 SC 表都只要扫描一遍</li>
+<li>如果两个表原来无序，执行时间要加上对两个表的排序时间</li>
+<li>对于大表，先排序后使用排序-合并连接算法执行连接，总的时间一般仍会减少</li>
+</ul>
+<p>&#x3D;&#x3D;索引连接(index join)算法&#x3D;&#x3D;</p>
+<ul>
+<li>在 SC 表上已经建立属性 Sno 的索引。</li>
+<li>对 Student 中每一个元组，由 Sno 值通过 SC 的索引查 找相应的 SC 元组。</li>
+<li>把这些 SC 元组和 Student 元组连接起来 循环执行前两步，直到 Student 表中的元组处理完为止</li>
+</ul>
+<p>&#x3D;&#x3D;Hash Join 算法&#x3D;&#x3D;<br>前提：假设两个表中较小的表 在第一阶段后可以完全放入内存的 hash 桶中。</p>
+<ul>
+<li>把连接属性作为 hash 码，用同一个 hash 函数把 Student 表和 SC 表 中的元组散列到 hash 表中。</li>
+<li>划分阶段(building phase, 也称为 partitioning phase)<br>对包含较少元组的表(如 Student 表)进行一遍处理<br>把它的元组按 hash 函数分散到 hash 表的桶中</li>
+<li>试探阶段(probing phase,也称为连接阶段 join phase)<br>对另一个表(SC 表)进行一遍处理<br>把 SC 表的元组也按同一个 hash 函数（hash 码是连接属性）进 行散列<br>把 SC 元组与桶中来自 Student 表并与之相匹配的元组连接起来</li>
+</ul>
+<h2 id="关系数据库系统的查询优化"><a href="#关系数据库系统的查询优化" class="headerlink" title="关系数据库系统的查询优化"></a>关系数据库系统的查询优化</h2><ul>
+<li>查询优化在关系数据库系统中有着非常重要的地位</li>
+<li>关系查询优化是影响关系数据库管理系统性能的关键因素</li>
+<li>由于关系表达式的语义级别很高，使关系系统可以从关系表达式中分析查询语义，提供了执行查询优化的可能性</li>
+</ul>
+<p><strong>一、概述</strong></p>
+<ul>
+<li><strong>1.关系系统的查询优化</strong><br>是关系数据库管理系统实现的关键技术又是关系系统的优点所在。<br>减轻了用户选择存取路径的负担。</li>
+<li><strong>2.非关系系统</strong><br>用户使用过程化的语言表达查询要求，执行何种记录级的操作，以及操作的序列是由用户来决定的。<br>用户必须了解存取路径，系统要提供用户选择存取路径的手段，查询效率由用户的存取策略决定。<br>如果用户做了不当的选择，系统是无法对此加以改进的。</li>
+</ul>
+<p><strong>3.查询优化的优点</strong></p>
+<ul>
+<li>用户不必考虑如何最好地表达查询以获得较好的效率</li>
+<li>系统可以比用户程序的“优化”做得更好<br>(1)优化器可以从数据字典中获取许多统计信息，而用户程序则难以获得这些信息。<br>(2)如果数据库的物理统计信息改变了，系统可以自动对查询重新优化以选择相适应的执行计划。在非关系系统中必须重写程序，而重写程序在实际应用中往往是不太可能的。<br>(3)优化器可以考虑数百种不同的执行计划，程序员一 般只能考虑有限的几种可能性。<br>(4)优化器中包括了很多复杂的优化技术，这些优化技术往往只有最好的程序员才能掌握。系统的自动优化相当于使得所有人都拥有这些优化技术</li>
+</ul>
+<p>4.关系数据库管理系统通过某种代价模型计算出各种查询执行策略的执行代价，然后选取代价最小的执行方案</p>
+<ul>
+<li><strong>集中式数据库</strong><br>执行开销主要包括：磁盘存取块数(I&#x2F;O 代价)；处理机时间(CPU 代价)；查询的内存开销<br>I&#x2F;O 代价是最主要的</li>
+<li><strong>分布式数据库</strong><br>总代价&#x3D;I&#x2F;O 代价+CPU 代价+内存代价＋通信代价</li>
+</ul>
+<p><strong>5.查询优化的总目标</strong></p>
+<ul>
+<li>选择有效的策略</li>
+<li>求得给定关系表达式的值</li>
+<li>使得查询代价最小(实际上是较小)</li>
+</ul>
+<h2 id="代数优化"><a href="#代数优化" class="headerlink" title="代数优化"></a>代数优化</h2><p><strong>一、关系代数表达式等价变换规则</strong></p>
+<ul>
+<li>代数优化策略：通过对关系代数表达式的等价变换来提高查询效率。</li>
+<li>关系代数表达式的等价：指用相同的关系代替两个表达式中相应的关系所得到的结果是相同的。</li>
+<li>两个关系表达式 E1 和 E2 是等价的，可记为 E1≡E。</li>
+</ul>
+<p><strong>常用的等价变换规则：</strong><br><strong>1.连接、笛卡尔积交换律</strong><br>设 E1 和 E2 是关系代数表达式，F 是连接运算的条件，则有<br><img src="https://img-blog.csdnimg.cn/20200610235414779.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br><strong>2.连接、笛卡尔积的结合律</strong><br>设 E1，E2，E3 是关系代数表达式，F1 和 F2 是连接运算的条件<br><img src="https://img-blog.csdnimg.cn/20200610235519307.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br><strong>3.投影的串接定律</strong><br><img src="https://img-blog.csdnimg.cn/20200610235559394.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<ul>
+<li>E 是关系代数表达式</li>
+<li>Ai(i&#x3D;1，2，…，n)，Bj(j&#x3D;1，2，…，m)是属性名</li>
+<li>{A1，A2，…，An}构成{B1，B2，…，Bm}的子集</li>
+</ul>
+<p><strong>4.选择的串接定律</strong><br><img src="https://img-blog.csdnimg.cn/2020061023571089.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<ul>
+<li>E 是关系代数表达式，F1、F2 是选择条件</li>
+<li>选择的串接律说明选择条件可以合并,这样一次就可检查全部条件</li>
+</ul>
+<p><strong>5.选择与投影操作的交换律</strong><br><img src="https://img-blog.csdnimg.cn/20200610235806143.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<ul>
+<li>选择条件 F 只涉及属性 A1，…，An。</li>
+<li>若 F 中有不属于 A1，…，An 的属性 B1，…，Bm 有更一般规则：<br><img src="https://img-blog.csdnimg.cn/20200610235851643.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br><strong>6. 选择与笛卡尔积的交换律</strong></li>
+<li>如果 F 中涉及的属性都是 E1 中的属性，则<br><img src="https://img-blog.csdnimg.cn/20200611000010986.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></li>
+<li>如果 F&#x3D;F1∧F2，并且 F1 只涉及 E1 中的属性，F2 只涉及 E2 中的属性，则由上面的等价变换规则 1，4，6 可推出：<br><img src="https://img-blog.csdnimg.cn/20200611000023563.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></li>
+<li>若 F1 只涉及 E1 中的属性，F2 涉及 E1 和 E2 两者的属性，则仍有<br><img src="https://img-blog.csdnimg.cn/20200611000042438.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br>它使部分选择在笛卡尔积前先做。</li>
+</ul>
+<p><strong>7. 选择与并的分配律</strong><br>设 E&#x3D;E1∪E2，E1，E2 有相同的属性名，则<br><img src="https://img-blog.csdnimg.cn/20200611000135890.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br><strong>8. 选择与差运算的分配律</strong><br>若 E1 与 E2 有相同的属性名，则<br><img src="https://img-blog.csdnimg.cn/20200611000228910.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br><strong>9. 选择对自然连接的分配律</strong><br><img src="https://img-blog.csdnimg.cn/20200611000239651.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br>F 只涉及 E1 与 E2 的公共属性</p>
+<p><strong>10. 投影与笛卡尔积的分配律</strong><br>设 E1 和 E2 是两个关系表达式，A1，…，An 是 E1 的属性，B1，…，Bm 是 E2 的属性，则<br><img src="https://img-blog.csdnimg.cn/20200611000353606.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br><strong>11. 投影与并的分配律</strong><br>设 E1 和 E2 有相同的属性名，则<br><img src="https://img-blog.csdnimg.cn/20200611000422638.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br><strong>二、查询树的启发式优化</strong><br>典型的启发式规则<br>（1）选择运算应尽可能先做<br>在优化策略中这是最重要、最基本的一条。<br>（2）把投影运算和选择运算同时进行<br>如有若干投影和选择运算，并且它们都对同一个关系操作，则可以在扫描此关系的同时完成所有的这些运算以避免重复扫描关系。<br>（3） 把投影同其前或其后的双目运算结合起来，没有必要为了去掉某些字段而扫描一遍关系。<br>（4） 把某些选择同在它前面要执行的笛卡尔积结合起来成为一个连接运算，连接特别是等值连接运算要比同样关系上的笛卡尔积省很多时间。<br>（5） 找出公共子表达式</p>
+<ul>
+<li>如果这种重复出现的子表达式的结果不是很大的关系</li>
+<li>并且从外存中读入这个关系比计算该子表达式的时间少得多</li>
+<li>则先计算一次公共子表达式并把结果写入中间文件是合算的。</li>
+<li>当查询的是视图时，定义视图的表达式就是公共子表达式的情况</li>
+</ul>
+<h2 id="物理优化"><a href="#物理优化" class="headerlink" title="物理优化"></a>物理优化</h2><ul>
+<li>代数优化改变查询语句中操作的次序和组合，不涉及底层的存取路径</li>
+<li>对于一个查询语句有许多存取方案，它们的执行效率不同， 仅仅进行代数优化是不够的</li>
+<li>物理优化就是要&#x3D;&#x3D;选择高效合理的操作算法或存取路径&#x3D;&#x3D;，求得优化的查询计划</li>
+</ul>
+<p><strong>物理优化方法</strong></p>
+<ul>
+<li><strong>基于规则的启发式优化</strong><br>启发式规则是指那些在大多数情况下都适用，但不是在每种情况下都是适用的规则。</li>
+<li><strong>基于代价估算的优化</strong><br>优化器估算不同执行策略的代价，并选出具有最小代价的执行计划。</li>
+<li><strong>两者结合的优化方法</strong><br>常常先使用启发式规则，选取若干较优的候选方案，减少代价估算的工作量<br>然后分别计算这些候选方案的执行代价，较快地选出最终的优化方案</li>
+</ul>
+<p><strong>一、基于启发式规则的存取路径选择优化</strong><br><strong>1.选择操作的启发式规则</strong><br>对于小关系，使用全表顺序扫描，即使选择列上有索引<br>对于大关系，启发式规则有：<br>（1）对于选择条件是“&#x3D;&#x3D;主码＝值&#x3D;&#x3D;”的查询</p>
+<ul>
+<li>查询结果最多是一个元组，可以选择主码索引</li>
+<li>一般的关系数据库管理系统会自动建立主码索引</li>
+</ul>
+<p>（2）对于选择条件是“非主属性＝值”的查询，并且选择列上有索引</p>
+<ul>
+<li>要估算查询结果的元组数目</li>
+<li>如果比例较小(&lt;10%)可以使用索引扫描方法</li>
+<li>否则还是使用全表顺序扫描</li>
+</ul>
+<p>（3）对于选择条件是属性上的非等值查询或者范围查询，并且选择列上有索引<br>要估算查询结果的元组数目：</p>
+<ul>
+<li>如果比例较小(&lt;10%)可以使用索引扫描方法</li>
+<li>否则还是使用全表顺序扫描</li>
+</ul>
+<p>（4）对于用 AND 连接的合取选择条件</p>
+<ul>
+<li>如果有涉及这些属性的组合索引<br>优先采用组合索引扫描方法</li>
+<li>如果某些属性上有一般的索引，可以用索引扫描方法<br>通过分别查找满足每个条件的指针，求指针的交集<br>通过索引查找满足部分条件的元组，然后在扫描这些元组时判断是否满足剩余条件</li>
+<li>其他情况：使用全表顺序扫描</li>
+</ul>
+<p>（5）对于用 OR 连接的析取选择条件，一般使用全表顺序扫描</p>
+<p><strong>2.连接操作的启发式规则</strong><br>（1）如果 2 个表都已经按照连接属性排序</p>
+<ul>
+<li>选用排序-合并算法</li>
+</ul>
+<p>（2）如果一个表在连接属性上有索引</p>
+<ul>
+<li>选用索引连接算法</li>
+</ul>
+<p>（3）如果上面 2 个规则都不适用，其中一个表较小</p>
+<ul>
+<li>选用 Hash join 算法</li>
+</ul>
+<p>（4）可以选用嵌套循环方法，并选择其中较小的表，确切地讲是占用的块数(b)较少的表，作为外表(外循环的表) 。理由：</p>
+<ul>
+<li>设连接表 R 与 S 分别占用的块数为 Br 与 Bs</li>
+<li>连接操作使用的内存缓冲区块数为 K</li>
+<li>分配 K-1 块给外表</li>
+<li>如果 R 为外表，则嵌套循环法存取的块数为 Br+BrBs&#x2F;(K-1)</li>
+<li>显然应该选块数小的表作为外表</li>
+</ul>
+<p><strong>二、基于代价的优化</strong></p>
+<ul>
+<li>启发式规则优化是定性的选择，适合解释执行的系统<br>解释执行的系统，优化开销包含在查询总开销之中</li>
+<li>编译执行的系统中查询优化和查询执行是分开的<br>可以采用精细复杂一些的基于代价的优化方法</li>
+</ul>
+<p><strong>1.统计信息</strong></p>
+<p>基于代价的优化方法要计算查询的各种不同执行方案的执行代价，它与数据库的状态密切相关<br>优化器需要的统计信息<br>（1）对每个基本表</p>
+<ul>
+<li>该表的元组总数(N)</li>
+<li>元组长度(l)</li>
+<li>占用的块数(B)</li>
+<li>占用的溢出块数(BO)</li>
+</ul>
+<p>（2）对基表的每个列</p>
+<ul>
+<li>该列不同值的个数(m)</li>
+<li>列最大值</li>
+<li>最小值</li>
+<li>列上是否已经建立了索引</li>
+<li>哪种索引(B+树索引、Hash 索引、聚集索引)</li>
+<li>可以计算选择率(f)<br>如果不同值的分布是均匀的，f ＝ 1&#x2F;m。<br>如果不同值的分布不均匀，则要计算每个值的选择率，f ＝具有该值的元组数&#x2F;N。</li>
+</ul>
+<p>（3）对索引</p>
+<ul>
+<li>索引的层数(L)</li>
+<li>不同索引值的个数</li>
+<li>索引的选择基数 S(有 S 个元组具有某个索引值)</li>
+<li>索引的叶结点数(Y)</li>
+</ul>
+<p><strong>2.代价估算示例</strong><br>（1）全表扫描算法的代价估算公式</p>
+<ul>
+<li>如果基本表大小为 B 块，全表扫描算法的代价 cost ＝ B</li>
+<li>如果选择条件是“码＝值”，那么平均搜索代价 cost ＝ B&#x2F;2</li>
+</ul>
+<p>（2）索引扫描算法的代价估算公式</p>
+<p><strong>如果选择条件是“码＝值”</strong></p>
+<ul>
+<li>则采用该表的主索引；</li>
+<li>若为 B+树，层数为 L，需要存取 B+树中从根结点到叶结点 L 块，再加上基本表中该元组所在的那一块，所以 cost&#x3D;L+1</li>
+</ul>
+<p><strong>如果选择条件涉及非码属性</strong></p>
+<ul>
+<li>若为 B+树索引，选择条件是相等比较，S 是索引的选择基数(有 S 个元组满足条件)</li>
+<li>满足条件的元组可能会保存在不同的块上，所以(最坏的情况)cost&#x3D;L+S</li>
+</ul>
+<p><strong>如果比较条件是＞，＞＝，＜，＜＝操作</strong></p>
+<ul>
+<li>假设有一半的元组满足条件</li>
+<li>就要存取一半的叶结点</li>
+<li>通过索引访问一半的表存储块</li>
+<li>cost&#x3D;L+Y&#x2F;2+B&#x2F;2</li>
+<li>如果可以获得更准确的选择基数，可以进一步修正 Y&#x2F;2 与 B&#x2F;2</li>
+</ul>
+<p>（3）嵌套循环连接算法的代价估算公式</p>
+<p><strong>嵌套循环连接算法的代价</strong><br><code>cost＝Br+BrBs/(K-1)</code><br><strong>如果需要把连接结果写回磁盘</strong><br><code>cost＝Br+Br Bs/(K-1)+(Frs*Nr*Ns)/Mrs</code></p>
+<ul>
+<li>其中 Frs 为连接选择性(join selectivity)，表示连接结果元组数的比例</li>
+<li>Mrs 是存放连接结果的块因子，表示每块中可以存放的结果元组数目</li>
+</ul>
+<p>（4）排序-合并连接算法的代价估算公式</p>
+<ul>
+<li>如果连接表已经按照连接属性排好序，则<br><code>cost＝Br+Bs+(Frs*Nr*Ns)/Mrs</code></li>
+<li>如果必须对文件排序<br>还需要在代价函数中加上排序的代价<br>对于包含 B 个块的文件排序的代价大约是<br><code>(2*B)+(2*B*log2B)</code></li>
+</ul>
+<p>&#x3D;&#x3D;查询处理是关系数据库管理系统的核心，查询优化技术是查询处理的关键技术 &#x3D;&#x3D;</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" class="category-chain-item">数据库</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>『数据库』数据库的查询可不是只知道Select就可以的-关系数据库系统的查询处理</div>
+      <div>https://chiamzhang.github.io/2024/06/29/『数据库』数据库的查询可不是只知道Select就可以的-关系数据库系统的查询处理/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>Chiam</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>June 29, 2024</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>Licensed under</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2024/06/29/%E3%80%8E%E6%95%B0%E6%8D%AE%E5%BA%93%E3%80%8F%E6%95%B0%E6%8D%AE%E5%BA%93%E7%AC%94%E8%AE%B0/" title="『数据库』数据库笔记">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">『数据库』数据库笔记</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/06/29/%E3%80%8E%E6%95%B0%E6%8D%AE%E5%BA%93%E3%80%8F%E6%95%B0%E6%8D%AE%E5%BA%93%E5%85%A5%E9%97%A8%E5%BC%80%E5%8F%91%E6%A1%88%E4%BE%8B%EF%BC%8C%E7%9C%9F%E7%9A%84%E6%98%AF%E5%85%A5%E9%97%A8%E7%BA%A7%E5%88%AB%E7%9A%84%EF%BC%81%EF%BC%81%E7%9C%8B%E4%BA%86%E4%B8%8D%E5%90%8E%E6%82%94%E3%80%82/" title="『数据库』数据库入门开发案例，真的是入门级别的！！看了不后悔。">
+                        <span class="hidden-mobile">『数据库』数据库入门开发案例，真的是入门级别的！！看了不后悔。</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"fIfc7WqUDZohlQuPc2lz5mJy-MdYXbMMI","appKey":"zjlAG3ZA3o4cBHVAkjzc2Z20","path":"window.location.pathname","placeholder":"留言仅限讨论，禁止广告等行为","avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"https://fifc7wqu.api.lncldglobal.com","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>Table of Contents</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <meta name="referrer" content="no-referrer" /> <footer id="footer" role="contentinfo"> <meta name="referrer" content="no-referrer" /> <div class="divider"> <div class="wall"></div> <img class="animals" src="/img/footer_animals_new.png" srcset="/img/loading.gif" lazyload alt="Footer Animals"> </div> <div class="container" data-index="450"> <p> <a href="https://chiamzhang.github.io" target="_blank">DogEgg</a> <i class="iconfont icon-love"></i> <a href="#" target="_blank">LittePig</a> </p> <p> Powered by  <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-pen"></i> Theme  <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> </p> </div> </footer> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+  
+<script src="/js/love.js"></script>
+<script src="/js/funnyTitle.js"></script>
+<script src="/js/backTop.js"></script>
+<script src="//cdn.jsdelivr.net/gh/bynotes/texiao/source/js/xiaoxuehua.js"></script>
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+</html>

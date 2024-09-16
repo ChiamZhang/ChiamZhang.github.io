@@ -1,0 +1,722 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/Mine.jpg">
+  <link rel="icon" href="/img/Mine.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Chiam">
+  <meta name="keywords" content="Algorithms，Cybersecurity">
+  
+    <meta name="description" content="『浏览器』登录火狐浏览器账号后没有同步数据-博主的奇妙寻号之旅原因上个月升级了 Windows 11 太难用了，今天重装，然后发现卧槽，我火狐登上之后怎么是个新号？ 以下是我的解决过程，中间几个步骤希望能帮到大家，想跳过请转最终解决。 First 开始我以为是登错帐号了，然后各种重试，各种账号都不对。然后开始全网查资料。 第二次我打开了我的手机和 iPad 试图恢复，发现不通，心想坏了，我的账号真">
+<meta property="og:type" content="article">
+<meta property="og:title" content="『浏览器』登录火狐浏览器账号后没有同步数据-博主的奇妙寻号之旅">
+<meta property="og:url" content="https://chiamzhang.github.io/2024/06/29/%E3%80%8E%E6%B5%8F%E8%A7%88%E5%99%A8%E3%80%8F%E7%99%BB%E5%BD%95%E7%81%AB%E7%8B%90%E6%B5%8F%E8%A7%88%E5%99%A8%E8%B4%A6%E5%8F%B7%E5%90%8E%E6%B2%A1%E6%9C%89%E5%90%8C%E6%AD%A5%E6%95%B0%E6%8D%AE-%E5%8D%9A%E4%B8%BB%E7%9A%84%E5%A5%87%E5%A6%99%E5%AF%BB%E5%8F%B7%E4%B9%8B%E6%97%85/index.html">
+<meta property="og:site_name" content="Homepage of Chiam">
+<meta property="og:description" content="『浏览器』登录火狐浏览器账号后没有同步数据-博主的奇妙寻号之旅原因上个月升级了 Windows 11 太难用了，今天重装，然后发现卧槽，我火狐登上之后怎么是个新号？ 以下是我的解决过程，中间几个步骤希望能帮到大家，想跳过请转最终解决。 First 开始我以为是登错帐号了，然后各种重试，各种账号都不对。然后开始全网查资料。 第二次我打开了我的手机和 iPad 试图恢复，发现不通，心想坏了，我的账号真">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2024-06-29T13:16:53.902Z">
+<meta property="article:modified_time" content="2023-12-05T16:18:22.798Z">
+<meta property="article:author" content="Chiam">
+<meta property="article:tag" content="Algorithms，Cybersecurity">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>『浏览器』登录火狐浏览器账号后没有同步数据-博主的奇妙寻号之旅 - Homepage of Chiam</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"chiamzhang.github.io","root":"/","version":"1.9.5-a","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":"❡"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":2},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
+
+
+<body>
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Chiam&#39;s Blogs</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                
+                <span>Home</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                
+                <span>Archives</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                
+                <span>Categories</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                
+                <span>About</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                
+                <span>Links</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="『浏览器』登录火狐浏览器账号后没有同步数据-博主的奇妙寻号之旅"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-06-29 21:16" pubdate>
+          June 29, 2024 pm
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.2k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          10 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">『浏览器』登录火狐浏览器账号后没有同步数据-博主的奇妙寻号之旅</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="『浏览器』登录火狐浏览器账号后没有同步数据-博主的奇妙寻号之旅"><a href="#『浏览器』登录火狐浏览器账号后没有同步数据-博主的奇妙寻号之旅" class="headerlink" title="『浏览器』登录火狐浏览器账号后没有同步数据-博主的奇妙寻号之旅"></a>『浏览器』登录火狐浏览器账号后没有同步数据-博主的奇妙寻号之旅</h1><h1 id="原因"><a href="#原因" class="headerlink" title="原因"></a>原因</h1><p>上个月升级了 Windows 11 太难用了，今天重装，然后发现卧槽，我火狐登上之后怎么是个新号？</p>
+<p>以下是我的解决过程，中间几个步骤希望能帮到大家，想跳过请转最终解决。</p>
+<h1 id="First-开始"><a href="#First-开始" class="headerlink" title="First 开始"></a>First 开始</h1><p>我以为是登错帐号了，然后各种重试，各种账号都不对。<br>然后开始全网查资料。</p>
+<h1 id="第二次"><a href="#第二次" class="headerlink" title="第二次"></a>第二次</h1><p>我打开了我的手机和 iPad 试图恢复，发现不通，心想坏了，我的账号真的被注销了。解决失败，继续查资料。</p>
+<h1 id="第三次"><a href="#第三次" class="headerlink" title="第三次"></a>第三次</h1><p>看了这篇帖子：<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_40157728/article/details/103994649">https://blog.csdn.net/qq_40157728/article/details/103994649</a><br>然后发现不适用了，旧版的童鞋可以试试，新版的已经不行了，然后我经历了希望，又看到了绝望。怎么办，完蛋了，这时候我的邮件引起我的注意！！！！！</p>
+<blockquote>
+<blockquote>
+<p>在新电脑上装了火狐浏览器，想登陆账号来同步书签，发现登录自己的账号竟然要我重新注册。注册后的账号和我原来电脑上的火狐账号完全一样，但二者没有同步任何数据。</p>
+</blockquote>
+<p>两台电脑火狐浏览器版本相同，都是从火狐官网下的这个版本<br> <img
+src="https://img-blog.csdnimg.cn/20200115192631755.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQwMTU3NzI4,size_16,color_FFFFFF,t_70" srcset="/img/loading.gif" lazyload
+alt="在这里插入图片描述"><br> 查了半天才搞明白怎么回事，原来是火狐浏览器中国版本的一个坑：</p> 
+<p><strong>火狐账号登录</strong> 和 <strong>火狐通行证</strong>
+是两个完全不同的账号体系，<mark>数据不互通</mark>。。</p>  <p>差别在于使用的网络是境内还是境外的。<br>
+区别具体长啥样，安装好火狐浏览器后，点击右上角登陆Firefox，你就明白：</p> 
+<p><strong>境外</strong>出现的是这个登陆界面<br> <img
+src="https://img-blog.csdnimg.cn/2020011519165129.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQwMTU3NzI4,size_16,color_FFFFFF,t_70" srcset="/img/loading.gif" lazyload
+alt="在这里插入图片描述"><br> <strong>境内</strong>出现的是这个登陆界面<br> <img
+src="https://img-blog.csdnimg.cn/20200115193435137.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQwMTU3NzI4,size_16,color_FFFFFF,t_70" srcset="/img/loading.gif" lazyload
+alt="在这里插入图片描述"><br>
+问题的原因是<strong>使用火狐通行证注册的账号，在火狐账号登录里面是不存在的。</strong><br> For example,
+我是在国内使用火狐通行证注册的帐号，在国外安装火狐浏览器以后，默认通过火狐账号登录，因此无法登录自己的账号。</p>  <h3><a
+name="t1"></a><a name="t1"></a><a id="_20"></a>解决方法：</h3> 
+<p>想改用火狐通行证登录，只需改变同步的网络服务即可。</p>  <p>点击选项<br> <img
+src="https://img-blog.csdnimg.cn/20200115191235781.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQwMTU3NzI4,size_16,color_FFFFFF,t_70" srcset="/img/loading.gif" lazyload
+alt="在这里插入图片描述"><br> 同步</p>  <p><img
+src="https://img-blog.csdnimg.cn/20200115191313936.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQwMTU3NzI4,size_16,color_FFFFFF,t_70" srcset="/img/loading.gif" lazyload
+alt="在这里插入图片描述"><br> 切换至本地服务<br> <img
+src="https://img-blog.csdnimg.cn/2020011519334526.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQwMTU3NzI4,size_16,color_FFFFFF,t_70" srcset="/img/loading.gif" lazyload
+alt="在这里插入图片描述"><br> 搞定，再登录Firefox，就是火狐通行证登陆界面啦</p> 
+<p><em>如果你想从火狐通行证切换成火狐账号登录，则点击“切换至全球服务”即可。</em></p>
+                </div>
+</blockquote>
+<h1 id="最终解决"><a href="#最终解决" class="headerlink" title="最终解决"></a>最终解决</h1><p>我打开了我的邮件，然后登陆我的账号，发现数据对了，然后两个登陆界面没有区别，比对了一下网址：</p>
+<ol>
+<li><a target="_blank" rel="noopener" href="https://accounts.firefox.com.cn/signin?redirect_to=/settings">https://accounts.firefox.com.cn/signin?redirect_to=%2Fsettings</a></li>
+<li><a target="_blank" rel="noopener" href="https://accounts.firefox.com/signin?redirect_to=/settings">https://accounts.firefox.com/signin?redirect_to=%2Fsettings</a></li>
+</ol>
+<p>相信大家看到了，一个带 cn，一个不带，我们可以通过加域名的方式改变的登陆通行证的区域。</p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>1、火狐浏览器存在本地服务和全球服务，这两个账号的数据是不相通的，但是可以通过上面两种方式登录。</p>
+<p>2、不要“重置密码”，重置密码相当于这个账号重新申请了一次，之前的书签收藏夹都没了，由于火狐的安全机制，这个账号的数据是恢复不了的。</p>
+<p>3、如果你重置密码了，，能恢复吗？ 能，但必须你有第二台登陆过你这个账号的设备，登录账号然后点击立即同步即可。</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E6%B5%8F%E8%A7%88%E5%99%A8/" class="category-chain-item">浏览器</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>『浏览器』登录火狐浏览器账号后没有同步数据-博主的奇妙寻号之旅</div>
+      <div>https://chiamzhang.github.io/2024/06/29/『浏览器』登录火狐浏览器账号后没有同步数据-博主的奇妙寻号之旅/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>Chiam</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>June 29, 2024</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>Licensed under</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2024/06/29/%E3%80%8E%E7%AE%97%E6%B3%95-ACM%E7%AB%9E%E8%B5%9B-CodeForces%E3%80%8F%201047A/" title="『算法-ACM竞赛-CodeForces』 1047A">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">『算法-ACM竞赛-CodeForces』 1047A</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/06/29/%E3%80%8E%E6%9D%82%E3%80%8F%E8%AE%A1%E7%AE%97%E6%9C%BA408%E8%80%83%E7%A0%94%E4%B8%93%E9%A2%98%EF%BC%88%E5%BB%BA%E8%AE%AE%E6%94%B6%E8%97%8F%EF%BC%89/" title="『杂』计算机408考研专题（建议收藏）">
+                        <span class="hidden-mobile">『杂』计算机408考研专题（建议收藏）</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"fIfc7WqUDZohlQuPc2lz5mJy-MdYXbMMI","appKey":"zjlAG3ZA3o4cBHVAkjzc2Z20","path":"window.location.pathname","placeholder":"留言仅限讨论，禁止广告等行为","avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"https://fifc7wqu.api.lncldglobal.com","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>Table of Contents</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <meta name="referrer" content="no-referrer" /> <footer id="footer" role="contentinfo"> <meta name="referrer" content="no-referrer" /> <div class="divider"> <div class="wall"></div> <img class="animals" src="/img/footer_animals_new.png" srcset="/img/loading.gif" lazyload alt="Footer Animals"> </div> <div class="container" data-index="450"> <p> <a href="https://chiamzhang.github.io" target="_blank">DogEgg</a> <i class="iconfont icon-love"></i> <a href="#" target="_blank">LittePig</a> </p> <p> Powered by  <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-pen"></i> Theme  <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> </p> </div> </footer> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+  
+<script src="/js/love.js"></script>
+<script src="/js/funnyTitle.js"></script>
+<script src="/js/backTop.js"></script>
+<script src="//cdn.jsdelivr.net/gh/bynotes/texiao/source/js/xiaoxuehua.js"></script>
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+</html>

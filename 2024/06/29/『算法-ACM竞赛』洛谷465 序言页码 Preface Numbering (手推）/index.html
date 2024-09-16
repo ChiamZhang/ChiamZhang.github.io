@@ -1,0 +1,705 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/Mine.jpg">
+  <link rel="icon" href="/img/Mine.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Chiam">
+  <meta name="keywords" content="Algorithms，Cybersecurity">
+  
+    <meta name="description" content="『算法-ACM 竞赛』洛谷 465 序言页码 Preface Numbering (手推）题目描述一类书的序言是以罗马数字标页码的。传统罗马数字用单个字母表示特定的数值，以下是标准数字表: I 1 V 5 X 10 L 50 C 100 D 500 M 1000 最多 3 个同样的可以表示为 10n 的数字(I,X,C,M)可以连续放在一起，表示它们的和: III&#x3D;3 CCC&#x3D;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="『算法-ACM竞赛』洛谷465 序言页码 Preface Numbering (手推）">
+<meta property="og:url" content="https://chiamzhang.github.io/2024/06/29/%E3%80%8E%E7%AE%97%E6%B3%95-ACM%E7%AB%9E%E8%B5%9B%E3%80%8F%E6%B4%9B%E8%B0%B7465%20%E5%BA%8F%E8%A8%80%E9%A1%B5%E7%A0%81%20Preface%20Numbering%20(%E6%89%8B%E6%8E%A8%EF%BC%89/index.html">
+<meta property="og:site_name" content="Homepage of Chiam">
+<meta property="og:description" content="『算法-ACM 竞赛』洛谷 465 序言页码 Preface Numbering (手推）题目描述一类书的序言是以罗马数字标页码的。传统罗马数字用单个字母表示特定的数值，以下是标准数字表: I 1 V 5 X 10 L 50 C 100 D 500 M 1000 最多 3 个同样的可以表示为 10n 的数字(I,X,C,M)可以连续放在一起，表示它们的和: III&#x3D;3 CCC&#x3D;">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2024-06-29T13:16:54.583Z">
+<meta property="article:modified_time" content="2023-12-05T16:20:04.556Z">
+<meta property="article:author" content="Chiam">
+<meta property="article:tag" content="Algorithms，Cybersecurity">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>『算法-ACM竞赛』洛谷465 序言页码 Preface Numbering (手推） - Homepage of Chiam</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"chiamzhang.github.io","root":"/","version":"1.9.5-a","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":"❡"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":2},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
+
+
+<body>
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Chiam&#39;s Blogs</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                
+                <span>Home</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                
+                <span>Archives</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                
+                <span>Categories</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                
+                <span>About</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                
+                <span>Links</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="『算法-ACM竞赛』洛谷465 序言页码 Preface Numbering (手推）"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-06-29 21:16" pubdate>
+          June 29, 2024 pm
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2.2k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          19 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">『算法-ACM竞赛』洛谷465 序言页码 Preface Numbering (手推）</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="『算法-ACM-竞赛』洛谷-465-序言页码-Preface-Numbering-手推）"><a href="#『算法-ACM-竞赛』洛谷-465-序言页码-Preface-Numbering-手推）" class="headerlink" title="『算法-ACM 竞赛』洛谷 465 序言页码 Preface Numbering (手推）"></a>『算法-ACM 竞赛』洛谷 465 序言页码 Preface Numbering (手推）</h1><p>题目描述<br>一类书的序言是以罗马数字标页码的。传统罗马数字用单个字母表示特定的数值，以下是标准数字表:</p>
+<p>I 1 V 5 X 10 L 50 C 100 D 500 M 1000</p>
+<p>最多 3 个同样的可以表示为 10n 的数字(I,X,C,M)可以连续放在一起，表示它们的和:</p>
+<p>III&#x3D;3 CCC&#x3D;300</p>
+<p>可表示为 5x10n 的字符(V,L,D)从不连续出现。</p>
+<p>除了下一个规则，一般来说，字符以递减的顺序接连出现:</p>
+<p>CCLXVIII &#x3D; 100+100+50+10+5+1+1+1 &#x3D; 268</p>
+<p>有时，一个可表示为 10n 的数出现在一个比它大 1 级或 2 级的数前(I 在 V 或 X 前面，X 在 L 或 C 前面，等等)。在这种情况下，数值等于后面的那个数减去前面的那个数:</p>
+<p>IV &#x3D; 4 IX &#x3D; 9 XL &#x3D; 40</p>
+<p>一个数 用罗马数字来表示 有且仅有一种 而且不能复合嵌套使用（比如 I 是 1 X 是 10 有人可能要说 IXL 就能表示 50-10-1 但是 IXL 绝对不能用来表达 39 ） （那么 39 用什么来表示呢 XXXIX 是唯一 而且正确的选择- -）</p>
+<p>像 XD, IC, 和 XM 这样的表达是非法的，因为前面的数比后面的数小太多。对于 XD(490 的错误表达)，可以写成 CDXC; 对于 IC(99 的错误表达)，可以写成 XCIX; 对于 XM(990 的错误表达)，可以写成 CMXC。 90 写成 XC 而不是 LXL, 因为 L 后面的 X 意味着后继标记是 X 或者更小 (不管怎样，可能吧)（等同于阿拉伯数字 每位 数字分别表示）。</p>
+<p>给定 N(1 &lt;&#x3D; N &lt; 3,500)， 序言的页码数，请统计在第 1 页到第 N 页中，有几个 I 出现，几个 V 出现，等等 (从小到大的顺序)。不要输出没有出现过的字符。</p>
+<p>比如 N &#x3D; 5, 那么页码数为: I, II, III, IV, V. 总共有 7 个 I 出现，2 个 V 出现。</p>
+<p>输入输出格式<br>输入格式：<br>一个整数 N。</p>
+<p>输出格式：<br>每行一个字符和一个数字 k，表示这个字符出现了 k 次。字符必须按数字表中的递增顺序输出。</p>
+<p>输入输出样例<br>输入样例#1：<br>5<br>输出样例#1：<br>I 7<br>V 2<br>说明<br>翻译来自 NOCOW</p>
+<p>USACO 2.2<br>这个题他们使用 DP 做的，我看了看一开始也想 DP 后来发现，他们有规律，就手推前一部分，然后就比较好理解了，不推荐我的做法，这是一道 DP 题，这是投机取巧的做法。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;bits/stdc++.h&gt;</span></span><br>using namespace <span class="hljs-built_in">std</span>;<br><span class="hljs-type">int</span> n;<br><span class="hljs-type">int</span> i[<span class="hljs-number">20</span>],v[<span class="hljs-number">20</span>],x[<span class="hljs-number">20</span>],l[<span class="hljs-number">20</span>],c[<span class="hljs-number">20</span>],d[<span class="hljs-number">20</span>],m[<span class="hljs-number">20</span>],A[<span class="hljs-number">20</span>];<br><span class="hljs-type">int</span> ansi,ansv,ansx,ansl,ansc,ansd,ansm;<br><span class="hljs-type">void</span> <span class="hljs-title function_">add</span><span class="hljs-params">(<span class="hljs-type">int</span> b,<span class="hljs-type">int</span> num)</span>&#123;<br>    ansi+=i[b]*num;<br>    ansv+=v[b]*num;<br>    ansx+=x[b]*num;<br>    ansl+=l[b]*num;<br>    ansc+=c[b]*num;<br>    ansd+=d[b]*num;<br>    ansm+=m[b]*num;<br>    <span class="hljs-keyword">return</span>;<br>&#125;<br><span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">()</span><br>&#123;<br>   <span class="hljs-built_in">cin</span>&gt;&gt;n;<br>    A[<span class="hljs-number">1</span>]=<span class="hljs-number">1</span>;i[<span class="hljs-number">1</span>]=<span class="hljs-number">1</span>;<br>    A[<span class="hljs-number">2</span>]=<span class="hljs-number">4</span>;i[<span class="hljs-number">2</span>]=<span class="hljs-number">1</span>;v[<span class="hljs-number">2</span>]=<span class="hljs-number">1</span>;<br>    A[<span class="hljs-number">3</span>]=<span class="hljs-number">5</span>;v[<span class="hljs-number">3</span>]=<span class="hljs-number">1</span>;<br>    A[<span class="hljs-number">4</span>]=<span class="hljs-number">9</span>;i[<span class="hljs-number">4</span>]=<span class="hljs-number">1</span>;x[<span class="hljs-number">4</span>]=<span class="hljs-number">1</span>;<br>    A[<span class="hljs-number">5</span>]=<span class="hljs-number">10</span>;x[<span class="hljs-number">5</span>]=<span class="hljs-number">1</span>;<br>    A[<span class="hljs-number">6</span>]=<span class="hljs-number">40</span>;x[<span class="hljs-number">6</span>]=<span class="hljs-number">1</span>;l[<span class="hljs-number">6</span>]=<span class="hljs-number">1</span>;<br>    A[<span class="hljs-number">7</span>]=<span class="hljs-number">50</span>;l[<span class="hljs-number">7</span>]=<span class="hljs-number">1</span>;<br>    A[<span class="hljs-number">8</span>]=<span class="hljs-number">90</span>;x[<span class="hljs-number">8</span>]=<span class="hljs-number">1</span>;c[<span class="hljs-number">8</span>]=<span class="hljs-number">1</span>;<br>    A[<span class="hljs-number">9</span>]=<span class="hljs-number">100</span>;c[<span class="hljs-number">9</span>]=<span class="hljs-number">1</span>;<br>    A[<span class="hljs-number">10</span>]=<span class="hljs-number">400</span>;c[<span class="hljs-number">10</span>]=<span class="hljs-number">1</span>;d[<span class="hljs-number">10</span>]=<span class="hljs-number">1</span>;<br>    A[<span class="hljs-number">11</span>]=<span class="hljs-number">500</span>;d[<span class="hljs-number">11</span>]=<span class="hljs-number">1</span>;<br>    A[<span class="hljs-number">12</span>]=<span class="hljs-number">900</span>;c[<span class="hljs-number">12</span>]=<span class="hljs-number">1</span>;m[<span class="hljs-number">12</span>]=<span class="hljs-number">1</span>;<br>    A[<span class="hljs-number">13</span>]=<span class="hljs-number">1000</span>;m[<span class="hljs-number">13</span>]=<span class="hljs-number">1</span>;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> j=<span class="hljs-number">1</span>;j&lt;=n;j++)&#123;<br>        <span class="hljs-type">int</span> temp=j,now=<span class="hljs-number">13</span>;<br>        <span class="hljs-keyword">while</span> (temp)&#123;<br>            <span class="hljs-keyword">while</span> (temp&lt;A[now]) now--;<br>            add(now,temp/A[now]);<br>            temp%=A[now];<br>        &#125;<br>    &#125;<br>    <span class="hljs-keyword">if</span> (ansi!=<span class="hljs-number">0</span>) <span class="hljs-built_in">cout</span>&lt;&lt;<span class="hljs-string">&quot;I &quot;</span>&lt;&lt;ansi&lt;&lt;<span class="hljs-built_in">endl</span>;<br>    <span class="hljs-keyword">if</span> (ansv!=<span class="hljs-number">0</span>) <span class="hljs-built_in">cout</span>&lt;&lt;<span class="hljs-string">&quot;V &quot;</span>&lt;&lt;ansv&lt;&lt;<span class="hljs-built_in">endl</span>;<br>    <span class="hljs-keyword">if</span> (ansx!=<span class="hljs-number">0</span>) <span class="hljs-built_in">cout</span>&lt;&lt;<span class="hljs-string">&quot;X &quot;</span>&lt;&lt;ansx&lt;&lt;<span class="hljs-built_in">endl</span>;<br>    <span class="hljs-keyword">if</span> (ansl!=<span class="hljs-number">0</span>) <span class="hljs-built_in">cout</span>&lt;&lt;<span class="hljs-string">&quot;L &quot;</span>&lt;&lt;ansl&lt;&lt;<span class="hljs-built_in">endl</span>;<br>    <span class="hljs-keyword">if</span> (ansc!=<span class="hljs-number">0</span>) <span class="hljs-built_in">cout</span>&lt;&lt;<span class="hljs-string">&quot;C &quot;</span>&lt;&lt;ansc&lt;&lt;<span class="hljs-built_in">endl</span>;<br>    <span class="hljs-keyword">if</span> (ansd!=<span class="hljs-number">0</span>) <span class="hljs-built_in">cout</span>&lt;&lt;<span class="hljs-string">&quot;D &quot;</span>&lt;&lt;ansd&lt;&lt;<span class="hljs-built_in">endl</span>;<br>    <span class="hljs-keyword">if</span> (ansm!=<span class="hljs-number">0</span>) <span class="hljs-built_in">cout</span>&lt;&lt;<span class="hljs-string">&quot;M &quot;</span>&lt;&lt;ansm&lt;&lt;<span class="hljs-built_in">endl</span>;<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E7%AE%97%E6%B3%95/" class="category-chain-item">算法</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/%E7%AE%97%E6%B3%95/ACM%E7%AB%9E%E8%B5%9B/" class="category-chain-item">ACM竞赛</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>『算法-ACM竞赛』洛谷465 序言页码 Preface Numbering (手推）</div>
+      <div>https://chiamzhang.github.io/2024/06/29/『算法-ACM竞赛』洛谷465 序言页码 Preface Numbering (手推）/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>Chiam</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>June 29, 2024</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>Licensed under</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2024/06/29/%E3%80%8E%E7%AE%97%E6%B3%95-ACM%E7%AB%9E%E8%B5%9B%E3%80%8F%E6%B4%9B%E8%B0%B7466%20%E9%9B%86%E5%90%88%20Subset%20Sums%20%20%E6%90%9C%E7%B4%A2+%E9%80%92%E6%8E%A8+%E8%83%8C%E5%8C%85%E4%B8%89%E7%A7%8D%E5%81%9A%E6%B3%95/" title="『算法-ACM竞赛』洛谷466 集合 Subset Sums  搜索+递推+背包三种做法">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">『算法-ACM竞赛』洛谷466 集合 Subset Sums  搜索+递推+背包三种做法</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/06/29/%E3%80%8E%E7%AE%97%E6%B3%95-ACM%E7%AB%9E%E8%B5%9B%E3%80%8F%E6%B4%9B%E8%B0%B7460%20%E5%81%A5%E5%BA%B7%E7%9A%84%E8%8D%B7%E6%96%AF%E5%9D%A6%E5%A5%B6%E7%89%9B%20Healthy%20Holsteins%20%EF%BC%88%E7%AE%80%E5%8D%95%E7%9A%84dfs%EF%BC%89/" title="『算法-ACM竞赛』洛谷460 健康的荷斯坦奶牛 Healthy Holsteins （简单的dfs）">
+                        <span class="hidden-mobile">『算法-ACM竞赛』洛谷460 健康的荷斯坦奶牛 Healthy Holsteins （简单的dfs）</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"fIfc7WqUDZohlQuPc2lz5mJy-MdYXbMMI","appKey":"zjlAG3ZA3o4cBHVAkjzc2Z20","path":"window.location.pathname","placeholder":"留言仅限讨论，禁止广告等行为","avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"https://fifc7wqu.api.lncldglobal.com","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>Table of Contents</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <meta name="referrer" content="no-referrer" /> <footer id="footer" role="contentinfo"> <meta name="referrer" content="no-referrer" /> <div class="divider"> <div class="wall"></div> <img class="animals" src="/img/footer_animals_new.png" srcset="/img/loading.gif" lazyload alt="Footer Animals"> </div> <div class="container" data-index="450"> <p> <a href="https://chiamzhang.github.io" target="_blank">DogEgg</a> <i class="iconfont icon-love"></i> <a href="#" target="_blank">LittePig</a> </p> <p> Powered by  <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-pen"></i> Theme  <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> </p> </div> </footer> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+  
+<script src="/js/love.js"></script>
+<script src="/js/funnyTitle.js"></script>
+<script src="/js/backTop.js"></script>
+<script src="//cdn.jsdelivr.net/gh/bynotes/texiao/source/js/xiaoxuehua.js"></script>
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+</html>

@@ -1,0 +1,805 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/Mine.jpg">
+  <link rel="icon" href="/img/Mine.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Chiam">
+  <meta name="keywords" content="Algorithms，Cybersecurity">
+  
+    <meta name="description" content="『C++&amp;C 语言』C++ 重载运算符 继承 多态 （超详细）（一）重载运算符：（1）声明与定义格式一般是类内声明，类外定义，虽然可以在类内定义，但 写前面堆一堆不好看！！！类内声明： class Demo &amp;#123;         返回值类型 operator  运算符（形参表）； &amp;#125;  类外定义： 返回类型 Demo（类名）：：operator运算符（形参表） &amp;#123">
+<meta property="og:type" content="article">
+<meta property="og:title" content="『C++&amp;C语言』C++ 重载运算符 继承  多态 （超详细）">
+<meta property="og:url" content="https://chiamzhang.github.io/2024/06/29/%E3%80%8EC++&C%E8%AF%AD%E8%A8%80%E3%80%8FC++%20%E9%87%8D%E8%BD%BD%E8%BF%90%E7%AE%97%E7%AC%A6%20%E7%BB%A7%E6%89%BF%20%20%E5%A4%9A%E6%80%81%20%EF%BC%88%E8%B6%85%E8%AF%A6%E7%BB%86%EF%BC%89/index.html">
+<meta property="og:site_name" content="Homepage of Chiam">
+<meta property="og:description" content="『C++&amp;C 语言』C++ 重载运算符 继承 多态 （超详细）（一）重载运算符：（1）声明与定义格式一般是类内声明，类外定义，虽然可以在类内定义，但 写前面堆一堆不好看！！！类内声明： class Demo &amp;#123;         返回值类型 operator  运算符（形参表）； &amp;#125;  类外定义： 返回类型 Demo（类名）：：operator运算符（形参表） &amp;#123">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/2019062212322283.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190622202834113.PNG?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70">
+<meta property="article:published_time" content="2024-06-29T13:16:53.715Z">
+<meta property="article:modified_time" content="2023-12-05T16:17:37.241Z">
+<meta property="article:author" content="Chiam">
+<meta property="article:tag" content="Algorithms，Cybersecurity">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/2019062212322283.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70">
+  
+  
+  
+  <title>『C++&amp;C语言』C++ 重载运算符 继承  多态 （超详细） - Homepage of Chiam</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"chiamzhang.github.io","root":"/","version":"1.9.5-a","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":"❡"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":2},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
+
+
+<body>
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Chiam&#39;s Blogs</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                
+                <span>Home</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                
+                <span>Archives</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                
+                <span>Categories</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                
+                <span>About</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                
+                <span>Links</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="『C++&amp;C语言』C++ 重载运算符 继承  多态 （超详细）"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-06-29 21:16" pubdate>
+          June 29, 2024 pm
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          8.7k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          73 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">『C++&amp;C语言』C++ 重载运算符 继承  多态 （超详细）</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="『C-C-语言』C-重载运算符-继承-多态-（超详细）"><a href="#『C-C-语言』C-重载运算符-继承-多态-（超详细）" class="headerlink" title="『C++&amp;C 语言』C++ 重载运算符 继承 多态 （超详细）"></a>『C++&amp;C 语言』C++ 重载运算符 继承 多态 （超详细）</h1><h4 id="（一）重载运算符："><a href="#（一）重载运算符：" class="headerlink" title="（一）重载运算符："></a>（一）重载运算符：</h4><p><strong>（1）声明与定义格式</strong><br>一般是类内声明，类外定义，虽然可以在类内定义，但 写前面堆一堆不好看！！！<br><strong>类内声明</strong>：</p>
+<pre><code class="hljs">class Demo
+&#123;
+        返回值类型 operator  运算符（形参表）；
+&#125;
+</code></pre>
+<p><strong>类外定义：</strong></p>
+<pre><code class="hljs">返回类型 Demo（类名）：：operator运算符（形参表）
+&#123;
+    函数体
+&#125;
+</code></pre>
+<p><strong>(2）双目运算符重载为成员函数</strong><br>当重载运算符为双目运算符时，形参表中只有一个参数作为右操作数。当前对象作为左操作数，通过 this 指针隐式传递给函数，一个例子来介绍。<br>实例：<br><strong>写到最后突然想起来，用 int 不能实现浮点数的全部特性 0.03 就不能实现，所以仅作为一个例子。</strong></p>
+<pre><code class="hljs">class Myfloat
+&#123;
+    int inter;
+    int deci;
+public:
+    Myfloat(int a,int b):inter(a),deci(b)&#123;&#125;
+    Myfloat operator+(Myfloat const &amp;temp) const;
+    Myfloat operator-(Myfloat const &amp;temp) const;
+&#125;;
+Myfloat Myfloat::operator+(Myfloat const &amp;temp) const
+&#123;
+    return Myfloat(inter+temp.inter,deci+temp.deci);
+&#125;
+Myfloat Myfloat::operator-(Myfloat const &amp;temp) const
+&#123;
+    return Myfloat(inter-temp.inter,deci-temp.deci);
+&#125;
+</code></pre>
+<p>现在只是重载了加减号，实现了自定义浮点数的运算，但是还不成熟，咱们一点一点来丰满这个代码，这个类。**(3）单目运算符重载为成员函数**<br>此时参数表中没有参数，只有当前对象作为运算符的一个操作数。<br>实例：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;iostream&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;algorithm&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;cstdio&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;cstring&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;cmath&gt;</span></span><br>using namespace <span class="hljs-built_in">std</span>;<br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Myfloat</span></span><br><span class="hljs-class">&#123;</span><br>	<span class="hljs-type">int</span> inter;<br>	<span class="hljs-type">int</span> deci;<br>public:<br>    Myfloat(<span class="hljs-type">int</span> a,<span class="hljs-type">int</span> b):inter(a),deci(b)&#123;&#125;<br>	Myfloat operator+(Myfloat <span class="hljs-type">const</span> &amp;temp) <span class="hljs-type">const</span>;<br>	Myfloat operator-(Myfloat <span class="hljs-type">const</span> &amp;temp) <span class="hljs-type">const</span>;<br>    Myfloat operator--();<br>    Myfloat operator++();<br>    Myfloat operator--(<span class="hljs-type">int</span>); <span class="hljs-comment">//补充一个虚操作数，表示前置操作</span><br>    Myfloat operator++(<span class="hljs-type">int</span>);<br>&#125;;<br>Myfloat Myfloat::operator+(Myfloat <span class="hljs-type">const</span> &amp;temp) <span class="hljs-type">const</span><br>&#123;<br>    <span class="hljs-keyword">return</span> Myfloat(inter+temp.inter,deci+temp.deci);<br>&#125;<br>Myfloat Myfloat::operator-(Myfloat <span class="hljs-type">const</span> &amp;temp) <span class="hljs-type">const</span><br>&#123;<br>    <span class="hljs-keyword">return</span> Myfloat(inter-temp.inter,deci-temp.deci);<br>&#125;<br>Myfloat Myfloat::operator--()  &#123;<span class="hljs-keyword">return</span> Myfloat(inter--,deci);&#125;<br>Myfloat Myfloat::operator++()  &#123;<span class="hljs-keyword">return</span> Myfloat(inter++,deci);&#125;<br>Myfloat Myfloat::operator--(<span class="hljs-type">int</span>)  &#123;<span class="hljs-keyword">return</span> Myfloat(--inter,deci);&#125;<br></code></pre></td></tr></table></figure>
+
+<p>要区分前置与后置运算要加一个（需操作数）告诉机器是前置还是后置。</p>
+<p><strong>(3) 友元函数重载+重载输入输出流（用的稀烂&#x3D;&#x3D;用的多&#x3D;&#x3D;比较重要）</strong><br>在左右操作数类型不同时上述重载方式都不能正常使用，这时候就需要两个操作数，在类外重载，因类外不能直接调用，所以要把该函数声明为类的友元。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;iostream&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;algorithm&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;cstdio&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;cstring&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;cmath&gt;</span></span><br>using namespace <span class="hljs-built_in">std</span>;<br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Myfloat</span></span><br><span class="hljs-class">&#123;</span><br>	<span class="hljs-type">int</span> inter;<br>	<span class="hljs-type">int</span> deci;<br>public:<br>    Myfloat(<span class="hljs-type">int</span> a,<span class="hljs-type">int</span> b):inter(a),deci(b)&#123;&#125;<br>	Myfloat operator+(Myfloat <span class="hljs-type">const</span> &amp;temp) <span class="hljs-type">const</span>;<br>	Myfloat operator-(Myfloat <span class="hljs-type">const</span> &amp;temp) <span class="hljs-type">const</span>;<br>    Myfloat operator--();<br>    Myfloat operator++();<br>    Myfloat operator--(<span class="hljs-type">int</span>); <span class="hljs-comment">//补充一个虚操作数，表示前置操作</span><br>    Myfloat operator++(<span class="hljs-type">int</span>);<br>    friend ostream&amp; operator&lt;&lt;(ostream out,Myfloat &amp;w) ;<br>    friend istream &amp;operator&gt;&gt;(istream in,Myfloat &amp;w);<br>&#125;;<br>Myfloat Myfloat::operator+(Myfloat <span class="hljs-type">const</span> &amp;temp) <span class="hljs-type">const</span>&#123;<span class="hljs-keyword">return</span> Myfloat(inter+temp.inter,deci+temp.deci);&#125;<br>Myfloat Myfloat::operator-(Myfloat <span class="hljs-type">const</span> &amp;temp) <span class="hljs-type">const</span>&#123;<span class="hljs-keyword">return</span> Myfloat(inter-temp.inter,deci-temp.deci);&#125;<br>Myfloat Myfloat::operator--()  &#123;<span class="hljs-keyword">return</span> Myfloat(inter--,deci);&#125;<br>Myfloat Myfloat::operator++()  &#123;<span class="hljs-keyword">return</span> Myfloat(inter++,deci);&#125;<br>Myfloat Myfloat::operator--(<span class="hljs-type">int</span>)  &#123;<span class="hljs-keyword">return</span> Myfloat(--inter,deci);&#125;<br>Myfloat Myfloat::operator++(<span class="hljs-type">int</span>)  &#123;<span class="hljs-keyword">return</span> Myfloat(++inter,deci);&#125;<br>ostream&amp; operator&lt;&lt;(ostream out,Myfloat &amp;w)<br>&#123;<br>    out&lt;&lt;w.inter&lt;&lt;<span class="hljs-string">&#x27;.&#x27;</span>&lt;&lt;w.deci;<br>&#125;<br>istream &amp;operator&gt;&gt;(istream in,Myfloat &amp;w)<br>&#123;<br>    in&gt;&gt;w.inter&gt;&gt;w.deci;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><strong>(4）赋值运算符重载用于对象数据的复制</strong><br>用非类 A 类型的值为类 A 的对象赋值时（当然，这种情况下我们可以不提供相应的赋值运算符重载函数，而只提供相应的构造函数，如更有重载函数会优先调用重载后的赋值运算符）。<br>当用类 A 类型的值为类 A 的对象赋值，且类 A 的数据成员中含有指针的情况下，必须显式提供赋值运算符重载函数。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;iostream&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;algorithm&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;cstdio&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;cstring&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;cmath&gt;</span></span><br>using namespace <span class="hljs-built_in">std</span>;<br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Myfloat</span></span><br><span class="hljs-class">&#123;</span><br>	<span class="hljs-type">int</span> inter;<br>	<span class="hljs-type">int</span> deci;<br>public:<br>    Myfloat(<span class="hljs-type">int</span> a,<span class="hljs-type">int</span> b):inter(a),deci(b)&#123;&#125;<br>	Myfloat operator+(Myfloat <span class="hljs-type">const</span> &amp;temp) <span class="hljs-type">const</span>;<br>	Myfloat operator-(Myfloat <span class="hljs-type">const</span> &amp;temp) <span class="hljs-type">const</span>;<br>    Myfloat operator--();<br>    Myfloat operator++();<br>    Myfloat operator--(<span class="hljs-type">int</span>); <span class="hljs-comment">//补充一个虚操作数，表示前置操作</span><br>    Myfloat operator++(<span class="hljs-type">int</span>);<br>    friend ostream&amp; operator&lt;&lt;(ostream out,Myfloat &amp;w) ;<br>    friend istream &amp;operator&gt;&gt;(istream in,Myfloat &amp;w);<br>    Myfloat&amp; operator=(<span class="hljs-type">const</span> Myfloat &amp;temp ) ;<span class="hljs-comment">//写或不写都可以，这种如果按照默认的方式一一对应复制，可以不写。</span><br>    Myfloat&amp; operator=(<span class="hljs-type">const</span> <span class="hljs-type">int</span> &amp;w ) ;<br>&#125;;<br>Myfloat Myfloat::operator+(Myfloat <span class="hljs-type">const</span> &amp;temp) <span class="hljs-type">const</span>&#123;<span class="hljs-keyword">return</span> Myfloat(inter+temp.inter,deci+temp.deci);&#125;<br>Myfloat Myfloat::operator-(Myfloat <span class="hljs-type">const</span> &amp;temp) <span class="hljs-type">const</span>&#123;<span class="hljs-keyword">return</span> Myfloat(inter-temp.inter,deci-temp.deci);&#125;<br>Myfloat Myfloat::operator--()  &#123;<span class="hljs-keyword">return</span> Myfloat(inter--,deci);&#125;<br>Myfloat Myfloat::operator++()  &#123;<span class="hljs-keyword">return</span> Myfloat(inter++,deci);&#125;<br>Myfloat Myfloat::operator--(<span class="hljs-type">int</span>)  &#123;<span class="hljs-keyword">return</span> Myfloat(--inter,deci);&#125;<br>Myfloat Myfloat::operator++(<span class="hljs-type">int</span>)  &#123;<span class="hljs-keyword">return</span> Myfloat(++inter,deci);&#125;<br>ostream&amp; operator&lt;&lt;(ostream out,Myfloat &amp;w)<br>&#123;<br>    out&lt;&lt;w.inter&lt;&lt;<span class="hljs-string">&#x27;.&#x27;</span>&lt;&lt;w.deci;<br>&#125;<br>istream &amp;operator&gt;&gt;(istream in,Myfloat &amp;w)<br>&#123;<br>    in&gt;&gt;w.inter&gt;&gt;w.deci;<br>&#125;<br>Myfloat&amp; Myfloat::operator=(<span class="hljs-type">const</span> Myfloat &amp;temp)<br>&#123;<br>    inter=temp.inter;<br>    deci=temp.deci;<br>    <span class="hljs-keyword">return</span> *this;<br>&#125;<br>Myfloat&amp; Myfloat::operator=(<span class="hljs-type">const</span> <span class="hljs-type">int</span> &amp;w)<br>&#123;<br>    inter=w;<br>    <span class="hljs-keyword">return</span> *this;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<hr>
+<hr>
+<hr>
+<hr>
+<hr>
+<hr>
+<h4 id="（二）基类与派生类"><a href="#（二）基类与派生类" class="headerlink" title="（二）基类与派生类"></a>（二）基类与派生类</h4><p><strong>（1）继承语法形式</strong>：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs java">class 派生类名：基类名表<br><br>&#123;<br><br>数据成员和成员函数声明<br><br>&#125;；<br></code></pre></td></tr></table></figure>
+
+<p>基类类名表构成： 访问控制 基类名 1 访问控制 基类名 2…….<br><strong>继承多各类时叫做多继承，容易产生二义性，一般不用。</strong></p>
+<p>访问控制有三种<br>public：公有继承<br>private：私有继承<br>protected：保护继承<br>实例</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">class</span> <span class="hljs-title class_">People</span> &#123; &#125;<br><span class="hljs-keyword">class</span> <span class="hljs-title class_">Student</span>:<span class="hljs-keyword">public</span> People<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://img-blog.csdnimg.cn/2019062212322283.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br><strong>（2）派生类的生成过程</strong></p>
+<ol>
+<li>吸收基类成员：除构造和析构函数外</li>
+<li>改造基类成员：通过在派生类中定义同名成员屏蔽基类成员在派生类中直接调用，仍可以基类指针调用同名成员</li>
+<li>.添加新成员</li>
+</ol>
+<p><strong>(3)派生类特点</strong></p>
+<ol>
+<li>子类拥有父类除了父类构造和析构函数,所有的成员函数和成员变量;</li>
+<li>2.子类就是一种特殊的父类;</li>
+<li>子类对象可以当做父类的对象使用;</li>
+<li>子类可以拥有父类没有的方法和属性。</li>
+</ol>
+<p><strong>(4）派生类中的静态数据成员</strong><br>基类中定义的静态成员，将被所有派生类共享<br>2、基类初始化：<br><strong>(5）派生类的初始化</strong></p>
+<p>派生类构造函数声明格式为：<br>派生类构造函数（变元表）：基类（变元表）、对象成员 1（变元表）</p>
+<p>构造函数执行顺序：基类——对象成员（类对象成员的初始化）——派生类<br><del>&#x2F;&#x2F;一开始不理解，现在理解了</del><br>举个栗子：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">People</span></span><br><span class="hljs-class">&#123;</span><br>protected:<br>    <span class="hljs-built_in">string</span>  name;<br>    <span class="hljs-built_in">string</span>  xb;<br>public:<br>    People(<span class="hljs-built_in">string</span> a,<span class="hljs-built_in">string</span> b):name(a),xb(b)&#123;&#125;<br>&#125;;<br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Cloth</span></span><br><span class="hljs-class">&#123;</span><br>    <span class="hljs-built_in">string</span> color;<br>    <span class="hljs-type">int</span> mysize;<br>public:<br>    Cloth(<span class="hljs-built_in">string</span> c,<span class="hljs-type">int</span> m):color(c),mysize(m)&#123;&#125;<br>&#125;;<br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Student</span>:</span>public People<br>&#123;<br>    <span class="hljs-built_in">string</span> id;<br>    Cloth coat;<br>public:<br>    Student(<span class="hljs-built_in">string</span> id,<span class="hljs-built_in">string</span> name,<span class="hljs-built_in">string</span> xh,<span class="hljs-built_in">string</span> color,<span class="hljs-type">int</span> size) :People(name,xb),coat(color,size),id(id)&#123;&#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
+
+<p>执行顺序跟我写的顺序一样，但不是因为按这个顺序写的原因，就像成员变量初始化，也是按这定义顺序初始化，与自己写的初始化顺序无关。<br>构造函数的执行顺序：基类 → 对象成员 → 派生类；<br><strong>(6)派生类构造函数和析构函数的使用原则</strong></p>
+<p>基类的构造函数和析构函数不能继承<br>派生类是否定义析构函数与所属基类无关<br>如果基类没有定义构造函数或是定义无参构造函数，派生类可以不定义构造函数。<br>如果基类无无参构造函数，派生类必须定义构造函数<br>如果派生类基类为连续基类继承，每个派生类只负责直接基类的构造</p>
+<p><strong>(7）派生类析构函数</strong></p>
+<pre><code class="hljs">与构造函数执行顺序相反，派生-----对象-----基类
+</code></pre>
+<p><strong>(8）赋值兼容原则</strong><br>这个规则可以简述为能放基类的地方，放派生类一定可以使用，在程序中需要使用基类对象的地方都可以用公有派生类的对象代替。<br>例：</p>
+<pre><code class="hljs">class Base&#123;&#125;；
+class Drived&#123;&#125;；
+Base demo1，Drived demo2；
+demo1=demo2;   //派生类对象可以赋值给基类对象：
+Base&amp;Bdemo3=demo2; //派生类对象可以初始化基类引用；
+Base *Bpo=&amp;demo2;//派生类对象可以赋给指向基类对象的指针；//多态实现的方法
+</code></pre>
+<p>主要是派生类中一定包含基类中所有成员，在使用中，一定可以找到对应成员。</p>
+<p>赋值兼容应注意的问题：</p>
+<ol>
+<li>指向基类的指针可以指向公有派生类的对象，但不允许指向它的私有派生类的对象。</li>
+<li>允许将一个声明为指向基类的指针指向其公有派生类对象，但是不能将一个声明为指向派生类对象的指针指向基类对象。</li>
+<li>声明为指向基类对象的指针，当其指向公有派生类对象时，只能用它来直接访问派生类中从基类继承来的成员，而不能直接访问公有派生类的定义的成员。</li>
+</ol>
+<p>可以理解为派生类完全包含基类，指向基类的任何成员，都可以在公有派生类中找到对应的成员对象与之对应，如果是私有继承，能找到但是不能访问。但是派生类中有的对象，基类中不一定会有，所以不能这么操作。</p>
+<hr>
+<hr>
+<hr>
+<hr>
+<hr>
+<hr>
+<h4 id="（三）虚函数与多态："><a href="#（三）虚函数与多态：" class="headerlink" title="（三）虚函数与多态："></a>（三）虚函数与多态：</h4><p><strong>(1）多态的概念:</strong><br>一个接口,多种使用方法<br><strong>(2）封装的作用:</strong><br>封装可以是得代码模块化;继承可以扩展已经存在的代码,都是为了代代码重用;<br>**(3）多态的目的:**接口重用<br><strong>(4）静态联编和动态联编分别表示什么?</strong><br>在编译的时候能够确定对象所调用的成员函数的地址则为静态联编，一般的调用方式;<br>动态联编:指的是在程序运行的时候动态地进行,根据当时的情况来确定调用哪个同名函数,父类指针指向哪个子类,就调用哪个子类的同名函数,实际上是在运行的时候虚函数的实现;</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;iostream&gt;</span></span><br>using namespace <span class="hljs-built_in">std</span>;<br><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Basic</span></span><br><span class="hljs-class">&#123;</span><br>public:<br>	<span class="hljs-type">void</span> <span class="hljs-title function_">oper1</span><span class="hljs-params">()</span><br>	&#123;<br>		<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;1\n&quot;</span>);<br>	&#125;<br>	virtual <span class="hljs-type">void</span> <span class="hljs-title function_">oper2</span><span class="hljs-params">()</span><br>	&#123;<br>		<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;2\n&quot;</span>);<br>	&#125;<br>&#125;;<br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Direved</span> :</span> public Basic<br>&#123;<br>public:<br>	<span class="hljs-type">void</span> <span class="hljs-title function_">oper1</span><span class="hljs-params">()</span><br>	&#123;<br>		<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;3\n&quot;</span>);<br>	&#125;<br>	<span class="hljs-type">void</span> <span class="hljs-title function_">oper2</span><span class="hljs-params">()</span><br>	&#123;<br>		<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;4\n&quot;</span>);<br>	&#125;<br>&#125;;<br><span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">(<span class="hljs-type">void</span>)</span><br>&#123;<br>	Basic a;<br>	Direved b;<br>	Basic *p = &amp;a; <span class="hljs-comment">//   定义一个基类指针</span><br>	p-&gt;oper1();  <span class="hljs-comment">//基类的oper1</span><br>	p-&gt;oper2();  <span class="hljs-comment">//基类的oper2</span><br>	p = &amp;b;  <span class="hljs-comment">//基类指针指向了派生类</span><br>	p-&gt;oper1();  <span class="hljs-comment">//不是虚函数，仍时基类oper1</span><br>	p-&gt;oper2();  <span class="hljs-comment">//是虚函数构成多态，是派生类的oper2</span><br>	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+<p>运行结果过如下,重点关注是否为虚函数时函数调用的区别。<br><img src="https://img-blog.csdnimg.cn/20190622202834113.PNG?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br><strong>构成虚函数的必要条件：<br>函数返回类型一样，参数表一样，函数名一样，同时需要关键字 vitrual，缺一不可。</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Basic</span></span><br><span class="hljs-class">&#123;</span><br>	vitrual  <span class="hljs-type">void</span> <span class="hljs-title function_">p</span><span class="hljs-params">()</span>&#123; 函数体&#125;;<br>&#125;<br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Direved</span> :</span>public Basic <span class="hljs-comment">//构成虚函数的多态</span><br>&#123;<br>	<span class="hljs-type">void</span> <span class="hljs-title function_">p</span><span class="hljs-params">()</span>&#123; 函数体&#125;;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Basic</span></span><br><span class="hljs-class">&#123;</span><br>   <span class="hljs-type">void</span> <span class="hljs-title function_">p</span><span class="hljs-params">()</span>&#123; 函数体&#125;;<br>&#125;<br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Direved</span> :</span>public Basic <span class="hljs-comment">//不构成虚函数</span><br>&#123;<br>	<span class="hljs-type">void</span> <span class="hljs-title function_">p</span><span class="hljs-params">()</span>&#123; 函数体&#125;;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Basic</span></span><br><span class="hljs-class">&#123;</span><br>   vitrual  <span class="hljs-type">void</span> <span class="hljs-title function_">p</span><span class="hljs-params">()</span>&#123; 函数体&#125;;<br>&#125;<br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Direved</span> :</span>public Basic <span class="hljs-comment">//不构成虚函数</span><br>&#123;<br>	<span class="hljs-type">void</span> <span class="hljs-title function_">p</span><span class="hljs-params">(<span class="hljs-type">int</span> a)</span>&#123; 函数体&#125;;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Basic</span></span><br><span class="hljs-class">&#123;</span><br>   vitrual  <span class="hljs-type">void</span> <span class="hljs-title function_">p</span><span class="hljs-params">()</span>&#123; 函数体&#125;;<br>&#125;<br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Direved</span> :</span>public Basic <span class="hljs-comment">//不构成虚函数</span><br>&#123;<br>	<span class="hljs-type">double</span> <span class="hljs-title function_">p</span><span class="hljs-params">()</span>&#123; 函数体&#125;;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><strong>(5）C++纯虚函数</strong> 1.纯虚函数是在基类中声明的虚函数，它在基类中没有定义，但要求任何派生类都要定义自己的实现方法。在基类中实现纯虚函数的方法是在函数原型后加“&#x3D;0”</p>
+<pre><code class="hljs">virtual void funtion()=0
+</code></pre>
+<p>1、为了方便使用多态特性，我们常常需要在基类中定义虚拟函数。<br>2、在很多情况下，基类本身生成对象是不合情理的。例如，动物作为一个基类可以派生出老虎、孔雀等子类，但动物本身生成对象明显不合常理。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs c">Class animals<br>&#123;<br>	virtual <span class="hljs-type">void</span> <span class="hljs-title function_">mingjiao</span><span class="hljs-params">()</span> ； <span class="hljs-comment">//动物基类，到底是什么动物呢，该怎么鸣叫？当无法合理的给予基类定义虚函数时，常用纯虚函数。</span><br>	&#123;<br>	&#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>为了解决上述问题，引入了纯虚函数的概念</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs c">Class animals<br>&#123;<br>	virtual <span class="hljs-type">void</span> <span class="hljs-title function_">mingjiao</span><span class="hljs-params">()</span>=<span class="hljs-number">0</span>；<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>则编译器要求在派生类中必须予以重写以实现多态性。同时含有纯虚拟函数的类称为抽象类，它不能生成对象。这样就很好地解决了上述两个问题。<br><strong>注意含有纯虚函数的类，不能直接声明对象！！！！！！！！</strong></p>
+<p><strong>(6)多态性 实现的两种方式</strong><br>a、编译时多态性：通过重载函数实现<br>b、运行时多态性：通过虚函数实现。</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/C-C%E8%AF%AD%E8%A8%80/" class="category-chain-item">C++&amp;C语言</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>『C++&amp;C语言』C++ 重载运算符 继承  多态 （超详细）</div>
+      <div>https://chiamzhang.github.io/2024/06/29/『C++&amp;C语言』C++ 重载运算符 继承  多态 （超详细）/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>Chiam</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>June 29, 2024</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>Licensed under</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2024/06/29/%E3%80%8EC++&amp;C%E8%AF%AD%E8%A8%80%E3%80%8FC++-%E6%B5%85%E8%B0%88%E5%BC%80%E5%8F%91%E7%B3%BB%E7%BB%9F%E7%9A%84%E7%BB%8F%E9%AA%8C/" title="『C++&amp;C语言』C++-浅谈开发系统的经验">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">『C++&amp;C语言』C++-浅谈开发系统的经验</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/06/29/%E3%80%8EC++&amp;C%E8%AF%AD%E8%A8%80%E3%80%8FC++%20#define%E8%AF%A6%E8%A7%A3/" title="『C++&amp;C语言』C++">
+                        <span class="hidden-mobile">『C++&amp;C语言』C++</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"fIfc7WqUDZohlQuPc2lz5mJy-MdYXbMMI","appKey":"zjlAG3ZA3o4cBHVAkjzc2Z20","path":"window.location.pathname","placeholder":"留言仅限讨论，禁止广告等行为","avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"https://fifc7wqu.api.lncldglobal.com","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>Table of Contents</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <meta name="referrer" content="no-referrer" /> <footer id="footer" role="contentinfo"> <meta name="referrer" content="no-referrer" /> <div class="divider"> <div class="wall"></div> <img class="animals" src="/img/footer_animals_new.png" srcset="/img/loading.gif" lazyload alt="Footer Animals"> </div> <div class="container" data-index="450"> <p> <a href="https://chiamzhang.github.io" target="_blank">DogEgg</a> <i class="iconfont icon-love"></i> <a href="#" target="_blank">LittePig</a> </p> <p> Powered by  <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-pen"></i> Theme  <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> </p> </div> </footer> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+  
+<script src="/js/love.js"></script>
+<script src="/js/funnyTitle.js"></script>
+<script src="/js/backTop.js"></script>
+<script src="//cdn.jsdelivr.net/gh/bynotes/texiao/source/js/xiaoxuehua.js"></script>
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+</html>

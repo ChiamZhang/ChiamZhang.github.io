@@ -1,0 +1,922 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/Mine.jpg">
+  <link rel="icon" href="/img/Mine.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Chiam">
+  <meta name="keywords" content="Algorithms，Cybersecurity">
+  
+    <meta name="description" content="『Windows』WindowsTerminal 完全配置教程（主题以及启动设置）Windows Terminal 完全配置教程（主题以及启动设置）一、安装 Windows terminalMicrosoft Store 搜索 Windows terminal第一个和第二个都可以！！ 二、选择主题Windows terminal 提供了大量的主题可以选择，当然也可以像 VScode 文本编辑器一样">
+<meta property="og:type" content="article">
+<meta property="og:title" content="『Windows』WindowsTerminal完全配置教程（主题以及启动设置）">
+<meta property="og:url" content="https://chiamzhang.github.io/2024/06/29/%E3%80%8EWindows%E3%80%8FWindowsTerminal%E5%AE%8C%E5%85%A8%E9%85%8D%E7%BD%AE%E6%95%99%E7%A8%8B%EF%BC%88%E4%B8%BB%E9%A2%98%E4%BB%A5%E5%8F%8A%E5%90%AF%E5%8A%A8%E8%AE%BE%E7%BD%AE%EF%BC%89/index.html">
+<meta property="og:site_name" content="Homepage of Chiam">
+<meta property="og:description" content="『Windows』WindowsTerminal 完全配置教程（主题以及启动设置）Windows Terminal 完全配置教程（主题以及启动设置）一、安装 Windows terminalMicrosoft Store 搜索 Windows terminal第一个和第二个都可以！！ 二、选择主题Windows terminal 提供了大量的主题可以选择，当然也可以像 VScode 文本编辑器一样">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20201231102943733.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/202012311028510.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20201231103017127.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20201231103050360.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20201231103132231.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20201231103914369.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20201231104128576.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20201231104220741.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20201231104436147.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20201231104509159.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20201231105225288.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70">
+<meta property="article:published_time" content="2024-06-29T13:16:53.796Z">
+<meta property="article:modified_time" content="2023-12-05T16:17:57.537Z">
+<meta property="article:author" content="Chiam">
+<meta property="article:tag" content="Algorithms，Cybersecurity">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20201231102943733.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70">
+  
+  
+  
+  <title>『Windows』WindowsTerminal完全配置教程（主题以及启动设置） - Homepage of Chiam</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"chiamzhang.github.io","root":"/","version":"1.9.5-a","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":"❡"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":2},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
+
+
+<body>
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Chiam&#39;s Blogs</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                
+                <span>Home</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                
+                <span>Archives</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                
+                <span>Categories</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                
+                <span>About</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                
+                <span>Links</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="『Windows』WindowsTerminal完全配置教程（主题以及启动设置）"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-06-29 21:16" pubdate>
+          June 29, 2024 pm
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          9.3k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          78 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">『Windows』WindowsTerminal完全配置教程（主题以及启动设置）</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="『Windows』WindowsTerminal-完全配置教程（主题以及启动设置）"><a href="#『Windows』WindowsTerminal-完全配置教程（主题以及启动设置）" class="headerlink" title="『Windows』WindowsTerminal 完全配置教程（主题以及启动设置）"></a>『Windows』WindowsTerminal 完全配置教程（主题以及启动设置）</h1><h1 id="Windows-Terminal-完全配置教程（主题以及启动设置）"><a href="#Windows-Terminal-完全配置教程（主题以及启动设置）" class="headerlink" title="Windows Terminal 完全配置教程（主题以及启动设置）"></a>Windows Terminal 完全配置教程（主题以及启动设置）</h1><h2 id="一、安装-Windows-terminal"><a href="#一、安装-Windows-terminal" class="headerlink" title="一、安装 Windows terminal"></a><strong>一、安装 Windows terminal</strong></h2><p>Microsoft Store 搜索 Windows terminal<br><img src="https://img-blog.csdnimg.cn/20201231102943733.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70" srcset="/img/loading.gif" lazyload><br>第一个和第二个都可以！！</p>
+<h2 id="二、选择主题"><a href="#二、选择主题" class="headerlink" title="二、选择主题"></a><strong>二、选择主题</strong></h2><p>Windows terminal 提供了大量的主题可以选择，当然也可以像 VScode 文本编辑器一样自行配置。</p>
+<p>登陆如下网址，选择一个你喜欢的主题复制主题代码<br><em><a target="_blank" rel="noopener" href="https://atomcorp.github.io/themes/">https://atomcorp.github.io/themes/</a></em></p>
+<h2 id=""><a href="#" class="headerlink" title=""></a><img src="https://img-blog.csdnimg.cn/202012311028510.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70" srcset="/img/loading.gif" lazyload></h2><p><strong>三、配置主题</strong><br>打开 Windows terminal</p>
+<p><img src="https://img-blog.csdnimg.cn/20201231103017127.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70" srcset="/img/loading.gif" lazyload></p>
+<p>Win+R 运行，输入 wt</p>
+<p>点击 Windows terminal 中的下拉箭头选择设置，打开配置 Windows Terminal 的 Json 文件。<img src="https://img-blog.csdnimg.cn/20201231103050360.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70" srcset="/img/loading.gif" lazyload></p>
+<p>将复制的主题代码粘贴到在 list 中，分别配置 PowerShell 的主题和 cmd 的主题，添加刚才获得代码即可应用对应的主题。name 为标识，用于设置终端应用哪个主题。<br><img src="https://img-blog.csdnimg.cn/20201231103132231.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70" srcset="/img/loading.gif" lazyload></p>
+<h3 id="我的主题配置如下："><a href="#我的主题配置如下：" class="headerlink" title="我的主题配置如下："></a><strong><em>我的主题配置如下：</em></strong></h3><pre><code class="hljs">// This file was initially generated by Windows Terminal Preview 1.5.3242.0
+// It should still be usable in newer versions, but newer versions might have additional
+// settings, help text, or changes that you will not see unless you clear this file
+// and let us generate a new one for you.
+// To view the default settings, hold &quot;alt&quot; while clicking on the &quot;Settings&quot; button.
+// For documentation on these settings, see: https://aka.ms/terminal-documentation
+&#123;
+    &quot;$schema&quot;: &quot;https://aka.ms/terminal-profiles-schema&quot;,
+    &quot;defaultProfile&quot;: &quot;&#123;61c54bbd-c2c6-5271-96e7-009a87ff44bf&#125;&quot;,
+    // You can add more global application settings here.
+    // To learn more about global settings, visit https://aka.ms/terminal-global-settings
+    // If enabled, selections are automatically copied to your clipboard.
+    &quot;copyOnSelect&quot;: false,
+    // If enabled, formatted data is also copied to your clipboard
+    &quot;copyFormatting&quot;: false,
+    // A profile specifies a command to execute paired with information about how it should look and feel.
+    // Each one of them will appear in the &#39;New Tab&#39; dropdown,
+    //   and can be invoked from the commandline with `wt.exe -p xxx`
+    // To learn more about profiles, visit https://aka.ms/terminal-profile-settings
+    &quot;profiles&quot;: &#123;
+        &quot;defaults&quot;: /*全局配置*/ &#123;
+            // Put settings here that you want to apply to all profiles
+            // 默认打开的 Profile GUID（下面会详细介绍）
+            &quot;defaultProfile&quot;: &quot;&#123;97838c1f-307b-477a-b7fe-c9965c347e0b&#125;&quot;,
+            &quot;startingDirectory&quot;: null,
+            // 终端窗口默认大小
+            &quot;initialCols&quot;: 120,
+            &quot;initialRows&quot;: 30,
+            // 亮色或暗色主题，可选值 &quot;light&quot;, &quot;dark&quot;, &quot;system&quot;
+            &quot;requestedTheme&quot;: &quot;system&quot;,
+            // 合并标题栏和标签栏
+            &quot;showTabsInTitlebar&quot;: true,
+            // 如果 showTabsInTitlebar 与本值同为 false 时，自动隐藏标签栏
+            &quot;alwaysShowTabs&quot;: true,
+            // 在标题栏上显示当前活动标签页的标题
+            &quot;showTerminalTitleInTitlebar&quot;: true,
+            // 双击选择时用于分词的字符
+            &quot;wordDelimiters&quot;: &quot; /\\()\&quot;&#39;-.,:;&lt;&gt;~!@#$%^&amp;*|+=[]&#123;&#125;~?\u2502&quot;,
+            // 选择时复制到剪贴板
+            &quot;copyOnSelect&quot;: true,
+            // ...
+        &#125;,
+        &quot;list&quot;: /*每种类型terminal的详细配置*/ [
+            &#123;
+                // Make changes here to the cmd.exe profile 关于cmd的配置
+                &quot;guid&quot;: &quot;&#123;97838c1f-307b-477a-b7fe-c9965c347e0b&#125;&quot;,
+                /*网页搜索guid生成可以获得每个程序唯一的guid，visual studio内的工具也有生成guid的功能*/
+                &quot;name&quot;: &quot;CMD&quot;,
+                &quot;commandline&quot;: &quot;cmd.exe&quot;,
+                /*程序位置*/
+                &quot;hidden&quot;: false,
+                &quot;tabTitle&quot;: &quot;CMD&quot;, /*名称*/
+                &quot;foreground&quot;: &quot;#DCDCDC&quot;, /*字体颜色*/
+                &quot;icon&quot;: &quot;C:/Users/ChiamZhang/Pictures/Saved Pictures/vz.jpeg&quot;, /*ICO图标*/
+                &quot;backgroundImage&quot;: &quot;C:/Users/ChiamZhang/Pictures/Saved Pictures/back.jpg&quot;, /*终端背景图*/
+                &quot;acrylicOpacity&quot;: 0.95,
+                /*亚克力透明效果*/
+                &quot;backgroundImageOpacity&quot;: 0.70,
+                /*背景透明度*/
+                &quot;backgroundImageStretchMode&quot;: &quot;fill&quot;,
+                &quot;closeOnExit&quot;: true,
+                &quot;colorScheme&quot;: &quot;Campbell&quot;,
+                &quot;cursorColor&quot;: &quot;#FFFFFF&quot;,
+                &quot;cursorShape&quot;: &quot;bar&quot;,
+                &quot;fontFace&quot;: &quot;Consoles&quot;,
+                &quot;fontSize&quot;: 12,
+                &quot;historySize&quot;: 9001,
+                &quot;padding&quot;: &quot;0, 0, 0, 0&quot;,
+                &quot;snapOnInput&quot;: true,
+                &quot;startingDirectory&quot;: &quot;%USERPROFILE%&quot;,
+                &quot;useAcrylic&quot;: true
+            &#125;,
+            &#123;
+                // Make changes here to the powershell.exe profile
+                &quot;guid&quot;: &quot;&#123;61c54bbd-c2c6-5271-96e7-009a87ff44bf&#125;&quot;,
+                &quot;name&quot;: &quot;Windows PowerShell&quot;,
+                &quot;commandline&quot;: &quot;powershell.exe&quot;,
+                &quot;hidden&quot;: false,
+                &quot;tabTitle&quot;: &quot;PowerShell&quot;,
+                &quot;foreground&quot;: &quot;#DCDCDC&quot;,
+                &quot;icon&quot;: &quot;C:/Users/ChiamZhang/Pictures/Saved Pictures/vz2.png&quot;,
+                &quot;backgroundImage&quot;: &quot;C:/Users/ChiamZhang/Pictures/Saved Pictures/back2.jpeg&quot;,
+                &quot;acrylicOpacity&quot;: 0.95,
+                /*亚克力透明效果*/
+                &quot;backgroundImageOpacity&quot;: 0.70,
+
+                &quot;backgroundImageStretchMode&quot;: &quot;fill&quot;,
+                &quot;colorScheme&quot;: &quot;Campbell&quot;,
+                &quot;cursorColor&quot;: &quot;#FFFFFF&quot;,
+                &quot;cursorShape&quot;: &quot;bar&quot;,
+                &quot;fontFace&quot;: &quot;Consoles&quot;,
+                &quot;fontSize&quot;: 12,
+                &quot;historySize&quot;: 9001,
+                &quot;padding&quot;: &quot;0, 0, 0, 0&quot;,
+                &quot;snapOnInput&quot;: true,
+                &quot;startingDirectory&quot;: &quot;%USERPROFILE%&quot;,
+                &quot;useAcrylic&quot;: true
+            &#125;,
+            &#123;
+                // Make changes here to the Anaconda Prompt profile 关于anaconda的配置
+                &quot;guid&quot;: &quot;&#123;FCAD2812-51E4-4E55-96AF-2F2B75628FE0&#125;&quot;,
+                &quot;name&quot;: &quot;anaconda prompt&quot;,
+                &quot;commandline&quot;: &quot;%windir%\\System32\\cmd.exe /K D:\\Users\\KuroNeko\\Anaconda3\\Scripts\\activate.bat&quot;,
+                &quot;hidden&quot;: false,
+                &quot;tabTitle&quot;: &quot;Anaconda Prompt&quot;, /*名称*/
+                &quot;foreground&quot;: &quot;#DCDCDC&quot;, /*字体颜色*/
+                &quot;icon&quot;: &quot;C:/Users/ChiamZhang/Pictures/Saved Pictures/vz2.png&quot;, /*ICO图标*/
+                &quot;backgroundImage&quot;: &quot;C:/Users/ChiamZhang/Pictures/Saved Pictures/back2.jpeg&quot;, /*终端背景图*/
+                &quot;acrylicOpacity&quot;: 0.75,
+                &quot;backgroundImageOpacity&quot;: 0.1,
+                &quot;backgroundImageStretchMode&quot;: &quot;fill&quot;,
+                &quot;closeOnExit&quot;: true,
+                &quot;colorScheme&quot;: &quot;Campbell&quot;,
+                &quot;cursorColor&quot;: &quot;#FFFFFF&quot;,
+                &quot;cursorShape&quot;: &quot;bar&quot;,
+                &quot;fontFace&quot;: &quot;Consolas&quot;,
+                &quot;fontSize&quot;: 11,
+                &quot;historySize&quot;: 9001,
+                &quot;padding&quot;: &quot;0, 0, 0, 0&quot;,
+                &quot;snapOnInput&quot;: true,
+                &quot;startingDirectory&quot;: &quot;%USERPROFILE%&quot;,
+                &quot;useAcrylic&quot;: true
+            &#125;,
+            &#123;
+                // Make changes here to the Git Bash profile  关于Git bash的配置
+                &quot;guid&quot;: &quot;&#123;4B25BFD9-4962-49AE-8512-BBD336462BAB&#125;&quot;,
+                &quot;name&quot;: &quot;Git Bash&quot;,
+                &quot;commandline&quot;: &quot;D:\\Program Files (x86)\\Git\\bin\\bash.exe&quot;,
+                &quot;hidden&quot;: false,
+                &quot;tabTitle&quot;: &quot;Git Bash&quot;, /*名称*/
+                &quot;foreground&quot;: &quot;#DCDCDC&quot;, /*字体颜色*/
+                &quot;icon&quot;: &quot;C:/Users/ChiamZhang/Pictures/Saved Pictures/vz.jpeg&quot;, /*ICO图标*/
+                &quot;backgroundImage&quot;: &quot;C:/Users/ChiamZhang/Pictures/Saved Pictures/back.jpg&quot;, /*终端背景图*/
+                &quot;acrylicOpacity&quot;: 0.75,
+                &quot;backgroundImageOpacity&quot;: 0.25,
+                &quot;backgroundImageStretchMode&quot;: &quot;fill&quot;,
+                &quot;closeOnExit&quot;: true,
+                &quot;colorScheme&quot;: &quot;Campbell&quot;,
+                &quot;cursorColor&quot;: &quot;#FFFFFF&quot;,
+                &quot;cursorShape&quot;: &quot;bar&quot;,
+                &quot;fontFace&quot;: &quot;Consolas&quot;,
+                &quot;fontSize&quot;: 11,
+                &quot;historySize&quot;: 9001,
+                &quot;padding&quot;: &quot;0, 0, 0, 0&quot;,
+                &quot;snapOnInput&quot;: true,
+                &quot;startingDirectory&quot;: &quot;%USERPROFILE%&quot;,
+                &quot;useAcrylic&quot;: true
+            &#125;,
+
+            &#123;
+                &quot;guid&quot;: &quot;&#123;b453ae62-4e3d-5e58-b989-0a998ec441b8&#125;&quot;,
+                &quot;hidden&quot;: false,
+                &quot;name&quot;: &quot;Azure Cloud Shell&quot;,
+                &quot;source&quot;: &quot;Windows.Terminal.Azure&quot;
+            &#125;
+        ]
+    &#125;,
+    // Add custom color schemes to this array
+    &quot;schemes&quot;: [],
+    // Add any keybinding overrides to this array.
+    // To unbind a default keybinding, set the command to &quot;unbound&quot;
+    // Add custom color schemes to this array.
+    // To learn more about color schemes, visit https://aka.ms/terminal-color-schemes
+    // Add custom actions and keybindings to this array.
+    // To unbind a key combination from your defaults.json, set the command to &quot;unbound&quot;.
+    // To learn more about actions and keybindings, visit https://aka.ms/terminal-keybindings
+    &quot;actions&quot;: [
+        // Copy and paste are bound to Ctrl+Shift+C and Ctrl+Shift+V in your defaults.json.
+        // These two lines additionally bind them to Ctrl+C and Ctrl+V.
+        // To learn more about selection, visit https://aka.ms/terminal-selection
+        &#123;
+            &quot;command&quot;: &#123;
+                &quot;action&quot;: &quot;copy&quot;,
+                &quot;singleLine&quot;: false
+            &#125;,
+            &quot;keys&quot;: &quot;ctrl+c&quot;
+        &#125;,
+        &#123;
+            &quot;command&quot;: &quot;paste&quot;,
+            &quot;keys&quot;: &quot;ctrl+v&quot;
+        &#125;,
+        // Press Ctrl+Shift+F to open the search box
+        &#123;
+            &quot;command&quot;: &quot;find&quot;,
+            &quot;keys&quot;: &quot;ctrl+shift+f&quot;
+        &#125;,
+        // Press Alt+Shift+D to open a new pane.
+        // - &quot;split&quot;: &quot;auto&quot; makes this pane open in the direction that provides the most surface area.
+        // - &quot;splitMode&quot;: &quot;duplicate&quot; makes the new pane use the focused pane&#39;s profile.
+        // To learn more about panes, visit https://aka.ms/terminal-panes
+        &#123;
+            &quot;command&quot;: &#123;
+                &quot;action&quot;: &quot;splitPane&quot;,
+                &quot;split&quot;: &quot;auto&quot;,
+                &quot;splitMode&quot;: &quot;duplicate&quot;
+            &#125;,
+            &quot;keys&quot;: &quot;alt+shift+d&quot;
+        &#125;
+    ]
+&#125;
+</code></pre>
+<h2 id="-1"><a href="#-1" class="headerlink" title=""></a></h2><p>配置启动 Windows Terminal 默认打开的终端，这样打开 Windows Terminal 默认启动的就是 cmd 终端了。<br><img src="https://img-blog.csdnimg.cn/20201231103914369.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70" srcset="/img/loading.gif" lazyload><br><strong>四、更高级的打开方式</strong></p>
+<h3 id="通过地址栏启动"><a href="#通过地址栏启动" class="headerlink" title="通过地址栏启动"></a>通过地址栏启动</h3><p>在配置文件中添加如下代码，可以在地址栏输入 WT 即可以启动。</p>
+<p><img src="https://img-blog.csdnimg.cn/20201231104128576.png" srcset="/img/loading.gif" lazyload></p>
+<h3 id="通过右键菜单启动"><a href="#通过右键菜单启动" class="headerlink" title="通过右键菜单启动"></a>通过右键菜单启动</h3><p>添加右键菜单，在任意路径下右键选择 Windows Terminal 启动<br>注册表进入如下路径</p>
+<pre><code class="hljs">计算机\HKEY_CLASSES_ROOT\Directory\Background\shell
+</code></pre>
+<p>默认应该会有两个子项，cmd 和 powershell<br>右击 shell 新增项 Windows Terminal<br><img src="https://img-blog.csdnimg.cn/20201231104220741.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70" srcset="/img/loading.gif" lazyload><br>新增下图所示的四个字符串值及一个 DWORD 值</p>
+<pre><code class="hljs">(默认)	字符串	在此处打开Windows Terminal	#这个值是在右键菜单中显示的值
+Extended	字符串	#这个值作用是仅支持在按住Shift+右键的时候才显示Windows Terminal选项，删掉则可以不用按住Shift也可以显示Windows Terminal选项
+Icon	字符串	C:\Users\xxxx\Pictures\terminal.ico	#想要在右键菜单中显示的图标路径，图标需要单独下载
+NoWorkingDirectory	字符串
+ShowBasedOnVelocityId	DWORD	639bc8(十六进制)	#在菜单中显示或隐藏Windows Terminal选项
+</code></pre>
+<p><img src="https://img-blog.csdnimg.cn/20201231104436147.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70" srcset="/img/loading.gif" lazyload></p>
+<p>在 Windows Terminal 上右键新建项 command<br>修改默认值为：</p>
+<pre><code class="hljs">C:\Users\你的用户名\AppData\Local\Microsoft\WindowsApps\wt.exe -d &quot;%V&quot;
+</code></pre>
+<p><img src="https://img-blog.csdnimg.cn/20201231104509159.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70" srcset="/img/loading.gif" lazyload></p>
+<p>配置完成即可在任意文件夹内右键打开 Windows Terminal</p>
+<p><img src="https://img-blog.csdnimg.cn/20201231105225288.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70" srcset="/img/loading.gif" lazyload></p>
+<h2 id="更多配置信息参考官方配置文档"><a href="#更多配置信息参考官方配置文档" class="headerlink" title="更多配置信息参考官方配置文档"></a>更多配置信息参考官方配置文档</h2><h4 id="-2"><a href="#-2" class="headerlink" title=""></a></h4><p><em><a target="_blank" rel="noopener" href="https://docs.microsoft.com/zh-cn/windows/terminal/customize-settings/profile-settings">Windows 终端中的配置文件设置</a></em></p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Windows/" class="category-chain-item">Windows</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>『Windows』WindowsTerminal完全配置教程（主题以及启动设置）</div>
+      <div>https://chiamzhang.github.io/2024/06/29/『Windows』WindowsTerminal完全配置教程（主题以及启动设置）/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>Chiam</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>June 29, 2024</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>Licensed under</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2024/06/29/%E3%80%8EWindows%E3%80%8FWindows%2010%E9%85%8D%E7%BD%AEVS%20Code%20C++%E7%8E%AF%E5%A2%83%EF%BC%88%E8%B6%85%E8%AF%A6%E7%BB%86%EF%BC%8C%E9%9D%A2%E5%90%91%E5%B0%8F%E7%99%BD%E4%BB%A5%E5%8F%8A%E5%A4%A7%E4%BD%AC%E4%BB%AC%EF%BC%89/" title="『Windows』Windows 10配置VS Code C++环境（超详细，面向小白以及大佬们）">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">『Windows』Windows 10配置VS Code C++环境（超详细，面向小白以及大佬们）</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/06/29/%E3%80%8EWindows%E3%80%8FWin11%E7%B3%BB%E7%BB%9F%E5%AE%89%E8%A3%85WSA/" title="『Windows』Win11系统安装WSA">
+                        <span class="hidden-mobile">『Windows』Win11系统安装WSA</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"fIfc7WqUDZohlQuPc2lz5mJy-MdYXbMMI","appKey":"zjlAG3ZA3o4cBHVAkjzc2Z20","path":"window.location.pathname","placeholder":"留言仅限讨论，禁止广告等行为","avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"https://fifc7wqu.api.lncldglobal.com","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>Table of Contents</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <meta name="referrer" content="no-referrer" /> <footer id="footer" role="contentinfo"> <meta name="referrer" content="no-referrer" /> <div class="divider"> <div class="wall"></div> <img class="animals" src="/img/footer_animals_new.png" srcset="/img/loading.gif" lazyload alt="Footer Animals"> </div> <div class="container" data-index="450"> <p> <a href="https://chiamzhang.github.io" target="_blank">DogEgg</a> <i class="iconfont icon-love"></i> <a href="#" target="_blank">LittePig</a> </p> <p> Powered by  <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-pen"></i> Theme  <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> </p> </div> </footer> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+  
+<script src="/js/love.js"></script>
+<script src="/js/funnyTitle.js"></script>
+<script src="/js/backTop.js"></script>
+<script src="//cdn.jsdelivr.net/gh/bynotes/texiao/source/js/xiaoxuehua.js"></script>
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+</html>

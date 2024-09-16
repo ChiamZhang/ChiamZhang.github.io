@@ -1,0 +1,922 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/Mine.jpg">
+  <link rel="icon" href="/img/Mine.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Chiam">
+  <meta name="keywords" content="Algorithms，Cybersecurity">
+  
+    <meta name="description" content="『计算机组成原理』 计算机系统概述（考研、面试必备） (1)@toc 一、考研大纲1. 计算机发展的历程2.计算机的层次结构 计算机系统的基本组成 计算机硬件的基本组成 计算机的软件与硬件的关系 计算机的工作过程（指令执行的过程）  3.计算机的性能指标 &#x3D;&#x3D;（重点）&#x3D;&#x3D;这一章的考点主要是集中在计算机的性能指标，前面部分的发展历程也是简单的考察点，计算机的层">
+<meta property="og:type" content="article">
+<meta property="og:title" content="『计算机组成原理』 计算机系统概述（考研、面试必备） (1)">
+<meta property="og:url" content="https://chiamzhang.github.io/2024/06/29/%E3%80%8E%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86%E3%80%8F%20%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E6%A6%82%E8%BF%B0%EF%BC%88%E8%80%83%E7%A0%94%E3%80%81%E9%9D%A2%E8%AF%95%E5%BF%85%E5%A4%87%EF%BC%89%20(1)/index.html">
+<meta property="og:site_name" content="Homepage of Chiam">
+<meta property="og:description" content="『计算机组成原理』 计算机系统概述（考研、面试必备） (1)@toc 一、考研大纲1. 计算机发展的历程2.计算机的层次结构 计算机系统的基本组成 计算机硬件的基本组成 计算机的软件与硬件的关系 计算机的工作过程（指令执行的过程）  3.计算机的性能指标 &#x3D;&#x3D;（重点）&#x3D;&#x3D;这一章的考点主要是集中在计算机的性能指标，前面部分的发展历程也是简单的考察点，计算机的层">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200812220326463.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200813010433802.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/2020081301180184.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200813023920994.png#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200813031505849.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200228164809175.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200228171349235.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200228172653446.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/2020022817271655.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200228172730522.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200228172742521.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200228172752145.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200228172756837.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/2020022817280179.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70">
+<meta property="article:published_time" content="2024-06-29T13:16:54.635Z">
+<meta property="article:modified_time" content="2023-12-05T16:20:09.475Z">
+<meta property="article:author" content="Chiam">
+<meta property="article:tag" content="Algorithms，Cybersecurity">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20200812220326463.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70#pic_center">
+  
+  
+  
+  <title>『计算机组成原理』 计算机系统概述（考研、面试必备） (1) - Homepage of Chiam</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"chiamzhang.github.io","root":"/","version":"1.9.5-a","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":"❡"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":2},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
+
+
+<body>
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Chiam&#39;s Blogs</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                
+                <span>Home</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                
+                <span>Archives</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                
+                <span>Categories</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                
+                <span>About</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                
+                <span>Links</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="『计算机组成原理』 计算机系统概述（考研、面试必备） (1)"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-06-29 21:16" pubdate>
+          June 29, 2024 pm
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          12k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          99 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">『计算机组成原理』 计算机系统概述（考研、面试必备） (1)</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="『计算机组成原理』-计算机系统概述（考研、面试必备）-1"><a href="#『计算机组成原理』-计算机系统概述（考研、面试必备）-1" class="headerlink" title="『计算机组成原理』 计算机系统概述（考研、面试必备） (1)"></a>『计算机组成原理』 计算机系统概述（考研、面试必备） (1)</h1><p>@<a href="%E6%9C%AC%E6%96%87%E7%9B%AE%E5%BD%95">toc</a></p>
+<h3 id="一、考研大纲"><a href="#一、考研大纲" class="headerlink" title="一、考研大纲"></a>一、考研大纲</h3><h4 id="1-计算机发展的历程"><a href="#1-计算机发展的历程" class="headerlink" title="1. 计算机发展的历程"></a>1. 计算机发展的历程</h4><h4 id="2-计算机的层次结构"><a href="#2-计算机的层次结构" class="headerlink" title="2.计算机的层次结构"></a>2.计算机的层次结构</h4><ul>
+<li><h5 id="计算机系统的基本组成"><a href="#计算机系统的基本组成" class="headerlink" title="计算机系统的基本组成"></a>计算机系统的基本组成</h5></li>
+<li><h5 id="计算机硬件的基本组成"><a href="#计算机硬件的基本组成" class="headerlink" title="计算机硬件的基本组成"></a>计算机硬件的基本组成</h5></li>
+<li><h5 id="计算机的软件与硬件的关系"><a href="#计算机的软件与硬件的关系" class="headerlink" title="计算机的软件与硬件的关系"></a>计算机的软件与硬件的关系</h5></li>
+<li><h5 id="计算机的工作过程（指令执行的过程）"><a href="#计算机的工作过程（指令执行的过程）" class="headerlink" title="计算机的工作过程（指令执行的过程）"></a>计算机的工作过程（指令执行的过程）</h5></li>
+</ul>
+<h4 id="3-计算机的性能指标-（重点）"><a href="#3-计算机的性能指标-（重点）" class="headerlink" title="3.计算机的性能指标 &#x3D;&#x3D;（重点）&#x3D;&#x3D;"></a>3.计算机的性能指标 &#x3D;&#x3D;（重点）&#x3D;&#x3D;</h4><p>这一章的考点主要是集中在计算机的性能指标，前面部分的发展历程也是简单的考察点，计算机的层次结构的概念要记清楚，在后面的章节中会详细讲解一部分的知识，所以对于一些概念无需深究，等学完所有的知识后再来看第一章，就会明白很多。</p>
+<h3 id="二、计算机发展历程"><a href="#二、计算机发展历程" class="headerlink" title="二、计算机发展历程"></a>二、计算机发展历程</h3><h4 id="1-计算机硬件的发展"><a href="#1-计算机硬件的发展" class="headerlink" title="1.计算机硬件的发展"></a>1.计算机硬件的发展</h4><ol>
+<li>第一代计算机（1946-1957）<strong>电子管时代</strong><br>特点：① 电子管作为开关器件 ② 使用机器语言 ③ 可以存储信息 ④ 输入&#x2F;出缓慢<br>⑤ &#x3D;&#x3D;采用冯·诺依曼体系结构&#x3D;&#x3D;</li>
+<li>第二代计算机（1958-1964）<strong>晶体管时代</strong><br>特点：① 晶体管替代电子管 ② 采用磁芯存储器 ③ 采用汇编语言取代机器语言<br>④ &#x3D;&#x3D;采用冯·诺依曼体系结构&#x3D;&#x3D;</li>
+<li>第三代计算机 （1965-1971）<strong>中小规模集成电路</strong><br>特点: ① 中小规模集成电路替代晶体管 ② 操作系统问世<br>③ &#x3D;&#x3D;采用冯·诺依曼体系结构&#x3D;&#x3D;</li>
+<li>第四代计算机 （1972 年至今）<strong>超大规模集成电路时代</strong><br>特点：① 采用集成度很高的电路 ② 微处理器问世<br>③ &#x3D;&#x3D;采用冯·诺依曼体系结构&#x3D;&#x3D;</li>
+<li>有点印象即可<br>第五代计算机 <strong>智能计算机</strong> ：① 具有人工智能，类似人的思维 ② 运算速度快 ③ 软件系统能够出里知识信息等。<br>第六代计算机 <strong>生物计算机与量子计算机</strong> ：未来计算机的发展趋势和方向，一旦成熟将颠覆现有的技术。</li>
+</ol>
+<p><strong>&#x3D;&#x3D;冯诺依曼体系结构&#x3D;&#x3D;</strong></p>
+<ul>
+<li>计算机处理的数据和指令一律用二进制数表示</li>
+<li>指令和数据以同等的地位存储在存储器内，并可以通过地址访问</li>
+<li>指令由操作码和地址码组成，操作码用来表示操作的性质，地址码用来表示操作数在存储器中的位置</li>
+<li>顺序执行程序<br>计算机运行过程中，把要执行的程序和处理的数据首先存入主存储器（内存），计算机执行程序时，将自动地并按顺序从主存储器中取出指令一条一条地执行，这一概念称作顺序执行程序。</li>
+<li>计算机硬件由运算器、控制器、存储器、输入设备和输出设备五大部分组成。</li>
+<li>机器以运算器为核心，I&#x2F;O 设备与存储器之间的数据传输通过 运算器完成</li>
+</ul>
+<h4 id="2-计算机的分类"><a href="#2-计算机的分类" class="headerlink" title="2. 计算机的分类"></a>2. 计算机的分类</h4><h5 id="按用途划分"><a href="#按用途划分" class="headerlink" title="按用途划分"></a>按用途划分</h5><ol>
+<li>通用计算机<br>通用计算机是面向多种应用领域和算法的计算机。其特点是它的系统结构和计算机软件能适合不同用户的需求，一般的计算机多属此类。</li>
+<li>专用计算机<br>专用计算机是针对某一特定应用领域或面向某种算法而专门设计的计算机。其特点是系统结构及专用软件对所指定的应用领域是高效的，对其他领域则效率低甚至无效。一般在过程控制中使用的工业控制机、卫星图像处理用的并行处理机属于此类。</li>
+</ol>
+<h5 id="按照计算机性能"><a href="#按照计算机性能" class="headerlink" title="按照计算机性能"></a>按照计算机性能</h5><p>要求：理解概念</p>
+<ol>
+<li>巨型机<br>巨型机又称超级计算机(Super Computer)，它是所有计算机中性能最高、功能最强、速度极快、存储量巨大、结构复杂、价格昂贵的一类计算机。其浮点运算速度目前已达每秒千万亿次。目前多用在国防、航天、生物、气象、核能等国家高科技领域和国防尖端技术中。我国研制成功的银河系列机、曙光系列机、深腾系列机就属于巨型机，特别是 2009 年 10 月“天河一号”的研制成功，中国高性能计算机的峰值性能提升到了每秒 1206 万亿次。</li>
+<li>大型机 Mainframe<br>大型机是计算机中通用性能最强，功能、速度、存储量仅次于巨型机的一类计算机，国外习惯上将其称为主机(Mainframe)。大型机具有比较完善的指令系统和丰富的外部设备，很强的管理和处理数据的能力，一般用在大型企业、金融系统、高校、科研院所等。</li>
+<li>中型机 Midrange<br>介于 大小型机之间的，但是概念到如今都对应小型机。</li>
+<li>小型机 Mini<br>小型机(Mini Computer)是计算机中性能较好、价格便宜、应用领域非常广泛的一类计算机。其浮点运算速度可达每秒几千万次。小型机结构简单、使用和维护方便，备受中小企业欢迎，主要用于科学计算、数据处理和自动控制等。</li>
+<li>微型机 Personal<br>微型机也称为个人计算机(Personal Computer，简称 PC)，是应用领域最广泛、发展最快、人们最感兴趣的一类计算机，它以其设计先进(总是率先采用高性能微处理器)、软件丰富、功能齐全、体积小、价格便宜、灵活、性能好等优势而拥有广大的用户。目前，微型机已广泛应用于办公自动化、信息检索、家庭教育和娱乐等。</li>
+<li>单片机 Microcontrollers<br>单片机又称单片微控制器，它不是完成某一个逻辑功能的芯片，而是把一个计算机系统集成到一个芯片上。相当于一个微型的计算机，和计算机相比，单片机只缺少了 I&#x2F;O 设备。概括的讲：一块芯片就成了一台计算机。它的体积小、质量轻、价格便宜、为学习、应用和开发提供了便利条件。同时，学习使用单片机是了解计算机原理与结构的最佳选择。</li>
+</ol>
+<h5 id="按指令和数据流分类"><a href="#按指令和数据流分类" class="headerlink" title="按指令和数据流分类"></a>按指令和数据流分类</h5><ol>
+<li>单指令单数据流（SISD，Single Instruction Single Data)<br>SISD 机器是一种传统的串行计算机，它的硬件不支持任何形式的并行计算，所有的指令都是串行执行。并且在某个时钟周期内，CPU 只能处理一个数据流。传统的冯诺依曼体系结构</li>
+<li>单指令多数据流 ( SIMD, Single Instruction Multiple Data)<br>SIMD 是采用一个指令流处理多个数据流。这类机器在数字信号处理、图像处理、以及多媒体信息处理等领域非常有效，包括阵列处理器、向量处理器系统。</li>
+<li>多指令流单数据流机器（MISD）<br>MISD 是采用多个指令流来处理单个数据流。由于实际情况中，采用多指令流处理多数据流才是更有效的方法，因此 MISD 只是作为理论模型出现，因此实际<strong>不存在</strong>此类计算机。</li>
+<li>多指令流多数据流机器（MIMD）<br>MIMD 机器可以同时执行多个指令流，这些指令流分别对不同数据流进行操作。 Intel 和 AMD 的 4 核心 8 核心等处理器等都属于 MIMD。包括多处理器和多计算机系统。</li>
+</ol>
+<h4 id="3-一个概念"><a href="#3-一个概念" class="headerlink" title="3. 一个概念"></a>3. 一个概念</h4><p>摩尔定律是由英特尔（Intel）创始人之一戈登·摩尔（Gordon Moore）提出来的。其内容为：当价格不变时，集成电路上可容纳的元器件的数目，约每隔 18-24 个月便会增加一倍，性能也将提升一倍。换言之，每一美元所能买到的电脑性能，将每隔 18-24 个月翻一倍以上。这一定律揭示了信息技术进步的速度 [1] 。尽管这种趋势已经持续了超过半个世纪，<strong>摩尔定律仍应该被认为是观测或推测，而不是一个物理或自然法。</strong></p>
+<h3 id="三、计算机的层次结构"><a href="#三、计算机的层次结构" class="headerlink" title="三、计算机的层次结构"></a>三、计算机的层次结构</h3><h4 id="1-计算机系统的基本组成"><a href="#1-计算机系统的基本组成" class="headerlink" title="1. 计算机系统的基本组成"></a>1. 计算机系统的基本组成</h4><p>计算机系统由软件和硬件两部分组成（不需要背过，但要有概念）<br><strong>硬件</strong><br>硬件系统主要由中央处理器、存储器、输入输出控制系统和各种外部设备组成。中央处理器是对信息进行高速运算处理的主要部件，其处理速度可达每秒几亿次以上操作。存储器用于存储程序、数据和文件，常由快速的内存储器（容量可达数百兆字节，甚至数 G 字节）和慢速海量外存储器（容量可达数十 G 或数百 G 以上）组成。各种输入输出外部设备是人机间的信息转换器，由输入-输出控制系统管理外部设备与主存储器(中央处理器)之间的信息交换。<br><strong>软件</strong><br>软件分为系统软件、支撑软件和应用软件。系统软件由操作系统、实用程序、编译程序等组成。操作系统实施对各种软硬件资源的管理控制。实用程序是为方便用户所设，如文本编辑等。编译程序的功能是把用户用汇编语言或某种高级语言所编写的程序，翻译成机器可执行的机器语言程序。支撑软件有接口软件、工具软件、环境数据库等，它能支持用机的环境，提供软件研制工具。支撑软件也可认为是系统软件的一部分。应用软件是用户按其需要自行编写的专用程序，它借助系统软件和支援软件来运行，是软件系统的最外层。<br><strong>软件和硬件在逻辑上是等效的</strong><br>对于某一功能来说，实现方式可以通过软件也可以通过硬件实现，则称为软硬件在逻辑上是等效的。<br>一般一个功能的实现使用硬件会有效率高优点，但是也有成本高的缺点。而使用软件时，可以调高其灵活性，但效率不如硬件。<br><strong>即软件和硬件在逻辑功能上是等效的。但是，软件和硬件在性能和成本上是不等效的。</strong></p>
+<p><strong>例：</strong></p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs css">计算机系统中软硬件在逻辑上是等效的，提高软件功能实现的比例将会（  <span class="hljs-selector-tag">B</span> ）<br><br><span class="hljs-selector-tag">A</span>. 提高解题速度<br><br><span class="hljs-selector-tag">B</span>. 提高系统灵活性<br><br>C. 增加成本<br><br>D. 减少所需存储容量<br><br>以下说法中，不正确的是：软硬件功能是等效的，提高硬件功能的比例会（ <span class="hljs-selector-tag">B</span> ）<br><span class="hljs-selector-tag">A</span> . 提高解题速度<br><span class="hljs-selector-tag">B</span> . 提高硬件利用率<br>C . 提高硬件成本<br>D . 减少所需要的存储容量<br></code></pre></td></tr></table></figure>
+
+<h4 id="2-计算机硬件基本组成"><a href="#2-计算机硬件基本组成" class="headerlink" title="2.计算机硬件基本组成"></a>2.计算机硬件基本组成</h4><p><img src="https://img-blog.csdnimg.cn/20200812220326463.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70#pic_center" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br>计算机硬件主要由存储器、运算器、控制器、输入设备和输出设备（I&#x2F;O 设备)组成。<br>其中 ALU+CU&#x3D;CPU ，CPU+主存&#x3D;电脑主机 I&#x2F;O 设备又称作外部设备。</p>
+<p><strong>其中名词：</strong></p>
+<table>
+<thead>
+<tr>
+<th>简称</th>
+<th>全称</th>
+<th>中文</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>CPU</strong></td>
+<td>Central Processing Unit</td>
+<td>中央处理器，中央处理机，中央处理单元</td>
+</tr>
+<tr>
+<td><strong>ALU</strong></td>
+<td>Aritmetic Logical Unit</td>
+<td>算术逻辑单元，运算器，算术逻辑部件;</td>
+</tr>
+<tr>
+<td><strong>CU</strong></td>
+<td>Control Unit</td>
+<td>控制单元，控制器</td>
+</tr>
+<tr>
+<td><strong>I&#x2F;O</strong></td>
+<td>Input&#x2F;Output</td>
+<td>输入&#x2F;输出</td>
+</tr>
+</tbody></table>
+<h5 id="1-存储器"><a href="#1-存储器" class="headerlink" title="1.存储器"></a>1.存储器</h5><p><font size=1 color=grey > 注意：储存一般是口语中的用词，考试的时候尽量一定写&#x3D;&#x3D;存储&#x3D;&#x3D;器。（中文 20 级学者，手动狗头）<br>&#x3D;&#x3D;后面有专门的章节讲这部分文章，现在不用慌&#x3D;&#x3D;</p>
+<p>存储器分为主存和辅存，CPU 能够直接访问主存，但是不能直接访问辅存，辅存数据需要先调入主存后才能别 CPU 访问。</p>
+<p>主存的作用：主存是存放程序和数据的部件，它是计算机实现“存储程序控制”的基础<br><img src="https://img-blog.csdnimg.cn/20200813010433802.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70#pic_center" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<h6 id="1-存储器相关概念"><a href="#1-存储器相关概念" class="headerlink" title="1.存储器相关概念"></a>1.存储器相关概念</h6><table>
+<thead>
+<tr>
+<th>概念</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>存储元</td>
+<td>存储器的最小存储单位，它的作用是用来存放一位二进制代码 0 或 1</td>
+</tr>
+<tr>
+<td>存储单元</td>
+<td>一个存储器由多个存储单元组成 ，能够存储多位二进制信息</td>
+</tr>
+<tr>
+<td>存储体</td>
+<td>许多存储单元可组成存储体 <em>（U 盘、硬盘可理解为存储体）</em></td>
+</tr>
+<tr>
+<td>存储字</td>
+<td>存储字是指存放在一个存储单元中的二进制代码组合，可以代表数据，指令，地址等</td>
+</tr>
+<tr>
+<td>存储字长</td>
+<td>每个存储单元中的二进制代码的位数就是存储字长</td>
+</tr>
+</tbody></table>
+<p><img src="https://img-blog.csdnimg.cn/2020081301180184.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70#pic_center" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<h6 id="2-公式化的解题步骤"><a href="#2-公式化的解题步骤" class="headerlink" title="2.公式化的解题步骤"></a>2.公式化的解题步骤</h6><p><font size=1 color=grey > 解题方式为博主原创，可以自行使用，凡是以文章和视频等媒体方式发布时，请注明来源，抄袭必究。</p>
+<p><strong>考察方式一：</strong><br>我们在这给出公式化的解题步骤</p>
+<ol>
+<li>写出存储器的总容量，化成 bit 为单位</li>
+<li>写出按 XX 寻址方式，XX 的容量</li>
+<li>作商，一定注意寻址范围没有单位</li>
+</ol>
+<p>已知计算机的字长为 32 位，存储器的容量为 1MB，如果按照一下寻址方式，寻址范围是多少？</p>
+<ol>
+<li>字节<br>套用解题步骤： 1. 总容量：1MB&#x3D;1MX8Bit&#x3D;8MBit 2. 字节寻址，一个字节的容量：1B&#x3D;8Bit 3. 坐商：8MBit&#x2F;8Bit&#x3D;1M</li>
+</ol>
+<p>2.半字<br>套用解题步骤： 1. 总容量：1MB&#x3D;1MX8Bit&#x3D;8MBit 2. 半字寻址，半个字的容量：1&#x2F;2<em>32Bit&#x3D;16Bit 3. 坐商：8MBit&#x2F;16Bit&#x3D; 512K 3.字 1. 总容量：1MB&#x3D;1MX8Bit&#x3D;8MBit 2. 字寻址，一个字的容量： 32Bit 3. 坐商：8MBit&#x2F;32Bit&#x3D; 256K 4.双字<br>套用解题步骤： 1. 总容量：1MB&#x3D;1MX8Bit&#x3D;8MBit 2. 两字寻址，两个字的容量：2</em>32Bit&#x3D;64Bit 3. 坐商：8MBit&#x2F;64Bit&#x3D;128K</p>
+<p><strong>考察方式二：</strong><br>我们在这给出公式化的解题步骤</p>
+<ol>
+<li>确定存储字长</li>
+<li>确定存储器字节容量，寻址本身和数据线没有任何关系</li>
+<li>化成考察方式一</li>
+</ol>
+<p>若 CPU 有 20 根地址线，和 32 根数据线，请问按字节和字寻址的寻址范围？<br>套用解题步骤：</p>
+<ol>
+<li>确定存储字长：因为有 32 根 数据线，所以存储字长为 32 位</li>
+<li>确定存储器总容量：$2^{20}B&#x3D;1MB$</li>
+<li>化成考察方式一，这里此题变成了计算机的字长为 32 位，存储器的容量为 1MB，按照字节和字寻址的寻址范围，跟考察一的那一道题一模一样。</li>
+</ol>
+<p>难理解的是步骤二，因为不知道为什么 20 根地址线的存储器容量是 1MB，这跟存储器的构造有关，但是这部分内容就考察这么多，不建议大家过多了解。</p>
+<h5 id="2-运算器（后面章节会讲，先了解有这么个东西）"><a href="#2-运算器（后面章节会讲，先了解有这么个东西）" class="headerlink" title="2.运算器（后面章节会讲，先了解有这么个东西）"></a>2.运算器（后面章节会讲，先了解有这么个东西）</h5><p>大部分 ALU 都可以完成以下运算 ∶<br>　　整数算术运算（加、减，有时还包括乘和除，不过成本较高）<br>　　位逻辑运算（与、或、非、异或）<br>　　移位运算（将一个字向左或向右移位或浮动特定位，而无符号延伸），移位可被认为是乘以 2 或除以 2。</p>
+<h5 id="3-控制器（后面章节会讲，先了解有这么个东西）"><a href="#3-控制器（后面章节会讲，先了解有这么个东西）" class="headerlink" title="3.控制器（后面章节会讲，先了解有这么个东西）"></a>3.控制器（后面章节会讲，先了解有这么个东西）</h5><p>控制器是指挥计算机的各个部件按照指令的功能要求协调工作的部件，是计算机的神经中枢和指挥中心，由指令寄存器 IR（InstructionRegister）、程序计数器 PC（ProgramCounter）和操作控制器 0C（OperationController）三个部件组成，对协调整个电脑有序工作极为重要。</p>
+<h5 id="4-I-O-设备（后面也会详细讲，暂时不提了）"><a href="#4-I-O-设备（后面也会详细讲，暂时不提了）" class="headerlink" title="4.I&#x2F;O 设备（后面也会详细讲，暂时不提了）"></a>4.I&#x2F;O 设备（后面也会详细讲，暂时不提了）</h5><h5 id="5-五大部件之间的工作流程"><a href="#5-五大部件之间的工作流程" class="headerlink" title="5. 五大部件之间的工作流程:"></a>5. 五大部件之间的工作流程:</h5><ol>
+<li>通过与控制器之间的信号请求，输入设备首先输入信息给存储器，这里的信息一定是包含<strong>数据</strong>和<strong>程序</strong>两者(如果只包含数据，则不知道如何操作;若只包含程序，则计算机不知道对谁操作，所以两者缺 1 不可)</li>
+<li>控制器调用相应的指令来运行程序，然后发出相应的操作命令给运算器(如果需要使用运算器)，控制器给出操作数的地址，使用该地址从存储器调用操作数给运算器进行运算。</li>
+<li>运算结果返回 给存储器，若需要打印则通过输出设备与控制器之间的信号条，打印出结果。</li>
+</ol>
+<h4 id="3-计算机软件的分类"><a href="#3-计算机软件的分类" class="headerlink" title="3. 计算机软件的分类"></a>3. 计算机软件的分类</h4><p>计算机软件总体分为系统软件和应用软件两大类：</p>
+<h5 id="1-系统软件"><a href="#1-系统软件" class="headerlink" title="1.系统软件"></a>1.系统软件</h5><p>是各类操作系统，如 windows、Linux、UNIX 等，编译程序 Java、 C#、等，还包括操作系统的补丁程序及硬件驱动程序，都是系统软件类<br>系统软件是负责管理计算机系统中各种独立的硬件，使得它们可以协调工作。系统软件使得计算机使用者和其他软件将计算机当作一个整体而不需要顾及到底层每个硬件是如何工作的。</p>
+<h5 id="2-应用软件"><a href="#2-应用软件" class="headerlink" title="2. 应用软件"></a>2. 应用软件</h5><p>可以细分的种类就更多了，如工具软件、游戏软件、管理软件等都属于应用软件类。<br>应用软件是为了某种特定的用途而被开发的软件。它可以是一个特定的程序，比如一个图像浏览器。也可以是一组功能联系紧密，可以互相协作的程序的集合，比如微软的 Office 软件。也可以是一个由众多独立程序组成的庞大的软件系统，比如数据库管理系统。</p>
+<h5 id="补充：编程语言"><a href="#补充：编程语言" class="headerlink" title="补充：编程语言"></a>补充：编程语言</h5><ul>
+<li><p>机器语言<br>这种语言主要是利用二进制编码进行指令的发送，能够被计算机快速地识别，其灵活性相对较高，且执行速度较为可观，这要求程序员在卡法程序时，记清楚每条指令的 2 进制代码，代码长度甚至几十位。</p>
+</li>
+<li><p>汇编语言<br>该语言主要是以缩写英文作为标符进行编写的，运用汇编语言进行编写的一般都是较为简练的小程序，其在执行方面较为便利，但汇编语言在程序方面较为冗长，所以具有较高的出错率。</p>
+</li>
+<li><p>高级语言<br>所谓的高级语言，其实是由多种编程语言结合之后的总称，其可以对多条指令进行整合，将其变为单条指令完成输送，其在操作细节指令以及中间过程等方面都得到了适当的简化，所以，整个程序更为简便，具有较强的操作性，而这种编码方式的简化，使得计算机编程对于相关工作人员的专业水平要求不断放宽</p>
+</li>
+</ul>
+<blockquote>
+<p>翻译程序是指把高级语言源程序翻译成机器语言源程序（目标代码）的软件。</p>
+</blockquote>
+<blockquote>
+<p>翻译程序有两种：一种是编译程序，它将高级语言源程序一次性全部翻译成目标程序，每次执行程序时，只要执行目标程序。另一种是解释程序，它的执行过程是翻译一句执行一句，并且不会生成目标程序。</p>
+</blockquote>
+<blockquote>
+<p>编译程序是先完整编译后运行的程序，如 C、C++等；解释程序是一句一句翻译且边翻译边执行的程序，如 JavaScript、Python 等。附 C 语言编译链接过程：</p>
+</blockquote>
+<p><img src="https://img-blog.csdnimg.cn/20200813023920994.png#pic_center" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<blockquote>
+<p>汇编程序也是一种语言翻译程序，它把汇编语言源程序翻译成机器语言程序。</p>
+</blockquote>
+<blockquote>
+<p>编译程序与汇编程序的区别：如果源语言是诸如 C、C++、Java 等“高级语言”，而目标语言是诸如汇编语言或机器语言之类的“低级语言”，这样的一个翻译程序称为编译程序。如果源语言是汇编语言，而目标语言是机器语言，这样的一个翻译程序称为汇编程序。<br>引用博主 CMTSA 地址：<a target="_blank" rel="noopener" href="https://blog.csdn.net/IWGoo/article/details/85528562">https://blog.csdn.net/IWGoo/article/details/85528562</a></p>
+</blockquote>
+<h4 id="4-计算机工作过程-（要会讲，不必原文背诵，说个大概就行）"><a href="#4-计算机工作过程-（要会讲，不必原文背诵，说个大概就行）" class="headerlink" title="4. 计算机工作过程 （要会讲，不必原文背诵，说个大概就行）"></a>4. 计算机工作过程 （要会讲，不必原文背诵，说个大概就行）</h4><p>计算机在运行时，不断的执行：<br>先从内存中取出第一条指令，通过控制器的译码，按指令的要求，从存储器中取出数据进行指定的运算和逻辑操作等加工，然后再按地址把结果送到内存中去。接下来，再取出第二条指令，在控制器的指挥下各部件完成各种操作。<br>一直进行下去。直至遇到停止指令</p>
+<h4 id="5-计算机系统的层次结构"><a href="#5-计算机系统的层次结构" class="headerlink" title="5. 计算机系统的层次结构"></a>5. 计算机系统的层次结构</h4><p>部分资料又说 5 个层次，又说 6 个层次，有说 7 各层次的，我们都来说一下。</p>
+<p><strong>M0 硬联逻辑级</strong><br>第零级是硬联逻辑级，这是计算机的内核，由门，触发器等逻辑电路组成。</p>
+<p><strong>M1 微程序级</strong><br>第一级是微程序级。这级的机器语言是微指令集，程序员用微指令编写的微程序，一般是直接由硬件执行的。</p>
+<p><strong>M2 传统机器级</strong><br>第二级是传统机器级，这级的机器语言是该机的指令集，程序员用机器指令编写的程序可以由微程序进行解释。</p>
+<p><strong>M3 操作系统级</strong><br>第三级是操作系统级，从操作系统的基本功能来看，一方面它要直接管理传统机器中的软硬件资源，另一方面它又是传统机器的延伸。</p>
+<p><strong>M4 汇编语言级</strong><br>第四级是汇编语言级，这级的机器语言是汇编语言，完成汇编语言翻译的程序叫做汇编程序。 [1]</p>
+<p><strong>M5 高级语言级</strong><br>第五级是高级语言级，这级的机器语言就是各种高级语言，通常用编译程序来完成高级语言翻译的工作。</p>
+<p><strong>M6 应用语言级</strong><br>第六级是应用语言级，<br>这一级是为了使计算机满足某种用途而专门设计的，因此这一级语言就是各种面向问题的应用语言。<br>把计算机系统按功能分为多级层次结构，就是有利于正确理解计算机系统的工作过程，明确软件，硬件在计算机系统中的地位和作用。</p>
+<p><img src="https://img-blog.csdnimg.cn/20200813031505849.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70#pic_center" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<h3 id="四、计算机性能指标"><a href="#四、计算机性能指标" class="headerlink" title="四、计算机性能指标"></a>四、计算机性能指标</h3><p>CPU：吞吐量，响应时间，CPU 时钟周期，主频，CPI，CPU 执行时间，MIPS，MFLOPS，GFLOPS，TFLOPS，PFLOPS，利用率，处理机字长；<br>其他：总线宽度。</p>
+<h4 id="1-吞吐量"><a href="#1-吞吐量" class="headerlink" title="1.吞吐量"></a>1.吞吐量</h4><p>一个系统的吞度量（承压能力）与一个请求 request 对 CPU 的消耗、外部接口、IO 等密切关联。单个 reqeust 对 CPU 消耗越高，外部系统接口、IO 影响速度越慢，系统吞吐能力越低，反之越高。</p>
+<p><strong>一般系统吞吐量由几个重要关键要素组成：</strong></p>
+<p><strong>QPS：</strong> Queries Per Second 每秒内的查询率。它是指一台服务器每秒能够相应的查询次数，是对一个特定的查询服务器在规定时间内所处理流量多少的衡量标准。QPS 统计方式，一般使用 http_load 进行统计。</p>
+<p><strong>TPS：</strong> TransactionsPerSecond 每秒内的事务数。一个事务是指一个客户机向服务器发送请求然后等待服务器做出反应的过程。客户机在发送请求时开始计时，收到服务器响应后结束计时，以此来计算使用的时间和完成的事务个数，客户机使用加权协函数平均方法来计算得分，最终利用这些信息得出服务器端的整体 TPS 得分。</p>
+<p><strong>并发数：</strong> 系统同时处理的 request&#x2F;事务数。</p>
+<p><strong>响应时间：</strong> 系统平均响应时间。</p>
+<p><strong>计算关系</strong><br>QPS &#x3D; 并发量 &#x2F; 平均响应时间<br>并发量 &#x3D; QPS * 平均响应时间</p>
+<h4 id="2-响应时间-RT"><a href="#2-响应时间-RT" class="headerlink" title="2.响应时间(RT)"></a>2.响应时间(RT)</h4><p>响应时间是指系统对请求作出响应的时间。直观上看，这个指标与人对软件性能的主观感受是非常一致的，因为它完整地记录了整个计算机系统处理请求的时间。由于一个系统通常会提供许多功能，而不同功能的处理逻辑也千差万别，因而不同功能的响应时间也不尽相同，甚至同一功能在不同输入数据的情况下响应时间也不相同。所以，在讨论一个系统的响应时间时，人们通常是指该系统所有功能的平均时间或者所有功能的最大响应时间。当然，往往也需要对每个或每组功能讨论其平均响应时间和最大响应时间。</p>
+<p>对于单机的没有并发操作的应用系统而言，人们普遍认为响应时间是一个合理且准确的性能指标。需要指出的是，响应时间的绝对值并不能直接反映软件的性能的高低，软件性能的高低实际上取决于用户对该响应时间的接受程度。对于一个游戏软件来说，响应时间小于 100 毫秒应该是不错的，响应时间在 1 秒左右可能属于勉强可以接受，如果响应时间达到 3 秒就完全难以接受了。而对于编译系统来说，完整编译一个较大规模软件的源代码可能需要几十分钟甚至更长时间，但这些响应时间对于用户来说都是可以接受的。</p>
+<h4 id="3-CPU-时钟周期和主频"><a href="#3-CPU-时钟周期和主频" class="headerlink" title="3.CPU 时钟周期和主频"></a>3.CPU 时钟周期和主频</h4><p><strong>CPU 时钟周期</strong><br>时钟发生器发出的脉冲信号做出周期变化的最短时间称之为震荡周期，也称为 CPU 时钟周期。它是计算机中最基本的、最小的时间单位。每一次脉冲（即一个震荡周期）到来，芯片内的晶体管就改变一次状态，让整个芯片完成一定任务。一个震荡周期内，晶体管只会改变一次状态。由此，更小的时钟周期就意味着更高的工作频率。<br><strong>主频</strong><br>一秒（1 s）内，震荡周期的个数称为时钟频率，俗称主频。</p>
+<p><strong>主频和时钟周期的关系：</strong></p>
+<p>$时钟频率（主频）&#x3D; \frac{1}{CPU 时钟周期}$</p>
+<p>由上面的关系不难推出，主频越高，CPU 的运算速度就越快。</p>
+<h4 id="4-CPI-（每条指令执行平均时间）"><a href="#4-CPI-（每条指令执行平均时间）" class="headerlink" title="4.CPI （每条指令执行平均时间）"></a>4.CPI （每条指令执行平均时间）</h4><p>CPI（Clock cycle Per Instruction）表示执行某个程序的指令平均时钟周期数，可以用来衡量计算机运行速度。<br>$CPI&#x3D;\frac{TC }{IC}$(IC[instruction counter]表示某个程序的所有指令的条数；TC 表示执行某个程序所花费的时钟周期)</p>
+<h4 id="5-CPU-执行时间"><a href="#5-CPU-执行时间" class="headerlink" title="5.CPU 执行时间"></a>5.CPU 执行时间</h4><p><img src="https://img-blog.csdnimg.cn/20200228164809175.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<h4 id="6-MIPS-每秒处理多少（百万级的指令条数）"><a href="#6-MIPS-每秒处理多少（百万级的指令条数）" class="headerlink" title="6.MIPS 每秒处理多少（百万级的指令条数）"></a>6.MIPS 每秒处理多少（百万级的指令条数）</h4><p>MIPS(Million Instructions Per Second)：单字长定点指令平均执行速度 Million Instructions Per Second 的缩写，每秒处理的百万级的机器语言指令数。这是衡量 CPU 速度的一个指标。</p>
+<h4 id="7-FLOPS-MFLOPS-GFLOPS-TFLOPS-PFLOPS-EFLOPS"><a href="#7-FLOPS-MFLOPS-GFLOPS-TFLOPS-PFLOPS-EFLOPS" class="headerlink" title="7.FLOPS&#x2F;MFLOPS&#x2F;GFLOPS&#x2F;TFLOPS&#x2F;PFLOPS&#x2F;EFLOPS"></a>7.FLOPS&#x2F;MFLOPS&#x2F;GFLOPS&#x2F;TFLOPS&#x2F;PFLOPS&#x2F;EFLOPS</h4><p>FLOPS 是 Floating-point Operations Per Second 每秒所执行的浮点运算次数的英文缩写。它是一个衡量计算机计算能力的量，这个量经常使用在那些需要大量浮点运算的科学运算中。有时也会被记为 flop&#x2F;s。</p>
+<p>MFLOPS(Million Floating-point Operations per Second，每秒百万个浮点操作)，衡量计算机系统的技术指标，不能反映整体情况，只能反映浮点运算情况。</p>
+<p>GFLOPS 就是 Giga Floating-point Operations Per Second,即每秒 10 亿次的浮点运算数,常作为 GPU 性能参数但不一定代表 GPU 的实际表现，因为还要考虑具体如何拆分多边形和像素、以及纹理填充，理论上该数值越高越好。1GFlops &#x3D; 1,000MFlops。</p>
+<p>$\<br>MFLOPS(megaFLOPS)\quad&#x3D;\  每秒一佰万（&#x3D;10^6）次的浮点运算\<br>GFLOPS(gigaFLOPS) \ \ \ \quad&#x3D; \ 每秒拾亿（&#x3D;10^9）次的浮点运算\<br>TFLOPS(teraFLOPS）\ \quad&#x3D;\ 每秒万亿（&#x3D;10^{12}）次的浮点运算\<br>PFLOPS(petaFLOPS) \ \ \  \quad&#x3D;每秒千万亿（&#x3D;10^{15}）次的浮点运算\<br>EFLOPS(exaFLOPS)\qquad&#x3D;每秒百亿亿（&#x3D;10^{18}）次的浮点运算。$</p>
+<h4 id="8-CPU-利用率"><a href="#8-CPU-利用率" class="headerlink" title="8.CPU 利用率"></a>8.CPU 利用率</h4><p>CPU 利用率，是对一个时间段内 CPU 使用状况的统计，通过这个指标可以看出在某一个时间段内 CPU 被占用的情况，如果 CPU 被占用时间很高，那么就需要考虑 CPU 是否已经处于超负荷运作，长期超负荷运作对于机器本身来说是一种损害，因此必须将 CPU 的利用率控制在一定的比例下，以保证机器的正常运作。</p>
+<p>Load Average 是 CPU 的 Load，它所包含的信息不是 CPU 的使用率状况，而是在一段时间内 CPU 正在处理以及等待 CPU 处理的进程数之和的统计信息，也就是 CPU 使用队列的长度的统计信息。</p>
+<h4 id="9-处理机字长"><a href="#9-处理机字长" class="headerlink" title="9.处理机字长"></a>9.处理机字长</h4><p>理机字长是指处理机能同时处理（或运算）的位数，即同时处理多少位（bit）数据。</p>
+<h4 id="10-总线带宽"><a href="#10-总线带宽" class="headerlink" title="10.总线带宽"></a>10.总线带宽</h4><p>1.数据总线<br>数据总线是 CPU 与存储器、CPU 与 I&#x2F;O 接口设备之间传送数据信息(各种指令数据信息)的总线，这些信号通过数据总线往返于 CPU 与存储器、CPU 与 I&#x2F;O 接口设备之间，因此，数据总线上的信息是双向传输的。</p>
+<p>2.地址总线<br>地址总线上传送的是 CPU 向存储器、I&#x2F;O 接口设备发出的地址信息，寻址能力是 CPU 特有的功能，地址总线上传送的地址信息仅由 CPU 发出，因此，地址总线上的信息是单向传输的。</p>
+<p>3.控制总线<br>控制总线传送的是各种控制信号，有 CPU 至存储器、I&#x2F;O 接口设备的控制信号，有 I&#x2F;O 接口送向 CPU 的应答信号、请求信号，因此，控制总线是上的信息是双向传输的。控制信号包括时序信号、状态信号和命令信号(如读写信号、忙信号、中断信号)等。</p>
+<p>总线带宽的计算公式为：总线带宽&#x3D;总线数据传输频率 X 数据总线位数</p>
+<p><img src="https://img-blog.csdnimg.cn/20200228171349235.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<p>拓展资料：</p>
+<p>总线是一组进行互连和传输信息（指令、数据和地址）的信号线。主要参数有总线位宽、总线时钟频率和总线传输速率。&#x2F;传统的 PCI 并行总线和最新的 PCI-E 串行总线带宽。</p>
+<p>总线位宽决定输入&#x2F;输出设备之间一次数据传输的信息量，用位（bit）表示，如总线宽度为 8 位、16 位、32 位和 64 位。</p>
+<p>按照工作模式不同，总线可分为两种类型，一种是并行总线，它在同一时刻可以传输多位数据，好比是一条允许多辆车并排开的宽敞道路，而且它还有双向单向之分；另一种为串行总线，它在同一时刻只能传输一个数据，好比只容许一辆车行走的狭窄道路，数据必须一个接一个传输、看起来仿佛一个长长的数据串，故称为“串行”。</p>
+<p>总线的带宽指的是这条总线在单位时间内可以传输的数据总量，它等于总线位宽与工作频率的乘积。例如，对于 64 位、800MHz 的前端总线，它的数据传输率就等于 64bit×800MHz÷8(Byte)&#x3D;6.4GB&#x2F;s；32 位、33MHz PCI 总线的数据传输率就是 32bit×33MHz÷8&#x3D;132MB&#x2F;s，等等，这项法则可以用</p>
+<h4 id="部分内容参考百度百科"><a href="#部分内容参考百度百科" class="headerlink" title="部分内容参考百度百科"></a>部分内容参考百度百科</h4><h4 id="11-考研题目"><a href="#11-考研题目" class="headerlink" title="11. 考研题目"></a>11. 考研题目</h4><p><strong>11 年考研真题</strong><br><img src="https://img-blog.csdnimg.cn/20200228172653446.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br><strong>解析：D</strong><br>定义性的东西，FLOPS 是 Floating-point Operations Per Second 每秒所执行的浮点运算次数的英文缩写。它是一个衡量计算机计算能力的量，这个量经常使用在那些需要大量浮点运算的科学运算中。有时也会被记为 flop&#x2F;s。</p>
+<p><strong>12 年考研真题</strong><br><img src="https://img-blog.csdnimg.cn/2020022817271655.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br><strong>解析：D</strong><br>CPU 执行时间为 90s,<br>设该任务的指令共计 M 条，则 90&#x3D;CPI<em>M。<br>现处理每一条的时间为 CPI&#x2F;1.5，则 T&#x3D;CPI</em>M&#x2F;1.5&#x3D;60。<br>因为 I&#x2F;O 时间不变所以共计 60+10</p>
+<p><strong>13 年考研真题</strong><br><img src="https://img-blog.csdnimg.cn/20200228172730522.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br><strong>解析：C</strong><br>先算平均 CPI，0.5<em>2+0.2</em>3+0.1<em>4+0.2</em>5&#x3D;3 注意这里的单位 CPU 时钟周期，<br>一个 CPU 时钟周期为$\frac{1}{1.2G}$<br>CPI&#x3D;$\frac{3}{1.2G}$<br>IPS 为 1S 执行指令条数，现在一条指令执行时间已知即 CPI<br>$IPS&#x3D;1&#x2F;CPI&#x3D;1&#x2F;\frac{3}{1.2G} &#x3D;0.4*1G$<br>MIPS&#x3D;IPS&#x2F;1M&#x3D;0.4*1024≈400</p>
+<p><strong>14 年真题</strong><br><img src="https://img-blog.csdnimg.cn/20200228172742521.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br><strong>解析：D</strong><br>设指令条数为 n 条，则$T&#x3D;n<em>CPI\(单位CPU时钟周期，因为CPU主频没变所以就不将它化为秒了，知道跟秒是成正比的就行）\T2&#x3D;0.7n</em>1.2CPI&#x3D;0.84T&#x3D;16.8s$<br><strong>15 年考研真题</strong><br><img src="https://img-blog.csdnimg.cn/20200228172752145.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br><strong>解析:A</strong><br>计算机只认识 0&#x2F;1，计算机语言程序</p>
+<p><strong>17 年考研真题</strong><br><img src="https://img-blog.csdnimg.cn/20200228172756837.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br><strong>解析：</strong><br>M1 的 CPI&#x3D;2*$\frac{1}{1.5GHZ}$<br>M2 的 CPI&#x3D;1*$\frac{1}{1.2GHZ}$<br>做商&#x3D; $\frac{0.75}{1.2}$为执行一条指令的时间之比，运行时间之比应为反比<br>$\frac{1.2}{0.75}&#x3D;1.6$</p>
+<p><strong>18 年考研真题（这是个多选的）</strong><br><img src="https://img-blog.csdnimg.cn/2020022817280179.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br><strong>解析：123 都对</strong></p>
+<br>
+<br>
+<br>
+
+<blockquote>
+<p><strong><em>写在最后:</em></strong><br>我叫风骨散人，名字的意思是我多想可以不低头的自由生活，可现实却不是这样。家境贫寒，总得向这个世界低头，所以我一直在奋斗，想改变我的命运给亲人好的生活，希望同样被生活绑架的你可以通过自己的努力改变现状，深知成年人的世界里没有容易二字。目前是一名在校大学生，预计考研，热爱编程，热爱技术，喜欢分享，知识无界，希望我的分享可以帮到你！<br>如果有什么想看的，可以私信我，如果在能力范围内，我会发布相应的博文！<br>感谢大家的阅读！😘 你的点赞、收藏、关注是对我最大的鼓励！</p>
+</blockquote>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/" class="category-chain-item">计算机组成原理</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>『计算机组成原理』 计算机系统概述（考研、面试必备） (1)</div>
+      <div>https://chiamzhang.github.io/2024/06/29/『计算机组成原理』 计算机系统概述（考研、面试必备） (1)/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>Chiam</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>June 29, 2024</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>Licensed under</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2024/06/29/%E3%80%8E%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86%E3%80%8F%20%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E6%A6%82%E8%BF%B0%EF%BC%88%E8%80%83%E7%A0%94%E3%80%81%E9%9D%A2%E8%AF%95%E5%BF%85%E5%A4%87%EF%BC%89/" title="『计算机组成原理』 计算机系统概述（考研、面试必备）">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">『计算机组成原理』 计算机系统概述（考研、面试必备）</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/06/29/%E3%80%8E%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E3%80%8F%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E4%B8%AD%E7%9A%84POC%E3%80%81EXP%E3%80%81Payload%E3%80%81ShellCode/" title="『网络安全』网络安全中的POC、EXP、Payload、ShellCode">
+                        <span class="hidden-mobile">『网络安全』网络安全中的POC、EXP、Payload、ShellCode</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"fIfc7WqUDZohlQuPc2lz5mJy-MdYXbMMI","appKey":"zjlAG3ZA3o4cBHVAkjzc2Z20","path":"window.location.pathname","placeholder":"留言仅限讨论，禁止广告等行为","avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"https://fifc7wqu.api.lncldglobal.com","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>Table of Contents</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <meta name="referrer" content="no-referrer" /> <footer id="footer" role="contentinfo"> <meta name="referrer" content="no-referrer" /> <div class="divider"> <div class="wall"></div> <img class="animals" src="/img/footer_animals_new.png" srcset="/img/loading.gif" lazyload alt="Footer Animals"> </div> <div class="container" data-index="450"> <p> <a href="https://chiamzhang.github.io" target="_blank">DogEgg</a> <i class="iconfont icon-love"></i> <a href="#" target="_blank">LittePig</a> </p> <p> Powered by  <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-pen"></i> Theme  <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> </p> </div> </footer> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+  
+<script src="/js/love.js"></script>
+<script src="/js/funnyTitle.js"></script>
+<script src="/js/backTop.js"></script>
+<script src="//cdn.jsdelivr.net/gh/bynotes/texiao/source/js/xiaoxuehua.js"></script>
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+</html>

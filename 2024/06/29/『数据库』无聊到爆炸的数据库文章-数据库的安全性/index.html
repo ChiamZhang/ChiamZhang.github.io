@@ -1,0 +1,803 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/Mine.jpg">
+  <link rel="icon" href="/img/Mine.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Chiam">
+  <meta name="keywords" content="Algorithms，Cybersecurity">
+  
+    <meta name="description" content="『数据库』无聊到爆炸的数据库文章-数据库的安全性『数据库』 朴实无华且枯燥的数据库教程–入门必看！（不收藏，真的吃亏了）@[toc]问题的提出  数据库的一大特点是数据可以共享 数据共享必然带来数据库的安全性问题 数据库系统中的数据共享不能是无条件的共享  计算机安全性概述一、计算机安全性 计算机系统安全性为计算机系统建立和采取的各种安全保护措施，以保护计算机系统中的硬件、软件及数据，防止其因偶然">
+<meta property="og:type" content="article">
+<meta property="og:title" content="『数据库』无聊到爆炸的数据库文章-数据库的安全性">
+<meta property="og:url" content="https://chiamzhang.github.io/2024/06/29/%E3%80%8E%E6%95%B0%E6%8D%AE%E5%BA%93%E3%80%8F%E6%97%A0%E8%81%8A%E5%88%B0%E7%88%86%E7%82%B8%E7%9A%84%E6%95%B0%E6%8D%AE%E5%BA%93%E6%96%87%E7%AB%A0-%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9A%84%E5%AE%89%E5%85%A8%E6%80%A7/index.html">
+<meta property="og:site_name" content="Homepage of Chiam">
+<meta property="og:description" content="『数据库』无聊到爆炸的数据库文章-数据库的安全性『数据库』 朴实无华且枯燥的数据库教程–入门必看！（不收藏，真的吃亏了）@[toc]问题的提出  数据库的一大特点是数据可以共享 数据共享必然带来数据库的安全性问题 数据库系统中的数据共享不能是无条件的共享  计算机安全性概述一、计算机安全性 计算机系统安全性为计算机系统建立和采取的各种安全保护措施，以保护计算机系统中的硬件、软件及数据，防止其因偶然">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200328155329916.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzQ2MDIyNA==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200328163038832.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzQ2MDIyNA==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200328165743696.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200328172753369.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzQ2MDIyNA==,size_16,color_FFFFFF,t_70">
+<meta property="article:published_time" content="2024-06-29T13:16:53.865Z">
+<meta property="article:modified_time" content="2023-12-05T16:18:14.297Z">
+<meta property="article:author" content="Chiam">
+<meta property="article:tag" content="Algorithms，Cybersecurity">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20200328155329916.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzQ2MDIyNA==,size_16,color_FFFFFF,t_70">
+  
+  
+  
+  <title>『数据库』无聊到爆炸的数据库文章-数据库的安全性 - Homepage of Chiam</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"chiamzhang.github.io","root":"/","version":"1.9.5-a","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":"❡"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":2},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
+
+
+<body>
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Chiam&#39;s Blogs</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                
+                <span>Home</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                
+                <span>Archives</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                
+                <span>Categories</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                
+                <span>About</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                
+                <span>Links</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="『数据库』无聊到爆炸的数据库文章-数据库的安全性"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-06-29 21:16" pubdate>
+          June 29, 2024 pm
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          4.3k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          36 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">『数据库』无聊到爆炸的数据库文章-数据库的安全性</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="『数据库』无聊到爆炸的数据库文章-数据库的安全性"><a href="#『数据库』无聊到爆炸的数据库文章-数据库的安全性" class="headerlink" title="『数据库』无聊到爆炸的数据库文章-数据库的安全性"></a>『数据库』无聊到爆炸的数据库文章-数据库的安全性</h1><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_43627118/article/details/105027257">『数据库』 朴实无华且枯燥的数据库教程–入门必看！（不收藏，真的吃亏了）</a><br>@[toc]<br><strong>问题的提出</strong></p>
+<ul>
+<li>数据库的一大特点是数据可以共享</li>
+<li>数据共享必然带来数据库的安全性问题</li>
+<li>数据库系统中的数据共享不能是无条件的共享</li>
+</ul>
+<h2 id="计算机安全性概述"><a href="#计算机安全性概述" class="headerlink" title="计算机安全性概述"></a>计算机安全性概述</h2><p><strong>一、计算机安全性</strong></p>
+<p><strong>计算机系统安全性</strong><br>为计算机系统建立和采取的各种安全保护措施，以保护计算机系统中的硬件、软件及数据，防止其因偶然或恶意的原因使系统遭到破坏，数据遭到更改或泄露等。</p>
+<p><strong>三类计算机系统安全性问题</strong></p>
+<ul>
+<li>技术安全类</li>
+<li>管理安全类</li>
+<li>政策法律类</li>
+</ul>
+<p><strong>二、安全标准简介</strong><br><strong>1. TCSEC&#x2F;TDI 标准的基本内容</strong><br>从四个方面来描述安全性级别划分的指标<br>➢ 安全策略<br>➢ 责任<br>➢ 保证<br>➢ 文档</p>
+<p><strong>2.TCSEC&#x2F;TDI 安全级别划分</strong><br><img src="https://img-blog.csdnimg.cn/20200328155329916.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzQ2MDIyNA==,size_16,color_FFFFFF,t_70" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br>➢ 按系统可靠或可信程度逐渐增高<br>➢ 各安全级别之间：偏序向下兼容</p>
+<p>B2 以上的系统：还处于理论研究阶段</p>
+<p><strong>CC</strong><br>➢ 提出国际公认的表述信息技术安全性的结构<br>➢ 把信息产品的安全要求分为：安全功能要求、安全保证要求</p>
+<p><strong>CC 文本组成</strong><br>➢ 简介和一般模型<br>➢ 安全功能要求<br>➢ 安全保证要求</p>
+<h2 id="数据库安全性控制"><a href="#数据库安全性控制" class="headerlink" title="数据库安全性控制"></a>数据库安全性控制</h2><p><strong>概述</strong></p>
+<p><strong>1. 非法使用数据库的情况</strong><br>➢ 用户编写一段合法的程序绕过 DBMS 及其授权机制，通过操作系统直接存取、修改或备份数据库中的数据；<br>➢ 直接或编写应用程序执行非授权操作<br>➢ 通过多次合法查询数据库从中推导出一些保密数据<br>➢ 破坏安全性的行为可能是无意的，故意的，恶意的</p>
+<p><strong>2. 数据库安全性控制的常用方法</strong><br>➢ 用户标识和鉴定<br>➢ 存取控制<br>➢ 视图<br>➢ 审计<br>➢ 密码存储</p>
+<p><strong>一、用户标识与鉴别</strong><br>系统提供的最外层安全保护措施</p>
+<p><strong>基本方法</strong><br>➢ 系统提供一定的方式让用户标识自己的名字或身份；<br>➢ 系统内部记录着所有合法用户的标识；<br>➢ 每次用户要求进入系统时，由系统核对用户提供的身份标识；<br>➢ 通过鉴定后才提供机器使用权。<br>➢ 用户标识和鉴定可以重复多次</p>
+<p><strong>用户标识自己的名字或身份</strong></p>
+<ol>
+<li>用户名&#x2F;口令<br>➢ 简单易行，容易被人窃取</li>
+<li>每个用户预先约定好一个计算过程或者函数<br>➢ 系统提供一个随机数<br>➢ 用户根据自己预先约定的计算过程或者函数进行计算<br>➢ 系统根据用户计算结果是否正确鉴定用户身份</li>
+</ol>
+<p><strong>二、 存取控制</strong></p>
+<p><strong>1. 存取控制机制组成</strong><br>➢ 定义用户权限<br>➢ 合法权限检查</p>
+<p><strong>2.</strong> 用户权限定义和合法权限检查机制一起组成了 DBMS 的安全子系统</p>
+<p><strong>3.常用存取控制方法</strong><br>➢ 自主存取控制（Discretionary Access Control ，简称 DAC）： C2 级；灵活<br>➢ 强制存取控制（Mandatory Access Control，简称 MAC）：B1 级；严格</p>
+<p><strong>4.自主存取控制方法</strong></p>
+<ol>
+<li>同一用户对于不同的数据对象有不同的存取权限</li>
+<li>不同的用户对同一对象也有不同的权限</li>
+<li>用户还可将其拥有的存取权限转授给其他用户</li>
+</ol>
+<p><strong>5.强制存取控制方法</strong></p>
+<ol>
+<li>每一个数据对象被标以一定的密级</li>
+<li>每一个用户也被授予某一个级别的许可证</li>
+<li>对于任意一个对象，只有具有合法许可证的用户才可以存取</li>
+</ol>
+<p><strong>三、自主存取控制方法</strong></p>
+<ol>
+<li>通过 SQL 的 GRANT 语句和 REVOKE 语句实现</li>
+<li>用户权限组成<br>➢ 数据对象<br>➢ 操作类型</li>
+<li>定义用户存取权限：定义用户可以在哪些数据库对象上进行哪些类型的操作</li>
+<li>定义存取权限称为授权</li>
+</ol>
+<p><img src="https://img-blog.csdnimg.cn/20200328163038832.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzQ2MDIyNA==,size_16,color_FFFFFF,t_70" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br><strong>四、授权与回收</strong><br><strong>1.GRANT</strong><br><strong>1）一般格式：</strong></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs cpp">GRANT &lt;权限&gt;[,&lt;权限&gt;]...<br>[ON &lt;对象类型&gt; &lt;对象名&gt;]<br>TO &lt;用户&gt;[,&lt;用户&gt;]...<br>[WITH GRANT OPTION];<br></code></pre></td></tr></table></figure>
+
+<p><strong>2）语义：</strong><br>将对指定操作对象的指定操作权限授予指定的用户</p>
+<p><strong>发出 GRANT：</strong><br>➢DBA<br>➢ 数据库对象创建者（即属主 Owner）<br>➢ 拥有该权限的用户<br><strong>按受权限的用户</strong><br>➢ 一个或多个具体用户<br>➢PUBLIC（全体用户）<br><strong>WITH GRANT OPTION 子句:</strong><br>➢ 指定：可以再授予<br>➢ 没有指定：不能传播<br>不允许循环授权<br><img src="https://img-blog.csdnimg.cn/20200328165743696.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br><strong>2.REVOKE</strong> 1)授予的权限可以由 DBA 或其他授权者用 REVOKE 语句收回<br>2)REVOKE 语句的一般格式为：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs cpp">REVOKE &lt;权限&gt;[,&lt;权限&gt;]...<br>[ON &lt;对象类型&gt; &lt;对象名&gt;]<br>FROM &lt;用户&gt;[,&lt;用户&gt;]...;<br></code></pre></td></tr></table></figure>
+
+<p><strong>SQL 灵活的授权机制</strong></p>
+<ol>
+<li>DBA：拥有所有对象的所有权限<br>➢ 不同的权限授予不同的用户</li>
+<li>用户：拥有自己建立的对象的全部的操作权限<br>➢ GRANT：授予其他用户</li>
+<li>被授权的用户<br>➢ “继续授权”许可：再授予</li>
+<li>所有授予出去的权力在必要时又都可用 REVOKE 语句收回</li>
+</ol>
+<p><strong>3.创建数据库模式的权限</strong><br>1)DBA 在创建用户时实现<br>2)CREATE USER 语句格式</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs cpp">CREATE USER &lt;username&gt;<br>［WITH］［DBA | RESOURCE | CONNECT］<br></code></pre></td></tr></table></figure>
+
+<p><strong>五、数据库角色</strong></p>
+<p>被命名的一组与数据库操作相关的权限<br>➢ 角色是权限的集合<br>➢ 可以为一组具有相同权限的用户创建一个角色<br>➢ 简化授权的过程</p>
+<p><strong>1. 角色的创建</strong></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cpp">CREATE ROLE &lt;角色名&gt;<br></code></pre></td></tr></table></figure>
+
+<p><strong>2. 给角色授权</strong></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs cpp">GRANT &lt;权限&gt;［，&lt;权限&gt;］…<br>ON &lt;对象类型&gt;对象名<br>TO &lt;角色&gt;［，&lt;角色&gt;］<br></code></pre></td></tr></table></figure>
+
+<p><strong>3.将一个角色授予其他的角色或用户</strong></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs cpp">GRANT &lt;角色<span class="hljs-number">1</span>&gt;［，&lt;角色<span class="hljs-number">2</span>&gt;］…<br>TO &lt;角色<span class="hljs-number">3</span>&gt;［，&lt;用户<span class="hljs-number">1</span>&gt;］…<br>［WITH ADMIN OPTION］<br></code></pre></td></tr></table></figure>
+
+<p><strong>4.角色权限的收回</strong></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs cpp">REVOKE &lt;权限&gt;［，&lt;权限&gt;］…<br>ON &lt;对象类型&gt; &lt;对象名&gt;<br>FROM &lt;角色&gt;［，&lt;角色&gt;］…<br></code></pre></td></tr></table></figure>
+
+<p><strong>六、强制存取控制方法</strong><br>自主存取控制缺点</p>
+<ol>
+<li>可能存在数据的“无意泄露”</li>
+<li>原因：这种机制仅仅通过对数据的存取权限来进行安全控制，而数据本身并无安全性标记</li>
+<li>解决：对系统控制下的所有主客体实施强制存取控制策略</li>
+</ol>
+<p><strong>1. 强制存取控制（MAC)</strong><br>➢ 保证更高程度的安全性<br>➢ 用户不能直接感知或进行控制<br>➢ 适用于对数据有严格而固定密级分类的部门:军事部门;政府部门</p>
+<p><strong>2. 主体是系统中的活动实体</strong><br>➢ DBMS 所管理的实际用户<br>➢ 代表用户的各进程</p>
+<p><strong>3. 客体是系统中的被动实体，是受主体操纵的</strong><br>➢ 文件<br>➢ 基表<br>➢ 索引<br>➢ 视图</p>
+<p><strong>4. 敏感度标记（Label）</strong><br>➢ 绝密（Top Secret）<br>➢ 机密（Secret）<br>➢ 可信（Confidential）<br>➢ 公开（Public）<br>主体的敏感度标记称为许可证级别（Clearance Level）<br>客体的敏感度标记称为密级（Classification Level）</p>
+<p><strong>5.强制存取控制规则</strong><br>(1)仅当主体的许可证级别大于或等于客体的密级时，<br>该主体才能读取相应的客体<br>(2)仅当主体的许可证级别等于客体的密级时，该主体<br>才能写相应的客体<br><strong>修正规则</strong><br>主体的许可证级别 &lt;&#x3D;客体的密级 → 主体能写客体</p>
+<p><strong>规则的共同点</strong><br>禁止了拥有高许可证级别的主体更新低密级的数据对象</p>
+<p><strong>6.MAC 与 DAC</strong><br>1)DAC 与 MAC 共同构成 DBMS 的安全机制 2)实现 MAC 时要首先实现 DAC<br>➢ 原因：较高安全性级别提供的安全保护要包含较低级别的所有保护</p>
+<p><strong>DAC + MAC 安全检查示意图</strong><br><img src="https://img-blog.csdnimg.cn/20200328172753369.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzQ2MDIyNA==,size_16,color_FFFFFF,t_70" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<h2 id="视图机制"><a href="#视图机制" class="headerlink" title="视图机制"></a>视图机制</h2><ol>
+<li>把要保密的数据对无权存取这些数据的用户隐藏起来，对数据提供一定程度的安全保护<br>➢ 主要功能是提供数据独立性，无法完全满足要求<br>➢ 间接实现了支持存取谓词的用户权限定义</li>
+</ol>
+<h2 id="审计（Audit）"><a href="#审计（Audit）" class="headerlink" title="审计（Audit）"></a>审计（Audit）</h2><p><strong>一、什么是审计</strong><br>➢ 审计日志（Audit Log）<br>将用户对数据库的所有操作记录在上面<br>➢ DBA 利用审计日志<br>找出非法存取数据的人、时间和内容<br>➢ C2 以上安全级别的 DBMS 必须具有</p>
+<p><strong>二、审计分类</strong><br><strong>1.用户级审计</strong><br>➢ 针对自己创建的数据库表或视图进行审计<br>➢ 记录所有用户对这些表或视图的一切成功和（或）不成功的访问要求以及各种类型的 SQL 操作<br><strong>2.系统级审计</strong><br>➢DBA 设置<br>➢ 监测成功或失败的登录要求<br>➢ 监测 GRANT 和 REVOKE 操作以及其他数据库级权限下的操作</p>
+<p><strong>三、审计功能的可选性</strong><br>➢ 审计很费时间和空间<br>➢ DBA 可以根据应用对安全性的要求，灵活地打开或关闭审计功能。</p>
+<p>AUDIT 语句：设置审计功能<br>NOAUDIT 语句：取消审计功能</p>
+<h2 id="数据加密"><a href="#数据加密" class="headerlink" title="数据加密"></a>数据加密</h2><p>防止数据库中数据在存储和传输中失密的<br>有效手段<br><strong>一、加密的基本思想</strong><br>➢ 根据一定的算法将原始数据（术语为明文，Plain text）变换为不可直接识别的格式（术语为密文，Cipher text）<br>➢ 不知道解密算法的人无法获知数据的内容</p>
+<p><strong>二、加密方法</strong><br><strong>1.替换方法</strong><br>•使用密钥（Encryption Key）将明文中的每一个字符转换为密文中的一个字符<br><strong>2.置换方法</strong><br>将明文的字符按不同的顺序重新排列<br><strong>3.混合方法</strong><br>美国 1977 年制定的官方加密标准：数据加密标准（Data Encryption Standard，简称 DES）</p>
+<p><strong>三、DBMS 中的数据加密</strong><br>➢ 有些数据库产品提供了数据加密例行程序<br>➢ 有些数据库产品本身未提供加密程序，但提供了<br>接口</p>
+<p>数据加密功能通常也作为可选特征，允许用户自由选择<br>➢ 数据加密与解密是比较费时的操作<br>➢ 数据加密与解密程序会占用大量系统资源<br>➢ 应该只对高度机密的数据加密</p>
+<h2 id="统计数据库安全性"><a href="#统计数据库安全性" class="headerlink" title="统计数据库安全性"></a>统计数据库安全性</h2><p><strong>一、统计数据库的特点</strong><br>➢ 允许用户查询聚集类型的信息（例如合计、平均<br>值等）<br>➢ 不允许查询单个记录信息</p>
+<p><strong>二、 统计数据库中特殊的安全性问题</strong><br>➢ 隐蔽的信息通道<br>➢ 从合法的查询中推导出不合法的信息</p>
+<p>&#x3D;&#x3D;规则 1：任何查询至少要涉及 N(N 足够大)个以上的记录<br>规则 2：任意两个查询的相交数据项不能超过 M 个<br>规则 3：任一用户的查询次数不能超过 1+(N-2)&#x2F;M&#x3D;&#x3D;</p>
+<p><strong>数据库安全机制的设计目标：</strong><br>试图破坏安全的人所花费的代价 &gt;&gt; 得到的利益</p>
+<blockquote>
+<p><strong>写在最后：</strong><br>本数据库专栏是由爱吃老谈酸菜的 DV 一同完成的，博客链接在主页友链，是我的好哥们 ✈<br>Name:风骨散人，目前是一名双非在校大学生，预计考研，热爱编程，热爱技术，喜欢分享，知识无界，希望我的分享可以帮到你！名字的含义：我想有一天我能有能力随心所欲不逾矩，不总是向生活低头，有能力让家人拥有富足的生活而不是为了生计而到处奔波。“世人慌慌张张，不过是图碎银几两。偏偏这碎银几两，能解世间惆怅，可让父母安康，可护幼子成长 …”<br><strong>文章主要内容：</strong><br>Python,C++,C 语言,JAVA,C#等语言的教程<br>ACM 题解、模板、算法等，主要是数据结构，数学和图论<br>设计模式，数据库，计算机网络，操作系统，计算机组成原理<br>Python 爬虫、深度学习、机器学习<br>计算机系<strong>408</strong>考研的所有专业课内容<br><strong>目前还在更新中，先关注不迷路。微信公众号，cnblogs（博客园），CSDN 同名“风骨散人”</strong></p>
+</blockquote>
+<blockquote>
+<p>如果有什么想看的，可以私信我，如果在能力范围内，我会发布相应的博文！<br>感谢大家的阅读！😘 你的点赞、收藏、关注是对我最大的鼓励！</p>
+</blockquote>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" class="category-chain-item">数据库</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>『数据库』无聊到爆炸的数据库文章-数据库的安全性</div>
+      <div>https://chiamzhang.github.io/2024/06/29/『数据库』无聊到爆炸的数据库文章-数据库的安全性/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>Chiam</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>June 29, 2024</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>Licensed under</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2024/06/29/%E3%80%8E%E6%95%B0%E6%8D%AE%E5%BA%93%E3%80%8F%E6%9C%B4%E5%AE%9E%E6%97%A0%E5%8D%8E%E4%B8%94%E6%9E%AF%E7%87%A5%E7%9A%84%E6%95%B0%E6%8D%AE%E5%BA%93%E6%96%87%E7%AB%A0-%E5%85%B3%E7%B3%BB%E6%95%B0%E6%8D%AE%E7%90%86%E8%AE%BA/" title="『数据库』朴实无华且枯燥的数据库文章-关系数据理论">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">『数据库』朴实无华且枯燥的数据库文章-关系数据理论</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/06/29/%E3%80%8E%E6%95%B0%E6%8D%AE%E5%BA%93%E3%80%8F%E6%95%B0%E6%8D%AE%E5%BA%93%E7%BC%96%E7%A8%8B%EF%BC%88%E6%A6%82%E5%BF%B5%E6%80%A7%E7%9A%84%E4%B8%9C%E8%A5%BF%EF%BC%8C%E5%BA%94%E7%94%A8%E4%B8%80%E8%88%AC%EF%BC%8C%E7%94%9A%E8%87%B3%E6%9C%89%E7%82%B9%E8%BF%87%E6%97%B6%EF%BC%8C%E7%94%A8%E6%9D%A5%E8%80%83%E8%AF%95%EF%BC%89/" title="『数据库』数据库编程（概念性的东西，应用一般，甚至有点过时，用来考试）">
+                        <span class="hidden-mobile">『数据库』数据库编程（概念性的东西，应用一般，甚至有点过时，用来考试）</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"fIfc7WqUDZohlQuPc2lz5mJy-MdYXbMMI","appKey":"zjlAG3ZA3o4cBHVAkjzc2Z20","path":"window.location.pathname","placeholder":"留言仅限讨论，禁止广告等行为","avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"https://fifc7wqu.api.lncldglobal.com","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>Table of Contents</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <meta name="referrer" content="no-referrer" /> <footer id="footer" role="contentinfo"> <meta name="referrer" content="no-referrer" /> <div class="divider"> <div class="wall"></div> <img class="animals" src="/img/footer_animals_new.png" srcset="/img/loading.gif" lazyload alt="Footer Animals"> </div> <div class="container" data-index="450"> <p> <a href="https://chiamzhang.github.io" target="_blank">DogEgg</a> <i class="iconfont icon-love"></i> <a href="#" target="_blank">LittePig</a> </p> <p> Powered by  <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-pen"></i> Theme  <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> </p> </div> </footer> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+  
+<script src="/js/love.js"></script>
+<script src="/js/funnyTitle.js"></script>
+<script src="/js/backTop.js"></script>
+<script src="//cdn.jsdelivr.net/gh/bynotes/texiao/source/js/xiaoxuehua.js"></script>
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+</html>

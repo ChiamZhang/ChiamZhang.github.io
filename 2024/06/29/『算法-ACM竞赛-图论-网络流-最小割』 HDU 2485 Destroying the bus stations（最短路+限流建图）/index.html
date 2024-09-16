@@ -1,0 +1,936 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/Mine.jpg">
+  <link rel="icon" href="/img/Mine.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Chiam">
+  <meta name="keywords" content="Algorithms，Cybersecurity">
+  
+    <meta name="description" content="『算法-ACM 竞赛-图论-网络流-最小割』 HDU 2485 Destroying the bus stations（最短路+限流建图）图论–网络流–最小割 HDU 2485 Destroying the bus stations（最短路+限流建图）Problem DescriptionGabiluso is one of the greatest spies in his country. N">
+<meta property="og:type" content="article">
+<meta property="og:title" content="『算法-ACM竞赛-图论-网络流-最小割』 HDU 2485 Destroying the bus stations（最短路+限流建图）">
+<meta property="og:url" content="https://chiamzhang.github.io/2024/06/29/%E3%80%8E%E7%AE%97%E6%B3%95-ACM%E7%AB%9E%E8%B5%9B-%E5%9B%BE%E8%AE%BA-%E7%BD%91%E7%BB%9C%E6%B5%81-%E6%9C%80%E5%B0%8F%E5%89%B2%E3%80%8F%20HDU%202485%20Destroying%20the%20bus%20stations%EF%BC%88%E6%9C%80%E7%9F%AD%E8%B7%AF+%E9%99%90%E6%B5%81%E5%BB%BA%E5%9B%BE%EF%BC%89/index.html">
+<meta property="og:site_name" content="Homepage of Chiam">
+<meta property="og:description" content="『算法-ACM 竞赛-图论-网络流-最小割』 HDU 2485 Destroying the bus stations（最短路+限流建图）图论–网络流–最小割 HDU 2485 Destroying the bus stations（最短路+限流建图）Problem DescriptionGabiluso is one of the greatest spies in his country. N">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2024-06-29T13:16:54.106Z">
+<meta property="article:modified_time" content="2023-12-05T16:18:59.404Z">
+<meta property="article:author" content="Chiam">
+<meta property="article:tag" content="Algorithms，Cybersecurity">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>『算法-ACM竞赛-图论-网络流-最小割』 HDU 2485 Destroying the bus stations（最短路+限流建图） - Homepage of Chiam</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"chiamzhang.github.io","root":"/","version":"1.9.5-a","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":"❡"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":2},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
+
+
+<body>
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Chiam&#39;s Blogs</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                
+                <span>Home</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                
+                <span>Archives</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                
+                <span>Categories</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                
+                <span>About</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                
+                <span>Links</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="『算法-ACM竞赛-图论-网络流-最小割』 HDU 2485 Destroying the bus stations（最短路+限流建图）"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-06-29 21:16" pubdate>
+          June 29, 2024 pm
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          5k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          42 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">『算法-ACM竞赛-图论-网络流-最小割』 HDU 2485 Destroying the bus stations（最短路+限流建图）</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="『算法-ACM-竞赛-图论-网络流-最小割』-HDU-2485-Destroying-the-bus-stations（最短路-限流建图）"><a href="#『算法-ACM-竞赛-图论-网络流-最小割』-HDU-2485-Destroying-the-bus-stations（最短路-限流建图）" class="headerlink" title="『算法-ACM 竞赛-图论-网络流-最小割』 HDU 2485 Destroying the bus stations（最短路+限流建图）"></a>『算法-ACM 竞赛-图论-网络流-最小割』 HDU 2485 Destroying the bus stations（最短路+限流建图）</h1><h1 id="图论–网络流–最小割-HDU-2485-Destroying-the-bus-stations（最短路-限流建图）"><a href="#图论–网络流–最小割-HDU-2485-Destroying-the-bus-stations（最短路-限流建图）" class="headerlink" title="图论–网络流–最小割 HDU 2485 Destroying the bus stations（最短路+限流建图）"></a>图论–网络流–最小割 HDU 2485 Destroying the bus stations（最短路+限流建图）</h1><h4 id="Problem-Description"><a href="#Problem-Description" class="headerlink" title="Problem Description"></a><strong>Problem Description</strong></h4><p>Gabiluso is one of the greatest spies in his country. Now he’s trying to complete an “impossible” mission —– to make it slow for the army of City Colugu to reach the airport. City Colugu has n bus stations and m roads. Each road connects two bus stations directly, and all roads are one way streets. In order to keep the air clean, the government bans all military vehicles. So the army must take buses to go to the airport. There may be more than one road between two bus stations. If a bus station is destroyed, all roads connecting that station will become no use. What’s Gabiluso needs to do is destroying some bus stations to make the army can’t get to the airport in k minutes. It takes exactly one minute for a bus to pass any road. All bus stations are numbered from 1 to n. The No.1 bus station is in the barrack and the No. n station is in the airport. The army always set out from the No. 1 station.<br>No.1 station and No. n station can’t be destroyed because of the heavy guard. Of course there is no road from No.1 station to No. n station.</p>
+<p>Please help Gabiluso to calculate the minimum number of bus stations he must destroy to complete his mission.</p>
+<p><strong>Input</strong></p>
+<p>There are several test cases. Input ends with three zeros.</p>
+<p>For each test case:</p>
+<p>The first line contains 3 integers, n, m and k. (0&lt; n &lt;&#x3D;50, 0&lt; m&lt;&#x3D;4000, 0 &lt; k &lt; 1000)<br>Then m lines follows. Each line contains 2 integers, s and f, indicating that there is a road from station No. s to station No. f.</p>
+<p><strong>Output</strong></p>
+<p>For each test case, output the minimum number of stations Gabiluso must destroy.</p>
+<p><strong>Sample Input</strong></p>
+<pre><code class="hljs"> 
+</code></pre>
+<p>5 7 3</p>
+<p>1 3</p>
+<p>3 4</p>
+<p>4 5</p>
+<p>1 2</p>
+<p>2 5</p>
+<p>1 4</p>
+<p>4 5</p>
+<p>0 0 0</p>
+<p><strong>Sample Output</strong></p>
+<p>2</p>
+<p>我么你先考虑，最大流，如果一个图中让你删掉 N 个点使得源点不能到达汇点， 这里设置边的流量为 1，然后一边最大流即可。</p>
+<p>然后我们要考虑每条路只能走一遍，所以不能直接连中间的点，要限流建图，将中间的点，一分为 2，左边作为起始点，右边作为终止点，流量设置为 1，这样就可现之每条边之走一遍（这样想，省略了最小割转化分过程，我一直认为最小割最大流没啥区别），现在有个 K 的限制，我们怎么办呢？之前我们不是拆点了？那么对于源点到左边的起始点的距离加上起始点到右边终止点的距离再加上终止点到原点的距离小于 K 不就可以了吗，大于 K 已经不可能在 K 时间内到达了，忽略即可！</p>
+<p>明了点就是</p>
+<p>一个点拆成了 I 和 I’ 如果 dis[s][u]+dis[u][v]+dis[v][t]&lt;&#x3D;K 的话，我们就添一条 U 到 V’，注意是 V 一撇。然后最大刘 能赵四谢广坤。</p>
+<pre><code class="hljs">#include&lt;cstdio&gt;
+#include&lt;cstring&gt;
+#include&lt;algorithm&gt;
+#include&lt;vector&gt;
+#include&lt;queue&gt;
+#define INF 1e9
+using namespace std;
+const int maxn=1000+10;
+const int maxm=100000+10;
+
+struct Edge
+&#123;
+    int from,to,cap,flow;
+    Edge()&#123;&#125;
+    Edge(int f,int t,int c,int fl):from(f),to(t),cap(c),flow(fl)&#123;&#125;
+&#125;;
+
+struct Dinic
+&#123;
+    int n,m,s,t;
+    vector&lt;Edge&gt; edges;
+    vector&lt;int&gt; G[maxn];
+    bool vis[maxn];
+    int d[maxn];
+    int cur[maxn];
+
+    void init(int n,int s,int t)
+    &#123;
+        this-&gt;n=n, this-&gt;s=s, this-&gt;t=t;
+        edges.clear();
+        for(int i=1;i&lt;=n;++i) G[i].clear();
+    &#125;
+
+    void AddEdge(int from,int to,int cap)
+    &#123;
+        edges.push_back(Edge(from,to,cap,0));
+        edges.push_back(Edge(to,from,0,0));
+        m=edges.size();
+        G[from].push_back(m-2);
+        G[to].push_back(m-1);
+    &#125;
+
+    bool BFS()
+    &#123;
+        queue&lt;int&gt; Q;
+        memset(vis,0,sizeof(vis));
+        vis[s]=true;
+        d[s]=0;
+        Q.push(s);
+        while(!Q.empty())
+        &#123;
+            int x=Q.front(); Q.pop();
+            for(int i=0;i&lt;G[x].size();++i)
+            &#123;
+                Edge &amp;e=edges[G[x][i]];
+                if(!vis[e.to] &amp;&amp; e.cap&gt;e.flow)
+                &#123;
+                    vis[e.to]=true;
+                    d[e.to]= d[x]+1;
+                    Q.push(e.to);
+                &#125;
+            &#125;
+        &#125;
+        return vis[t];
+    &#125;
+
+    int DFS(int x,int a)
+    &#123;
+        if(x==t || a==0) return a;
+        int flow=0, f;
+        for(int &amp;i=cur[x];i&lt;G[x].size();++i)
+        &#123;
+            Edge &amp;e=edges[G[x][i]];
+            if(d[e.to]==d[x]+1 &amp;&amp; (f=DFS(e.to,min(a,e.cap-e.flow) ) )&gt;0)
+            &#123;
+                e.flow +=f;
+                edges[G[x][i]^1].flow -=f;
+                flow +=f;
+                a-=f;
+                if(a==0) break;
+            &#125;
+        &#125;
+        return flow;
+    &#125;
+
+    int max_flow()
+    &#123;
+        int ans=0;
+        while(BFS())
+        &#123;
+            memset(cur,0,sizeof(cur));
+            ans+=DFS(s,INF);
+        &#125;
+        return ans;
+    &#125;
+&#125;DC;
+
+struct Edge_dist
+&#123;
+    int from,to,dist;
+    Edge_dist()&#123;&#125;
+    Edge_dist(int f,int t,int d):from(f),to(t),dist(d)&#123;&#125;
+&#125;edges[maxm];
+
+struct HeapNode
+&#123;
+    int d,u;
+    HeapNode()&#123;&#125;
+    HeapNode(int d,int u):d(d),u(u)&#123;&#125;
+    bool operator&lt;(const HeapNode&amp; rhs)const
+    &#123;
+        return d&gt;rhs.d;
+    &#125;
+&#125;;
+
+struct Dijkstra
+&#123;
+    int n,m;
+    vector&lt;Edge_dist&gt; edges;
+    vector&lt;int&gt; G[maxn];
+    bool done[maxn];
+    int d[maxn];
+
+    void init(int n)
+    &#123;
+        this-&gt;n=n;
+        edges.clear();
+        for(int i=1;i&lt;=n;++i) G[i].clear();
+    &#125;
+
+    void AddEdge(int from,int to,int dist)
+    &#123;
+        edges.push_back(Edge_dist(from,to,dist));
+        m=edges.size();
+        G[from].push_back(m-1);
+    &#125;
+
+    void dijkstra(int s)
+    &#123;
+        priority_queue&lt;HeapNode&gt; Q;
+        for(int i=1;i&lt;=n;++i) d[i]=INF;
+        d[s]=0;
+        memset(done,0,sizeof(done));
+        Q.push(HeapNode(d[s],s));
+        while(!Q.empty())
+        &#123;
+            HeapNode x=Q.top(); Q.pop();
+            int u=x.u;
+            if(done[u]) continue;
+            done[u]=true;
+            for(int i=0;i&lt;G[u].size();++i)
+            &#123;
+                Edge_dist &amp;e=edges[G[u][i]];
+                if(d[e.to]&gt;d[u]+e.dist)
+                &#123;
+                    d[e.to]=d[u]+e.dist;
+                    Q.push(HeapNode(d[e.to],e.to));
+                &#125;
+            &#125;
+        &#125;
+    &#125;
+&#125;DJ1,DJ2;
+
+int main()
+&#123;
+    int T; scanf(&quot;%d&quot;,&amp;T);
+    while(T--)
+    &#123;
+        int n,m,cnt=0;//cnt来保存有效边数
+        scanf(&quot;%d%d&quot;,&amp;n,&amp;m);
+        DJ1.init(n),DJ2.init(n);
+        while(m--)
+        &#123;
+            int u,v,w;
+            scanf(&quot;%d%d%d&quot;,&amp;u,&amp;v,&amp;w);
+            if(u!=v)
+            &#123;
+                DJ1.AddEdge(u,v,w);
+                DJ2.AddEdge(v,u,w);
+                edges[cnt++]=Edge_dist(u,v,w);
+            &#125;
+        &#125;
+        int src,dst,len;
+        scanf(&quot;%d%d&quot;,&amp;src,&amp;dst);
+        DJ1.dijkstra(src),DJ2.dijkstra(dst);
+        len = DJ1.d[dst];
+        if(len==INF)//不能到达
+        &#123;
+            printf(&quot;0\n&quot;);
+            continue;
+        &#125;
+        DC.init(n,src,dst);
+        for(int i=0;i&lt;cnt;i++)
+        &#123;
+            int u=edges[i].from,v=edges[i].to,w=edges[i].dist;
+            if(DJ1.d[u]+DJ2.d[v]+w == len)
+                DC.AddEdge(u,v,1);
+        &#125;
+        printf(&quot;%d\n&quot;,DC.max_flow());
+    &#125;
+&#125;
+</code></pre>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E7%AE%97%E6%B3%95/" class="category-chain-item">算法</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/%E7%AE%97%E6%B3%95/ACM%E7%AB%9E%E8%B5%9B/" class="category-chain-item">ACM竞赛</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/%E7%AE%97%E6%B3%95/ACM%E7%AB%9E%E8%B5%9B/%E5%9B%BE%E8%AE%BA/" class="category-chain-item">图论</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/%E7%AE%97%E6%B3%95/ACM%E7%AB%9E%E8%B5%9B/%E5%9B%BE%E8%AE%BA/%E7%BD%91%E7%BB%9C%E6%B5%81/" class="category-chain-item">网络流</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/%E7%AE%97%E6%B3%95/ACM%E7%AB%9E%E8%B5%9B/%E5%9B%BE%E8%AE%BA/%E7%BD%91%E7%BB%9C%E6%B5%81/%E6%9C%80%E5%B0%8F%E5%89%B2/" class="category-chain-item">最小割</a>
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>『算法-ACM竞赛-图论-网络流-最小割』 HDU 2485 Destroying the bus stations（最短路+限流建图）</div>
+      <div>https://chiamzhang.github.io/2024/06/29/『算法-ACM竞赛-图论-网络流-最小割』 HDU 2485 Destroying the bus stations（最短路+限流建图）/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>Chiam</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>June 29, 2024</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>Licensed under</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2024/06/29/%E3%80%8E%E7%AE%97%E6%B3%95-ACM%E7%AB%9E%E8%B5%9B-%E5%9B%BE%E8%AE%BA%E3%80%8F-%E6%9C%80%E9%95%BF%E8%B7%AF-%E5%85%B3%E4%BA%8E%E6%9C%80%E9%95%BF%E8%B7%AF%E7%9A%84%E6%8E%A2%E8%AE%A82/" title="『算法-ACM竞赛-图论』-最长路-关于最长路的探讨2">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">『算法-ACM竞赛-图论』-最长路-关于最长路的探讨2</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/06/29/%E3%80%8E%E7%AE%97%E6%B3%95-ACM%E7%AB%9E%E8%B5%9B-%E5%9B%BE%E8%AE%BA-%E6%AC%A1%E5%B0%8F%E7%94%9F%E6%88%90%E6%A0%91%E3%80%8F%E6%B4%9B%E8%B0%B7P4180%E6%AC%A1%E5%B0%8F%E7%94%9F%E6%88%90%E6%A0%91/" title="『算法-ACM竞赛-图论-次小生成树』洛谷P4180次小生成树">
+                        <span class="hidden-mobile">『算法-ACM竞赛-图论-次小生成树』洛谷P4180次小生成树</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"fIfc7WqUDZohlQuPc2lz5mJy-MdYXbMMI","appKey":"zjlAG3ZA3o4cBHVAkjzc2Z20","path":"window.location.pathname","placeholder":"留言仅限讨论，禁止广告等行为","avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"https://fifc7wqu.api.lncldglobal.com","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>Table of Contents</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <meta name="referrer" content="no-referrer" /> <footer id="footer" role="contentinfo"> <meta name="referrer" content="no-referrer" /> <div class="divider"> <div class="wall"></div> <img class="animals" src="/img/footer_animals_new.png" srcset="/img/loading.gif" lazyload alt="Footer Animals"> </div> <div class="container" data-index="450"> <p> <a href="https://chiamzhang.github.io" target="_blank">DogEgg</a> <i class="iconfont icon-love"></i> <a href="#" target="_blank">LittePig</a> </p> <p> Powered by  <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-pen"></i> Theme  <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> </p> </div> </footer> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+  
+<script src="/js/love.js"></script>
+<script src="/js/funnyTitle.js"></script>
+<script src="/js/backTop.js"></script>
+<script src="//cdn.jsdelivr.net/gh/bynotes/texiao/source/js/xiaoxuehua.js"></script>
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+</html>

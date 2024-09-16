@@ -1,0 +1,888 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/Mine.jpg">
+  <link rel="icon" href="/img/Mine.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Chiam">
+  <meta name="keywords" content="Algorithms，Cybersecurity">
+  
+    <meta name="description" content="『算法-ACM 竞赛-图论-最小树形图』最小树形图+朱刘算法最小树形图+朱刘算法大题上完整的朱、刘算法是由四个大步骤组成的： 1、求最短弧集合 E 2、判断集合 E 中有没有有向环，如果有转步骤 3，否则转 4 3、收缩点，把有向环收缩成一个点，并且对图重新构建，包括边权值的改变和点的处理，之后再转步骤 1。 4、展开收缩点，求得最小树形图。  因为我们 ACM 一般情况下都是在考察队最小树型图的">
+<meta property="og:type" content="article">
+<meta property="og:title" content="『算法-ACM竞赛-图论-最小树形图』最小树形图+朱刘算法">
+<meta property="og:url" content="https://chiamzhang.github.io/2024/06/29/%E3%80%8E%E7%AE%97%E6%B3%95-ACM%E7%AB%9E%E8%B5%9B-%E5%9B%BE%E8%AE%BA-%E6%9C%80%E5%B0%8F%E6%A0%91%E5%BD%A2%E5%9B%BE%E3%80%8F%E6%9C%80%E5%B0%8F%E6%A0%91%E5%BD%A2%E5%9B%BE+%E6%9C%B1%E5%88%98%E7%AE%97%E6%B3%95/index.html">
+<meta property="og:site_name" content="Homepage of Chiam">
+<meta property="og:description" content="『算法-ACM 竞赛-图论-最小树形图』最小树形图+朱刘算法最小树形图+朱刘算法大题上完整的朱、刘算法是由四个大步骤组成的： 1、求最短弧集合 E 2、判断集合 E 中有没有有向环，如果有转步骤 3，否则转 4 3、收缩点，把有向环收缩成一个点，并且对图重新构建，包括边权值的改变和点的处理，之后再转步骤 1。 4、展开收缩点，求得最小树形图。  因为我们 ACM 一般情况下都是在考察队最小树型图的">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://img-blog.csdn.net/20160428190232754?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQv/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center">
+<meta property="og:image" content="https://img-blog.csdn.net/20160428190555673?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQv/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center">
+<meta property="article:published_time" content="2024-06-29T13:16:54.099Z">
+<meta property="article:modified_time" content="2023-12-05T16:18:58.199Z">
+<meta property="article:author" content="Chiam">
+<meta property="article:tag" content="Algorithms，Cybersecurity">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://img-blog.csdn.net/20160428190232754?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQv/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center">
+  
+  
+  
+  <title>『算法-ACM竞赛-图论-最小树形图』最小树形图+朱刘算法 - Homepage of Chiam</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"chiamzhang.github.io","root":"/","version":"1.9.5-a","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":"❡"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":2},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
+
+
+<body>
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Chiam&#39;s Blogs</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                
+                <span>Home</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                
+                <span>Archives</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                
+                <span>Categories</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                
+                <span>About</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                
+                <span>Links</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="『算法-ACM竞赛-图论-最小树形图』最小树形图+朱刘算法"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-06-29 21:16" pubdate>
+          June 29, 2024 pm
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          5.4k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          46 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">『算法-ACM竞赛-图论-最小树形图』最小树形图+朱刘算法</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="『算法-ACM-竞赛-图论-最小树形图』最小树形图-朱刘算法"><a href="#『算法-ACM-竞赛-图论-最小树形图』最小树形图-朱刘算法" class="headerlink" title="『算法-ACM 竞赛-图论-最小树形图』最小树形图+朱刘算法"></a>『算法-ACM 竞赛-图论-最小树形图』最小树形图+朱刘算法</h1><h1 id="最小树形图-朱刘算法"><a href="#最小树形图-朱刘算法" class="headerlink" title="最小树形图+朱刘算法"></a>最小树形图+朱刘算法</h1><p>大题上完整的朱、刘算法是由四个大步骤组成的：</p>
+<p>1、求最短弧集合 E</p>
+<p>2、判断集合 E 中有没有有向环，如果有转步骤 3，否则转 4</p>
+<p>3、收缩点，把有向环收缩成一个点，并且对图重新构建，包括边权值的改变和点的处理，之后再转步骤 1。</p>
+<p>4、展开收缩点，求得最小树形图。</p>
+<p><img src="https://img-blog.csdn.net/20160428190232754?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQv/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" srcset="/img/loading.gif" lazyload></p>
+<p>因为我们 ACM 一般情况下都是在考察队最小树型图的权值问题，所以一般省略步骤 4，对于其环的权值和在中间处理过程中就可以处理完毕。所以我们这里就不多讨论第四个点了。</p>
+<p>我们分步处理、</p>
+<p>1、首先我们先求最短弧集合 E，对于当前图如果有 n 个点（一个有向环的收缩点算作一个点），我们就要选出 n-1 个点，确定其入边的最短边，由其组成的一个集合我们就叫做最短弧集合 E，如果我们枚举到某一个点的时候，它没有入边，那么说明不存在最小树形图，所以这个时候算法结束，回到主函数。</p>
+<p>代码实现：</p>
+<pre><code class="hljs">        for(int i=1; i&lt;=n; i++)if(i!=u&amp;&amp;!flag[i])//u作为图的根节点，flag【i】为1的情况就是表示这个点在某个有向环里边，并且他不是这个有向环的代表点（缩点）
+            &#123;
+                w[i][i]=INF, pre[i] = i;//首先让当前点的前驱点为自己。
+                for(int j=1; j&lt;=n; j++)if(!flag[j] &amp;&amp; w[j][i]&lt;w[pre[i]][i])//枚举i的前驱点（从j能够到i的点），并且求其最短边，加入集合E中
+                &#123;
+                    pre[i] = j;//并且标记当前点的前驱点为j
+                &#125;
+                if(pre[i]==i)return -1;//如果当前枚举到的点i没有入边，那么就不存在最小树形图（因为一颗树是要所有节点都是连通的啊）
+            &#125;
+</code></pre>
+<p>2、然后我们对集合 E 中的边进行判断，判断是否有有向环。刚刚的代码实现里边有一个前驱节点的存储，所以在这个部分，我们直接一直向前枚举前驱点即可，如果枚举的前驱点最终能够枚举到根节点，那么这一部分就不存在有向环，否则就存在，对于每一个点都进行向前枚举即可。</p>
+<pre><code class="hljs"> int i;
+        for(i=1; i&lt;=n; i++)
+        &#123;
+            if(i!=u&amp;&amp;!flag[i])
+            &#123;
+                int j=i, cnt=0;
+                while(j!=u &amp;&amp; pre[j]!=i &amp;&amp; cnt&lt;=n) j=pre[j], ++cnt;//对于每个节点都找前驱节点，看看能否成环。
+                if(j==u || cnt&gt;n) continue; //最后能找到起点（根）或者是走过的点已经超过了n个，表示没有有向环
+                break;//表示有有向环
+            &#125;
+        &#125;
+</code></pre>
+<p>3、如果有有向环呢，我们需要对有向环进行缩点，既然我们是枚举到节点 i 的时候发现有有向环，我们不妨把有向环里边的点都收缩成点 i。对于收缩完之后会形成一个新的图，图的变化规律是这样的：</p>
+<p><img src="https://img-blog.csdn.net/20160428190555673?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQv/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" srcset="/img/loading.gif" lazyload><br>上图变换成语言描述：如果点 u 在环内，如果点 k 在环外，并且从 k 到 u 有一条边 map【u】【v】&#x3D;w，并且在环内还有一点 i，使得 map【i】【k】&#x3D;w2，辣么 map【k】【收缩点】&#x3D;w-w2；</p>
+<p>基于贪心思想，对于环的收缩点 i 和另外一点 k（也在环内），对于环外一点 j，如果 map【k】【j】 &lt;map【i】【j】，辣么 map【i】【j】&#x3D;map【k】【j】，因为是有向图，入收缩点的边要这样处理，出收缩点的边也要这样处理，对于刚刚三个步骤：收缩点，收缩点处理新图的边权值，以及基于贪心思想的最终处理点 i 的出边入边权值，后两者我们可以合并成一个操作，其分别的代码实现：</p>
+<p>3、收缩点：</p>
+<pre><code class="hljs">int j=i;
+memset(vis, 0, sizeof(vis));
+do&#123;
+    ans += w[pre[j]][j], j=pre[j], vis[j]=flag[j]=true;//对环内的点标记，并且直接对环的权值进行加和记录，在最后找到最小树形图之后就不用展开收缩点了
+&#125;while(j!=i);
+flag[i] = false; // 环缩成了点i，点i仍然存在
+</code></pre>
+<p>4、处理收缩点后形成的图：</p>
+<pre><code class="hljs">for(int k=1; k&lt;=n; ++k)if(vis[k])  // 在环中点点，刚刚在收缩点的时候，已经把在环中的点进行标记了。
+&#123;
+    for(int j=1; j&lt;=n; j++)if(!vis[j])   // 不在环中的点
+    &#123;
+        if(w[i][j] &gt; w[k][j]) w[i][j] = w[k][j];
+        if(w[j][k]&lt;INF &amp;&amp; w[j][k]-w[pre[k]][k] &lt; w[j][i])
+        w[j][i] = w[j][k] - w[pre[k]][k];
+    &#125;
+&#125;
+</code></pre>
+<p>处理完 4 之后，我们就回到步骤 1，继续找最小弧集 E，最后找到了一个没有环的最小弧集 E 之后，对于没有弧的集合 E 中的所有边（包括能将收缩点展开的边）就是我们要求的最小树形图的边集。</p>
+<p>因为我们 ACM 一般求的都是最小树形图的权值，所以我们一般不需要展开收缩点，在处理环的时候，直接将其边权值记录下来就好，当找到一个没有环的集合 E 的时候，对其中的最后边权值进行加和即可，对于最后这部分的加权，代码实现:</p>
+<pre><code class="hljs">for(int k=1; k&lt;=n; ++k)if(vis[k])  // 在环中点点，刚刚在收缩点的时候，已经把在环中的点进行标记了。
+&#123;
+    for(int j=1    ; j&lt;=n; j++)if(!vis[j])   // 不在环中的点
+    &#123;
+        if(w[i][j] &gt; w[k][j]) w[i][j] = w[k][j];
+        if(w[j][k]&lt;INF &amp;&amp; w[j][k]-w[pre[k]][k] &lt; w[j][i])
+        w[j][i] = w[j][k] - w[pre[k]][k];
+    &#125;
+&#125;
+
+
+完整的朱、刘算法代码实现（没有展开收缩点的）：
+
+
+
+#include &lt;cstdio&gt;
+#include &lt;cmath&gt;
+#include &lt;string&gt;
+#include &lt;cstring&gt;
+#include &lt;algorithm&gt;
+#include &lt;limits&gt;
+#include &lt;vector&gt;
+#include &lt;stack&gt;
+#include &lt;queue&gt;
+#include &lt;set&gt;
+#include &lt;map&gt;
+#define lowbit(x) ( x&amp;(-x) )
+#define pi 3.141592653589793
+#define e 2.718281828459045
+#define INF 0x3f3f3f3f
+using namespace std;
+typedef unsigned long long ull;
+typedef long long ll;
+const int maxN = 1005;
+int N, M;
+ll sum;
+struct Eddge    //存边
+&#123;
+    int u, v;
+    ll val;
+    Eddge(int a=0, int b=0, ll c=0):u(a), v(b), val(c) &#123;&#125;
+&#125;edge[maxN*maxN];
+int pre[maxN], id[maxN], vis[maxN], pos;
+ll in[maxN];    //最小入边权，pre[]为其前面的点（该边的起点）
+ll Dir_MST(int root, int V, int E)  //root是此时的根节点，我们最初的时候将0（万能节点作为根节点进入），V是点的个数（包括之后要收缩之后点的剩余个数），E是边的条数（不会改变）
+&#123;
+    ll ans = 0;
+    while(true)     //如果还是可行的话
+    &#123;
+        for(int i=0; i&lt;V; i++) in[i] = INF; //给予每个点进行初始化
+        /* (1)、最短弧集合E0 */
+        for(int i=1; i&lt;=E; i++)     //通过这么多条单向边，确定的是每个点的指向边的最小权值
+        &#123;
+            int u = edge[i].u, v = edge[i].v;
+            if(edge[i].val &lt; in[v] &amp;&amp; u!=v)     //顶点v有更小的入边，记录下来    更新操作，u!=v是为了确保缩点之后，我们的环将会变成点的形式
+            &#123;
+                pre[v] = u;     //节点u指向v
+                in[v] = edge[i].val;    //最小入边
+                if(u == root) pos = i;  //这个点就是实际的起点
+            &#125;
+        &#125;
+        /* (2)、检查E0 */
+        for(int i=0; i&lt;V; i++)     //判断是否存在最小树形图
+        &#123;
+            if(i == root) continue;     //是根节点，不管
+            if(in[i] == INF) return -1;     //除了根节点以外，有点没有入边，则根本无法抵达它，说明是独立的点，一定不能构成树形图
+        &#125;
+        /* (3)、收缩图中的有向环 */
+        int cnt = 0;    //接下来要去求环，用以记录环的个数  找环开始！
+        memset(id, -1, sizeof(id));
+        memset(vis, -1, sizeof(vis));
+        in[root] = 0;
+        for(int i=0; i&lt;V; i++)     //标记每个环
+        &#123;
+            ans += in[i];   //加入每个点的入边（既然是最小入边，所以肯定符合最小树形图的思想）
+            int v = i;  //v一开始先从第i个节点进去
+            while(vis[v] != i &amp;&amp; id[v] == -1 &amp;&amp; v != root)  //退出的条件有“形成了一个环，即vis回归”、“到了一个环，此时就不要管了，因为那边已经建好环了”、“到了根节点，就是条链，不用管了”
+            &#123;
+                vis[v] = i;
+                v = pre[v];
+            &#125;
+            if(v != root &amp;&amp; id[v] == -1)    //如果v是root就说明是返回到了根节点，是条链，没环；又或者，它已经是进入了对应环的编号了，不需要再跑一趟了
+            &#123;
+                for(int u=pre[v]; u!=v; u=pre[u])   //跑这一圈的环
+                &#123;
+                    id[u] = cnt;    //标记点u是第几个环
+                &#125;
+                id[v] = cnt++;  //如果再遇到，就是下个点了
+            &#125;
+        &#125;
+        if(cnt == 0) return ans;    //无环的情况，就说明已经取到了最优解，直接返回，或者说是环已经收缩到没有环的情况了
+        for(int i=0; i&lt;V; i++) if(id[i] == -1) id[i] = cnt++;   //这些点是环外的点，是链上的点，单独再给他们赋值
+        for(int i=1; i&lt;=E; i++)     //准备开始建立新图  缩点，重新标记
+        &#123;
+            int u = edge[i].u, v = edge[i].v;
+            edge[i].u = id[u];  edge[i].v = id[v];  //建立新图，以新的点进入
+            if(id[u] != id[v]) edge[i].val -= in[v];    //为了不改变原来的式子，使得展开后还是原来的式子
+        &#125;
+        V = cnt;    //之后的点的数目
+        root = id[root];    //新的根节点的序号，因为id[]的改变，所以根节点的序号也改变了
+    &#125;
+    return ans;
+&#125;
+int main()
+&#123;
+    while(scanf(&quot;%d%d&quot;, &amp;N, &amp;M)!=EOF)
+    &#123;
+        sum = 0;
+        for(int i=1; i&lt;=M; i++)
+        &#123;
+            scanf(&quot;%d%d%lld&quot;, &amp;edge[i].u, &amp;edge[i].v, &amp;edge[i].val);
+            edge[i].u++;   edge[i].v++;   //把‘0’号节点空出来，用以做万能节点，留作之后用
+            sum += edge[i].val;
+        &#125;
+        sum++;  //一定要把sum给扩大，这就意味着，除去万能节点以外的点锁构成的图的权值和得在（sum-1）之内（包含）
+        for(int i=M+1; i&lt;=M+N; i++)     //这就是万能节点了，就是从0这号万能节点有通往所有其他节点的路，而我们最后的最小树形图就是从这个万能节点出发所能到达的整幅图
+        &#123;
+            edge[i] = Eddge(0, i-M, sum);   //对于所有的N个其他节点都要建有向边
+        &#125;       //此时N+1为总的节点数目，M+N为总的边数
+        ll ans = Dir_MST(0, N + 1, M+N);    //ans代表以超级节点0为根的最小树形图的总权值
+        if(ans == -1 || ans - sum &gt;= sum) printf(&quot;impossible\n&quot;);   //从万能节点的出度只能是1，所以最后的和必须是小于sum的，而万能节点的出度就由“ans - sum &gt;= sum”保证
+        else printf(&quot;%lld %d\n&quot;, ans - sum, pos - M - 1);   //pos-M得到的是1～N的情况，所以“-1”的目的就在于这里
+        printf(&quot;\n&quot;);
+    &#125;
+    return 0;
+&#125;
+</code></pre>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E7%AE%97%E6%B3%95/" class="category-chain-item">算法</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/%E7%AE%97%E6%B3%95/ACM%E7%AB%9E%E8%B5%9B/" class="category-chain-item">ACM竞赛</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/%E7%AE%97%E6%B3%95/ACM%E7%AB%9E%E8%B5%9B/%E5%9B%BE%E8%AE%BA/" class="category-chain-item">图论</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/%E7%AE%97%E6%B3%95/ACM%E7%AB%9E%E8%B5%9B/%E5%9B%BE%E8%AE%BA/%E6%9C%80%E5%B0%8F%E6%A0%91%E5%BD%A2%E5%9B%BE/" class="category-chain-item">最小树形图</a>
+  
+  
+
+  
+
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>『算法-ACM竞赛-图论-最小树形图』最小树形图+朱刘算法</div>
+      <div>https://chiamzhang.github.io/2024/06/29/『算法-ACM竞赛-图论-最小树形图』最小树形图+朱刘算法/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>Chiam</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>June 29, 2024</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>Licensed under</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2024/06/29/%E3%80%8E%E7%AE%97%E6%B3%95-ACM%E7%AB%9E%E8%B5%9B-%E5%8E%86%E7%A8%8B%E3%80%8F%E8%B5%B0%E4%BA%86/" title="『算法-ACM竞赛-历程』走了">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">『算法-ACM竞赛-历程』走了</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/06/29/%E3%80%8E%E7%AE%97%E6%B3%95-ACM%E7%AB%9E%E8%B5%9B-%E5%8E%86%E7%A8%8B%E3%80%8F%E8%AE%AD%E7%BB%83%E6%97%A5%E8%AE%B08.3/" title="『算法-ACM竞赛-历程』训练日记8.3">
+                        <span class="hidden-mobile">『算法-ACM竞赛-历程』训练日记8.3</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"fIfc7WqUDZohlQuPc2lz5mJy-MdYXbMMI","appKey":"zjlAG3ZA3o4cBHVAkjzc2Z20","path":"window.location.pathname","placeholder":"留言仅限讨论，禁止广告等行为","avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"https://fifc7wqu.api.lncldglobal.com","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>Table of Contents</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <meta name="referrer" content="no-referrer" /> <footer id="footer" role="contentinfo"> <meta name="referrer" content="no-referrer" /> <div class="divider"> <div class="wall"></div> <img class="animals" src="/img/footer_animals_new.png" srcset="/img/loading.gif" lazyload alt="Footer Animals"> </div> <div class="container" data-index="450"> <p> <a href="https://chiamzhang.github.io" target="_blank">DogEgg</a> <i class="iconfont icon-love"></i> <a href="#" target="_blank">LittePig</a> </p> <p> Powered by  <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-pen"></i> Theme  <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> </p> </div> </footer> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+  
+<script src="/js/love.js"></script>
+<script src="/js/funnyTitle.js"></script>
+<script src="/js/backTop.js"></script>
+<script src="//cdn.jsdelivr.net/gh/bynotes/texiao/source/js/xiaoxuehua.js"></script>
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+</html>

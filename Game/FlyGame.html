@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang=zh-CN>
+
+<head>
+    <meta charset=utf-8>
+    <meta http-equiv=X-UA-Compatible content="IE=edge">
+    <title>飞行棋</title>
+    <script>
+        // 访问密码
+        var password = "Im18+"; 
+
+        // 提示用户输入密码
+        var userPassword = prompt("内容敏感，请输入访问密码:");
+
+        // 检查密码是否正确
+        if (userPassword === password) {
+            // 密码正确，继续加载页面
+            var coverSupport = 'CSS' in window && typeof CSS.supports === 'function' && (CSS.supports('top: env(a)') || CSS.supports('top: constant(a)'))
+            document.write('<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0' + (coverSupport ? ', viewport-fit=cover' : '') + '" />');
+        } else {
+            // 密码错误，显示警告并重定向
+            alert("密码错误。您将被重定向到符合您年龄的网站。");
+            window.location.href = "http://kids.nlc.cn/pc/"; // 替换为你想要的重定向URL
+        }
+    </script>
+    <link rel=stylesheet href=./static/index.63b34199.css>
+</head>
+
+<body><noscript><strong>Please enable JavaScript to continue.</strong></noscript>
+    <div id=app></div>
+    <script src=./static/js/chunk-vendors.e4450f0a.js></script>
+    <script src=./static/js/index.d2dcdf5b.js></script>
+</body>
+
+</html>

@@ -1,0 +1,699 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/Mine.jpg">
+  <link rel="icon" href="/img/Mine.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Chiam">
+  <meta name="keywords" content="Algorithms，Cybersecurity">
+  
+    <meta name="description" content="『Web』图书馆管理系统用户端心得最近终于写了一个让自己满意的系统，我在这里分享一下，顺便总结一下自己的学习心得。 1.需求分析听的好像是要做项目一样，但是无论写什么程序，些什么系统，都是要知道自己要干什么，要完成什么工作，实现那些功能，在这前列出一个表格，或是思维导图，给自己一个方向，先规划好再写，不然会拉下很多东西，在我写这个系统之前，我在图书馆的借书页面，看了将近两个小时，中途又看了好多次，">
+<meta property="og:type" content="article">
+<meta property="og:title" content="『Web』图书馆管理系统用户端心得">
+<meta property="og:url" content="https://chiamzhang.github.io/2024/06/29/%E3%80%8EWeb%E3%80%8F%E5%9B%BE%E4%B9%A6%E9%A6%86%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F%E7%94%A8%E6%88%B7%E7%AB%AF%E5%BF%83%E5%BE%97/index.html">
+<meta property="og:site_name" content="Homepage of Chiam">
+<meta property="og:description" content="『Web』图书馆管理系统用户端心得最近终于写了一个让自己满意的系统，我在这里分享一下，顺便总结一下自己的学习心得。 1.需求分析听的好像是要做项目一样，但是无论写什么程序，些什么系统，都是要知道自己要干什么，要完成什么工作，实现那些功能，在这前列出一个表格，或是思维导图，给自己一个方向，先规划好再写，不然会拉下很多东西，在我写这个系统之前，我在图书馆的借书页面，看了将近两个小时，中途又看了好多次，">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190604230403494.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/2019060423041260.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190604230421697.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190604230428619.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190604230449942.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190604230457688.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190604230504406.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190604230519820.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190604230525953.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190604230530792.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70">
+<meta property="article:published_time" content="2024-06-29T13:16:53.784Z">
+<meta property="article:modified_time" content="2023-12-05T16:17:55.141Z">
+<meta property="article:author" content="Chiam">
+<meta property="article:tag" content="Algorithms，Cybersecurity">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20190604230403494.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70">
+  
+  
+  
+  <title>『Web』图书馆管理系统用户端心得 - Homepage of Chiam</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"chiamzhang.github.io","root":"/","version":"1.9.5-a","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":"❡"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":2},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
+
+
+<body>
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Chiam&#39;s Blogs</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                
+                <span>Home</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                
+                <span>Archives</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                
+                <span>Categories</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                
+                <span>About</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                
+                <span>Links</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="『Web』图书馆管理系统用户端心得"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-06-29 21:16" pubdate>
+          June 29, 2024 pm
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          20k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          164 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">『Web』图书馆管理系统用户端心得</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="『Web』图书馆管理系统用户端心得"><a href="#『Web』图书馆管理系统用户端心得" class="headerlink" title="『Web』图书馆管理系统用户端心得"></a>『Web』图书馆管理系统用户端心得</h1><p><font size =5 color=pink>最近终于写了一个让自己满意的系统，我在这里分享一下，顺便总结一下自己的学习心得。</p>
+<p><strong>1.需求分析</strong><br>听的好像是要做项目一样，但是无论写什么程序，些什么系统，都是要知道自己要干什么，要完成什么工作，实现那些功能，在这前列出一个表格，或是思维导图，给自己一个方向，先规划好再写，不然会拉下很多东西，在我写这个系统之前，我在图书馆的借书页面，看了将近两个小时，中途又看了好多次，这次代码不能说是一个完美可以当作工程性的使用，其中还有很多测试环节，还有部分功能没有实现，比如二次检索，三次检索功能，数据少得可怜，肯定还有一些未知的错误，所以我在这里真是分享我写代码，及调试代码的方法跟过程。<br><strong>2.写代码+调试代码</strong><br>写代码的时候一定要写一个功能调试一个功能，所谓的一个功能不是一个类，而是一个类的一个函数，如果一个函数会影响到其他函数的运行，不调好之前的函数，现在的函数也没法运行，当代码随着项目的增大，代码长度几何增长是，再找错误就很难的了，所以顺着调试下去，以便你写完的代码是可以运行的，是正确的，而具体能否实现功能在另说。<br>数据类与操作类的分离，面向对象要的是封装性，操作抽象+数据抽象，继承，写代码写完能够复用最好，乱糟糟的写完不能复用的类扔在那里，以后再也不会用到，浪费时间，完全可以写一些代码条理清晰，更重要的是，下次相似的代码不用再继续写，这应该是应该具备的素养。<br>以下是我调试代码的过程，最后代码还是有一点错误，这里是我的明明还是不好的原因，补充一下我认为明明一定要有意义，可以将学生的每科学分定义为 a b c d. …..也可以定义为数学 英语 物理 c++….这样可以增加代码的可读性。<br><strong><font size =5 color=red>引以为戒：</strong><br>下文中这两个 MAP 混用导致了一些问题，以至于我交代码的时候是错误的还有没有发现</p>
+<p> map&lt;string,int&gt;idtorea; &#x2F;&#x2F;读者 id 对应读者数据下标<br>map&lt;string ,int&gt; idtoob; &#x2F;&#x2F;图书 id 对应图书数据下标</p>
+<p>时间类<br><img src="https://img-blog.csdnimg.cn/20190604230403494.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br>时间类第一次调试运行，测试有参无参，重载&lt;&lt; ,&gt;&gt;和+<br><img src="https://img-blog.csdnimg.cn/2019060423041260.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<p>写到后边发现，自己重载的+错了，而且还需要计算两个时间类相差的时间，回头从新写的重载+，跟-</p>
+<p>图书类<br><img src="https://img-blog.csdnimg.cn/20190604230421697.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br>这里调试很多遍，开始留了一个应还时间 Time 类，后来发现，没有用。<br><img src="https://img-blog.csdnimg.cn/20190604230428619.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br>后来想到，可能查询归还时间，所以写了 get 函数，但是函数不能反回局部类对象，只好写成 static。<br><img src="https://img-blog.csdnimg.cn/20190604230449942.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br>因为后边的时候需要输出，但是有些数据只有管理员能够看到，所以写完后边的回来写的 print 函数。<br>读者类<br><img src="https://img-blog.csdnimg.cn/20190604230457688.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br>这里学生能做的事情不多，修改密码，查询个人信息，别的都做不了。</p>
+<p><img src="https://img-blog.csdnimg.cn/20190604230504406.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br>在后边实现借书就要在数据类中实现更改，所以在这里加了一条进行测试所添加的操作。<br>操作数据类<br><img src="https://img-blog.csdnimg.cn/20190604230519820.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br>每一条新数据都必须，拥有参初始化，除了文件读取除外。<br><img src="https://img-blog.csdnimg.cn/20190604230525953.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br>操作类也面临着不能直接输出的尴尬境界，所以回来，再写一个 print。<br><img src="https://img-blog.csdnimg.cn/20190604230530792.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br>终于看到自己的程序成功运行，也试了几组错误情况。基本无问题。</p>
+<figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br><span class="line">240</span><br><span class="line">241</span><br><span class="line">242</span><br><span class="line">243</span><br><span class="line">244</span><br><span class="line">245</span><br><span class="line">246</span><br><span class="line">247</span><br><span class="line">248</span><br><span class="line">249</span><br><span class="line">250</span><br><span class="line">251</span><br><span class="line">252</span><br><span class="line">253</span><br><span class="line">254</span><br><span class="line">255</span><br><span class="line">256</span><br><span class="line">257</span><br><span class="line">258</span><br><span class="line">259</span><br><span class="line">260</span><br><span class="line">261</span><br><span class="line">262</span><br><span class="line">263</span><br><span class="line">264</span><br><span class="line">265</span><br><span class="line">266</span><br><span class="line">267</span><br><span class="line">268</span><br><span class="line">269</span><br><span class="line">270</span><br><span class="line">271</span><br><span class="line">272</span><br><span class="line">273</span><br><span class="line">274</span><br><span class="line">275</span><br><span class="line">276</span><br><span class="line">277</span><br><span class="line">278</span><br><span class="line">279</span><br><span class="line">280</span><br><span class="line">281</span><br><span class="line">282</span><br><span class="line">283</span><br><span class="line">284</span><br><span class="line">285</span><br><span class="line">286</span><br><span class="line">287</span><br><span class="line">288</span><br><span class="line">289</span><br><span class="line">290</span><br><span class="line">291</span><br><span class="line">292</span><br><span class="line">293</span><br><span class="line">294</span><br><span class="line">295</span><br><span class="line">296</span><br><span class="line">297</span><br><span class="line">298</span><br><span class="line">299</span><br><span class="line">300</span><br><span class="line">301</span><br><span class="line">302</span><br><span class="line">303</span><br><span class="line">304</span><br><span class="line">305</span><br><span class="line">306</span><br><span class="line">307</span><br><span class="line">308</span><br><span class="line">309</span><br><span class="line">310</span><br><span class="line">311</span><br><span class="line">312</span><br><span class="line">313</span><br><span class="line">314</span><br><span class="line">315</span><br><span class="line">316</span><br><span class="line">317</span><br><span class="line">318</span><br><span class="line">319</span><br><span class="line">320</span><br><span class="line">321</span><br><span class="line">322</span><br><span class="line">323</span><br><span class="line">324</span><br><span class="line">325</span><br><span class="line">326</span><br><span class="line">327</span><br><span class="line">328</span><br><span class="line">329</span><br><span class="line">330</span><br><span class="line">331</span><br><span class="line">332</span><br><span class="line">333</span><br><span class="line">334</span><br><span class="line">335</span><br><span class="line">336</span><br><span class="line">337</span><br><span class="line">338</span><br><span class="line">339</span><br><span class="line">340</span><br><span class="line">341</span><br><span class="line">342</span><br><span class="line">343</span><br><span class="line">344</span><br><span class="line">345</span><br><span class="line">346</span><br><span class="line">347</span><br><span class="line">348</span><br><span class="line">349</span><br><span class="line">350</span><br><span class="line">351</span><br><span class="line">352</span><br><span class="line">353</span><br><span class="line">354</span><br><span class="line">355</span><br><span class="line">356</span><br><span class="line">357</span><br><span class="line">358</span><br><span class="line">359</span><br><span class="line">360</span><br><span class="line">361</span><br><span class="line">362</span><br><span class="line">363</span><br><span class="line">364</span><br><span class="line">365</span><br><span class="line">366</span><br><span class="line">367</span><br><span class="line">368</span><br><span class="line">369</span><br><span class="line">370</span><br><span class="line">371</span><br><span class="line">372</span><br><span class="line">373</span><br><span class="line">374</span><br><span class="line">375</span><br><span class="line">376</span><br><span class="line">377</span><br><span class="line">378</span><br><span class="line">379</span><br><span class="line">380</span><br><span class="line">381</span><br><span class="line">382</span><br><span class="line">383</span><br><span class="line">384</span><br><span class="line">385</span><br><span class="line">386</span><br><span class="line">387</span><br><span class="line">388</span><br><span class="line">389</span><br><span class="line">390</span><br><span class="line">391</span><br><span class="line">392</span><br><span class="line">393</span><br><span class="line">394</span><br><span class="line">395</span><br><span class="line">396</span><br><span class="line">397</span><br><span class="line">398</span><br><span class="line">399</span><br><span class="line">400</span><br><span class="line">401</span><br><span class="line">402</span><br><span class="line">403</span><br><span class="line">404</span><br><span class="line">405</span><br><span class="line">406</span><br><span class="line">407</span><br><span class="line">408</span><br><span class="line">409</span><br><span class="line">410</span><br><span class="line">411</span><br><span class="line">412</span><br><span class="line">413</span><br><span class="line">414</span><br><span class="line">415</span><br><span class="line">416</span><br><span class="line">417</span><br><span class="line">418</span><br><span class="line">419</span><br><span class="line">420</span><br><span class="line">421</span><br><span class="line">422</span><br><span class="line">423</span><br><span class="line">424</span><br><span class="line">425</span><br><span class="line">426</span><br><span class="line">427</span><br><span class="line">428</span><br><span class="line">429</span><br><span class="line">430</span><br><span class="line">431</span><br><span class="line">432</span><br><span class="line">433</span><br><span class="line">434</span><br><span class="line">435</span><br><span class="line">436</span><br><span class="line">437</span><br><span class="line">438</span><br><span class="line">439</span><br><span class="line">440</span><br><span class="line">441</span><br><span class="line">442</span><br><span class="line">443</span><br><span class="line">444</span><br><span class="line">445</span><br><span class="line">446</span><br><span class="line">447</span><br><span class="line">448</span><br><span class="line">449</span><br><span class="line">450</span><br><span class="line">451</span><br><span class="line">452</span><br><span class="line">453</span><br><span class="line">454</span><br><span class="line">455</span><br><span class="line">456</span><br><span class="line">457</span><br><span class="line">458</span><br><span class="line">459</span><br><span class="line">460</span><br><span class="line">461</span><br><span class="line">462</span><br><span class="line">463</span><br><span class="line">464</span><br><span class="line">465</span><br><span class="line">466</span><br><span class="line">467</span><br><span class="line">468</span><br><span class="line">469</span><br><span class="line">470</span><br><span class="line">471</span><br><span class="line">472</span><br><span class="line">473</span><br><span class="line">474</span><br><span class="line">475</span><br><span class="line">476</span><br><span class="line">477</span><br><span class="line">478</span><br><span class="line">479</span><br><span class="line">480</span><br><span class="line">481</span><br><span class="line">482</span><br><span class="line">483</span><br><span class="line">484</span><br><span class="line">485</span><br><span class="line">486</span><br><span class="line">487</span><br><span class="line">488</span><br><span class="line">489</span><br><span class="line">490</span><br><span class="line">491</span><br><span class="line">492</span><br><span class="line">493</span><br><span class="line">494</span><br><span class="line">495</span><br><span class="line">496</span><br><span class="line">497</span><br><span class="line">498</span><br><span class="line">499</span><br><span class="line">500</span><br><span class="line">501</span><br><span class="line">502</span><br><span class="line">503</span><br><span class="line">504</span><br><span class="line">505</span><br><span class="line">506</span><br><span class="line">507</span><br><span class="line">508</span><br><span class="line">509</span><br><span class="line">510</span><br><span class="line">511</span><br><span class="line">512</span><br><span class="line">513</span><br><span class="line">514</span><br><span class="line">515</span><br><span class="line">516</span><br><span class="line">517</span><br><span class="line">518</span><br><span class="line">519</span><br><span class="line">520</span><br><span class="line">521</span><br><span class="line">522</span><br><span class="line">523</span><br><span class="line">524</span><br><span class="line">525</span><br><span class="line">526</span><br><span class="line">527</span><br><span class="line">528</span><br><span class="line">529</span><br><span class="line">530</span><br><span class="line">531</span><br><span class="line">532</span><br><span class="line">533</span><br><span class="line">534</span><br><span class="line">535</span><br><span class="line">536</span><br><span class="line">537</span><br><span class="line">538</span><br><span class="line">539</span><br><span class="line">540</span><br><span class="line">541</span><br><span class="line">542</span><br><span class="line">543</span><br><span class="line">544</span><br><span class="line">545</span><br><span class="line">546</span><br><span class="line">547</span><br><span class="line">548</span><br><span class="line">549</span><br><span class="line">550</span><br><span class="line">551</span><br><span class="line">552</span><br><span class="line">553</span><br><span class="line">554</span><br><span class="line">555</span><br><span class="line">556</span><br><span class="line">557</span><br><span class="line">558</span><br><span class="line">559</span><br><span class="line">560</span><br><span class="line">561</span><br><span class="line">562</span><br><span class="line">563</span><br><span class="line">564</span><br><span class="line">565</span><br><span class="line">566</span><br><span class="line">567</span><br><span class="line">568</span><br><span class="line">569</span><br><span class="line">570</span><br><span class="line">571</span><br><span class="line">572</span><br><span class="line">573</span><br><span class="line">574</span><br><span class="line">575</span><br><span class="line">576</span><br><span class="line">577</span><br><span class="line">578</span><br><span class="line">579</span><br><span class="line">580</span><br><span class="line">581</span><br><span class="line">582</span><br><span class="line">583</span><br><span class="line">584</span><br><span class="line">585</span><br><span class="line">586</span><br><span class="line">587</span><br><span class="line">588</span><br><span class="line">589</span><br><span class="line">590</span><br><span class="line">591</span><br><span class="line">592</span><br><span class="line">593</span><br><span class="line">594</span><br><span class="line">595</span><br><span class="line">596</span><br><span class="line">597</span><br><span class="line">598</span><br><span class="line">599</span><br><span class="line">600</span><br><span class="line">601</span><br><span class="line">602</span><br><span class="line">603</span><br><span class="line">604</span><br><span class="line">605</span><br><span class="line">606</span><br></pre></td><td class="code"><pre><code class="hljs arduino"><span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;bits/stdc++.h.&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><span class="hljs-keyword">class</span> <span class="hljs-title class_">Time</span><br>&#123;<br>    <span class="hljs-type">int</span>  year,month,day;<br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-built_in">Time</span>()&#123;<span class="hljs-built_in">loadtime</span>();&#125;<br>    <span class="hljs-built_in">Time</span>(<span class="hljs-type">int</span> y,<span class="hljs-type">int</span> m,<span class="hljs-type">int</span> d):<span class="hljs-built_in">year</span>(y),<span class="hljs-built_in">month</span>(m),<span class="hljs-built_in">day</span>(d)&#123;&#125;;    <span class="hljs-comment">//用与图书出版日期等已知数据的对象的初始化；</span><br>    <span class="hljs-comment">//不能创建图书对象，有参初始化就没意义。</span><br>  <span class="hljs-comment">//  Time(Time &amp; a)&#123;year=a.year,month=a.month,day=a.day;&#125;    //用一个时间类初始化一个时间类，为后续操作准备；</span><br>    <span class="hljs-comment">//这句不注释就没法运行，不得解</span><br>    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">loadtime</span><span class="hljs-params">()</span></span>;    <span class="hljs-comment">//定义时间获取函数，学生借书的时间不可更改，直接从系统读入；</span><br>    <span class="hljs-keyword">friend</span> istream &amp; <span class="hljs-keyword">operator</span>&gt;&gt;(istream &amp;in,Time &amp; a);  <span class="hljs-comment">//不设置set函数，时间直接一次性全部修改即可；</span><br>    <span class="hljs-keyword">friend</span> stringstream &amp; <span class="hljs-keyword">operator</span>&gt;&gt;(stringstream &amp;in,Time &amp; a);<br>    <span class="hljs-keyword">friend</span> ostream &amp; <span class="hljs-keyword">operator</span>&lt;&lt;(ostream &amp;out,Time &amp; a);<br>    <span class="hljs-type">bool</span> <span class="hljs-keyword">operator</span> &lt;(<span class="hljs-type">const</span> Time &amp;d)<span class="hljs-type">const</span>&#123;    <span class="hljs-comment">//重载小于号，用于数据时间排序，不需要修改数据const；</span><br>        <span class="hljs-keyword">return</span> year!=d.year?year&lt;d.year:month!=d.month?month&lt;d.month:day&lt;d.day;<br>    &#125;<br>    <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">judge</span><span class="hljs-params">()</span> <span class="hljs-type">const</span></span>;  <span class="hljs-comment">//判断是否为闰年，用于续借日期的变化；</span><br>    <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">judge</span><span class="hljs-params">(<span class="hljs-type">int</span> year)</span> <span class="hljs-type">const</span> </span>;<span class="hljs-comment">//写一个有参的判断函数；</span><br>    Time <span class="hljs-keyword">operator</span> +(<span class="hljs-type">int</span>  a) ;   <span class="hljs-comment">//重载加号,用于续借日期的变化；</span><br>    <span class="hljs-keyword">friend</span> <span class="hljs-type">int</span> <span class="hljs-keyword">operator</span> -(Time a,Time b);  <span class="hljs-comment">//计算两段时间间隔；</span><br>&#125;;<br>Time Time::<span class="hljs-keyword">operator</span> +(<span class="hljs-type">int</span>  a)<br>&#123;<br>    <span class="hljs-type">int</span> m[] = &#123;<span class="hljs-number">0</span>,<span class="hljs-number">31</span>,<span class="hljs-number">28</span>,<span class="hljs-number">31</span>,<span class="hljs-number">30</span>,<span class="hljs-number">31</span>,<span class="hljs-number">30</span>,<span class="hljs-number">31</span>,<span class="hljs-number">31</span>,<span class="hljs-number">30</span>,<span class="hljs-number">31</span>,<span class="hljs-number">30</span>,<span class="hljs-number">31</span>&#125;;<br>    day+=a;<br>    <span class="hljs-type">int</span> flag=<span class="hljs-number">1</span>;<br>   <span class="hljs-keyword">while</span>(day&gt;m[month])&#123;<br>        <span class="hljs-keyword">if</span>(month==<span class="hljs-number">2</span>)&#123;<br>            <span class="hljs-keyword">if</span>(day&gt;m[month]+<span class="hljs-built_in">judge</span>())&#123;<br>                day-=m[month]+<span class="hljs-built_in">judge</span>();<br>                month++;<br>            &#125;<br>        &#125;<br>        <span class="hljs-keyword">else</span> &#123;<br>            day=day-m[month];<br>            month++;<br>        &#125;<span class="hljs-comment">//因为一对大括号跑了好几遍，敲ACM也一样，不要偷懒</span><br>        <span class="hljs-keyword">if</span>(month&gt;<span class="hljs-number">12</span>)&#123;<br>        month-=<span class="hljs-number">12</span>;<br>        year++;<br>    &#125;<br>   &#125;<br>&#125;<br><span class="hljs-type">int</span> <span class="hljs-keyword">operator</span> -(Time a,Time b)<br>&#123;<br>    <span class="hljs-type">int</span> monthdays[<span class="hljs-number">2</span>][<span class="hljs-number">12</span>] = &#123; &#123; <span class="hljs-number">31</span>,<span class="hljs-number">28</span>,<span class="hljs-number">31</span>,<span class="hljs-number">30</span>,<span class="hljs-number">31</span>,<span class="hljs-number">30</span>,<span class="hljs-number">31</span>,<span class="hljs-number">31</span>,<span class="hljs-number">30</span>,<span class="hljs-number">31</span>,<span class="hljs-number">30</span>,<span class="hljs-number">31</span> &#125;,&#123; <span class="hljs-number">31</span>,<span class="hljs-number">29</span>,<span class="hljs-number">31</span>,<span class="hljs-number">30</span>,<span class="hljs-number">31</span>,<span class="hljs-number">30</span>,<span class="hljs-number">31</span>,<span class="hljs-number">31</span>,<span class="hljs-number">30</span>,<span class="hljs-number">31</span>,<span class="hljs-number">30</span>,<span class="hljs-number">31</span> &#125; &#125;;<br>    <span class="hljs-type">int</span> yeardays[<span class="hljs-number">2</span>] = &#123; <span class="hljs-number">365</span>,<span class="hljs-number">366</span> &#125;;<br>    <span class="hljs-type">int</span> sumdays=<span class="hljs-number">0</span>;<br>   <span class="hljs-keyword">if</span> (a.year == b.year&amp;&amp; a.month == b.month)&#123;<br>        sumdays = b.day - a.day;<br>    &#125;<br>    <span class="hljs-keyword">else</span><br>        <span class="hljs-keyword">if</span> (a.year == b.year)&#123;<br>            sumdays += monthdays[a.<span class="hljs-built_in">judge</span>(a.year)][a.month<span class="hljs-number">-1</span>] - a.day;<br>            <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = a.month; i &lt; b.month<span class="hljs-number">-1</span>; i++)<br>                sumdays += monthdays[a.<span class="hljs-built_in">judge</span>(a.year)][i];<br>            sumdays += b.day;<br>        &#125;<br>        <span class="hljs-keyword">else</span>&#123;<br>            sumdays += monthdays[a.<span class="hljs-built_in">judge</span>(a.year)][a.month<span class="hljs-number">-1</span>] - a.day;<br>            <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = a.month; i &lt; <span class="hljs-number">12</span>; i++)<br>                sumdays += monthdays[a.<span class="hljs-built_in">judge</span>(a.year)][i];<br>            <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = a.year + <span class="hljs-number">1</span>; i &lt; b.year; i++)<br>                sumdays += yeardays[a.<span class="hljs-built_in">judge</span>(i)];<br>            <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; b.month - <span class="hljs-number">1</span>; i++)<br>                sumdays += monthdays[a.<span class="hljs-built_in">judge</span>(b.year)][i];<br>            sumdays += b.day;<br>        &#125;<br>    <span class="hljs-keyword">return</span> sumdays;<br>&#125;<br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">Time::judge</span><span class="hljs-params">()</span> <span class="hljs-type">const</span></span>&#123;<br>        <span class="hljs-keyword">if</span>(year % <span class="hljs-number">4</span> == <span class="hljs-number">0</span> &amp;&amp; year %<span class="hljs-number">100</span> != <span class="hljs-number">0</span> ||year % <span class="hljs-number">400</span> == <span class="hljs-number">0</span>) <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;<br>        <span class="hljs-keyword">else</span> <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">Time::judge</span><span class="hljs-params">(<span class="hljs-type">int</span> year)</span> <span class="hljs-type">const</span></span>&#123;<br>    <span class="hljs-keyword">if</span> (year % <span class="hljs-number">4</span> == <span class="hljs-number">0</span> &amp;&amp; year % <span class="hljs-number">100</span> != <span class="hljs-number">0</span> || year % <span class="hljs-number">400</span> == <span class="hljs-number">0</span>)<span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;<br>    <span class="hljs-keyword">else</span>  <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">Time::loadtime</span><span class="hljs-params">()</span></span>&#123;<br>    <span class="hljs-type">time_t</span> rawtime;<br>    <span class="hljs-keyword">struct</span> <span class="hljs-title class_">tm</span> *ptminfo;<br>    <span class="hljs-built_in">time</span>(&amp;rawtime);<br>    ptminfo = <span class="hljs-built_in">localtime</span>(&amp;rawtime);<br>    year=ptminfo-&gt;tm_year + <span class="hljs-number">1900</span>;<br>    month=ptminfo-&gt;tm_mon + <span class="hljs-number">1</span>;<br>    day=ptminfo-&gt;tm_mday;<br>&#125;<br>istream &amp; <span class="hljs-keyword">operator</span>&gt;&gt;(istream &amp;in,Time &amp; a)&#123;<br>    in&gt;&gt;a.year&gt;&gt;a.month&gt;&gt;a.day;<br>    <span class="hljs-keyword">return</span> in;<br>&#125;<br>ostream &amp; <span class="hljs-keyword">operator</span>&lt;&lt;(ostream &amp;out,Time &amp; a)<br>&#123;<br>    out&lt;&lt;a.year&lt;&lt;<span class="hljs-string">&quot; &quot;</span>&lt;&lt;a.month&lt;&lt;<span class="hljs-string">&quot; &quot;</span>&lt;&lt;a.day&lt;&lt;<span class="hljs-string">&quot; &quot;</span>;<br>    <span class="hljs-keyword">return</span> out;<br>&#125;<br>stringstream &amp; <span class="hljs-keyword">operator</span>&gt;&gt;(stringstream &amp;in,Time &amp; a)&#123;<br>    in&gt;&gt;a.year&gt;&gt;a.month&gt;&gt;a.day;<br>    <span class="hljs-keyword">return</span> in;<br>&#125;<br><span class="hljs-comment">/*</span><br><span class="hljs-comment">int main()</span><br><span class="hljs-comment">&#123;</span><br><span class="hljs-comment">    Time  demo1;//无参初始化对象</span><br><span class="hljs-comment">    cout&lt;&lt;demo1&lt;&lt;endl;</span><br><span class="hljs-comment">    Time demo2(demo1);//有参初始化对象，便于不同时间定义对象，时间不同；</span><br><span class="hljs-comment">    cout&lt;&lt;demo2&lt;&lt;endl;</span><br><span class="hljs-comment">    demo2+60;//为续借，即还书时间做准备；</span><br><span class="hljs-comment">    cout&lt;&lt;demo2;</span><br><span class="hljs-comment">    Time demo3(2000,03,19);</span><br><span class="hljs-comment">    cout&lt;&lt;demo3&lt;&lt;endl;</span><br><span class="hljs-comment">&#125;</span><br><span class="hljs-comment">*/</span><br><span class="hljs-comment">/*</span><br><span class="hljs-comment">int main()</span><br><span class="hljs-comment">&#123;</span><br><span class="hljs-comment">    Time demo1,demo2;</span><br><span class="hljs-comment">    cin&gt;&gt;demo1&gt;&gt;demo2;</span><br><span class="hljs-comment">    int d=demo1-demo2;</span><br><span class="hljs-comment">    demo1+d;</span><br><span class="hljs-comment">    cout&lt;&lt;demo1&lt;&lt;endl;</span><br><span class="hljs-comment">    cout&lt;&lt;d&lt;&lt;endl;</span><br><span class="hljs-comment">&#125;*/</span><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">Book</span><br>&#123;<br>    string name;<br>    string  press;                                                             <span class="hljs-comment">//出版社</span><br>    string pubtime;                                                     <span class="hljs-comment">//出版时间通常在图书馆只有年份</span><br>    string author;                                                      <span class="hljs-comment">//作者</span><br>    string suoshu;                                                     <span class="hljs-comment">//索书号</span><br>    string id;          <span class="hljs-comment">//每本书都有唯一的条形码，两本完全一样的书，在这里应该看作两本书</span><br>    string locate;<br>    string jsr;            <span class="hljs-comment">//指向借书人数据在的位置的下标(-1)，代表可借</span><br>    <span class="hljs-type">int</span> fk;       <span class="hljs-comment">//每本书都有自己的罚款，不会影响其他书籍，定义在这里比定义在读者类要合适</span><br>    <span class="hljs-type">bool</span> xj;   <span class="hljs-comment">//比起写入记录中查询，写在图书中，无论是还书,还是续借，都更加便捷</span><br>    Time jy;<br> <span class="hljs-comment">//   Time rebac;</span><br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-built_in">Book</span>():<span class="hljs-built_in">name</span>(<span class="hljs-string">&quot;&quot;</span>),<span class="hljs-built_in">press</span>(<span class="hljs-string">&quot;&quot;</span>),<span class="hljs-built_in">author</span>(<span class="hljs-string">&quot;&quot;</span>),<span class="hljs-built_in">id</span>(<span class="hljs-string">&quot;&quot;</span>),<span class="hljs-built_in">suoshu</span>(<span class="hljs-string">&quot;&quot;</span>),<span class="hljs-built_in">locate</span>(<span class="hljs-string">&quot;&quot;</span>),<span class="hljs-built_in">jsr</span>(<span class="hljs-string">&quot;-1&quot;</span>),<span class="hljs-built_in">fk</span>(<span class="hljs-number">0</span>)&#123;&#125;<br>    <span class="hljs-comment">//学生端不能创建书籍对象，只写一个无参初始化，用于读取文件数据；</span><br>    <span class="hljs-function">string <span class="hljs-title">getname</span> <span class="hljs-params">()</span><span class="hljs-type">const</span></span>&#123;<span class="hljs-keyword">return</span> name;&#125;<br>    <span class="hljs-function">string <span class="hljs-title">getpress</span> <span class="hljs-params">()</span><span class="hljs-type">const</span></span>&#123;<span class="hljs-keyword">return</span> press;&#125;<br>    <span class="hljs-function">string <span class="hljs-title">getauthor</span> <span class="hljs-params">( )</span><span class="hljs-type">const</span></span>&#123;<span class="hljs-keyword">return</span> author;&#125;<br>    <span class="hljs-function">string <span class="hljs-title">getpubtime</span> <span class="hljs-params">( )</span><span class="hljs-type">const</span></span>&#123;<span class="hljs-keyword">return</span> pubtime;&#125;<br>    <span class="hljs-function">string <span class="hljs-title">getid</span> <span class="hljs-params">( )</span><span class="hljs-type">const</span></span>&#123;<span class="hljs-keyword">return</span> id;&#125;<br>    <span class="hljs-function">string <span class="hljs-title">getsuoshu</span> <span class="hljs-params">( )</span><span class="hljs-type">const</span></span>&#123;<span class="hljs-keyword">return</span> suoshu;&#125; <span class="hljs-comment">//通过上述get函数为下面的查询做准备；</span><br>    <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">getfk</span><span class="hljs-params">()</span></span>&#123;<span class="hljs-built_in">jsfk</span>();<span class="hljs-keyword">return</span> fk;&#125;<br>    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">xxj</span><span class="hljs-params">()</span></span>&#123;<br>        <span class="hljs-comment">/*if(fk&lt;=0)xj=!xj;</span><br><span class="hljs-comment">        else cout&lt;&lt;&quot;请先缴清罚款&quot;&lt;&lt;endl;*/</span> <span class="hljs-comment">//改为在读者类判断，不只是一本书的罚款，会影响借书；</span><br>        xj=!xj;<br>    &#125;<br>    <span class="hljs-function"><span class="hljs-type">bool</span> <span class="hljs-title">getxj</span><span class="hljs-params">()</span></span>&#123;  <span class="hljs-keyword">return</span> xj;&#125;<br>    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">js</span><span class="hljs-params">(string idcard)</span></span>&#123;jsr=idcard;&#125;             <span class="hljs-comment">//学号跟图书的条形码是唯一的，由此来对应；</span><br>    <span class="hljs-function">Time&amp; <span class="hljs-title">getreback</span><span class="hljs-params">()</span></span>;<br>    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">jsfk</span><span class="hljs-params">()</span></span>;<br>    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">print</span><span class="hljs-params">()</span></span>;<br>    <span class="hljs-keyword">friend</span> istream &amp; <span class="hljs-keyword">operator</span>&gt;&gt;(istream &amp;in,Book &amp; a);<br>    <span class="hljs-keyword">friend</span> ostream &amp; <span class="hljs-keyword">operator</span>&lt;&lt;(ostream &amp;out,Book &amp; a);<br>&#125;;<br><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">Book::jsfk</span><span class="hljs-params">()</span></span><br><span class="hljs-function"></span>&#123;<br>    <span class="hljs-type">int</span> brr;<br>    <span class="hljs-keyword">if</span>(xj) brr=<span class="hljs-number">120</span>;<br>    <span class="hljs-keyword">else</span> brr=<span class="hljs-number">60</span>;<br>    Time tem;<br>    fk=tem-jy-brr;<br>    <span class="hljs-keyword">if</span>(fk&lt;<span class="hljs-number">0</span>) fk=<span class="hljs-number">0</span>;<br>&#125;<br><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">Book::print</span><span class="hljs-params">()</span></span><br><span class="hljs-function"></span>&#123;<br>    cout&lt;&lt;name&lt;&lt;<span class="hljs-string">&quot; &quot;</span>&lt;&lt;press&lt;&lt;<span class="hljs-string">&quot; &quot;</span>&lt;&lt;author&lt;&lt;<span class="hljs-string">&quot; &quot;</span>&lt;&lt;id&lt;&lt;<span class="hljs-string">&quot; &quot;</span>&lt;&lt;suoshu&lt;&lt;<span class="hljs-string">&quot; &quot;</span>&lt;&lt;locate&lt;&lt;<span class="hljs-string">&quot; &quot;</span>;<br>    <span class="hljs-keyword">if</span>(jsr!=<span class="hljs-string">&quot;-1&quot;</span>) cout&lt;&lt;<span class="hljs-string">&quot;已借出  归还时间：&quot;</span>&lt;&lt;<span class="hljs-built_in">getreback</span>()&lt;&lt;endl;<br>    <span class="hljs-keyword">else</span> cout&lt;&lt;endl;<br>&#125;<br><span class="hljs-function">Time&amp; <span class="hljs-title">Book::getreback</span><span class="hljs-params">()</span></span>&#123;<br>   <span class="hljs-function"><span class="hljs-type">static</span> Time <span class="hljs-title">tem</span><span class="hljs-params">(jy)</span></span>;<br>    tem+<span class="hljs-number">60</span>*(<span class="hljs-number">1</span>+<span class="hljs-built_in">getxj</span>());<br>    <span class="hljs-keyword">return</span> tem;<br>&#125;<br>istream &amp; <span class="hljs-keyword">operator</span>&gt;&gt;(istream &amp;in,Book &amp; a)&#123;<br>    in&gt;&gt;a.name&gt;&gt;a.press&gt;&gt;a.pubtime&gt;&gt;a.author&gt;&gt;a.suoshu&gt;&gt;a.id&gt;&gt;a.jsr&gt;&gt;a.locate&gt;&gt;a.jy&gt;&gt;a.xj;<br>    <span class="hljs-keyword">return</span> in;<br>&#125;<br>ostream &amp; <span class="hljs-keyword">operator</span>&lt;&lt;(ostream &amp;out,Book &amp; a)&#123;<br>    out&lt;&lt;a.name&lt;&lt;<span class="hljs-string">&quot; &quot;</span>&lt;&lt;a.press&lt;&lt;<span class="hljs-string">&quot; &quot;</span>&lt;&lt;a.pubtime&lt;&lt;<span class="hljs-string">&quot; &quot;</span>&lt;&lt;a.author&lt;&lt;<span class="hljs-string">&quot; &quot;</span>&lt;&lt;a.suoshu&lt;&lt;<span class="hljs-string">&quot; &quot;</span>&lt;&lt;a.id&lt;&lt;<span class="hljs-string">&quot; &quot;</span>&lt;&lt;a.jsr&lt;&lt;<span class="hljs-string">&quot;  &quot;</span>&lt;&lt;a.locate&lt;&lt;<span class="hljs-string">&quot; &quot;</span>&lt;&lt;a.jy&lt;&lt;<span class="hljs-string">&quot; &quot;</span>&lt;&lt;a.xj;<br>    <span class="hljs-keyword">return</span> out;<br>&#125;<br><span class="hljs-comment">//记 北京机械工业出版社 2016 胡凡 TP301.6/H569 01664298  123456 -1 采编部在编 2018 5 16  1</span><br><span class="hljs-comment">/*</span><br><span class="hljs-comment">int main()</span><br><span class="hljs-comment">&#123;</span><br><span class="hljs-comment">        Book demo;</span><br><span class="hljs-comment">        cin&gt;&gt;demo;</span><br><span class="hljs-comment">        cout&lt;&lt;demo;</span><br><span class="hljs-comment">        cout&lt;&lt;demo.getname()&lt;&lt;endl;</span><br><span class="hljs-comment">        cout&lt;&lt;demo.getpress()&lt;&lt;endl;</span><br><span class="hljs-comment">        cout&lt;&lt;demo.getauthor()&lt;&lt;endl;</span><br><span class="hljs-comment">        cout&lt;&lt;demo.getsuoshu()&lt;&lt;endl;</span><br><span class="hljs-comment">        cout&lt;&lt;demo.getpubtime()&lt;&lt;endl;</span><br><span class="hljs-comment">        cout&lt;&lt;demo.getfk()&lt;&lt;endl;</span><br><span class="hljs-comment">       int jsr;</span><br><span class="hljs-comment">        cin&gt;&gt;jsr;</span><br><span class="hljs-comment">        demo.js(jsr);</span><br><span class="hljs-comment">        cout&lt;&lt;demo.getxj()&lt;&lt;endl;</span><br><span class="hljs-comment">        demo.xxj();</span><br><span class="hljs-comment">        cout&lt;&lt;demo.getxj()&lt;&lt;endl;</span><br><span class="hljs-comment">        cout&lt;&lt;demo&lt;&lt;endl;</span><br><span class="hljs-comment">&#125; //算法笔记 北京机械工业出版社 2016 胡凡 TP301.6/H569 01664298  123 采编部在编 2018 5 16  1</span><br><span class="hljs-comment">*/</span><br><span class="hljs-comment">/*</span><br><span class="hljs-comment">int main()</span><br><span class="hljs-comment">&#123;</span><br><span class="hljs-comment">    Book demo;</span><br><span class="hljs-comment">    cin&gt;&gt;demo;</span><br><span class="hljs-comment">    cout&lt;&lt;demo.getreback();</span><br><span class="hljs-comment">&#125;*/</span><br><span class="hljs-comment">/*</span><br><span class="hljs-comment">int main()</span><br><span class="hljs-comment">&#123;</span><br><span class="hljs-comment">        Book  demo1;//无参初始化对象</span><br><span class="hljs-comment">       cin&gt;&gt;demo1;</span><br><span class="hljs-comment">        demo1.print();</span><br><span class="hljs-comment">&#125;</span><br><span class="hljs-comment">*/</span><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">Student</span><br>&#123;<br>    string name;<br>    string id;<br>    string key;<br>    string mail;<br>    vector&lt;string&gt; jy;<span class="hljs-comment">/*按时间先后借的书，则为有序，int是图书数据的ID；</span><br><span class="hljs-comment">                                                通过下标联通了图书与读者。*/</span><br>    <span class="hljs-type">int</span> yj;<span class="hljs-comment">//已借图书</span><br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-built_in">Student</span>() :<span class="hljs-built_in">name</span>(<span class="hljs-string">&quot;&quot;</span>),<span class="hljs-built_in">id</span>(<span class="hljs-string">&quot;&quot;</span>),<span class="hljs-built_in">key</span>(<span class="hljs-string">&quot;&quot;</span>),<span class="hljs-built_in">mail</span>(<span class="hljs-string">&quot;&quot;</span>)&#123;jy.<span class="hljs-built_in">clear</span>();&#125;<br>    <span class="hljs-comment">//void printxx() 想写打印信息的功能，但是目前这个类看不到图书数据，无法关联。转而写get函数；</span><br>    <span class="hljs-function">vector&lt;string&gt; <span class="hljs-title">getjy</span><span class="hljs-params">()</span> <span class="hljs-type">const</span></span>&#123;<span class="hljs-keyword">return</span> jy;&#125;         <span class="hljs-comment">//先返回一个vector对象，目前看不到图书数据，所以返回后，在操作类中使用</span><br>    <span class="hljs-function">string <span class="hljs-title">getname</span><span class="hljs-params">()</span></span>&#123;<span class="hljs-keyword">return</span> name;&#125;<br>    <span class="hljs-function">string <span class="hljs-title">getid</span><span class="hljs-params">()</span></span>&#123;<span class="hljs-keyword">return</span> id;&#125;<br>    <span class="hljs-function">string <span class="hljs-title">getkey</span><span class="hljs-params">()</span></span>&#123;<span class="hljs-keyword">return</span> key;&#125;<br>    <span class="hljs-function">string <span class="hljs-title">getmail</span><span class="hljs-params">()</span></span>&#123;<span class="hljs-keyword">return</span> mail;&#125;<br>    <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">getyj</span><span class="hljs-params">()</span><span class="hljs-type">const</span> </span>&#123;<span class="hljs-keyword">return</span> yj;&#125;<br>    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">setkey</span><span class="hljs-params">(string tem)</span> </span>;           <span class="hljs-comment">//修改密码</span><br>    <span class="hljs-function"><span class="hljs-type">void</span>  <span class="hljs-title">jieyue</span><span class="hljs-params">(string obid)</span></span>;     <span class="hljs-comment">//借阅图书，图书馆的借阅最后都是按照书的唯一的条码来借阅</span><br>    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">reback</span><span class="hljs-params">(string obid)</span></span>;      <span class="hljs-comment">//归还同上。</span><br>                                                                <span class="hljs-comment">/*现在看不到图书数据，只能写出部分借阅，归还操作，在操作类中应判断是否具有罚款，</span><br><span class="hljs-comment">                                                                此函数仅用于修改学生，作为子函数使用*/</span><br>    <span class="hljs-keyword">friend</span> istream &amp; <span class="hljs-keyword">operator</span>&gt;&gt;(istream &amp;in,Student &amp; a);<br>    <span class="hljs-keyword">friend</span> ostream &amp; <span class="hljs-keyword">operator</span>&lt;&lt;(ostream &amp;out,Student &amp; a);<br>&#125; ;<br>istream &amp; <span class="hljs-keyword">operator</span>&gt;&gt;(istream &amp;in,Student &amp; a)<br>&#123;<br>    in&gt;&gt;a.name&gt;&gt;a.id&gt;&gt;a.key&gt;&gt;a.mail&gt;&gt;a.yj;<br>    string tem;<br>    <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">0</span>;i&lt;a.yj;i++) &#123;<br>            in&gt;&gt;tem;<br>            a.jy.<span class="hljs-built_in">push_back</span>(tem);<br>    &#125;<br>    <span class="hljs-keyword">return</span> in;<br>&#125;<br>ostream &amp; <span class="hljs-keyword">operator</span>&lt;&lt;(ostream &amp;out,Student &amp; a)<br>&#123;<br>    out&lt;&lt;a.name&lt;&lt;<span class="hljs-string">&quot; &quot;</span>&lt;&lt;a.id&lt;&lt;<span class="hljs-string">&quot; &quot;</span>&lt;&lt;a.key&lt;&lt;<span class="hljs-string">&quot; &quot;</span>&lt;&lt;a.mail&lt;&lt;<span class="hljs-string">&quot; &quot;</span>&lt;&lt;a.yj&lt;&lt;<span class="hljs-string">&quot; &quot;</span>;<br>    <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">0</span>;i&lt;a.yj;i++) cout&lt;&lt;a.jy[i]&lt;&lt;<span class="hljs-string">&quot; &quot;</span>;<br>    <span class="hljs-keyword">return</span> out;<br>&#125;<br><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">Student::jieyue</span><span class="hljs-params">(string obid)</span></span><br><span class="hljs-function"></span>&#123;<br>    <span class="hljs-keyword">if</span>(yj&gt;=<span class="hljs-number">10</span>) cout&lt;&lt;<span class="hljs-string">&quot;借阅数量已达上限&quot;</span>&lt;&lt;endl;<br>    <span class="hljs-keyword">else</span> jy.<span class="hljs-built_in">push_back</span>(obid);<br>    yj=jy.<span class="hljs-built_in">size</span>();<br>&#125;<br><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">Student::reback</span><span class="hljs-params">(string obid)</span>    <span class="hljs-comment">//归还操作很宽泛，甚至都不需要登陆账号，但是根据图书找到人，最后还是要根据id在这人身上去掉</span></span><br><span class="hljs-function"></span>&#123;<br>    <span class="hljs-comment">//不需要容错，如果系统不崩溃，从书籍查借人一定是唯一的</span><br>    <span class="hljs-keyword">auto</span> po=<span class="hljs-built_in">find</span>(jy.<span class="hljs-built_in">begin</span>(),jy.<span class="hljs-built_in">end</span>(),obid);<br>    <span class="hljs-keyword">if</span>(po==jy.<span class="hljs-built_in">end</span>()) cout&lt;&lt;<span class="hljs-string">&quot;还书失败，请联系管理员&quot;</span>&lt;&lt;endl;<br>    <span class="hljs-keyword">else</span> jy.<span class="hljs-built_in">erase</span>(po);<br>    yj=jy.<span class="hljs-built_in">size</span>();<br>&#125;<br><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">Student::setkey</span><span class="hljs-params">(string tem)</span></span><br><span class="hljs-function"></span>&#123;<br>    <span class="hljs-keyword">while</span>(tem!=key)<br>    &#123;<br>        cout&lt;&lt;<span class="hljs-string">&quot;密码错误，请重试&quot;</span>&lt;&lt;endl;<br>        cin&gt;&gt;tem;<br>    &#125;<br>    cin&gt;&gt;tem;<br>    key=tem;<br>&#125;<br><span class="hljs-comment">/*</span><br><span class="hljs-comment">int main()</span><br><span class="hljs-comment">&#123;</span><br><span class="hljs-comment">    Student demo;</span><br><span class="hljs-comment">    cin&gt;&gt;demo;</span><br><span class="hljs-comment">    cout&lt;&lt;demo.getname()&lt;&lt;endl;</span><br><span class="hljs-comment">    cout&lt;&lt;demo.getid()&lt;&lt;endl;</span><br><span class="hljs-comment">    cout&lt;&lt;demo.getkey()&lt;&lt;endl;</span><br><span class="hljs-comment">    cout&lt;&lt;demo.getmail()&lt;&lt;endl;</span><br><span class="hljs-comment">    cout&lt;&lt;demo.getyj()&lt;&lt;endl;</span><br><span class="hljs-comment">    cout&lt;&lt;demo;</span><br><span class="hljs-comment">&#125;*/</span><br><span class="hljs-comment">//张俊浩  2018212513 123456 529934209@qq.com  1  203</span><br><span class="hljs-comment">/*</span><br><span class="hljs-comment">int main()</span><br><span class="hljs-comment">&#123;</span><br><span class="hljs-comment">    string tem;</span><br><span class="hljs-comment">    Student demo;</span><br><span class="hljs-comment">    cin&gt;&gt;demo&gt;&gt;tem;</span><br><span class="hljs-comment">    demo.jieyue(tem);</span><br><span class="hljs-comment">    cout&lt;&lt;demo&lt;&lt;endl;</span><br><span class="hljs-comment">    cin&gt;&gt;tem;</span><br><span class="hljs-comment">    demo.reback(tem);</span><br><span class="hljs-comment">    cout&lt;&lt;demo;</span><br><span class="hljs-comment">&#125;</span><br><span class="hljs-comment">*/</span><br><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">Operate</span> <span class="hljs-comment">//记录只能生成不能修改</span><br>&#123;<br>    Time time;<br>    string oper; <span class="hljs-comment">//操作</span><br>    string peo; <span class="hljs-comment">//操作人id</span><br>    string boo; <span class="hljs-comment">//图书对象ID</span><br>    <span class="hljs-type">int</span> fk;    <span class="hljs-comment">//当操作为还书时有真实罚款，其余为-1</span><br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-built_in">Operate</span>( ):<span class="hljs-built_in">oper</span>(<span class="hljs-string">&quot;&quot;</span>),<span class="hljs-built_in">peo</span>(<span class="hljs-string">&quot;&quot;</span>),<span class="hljs-built_in">boo</span>(<span class="hljs-string">&quot;&quot;</span>),<span class="hljs-built_in">fk</span>(<span class="hljs-number">-1</span>)&#123;&#125;   <span class="hljs-comment">//仅用于文件读写</span><br>    <span class="hljs-built_in">Operate</span>(string o,string p,string b,<span class="hljs-type">int</span> c):<span class="hljs-built_in">oper</span>(o),<span class="hljs-built_in">peo</span>(p),<span class="hljs-built_in">boo</span>(b),<span class="hljs-built_in">fk</span>(c)&#123;time.<span class="hljs-built_in">loadtime</span>();&#125;  <span class="hljs-comment">//操作无论管理员，学生都无法改变时间；</span><br>    <span class="hljs-function">string <span class="hljs-title">getname</span><span class="hljs-params">()</span></span>&#123;<span class="hljs-keyword">return</span> peo;&#125;<br>    <span class="hljs-function">string <span class="hljs-title">getbook</span><span class="hljs-params">()</span></span>&#123;<span class="hljs-keyword">return</span> boo;&#125;<br>    <span class="hljs-function">string <span class="hljs-title">getoper</span><span class="hljs-params">()</span></span>&#123;<span class="hljs-keyword">return</span> oper;&#125;<br>    <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">getfk</span><span class="hljs-params">()</span></span>&#123;<span class="hljs-keyword">return</span> fk;&#125;          <span class="hljs-comment">// 用于后续查询操作</span><br>    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">print</span><span class="hljs-params">()</span> </span>;<br>    <span class="hljs-keyword">friend</span> istream &amp; <span class="hljs-keyword">operator</span>&gt;&gt;(istream &amp;in,Operate &amp; a);<br>    <span class="hljs-keyword">friend</span> ostream &amp; <span class="hljs-keyword">operator</span>&lt;&lt;(ostream &amp;out,Operate &amp; a);<br>&#125; ;<br><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">Operate::print</span><span class="hljs-params">()</span></span><br><span class="hljs-function"></span>&#123;<br>    cout&lt;&lt;time&lt;&lt;<span class="hljs-string">&quot; &quot;</span>&lt;&lt;peo&lt;&lt;<span class="hljs-string">&quot; &quot;</span>&lt;&lt;oper&lt;&lt;<span class="hljs-string">&quot; &quot;</span>&lt;&lt;boo&lt;&lt;<span class="hljs-string">&quot; &quot;</span>;<br>    <span class="hljs-keyword">if</span>(fk!=<span class="hljs-number">-1</span>) cout&lt;&lt;<span class="hljs-string">&quot;缴纳罚款：&quot;</span>&lt;&lt;fk&lt;&lt;endl;<br>&#125;<br>istream &amp; <span class="hljs-keyword">operator</span>&gt;&gt;(istream &amp;in,Operate  &amp; a)<br>&#123;<br>    in&gt;&gt;a.time&gt;&gt;a.peo&gt;&gt;a.oper&gt;&gt;a.boo&gt;&gt;a.fk;<br>    <span class="hljs-keyword">return</span> in;<br>&#125;<br>ostream &amp; <span class="hljs-keyword">operator</span>&lt;&lt;(ostream &amp;out,Operate  &amp; a)<br>&#123;<br>    out&lt;&lt;a.time&lt;&lt;<span class="hljs-string">&quot; &quot;</span>&lt;&lt;a.peo&lt;&lt;<span class="hljs-string">&quot; &quot;</span>&lt;&lt;a.oper&lt;&lt;<span class="hljs-string">&quot; &quot;</span>&lt;&lt;a.boo&lt;&lt;<span class="hljs-string">&quot; &quot;</span>&lt;&lt;a.fk&lt;&lt;<span class="hljs-string">&quot; &quot;</span>;<br>    <span class="hljs-keyword">return</span> out;<br>&#125;<br><span class="hljs-comment">/*</span><br><span class="hljs-comment">int main()</span><br><span class="hljs-comment">&#123;</span><br><span class="hljs-comment">    Operate demo;</span><br><span class="hljs-comment">    cin&gt;&gt;demo;</span><br><span class="hljs-comment">    cout&lt;&lt;demo.getname()&lt;&lt;&quot; &quot;&lt;&lt;demo.getoper()&lt;&lt;&quot; &quot;&lt;&lt;demo.getbook()&lt;&lt;&quot; &quot;&lt;&lt;demo.getfk()&lt;&lt;endl;</span><br><span class="hljs-comment">    cout&lt;&lt;demo&lt;&lt;endl;</span><br><span class="hljs-comment">    string name,op,ob;</span><br><span class="hljs-comment">    int fk;</span><br><span class="hljs-comment">    cin&gt;&gt;name&gt;&gt;op&gt;&gt;ob&gt;&gt;fk;</span><br><span class="hljs-comment">    Operate demo2(name,op,ob,fk);</span><br><span class="hljs-comment">    cout&lt;&lt;demo2&lt;&lt;endl;</span><br><span class="hljs-comment">&#125;</span><br><span class="hljs-comment">*/</span><br><span class="hljs-comment">/*</span><br><span class="hljs-comment">int main()</span><br><span class="hljs-comment">&#123;</span><br><span class="hljs-comment">    Operate demo;</span><br><span class="hljs-comment">    cin&gt;&gt;demo;</span><br><span class="hljs-comment">    demo.print();</span><br><span class="hljs-comment">&#125;*/</span><br><span class="hljs-keyword">class</span>  <span class="hljs-title class_">Library</span><br>&#123;<br>    string account;<br>    string password;      <span class="hljs-comment">//每次登入图书馆进行操作都要有账号密码</span><br>    vector&lt;Book&gt;  book;<br>    vector&lt;Student&gt; reader;<br>    vector&lt;Operate&gt; record;   <span class="hljs-comment">//三个基础数据；</span><br>    <span class="hljs-comment">//图书查询操作所需数据</span><br>   multimap&lt;string,<span class="hljs-type">int</span>&gt; pubtimque;   <span class="hljs-comment">//出版时间</span><br>   multimap&lt;string,<span class="hljs-type">int</span>&gt; suoshuque;   <span class="hljs-comment">// 索书号</span><br>   multimap&lt;string,<span class="hljs-type">int</span>&gt; pressque;   <span class="hljs-comment">//出版社</span><br>   <span class="hljs-comment">//书名与作者都需要模糊查询</span><br>   <span class="hljs-comment">//数据查询</span><br>    map&lt;string,<span class="hljs-type">int</span>&gt;idtorea;  <span class="hljs-comment">//读者id对应读者数据下标</span><br>    map&lt;string ,<span class="hljs-type">int</span>&gt; idtoob; <span class="hljs-comment">//图书id对应图书数据下标</span><br>    multimap&lt;string,<span class="hljs-type">int</span>&gt; ridtorec; <span class="hljs-comment">//读者Id对应操作数据下标</span><br>    multimap&lt;string,<span class="hljs-type">int</span>&gt; bidtorec; <span class="hljs-comment">//图书 id对应操作数据下标</span><br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-built_in">Library</span>(string ac,string pass): <span class="hljs-built_in">account</span>(ac),<span class="hljs-built_in">password</span>(pass)&#123;<span class="hljs-built_in">load</span>();<span class="hljs-built_in">login</span>();cout&lt;&lt;book.<span class="hljs-built_in">size</span>();&#125;<br>    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">login</span><span class="hljs-params">()</span></span>;<br>    <span class="hljs-comment">//书籍查询操作</span><br>    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">querysm</span><span class="hljs-params">(string name)</span> </span>;<span class="hljs-comment">//书名查询</span><br>    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">queryss</span><span class="hljs-params">(string suoshu)</span> </span>; <span class="hljs-comment">//索书号查询</span><br>    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">queryath</span><span class="hljs-params">(string ath)</span></span>; <span class="hljs-comment">//作者查询</span><br>    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">querypres</span><span class="hljs-params">(string pre)</span></span>; <span class="hljs-comment">//出版社查询</span><br>    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">querytim</span><span class="hljs-params">(string pub)</span></span>;<span class="hljs-comment">//出版时间查询</span><br>    <span class="hljs-comment">//个人信息操作</span><br>    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">quepers</span><span class="hljs-params">()</span></span>;  <span class="hljs-comment">//查询读者身份信息</span><br>    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">quebrro</span><span class="hljs-params">()</span></span>;<span class="hljs-comment">//查询借阅信息</span><br>    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">queop</span><span class="hljs-params">()</span></span>; <span class="hljs-comment">//查询读者操作记录（仅个人）</span><br>    <span class="hljs-comment">//基础操作</span><br>    <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">cxkj</span><span class="hljs-params">()</span></span>; <span class="hljs-comment">//查询课可借书的数量</span><br>    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">jieshu</span><span class="hljs-params">(string id)</span> </span>;<br>    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">huanshu</span><span class="hljs-params">(string id)</span></span>;<br>    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">xujie</span><span class="hljs-params">(string id)</span></span>;   <span class="hljs-comment">//图书馆虽然不用输入书的条码，但是现在也是通过书的磁获取</span><br>                                            <span class="hljs-comment">//也应该看是输入，比如某些地方仍用扫码，甚至手输</span><br>    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">load</span><span class="hljs-params">()</span></span>;<br>    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">save</span><span class="hljs-params">()</span></span>;<br>    ~<span class="hljs-built_in">Library</span>()&#123;<span class="hljs-built_in">save</span>();&#125;<br>&#125;;<br><span class="hljs-comment">//有些map是给管理端用的，这里只写不读；</span><br><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">Library::login</span><span class="hljs-params">()</span></span><br><span class="hljs-function"></span>&#123;<br>        <span class="hljs-keyword">while</span>(<span class="hljs-number">1</span>)&#123;<br>            <span class="hljs-keyword">auto</span> po=idtorea.<span class="hljs-built_in">find</span>(account);<br>            <span class="hljs-keyword">if</span>(po!=idtorea.<span class="hljs-built_in">end</span>()&amp;&amp;reader[po-&gt;second].<span class="hljs-built_in">getkey</span>()==password) <span class="hljs-keyword">break</span>;<br>            cout&lt;&lt;<span class="hljs-string">&quot;账号密码不匹配\n请重新输入\n&quot;</span>;    <span class="hljs-comment">//可以在分个账号不存在，但看很多网站，</span><br>                                                                                                <span class="hljs-comment">//都不会报不存在，为了提高一点安全性；</span><br>            cin&gt;&gt;account&gt;&gt;password;<br>        &#125;<br>        cout&lt;&lt;<span class="hljs-string">&quot;登陆成功\n&quot;</span>;<br>&#125;<br><span class="hljs-type">void</span> Library:: <span class="hljs-built_in">querysm</span>(string name)<br>&#123;<br>    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">auto</span> po=book.<span class="hljs-built_in">begin</span>();po!=book.<span class="hljs-built_in">end</span>();po++)<br>    &#123;<br>       <span class="hljs-keyword">auto</span> m=po-&gt;<span class="hljs-built_in">getname</span>().<span class="hljs-built_in">find</span>(name);<br>        <span class="hljs-keyword">if</span>(m!=<span class="hljs-number">-1</span>) po-&gt;<span class="hljs-built_in">print</span>();<br>    &#125;<br>&#125;<br><span class="hljs-type">void</span> Library::  <span class="hljs-built_in">queryss</span>(string suoshu)<br>&#123;<br>    <span class="hljs-keyword">auto</span> beg=suoshuque.<span class="hljs-built_in">lower_bound</span>(suoshu);<br>    <span class="hljs-keyword">auto</span> en=suoshuque.<span class="hljs-built_in">upper_bound</span>(suoshu);<br>    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">auto</span> po=beg;po!=en;po++)book[po-&gt;second].<span class="hljs-built_in">print</span>();<br>&#125;<br><span class="hljs-type">void</span> Library::  <span class="hljs-built_in">queryath</span>(string ath)&#123;<br>    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">auto</span> po=book.<span class="hljs-built_in">begin</span>();po!=book.<span class="hljs-built_in">end</span>();po++)<br>    &#123;<br>        <span class="hljs-keyword">auto</span> m=po-&gt;<span class="hljs-built_in">getauthor</span>().<span class="hljs-built_in">find</span>(ath);<br>        <span class="hljs-keyword">if</span>(m!=<span class="hljs-number">-1</span>) po-&gt;<span class="hljs-built_in">print</span>();<br>    &#125;<br>&#125;<br><span class="hljs-type">void</span> Library::  <span class="hljs-built_in">querypres</span>(string pre)<br>&#123;<br>    <span class="hljs-keyword">auto</span> beg=pressque.<span class="hljs-built_in">lower_bound</span>(pre);<br>    <span class="hljs-keyword">auto</span> en=pressque.<span class="hljs-built_in">upper_bound</span>(pre);<br>    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">auto</span> po=beg;po!=en;po++)  book[po-&gt;second].<span class="hljs-built_in">print</span>();<br>&#125;<br><span class="hljs-type">void</span> Library::  <span class="hljs-built_in">querytim</span>(string pub)<br>&#123;<br>    <span class="hljs-keyword">auto</span> beg=pubtimque.<span class="hljs-built_in">lower_bound</span>(pub);<br>    <span class="hljs-keyword">auto</span> en=pubtimque.<span class="hljs-built_in">upper_bound</span>(pub);<br>    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">auto</span> po=beg;po!=en;po++)book[po-&gt;second].<span class="hljs-built_in">print</span>();<br>&#125;<br><span class="hljs-type">void</span> Library::  <span class="hljs-built_in">quepers</span>()&#123;<br>    cout&lt;&lt;reader[idtoob[account]].<span class="hljs-built_in">getname</span>()&lt;&lt;<span class="hljs-string">&quot; &quot;</span>;<br>    cout&lt;&lt;reader[idtoob[account]].<span class="hljs-built_in">getid</span>()&lt;&lt;<span class="hljs-string">&quot; &quot;</span>;<br>    cout&lt;&lt;reader[idtoob[account]].<span class="hljs-built_in">getmail</span>()&lt;&lt;<span class="hljs-string">&quot; &quot;</span>;<br>    cout&lt;&lt;reader[idtoob[account]].<span class="hljs-built_in">getyj</span>()&lt;&lt;<span class="hljs-string">&quot; &quot;</span>;<br>    cout&lt;&lt;<span class="hljs-built_in">cxkj</span>()&lt;&lt;endl;<br>&#125;<br><span class="hljs-type">void</span> Library::  <span class="hljs-built_in">quebrro</span>()<br>&#123;<br>    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">auto</span> po=reader[idtoob[account]].<span class="hljs-built_in">getjy</span>().<span class="hljs-built_in">begin</span>();<br>        po!=reader[idtoob[account]].<span class="hljs-built_in">getjy</span>().<span class="hljs-built_in">end</span>();po++)<br>       book[idtoob[ *po]].<span class="hljs-built_in">print</span>();<br>&#125;<br><span class="hljs-type">void</span> Library::  <span class="hljs-built_in">queop</span>()<br>&#123;<br>        <span class="hljs-keyword">auto</span> beg=ridtorec.<span class="hljs-built_in">lower_bound</span>(account);<br>        <span class="hljs-keyword">auto</span> en=ridtorec.<span class="hljs-built_in">upper_bound</span>(account);<br>         <span class="hljs-keyword">for</span>(<span class="hljs-keyword">auto</span> po=beg;po!=en;po++)record[po-&gt;second].<span class="hljs-built_in">print</span>();<br>&#125;<br><span class="hljs-type">int</span> Library:: <span class="hljs-built_in">cxkj</span>()<br>&#123;<br>        <span class="hljs-type">int</span> ans=<span class="hljs-number">0</span>;<br>        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">auto</span> po=reader[idtoob[account]].<span class="hljs-built_in">getjy</span>().<span class="hljs-built_in">begin</span>();<br>        po!=reader[idtoob[account]].<span class="hljs-built_in">getjy</span>().<span class="hljs-built_in">end</span>();po++)<br>        ans+=book[idtoob[ *po]].<span class="hljs-built_in">getfk</span>();<br>        <span class="hljs-keyword">if</span>(ans&gt;<span class="hljs-number">0</span>) <span class="hljs-keyword">return</span> <span class="hljs-number">-1</span>;<br>        <span class="hljs-keyword">else</span> <span class="hljs-keyword">return</span> <span class="hljs-number">10</span>-reader[idtoob[account]].<span class="hljs-built_in">getjy</span>().<span class="hljs-built_in">size</span>();<br>&#125;<br><span class="hljs-type">void</span> Library:: <span class="hljs-built_in">jieshu</span>(string id)<br>&#123;<br>    <span class="hljs-keyword">if</span>(<span class="hljs-built_in">cxkj</span>()==<span class="hljs-number">-1</span>)&#123;  cout&lt;&lt;<span class="hljs-string">&quot;归还逾期，请先归还\n&quot;</span>; <span class="hljs-keyword">return</span> ;&#125;<br>    <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(<span class="hljs-built_in">cxkj</span>()==<span class="hljs-number">0</span>) &#123;  cout&lt;&lt;<span class="hljs-string">&quot;达到借书上限\n&quot;</span>; <span class="hljs-keyword">return</span> ;&#125;<br>    reader[idtorea[account]].<span class="hljs-built_in">jieyue</span>(id);<br>    book[idtoob[id]].<span class="hljs-built_in">js</span>(account);<br>    <span class="hljs-function">Operate <span class="hljs-title">tem</span><span class="hljs-params">(<span class="hljs-string">&quot;借书&quot;</span>,account,id,<span class="hljs-number">-1</span>)</span></span>;<br>    record.<span class="hljs-built_in">push_back</span>(tem);<br>    ridtorec.<span class="hljs-built_in">insert</span>(<span class="hljs-built_in">make_pair</span>(account,record.<span class="hljs-built_in">size</span>()<span class="hljs-number">-1</span>));<br>    bidtorec.<span class="hljs-built_in">insert</span>(<span class="hljs-built_in">make_pair</span>(id,record.<span class="hljs-built_in">size</span>()<span class="hljs-number">-1</span>));<br>&#125;<br><span class="hljs-type">void</span> Library:: <span class="hljs-built_in">huanshu</span>(string id)<br>&#123;<br>     reader[idtorea[account]].<span class="hljs-built_in">reback</span>(id);<span class="hljs-comment">//异常在 reback抛出</span><br>    book[idtoob[id]].<span class="hljs-built_in">js</span>(<span class="hljs-string">&quot;-1&quot;</span>);<br>    <span class="hljs-type">int</span> money=book[idtoob[id]].<span class="hljs-built_in">getfk</span>();<br>    <span class="hljs-function">Operate <span class="hljs-title">www</span><span class="hljs-params">(<span class="hljs-string">&quot;还书&quot;</span>,account,id,money)</span></span>;<br>    record.<span class="hljs-built_in">push_back</span>(www);<br>    ridtorec.<span class="hljs-built_in">insert</span>(<span class="hljs-built_in">make_pair</span>(account,record.<span class="hljs-built_in">size</span>()<span class="hljs-number">-1</span>));<br>    bidtorec.<span class="hljs-built_in">insert</span>(<span class="hljs-built_in">make_pair</span>(id,record.<span class="hljs-built_in">size</span>()<span class="hljs-number">-1</span>));<br>&#125;<br><span class="hljs-type">void</span> Library:: <span class="hljs-built_in">xujie</span>(string id)<br>&#123;<br>    <span class="hljs-keyword">if</span>(<span class="hljs-built_in">cxkj</span>()==<span class="hljs-number">-1</span>)&#123;  cout&lt;&lt;<span class="hljs-string">&quot;归还逾期，请先归还\n&quot;</span>; <span class="hljs-keyword">return</span> ;&#125;<br>    <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(<span class="hljs-built_in">cxkj</span>()==<span class="hljs-number">0</span>) &#123;  cout&lt;&lt;<span class="hljs-string">&quot;达到借书上限\n&quot;</span>; <span class="hljs-keyword">return</span> ;&#125;<br>    book[idtoob[id]].<span class="hljs-built_in">xxj</span>();<br>    <span class="hljs-function">Operate <span class="hljs-title">tem</span><span class="hljs-params">(<span class="hljs-string">&quot;续借&quot;</span>,account,id,<span class="hljs-number">-1</span>)</span></span>;<br>    record.<span class="hljs-built_in">push_back</span>(tem);<br>    ridtorec.<span class="hljs-built_in">insert</span>(<span class="hljs-built_in">make_pair</span>(account,record.<span class="hljs-built_in">size</span>()<span class="hljs-number">-1</span>));<br>    bidtorec.<span class="hljs-built_in">insert</span>(<span class="hljs-built_in">make_pair</span>(id,record.<span class="hljs-built_in">size</span>()<span class="hljs-number">-1</span>));<br>&#125;<br><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">Library::save</span><span class="hljs-params">()</span></span><br><span class="hljs-function"></span>&#123;<br>    <span class="hljs-function">ofstream <span class="hljs-title">out1</span><span class="hljs-params">(<span class="hljs-string">&quot;d:\\book.txt&quot;</span>,ios::out)</span></span>;<br>    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">auto</span> po=book.<span class="hljs-built_in">begin</span>(); po!=book.<span class="hljs-built_in">end</span>(); po++)<br>        out1&lt;&lt;*po&lt;&lt;endl;<br>    out1.<span class="hljs-built_in">close</span>();<br>    <span class="hljs-function">ofstream <span class="hljs-title">out2</span><span class="hljs-params">(<span class="hljs-string">&quot;d:\\reader.txt&quot;</span>,ios::out)</span></span>;<br>    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">auto</span> po=reader.<span class="hljs-built_in">begin</span>(); po!=reader.<span class="hljs-built_in">end</span>(); po++)<br>            out2&lt;&lt;*po&lt;&lt;endl;<br>    out2.<span class="hljs-built_in">close</span>();<br>    <span class="hljs-function">ofstream <span class="hljs-title">out3</span><span class="hljs-params">(<span class="hljs-string">&quot;d:\\record.txt&quot;</span>,ios::out)</span></span>;<br>    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">auto</span> po=record.<span class="hljs-built_in">begin</span>(); po!=record.<span class="hljs-built_in">end</span>(); po++)<br>        out3&lt;&lt;*po&lt;&lt;endl;<br>    out3.<span class="hljs-built_in">close</span>();<br>&#125;<br><span class="hljs-type">void</span> Library:: <span class="hljs-built_in">load</span>()<br>&#123;<br>    <span class="hljs-function">ifstream <span class="hljs-title">in1</span><span class="hljs-params">(<span class="hljs-string">&quot;d:\\book.txt&quot;</span>,ios::in)</span></span>;<br>    <span class="hljs-keyword">if</span>(in1)<br>    &#123;<br>        Book tem1;<br>        book.<span class="hljs-built_in">clear</span>();<br>        <span class="hljs-keyword">while</span>(in1&gt;&gt;tem1)<br>        &#123;<br>            book.<span class="hljs-built_in">push_back</span>(tem1);<br>            idtorea.<span class="hljs-built_in">insert</span>(<span class="hljs-built_in">make_pair</span>(tem1.<span class="hljs-built_in">getid</span>(),book.<span class="hljs-built_in">size</span>()<span class="hljs-number">-1</span>));<br>            pubtimque.<span class="hljs-built_in">insert</span>(<span class="hljs-built_in">make_pair</span>(tem1.<span class="hljs-built_in">getpubtime</span>(),book.<span class="hljs-built_in">size</span>()<span class="hljs-number">-1</span>));<br>            suoshuque.<span class="hljs-built_in">insert</span>(<span class="hljs-built_in">make_pair</span>(tem1.<span class="hljs-built_in">getsuoshu</span>(),book.<span class="hljs-built_in">size</span>()<span class="hljs-number">-1</span>));<br>            pressque.<span class="hljs-built_in">insert</span>(<span class="hljs-built_in">make_pair</span>(tem1.<span class="hljs-built_in">getpress</span>(),book.<span class="hljs-built_in">size</span>()<span class="hljs-number">-1</span>));<br>        &#125;<br>        in1.<span class="hljs-built_in">close</span>();<br>    &#125;<br>    <span class="hljs-function">ifstream <span class="hljs-title">in2</span><span class="hljs-params">(<span class="hljs-string">&quot;d:\\reader.txt&quot;</span>,ios::in)</span></span>;<br>    <span class="hljs-keyword">if</span>(in2)<br>    &#123;<br>        reader.<span class="hljs-built_in">clear</span>();<br>        Student tem2;<br>        <span class="hljs-keyword">while</span>(in2&gt;&gt;tem2)<br>        &#123;<br>            reader.<span class="hljs-built_in">push_back</span>(tem2);<br>            idtorea.<span class="hljs-built_in">insert</span>(<span class="hljs-built_in">make_pair</span>(tem2.<span class="hljs-built_in">getid</span>(),reader.<span class="hljs-built_in">size</span>()<span class="hljs-number">-1</span>));<br>        &#125;<br>        in2.<span class="hljs-built_in">close</span>();<br>    &#125;<br>    <span class="hljs-function">ifstream <span class="hljs-title">in3</span><span class="hljs-params">(<span class="hljs-string">&quot;d:\\record.txt&quot;</span>,ios::in)</span></span>;<br>    <span class="hljs-keyword">if</span>(in3)<br>    &#123;<br>        record.<span class="hljs-built_in">clear</span>();<br>        Operate tem3;<br>        <span class="hljs-keyword">while</span>( in3&gt;&gt;tem3)<br>        &#123;<br>            record.<span class="hljs-built_in">push_back</span>(tem3);<br>            ridtorec.<span class="hljs-built_in">insert</span>(<span class="hljs-built_in">make_pair</span>(tem3.<span class="hljs-built_in">getname</span>(),record.<span class="hljs-built_in">size</span>()<span class="hljs-number">-1</span>));<br>            bidtorec.<span class="hljs-built_in">insert</span>(<span class="hljs-built_in">make_pair</span>(tem3.<span class="hljs-built_in">getbook</span>(),record.<span class="hljs-built_in">size</span>()<span class="hljs-number">-1</span>));<br>        &#125;<br>        in3.<span class="hljs-built_in">close</span>();<br>    &#125;<br>&#125;<br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span><br><span class="hljs-function"></span>&#123;<br>    string account,key,name,suoshu,ath,pre,pub,id;<br>    cin&gt;&gt;account&gt;&gt;key;<br>    <span class="hljs-function">Library <span class="hljs-title">demo</span><span class="hljs-params">(account,key)</span></span>;<br>    cin&gt;&gt;name;<br>   demo. <span class="hljs-built_in">querysm</span>( name) ;<span class="hljs-comment">//测试书名查询</span><br>    cin&gt;&gt;suoshu;<br>  demo.   <span class="hljs-built_in">queryss</span>( suoshu) ; <span class="hljs-comment">//测试索书号查询</span><br>    cin&gt;&gt;ath;<br>    demo. <span class="hljs-built_in">queryath</span>( ath); <span class="hljs-comment">//测试作者查询</span><br>    cin&gt;&gt;pre;<br>  demo.   <span class="hljs-built_in">querypres</span>( pre); <span class="hljs-comment">//测试出版社查询</span><br>    cin&gt;&gt;pub;<br>    demo. <span class="hljs-built_in">querytim</span>( pub);<span class="hljs-comment">//测试出版时间查询</span><br>    <span class="hljs-comment">//测试个人信息操作</span><br>    demo. <span class="hljs-built_in">quepers</span>();  <span class="hljs-comment">//测试查询读者身份信息</span><br>    demo.   <span class="hljs-built_in">quebrro</span>();<span class="hljs-comment">//测试查询借阅信息</span><br>   demo.  <span class="hljs-built_in">queop</span>(); <span class="hljs-comment">//测试查询读者操作记录（仅个人）</span><br>    <span class="hljs-comment">//测试基础操作</span><br>  demo. <span class="hljs-built_in">cxkj</span>(); <span class="hljs-comment">//测试查询课可借书的数量</span><br>    cin&gt;&gt;id;<br>  demo.   <span class="hljs-built_in">jieshu</span>( id) ;<br>    cin&gt;&gt;id;<br>  demo.   <span class="hljs-built_in">huanshu</span>( id);<br>    cin&gt;&gt;id;<br>  demo.   <span class="hljs-built_in">xujie</span>( id);<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Web/" class="category-chain-item">Web</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>『Web』图书馆管理系统用户端心得</div>
+      <div>https://chiamzhang.github.io/2024/06/29/『Web』图书馆管理系统用户端心得/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>Chiam</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>June 29, 2024</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>Licensed under</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2024/06/29/%E3%80%8EWindows%20Sebsystem%20Andriod%E3%80%8FWin11%E7%B3%BB%E7%BB%9F%E5%AE%89%E8%A3%85WSA/" title="『Windows Sebsystem Andriod』Win11系统安装WSA">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">『Windows Sebsystem Andriod』Win11系统安装WSA</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/06/29/%E3%80%8EWeb%E3%80%8F%E4%BD%9C%E4%B8%9A%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1%E6%8A%A5%E5%91%8A/" title="『Web』作业管理系统设计报告">
+                        <span class="hidden-mobile">『Web』作业管理系统设计报告</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"fIfc7WqUDZohlQuPc2lz5mJy-MdYXbMMI","appKey":"zjlAG3ZA3o4cBHVAkjzc2Z20","path":"window.location.pathname","placeholder":"留言仅限讨论，禁止广告等行为","avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"https://fifc7wqu.api.lncldglobal.com","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>Table of Contents</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <meta name="referrer" content="no-referrer" /> <footer id="footer" role="contentinfo"> <meta name="referrer" content="no-referrer" /> <div class="divider"> <div class="wall"></div> <img class="animals" src="/img/footer_animals_new.png" srcset="/img/loading.gif" lazyload alt="Footer Animals"> </div> <div class="container" data-index="450"> <p> <a href="https://chiamzhang.github.io" target="_blank">DogEgg</a> <i class="iconfont icon-love"></i> <a href="#" target="_blank">LittePig</a> </p> <p> Powered by  <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-pen"></i> Theme  <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> </p> </div> </footer> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+  
+<script src="/js/love.js"></script>
+<script src="/js/funnyTitle.js"></script>
+<script src="/js/backTop.js"></script>
+<script src="//cdn.jsdelivr.net/gh/bynotes/texiao/source/js/xiaoxuehua.js"></script>
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+</html>

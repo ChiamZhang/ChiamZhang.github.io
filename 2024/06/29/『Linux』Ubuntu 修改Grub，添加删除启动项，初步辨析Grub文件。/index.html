@@ -1,0 +1,700 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/Mine.jpg">
+  <link rel="icon" href="/img/Mine.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Chiam">
+  <meta name="keywords" content="Algorithms，Cybersecurity">
+  
+    <meta name="description" content="『Linux』Ubuntu 修改 Grub，添加删除启动项，初步辨析 Grub 文件。使用场景：由于我的电脑 装 Ubuntu 的时候电脑里只有一个 Windows 系统，所以 Ubuntu 就自动将我 Windows 的启动项添加进取。 后来我的电脑里又装了 Kali 和 Win11 所以想把这两个启动项也加进去。所以我们来了解一下 Ubuntu 的 Grub，还不是很完善，希望那个大家在评论给">
+<meta property="og:type" content="article">
+<meta property="og:title" content="『Linux』Ubuntu 修改Grub，添加删除启动项，初步辨析Grub文件。">
+<meta property="og:url" content="https://chiamzhang.github.io/2024/06/29/%E3%80%8ELinux%E3%80%8FUbuntu%20%E4%BF%AE%E6%94%B9Grub%EF%BC%8C%E6%B7%BB%E5%8A%A0%E5%88%A0%E9%99%A4%E5%90%AF%E5%8A%A8%E9%A1%B9%EF%BC%8C%E5%88%9D%E6%AD%A5%E8%BE%A8%E6%9E%90Grub%E6%96%87%E4%BB%B6%E3%80%82/index.html">
+<meta property="og:site_name" content="Homepage of Chiam">
+<meta property="og:description" content="『Linux』Ubuntu 修改 Grub，添加删除启动项，初步辨析 Grub 文件。使用场景：由于我的电脑 装 Ubuntu 的时候电脑里只有一个 Windows 系统，所以 Ubuntu 就自动将我 Windows 的启动项添加进取。 后来我的电脑里又装了 Kali 和 Win11 所以想把这两个启动项也加进去。所以我们来了解一下 Ubuntu 的 Grub，还不是很完善，希望那个大家在评论给">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2024-06-29T13:16:53.752Z">
+<meta property="article:modified_time" content="2023-12-05T16:17:46.524Z">
+<meta property="article:author" content="Chiam">
+<meta property="article:tag" content="Algorithms，Cybersecurity">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>『Linux』Ubuntu 修改Grub，添加删除启动项，初步辨析Grub文件。 - Homepage of Chiam</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"chiamzhang.github.io","root":"/","version":"1.9.5-a","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":"❡"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":2},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
+
+
+<body>
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Chiam&#39;s Blogs</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                
+                <span>Home</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                
+                <span>Archives</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                
+                <span>Categories</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                
+                <span>About</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                
+                <span>Links</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="『Linux』Ubuntu 修改Grub，添加删除启动项，初步辨析Grub文件。"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-06-29 21:16" pubdate>
+          June 29, 2024 pm
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          19k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          157 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">『Linux』Ubuntu 修改Grub，添加删除启动项，初步辨析Grub文件。</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="『Linux』Ubuntu-修改-Grub，添加删除启动项，初步辨析-Grub-文件。"><a href="#『Linux』Ubuntu-修改-Grub，添加删除启动项，初步辨析-Grub-文件。" class="headerlink" title="『Linux』Ubuntu 修改 Grub，添加删除启动项，初步辨析 Grub 文件。"></a>『Linux』Ubuntu 修改 Grub，添加删除启动项，初步辨析 Grub 文件。</h1><h3 id="使用场景："><a href="#使用场景：" class="headerlink" title="使用场景："></a><strong>使用场景：</strong></h3><p>由于我的电脑 装 Ubuntu 的时候电脑里只有一个 Windows 系统，所以 Ubuntu 就自动将我 Windows 的启动项添加进取。</p>
+<p>后来我的电脑里又装了 Kali 和 Win11 所以想把这两个启动项也加进去。所以我们来了解一下 Ubuntu 的 Grub，还不是很完善，希望那个大家在评论给我补充。</p>
+<h3 id="在-Ubuntu-中打开-Grub"><a href="#在-Ubuntu-中打开-Grub" class="headerlink" title="在 Ubuntu 中打开 Grub"></a><strong>在 Ubuntu 中打开 Grub</strong></h3><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs csharp">sudo gedit  /boot/grub/grub.cfg<br>sudo vi  /boot/grub/grub.cfg<br><br>取决于你的编辑器<br></code></pre></td></tr></table></figure>
+
+<h3 id="完整的-Grub-文件，以我的为例子"><a href="#完整的-Grub-文件，以我的为例子" class="headerlink" title="完整的 Grub 文件，以我的为例子"></a>完整的 Grub 文件，以我的为例子</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br><span class="line">240</span><br><span class="line">241</span><br><span class="line">242</span><br><span class="line">243</span><br><span class="line">244</span><br><span class="line">245</span><br><span class="line">246</span><br><span class="line">247</span><br><span class="line">248</span><br><span class="line">249</span><br><span class="line">250</span><br><span class="line">251</span><br><span class="line">252</span><br><span class="line">253</span><br><span class="line">254</span><br><span class="line">255</span><br><span class="line">256</span><br><span class="line">257</span><br><span class="line">258</span><br><span class="line">259</span><br><span class="line">260</span><br><span class="line">261</span><br><span class="line">262</span><br><span class="line">263</span><br><span class="line">264</span><br><span class="line">265</span><br><span class="line">266</span><br><span class="line">267</span><br><span class="line">268</span><br><span class="line">269</span><br><span class="line">270</span><br><span class="line">271</span><br><span class="line">272</span><br><span class="line">273</span><br><span class="line">274</span><br><span class="line">275</span><br><span class="line">276</span><br><span class="line">277</span><br><span class="line">278</span><br><span class="line">279</span><br><span class="line">280</span><br><span class="line">281</span><br><span class="line">282</span><br><span class="line">283</span><br><span class="line">284</span><br><span class="line">285</span><br><span class="line">286</span><br><span class="line">287</span><br><span class="line">288</span><br><span class="line">289</span><br><span class="line">290</span><br><span class="line">291</span><br><span class="line">292</span><br><span class="line">293</span><br><span class="line">294</span><br><span class="line">295</span><br><span class="line">296</span><br><span class="line">297</span><br><span class="line">298</span><br><span class="line">299</span><br><span class="line">300</span><br><span class="line">301</span><br><span class="line">302</span><br><span class="line">303</span><br><span class="line">304</span><br><span class="line">305</span><br><span class="line">306</span><br><span class="line">307</span><br><span class="line">308</span><br></pre></td><td class="code"><pre><code class="hljs c">#<br># DO NOT EDIT THIS FILE<br>#<br># It is automatically generated by grub-mkconfig using templates<br><span class="hljs-meta"># from /etc/grub.d and settings from /etc/default/grub</span><br>#<br><br>### BEGIN /etc/grub.d/<span class="hljs-number">00</span>_header ##<span class="hljs-meta">#</span><br><span class="hljs-meta"><span class="hljs-keyword">if</span> [ -s $prefix/grubenv ]; then</span><br>  <span class="hljs-built_in">set</span> have_grubenv=<span class="hljs-literal">true</span><br>  load_env<br>fi<br><span class="hljs-keyword">if</span> [ <span class="hljs-string">&quot;$&#123;initrdfail&#125;&quot;</span> = <span class="hljs-number">2</span> ]; then<br>   <span class="hljs-built_in">set</span> initrdfail=<br>elif [ <span class="hljs-string">&quot;$&#123;initrdfail&#125;&quot;</span> = <span class="hljs-number">1</span> ]; then<br>   <span class="hljs-built_in">set</span> next_entry=<span class="hljs-string">&quot;$&#123;prev_entry&#125;&quot;</span><br>   <span class="hljs-built_in">set</span> prev_entry=<br>   save_env prev_entry<br>   <span class="hljs-keyword">if</span> [ <span class="hljs-string">&quot;$&#123;next_entry&#125;&quot;</span> ]; then<br>      <span class="hljs-built_in">set</span> initrdfail=<span class="hljs-number">2</span><br>   fi<br>fi<br><span class="hljs-keyword">if</span> [ <span class="hljs-string">&quot;$&#123;next_entry&#125;&quot;</span> ] ; then<br>   <span class="hljs-built_in">set</span> <span class="hljs-keyword">default</span>=<span class="hljs-string">&quot;$&#123;next_entry&#125;&quot;</span><br>   <span class="hljs-built_in">set</span> next_entry=<br>   save_env next_entry<br>   <span class="hljs-built_in">set</span> boot_once=<span class="hljs-literal">true</span><br><span class="hljs-keyword">else</span><br>   <span class="hljs-built_in">set</span> <span class="hljs-keyword">default</span>=<span class="hljs-string">&quot;0&quot;</span><br>fi<br><br><span class="hljs-keyword">if</span> [ x<span class="hljs-string">&quot;$&#123;feature_menuentry_id&#125;&quot;</span> = xy ]; then<br>  menuentry_id_option=<span class="hljs-string">&quot;--id&quot;</span><br><span class="hljs-keyword">else</span><br>  menuentry_id_option=<span class="hljs-string">&quot;&quot;</span><br>fi<br><br>export menuentry_id_option<br><br><span class="hljs-keyword">if</span> [ <span class="hljs-string">&quot;$&#123;prev_saved_entry&#125;&quot;</span> ]; then<br>  <span class="hljs-built_in">set</span> saved_entry=<span class="hljs-string">&quot;$&#123;prev_saved_entry&#125;&quot;</span><br>  save_env saved_entry<br>  <span class="hljs-built_in">set</span> prev_saved_entry=<br>  save_env prev_saved_entry<br>  <span class="hljs-built_in">set</span> boot_once=<span class="hljs-literal">true</span><br>fi<br><br>function savedefault &#123;<br>  <span class="hljs-keyword">if</span> [ -z <span class="hljs-string">&quot;$&#123;boot_once&#125;&quot;</span> ]; then<br>    saved_entry=<span class="hljs-string">&quot;$&#123;chosen&#125;&quot;</span><br>    save_env saved_entry<br>  fi<br>&#125;<br>function initrdfail &#123;<br>    <span class="hljs-keyword">if</span> [ -n <span class="hljs-string">&quot;$&#123;have_grubenv&#125;&quot;</span> ]; then <span class="hljs-keyword">if</span> [ -n <span class="hljs-string">&quot;$&#123;partuuid&#125;&quot;</span> ]; then<br>      <span class="hljs-keyword">if</span> [ -z <span class="hljs-string">&quot;$&#123;initrdfail&#125;&quot;</span> ]; then<br>        <span class="hljs-built_in">set</span> initrdfail=<span class="hljs-number">1</span><br>        <span class="hljs-keyword">if</span> [ -n <span class="hljs-string">&quot;$&#123;boot_once&#125;&quot;</span> ]; then<br>          <span class="hljs-built_in">set</span> prev_entry=<span class="hljs-string">&quot;$&#123;default&#125;&quot;</span><br>          save_env prev_entry<br>        fi<br>      fi<br>      save_env initrdfail<br>    fi; fi<br>&#125;<br>function recordfail &#123;<br>  <span class="hljs-built_in">set</span> recordfail=<span class="hljs-number">1</span><br>  <span class="hljs-keyword">if</span> [ -n <span class="hljs-string">&quot;$&#123;have_grubenv&#125;&quot;</span> ]; then <span class="hljs-keyword">if</span> [ -z <span class="hljs-string">&quot;$&#123;boot_once&#125;&quot;</span> ]; then save_env recordfail; fi; fi<br>&#125;<br>function load_video &#123;<br>  <span class="hljs-keyword">if</span> [ x$feature_all_video_module = xy ]; then<br>    insmod all_video<br>  <span class="hljs-keyword">else</span><br>    insmod efi_gop<br>    insmod efi_uga<br>    insmod ieee1275_fb<br>    insmod vbe<br>    insmod vga<br>    insmod video_bochs<br>    insmod video_cirrus<br>  fi<br>&#125;<br><br><span class="hljs-keyword">if</span> [ x$feature_default_font_path = xy ] ; then<br>   font=unicode<br><span class="hljs-keyword">else</span><br>insmod part_gpt<br>insmod ext2<br><span class="hljs-keyword">if</span> [ x$feature_platform_search_hint = xy ]; then<br>  search --no-floppy --fs-uuid --<span class="hljs-built_in">set</span>=root  <span class="hljs-number">77</span>ce85c5<span class="hljs-number">-1b</span>12<span class="hljs-number">-4291</span><span class="hljs-number">-85</span>c6<span class="hljs-number">-20b</span>1fd8919bd<br><span class="hljs-keyword">else</span><br>  search --no-floppy --fs-uuid --<span class="hljs-built_in">set</span>=root <span class="hljs-number">77</span>ce85c5<span class="hljs-number">-1b</span>12<span class="hljs-number">-4291</span><span class="hljs-number">-85</span>c6<span class="hljs-number">-20b</span>1fd8919bd<br>fi<br>    font=<span class="hljs-string">&quot;/usr/share/grub/unicode.pf2&quot;</span><br>fi<br><br><span class="hljs-keyword">if</span> loadfont $font ; then<br>  <span class="hljs-built_in">set</span> gfxmode=<span class="hljs-keyword">auto</span><br>  load_video<br>  insmod gfxterm<br>  <span class="hljs-built_in">set</span> locale_dir=$prefix/locale<br>  <span class="hljs-built_in">set</span> lang=zh_CN<br>  insmod gettext<br>fi<br>terminal_output gfxterm<br>insmod part_gpt<br>insmod ext2<br><span class="hljs-keyword">if</span> [ x$feature_platform_search_hint = xy ]; then<br>  search --no-floppy --fs-uuid --<span class="hljs-built_in">set</span>=root  <span class="hljs-number">77</span>ce85c5<span class="hljs-number">-1b</span>12<span class="hljs-number">-4291</span><span class="hljs-number">-85</span>c6<span class="hljs-number">-20b</span>1fd8919bd<br><span class="hljs-keyword">else</span><br>  search --no-floppy --fs-uuid --<span class="hljs-built_in">set</span>=root <span class="hljs-number">77</span>ce85c5<span class="hljs-number">-1b</span>12<span class="hljs-number">-4291</span><span class="hljs-number">-85</span>c6<span class="hljs-number">-20b</span>1fd8919bd<br>fi<br>insmod gfxmenu<br>loadfont ($root)/boot/grub/themes/CyberRe/dejavu_14.pf2<br>loadfont ($root)/boot/grub/themes/CyberRe/droidlogo_bold_17.pf2<br>loadfont ($root)/boot/grub/themes/CyberRe/droidlogo_bold_20.pf2<br>loadfont ($root)/boot/grub/themes/CyberRe/droidlogo_bold_26.pf2<br>loadfont ($root)/boot/grub/themes/CyberRe/droidlogo_regular_12.pf2<br>loadfont ($root)/boot/grub/themes/CyberRe/droidlogo_regular_17.pf2<br>insmod png<br><span class="hljs-built_in">set</span> theme=($root)/boot/grub/themes/CyberRe/theme.txt<br>export theme<br><span class="hljs-keyword">if</span> [ <span class="hljs-string">&quot;$&#123;recordfail&#125;&quot;</span> = <span class="hljs-number">1</span> ] ; then<br>  <span class="hljs-built_in">set</span> timeout=<span class="hljs-number">30</span><br><span class="hljs-keyword">else</span><br>  <span class="hljs-keyword">if</span> [ x$feature_timeout_style = xy ] ; then<br>    <span class="hljs-built_in">set</span> timeout_style=hidden<br>    <span class="hljs-built_in">set</span> timeout=<span class="hljs-number">100</span><br>  # Fallback hidden-timeout code in <span class="hljs-keyword">case</span> the timeout_style feature is<br>  <span class="hljs-meta"># unavailable.</span><br>  elif sleep --interruptible <span class="hljs-number">100</span> ; then<br>    <span class="hljs-built_in">set</span> timeout=<span class="hljs-number">0</span><br>  fi<br>fi<br>### END /etc/grub.d/<span class="hljs-number">00</span>_header ###<br><br>### BEGIN /etc/grub.d/<span class="hljs-number">05</span>_debian_theme ##<span class="hljs-meta">#</span><br><span class="hljs-meta">set menu_color_normal=white/black</span><br><span class="hljs-built_in">set</span> menu_color_highlight=black/light-gray<br>### END /etc/grub.d/<span class="hljs-number">05</span>_debian_theme ###<br><br>### BEGIN /etc/grub.d/<span class="hljs-number">10</span>_linux ##<span class="hljs-meta">#</span><br><span class="hljs-meta">function gfxmode &#123;</span><br>	<span class="hljs-built_in">set</span> gfxpayload=<span class="hljs-string">&quot;$&#123;1&#125;&quot;</span><br>	<span class="hljs-keyword">if</span> [ <span class="hljs-string">&quot;$&#123;1&#125;&quot;</span> = <span class="hljs-string">&quot;keep&quot;</span> ]; then<br>		<span class="hljs-built_in">set</span> vt_handoff=vt.handoff=<span class="hljs-number">7</span><br>	<span class="hljs-keyword">else</span><br>		<span class="hljs-built_in">set</span> vt_handoff=<br>	fi<br>&#125;<br><span class="hljs-keyword">if</span> [ <span class="hljs-string">&quot;$&#123;recordfail&#125;&quot;</span> != <span class="hljs-number">1</span> ]; then<br>  <span class="hljs-keyword">if</span> [ -e $&#123;prefix&#125;/gfxblacklist.txt ]; then<br>    <span class="hljs-keyword">if</span> hwmatch $&#123;prefix&#125;/gfxblacklist.txt <span class="hljs-number">3</span>; then<br>      <span class="hljs-keyword">if</span> [ $&#123;match&#125; = <span class="hljs-number">0</span> ]; then<br>        <span class="hljs-built_in">set</span> linux_gfx_mode=keep<br>      <span class="hljs-keyword">else</span><br>        <span class="hljs-built_in">set</span> linux_gfx_mode=text<br>      fi<br>    <span class="hljs-keyword">else</span><br>      <span class="hljs-built_in">set</span> linux_gfx_mode=text<br>    fi<br>  <span class="hljs-keyword">else</span><br>    <span class="hljs-built_in">set</span> linux_gfx_mode=keep<br>  fi<br><span class="hljs-keyword">else</span><br>  <span class="hljs-built_in">set</span> linux_gfx_mode=text<br>fi<br>export linux_gfx_mode<br><br><br>### BEGIN /etc/grub.d/<span class="hljs-number">30</span>_os-prober ##<span class="hljs-meta">#</span><br><span class="hljs-meta">menuentry <span class="hljs-string">&#x27;Windows Boot Manager (在 /dev/nvme1n1p1)&#x27;</span> --class windows --class os $menuentry_id_option <span class="hljs-string">&#x27;osprober-efi-B15C-4C64&#x27;</span> &#123;</span><br>	insmod part_gpt<br>	insmod fat<br>	<span class="hljs-keyword">if</span> [ x$feature_platform_search_hint = xy ]; then<br>	  search --no-floppy --fs-uuid --<span class="hljs-built_in">set</span>=root  B15C<span class="hljs-number">-4</span>C64<br>	<span class="hljs-keyword">else</span><br>	  search --no-floppy --fs-uuid --<span class="hljs-built_in">set</span>=root B15C<span class="hljs-number">-4</span>C64<br>	fi<br>	chainloader /EFI/Microsoft/Boot/bootmgfw.efi<br>&#125;<br><br>menuentry <span class="hljs-string">&#x27;Ubuntu 21&#x27;</span> --class ubuntu --class gnu-linux --class gnu --class os $menuentry_id_option <span class="hljs-string">&#x27;gnulinux-simple-77ce85c5-1b12-4291-85c6-20b1fd8919bd&#x27;</span> &#123;<br>	recordfail<br>	load_video<br>	gfxmode $linux_gfx_mode<br>	insmod gzio<br>	<span class="hljs-keyword">if</span> [ x$grub_platform = xxen ]; then insmod xzio; insmod lzopio; fi<br>	insmod part_gpt<br>	insmod ext2<br>	<span class="hljs-keyword">if</span> [ x$feature_platform_search_hint = xy ]; then<br>	  search --no-floppy --fs-uuid --<span class="hljs-built_in">set</span>=root  <span class="hljs-number">77</span>ce85c5<span class="hljs-number">-1b</span>12<span class="hljs-number">-4291</span><span class="hljs-number">-85</span>c6<span class="hljs-number">-20b</span>1fd8919bd<br>	<span class="hljs-keyword">else</span><br>	  search --no-floppy --fs-uuid --<span class="hljs-built_in">set</span>=root <span class="hljs-number">77</span>ce85c5<span class="hljs-number">-1b</span>12<span class="hljs-number">-4291</span><span class="hljs-number">-85</span>c6<span class="hljs-number">-20b</span>1fd8919bd<br>	fi<br>	linux	/boot/vmlinuz<span class="hljs-number">-5.11</span><span class="hljs-number">.0</span><span class="hljs-number">-43</span>-generic root=UUID=<span class="hljs-number">77</span>ce85c5<span class="hljs-number">-1b</span>12<span class="hljs-number">-4291</span><span class="hljs-number">-85</span>c6<span class="hljs-number">-20b</span>1fd8919bd ro  quiet splash $vt_handoff<br>	initrd	/boot/initrd.img<span class="hljs-number">-5.11</span><span class="hljs-number">.0</span><span class="hljs-number">-43</span>-generic<br>&#125;<br>submenu <span class="hljs-string">&#x27;Ubuntu 的高级选项&#x27;</span> $menuentry_id_option <span class="hljs-string">&#x27;gnulinux-advanced-77ce85c5-1b12-4291-85c6-20b1fd8919bd&#x27;</span> &#123;<br>	menuentry <span class="hljs-string">&#x27;Ubuntu，Linux 5.11.0-43-generic&#x27;</span> --class ubuntu --class gnu-linux --class gnu --class os $menuentry_id_option <span class="hljs-string">&#x27;gnulinux-5.11.0-43-generic-advanced-77ce85c5-1b12-4291-85c6-20b1fd8919bd&#x27;</span> &#123;<br>		recordfail<br>		load_video<br>		gfxmode $linux_gfx_mode<br>		insmod gzio<br>		<span class="hljs-keyword">if</span> [ x$grub_platform = xxen ]; then insmod xzio; insmod lzopio; fi<br>		insmod part_gpt<br>		insmod ext2<br>		<span class="hljs-keyword">if</span> [ x$feature_platform_search_hint = xy ]; then<br>		  search --no-floppy --fs-uuid --<span class="hljs-built_in">set</span>=root  <span class="hljs-number">77</span>ce85c5<span class="hljs-number">-1b</span>12<span class="hljs-number">-4291</span><span class="hljs-number">-85</span>c6<span class="hljs-number">-20b</span>1fd8919bd<br>		<span class="hljs-keyword">else</span><br>		  search --no-floppy --fs-uuid --<span class="hljs-built_in">set</span>=root <span class="hljs-number">77</span>ce85c5<span class="hljs-number">-1b</span>12<span class="hljs-number">-4291</span><span class="hljs-number">-85</span>c6<span class="hljs-number">-20b</span>1fd8919bd<br>		fi<br>		echo	<span class="hljs-string">&#x27;载入 Linux 5.11.0-43-generic ...&#x27;</span><br>		linux	/boot/vmlinuz<span class="hljs-number">-5.11</span><span class="hljs-number">.0</span><span class="hljs-number">-43</span>-generic root=UUID=<span class="hljs-number">77</span>ce85c5<span class="hljs-number">-1b</span>12<span class="hljs-number">-4291</span><span class="hljs-number">-85</span>c6<span class="hljs-number">-20b</span>1fd8919bd ro  quiet splash $vt_handoff<br>		echo	<span class="hljs-string">&#x27;载入初始化内存盘...&#x27;</span><br>		initrd	/boot/initrd.img<span class="hljs-number">-5.11</span><span class="hljs-number">.0</span><span class="hljs-number">-43</span>-generic<br>	&#125;<br>	menuentry <span class="hljs-string">&#x27;Ubuntu, with Linux 5.11.0-43-generic (recovery mode)&#x27;</span> --class ubuntu --class gnu-linux --class gnu --class os $menuentry_id_option <span class="hljs-string">&#x27;gnulinux-5.11.0-43-generic-recovery-77ce85c5-1b12-4291-85c6-20b1fd8919bd&#x27;</span> &#123;<br>		recordfail<br>		load_video<br>		insmod gzio<br>		<span class="hljs-keyword">if</span> [ x$grub_platform = xxen ]; then insmod xzio; insmod lzopio; fi<br>		insmod part_gpt<br>		insmod ext2<br>		<span class="hljs-keyword">if</span> [ x$feature_platform_search_hint = xy ]; then<br>		  search --no-floppy --fs-uuid --<span class="hljs-built_in">set</span>=root  <span class="hljs-number">77</span>ce85c5<span class="hljs-number">-1b</span>12<span class="hljs-number">-4291</span><span class="hljs-number">-85</span>c6<span class="hljs-number">-20b</span>1fd8919bd<br>		<span class="hljs-keyword">else</span><br>		  search --no-floppy --fs-uuid --<span class="hljs-built_in">set</span>=root <span class="hljs-number">77</span>ce85c5<span class="hljs-number">-1b</span>12<span class="hljs-number">-4291</span><span class="hljs-number">-85</span>c6<span class="hljs-number">-20b</span>1fd8919bd<br>		fi<br>		echo	<span class="hljs-string">&#x27;载入 Linux 5.11.0-43-generic ...&#x27;</span><br>		linux	/boot/vmlinuz<span class="hljs-number">-5.11</span><span class="hljs-number">.0</span><span class="hljs-number">-43</span>-generic root=UUID=<span class="hljs-number">77</span>ce85c5<span class="hljs-number">-1b</span>12<span class="hljs-number">-4291</span><span class="hljs-number">-85</span>c6<span class="hljs-number">-20b</span>1fd8919bd ro recovery nomodeset dis_ucode_ldr<br>		echo	<span class="hljs-string">&#x27;载入初始化内存盘...&#x27;</span><br>		initrd	/boot/initrd.img<span class="hljs-number">-5.11</span><span class="hljs-number">.0</span><span class="hljs-number">-43</span>-generic<br>	&#125;<br>	menuentry <span class="hljs-string">&#x27;Ubuntu，Linux 5.11.0-41-generic&#x27;</span> --class ubuntu --class gnu-linux --class gnu --class os $menuentry_id_option <span class="hljs-string">&#x27;gnulinux-5.11.0-41-generic-advanced-77ce85c5-1b12-4291-85c6-20b1fd8919bd&#x27;</span> &#123;<br>		recordfail<br>		load_video<br>		gfxmode $linux_gfx_mode<br>		insmod gzio<br>		<span class="hljs-keyword">if</span> [ x$grub_platform = xxen ]; then insmod xzio; insmod lzopio; fi<br>		insmod part_gpt<br>		insmod ext2<br>		<span class="hljs-keyword">if</span> [ x$feature_platform_search_hint = xy ]; then<br>		  search --no-floppy --fs-uuid --<span class="hljs-built_in">set</span>=root  <span class="hljs-number">77</span>ce85c5<span class="hljs-number">-1b</span>12<span class="hljs-number">-4291</span><span class="hljs-number">-85</span>c6<span class="hljs-number">-20b</span>1fd8919bd<br>		<span class="hljs-keyword">else</span><br>		  search --no-floppy --fs-uuid --<span class="hljs-built_in">set</span>=root <span class="hljs-number">77</span>ce85c5<span class="hljs-number">-1b</span>12<span class="hljs-number">-4291</span><span class="hljs-number">-85</span>c6<span class="hljs-number">-20b</span>1fd8919bd<br>		fi<br>		echo	<span class="hljs-string">&#x27;载入 Linux 5.11.0-41-generic ...&#x27;</span><br>		linux	/boot/vmlinuz<span class="hljs-number">-5.11</span><span class="hljs-number">.0</span><span class="hljs-number">-41</span>-generic root=UUID=<span class="hljs-number">77</span>ce85c5<span class="hljs-number">-1b</span>12<span class="hljs-number">-4291</span><span class="hljs-number">-85</span>c6<span class="hljs-number">-20b</span>1fd8919bd ro  quiet splash $vt_handoff<br>		echo	<span class="hljs-string">&#x27;载入初始化内存盘...&#x27;</span><br>		initrd	/boot/initrd.img<span class="hljs-number">-5.11</span><span class="hljs-number">.0</span><span class="hljs-number">-41</span>-generic<br>	&#125;<br>	menuentry <span class="hljs-string">&#x27;Ubuntu, with Linux 5.11.0-41-generic (recovery mode)&#x27;</span> --class ubuntu --class gnu-linux --class gnu --class os $menuentry_id_option <span class="hljs-string">&#x27;gnulinux-5.11.0-41-generic-recovery-77ce85c5-1b12-4291-85c6-20b1fd8919bd&#x27;</span> &#123;<br>		recordfail<br>		load_video<br>		insmod gzio<br>		<span class="hljs-keyword">if</span> [ x$grub_platform = xxen ]; then insmod xzio; insmod lzopio; fi<br>		insmod part_gpt<br>		insmod ext2<br>		<span class="hljs-keyword">if</span> [ x$feature_platform_search_hint = xy ]; then<br>		  search --no-floppy --fs-uuid --<span class="hljs-built_in">set</span>=root  <span class="hljs-number">77</span>ce85c5<span class="hljs-number">-1b</span>12<span class="hljs-number">-4291</span><span class="hljs-number">-85</span>c6<span class="hljs-number">-20b</span>1fd8919bd<br>		<span class="hljs-keyword">else</span><br>		  search --no-floppy --fs-uuid --<span class="hljs-built_in">set</span>=root <span class="hljs-number">77</span>ce85c5<span class="hljs-number">-1b</span>12<span class="hljs-number">-4291</span><span class="hljs-number">-85</span>c6<span class="hljs-number">-20b</span>1fd8919bd<br>		fi<br>		echo	<span class="hljs-string">&#x27;载入 Linux 5.11.0-41-generic ...&#x27;</span><br>		linux	/boot/vmlinuz<span class="hljs-number">-5.11</span><span class="hljs-number">.0</span><span class="hljs-number">-41</span>-generic root=UUID=<span class="hljs-number">77</span>ce85c5<span class="hljs-number">-1b</span>12<span class="hljs-number">-4291</span><span class="hljs-number">-85</span>c6<span class="hljs-number">-20b</span>1fd8919bd ro recovery nomodeset dis_ucode_ldr<br>		echo	<span class="hljs-string">&#x27;载入初始化内存盘...&#x27;</span><br>		initrd	/boot/initrd.img<span class="hljs-number">-5.11</span><span class="hljs-number">.0</span><span class="hljs-number">-41</span>-generic<br>	&#125;<br>&#125;<br><br>### END /etc/grub.d/<span class="hljs-number">10</span>_linux ###<br><br>### BEGIN /etc/grub.d/<span class="hljs-number">10</span>_linux_zfs ###<br>### END /etc/grub.d/<span class="hljs-number">10</span>_linux_zfs ###<br><br>### BEGIN /etc/grub.d/<span class="hljs-number">20</span>_linux_xen ###<br><br>### END /etc/grub.d/<span class="hljs-number">20</span>_linux_xen ###<br><br>### BEGIN /etc/grub.d/<span class="hljs-number">20</span>_memtest86+ ###<br>### END /etc/grub.d/<span class="hljs-number">20</span>_memtest86+ ##<span class="hljs-meta">#</span><br><span class="hljs-meta"></span><br><span class="hljs-meta">set timeout_style=menu</span><br><span class="hljs-keyword">if</span> [ <span class="hljs-string">&quot;$&#123;timeout&#125;&quot;</span> = <span class="hljs-number">0</span> ]; then<br>  <span class="hljs-built_in">set</span> timeout=<span class="hljs-number">10</span><br>fi<br>### END /etc/grub.d/<span class="hljs-number">30</span>_os-prober ###<br><br>### BEGIN /etc/grub.d/<span class="hljs-number">30</span>_uefi-firmware ##<span class="hljs-meta">#</span><br><span class="hljs-meta">menuentry <span class="hljs-string">&#x27;UEFI Firmware Settings&#x27;</span> $menuentry_id_option <span class="hljs-string">&#x27;uefi-firmware&#x27;</span> &#123;</span><br>	fwsetup<br>&#125;<br>### END /etc/grub.d/<span class="hljs-number">30</span>_uefi-firmware ###<br><br>### BEGIN /etc/grub.d/<span class="hljs-number">40</span>_custom ###<br># This file provides an easy way to add custom menu entries.  Simply type the<br><span class="hljs-meta"># menu entries you want to add after this comment.  Be careful not to change</span><br><span class="hljs-meta"># the <span class="hljs-string">&#x27;exec tail&#x27;</span> <span class="hljs-keyword">line</span> above.</span><br>### END /etc/grub.d/<span class="hljs-number">40</span>_custom ###<br><br>### BEGIN /etc/grub.d/<span class="hljs-number">41</span>_custom ##<span class="hljs-meta">#</span><br><span class="hljs-meta"><span class="hljs-keyword">if</span> [ -f  $&#123;config_directory&#125;/custom.cfg ]; then</span><br>  source $&#123;config_directory&#125;/custom.cfg<br>elif [ -z <span class="hljs-string">&quot;$&#123;config_directory&#125;&quot;</span> -a -f  $prefix/custom.cfg ]; then<br>  source $prefix/custom.cfg;<br>fi<br>### END /etc/grub.d/<span class="hljs-number">41</span>_custom ###<br></code></pre></td></tr></table></figure>
+
+<h3 id="启动项部分"><a href="#启动项部分" class="headerlink" title="启动项部分"></a>启动项部分</h3><h3 id="BEGIN-etc-grub-d-30-os-prober"><a href="#BEGIN-etc-grub-d-30-os-prober" class="headerlink" title="BEGIN &#x2F;etc&#x2F;grub.d&#x2F;30_os-prober"></a>BEGIN &#x2F;etc&#x2F;grub.d&#x2F;30_os-prober</h3><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br></pre></td><td class="code"><pre><code class="hljs csharp">menuentry <span class="hljs-string">&#x27;Windows Boot Manager (在 /dev/nvme1n1p1)&#x27;</span> --<span class="hljs-keyword">class</span> <span class="hljs-title">windows</span> --<span class="hljs-keyword">class</span> <span class="hljs-title">os</span> $<span class="hljs-title">menuentry_id_option</span> &#x27;<span class="hljs-title">osprober</span>-<span class="hljs-title">efi</span>-<span class="hljs-title">B15C</span>-4<span class="hljs-title">C64</span>&#x27; &#123;<br>	insmod part_gpt<br>	insmod fat<br>	<span class="hljs-keyword">if</span> [ x$feature_platform_search_hint = xy ]; then<br>	  search --no-floppy --fs-uuid --<span class="hljs-keyword">set</span>=root  B15C<span class="hljs-number">-4</span>C64<br>	<span class="hljs-keyword">else</span><br>	  search --no-floppy --fs-uuid --<span class="hljs-keyword">set</span>=root B15C<span class="hljs-number">-4</span>C64<br>	fi<br>	chainloader /EFI/Microsoft/Boot/bootmgfw.efi<br>&#125;<br><br>menuentry <span class="hljs-string">&#x27;Ubuntu 21&#x27;</span> --<span class="hljs-keyword">class</span> <span class="hljs-title">ubuntu</span> --<span class="hljs-keyword">class</span> <span class="hljs-title">gnu</span>-<span class="hljs-title">linux</span> --<span class="hljs-keyword">class</span> <span class="hljs-title">gnu</span> --<span class="hljs-keyword">class</span> <span class="hljs-title">os</span> $<span class="hljs-title">menuentry_id_option</span> &#x27;<span class="hljs-title">gnulinux</span>-<span class="hljs-title">simple</span>-77<span class="hljs-title">ce85c5</span>-1<span class="hljs-title">b12</span>-4291-85<span class="hljs-title">c6</span>-20<span class="hljs-title">b1fd8919bd</span>&#x27; &#123;<br>	recordfail<br>	load_video<br>	gfxmode $linux_gfx_mode<br>	insmod gzio<br>	<span class="hljs-keyword">if</span> [ x$grub_platform = xxen ]; then insmod xzio; insmod lzopio; fi<br>	insmod part_gpt<br>	insmod ext2<br>	<span class="hljs-keyword">if</span> [ x$feature_platform_search_hint = xy ]; then<br>	  search --no-floppy --fs-uuid --<span class="hljs-keyword">set</span>=root  <span class="hljs-number">77</span>ce85c5<span class="hljs-number">-1b</span>12<span class="hljs-number">-4291</span><span class="hljs-number">-85</span>c6<span class="hljs-number">-20b</span>1fd8919bd<br>	<span class="hljs-keyword">else</span><br>	  search --no-floppy --fs-uuid --<span class="hljs-keyword">set</span>=root <span class="hljs-number">77</span>ce85c5<span class="hljs-number">-1b</span>12<span class="hljs-number">-4291</span><span class="hljs-number">-85</span>c6<span class="hljs-number">-20b</span>1fd8919bd<br>	fi<br>	linux	/boot/vmlinuz<span class="hljs-number">-5.11</span><span class="hljs-number">.0</span><span class="hljs-number">-43</span>-generic root=UUID=<span class="hljs-number">77</span>ce85c5<span class="hljs-number">-1b</span>12<span class="hljs-number">-4291</span><span class="hljs-number">-85</span>c6<span class="hljs-number">-20b</span>1fd8919bd ro  quiet splash $vt_handoff<br>	initrd	/boot/initrd.img<span class="hljs-number">-5.11</span><span class="hljs-number">.0</span><span class="hljs-number">-43</span>-generic<br>&#125;<br>submenu <span class="hljs-string">&#x27;Ubuntu 的高级选项&#x27;</span> $menuentry_id_option <span class="hljs-string">&#x27;gnulinux-advanced-77ce85c5-1b12-4291-85c6-20b1fd8919bd&#x27;</span> &#123;<br>	menuentry <span class="hljs-string">&#x27;Ubuntu，Linux 5.11.0-43-generic&#x27;</span> --<span class="hljs-keyword">class</span> <span class="hljs-title">ubuntu</span> --<span class="hljs-keyword">class</span> <span class="hljs-title">gnu</span>-<span class="hljs-title">linux</span> --<span class="hljs-keyword">class</span> <span class="hljs-title">gnu</span> --<span class="hljs-keyword">class</span> <span class="hljs-title">os</span> $<span class="hljs-title">menuentry_id_option</span> &#x27;<span class="hljs-title">gnulinux</span>-5.11.0-43-<span class="hljs-title">generic</span>-<span class="hljs-title">advanced</span>-77<span class="hljs-title">ce85c5</span>-1<span class="hljs-title">b12</span>-4291-85<span class="hljs-title">c6</span>-20<span class="hljs-title">b1fd8919bd</span>&#x27; &#123;<br>		recordfail<br>		load_video<br>		gfxmode $linux_gfx_mode<br>		insmod gzio<br>		<span class="hljs-keyword">if</span> [ x$grub_platform = xxen ]; then insmod xzio; insmod lzopio; fi<br>		insmod part_gpt<br>		insmod ext2<br>		<span class="hljs-keyword">if</span> [ x$feature_platform_search_hint = xy ]; then<br>		  search --no-floppy --fs-uuid --<span class="hljs-keyword">set</span>=root  <span class="hljs-number">77</span>ce85c5<span class="hljs-number">-1b</span>12<span class="hljs-number">-4291</span><span class="hljs-number">-85</span>c6<span class="hljs-number">-20b</span>1fd8919bd<br>		<span class="hljs-keyword">else</span><br>		  search --no-floppy --fs-uuid --<span class="hljs-keyword">set</span>=root <span class="hljs-number">77</span>ce85c5<span class="hljs-number">-1b</span>12<span class="hljs-number">-4291</span><span class="hljs-number">-85</span>c6<span class="hljs-number">-20b</span>1fd8919bd<br>		fi<br>		echo	<span class="hljs-string">&#x27;载入 Linux 5.11.0-43-generic ...&#x27;</span><br>		linux	/boot/vmlinuz<span class="hljs-number">-5.11</span><span class="hljs-number">.0</span><span class="hljs-number">-43</span>-generic root=UUID=<span class="hljs-number">77</span>ce85c5<span class="hljs-number">-1b</span>12<span class="hljs-number">-4291</span><span class="hljs-number">-85</span>c6<span class="hljs-number">-20b</span>1fd8919bd ro  quiet splash $vt_handoff<br>		echo	<span class="hljs-string">&#x27;载入初始化内存盘...&#x27;</span><br>		initrd	/boot/initrd.img<span class="hljs-number">-5.11</span><span class="hljs-number">.0</span><span class="hljs-number">-43</span>-generic<br>	&#125;<br>	menuentry <span class="hljs-string">&#x27;Ubuntu, with Linux 5.11.0-43-generic (recovery mode)&#x27;</span> --<span class="hljs-keyword">class</span> <span class="hljs-title">ubuntu</span> --<span class="hljs-keyword">class</span> <span class="hljs-title">gnu</span>-<span class="hljs-title">linux</span> --<span class="hljs-keyword">class</span> <span class="hljs-title">gnu</span> --<span class="hljs-keyword">class</span> <span class="hljs-title">os</span> $<span class="hljs-title">menuentry_id_option</span> &#x27;<span class="hljs-title">gnulinux</span>-5.11.0-43-<span class="hljs-title">generic</span>-<span class="hljs-title">recovery</span>-77<span class="hljs-title">ce85c5</span>-1<span class="hljs-title">b12</span>-4291-85<span class="hljs-title">c6</span>-20<span class="hljs-title">b1fd8919bd</span>&#x27; &#123;<br>		recordfail<br>		load_video<br>		insmod gzio<br>		<span class="hljs-keyword">if</span> [ x$grub_platform = xxen ]; then insmod xzio; insmod lzopio; fi<br>		insmod part_gpt<br>		insmod ext2<br>		<span class="hljs-keyword">if</span> [ x$feature_platform_search_hint = xy ]; then<br>		  search --no-floppy --fs-uuid --<span class="hljs-keyword">set</span>=root  <span class="hljs-number">77</span>ce85c5<span class="hljs-number">-1b</span>12<span class="hljs-number">-4291</span><span class="hljs-number">-85</span>c6<span class="hljs-number">-20b</span>1fd8919bd<br>		<span class="hljs-keyword">else</span><br>		  search --no-floppy --fs-uuid --<span class="hljs-keyword">set</span>=root <span class="hljs-number">77</span>ce85c5<span class="hljs-number">-1b</span>12<span class="hljs-number">-4291</span><span class="hljs-number">-85</span>c6<span class="hljs-number">-20b</span>1fd8919bd<br>		fi<br>		echo	<span class="hljs-string">&#x27;载入 Linux 5.11.0-43-generic ...&#x27;</span><br>		linux	/boot/vmlinuz<span class="hljs-number">-5.11</span><span class="hljs-number">.0</span><span class="hljs-number">-43</span>-generic root=UUID=<span class="hljs-number">77</span>ce85c5<span class="hljs-number">-1b</span>12<span class="hljs-number">-4291</span><span class="hljs-number">-85</span>c6<span class="hljs-number">-20b</span>1fd8919bd ro recovery nomodeset dis_ucode_ldr<br>		echo	<span class="hljs-string">&#x27;载入初始化内存盘...&#x27;</span><br>		initrd	/boot/initrd.img<span class="hljs-number">-5.11</span><span class="hljs-number">.0</span><span class="hljs-number">-43</span>-generic<br>	&#125;<br>	menuentry <span class="hljs-string">&#x27;Ubuntu，Linux 5.11.0-41-generic&#x27;</span> --<span class="hljs-keyword">class</span> <span class="hljs-title">ubuntu</span> --<span class="hljs-keyword">class</span> <span class="hljs-title">gnu</span>-<span class="hljs-title">linux</span> --<span class="hljs-keyword">class</span> <span class="hljs-title">gnu</span> --<span class="hljs-keyword">class</span> <span class="hljs-title">os</span> $<span class="hljs-title">menuentry_id_option</span> &#x27;<span class="hljs-title">gnulinux</span>-5.11.0-41-<span class="hljs-title">generic</span>-<span class="hljs-title">advanced</span>-77<span class="hljs-title">ce85c5</span>-1<span class="hljs-title">b12</span>-4291-85<span class="hljs-title">c6</span>-20<span class="hljs-title">b1fd8919bd</span>&#x27; &#123;<br>		recordfail<br>		load_video<br>		gfxmode $linux_gfx_mode<br>		insmod gzio<br>		<span class="hljs-keyword">if</span> [ x$grub_platform = xxen ]; then insmod xzio; insmod lzopio; fi<br>		insmod part_gpt<br>		insmod ext2<br>		<span class="hljs-keyword">if</span> [ x$feature_platform_search_hint = xy ]; then<br>		  search --no-floppy --fs-uuid --<span class="hljs-keyword">set</span>=root  <span class="hljs-number">77</span>ce85c5<span class="hljs-number">-1b</span>12<span class="hljs-number">-4291</span><span class="hljs-number">-85</span>c6<span class="hljs-number">-20b</span>1fd8919bd<br>		<span class="hljs-keyword">else</span><br>		  search --no-floppy --fs-uuid --<span class="hljs-keyword">set</span>=root <span class="hljs-number">77</span>ce85c5<span class="hljs-number">-1b</span>12<span class="hljs-number">-4291</span><span class="hljs-number">-85</span>c6<span class="hljs-number">-20b</span>1fd8919bd<br>		fi<br>		echo	<span class="hljs-string">&#x27;载入 Linux 5.11.0-41-generic ...&#x27;</span><br>		linux	/boot/vmlinuz<span class="hljs-number">-5.11</span><span class="hljs-number">.0</span><span class="hljs-number">-41</span>-generic root=UUID=<span class="hljs-number">77</span>ce85c5<span class="hljs-number">-1b</span>12<span class="hljs-number">-4291</span><span class="hljs-number">-85</span>c6<span class="hljs-number">-20b</span>1fd8919bd ro  quiet splash $vt_handoff<br>		echo	<span class="hljs-string">&#x27;载入初始化内存盘...&#x27;</span><br>		initrd	/boot/initrd.img<span class="hljs-number">-5.11</span><span class="hljs-number">.0</span><span class="hljs-number">-41</span>-generic<br>	&#125;<br>	menuentry <span class="hljs-string">&#x27;Ubuntu, with Linux 5.11.0-41-generic (recovery mode)&#x27;</span> --<span class="hljs-keyword">class</span> <span class="hljs-title">ubuntu</span> --<span class="hljs-keyword">class</span> <span class="hljs-title">gnu</span>-<span class="hljs-title">linux</span> --<span class="hljs-keyword">class</span> <span class="hljs-title">gnu</span> --<span class="hljs-keyword">class</span> <span class="hljs-title">os</span> $<span class="hljs-title">menuentry_id_option</span> &#x27;<span class="hljs-title">gnulinux</span>-5.11.0-41-<span class="hljs-title">generic</span>-<span class="hljs-title">recovery</span>-77<span class="hljs-title">ce85c5</span>-1<span class="hljs-title">b12</span>-4291-85<span class="hljs-title">c6</span>-20<span class="hljs-title">b1fd8919bd</span>&#x27; &#123;<br>		recordfail<br>		load_video<br>		insmod gzio<br>		<span class="hljs-keyword">if</span> [ x$grub_platform = xxen ]; then insmod xzio; insmod lzopio; fi<br>		insmod part_gpt<br>		insmod ext2<br>		<span class="hljs-keyword">if</span> [ x$feature_platform_search_hint = xy ]; then<br>		  search --no-floppy --fs-uuid --<span class="hljs-keyword">set</span>=root  <span class="hljs-number">77</span>ce85c5<span class="hljs-number">-1b</span>12<span class="hljs-number">-4291</span><span class="hljs-number">-85</span>c6<span class="hljs-number">-20b</span>1fd8919bd<br>		<span class="hljs-keyword">else</span><br>		  search --no-floppy --fs-uuid --<span class="hljs-keyword">set</span>=root <span class="hljs-number">77</span>ce85c5<span class="hljs-number">-1b</span>12<span class="hljs-number">-4291</span><span class="hljs-number">-85</span>c6<span class="hljs-number">-20b</span>1fd8919bd<br>		fi<br>		echo	<span class="hljs-string">&#x27;载入 Linux 5.11.0-41-generic ...&#x27;</span><br>		linux	/boot/vmlinuz<span class="hljs-number">-5.11</span><span class="hljs-number">.0</span><span class="hljs-number">-41</span>-generic root=UUID=<span class="hljs-number">77</span>ce85c5<span class="hljs-number">-1b</span>12<span class="hljs-number">-4291</span><span class="hljs-number">-85</span>c6<span class="hljs-number">-20b</span>1fd8919bd ro recovery nomodeset dis_ucode_ldr<br>		echo	<span class="hljs-string">&#x27;载入初始化内存盘...&#x27;</span><br>		initrd	/boot/initrd.img<span class="hljs-number">-5.11</span><span class="hljs-number">.0</span><span class="hljs-number">-41</span>-generic<br>	&#125;<br></code></pre></td></tr></table></figure>
+
+<p>启动项分为直接启动项，和菜单启动项：</p>
+<ol>
+<li>直接的由 menuentry 开头，可以直接进入启动</li>
+</ol>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs csharp">menuentry <span class="hljs-string">&#x27;Windows Boot Manager (在 /dev/nvme1n1p1)&#x27;</span> --<span class="hljs-keyword">class</span> <span class="hljs-title">windows</span> --<span class="hljs-keyword">class</span> <span class="hljs-title">os</span> $<span class="hljs-title">menuentry_id_option</span> &#x27;<span class="hljs-title">osprober</span>-<span class="hljs-title">efi</span>-<span class="hljs-title">B15C</span>-4<span class="hljs-title">C64</span>&#x27; &#123;<br>	insmod part_gpt<br>	insmod fat<br>	<span class="hljs-keyword">if</span> [ x$feature_platform_search_hint = xy ]; then<br>	  search --no-floppy --fs-uuid --<span class="hljs-keyword">set</span>=root  B15C<span class="hljs-number">-4</span>C64<br>	<span class="hljs-keyword">else</span><br>	  search --no-floppy --fs-uuid --<span class="hljs-keyword">set</span>=root B15C<span class="hljs-number">-4</span>C64<br>	fi<br>	chainloader /EFI/Microsoft/Boot/bootmgfw.efi<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>菜单的由 menuentry 开头，会进入二级菜单，再次进行启动项选择</li>
+</ol>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br></pre></td><td class="code"><pre><code class="hljs csharp">submenu <span class="hljs-string">&#x27;Ubuntu 的高级选项&#x27;</span> $menuentry_id_option <span class="hljs-string">&#x27;gnulinux-advanced-77ce85c5-1b12-4291-85c6-20b1fd8919bd&#x27;</span> &#123;<br>	menuentry <span class="hljs-string">&#x27;Ubuntu，Linux 5.11.0-43-generic&#x27;</span> --<span class="hljs-keyword">class</span> <span class="hljs-title">ubuntu</span> --<span class="hljs-keyword">class</span> <span class="hljs-title">gnu</span>-<span class="hljs-title">linux</span> --<span class="hljs-keyword">class</span> <span class="hljs-title">gnu</span> --<span class="hljs-keyword">class</span> <span class="hljs-title">os</span> $<span class="hljs-title">menuentry_id_option</span> &#x27;<span class="hljs-title">gnulinux</span>-5.11.0-43-<span class="hljs-title">generic</span>-<span class="hljs-title">advanced</span>-77<span class="hljs-title">ce85c5</span>-1<span class="hljs-title">b12</span>-4291-85<span class="hljs-title">c6</span>-20<span class="hljs-title">b1fd8919bd</span>&#x27; &#123;<br>		recordfail<br>		load_video<br>		gfxmode $linux_gfx_mode<br>		insmod gzio<br>		<span class="hljs-keyword">if</span> [ x$grub_platform = xxen ]; then insmod xzio; insmod lzopio; fi<br>		insmod part_gpt<br>		insmod ext2<br>		<span class="hljs-keyword">if</span> [ x$feature_platform_search_hint = xy ]; then<br>		  search --no-floppy --fs-uuid --<span class="hljs-keyword">set</span>=root  <span class="hljs-number">77</span>ce85c5<span class="hljs-number">-1b</span>12<span class="hljs-number">-4291</span><span class="hljs-number">-85</span>c6<span class="hljs-number">-20b</span>1fd8919bd<br>		<span class="hljs-keyword">else</span><br>		  search --no-floppy --fs-uuid --<span class="hljs-keyword">set</span>=root <span class="hljs-number">77</span>ce85c5<span class="hljs-number">-1b</span>12<span class="hljs-number">-4291</span><span class="hljs-number">-85</span>c6<span class="hljs-number">-20b</span>1fd8919bd<br>		fi<br>		echo	<span class="hljs-string">&#x27;载入 Linux 5.11.0-43-generic ...&#x27;</span><br>		linux	/boot/vmlinuz<span class="hljs-number">-5.11</span><span class="hljs-number">.0</span><span class="hljs-number">-43</span>-generic root=UUID=<span class="hljs-number">77</span>ce85c5<span class="hljs-number">-1b</span>12<span class="hljs-number">-4291</span><span class="hljs-number">-85</span>c6<span class="hljs-number">-20b</span>1fd8919bd ro  quiet splash $vt_handoff<br>		echo	<span class="hljs-string">&#x27;载入初始化内存盘...&#x27;</span><br>		initrd	/boot/initrd.img<span class="hljs-number">-5.11</span><span class="hljs-number">.0</span><span class="hljs-number">-43</span>-generic<br>	&#125;<br>	menuentry <span class="hljs-string">&#x27;Ubuntu, with Linux 5.11.0-43-generic (recovery mode)&#x27;</span> --<span class="hljs-keyword">class</span> <span class="hljs-title">ubuntu</span> --<span class="hljs-keyword">class</span> <span class="hljs-title">gnu</span>-<span class="hljs-title">linux</span> --<span class="hljs-keyword">class</span> <span class="hljs-title">gnu</span> --<span class="hljs-keyword">class</span> <span class="hljs-title">os</span> $<span class="hljs-title">menuentry_id_option</span> &#x27;<span class="hljs-title">gnulinux</span>-5.11.0-43-<span class="hljs-title">generic</span>-<span class="hljs-title">recovery</span>-77<span class="hljs-title">ce85c5</span>-1<span class="hljs-title">b12</span>-4291-85<span class="hljs-title">c6</span>-20<span class="hljs-title">b1fd8919bd</span>&#x27; &#123;<br>		recordfail<br>		load_video<br>		insmod gzio<br>		<span class="hljs-keyword">if</span> [ x$grub_platform = xxen ]; then insmod xzio; insmod lzopio; fi<br>		insmod part_gpt<br>		insmod ext2<br>		<span class="hljs-keyword">if</span> [ x$feature_platform_search_hint = xy ]; then<br>		  search --no-floppy --fs-uuid --<span class="hljs-keyword">set</span>=root  <span class="hljs-number">77</span>ce85c5<span class="hljs-number">-1b</span>12<span class="hljs-number">-4291</span><span class="hljs-number">-85</span>c6<span class="hljs-number">-20b</span>1fd8919bd<br>		<span class="hljs-keyword">else</span><br>		  search --no-floppy --fs-uuid --<span class="hljs-keyword">set</span>=root <span class="hljs-number">77</span>ce85c5<span class="hljs-number">-1b</span>12<span class="hljs-number">-4291</span><span class="hljs-number">-85</span>c6<span class="hljs-number">-20b</span>1fd8919bd<br>		fi<br>		echo	<span class="hljs-string">&#x27;载入 Linux 5.11.0-43-generic ...&#x27;</span><br>		linux	/boot/vmlinuz<span class="hljs-number">-5.11</span><span class="hljs-number">.0</span><span class="hljs-number">-43</span>-generic root=UUID=<span class="hljs-number">77</span>ce85c5<span class="hljs-number">-1b</span>12<span class="hljs-number">-4291</span><span class="hljs-number">-85</span>c6<span class="hljs-number">-20b</span>1fd8919bd ro recovery nomodeset dis_ucode_ldr<br>		echo	<span class="hljs-string">&#x27;载入初始化内存盘...&#x27;</span><br>		initrd	/boot/initrd.img<span class="hljs-number">-5.11</span><span class="hljs-number">.0</span><span class="hljs-number">-43</span>-generic<br>	&#125;<br>	menuentry <span class="hljs-string">&#x27;Ubuntu，Linux 5.11.0-41-generic&#x27;</span> --<span class="hljs-keyword">class</span> <span class="hljs-title">ubuntu</span> --<span class="hljs-keyword">class</span> <span class="hljs-title">gnu</span>-<span class="hljs-title">linux</span> --<span class="hljs-keyword">class</span> <span class="hljs-title">gnu</span> --<span class="hljs-keyword">class</span> <span class="hljs-title">os</span> $<span class="hljs-title">menuentry_id_option</span> &#x27;<span class="hljs-title">gnulinux</span>-5.11.0-41-<span class="hljs-title">generic</span>-<span class="hljs-title">advanced</span>-77<span class="hljs-title">ce85c5</span>-1<span class="hljs-title">b12</span>-4291-85<span class="hljs-title">c6</span>-20<span class="hljs-title">b1fd8919bd</span>&#x27; &#123;<br>		recordfail<br>		load_video<br>		gfxmode $linux_gfx_mode<br>		insmod gzio<br>		<span class="hljs-keyword">if</span> [ x$grub_platform = xxen ]; then insmod xzio; insmod lzopio; fi<br>		insmod part_gpt<br>		insmod ext2<br>		<span class="hljs-keyword">if</span> [ x$feature_platform_search_hint = xy ]; then<br>		  search --no-floppy --fs-uuid --<span class="hljs-keyword">set</span>=root  <span class="hljs-number">77</span>ce85c5<span class="hljs-number">-1b</span>12<span class="hljs-number">-4291</span><span class="hljs-number">-85</span>c6<span class="hljs-number">-20b</span>1fd8919bd<br>		<span class="hljs-keyword">else</span><br>		  search --no-floppy --fs-uuid --<span class="hljs-keyword">set</span>=root <span class="hljs-number">77</span>ce85c5<span class="hljs-number">-1b</span>12<span class="hljs-number">-4291</span><span class="hljs-number">-85</span>c6<span class="hljs-number">-20b</span>1fd8919bd<br>		fi<br>		echo	<span class="hljs-string">&#x27;载入 Linux 5.11.0-41-generic ...&#x27;</span><br>		linux	/boot/vmlinuz<span class="hljs-number">-5.11</span><span class="hljs-number">.0</span><span class="hljs-number">-41</span>-generic root=UUID=<span class="hljs-number">77</span>ce85c5<span class="hljs-number">-1b</span>12<span class="hljs-number">-4291</span><span class="hljs-number">-85</span>c6<span class="hljs-number">-20b</span>1fd8919bd ro  quiet splash $vt_handoff<br>		echo	<span class="hljs-string">&#x27;载入初始化内存盘...&#x27;</span><br>		initrd	/boot/initrd.img<span class="hljs-number">-5.11</span><span class="hljs-number">.0</span><span class="hljs-number">-41</span>-generic<br>	&#125;<br>	menuentry <span class="hljs-string">&#x27;Ubuntu, with Linux 5.11.0-41-generic (recovery mode)&#x27;</span> --<span class="hljs-keyword">class</span> <span class="hljs-title">ubuntu</span> --<span class="hljs-keyword">class</span> <span class="hljs-title">gnu</span>-<span class="hljs-title">linux</span> --<span class="hljs-keyword">class</span> <span class="hljs-title">gnu</span> --<span class="hljs-keyword">class</span> <span class="hljs-title">os</span> $<span class="hljs-title">menuentry_id_option</span> &#x27;<span class="hljs-title">gnulinux</span>-5.11.0-41-<span class="hljs-title">generic</span>-<span class="hljs-title">recovery</span>-77<span class="hljs-title">ce85c5</span>-1<span class="hljs-title">b12</span>-4291-85<span class="hljs-title">c6</span>-20<span class="hljs-title">b1fd8919bd</span>&#x27; &#123;<br>		recordfail<br>		load_video<br>		insmod gzio<br>		<span class="hljs-keyword">if</span> [ x$grub_platform = xxen ]; then insmod xzio; insmod lzopio; fi<br>		insmod part_gpt<br>		insmod ext2<br>		<span class="hljs-keyword">if</span> [ x$feature_platform_search_hint = xy ]; then<br>		  search --no-floppy --fs-uuid --<span class="hljs-keyword">set</span>=root  <span class="hljs-number">77</span>ce85c5<span class="hljs-number">-1b</span>12<span class="hljs-number">-4291</span><span class="hljs-number">-85</span>c6<span class="hljs-number">-20b</span>1fd8919bd<br>		<span class="hljs-keyword">else</span><br>		  search --no-floppy --fs-uuid --<span class="hljs-keyword">set</span>=root <span class="hljs-number">77</span>ce85c5<span class="hljs-number">-1b</span>12<span class="hljs-number">-4291</span><span class="hljs-number">-85</span>c6<span class="hljs-number">-20b</span>1fd8919bd<br>		fi<br>		echo	<span class="hljs-string">&#x27;载入 Linux 5.11.0-41-generic ...&#x27;</span><br>		linux	/boot/vmlinuz<span class="hljs-number">-5.11</span><span class="hljs-number">.0</span><span class="hljs-number">-41</span>-generic root=UUID=<span class="hljs-number">77</span>ce85c5<span class="hljs-number">-1b</span>12<span class="hljs-number">-4291</span><span class="hljs-number">-85</span>c6<span class="hljs-number">-20b</span>1fd8919bd ro recovery nomodeset dis_ucode_ldr<br>		echo	<span class="hljs-string">&#x27;载入初始化内存盘...&#x27;</span><br>		initrd	/boot/initrd.img<span class="hljs-number">-5.11</span><span class="hljs-number">.0</span><span class="hljs-number">-41</span>-generic<br>	&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="直接启动项的内容："><a href="#直接启动项的内容：" class="headerlink" title="直接启动项的内容："></a>直接启动项的内容：</h3><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs csharp"><br>两种写法<br><br>menuentry <span class="hljs-string">&#x27;Windows Boot Manager (在 /dev/nvme1n1p1)&#x27;</span> --<span class="hljs-keyword">class</span> <span class="hljs-title">windows</span> --<span class="hljs-keyword">class</span> <span class="hljs-title">os</span> $<span class="hljs-title">menuentry_id_option</span> &#x27;<span class="hljs-title">osprober</span>-<span class="hljs-title">efi</span>-<span class="hljs-title">B15C</span>-4<span class="hljs-title">C64</span>&#x27; &#123;<br>	insmod part_gpt<br>	insmod fat<br>	<span class="hljs-keyword">if</span> [ x$feature_platform_search_hint = xy ]; then<br>	  search --no-floppy --fs-uuid --<span class="hljs-keyword">set</span>=root  B15C<span class="hljs-number">-4</span>C64<br>	<span class="hljs-keyword">else</span><br>	  search --no-floppy --fs-uuid --<span class="hljs-keyword">set</span>=root B15C<span class="hljs-number">-4</span>C64<br>	fi<br>	chainloader /EFI/Microsoft/Boot/bootmgfw.efi<br>&#125;<br><br>menuentry <span class="hljs-string">&#x27;Window10&#x27;</span> &#123;<br>insmod ntfs<br><span class="hljs-keyword">set</span> root=(hd0,msdos1)<br>search –no-floppy –fs-uuid –<span class="hljs-keyword">set</span> <span class="hljs-number">1</span>C12FC8012FC5FE6<br>chainloader +<span class="hljs-number">1</span><br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Linux/" class="category-chain-item">Linux</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>『Linux』Ubuntu 修改Grub，添加删除启动项，初步辨析Grub文件。</div>
+      <div>https://chiamzhang.github.io/2024/06/29/『Linux』Ubuntu 修改Grub，添加删除启动项，初步辨析Grub文件。/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>Chiam</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>June 29, 2024</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>Licensed under</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2024/06/29/%E3%80%8ELinux%E3%80%8F%E6%89%8B%E5%8A%A8%E5%AE%89%E8%A3%85Ettercap/" title="『Linux』手动安装Ettercap">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">『Linux』手动安装Ettercap</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/06/29/%E3%80%8ELinux%E3%80%8FIDEA%20Java%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E8%AE%B0%E5%BD%95-%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/" title="『Linux』IDEA Java环境搭建记录-开发环境搭建">
+                        <span class="hidden-mobile">『Linux』IDEA Java环境搭建记录-开发环境搭建</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"fIfc7WqUDZohlQuPc2lz5mJy-MdYXbMMI","appKey":"zjlAG3ZA3o4cBHVAkjzc2Z20","path":"window.location.pathname","placeholder":"留言仅限讨论，禁止广告等行为","avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"https://fifc7wqu.api.lncldglobal.com","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>Table of Contents</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <meta name="referrer" content="no-referrer" /> <footer id="footer" role="contentinfo"> <meta name="referrer" content="no-referrer" /> <div class="divider"> <div class="wall"></div> <img class="animals" src="/img/footer_animals_new.png" srcset="/img/loading.gif" lazyload alt="Footer Animals"> </div> <div class="container" data-index="450"> <p> <a href="https://chiamzhang.github.io" target="_blank">DogEgg</a> <i class="iconfont icon-love"></i> <a href="#" target="_blank">LittePig</a> </p> <p> Powered by  <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-pen"></i> Theme  <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> </p> </div> </footer> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+  
+<script src="/js/love.js"></script>
+<script src="/js/funnyTitle.js"></script>
+<script src="/js/backTop.js"></script>
+<script src="//cdn.jsdelivr.net/gh/bynotes/texiao/source/js/xiaoxuehua.js"></script>
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+</html>

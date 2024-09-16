@@ -1,0 +1,791 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/Mine.jpg">
+  <link rel="icon" href="/img/Mine.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Chiam">
+  <meta name="keywords" content="Algorithms，Cybersecurity">
+  
+    <meta name="description" content="『算法-ACM 竞赛-真题』ThePreliminaryContestforICPCAsiaXuzhou2019 徐州网络赛 AWhoisbetterThe Preliminary Contest for ICPC Asia Xuzhou 2019 徐州网络赛 A Who is better?A After Asgard was destroyed, tanker brought his sold">
+<meta property="og:type" content="article">
+<meta property="og:title" content="『算法-ACM竞赛-真题』ThePreliminaryContestforICPCAsiaXuzhou2019徐州网络赛AWhoisbetter">
+<meta property="og:url" content="https://chiamzhang.github.io/2024/06/29/%E3%80%8E%E7%AE%97%E6%B3%95-ACM%E7%AB%9E%E8%B5%9B-%E7%9C%9F%E9%A2%98%E3%80%8FThePreliminaryContestforICPCAsiaXuzhou2019%E5%BE%90%E5%B7%9E%E7%BD%91%E7%BB%9C%E8%B5%9BAWhoisbetter/index.html">
+<meta property="og:site_name" content="Homepage of Chiam">
+<meta property="og:description" content="『算法-ACM 竞赛-真题』ThePreliminaryContestforICPCAsiaXuzhou2019 徐州网络赛 AWhoisbetterThe Preliminary Contest for ICPC Asia Xuzhou 2019 徐州网络赛 A Who is better?A After Asgard was destroyed, tanker brought his sold">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2024-06-29T13:16:54.522Z">
+<meta property="article:modified_time" content="2023-12-05T16:19:56.147Z">
+<meta property="article:author" content="Chiam">
+<meta property="article:tag" content="Algorithms，Cybersecurity">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>『算法-ACM竞赛-真题』ThePreliminaryContestforICPCAsiaXuzhou2019徐州网络赛AWhoisbetter - Homepage of Chiam</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"chiamzhang.github.io","root":"/","version":"1.9.5-a","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":"❡"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":2},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
+
+
+<body>
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Chiam&#39;s Blogs</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                
+                <span>Home</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                
+                <span>Archives</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                
+                <span>Categories</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                
+                <span>About</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                
+                <span>Links</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="『算法-ACM竞赛-真题』ThePreliminaryContestforICPCAsiaXuzhou2019徐州网络赛AWhoisbetter"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-06-29 21:16" pubdate>
+          June 29, 2024 pm
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2.8k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          24 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">『算法-ACM竞赛-真题』ThePreliminaryContestforICPCAsiaXuzhou2019徐州网络赛AWhoisbetter</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="『算法-ACM-竞赛-真题』ThePreliminaryContestforICPCAsiaXuzhou2019-徐州网络赛-AWhoisbetter"><a href="#『算法-ACM-竞赛-真题』ThePreliminaryContestforICPCAsiaXuzhou2019-徐州网络赛-AWhoisbetter" class="headerlink" title="『算法-ACM 竞赛-真题』ThePreliminaryContestforICPCAsiaXuzhou2019 徐州网络赛 AWhoisbetter"></a>『算法-ACM 竞赛-真题』ThePreliminaryContestforICPCAsiaXuzhou2019 徐州网络赛 AWhoisbetter</h1><h1 id="The-Preliminary-Contest-for-ICPC-Asia-Xuzhou-2019-徐州网络赛-A-Who-is-better"><a href="#The-Preliminary-Contest-for-ICPC-Asia-Xuzhou-2019-徐州网络赛-A-Who-is-better" class="headerlink" title="The Preliminary Contest for ICPC Asia Xuzhou 2019 徐州网络赛 A Who is better?"></a>The Preliminary Contest for ICPC Asia Xuzhou 2019 徐州网络赛 A Who is better?</h1><p>A</p>
+<p>After Asgard was destroyed, tanker brought his soldiers to earth, and at the same time took on the important task of protecting the peace of the earth. The best two solders were lb and zgx, were very capable, but they always disliked each other. However, one day they encountered a group of foreign invaders (many, but how many only tanker knew). They were all strong enough to destroy the enemy easily. But they found it too boring, so they agreed to follow some rules to deal with the invaders by taking turns, and if one of them had no enemies when it was his turn, he would later admit that the other man was better.</p>
+<p>The rules are as follows:</p>
+<ul>
+<li>zgx takes the first turn. But he cannot destroy all the enemies at the first time;</li>
+<li>after that, the number of enemies that can be destroyed at a time is between 11 enemy and 22 times the number of enemies that the former has just destroyed (including 11 enemy and 22 times the number of enemies that the opponent has just destroyed).</li>
+<li>the winner is the one who agrees to destroy the last enemy. Both zgx and lb are smart, so they only perform actions that are best for them.</li>
+</ul>
+<p>To ensure fairness, they found their leader, tanker, to judge, but tanker just wanted people to say he was great, so he didn’t want them to decide easily, so he hid the number of intruders in a question:</p>
+<ul>
+<li>there are kk sets of integers aa and bb such that nn ≡ bb (mod aa).</li>
+<li>nn is the minimum positive integer solution satisfying the kk groups aa and bb.</li>
+</ul>
+<h4 id="Input"><a href="#Input" class="headerlink" title="Input"></a>Input</h4><p>In the first line, input kk, and on lines 22 to k + 1k+1, input kk groups aa and bb.</p>
+<h4 id="Output"><a href="#Output" class="headerlink" title="Output"></a>Output</h4><p>If lb wins, output “<code>Lbnb!</code>“, if zgx wins, output “<code>Zgxnb!</code>“, if they can’t solve, (nn does not exist) , output “<code>Tankernb!</code>“ .</p>
+<h4 id="Note"><a href="#Note" class="headerlink" title="Note:"></a>Note:</h4><p>k\le 10k≤10 ,1 ＜ n \le 10^{15}n≤1015</p>
+<p>For the sample, n&#x3D;8n&#x3D;8,because 8%5&#x3D;38%5&#x3D;3, 8 %3&#x3D;28%3&#x3D;2 and 88 is the smallest possible integer that is fit the requirement.</p>
+<p>样例输入复制</p>
+<pre><code class="hljs">2
+5 3
+3 2
+</code></pre>
+<p>样例输出复制</p>
+<pre><code class="hljs">Lbnb!
+</code></pre>
+<p>扩展式中国剩余定理+斐波那契博弈，先打表找规律，找到必输的情况。</p>
+<pre><code class="hljs">#include&lt;iostream&gt;
+#include&lt;cstdio&gt;
+#include&lt;cmath&gt;
+#include&lt;map&gt;
+using namespace std;
+#define LL long long
+LL mi[1100],ai[1100],fb[1100];//mi为要模的数,ai为余数。
+map&lt;LL,bool&gt;p;
+LL gcd(LL a, LL b)
+&#123;
+    return b == 0 ? a : gcd(b, a%b);
+&#125;
+void exgcd(LL a, LL b, LL &amp;d, LL &amp;x, LL &amp;y)
+&#123;
+    if(!b)
+    &#123;
+        d = a, x = 1, y = 0;
+    &#125;
+    else
+    &#123;
+        exgcd(b, a%b, d, y, x);
+        y -= x * (a / b);
+    &#125;
+&#125;
+LL CRT(LL l, LL r, LL *mi, LL *ai)
+&#123;
+    LL lcm = 1;
+    for(LL i = l; i &lt;= r; i++)
+        lcm = lcm / gcd(lcm, mi[i]) * mi[i];
+    for(LL i = l+1; i &lt;= r; i++)
+    &#123;
+        LL A = mi[l], B = mi[i], d, x, y, c = ai[i] - ai[l];
+        exgcd(A, B, d, x, y);
+        if(c % d)
+            return -1;
+        LL mod = mi[i] / d;
+        LL k = ((x * c / d) % mod + mod) % mod;
+        ai[l] = mi[l] * k + ai[l];
+        mi[l] = mi[l] * mi[i] / d;
+    &#125;
+    if(ai[l] == 0)
+        return lcm;
+    return ai[l];
+&#125;
+int main()
+&#123;
+    LL t,n,i;
+    scanf(&quot;%lld&quot;,&amp;t);
+    for(i=1; i&lt;=t; i++)
+        scanf(&quot;%lld%lld&quot;,&amp;mi[i],&amp;ai[i]);
+    n=CRT(1ll,t,mi,ai);
+    if(n&gt;1e15||n==-1)
+    &#123;
+        printf(&quot;Tankernb!&quot;);
+        return 0;
+    &#125;
+    fb[1]=2,fb[2]=3;
+    p[2]=true,p[3]=true;
+    for(i=3;i&lt;=320;i++)
+    &#123;
+        fb[i]=fb[i-1]+fb[i-2];
+        if(fb[i]&gt;1e15)
+        break;
+        p[fb[i]]=true;
+    &#125;
+    if(p[n])
+        printf(&quot;Lbnb!&quot;);
+    else printf(&quot;Zgxnb!&quot;);
+      return 0;
+&#125;
+</code></pre>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E7%AE%97%E6%B3%95/" class="category-chain-item">算法</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/%E7%AE%97%E6%B3%95/ACM%E7%AB%9E%E8%B5%9B/" class="category-chain-item">ACM竞赛</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/%E7%AE%97%E6%B3%95/ACM%E7%AB%9E%E8%B5%9B/%E7%9C%9F%E9%A2%98/" class="category-chain-item">真题</a>
+  
+  
+
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>『算法-ACM竞赛-真题』ThePreliminaryContestforICPCAsiaXuzhou2019徐州网络赛AWhoisbetter</div>
+      <div>https://chiamzhang.github.io/2024/06/29/『算法-ACM竞赛-真题』ThePreliminaryContestforICPCAsiaXuzhou2019徐州网络赛AWhoisbetter/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>Chiam</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>June 29, 2024</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>Licensed under</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2024/06/29/%E3%80%8E%E7%AE%97%E6%B3%95-ACM%E7%AB%9E%E8%B5%9B-%E7%9C%9F%E9%A2%98%E3%80%8FThePreliminaryContestforICPCAsiaXuzhou2019%E5%BE%90%E5%B7%9E%E7%BD%91%E7%BB%9C%E8%B5%9BBsoeasy/" title="『算法-ACM竞赛-真题』ThePreliminaryContestforICPCAsiaXuzhou2019徐州网络赛Bsoeasy">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">『算法-ACM竞赛-真题』ThePreliminaryContestforICPCAsiaXuzhou2019徐州网络赛Bsoeasy</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/06/29/%E3%80%8E%E7%AE%97%E6%B3%95-ACM%E7%AB%9E%E8%B5%9B-%E7%9C%9F%E9%A2%98%E3%80%8FThe2019AsiaNanchangFirstRoundOnlineProgrammingContestBFire-FightingHero(%E9%98%85%E8%AF%BB%E7%90%86%E8%A7%A3%EF%BC%89/" title="『算法-ACM竞赛-真题』The2019AsiaNanchangFirstRoundOnlineProgrammingContestBFire-FightingHero(阅读理解）">
+                        <span class="hidden-mobile">『算法-ACM竞赛-真题』The2019AsiaNanchangFirstRoundOnlineProgrammingContestBFire-FightingHero(阅读理解）</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"fIfc7WqUDZohlQuPc2lz5mJy-MdYXbMMI","appKey":"zjlAG3ZA3o4cBHVAkjzc2Z20","path":"window.location.pathname","placeholder":"留言仅限讨论，禁止广告等行为","avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"https://fifc7wqu.api.lncldglobal.com","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>Table of Contents</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <meta name="referrer" content="no-referrer" /> <footer id="footer" role="contentinfo"> <meta name="referrer" content="no-referrer" /> <div class="divider"> <div class="wall"></div> <img class="animals" src="/img/footer_animals_new.png" srcset="/img/loading.gif" lazyload alt="Footer Animals"> </div> <div class="container" data-index="450"> <p> <a href="https://chiamzhang.github.io" target="_blank">DogEgg</a> <i class="iconfont icon-love"></i> <a href="#" target="_blank">LittePig</a> </p> <p> Powered by  <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-pen"></i> Theme  <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> </p> </div> </footer> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+  
+<script src="/js/love.js"></script>
+<script src="/js/funnyTitle.js"></script>
+<script src="/js/backTop.js"></script>
+<script src="//cdn.jsdelivr.net/gh/bynotes/texiao/source/js/xiaoxuehua.js"></script>
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+</html>

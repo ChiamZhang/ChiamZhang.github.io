@@ -1,0 +1,762 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/Mine.jpg">
+  <link rel="icon" href="/img/Mine.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Chiam">
+  <meta name="keywords" content="Algorithms，Cybersecurity">
+  
+    <meta name="description" content="『计算机网络』部分简答题网络协议三要素 语法数据与控制信息的结构或格式 语义要发出何种控制信息，完成何种动作，回应何种应答 时序事件的实现顺序的详细说明对于复杂的计算机网络协议，其结构最好使用层次式的。  物理接口有哪些性质 机械特性：指明接口的形状、大小、尺寸、引线数目和排列、固定、锁定装置等等 电气特性：指明接口上的电缆的电压范围 功能特性：指明接口电缆上每种电压表示何意 过程特性：对于不同功">
+<meta property="og:type" content="article">
+<meta property="og:title" content="『计算机网络』部分简答题">
+<meta property="og:url" content="https://chiamzhang.github.io/2024/06/29/%E3%80%8E%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E3%80%8F%E9%83%A8%E5%88%86%E7%AE%80%E7%AD%94%E9%A2%98/index.html">
+<meta property="og:site_name" content="Homepage of Chiam">
+<meta property="og:description" content="『计算机网络』部分简答题网络协议三要素 语法数据与控制信息的结构或格式 语义要发出何种控制信息，完成何种动作，回应何种应答 时序事件的实现顺序的详细说明对于复杂的计算机网络协议，其结构最好使用层次式的。  物理接口有哪些性质 机械特性：指明接口的形状、大小、尺寸、引线数目和排列、固定、锁定装置等等 电气特性：指明接口上的电缆的电压范围 功能特性：指明接口电缆上每种电压表示何意 过程特性：对于不同功">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2024-06-29T13:16:54.663Z">
+<meta property="article:modified_time" content="2023-12-05T16:20:14.771Z">
+<meta property="article:author" content="Chiam">
+<meta property="article:tag" content="Algorithms，Cybersecurity">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>『计算机网络』部分简答题 - Homepage of Chiam</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"chiamzhang.github.io","root":"/","version":"1.9.5-a","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":"❡"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":2},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
+
+
+<body>
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Chiam&#39;s Blogs</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                
+                <span>Home</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                
+                <span>Archives</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                
+                <span>Categories</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                
+                <span>About</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                
+                <span>Links</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="『计算机网络』部分简答题"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-06-29 21:16" pubdate>
+          June 29, 2024 pm
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          17 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">『计算机网络』部分简答题</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="『计算机网络』部分简答题"><a href="#『计算机网络』部分简答题" class="headerlink" title="『计算机网络』部分简答题"></a>『计算机网络』部分简答题</h1><h1 id="网络协议三要素"><a href="#网络协议三要素" class="headerlink" title="网络协议三要素"></a>网络协议三要素</h1><ol>
+<li>语法<br>数据与控制信息的结构或格式</li>
+<li>语义<br>要发出何种控制信息，完成何种动作，回应何种应答</li>
+<li>时序<br>事件的实现顺序的详细说明<br>对于复杂的计算机网络协议，其结构最好使用层次式的。</li>
+</ol>
+<h1 id="物理接口有哪些性质"><a href="#物理接口有哪些性质" class="headerlink" title="物理接口有哪些性质"></a>物理接口有哪些性质</h1><ol>
+<li>机械特性：指明接口的形状、大小、尺寸、引线数目和排列、固定、锁定装置等等</li>
+<li>电气特性：指明接口上的电缆的电压范围</li>
+<li>功能特性：指明接口电缆上每种电压表示何意</li>
+<li>过程特性：对于不同功能的各种可能出现时间的顺序</li>
+</ol>
+<h1 id="分组转发的特点"><a href="#分组转发的特点" class="headerlink" title="分组转发的特点"></a>分组转发的特点</h1><ol>
+<li>报文分组，增加头部</li>
+<li>交换机（路由器）存储转发</li>
+<li>在目的主机进行合并</li>
+</ol>
+<h1 id="各类数据交换方式的特点以及优缺点-xie"><a href="#各类数据交换方式的特点以及优缺点-xie" class="headerlink" title="各类数据交换方式的特点以及优缺点 xie"></a>各类数据交换方式的特点以及优缺点 xie</h1><ol>
+<li>电路交换：<ol>
+<li>端到端的传输，在传输前需要先建立物理通路。 由于通信线路为通信双方用户专用，数据直达传输时延，非常小。</li>
+<li>通信双方物理链路一旦建立，随时可以通信，实时性强。</li>
+<li>双方按发送顺序传输数据，不存在失序的问题</li>
+<li>即适合用于传输模拟信号也适合用于传输</li>
+</ol>
+</li>
+<li>报文交换：<ol>
+<li>报文交换不要为通信双方首先建立一个物理通道，不存在建立时延，用户可以随时进性数据发送</li>
+<li>在报文交换中便于设置检验码和数据重发设施，加之节点可以进性路径选择，就可以在某条传输路径发生问题时，可以重新选择另外一条路径传数据，提高传输的可靠性；</li>
+<li>在存储转发中，容易实现速率匹配，通信效率高且迅速。</li>
+</ol>
+</li>
+<li>分组交换<ol>
+<li>有报文交换的优点，而且将报文分片，路由灵活，网络生存性能好</li>
+<li>后一个分组与前一个分组在网络中的转发是并行的，这种流水线的发送方式有利于提高传输效率。</li>
+<li>减少错误重传的数据量，当分组发送出现错误之后没必要重传一整个的报文，只需要重传分组即可。</li>
+</ol>
+</li>
+</ol>
+<h1 id="以太网发展阶段"><a href="#以太网发展阶段" class="headerlink" title="以太网发展阶段"></a>以太网发展阶段</h1><ol>
+<li>从单个网络 APPANEt 到互联网发展阶段，TCP&#x2F;IP 协议的初步形成</li>
+<li>建成三级结构的 Internet：分为主干网、地区网和校园网</li>
+<li>形成了多层次的 ISP 结构的 Internet；ISP 首次出现</li>
+</ol>
+<h1 id="传输媒介有哪几种，各有什么特点"><a href="#传输媒介有哪几种，各有什么特点" class="headerlink" title="传输媒介有哪几种，各有什么特点"></a>传输媒介有哪几种，各有什么特点</h1><ol>
+<li><p>双绞线<br>双绞线分屏蔽双绞线和无屏蔽双绞线。由两根相互绝缘的导线组成。可以传输模拟信号，也可以传输数字信号，有效带宽达 250kHz，通常距离一般为几道十几公里。导线越粗其通信距离越远。在数字传输时，若传输速率为每秒几兆比特，则传输距离可达几公里。一般用作电话线传输声音信号。虽然双绞线容易受到外部高频电磁波的干扰，误码率高，但因为其价格便宜，且安装方便，既适于点到点连接，又可用于多点连接，故仍被广泛应用。</p>
+</li>
+<li><p>同轴电缆<br>同轴电缆分基带同轴电缆和宽带同轴电缆，其结构是在一个包有绝缘的实心导线外，再套上一层外面也有一层绝缘的空心圆形导线。由于其高带宽（高达 300~400Hz）、低误码率、性能价格比高，所以用作 LAN 中。同轴电缆的最大传输距离随电缆型号和传输信号的不同而不同，由于易受低频干扰，在使用时多将信号调制在高频载波上。</p>
+</li>
+<li><p>光导纤维<br>光导纤维以光纤维载体，利用光的全反向原理传播光信号。其优点是直径小、质量轻：传播频带款、通信容量大：抗雷电和电磁干扰性能好，五串音干扰、保密性好、误码率低。但光电接口的价格较昂贵。光纤被广泛用于电信系统铺设主干线。</p>
+</li>
+<li><p>无线电技术，分为微波和短波，微波可以理解为你家的无线网和联通电信（他们用的是基站，不是卫星，卫星的延迟极高）技术基础是地面中继。<br>短波是依赖电离层的反射技术，延迟大不适用于及时同通信，但是覆盖范围大，适合广播。</p>
+</li>
+</ol>
+<h1 id="ADSL-的中文名称及功能和主要特点"><a href="#ADSL-的中文名称及功能和主要特点" class="headerlink" title="ADSL 的中文名称及功能和主要特点"></a>ADSL 的中文名称及功能和主要特点</h1><ol>
+<li>非对称数字用户线</li>
+<li>ADSL 是一种非对称的 DSL 线，所谓非对称就是说，上传的速率较低，下载速率较高。</li>
+<li>该技术为使用数字技术对模拟电话用户进性改造，使它能够承载宽带数字业务。将 0-4Khz 的低频信道留给传统的有线电话使用，将原来没有被利用的 4Khz 的以上的频带留给了用户上网使用。</li>
+</ol>
+<h1 id="RIP-OSFP-BGP-主要特点和原理"><a href="#RIP-OSFP-BGP-主要特点和原理" class="headerlink" title="RIP OSFP BGP 主要特点和原理"></a>RIP OSFP BGP 主要特点和原理</h1><h1 id="UDP-面向报文，TCP-面向字节流"><a href="#UDP-面向报文，TCP-面向字节流" class="headerlink" title="UDP 面向报文，TCP 面向字节流"></a>UDP 面向报文，TCP 面向字节流</h1><ol>
+<li>UDP 获得应用层的报文后，不拆分也不合并，直接将数据报封装进 UDP 数据部分，即加上头部之后，直接交付给 IP，UDP 对于 IP 交付的用户数据，去掉头部之后直接交付给应用层。</li>
+<li>不论应用层的数据长度多少，TCP 都要对数据按字节编号。根据网络拥塞程度和用户接收缓存的大小设置发送长度。因此是面向字节流的</li>
+</ol>
+<h1 id="端口号的作用"><a href="#端口号的作用" class="headerlink" title="端口号的作用"></a>端口号的作用</h1><ol>
+<li>熟知端口：0-1023：标识常规的服务进程</li>
+<li>等级端口：1024-49151 标记没有熟知端口号的的非常规的服务进程</li>
+<li>短暂端口；49152-65535 提供应用程序的临时接口</li>
+</ol>
+<h1 id="简述一下因特网标准制定阶段"><a href="#简述一下因特网标准制定阶段" class="headerlink" title="简述一下因特网标准制定阶段"></a>简述一下因特网标准制定阶段</h1><ol>
+<li>因特网草案–这个阶段还不是 RFC 文档。</li>
+<li>建议标准–这个阶段成为 RFC 文档，</li>
+<li>草案标准</li>
+<li>因特网标准</li>
+</ol>
+<h1 id="因特网的两大组成部分"><a href="#因特网的两大组成部分" class="headerlink" title="因特网的两大组成部分"></a>因特网的两大组成部分</h1><ol>
+<li><p>核心部分<br>由路由器联网，负责为边缘部分提供高速 &#x3D;&#x3D;远程&#x3D;&#x3D; 的分组交换。</p>
+</li>
+<li><p>边缘部分<br>由各主机组成，用户直接进性信息共享和信息处理，低速连入核心网。</p>
+</li>
+</ol>
+<h1 id="协议与服务的区别"><a href="#协议与服务的区别" class="headerlink" title="协议与服务的区别"></a>协议与服务的区别</h1><ol>
+<li>协议：为进行网络中的数据交换而建立的规则，标准或者约定。由以下 3 部分组成，</li>
+<li>xie</li>
+</ol>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" class="category-chain-item">计算机网络</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>『计算机网络』部分简答题</div>
+      <div>https://chiamzhang.github.io/2024/06/29/『计算机网络』部分简答题/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>Chiam</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>June 29, 2024</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>Licensed under</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2024/06/29/%E3%80%8E%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E3%80%8F%20%E5%8F%88%E8%B0%88%E9%BA%A6%E5%BD%93%E5%8A%B3%E7%9A%84%E9%A3%9F%E5%93%81-%E7%BB%84%E5%90%88%E6%A8%A1%E5%BC%8F(Composite)/" title="『设计模式』 又谈麦当劳的食品-组合模式(Composite)">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">『设计模式』 又谈麦当劳的食品-组合模式(Composite)</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/06/29/%E3%80%8E%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E3%80%8F%E7%AE%80%E7%AD%94%E9%A2%98%E5%A4%8D%E4%B9%A0%E8%A6%81%E7%82%B9/" title="『计算机网络』简答题复习要点">
+                        <span class="hidden-mobile">『计算机网络』简答题复习要点</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"fIfc7WqUDZohlQuPc2lz5mJy-MdYXbMMI","appKey":"zjlAG3ZA3o4cBHVAkjzc2Z20","path":"window.location.pathname","placeholder":"留言仅限讨论，禁止广告等行为","avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"https://fifc7wqu.api.lncldglobal.com","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>Table of Contents</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <meta name="referrer" content="no-referrer" /> <footer id="footer" role="contentinfo"> <meta name="referrer" content="no-referrer" /> <div class="divider"> <div class="wall"></div> <img class="animals" src="/img/footer_animals_new.png" srcset="/img/loading.gif" lazyload alt="Footer Animals"> </div> <div class="container" data-index="450"> <p> <a href="https://chiamzhang.github.io" target="_blank">DogEgg</a> <i class="iconfont icon-love"></i> <a href="#" target="_blank">LittePig</a> </p> <p> Powered by  <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-pen"></i> Theme  <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> </p> </div> </footer> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+  
+<script src="/js/love.js"></script>
+<script src="/js/funnyTitle.js"></script>
+<script src="/js/backTop.js"></script>
+<script src="//cdn.jsdelivr.net/gh/bynotes/texiao/source/js/xiaoxuehua.js"></script>
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+</html>

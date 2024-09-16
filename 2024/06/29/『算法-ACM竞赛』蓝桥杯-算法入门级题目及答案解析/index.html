@@ -1,0 +1,734 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/Mine.jpg">
+  <link rel="icon" href="/img/Mine.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Chiam">
+  <meta name="keywords" content="Algorithms，Cybersecurity">
+  
+    <meta name="description" content="『算法-ACM 竞赛』蓝桥杯-算法入门级题目及答案解析写在最前面：本文中会出现大量的请查阅.请自学什么的，不是我不讲，本文是面向算法初学者和蓝桥杯的文章，如果真的想看进阶算法的也不会来看这些题目，所以不要介意，我这里就算是抛砖引玉了，大佬勿喷，ACMEer 绕道哈哈哈哈。 1.杨辉三角形问题描述 1234567891011121314151617181920212223242526杨辉三角形又称P">
+<meta property="og:type" content="article">
+<meta property="og:title" content="『算法-ACM竞赛』蓝桥杯-算法入门级题目及答案解析">
+<meta property="og:url" content="https://chiamzhang.github.io/2024/06/29/%E3%80%8E%E7%AE%97%E6%B3%95-ACM%E7%AB%9E%E8%B5%9B%E3%80%8F%E8%93%9D%E6%A1%A5%E6%9D%AF-%E7%AE%97%E6%B3%95%E5%85%A5%E9%97%A8%E7%BA%A7%E9%A2%98%E7%9B%AE%E5%8F%8A%E7%AD%94%E6%A1%88%E8%A7%A3%E6%9E%90/index.html">
+<meta property="og:site_name" content="Homepage of Chiam">
+<meta property="og:description" content="『算法-ACM 竞赛』蓝桥杯-算法入门级题目及答案解析写在最前面：本文中会出现大量的请查阅.请自学什么的，不是我不讲，本文是面向算法初学者和蓝桥杯的文章，如果真的想看进阶算法的也不会来看这些题目，所以不要介意，我这里就算是抛砖引玉了，大佬勿喷，ACMEer 绕道哈哈哈哈。 1.杨辉三角形问题描述 1234567891011121314151617181920212223242526杨辉三角形又称P">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2024-06-29T13:16:54.625Z">
+<meta property="article:modified_time" content="2023-12-05T16:20:08.048Z">
+<meta property="article:author" content="Chiam">
+<meta property="article:tag" content="Algorithms，Cybersecurity">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>『算法-ACM竞赛』蓝桥杯-算法入门级题目及答案解析 - Homepage of Chiam</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"chiamzhang.github.io","root":"/","version":"1.9.5-a","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":"❡"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":2},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
+
+
+<body>
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Chiam&#39;s Blogs</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                
+                <span>Home</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                
+                <span>Archives</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                
+                <span>Categories</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                
+                <span>About</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                
+                <span>Links</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="『算法-ACM竞赛』蓝桥杯-算法入门级题目及答案解析"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-06-29 21:16" pubdate>
+          June 29, 2024 pm
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          8k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          67 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">『算法-ACM竞赛』蓝桥杯-算法入门级题目及答案解析</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="『算法-ACM-竞赛』蓝桥杯-算法入门级题目及答案解析"><a href="#『算法-ACM-竞赛』蓝桥杯-算法入门级题目及答案解析" class="headerlink" title="『算法-ACM 竞赛』蓝桥杯-算法入门级题目及答案解析"></a>『算法-ACM 竞赛』蓝桥杯-算法入门级题目及答案解析</h1><p><strong>写在最前面：<br>本文中会出现大量的请查阅.请自学什么的，不是我不讲，本文是面向算法初学者和蓝桥杯的文章，如果真的想看进阶算法的也不会来看这些题目，所以不要介意，我这里就算是抛砖引玉了，大佬勿喷，ACMEer 绕道哈哈哈哈。</strong></p>
+<h4 id="1-杨辉三角形"><a href="#1-杨辉三角形" class="headerlink" title="1.杨辉三角形"></a>1.杨辉三角形</h4><p><strong>问题描述</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><code class="hljs java">杨辉三角形又称Pascal三角形，它的第i+<span class="hljs-number">1</span>行是(a+b)i的展开式的系数。<br>它的一个重要性质是：三角形中的每个数字等于它两肩上的数字相加。<br>　　<br>下面给出了杨辉三角形的前<span class="hljs-number">4</span>行：<br>   <span class="hljs-number">1</span><br>  <span class="hljs-number">1</span> <span class="hljs-number">1</span><br> <span class="hljs-number">1</span> <span class="hljs-number">2</span> <span class="hljs-number">1</span><br><span class="hljs-number">1</span> <span class="hljs-number">3</span> <span class="hljs-number">3</span> <span class="hljs-number">1</span><br>给出n，输出它的前n行。<br><br>输入格式<br>输入包含一个数n。<br><br>输出格式<br>输出杨辉三角形的前n行。每一行从这一行的第一个数开始依次输出，中间使用一个空格分隔。请不要在前面输出多余的空格。<br><br>样例输入<br><span class="hljs-number">4</span><br>样例输出<br><span class="hljs-number">1</span><br><span class="hljs-number">1</span> <span class="hljs-number">1</span><br><span class="hljs-number">1</span> <span class="hljs-number">2</span> <span class="hljs-number">1</span><br><span class="hljs-number">1</span> <span class="hljs-number">3</span> <span class="hljs-number">3</span> <span class="hljs-number">1</span><br><br>数据规模与约定<br><span class="hljs-number">1</span> &lt;= n &lt;= <span class="hljs-number">34</span>。<br></code></pre></td></tr></table></figure>
+
+<p><strong>杨辉三角形入门的话就是考察代码编写，是个模拟题目，当数据量达到一定程度之后是组合数问题，可以使用卢卡斯定理，这里是入门，暂且不提，有兴趣可以去我博客数论查找！</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs java">#include &lt;bits/stdc++.h&gt;<br>using namespace std;<br><span class="hljs-type">int</span> s[<span class="hljs-number">1000</span>], a[<span class="hljs-number">1000</span>];<br><br><span class="hljs-keyword">void</span> <span class="hljs-title function_">print</span><span class="hljs-params">(<span class="hljs-type">int</span> source[], <span class="hljs-type">int</span> ans[], <span class="hljs-type">int</span> now, <span class="hljs-type">int</span> target)</span> <span class="hljs-comment">//状态转移</span><br>&#123;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; i &lt; now; i++)<br>    &#123;<br>        i == <span class="hljs-number">0</span> ? ans[i] = <span class="hljs-number">1</span> : ans[i] = source[i] + source[i - <span class="hljs-number">1</span>];<br>        cout &lt;&lt; ans[i] &lt;&lt; <span class="hljs-string">&quot;\t&quot;</span>;<br>    &#125;<br>    puts(<span class="hljs-string">&quot;&quot;</span>);<br>    <span class="hljs-keyword">if</span> (now == target)<br>        <span class="hljs-keyword">return</span>;<br>    print(ans, source, now + <span class="hljs-number">1</span>, target);<br>&#125;<br><span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">()</span><br>&#123;<br>    <span class="hljs-type">int</span> n;<br>    cin &gt;&gt; n;<br>    print(s, a, <span class="hljs-number">1</span>, n);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h4 id="2-字符串比较"><a href="#2-字符串比较" class="headerlink" title="2.字符串比较"></a>2.字符串比较</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs java">问题描述<br>　　给定两个仅由大写字母或小写字母组成的字符串(长度介于<span class="hljs-number">1</span>到<span class="hljs-number">10</span>之间)，它们之间的关系是以下<span class="hljs-number">4</span>中情况之一：<br>　　<span class="hljs-number">1</span>：两个字符串长度不等。比如 Beijing 和 Hebei<br>　　<span class="hljs-number">2</span>：两个字符串不仅长度相等，而且相应位置上的字符完全一致(区分大小写)，比如 Beijing 和 Beijing<br>　　<span class="hljs-number">3</span>：两个字符串长度相等，相应位置上的字符仅在不区分大小写的前提下才能达到完全一致（也就是说，它并不满足情况<span class="hljs-number">2</span>）。比如 beijing 和 BEIjing<br>　　<span class="hljs-number">4</span>：两个字符串长度相等，但是即使是不区分大小写也不能使这两个字符串一致。比如 Beijing 和 Nanjing<br>　　编程判断输入的两个字符串之间的关系属于这四类中的哪一类，给出所属的类的编号。<br>输入格式<br>　　包括两行，每行都是一个字符串<br>输出格式<br>　　仅有一个数字，表明这两个字符串的关系编号<br>样例输入<br>BEIjing<br>beiJing<br>样例输出<br><span class="hljs-number">3</span><br><br><br></code></pre></td></tr></table></figure>
+
+<p><strong>直接可以讨论用 c++的 string 即可，相关的 string 操作：1.可以判等&#x3D;&#x3D; 2.可以比较字典序 &lt; 或 &gt; 3.reserve 反转 4.length()判断长度</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs java">#include &lt;bits/stdc++.h&gt;<br>using namespace std;<br><span class="hljs-type">int</span> <span class="hljs-title function_">compare</span><span class="hljs-params">(string s1,string s2)</span><br>&#123;<br>    <span class="hljs-keyword">if</span>(s1.length()==s2.length())<br>    &#123;<br>        <span class="hljs-keyword">if</span>(s1==s2)<span class="hljs-keyword">return</span> <span class="hljs-number">2</span>;<br>        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">0</span>;i&lt;s2.length();i++)<br>        &#123;<br>            <span class="hljs-keyword">if</span>(toupper(s1[i])!=toupper(s2[i])) <span class="hljs-keyword">return</span> <span class="hljs-number">4</span>;<br>        &#125;<br>        <span class="hljs-keyword">return</span>  <span class="hljs-number">3</span>;<br>    &#125;<br>    <span class="hljs-keyword">else</span> <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;<br>&#125;<br><span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">()</span><br>&#123;<br>    string s1,s2;<br>    cin&gt;&gt;s1&gt;&gt;s2;<br>    cout&lt;&lt;compare(s1,s2);<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+<h4 id="3-N-皇后问题-Plus"><a href="#3-N-皇后问题-Plus" class="headerlink" title="3.N 皇后问题 Plus"></a>3.N 皇后问题 Plus</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs java">问题描述<br>　　给定一个n*n的棋盘，棋盘中有一些位置不能放皇后。现在要向棋盘中放入n个黑皇后和n个白皇后，使任意的两个黑皇后都不在同一行、同一列或同一条对角线上，任意的两个白皇后都不在同一行、同一列或同一条对角线上。问总共有多少种放法？n小于等于<span class="hljs-number">8</span>。<br>输入格式<br>　　输入的第一行为一个整数n，表示棋盘的大小。<br>　　接下来n行，每行n个<span class="hljs-number">0</span>或<span class="hljs-number">1</span>的整数，如果一个整数为<span class="hljs-number">1</span>，表示对应的位置可以放皇后，如果一个整数为<span class="hljs-number">0</span>，表示对应的位置不可以放皇后。<br>输出格式<br>　　输出一个整数，表示总共有多少种放法。<br>样例输入<br><span class="hljs-number">4</span><br><span class="hljs-number">1</span> <span class="hljs-number">1</span> <span class="hljs-number">1</span> <span class="hljs-number">1</span><br><span class="hljs-number">1</span> <span class="hljs-number">1</span> <span class="hljs-number">1</span> <span class="hljs-number">1</span><br><span class="hljs-number">1</span> <span class="hljs-number">1</span> <span class="hljs-number">1</span> <span class="hljs-number">1</span><br><span class="hljs-number">1</span> <span class="hljs-number">1</span> <span class="hljs-number">1</span> <span class="hljs-number">1</span><br>样例输出<br><span class="hljs-number">2</span><br>样例输入<br><span class="hljs-number">4</span><br><span class="hljs-number">1</span> <span class="hljs-number">0</span> <span class="hljs-number">1</span> <span class="hljs-number">1</span><br><span class="hljs-number">1</span> <span class="hljs-number">1</span> <span class="hljs-number">1</span> <span class="hljs-number">1</span><br><span class="hljs-number">1</span> <span class="hljs-number">1</span> <span class="hljs-number">1</span> <span class="hljs-number">1</span><br><span class="hljs-number">1</span> <span class="hljs-number">1</span> <span class="hljs-number">1</span> <span class="hljs-number">1</span><br>样例输出<br><span class="hljs-number">0</span><br></code></pre></td></tr></table></figure>
+
+<p><strong>解析</strong><br><strong>N 皇后问题，是一类搜索问题，这里我们使用 4 个数组来保证米字的形状没有皇后，斜线的保存我们要发现一条左斜线的横坐标减纵坐标是相同的，同一右斜线上的点横纵坐标相加的值相同，由此我们可以推理出以下搜索策略</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><code class="hljs java">#include &lt;bits/stdc++.h&gt;<br>using namespace std;<br><span class="hljs-type">int</span> mp[<span class="hljs-number">10</span>][<span class="hljs-number">10</span>];<br><span class="hljs-type">int</span> hen[<span class="hljs-number">10</span>], shu[<span class="hljs-number">10</span>], zuo[<span class="hljs-number">100</span>], you[<span class="hljs-number">100</span>];<br><span class="hljs-type">int</span> <span class="hljs-variable">ans</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>;<br><span class="hljs-keyword">void</span> <span class="hljs-title function_">js</span><span class="hljs-params">(<span class="hljs-type">int</span> len, <span class="hljs-type">int</span> cen)</span><br>&#123;<br>    <span class="hljs-keyword">if</span> (cen == len)<br>    &#123;<br>        ans++;<br>        <span class="hljs-keyword">return</span>;<br>    &#125;<br>    <span class="hljs-comment">// puts(&quot;--------------------------------------------------------\n&quot;);</span><br>    <span class="hljs-comment">// for (int i = 0; i &lt; len; i++)</span><br>    <span class="hljs-comment">// &#123;</span><br>    <span class="hljs-comment">//     for (int j = 0; j &lt; len; j++)</span><br>    <span class="hljs-comment">//     &#123;</span><br>    <span class="hljs-comment">//         cout&lt;&lt; mp[i][j]&lt;&lt;&quot; &quot;;</span><br>    <span class="hljs-comment">//     &#125;</span><br>    <span class="hljs-comment">//     puts(&quot;&quot;);</span><br>    <span class="hljs-comment">// &#125;</span><br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; i &lt; len; i++)<br>    &#123;<br>        <span class="hljs-keyword">if</span> (hen[i] == <span class="hljs-number">0</span> &amp;&amp; shu[i] == <span class="hljs-number">0</span> &amp;&amp; zuo[(cen + i) / <span class="hljs-number">2</span>] == <span class="hljs-number">0</span> &amp;&amp; you[cen - i + len] == <span class="hljs-number">0</span> &amp;&amp; mp[cen][i])<br>        &#123;<br>            mp[cen][i] = <span class="hljs-number">0</span>;<br>            hen[i] = shu[i] = zuo[(cen + i + <span class="hljs-number">1</span>) / <span class="hljs-number">2</span>] = you[cen - i + len] = <span class="hljs-number">1</span>;<br>            js(len, cen + <span class="hljs-number">1</span>);<br>            mp[cen][i] = <span class="hljs-number">1</span>;<br>            hen[i] = shu[i] = zuo[(cen + i + <span class="hljs-number">1</span>) / <span class="hljs-number">2</span>] = you[cen - i + len] = <span class="hljs-number">0</span>;<br>        &#125;<br>    &#125;<br>    <span class="hljs-keyword">return</span>;<br>&#125;<br><span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">()</span><br>&#123;<br>    <span class="hljs-type">int</span> n;<br>    cin &gt;&gt; n;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; i &lt; n; i++)<br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">j</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; j &lt; n; j++)<br>        &#123;<br>            cin &gt;&gt; mp[i][j];<br>        &#125;<br>    js(n, <span class="hljs-number">0</span>);<br>    cout &lt;&lt; ans &lt;&lt; endl;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+<h4 id="4-导弹拦截"><a href="#4-导弹拦截" class="headerlink" title="4.导弹拦截"></a>4.导弹拦截</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs java">问题描述<br>　　某国为了防御敌国的导弹袭击，发展出一种导弹拦截系统。但是这种导弹拦截系统有一个缺陷：虽然它的第一发炮弹能够到达任意的高度，但是以后每一发炮弹都不能高于前一发的高度。某天，雷达捕捉到敌国的导弹来袭。由于该系统还在试用阶段，所以只有一套系统，因此有可能不能拦截所有的导弹。<br><br>　　输入导弹依次飞来的高度（雷达给出的高度数据是不大于<span class="hljs-number">30000</span>的正整数），计算这套系统最多能拦截多少导弹，如果要拦截所有导弹最少要配备多少套这种导弹拦截系统。<br>输入格式<br>　　一行，为导弹依次飞来的高度<br>输出格式<br>　　两行，分别是最多能拦截的导弹数与要拦截所有导弹最少要配备的系统数<br><br>样例输入<br><span class="hljs-number">389</span> <span class="hljs-number">207</span> <span class="hljs-number">155</span> <span class="hljs-number">300</span> <span class="hljs-number">299</span> <span class="hljs-number">170</span> <span class="hljs-number">158</span> <span class="hljs-number">65</span><br><br>样例输出<br><span class="hljs-number">6</span><br><span class="hljs-number">2</span><br></code></pre></td></tr></table></figure>
+
+<p><strong>这是一类动态规划问题，LIS 问题。<br>第一问是求一个数列的最长下降子序列，第二问则是最长的非严格上升子序列(如 3 3 2 1，可以相等）因为最长上升子序列的每一个高度都需要一套拦截系统，彼此独立。</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><code class="hljs java">#include &lt;bits/stdc++.h&gt;<br>using namespace std;<br><span class="hljs-type">int</span> h[<span class="hljs-number">1000</span>];<br><span class="hljs-type">int</span> dp[<span class="hljs-number">1000</span>][<span class="hljs-number">2</span>];<br>map&lt;<span class="hljs-type">int</span>,<span class="hljs-type">int</span>&gt; cou;<br>pair&lt;<span class="hljs-type">int</span>,<span class="hljs-type">int</span>&gt; <span class="hljs-title function_">Lis</span><span class="hljs-params">(<span class="hljs-type">int</span> a[],<span class="hljs-type">int</span> len)</span><br>&#123;<br>    <span class="hljs-type">int</span> ans=<span class="hljs-number">0</span>,cnt=<span class="hljs-number">0</span>;<br>    <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">0</span>;i&lt;len;i++)<br>    &#123;<br>        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> j=<span class="hljs-number">0</span>;j&lt;i;j++)<br>        &#123;<br>            <span class="hljs-keyword">if</span>(h[j]&lt;h[i]) dp[i][<span class="hljs-number">0</span>]=max(dp[i][<span class="hljs-number">0</span>],dp[j][<span class="hljs-number">0</span>]+<span class="hljs-number">1</span>);<br>            <span class="hljs-keyword">else</span> dp[i][<span class="hljs-number">1</span>]=max(dp[i][<span class="hljs-number">1</span>],dp[j][<span class="hljs-number">1</span>]+<span class="hljs-number">1</span>);<br>            ans=max(ans,dp[i][<span class="hljs-number">0</span>]);<br>            cnt=max(cnt,dp[i][<span class="hljs-number">1</span>]);<br>        &#125;<br><br>    &#125;<br>    <span class="hljs-keyword">return</span> make_pair(ans+<span class="hljs-number">1</span>,cnt+<span class="hljs-number">1</span>);<br>&#125;<br><span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">()</span><br>&#123;<br>    <span class="hljs-type">int</span> n;<br>    cin &gt;&gt; n;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; i &lt; n; i++)<br>        cin &gt;&gt; h[i];<br>    auto answ=Lis(h,n);<br>    cout&lt;&lt;answ.first&lt;&lt;<span class="hljs-string">&quot; &quot;</span>&lt;&lt;answ.second &lt;&lt;endl;<br><br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h4 id="5-Fibonacci-数列"><a href="#5-Fibonacci-数列" class="headerlink" title="5.Fibonacci 数列"></a>5.Fibonacci 数列</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs java">问题描述<br><br>Fibonacci数列的递推公式为：Fn=Fn-<span class="hljs-number">1</span>+Fn-<span class="hljs-number">2</span>，其中F1=F2=<span class="hljs-number">1</span>。<br><br>当n比较大时，Fn也非常大，现在我们想知道，Fn除以<span class="hljs-number">10007</span>的余数是多少。<br>输入格式<br>输入包含一个整数n。<br>输出格式<br>输出一行，包含一个整数，表示Fn除以<span class="hljs-number">10007</span>的余数。<br><br>说明：在本题中，答案是要求Fn除以<span class="hljs-number">10007</span>的余数，因此我们只要能算出这个余数即可，而不需要先计算出Fn的准确值，再将计算的结果除以<span class="hljs-number">10007</span>取余数，直接计算余数往往比先算出原数再取余简单。<br>样例输入<br><span class="hljs-number">10</span><br>样例输出<br><span class="hljs-number">55</span><br>样例输入<br><span class="hljs-number">22</span><br>样例输出<br><span class="hljs-number">7704</span><br>数据规模与约定<br><span class="hljs-number">1</span> &lt;= n &lt;= <span class="hljs-number">1</span>,<span class="hljs-number">000</span>,<span class="hljs-number">000</span>。<br></code></pre></td></tr></table></figure>
+
+<p><strong>因为是入门，蓝桥杯也考不了这么难，这里写递推。如果有兴趣进阶的话，可以研究下，矩阵快速幂，和母函数的做法，我博客里应该都有！</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs java">#include &lt;bits/stdc++.h&gt;<br>using namespace std;<br>const <span class="hljs-type">int</span> MOD=<span class="hljs-number">10007</span>;<br><span class="hljs-type">int</span> f[<span class="hljs-number">100000</span>];<br><span class="hljs-type">int</span> <span class="hljs-title function_">init</span><span class="hljs-params">(<span class="hljs-type">int</span> n)</span><br>&#123;<br>    f[<span class="hljs-number">1</span>]=f[<span class="hljs-number">2</span>]=<span class="hljs-number">1</span>;<br>    <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">3</span>;i&lt;=n;i++)<br>    f[i]=f[i-<span class="hljs-number">1</span>]+f[i-<span class="hljs-number">2</span>]%MOD;<br>&#125;<br><span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">()</span><br>&#123;<br>    <span class="hljs-type">int</span> n;<br>    cin&gt;&gt;n;<br>    init(n);<br>    cout&lt;&lt;f[n]&lt;&lt;endl;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h4 id="6-校门外的树"><a href="#6-校门外的树" class="headerlink" title="6.校门外的树"></a>6.校门外的树</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs java">问题描述<br>　　某校大门外长度为L的马路上有一排树，每两棵相邻的树之间的间隔都是<span class="hljs-number">1</span>米。我们可以把马路看成一个数轴，马路的一端在数轴<span class="hljs-number">0</span>的位置，另一端在L的位置；数 轴上的每个整数点，即<span class="hljs-number">0</span>，<span class="hljs-number">1</span>，<span class="hljs-number">2</span>，……，L，都种有一棵树。<br>　　由于马路上有一些区域要用来建地铁。这些区域用它们在数轴上的起始点和终止点表示。已 知任一区域的起始点和终止点的坐标都是整数，区域之间可能有重合的部分。现在要把这些区域中的树（包括区域端点处的两棵树）移走。你的任务是计算将这些树 都移走后，马路上还有多少棵树。<br><br>输入格式<br>　　输入文件的第一行有两个整数L（<span class="hljs-number">1</span> &lt;= L &lt;= <span class="hljs-number">10000</span>）和 M（<span class="hljs-number">1</span> &lt;= M &lt;= <span class="hljs-number">100</span>），L代表马路的长度，M代表区域的数目，L和M之间用一个空格隔开。接下来的M行每行包含两个不同的整数，用一个空格隔开，表示一个区域的起始点 和终止点的坐标。<br>输出格式<br>　　输出文件包括一行，这一行只包含一个整数，表示马路上剩余的树的数目。<br><br>样例输入<br><span class="hljs-number">500</span> <span class="hljs-number">3</span><br><span class="hljs-number">150</span> <span class="hljs-number">300</span><br><span class="hljs-number">100</span> <span class="hljs-number">200</span><br><span class="hljs-number">470</span> <span class="hljs-number">471</span><br>样例输出<br><span class="hljs-number">298</span><br><br>数据规模和约定<br>　　对于<span class="hljs-number">20</span>%的数据，区域之间没有重合的部分；<br>　　对于其它的数据，区域之间有重合的情况。<br></code></pre></td></tr></table></figure>
+
+<p><strong>这道题很简单是签到题，就是考察的模拟，会不会处理区间重叠情况，这道题的进阶做法是差分，有兴趣的可以查阅，我们这里只是蓝桥杯和入门</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs java">#include &lt;bits/stdc++.h&gt;<br>using namespace std;<br><span class="hljs-type">int</span> a[<span class="hljs-number">1000000</span>];<br><span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">()</span><br>&#123;<br>    <span class="hljs-type">int</span> n,m;<br>    cin&gt;&gt;n&gt;&gt;m;<br>    <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">0</span>;i&lt;m;i++)<br>    &#123;<br>        <span class="hljs-type">int</span> l,r;<br>        cin&gt;&gt;l&gt;&gt;r;<br>        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> j=l;j&lt;=r;j++)<br>        &#123;<br>            a[j]=-<span class="hljs-number">1</span>;<br>        &#125;<br>    &#125;<br>    <span class="hljs-type">int</span> ans=<span class="hljs-number">0</span>;<br>    <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">0</span>;i&lt;=n;i++)<br>        <span class="hljs-keyword">if</span>(a[j]==<span class="hljs-number">0</span>) ans++;<br>    cout&lt;&lt;ans&lt;&lt;endl;<br><br><br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h4 id="7-夺宝奇兵"><a href="#7-夺宝奇兵" class="headerlink" title="7.夺宝奇兵"></a>7.夺宝奇兵</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><code class="hljs java">算法提高 夺宝奇兵<br>时间限制：<span class="hljs-number">1.</span>0s   内存限制：<span class="hljs-number">512.</span>0MB<br><br>[题目描述]<br>　　在一座山上,有很多很多珠宝,它们散落在山底通往山顶的每条道路上,不同道路上的珠宝的数目也各不相同.下图为一张藏宝地图:<br><br>　　<span class="hljs-number">7</span><br>　　<span class="hljs-number">3</span> <span class="hljs-number">8</span><br>　　<span class="hljs-number">8</span> <span class="hljs-number">1</span> <span class="hljs-number">0</span><br>　　<span class="hljs-number">2</span> <span class="hljs-number">7</span> <span class="hljs-number">4</span> <span class="hljs-number">4</span><br>　　<span class="hljs-number">4</span> <span class="hljs-number">5</span> <span class="hljs-number">2</span> <span class="hljs-number">6</span> <span class="hljs-number">5</span><br><br>　　”夺宝奇兵”从山下出发,到达山顶,如何选路才能得到最多的珠宝呢?在上图所示例子中,按照<span class="hljs-number">5</span>-&gt;<span class="hljs-number">7</span>-&gt;<span class="hljs-number">8</span>-&gt;<span class="hljs-number">3</span>-&gt;<span class="hljs-number">7</span>的顺序,将得到最大值<span class="hljs-number">30</span><br><br>[输入]<br>　　第一行正整数N(<span class="hljs-number">100</span>&gt;=N&gt;<span class="hljs-number">1</span>),表示山的高度<br>　　接下来有N行非负整数,第i行有i个整数(<span class="hljs-number">1</span>&lt;=i&lt;=N),表示山的第i层上从左到右每条路上的珠宝数目<br><br>[输出]<br>　　一个整数,表示从山底到山顶的所能得到的珠宝的最大数目.<br>[样例输入]<br><span class="hljs-number">5</span><br><span class="hljs-number">7</span><br><span class="hljs-number">3</span> <span class="hljs-number">8</span><br><span class="hljs-number">8</span> <span class="hljs-number">1</span> <span class="hljs-number">0</span><br><span class="hljs-number">2</span> <span class="hljs-number">7</span> <span class="hljs-number">4</span> <span class="hljs-number">4</span><br><span class="hljs-number">4</span> <span class="hljs-number">5</span> <span class="hljs-number">2</span> <span class="hljs-number">6</span> <span class="hljs-number">5</span><br><br>[样例输出]<br>　　<span class="hljs-number">30</span><br><br><br></code></pre></td></tr></table></figure>
+
+<p><strong>经典 DP 算法，可以自下而上也可以从上向下，每次只保留最优的选择方案，状态转移方程为：<br>dp[i][j] &#x3D; max(dp[i + 1][j], dp[i + 1][j + 1]) + mountain[i][j];</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs java">#include &lt;bits/stdc++.h&gt;<br>using namespace std;<br><span class="hljs-type">int</span> mountain[MAXN][MAXN];<br><span class="hljs-type">int</span> dp[MAXN + <span class="hljs-number">1</span>][MAXN + <span class="hljs-number">1</span>];<br><br><span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">()</span><br>&#123;<br><br>    cin&gt;&gt;n;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; i &lt; N; ++i)<br>    &#123;<br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">j</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; j &lt;= i; ++j)<br>            cin&gt;&gt;mountain[i][j];<br>    &#125;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> N - <span class="hljs-number">1</span>; i &gt;= <span class="hljs-number">0</span>; --i)<br>    &#123;<br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">j</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; j &lt;= i; ++j)<br>        &#123;<br>            dp[i][j] = max(dp[i + <span class="hljs-number">1</span>][j], dp[i + <span class="hljs-number">1</span>][j + <span class="hljs-number">1</span>]) + mountain[i][j];<br>        &#125;<br>    &#125;<br>    cout&lt;&lt;dp[<span class="hljs-number">0</span>][<span class="hljs-number">0</span>]&lt;&lt;endl;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h4 id="8-质因数分解"><a href="#8-质因数分解" class="headerlink" title="8.质因数分解"></a>8.质因数分解</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><code class="hljs java"> 基础练习 分解质因数<br>时间限制：<span class="hljs-number">1.</span>0s   内存限制：<span class="hljs-number">512.</span>0MB<br><br>问题描述<br>　　求出区间[a,b]中所有整数的质因数分解。<br>输入格式<br>　　输入两个整数a，b。<br>输出格式<br>　　每行输出一个数的分解，形如k=a1*a2*a3...(a1&lt;=a2&lt;=a3...，k也是从小到大的)(具体可看样例)<br>样例输入<br><span class="hljs-number">3</span> <span class="hljs-number">10</span><br>样例输出<br><span class="hljs-number">3</span>=<span class="hljs-number">3</span><br><span class="hljs-number">4</span>=<span class="hljs-number">2</span>*<span class="hljs-number">2</span><br><span class="hljs-number">5</span>=<span class="hljs-number">5</span><br><span class="hljs-number">6</span>=<span class="hljs-number">2</span>*<span class="hljs-number">3</span><br><span class="hljs-number">7</span>=<span class="hljs-number">7</span><br><span class="hljs-number">8</span>=<span class="hljs-number">2</span>*<span class="hljs-number">2</span>*<span class="hljs-number">2</span><br><span class="hljs-number">9</span>=<span class="hljs-number">3</span>*<span class="hljs-number">3</span><br><span class="hljs-number">10</span>=<span class="hljs-number">2</span>*<span class="hljs-number">5</span><br>提示<br>　　先筛出所有素数，然后再分解。<br>数据规模和约定<br>　　<span class="hljs-number">2</span>&lt;=a&lt;=b&lt;=<span class="hljs-number">10000</span><br></code></pre></td></tr></table></figure>
+
+<p><strong>因为是对区间进行分解，那么质因数将会用到很多次，我们不能每一次都进行试除法，所以预先达标保留，我这里只用了一次试除法，每次对求出小于右端点的所有质因子，这里用了一个小优化，一个数的一对因子不可能都大于他开根号，对于质数的筛法有埃式筛法和线性筛法我博客里也有可以去看，写到这里真的用不着，时间给的很充足。</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><code class="hljs java">#include &lt;bits/stdc++.h&gt;<br>using namespace std;<br><span class="hljs-type">int</span> prime[<span class="hljs-number">10000</span>], cnt = <span class="hljs-number">0</span>;<br><span class="hljs-keyword">void</span> <span class="hljs-title function_">init</span><span class="hljs-params">(<span class="hljs-type">int</span> n)</span><br>&#123;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">2</span>; i &lt; n; i++)<br>    &#123;<br>        <span class="hljs-type">int</span> <span class="hljs-variable">flag</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>;<br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">j</span> <span class="hljs-operator">=</span> <span class="hljs-number">2</span>; j * j &lt;= i; j++)<br>        &#123;<br>            <span class="hljs-keyword">if</span> (i % j == <span class="hljs-number">0</span>)<br>            &#123;<br>                flag = <span class="hljs-number">1</span>;<br>                <span class="hljs-keyword">break</span>;<br>            &#125;<br>        &#125;<br>        <span class="hljs-keyword">if</span> (flag == <span class="hljs-number">1</span>)<br>            <span class="hljs-keyword">continue</span>;<br>        <span class="hljs-keyword">else</span><br>        &#123;<br>            prime[++cnt] = i;<br>        &#125;<br>    &#125;<br>&#125;<br><span class="hljs-keyword">void</span> <span class="hljs-title function_">fj</span><span class="hljs-params">(<span class="hljs-type">int</span> n)</span><br>&#123;<br>    cout &lt;&lt; n &lt;&lt; <span class="hljs-string">&quot;=&quot;</span>;<br>    <span class="hljs-type">int</span> <span class="hljs-variable">flag</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">1</span>; prime[i] &lt;= n; i++)<br>    &#123;<br>        <span class="hljs-keyword">while</span> (n % prime[i] == <span class="hljs-number">0</span>)<br>        &#123;<br>            <span class="hljs-keyword">if</span> (!flag)<br>            &#123;<br>                flag = <span class="hljs-number">1</span>;<br>            &#125;<br>            <span class="hljs-keyword">else</span><br>                cout &lt;&lt; <span class="hljs-string">&quot;*&quot;</span>;<br>            cout &lt;&lt; prime[i];<br>            n /= prime[i];<br>        &#125;<br>    &#125;<br>    puts(<span class="hljs-string">&quot;&quot;</span>);<br>&#125;<br><span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">()</span><br>&#123;<br>    <span class="hljs-type">int</span> l, r;<br>    cin &gt;&gt; l &gt;&gt; r;<br>    init(r);<br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> l; i &lt;= r; i++)<br>    &#123;<br>        fj(i);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<br>
+
+<blockquote>
+<p><strong>写在最后：</strong><br>我叫风骨散人，名字的意思是我多想可以<code>不低头的自由生活</code>，可现实却不是这样。家境贫寒，总得向这个世界低头，所以我一直在奋斗，想<code>改变我的命运</code>给亲人好的生活，希望<code>同样被生活绑架的你</code>可以通过自己的努力改变现状，深知成年人的世界里没有容易二字。目前是一名在校大学生，预计考研，热爱编程，热爱技术，喜欢分享，知识无界，希望我的分享可以帮到你！<br>如果有什么想看的，可以私信我，如果在能力范围内，我会发布相应的博文！<br>感谢大家的阅读！😘 你的点赞、收藏、关注是对我最大的鼓励！</p>
+</blockquote>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E7%AE%97%E6%B3%95/" class="category-chain-item">算法</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/%E7%AE%97%E6%B3%95/ACM%E7%AB%9E%E8%B5%9B/" class="category-chain-item">ACM竞赛</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>『算法-ACM竞赛』蓝桥杯-算法入门级题目及答案解析</div>
+      <div>https://chiamzhang.github.io/2024/06/29/『算法-ACM竞赛』蓝桥杯-算法入门级题目及答案解析/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>Chiam</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>June 29, 2024</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>Licensed under</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2024/06/29/%E3%80%8E%E7%AE%97%E6%B3%95-ACM%E7%AB%9E%E8%B5%9B%E3%80%8F%E8%A1%A5%E9%A2%98Codeforces%201102E.%20Monotonic%20Renumeration/" title="『算法-ACM竞赛』补题Codeforces 1102E. Monotonic Renumeration">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">『算法-ACM竞赛』补题Codeforces 1102E. Monotonic Renumeration</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/06/29/%E3%80%8E%E7%AE%97%E6%B3%95-ACM%E7%AB%9E%E8%B5%9B%E3%80%8F%E8%8E%AB%E9%98%9F%E7%AE%97%E6%B3%95/" title="『算法-ACM竞赛』莫队算法">
+                        <span class="hidden-mobile">『算法-ACM竞赛』莫队算法</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"fIfc7WqUDZohlQuPc2lz5mJy-MdYXbMMI","appKey":"zjlAG3ZA3o4cBHVAkjzc2Z20","path":"window.location.pathname","placeholder":"留言仅限讨论，禁止广告等行为","avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"https://fifc7wqu.api.lncldglobal.com","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>Table of Contents</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <meta name="referrer" content="no-referrer" /> <footer id="footer" role="contentinfo"> <meta name="referrer" content="no-referrer" /> <div class="divider"> <div class="wall"></div> <img class="animals" src="/img/footer_animals_new.png" srcset="/img/loading.gif" lazyload alt="Footer Animals"> </div> <div class="container" data-index="450"> <p> <a href="https://chiamzhang.github.io" target="_blank">DogEgg</a> <i class="iconfont icon-love"></i> <a href="#" target="_blank">LittePig</a> </p> <p> Powered by  <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-pen"></i> Theme  <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> </p> </div> </footer> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+  
+<script src="/js/love.js"></script>
+<script src="/js/funnyTitle.js"></script>
+<script src="/js/backTop.js"></script>
+<script src="//cdn.jsdelivr.net/gh/bynotes/texiao/source/js/xiaoxuehua.js"></script>
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+</html>

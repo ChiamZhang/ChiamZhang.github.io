@@ -1,0 +1,754 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/Mine.jpg">
+  <link rel="icon" href="/img/Mine.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Chiam">
+  <meta name="keywords" content="Algorithms，Cybersecurity">
+  
+    <meta name="description" content="『算法-ACM 竞赛-疯子的算法总结』4 贪心算法一、贪心算法解决最优化问题的算法一般包含一系列的步骤，每一步都有若干的选择。对于很多最优化问题，只需要采用简单的贪心算法就可以解决，而不需要采用动态规划方法。贪心算法使所做的局部选择看起来都是当前最佳的，通过局部的最优化选择来产生全局最优解。本文将介绍贪心算法的理论基础和一些简单应用。在求最优解问题的过程中，依据某种贪心标准，从问题的初始状态出发，">
+<meta property="og:type" content="article">
+<meta property="og:title" content="『算法-ACM竞赛-疯子的算法总结』4 贪心算法">
+<meta property="og:url" content="https://chiamzhang.github.io/2024/06/29/%E3%80%8E%E7%AE%97%E6%B3%95-ACM%E7%AB%9E%E8%B5%9B-%E7%96%AF%E5%AD%90%E7%9A%84%E7%AE%97%E6%B3%95%E6%80%BB%E7%BB%93%E3%80%8F4%20%E8%B4%AA%E5%BF%83%E7%AE%97%E6%B3%95/index.html">
+<meta property="og:site_name" content="Homepage of Chiam">
+<meta property="og:description" content="『算法-ACM 竞赛-疯子的算法总结』4 贪心算法一、贪心算法解决最优化问题的算法一般包含一系列的步骤，每一步都有若干的选择。对于很多最优化问题，只需要采用简单的贪心算法就可以解决，而不需要采用动态规划方法。贪心算法使所做的局部选择看起来都是当前最佳的，通过局部的最优化选择来产生全局最优解。本文将介绍贪心算法的理论基础和一些简单应用。在求最优解问题的过程中，依据某种贪心标准，从问题的初始状态出发，">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190313233315964.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190313234558363.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190313234737102.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70">
+<meta property="article:published_time" content="2024-06-29T13:16:54.490Z">
+<meta property="article:modified_time" content="2023-12-05T16:19:51.808Z">
+<meta property="article:author" content="Chiam">
+<meta property="article:tag" content="Algorithms，Cybersecurity">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20190313233315964.png">
+  
+  
+  
+  <title>『算法-ACM竞赛-疯子的算法总结』4 贪心算法 - Homepage of Chiam</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"chiamzhang.github.io","root":"/","version":"1.9.5-a","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":"❡"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":2},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
+
+
+<body>
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Chiam&#39;s Blogs</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                
+                <span>Home</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                
+                <span>Archives</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                
+                <span>Categories</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                
+                <span>About</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                
+                <span>Links</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="『算法-ACM竞赛-疯子的算法总结』4 贪心算法"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-06-29 21:16" pubdate>
+          June 29, 2024 pm
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2.6k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          23 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">『算法-ACM竞赛-疯子的算法总结』4 贪心算法</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="『算法-ACM-竞赛-疯子的算法总结』4-贪心算法"><a href="#『算法-ACM-竞赛-疯子的算法总结』4-贪心算法" class="headerlink" title="『算法-ACM 竞赛-疯子的算法总结』4 贪心算法"></a>『算法-ACM 竞赛-疯子的算法总结』4 贪心算法</h1><h5 id="一、贪心算法"><a href="#一、贪心算法" class="headerlink" title="一、贪心算法"></a>一、贪心算法</h5><p>解决最优化问题的算法一般包含一系列的步骤，每一步都有若干的选择。对于很多最优化问题，只需要采用简单的贪心算法就可以解决，而不需要采用动态规划方法。贪心算法使所做的局部选择看起来都是当前最佳的，通过局部的最优化选择来产生全局最优解。本文将介绍贪心算法的理论基础和一些简单应用。在求最优解问题的过程中，依据某种贪心标准，从问题的初始状态出发，直接去求每一步的最优解，通过若干次的贪心选择，最终得出整个问题的最优解，这种求解方法就是贪心算法。</p>
+<p><strong>设计贪心算法的步骤：</strong></p>
+<p>将最优化问题转化为这样一个问题，即先做出选择，再解决剩下的一个子问题。<br>证明原问题的最优解之一可以由贪心选择得到。<br>证明在做出贪心选择后，将剩余的子问题的最优解和我们所做的贪心选择组合起来，可以得到原问题的一个最优解。<br><strong>一般，如果我们能证明一个问题具有以下两个关键的性质，那么就可以设计出它的一个贪心算法。</strong></p>
+<p><strong>（1）贪心选择性质</strong>：一个全局最优解可以通过局部最优解（贪心）选择来达到。即，当考虑做选择时，只考虑对当前问题最佳的选择而不考虑子问题的结果。而在动态规划中，每一步都要做出选择，这些选择依赖于子问题的解。动态规划一般是自底向上，从小问题到大问题。贪心算法通常是自上而下，一个一个地做贪心选择，不断地将给定的问题实例规约为更小的子问题。<br><strong>（2）含有最优子结构：</strong> 如果问题的一个最优解包含了其子问题的最优解，则称该问题具有最优子结构。**</p>
+<p><strong>利用贪心解决问题的关键需要考虑如何选取贪心标准。</strong><br>贪心算法的理论基础<br>关于贪心算法有一种理论可用于确定在何时使用贪心算法能给出最优解，虽然这种理论并没有包含贪心算法所适用的所有情况，但确实描述了许多非常有意义的情况。</p>
+<h5 id="二、适用题型"><a href="#二、适用题型" class="headerlink" title="二、适用题型"></a>二、适用题型</h5><h6 id="1-活动选择问题。"><a href="#1-活动选择问题。" class="headerlink" title="1.活动选择问题。"></a>1.活动选择问题。</h6><p>这层楼沿着走廊南北向的两边各有 200 个房间。最近，公司要做一次装修，需要在各个办公室之间搬运办公桌。由于走廊狭窄，办公桌都很大，走廊里一次只能通过一张办公桌。必须制定计划提高搬运效率。经理制定如下计划：一张办公桌从一个房间移到另一个房间最多用十分钟。当从房间 i 移动一张办公桌到房间 j，两个办公室之间的走廊都会被占用。所以，每 10 分钟内，只要不是同一段走廊，都可以在房间之间移动办公桌。<br><img src="https://img-blog.csdnimg.cn/20190313233315964.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br>思路如果搬运桌子的路径有重叠，那么必定不能够同时进行，所以考虑每个房间经过的次数即为搬运的最短情况。</p>
+<pre><code class="hljs">int i, j;
+int move[200];
+int N;　　　　　　　　//搬运次数
+//每次搬运的起点和终点
+int from, to;
+scanf(&quot;%d&quot;, &amp;N);
+memset(move, 0, sizeof(move));
+for(i = 0; i &lt; N; i++)
+&#123;
+　　scanf(&quot;%d%d&quot;, &amp;from, &amp;to);
+　　//将房间号映射为走廊号
+　　from = (from - 1)/2;
+　　to = (to - 1)/2;
+　　//确保from&lt;to，C++使用：swap(from, to)
+　　if(from &gt; to) &#123;
+　　　　int temp = from;
+　　　　from = to;
+　　　　to = temp;
+　　&#125;
+　　//占用走廊情况
+　　for(j = from; j &lt;= to; j++)
+　　　　move[j]++;
+&#125;
+</code></pre>
+<h6 id="2-可拆分背包问题"><a href="#2-可拆分背包问题" class="headerlink" title="2.可拆分背包问题"></a>2.可拆分背包问题</h6><p>选出贪心准则，按照符合题意程度优先的顺序选择。<br>例如，去自助餐厅吃饭，要想吃回本就要捡着贵的吃，但是贵只是一方面，人会饱，所以用价格除以质量所获的价格商才是贪心准则，应按照价格商优先进行选取。</p>
+<h6 id="3-最优装载问题"><a href="#3-最优装载问题" class="headerlink" title="3.最优装载问题"></a>3.最优装载问题</h6><p>有一批集装箱要装上一艘载重量为 c 的轮船，其中集装箱 i 的重量为 wi。最优装载问题要求确定在装载体积不受限制的情况下，将尽可能多的集装箱装上轮船。</p>
+<p>既然体积不受限制，只受质量限制，那可知从质量小的集装箱开始选取。</p>
+<h6 id="4-删数问题"><a href="#4-删数问题" class="headerlink" title="4.删数问题"></a>4.删数问题</h6><p><img src="https://img-blog.csdnimg.cn/20190313234558363.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<pre><code class="hljs">string a;　　　　　　　　//n位数a
+int k;
+cin&gt;&gt;a&gt;&gt;k;
+//如果k≥n，数字被删完了
+If (k &gt;= a.size())  a.erase();
+else while(k &gt; 0)
+&#123;
+　　//寻找最近下降点
+　　int i;
+　　for (i=0; (i&lt;a.size()-1) &amp;&amp; (a[i] &lt;= a[i+1]);  ++i);
+　　a.erase(i, 1);　　　　//删除xi
+　　k- -;
+&#125;
+//删除前导数字0
+while(a.size() &gt; 1 &amp;&amp; a[0] == &#39;0&#39;)
+　　a.erase(0, 1);
+cout&lt;&lt;a&lt;&lt;endl;
+</code></pre>
+<h6 id="5-多处最优服务次序问题"><a href="#5-多处最优服务次序问题" class="headerlink" title="5.多处最优服务次序问题"></a>5.多处最优服务次序问题</h6><p><img src="https://img-blog.csdnimg.cn/20190313234737102.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br>本题想让客户等待时间短，那如果让时间长的在前，就会有所用人等候最长时间人情况出现，肯定不为最优解。假设从最小的开始，人的基数乘以时间是一个小量，然后事间逐渐延长，人数减少。</p>
+<h6 id="6-多机调度问题"><a href="#6-多机调度问题" class="headerlink" title="6.多机调度问题"></a>6.多机调度问题</h6><p>n 个作业组成的作业集，可由 m 台相同机器加工处理。要求给出一种作业调度方案，使所给的 n 个作业在尽可能短的时间内由 m 台机器加工处理完成。作业不能拆分成更小的子作业；每个作业均可在任何一台机器上加工处理。这个问题是 NP 完全问题，还没有有效的解法(求最优解)，但是可以用贪心选择策略设计出较好的近似算法(求次优解)。当 n&lt;&#x3D;m 时，只要将作业时间区间分配给作业即可；当 n&gt;m 时，首先将 n 个作业从大到小排序，然后依此顺序将作业分配给空闲的处理机。也就是说从剩下的作业中，选择需要处理时间最长的，然后依次选择处理时间次长的，直到所有的作业全部处理完毕，或者机器不能再处理其他作业为止。如果我们每次是将需要处理时间最短的作业分配给空闲的机器，那么可能就会出现其它所有作业都处理完了只剩所需时间最长的作业在处理的情况，这样势必效率较低。</p>
+<h6 id="7-区间覆盖问题"><a href="#7-区间覆盖问题" class="headerlink" title="7.区间覆盖问题"></a>7.区间覆盖问题</h6><p>POJ1328 是一道经典的贪心算法例题。题目大意是假设海岸线是一条无限延伸的直线。陆地在海岸线的一侧，而海洋在另一侧。每一个小的岛屿是海洋上的一个点。雷达坐落于海岸线上，只能覆盖 d 距离，所以如果小岛能够被覆盖到的话，它们之间的距离最多为 d。题目要求计算出能够覆盖给出的所有岛屿的最少雷达数目。对于每个小岛，我们可以计算出一个雷达所在位置的区间。</p>
+<p>问题转化为如何用尽可能少的点覆盖这些区间。先将所有区间按照左端点大小排序，初始时需要一个点。如果两个区间相交而不重合，我们什么都不需要做；如果一个区间完全包含于另外一个区间，我们需要更新区间的右端点；如果两个区间不相交，我们需要增加点并更新右端点.</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E7%AE%97%E6%B3%95/" class="category-chain-item">算法</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/%E7%AE%97%E6%B3%95/ACM%E7%AB%9E%E8%B5%9B/" class="category-chain-item">ACM竞赛</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/%E7%AE%97%E6%B3%95/ACM%E7%AB%9E%E8%B5%9B/%E7%96%AF%E5%AD%90%E7%9A%84%E7%AE%97%E6%B3%95%E6%80%BB%E7%BB%93/" class="category-chain-item">疯子的算法总结</a>
+  
+  
+
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>『算法-ACM竞赛-疯子的算法总结』4 贪心算法</div>
+      <div>https://chiamzhang.github.io/2024/06/29/『算法-ACM竞赛-疯子的算法总结』4 贪心算法/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>Chiam</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>June 29, 2024</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>Licensed under</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2024/06/29/%E3%80%8E%E7%AE%97%E6%B3%95-ACM%E7%AB%9E%E8%B5%9B-%E7%96%AF%E5%AD%90%E7%9A%84%E7%AE%97%E6%B3%95%E6%80%BB%E7%BB%93%E3%80%8F5%20%E7%9F%A9%E9%98%B5%E4%B9%98%E6%B3%95%20%EF%BC%88%E7%9F%A9%E9%98%B5%E5%BF%AB%E9%80%9F%E5%B9%82%EF%BC%89/" title="『算法-ACM竞赛-疯子的算法总结』5 矩阵乘法 （矩阵快速幂）">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">『算法-ACM竞赛-疯子的算法总结』5 矩阵乘法 （矩阵快速幂）</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/06/29/%E3%80%8E%E7%AE%97%E6%B3%95-ACM%E7%AB%9E%E8%B5%9B-%E7%96%AF%E5%AD%90%E7%9A%84%E7%AE%97%E6%B3%95%E6%80%BB%E7%BB%93%E3%80%8F3%20%20STL%20%E2%85%A1%E8%BF%AD%E4%BB%A3%E5%99%A8%EF%BC%88iterator%EF%BC%89%20+%20%20%E5%AE%B9%E5%99%A8/" title="『算法-ACM竞赛-疯子的算法总结』3  STL Ⅱ迭代器（iterator） +  容器">
+                        <span class="hidden-mobile">『算法-ACM竞赛-疯子的算法总结』3  STL Ⅱ迭代器（iterator） +  容器</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"fIfc7WqUDZohlQuPc2lz5mJy-MdYXbMMI","appKey":"zjlAG3ZA3o4cBHVAkjzc2Z20","path":"window.location.pathname","placeholder":"留言仅限讨论，禁止广告等行为","avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"https://fifc7wqu.api.lncldglobal.com","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>Table of Contents</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <meta name="referrer" content="no-referrer" /> <footer id="footer" role="contentinfo"> <meta name="referrer" content="no-referrer" /> <div class="divider"> <div class="wall"></div> <img class="animals" src="/img/footer_animals_new.png" srcset="/img/loading.gif" lazyload alt="Footer Animals"> </div> <div class="container" data-index="450"> <p> <a href="https://chiamzhang.github.io" target="_blank">DogEgg</a> <i class="iconfont icon-love"></i> <a href="#" target="_blank">LittePig</a> </p> <p> Powered by  <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-pen"></i> Theme  <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> </p> </div> </footer> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+  
+<script src="/js/love.js"></script>
+<script src="/js/funnyTitle.js"></script>
+<script src="/js/backTop.js"></script>
+<script src="//cdn.jsdelivr.net/gh/bynotes/texiao/source/js/xiaoxuehua.js"></script>
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+</html>

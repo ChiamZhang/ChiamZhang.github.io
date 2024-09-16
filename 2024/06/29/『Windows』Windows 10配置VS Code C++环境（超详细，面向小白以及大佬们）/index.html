@@ -1,0 +1,725 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/Mine.jpg">
+  <link rel="icon" href="/img/Mine.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Chiam">
+  <meta name="keywords" content="Algorithms，Cybersecurity">
+  
+    <meta name="description" content="『Windows』Windows 10 配置 VS Code C++环境（超详细，面向小白以及大佬们）看完这个，还有下一篇：门在这我看了网上的大佬们配的我是在是看不懂啊？我是一个小白啊？这太难了，这阻挡不了我，想使用这很骚的 IDE，于是在不断的摸索下，终于配置成功，小白们也不用慌，这次非常简单。一定可以的。1.下载 VS Code 下载网址：https:&#x2F;&#x2F;code.visualstudio.c">
+<meta property="og:type" content="article">
+<meta property="og:title" content="『Windows』Windows 10配置VS Code C++环境（超详细，面向小白以及大佬们）">
+<meta property="og:url" content="https://chiamzhang.github.io/2024/06/29/%E3%80%8EWindows%E3%80%8FWindows%2010%E9%85%8D%E7%BD%AEVS%20Code%20C++%E7%8E%AF%E5%A2%83%EF%BC%88%E8%B6%85%E8%AF%A6%E7%BB%86%EF%BC%8C%E9%9D%A2%E5%90%91%E5%B0%8F%E7%99%BD%E4%BB%A5%E5%8F%8A%E5%A4%A7%E4%BD%AC%E4%BB%AC%EF%BC%89/index.html">
+<meta property="og:site_name" content="Homepage of Chiam">
+<meta property="og:description" content="『Windows』Windows 10 配置 VS Code C++环境（超详细，面向小白以及大佬们）看完这个，还有下一篇：门在这我看了网上的大佬们配的我是在是看不懂啊？我是一个小白啊？这太难了，这阻挡不了我，想使用这很骚的 IDE，于是在不断的摸索下，终于配置成功，小白们也不用慌，这次非常简单。一定可以的。1.下载 VS Code 下载网址：https:&#x2F;&#x2F;code.visualstudio.c">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20191211191414661.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20191211192112368.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20191211192209380.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20191211192231984.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20191211192330826.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20191211192351150.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20191211192624947.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20191211192816940.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20191211192950752.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20191211193052822.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70">
+<meta property="article:published_time" content="2024-06-29T13:16:53.796Z">
+<meta property="article:modified_time" content="2023-12-05T16:17:57.245Z">
+<meta property="article:author" content="Chiam">
+<meta property="article:tag" content="Algorithms，Cybersecurity">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20191211191414661.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70">
+  
+  
+  
+  <title>『Windows』Windows 10配置VS Code C++环境（超详细，面向小白以及大佬们） - Homepage of Chiam</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"chiamzhang.github.io","root":"/","version":"1.9.5-a","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":"❡"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":2},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
+
+
+<body>
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Chiam&#39;s Blogs</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                
+                <span>Home</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                
+                <span>Archives</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                
+                <span>Categories</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                
+                <span>About</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                
+                <span>Links</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="『Windows』Windows 10配置VS Code C++环境（超详细，面向小白以及大佬们）"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-06-29 21:16" pubdate>
+          June 29, 2024 pm
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          5.9k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          50 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">『Windows』Windows 10配置VS Code C++环境（超详细，面向小白以及大佬们）</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="『Windows』Windows-10-配置-VS-Code-C-环境（超详细，面向小白以及大佬们）"><a href="#『Windows』Windows-10-配置-VS-Code-C-环境（超详细，面向小白以及大佬们）" class="headerlink" title="『Windows』Windows 10 配置 VS Code C++环境（超详细，面向小白以及大佬们）"></a>『Windows』Windows 10 配置 VS Code C++环境（超详细，面向小白以及大佬们）</h1><p>看完这个，还有下一篇：<a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_43627118/article/details/103514486">门在这</a><br>我看了网上的大佬们配的我是在是看不懂啊？我是一个小白啊？这太难了，这阻挡不了我，想使用这很骚的 IDE，于是在不断的摸索下，终于配置成功，小白们也不用慌，这次非常简单。一定可以的。<br><strong>1.下载 VS Code</strong></p>
+<p>下载网址：<a target="_blank" rel="noopener" href="https://code.visualstudio.com/">https://code.visualstudio.com/</a></p>
+<p><strong>2.运行安装程序</strong><br><img src="https://img-blog.csdnimg.cn/20191211191414661.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br>一定不要忘记把 Path 那一条点上。</p>
+<p><strong>3.装 MinGW</strong><br>当时我下了半天找不到，这次我放个地址，github 放不下这么大的文件，传文件夹的话还得 ssh 啥的，还不会，将就一下<a target="_blank" rel="noopener" href="https://share.weiyun.com/5jhqiln">https://share.weiyun.com/5jhqiln</a><br>下载完了直接放到 C 盘根目录下，没多大，只有 600M，这样的话，就不用改我配置的路径什么的了！<br><img src="https://img-blog.csdnimg.cn/20191211192112368.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br>这样就完事了，然后是配置环境变量。</p>
+<p><strong>4.环境变量</strong><br><strong>会配的直接跳过即可</strong><br><img src="https://img-blog.csdnimg.cn/20191211192209380.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20191211192231984.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20191211192330826.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20191211192351150.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br>找到这两个 path，用户和系统变量。<br>点击新建，然后输入 C:\MinGW\bin<br><img src="https://img-blog.csdnimg.cn/20191211192624947.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br>这样环境变量就配置完了</p>
+<p>检查 win+R cmd 输入 gcc -v<br><img src="https://img-blog.csdnimg.cn/20191211192816940.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br>这样就配完了</p>
+<p><strong>5.倒数第二步</strong><br><strong>下载地址，解压出来</strong> <a target="_blank" rel="noopener" href="https://github.com/DuYuren/MinGW/tree/vscode">https://github.com/DuYuren/MinGW/tree/vscode</a><br>建个文件夹随便什么名字<br>把我的 .vscode 放里面<br><img src="https://img-blog.csdnimg.cn/20191211192950752.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<p><strong>6.最后一步</strong><br><img src="https://img-blog.csdnimg.cn/20191211193052822.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br>然后在刚才那个文件夹里写个 C++文件，就可以编译了，F5 呦。</p>
+<hr>
+<hr>
+<hr>
+<hr>
+<hr>
+<hr>
+<p><strong>如果纯粹是来找 json 文件的</strong><br>大佬们改改位置就能用</p>
+<p><strong>c_cpp_properties.json</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs java">&#123;<br>    <span class="hljs-string">&quot;configurations&quot;</span>: [<br>        &#123;<br>            <span class="hljs-string">&quot;name&quot;</span>: <span class="hljs-string">&quot;Win32&quot;</span>,<br>            <span class="hljs-string">&quot;includePath&quot;</span>: [<br>                <span class="hljs-string">&quot;$&#123;workspaceFolder&#125;/**&quot;</span>,<br>                <span class="hljs-string">&quot;C:/MinGW/include/*&quot;</span><br>            ],<br>            <span class="hljs-string">&quot;defines&quot;</span>: [<br>                <span class="hljs-string">&quot;_DEBUG&quot;</span>,<br>                <span class="hljs-string">&quot;UNICODE&quot;</span>,<br>                <span class="hljs-string">&quot;_UNICODE&quot;</span><br>            ],<br>            <span class="hljs-string">&quot;compilerPath&quot;</span>: <span class="hljs-string">&quot;C:/MinGW/bin/gcc.exe&quot;</span>,<br>            <span class="hljs-string">&quot;cStandard&quot;</span>: <span class="hljs-string">&quot;c11&quot;</span>,<br>            <span class="hljs-string">&quot;cppStandard&quot;</span>: <span class="hljs-string">&quot;c++17&quot;</span>,<br>            <span class="hljs-string">&quot;intelliSenseMode&quot;</span>: <span class="hljs-string">&quot;gcc-x64&quot;</span><br>        &#125;<br>    ],<br>    <span class="hljs-string">&quot;version&quot;</span>: <span class="hljs-number">4</span><br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><strong>launch.json</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs java">&#123;<br>    <span class="hljs-string">&quot;version&quot;</span>: <span class="hljs-string">&quot;0.2.0&quot;</span>,<br>    <span class="hljs-string">&quot;configurations&quot;</span>: [<br>        &#123;<br>            <span class="hljs-string">&quot;name&quot;</span>: <span class="hljs-string">&quot;(gdb) Launch&quot;</span>,<br>            <span class="hljs-string">&quot;type&quot;</span>: <span class="hljs-string">&quot;cppdbg&quot;</span>,<br>            <span class="hljs-string">&quot;request&quot;</span>: <span class="hljs-string">&quot;launch&quot;</span>,<br>            <span class="hljs-string">&quot;targetArchitecture&quot;</span>: <span class="hljs-string">&quot;x86&quot;</span>,<br>            <span class="hljs-string">&quot;program&quot;</span>: <span class="hljs-string">&quot;$&#123;fileDirname&#125;\\$&#123;fileBasenameNoExtension&#125;.exe&quot;</span>,<br>            <span class="hljs-string">&quot;miDebuggerPath&quot;</span>: <span class="hljs-string">&quot;c:\\MinGW\\bin\\gdb.exe&quot;</span>,<br>            <span class="hljs-string">&quot;args&quot;</span>: [],<br>            <span class="hljs-string">&quot;stopAtEntry&quot;</span>: <span class="hljs-literal">false</span>,<br>            <span class="hljs-string">&quot;cwd&quot;</span>: <span class="hljs-string">&quot;$&#123;fileDirname&#125;&quot;</span>,<br>            <span class="hljs-string">&quot;externalConsole&quot;</span>: <span class="hljs-literal">true</span>,<br>            <span class="hljs-string">&quot;preLaunchTask&quot;</span>: <span class="hljs-string">&quot;g++&quot;</span><br>        &#125;<br>    ]<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+<p><strong>settings.json</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br></pre></td><td class="code"><pre><code class="hljs java">&#123;<br>    <span class="hljs-string">&quot;files.associations&quot;</span>: &#123;<br>        <span class="hljs-string">&quot;vector&quot;</span>: <span class="hljs-string">&quot;cpp&quot;</span>,<br>        <span class="hljs-string">&quot;random&quot;</span>: <span class="hljs-string">&quot;cpp&quot;</span>,<br>        <span class="hljs-string">&quot;iostream&quot;</span>: <span class="hljs-string">&quot;cpp&quot;</span>,<br>        <span class="hljs-string">&quot;array&quot;</span>: <span class="hljs-string">&quot;cpp&quot;</span>,<br>        <span class="hljs-string">&quot;atomic&quot;</span>: <span class="hljs-string">&quot;cpp&quot;</span>,<br>        <span class="hljs-string">&quot;*.tcc&quot;</span>: <span class="hljs-string">&quot;cpp&quot;</span>,<br>        <span class="hljs-string">&quot;bitset&quot;</span>: <span class="hljs-string">&quot;cpp&quot;</span>,<br>        <span class="hljs-string">&quot;cctype&quot;</span>: <span class="hljs-string">&quot;cpp&quot;</span>,<br>        <span class="hljs-string">&quot;cfenv&quot;</span>: <span class="hljs-string">&quot;cpp&quot;</span>,<br>        <span class="hljs-string">&quot;charconv&quot;</span>: <span class="hljs-string">&quot;cpp&quot;</span>,<br>        <span class="hljs-string">&quot;chrono&quot;</span>: <span class="hljs-string">&quot;cpp&quot;</span>,<br>        <span class="hljs-string">&quot;cinttypes&quot;</span>: <span class="hljs-string">&quot;cpp&quot;</span>,<br>        <span class="hljs-string">&quot;clocale&quot;</span>: <span class="hljs-string">&quot;cpp&quot;</span>,<br>        <span class="hljs-string">&quot;cmath&quot;</span>: <span class="hljs-string">&quot;cpp&quot;</span>,<br>        <span class="hljs-string">&quot;codecvt&quot;</span>: <span class="hljs-string">&quot;cpp&quot;</span>,<br>        <span class="hljs-string">&quot;complex&quot;</span>: <span class="hljs-string">&quot;cpp&quot;</span>,<br>        <span class="hljs-string">&quot;condition_variable&quot;</span>: <span class="hljs-string">&quot;cpp&quot;</span>,<br>        <span class="hljs-string">&quot;csetjmp&quot;</span>: <span class="hljs-string">&quot;cpp&quot;</span>,<br>        <span class="hljs-string">&quot;csignal&quot;</span>: <span class="hljs-string">&quot;cpp&quot;</span>,<br>        <span class="hljs-string">&quot;cstdarg&quot;</span>: <span class="hljs-string">&quot;cpp&quot;</span>,<br>        <span class="hljs-string">&quot;cstddef&quot;</span>: <span class="hljs-string">&quot;cpp&quot;</span>,<br>        <span class="hljs-string">&quot;cstdint&quot;</span>: <span class="hljs-string">&quot;cpp&quot;</span>,<br>        <span class="hljs-string">&quot;cstdio&quot;</span>: <span class="hljs-string">&quot;cpp&quot;</span>,<br>        <span class="hljs-string">&quot;cstdlib&quot;</span>: <span class="hljs-string">&quot;cpp&quot;</span>,<br>        <span class="hljs-string">&quot;cstring&quot;</span>: <span class="hljs-string">&quot;cpp&quot;</span>,<br>        <span class="hljs-string">&quot;ctime&quot;</span>: <span class="hljs-string">&quot;cpp&quot;</span>,<br>        <span class="hljs-string">&quot;cuchar&quot;</span>: <span class="hljs-string">&quot;cpp&quot;</span>,<br>        <span class="hljs-string">&quot;cwchar&quot;</span>: <span class="hljs-string">&quot;cpp&quot;</span>,<br>        <span class="hljs-string">&quot;cwctype&quot;</span>: <span class="hljs-string">&quot;cpp&quot;</span>,<br>        <span class="hljs-string">&quot;deque&quot;</span>: <span class="hljs-string">&quot;cpp&quot;</span>,<br>        <span class="hljs-string">&quot;forward_list&quot;</span>: <span class="hljs-string">&quot;cpp&quot;</span>,<br>        <span class="hljs-string">&quot;list&quot;</span>: <span class="hljs-string">&quot;cpp&quot;</span>,<br>        <span class="hljs-string">&quot;unordered_map&quot;</span>: <span class="hljs-string">&quot;cpp&quot;</span>,<br>        <span class="hljs-string">&quot;unordered_set&quot;</span>: <span class="hljs-string">&quot;cpp&quot;</span>,<br>        <span class="hljs-string">&quot;exception&quot;</span>: <span class="hljs-string">&quot;cpp&quot;</span>,<br>        <span class="hljs-string">&quot;algorithm&quot;</span>: <span class="hljs-string">&quot;cpp&quot;</span>,<br>        <span class="hljs-string">&quot;functional&quot;</span>: <span class="hljs-string">&quot;cpp&quot;</span>,<br>        <span class="hljs-string">&quot;iterator&quot;</span>: <span class="hljs-string">&quot;cpp&quot;</span>,<br>        <span class="hljs-string">&quot;map&quot;</span>: <span class="hljs-string">&quot;cpp&quot;</span>,<br>        <span class="hljs-string">&quot;memory&quot;</span>: <span class="hljs-string">&quot;cpp&quot;</span>,<br>        <span class="hljs-string">&quot;memory_resource&quot;</span>: <span class="hljs-string">&quot;cpp&quot;</span>,<br>        <span class="hljs-string">&quot;numeric&quot;</span>: <span class="hljs-string">&quot;cpp&quot;</span>,<br>        <span class="hljs-string">&quot;optional&quot;</span>: <span class="hljs-string">&quot;cpp&quot;</span>,<br>        <span class="hljs-string">&quot;ratio&quot;</span>: <span class="hljs-string">&quot;cpp&quot;</span>,<br>        <span class="hljs-string">&quot;regex&quot;</span>: <span class="hljs-string">&quot;cpp&quot;</span>,<br>        <span class="hljs-string">&quot;set&quot;</span>: <span class="hljs-string">&quot;cpp&quot;</span>,<br>        <span class="hljs-string">&quot;string&quot;</span>: <span class="hljs-string">&quot;cpp&quot;</span>,<br>        <span class="hljs-string">&quot;string_view&quot;</span>: <span class="hljs-string">&quot;cpp&quot;</span>,<br>        <span class="hljs-string">&quot;system_error&quot;</span>: <span class="hljs-string">&quot;cpp&quot;</span>,<br>        <span class="hljs-string">&quot;tuple&quot;</span>: <span class="hljs-string">&quot;cpp&quot;</span>,<br>        <span class="hljs-string">&quot;type_traits&quot;</span>: <span class="hljs-string">&quot;cpp&quot;</span>,<br>        <span class="hljs-string">&quot;utility&quot;</span>: <span class="hljs-string">&quot;cpp&quot;</span>,<br>        <span class="hljs-string">&quot;fstream&quot;</span>: <span class="hljs-string">&quot;cpp&quot;</span>,<br>        <span class="hljs-string">&quot;future&quot;</span>: <span class="hljs-string">&quot;cpp&quot;</span>,<br>        <span class="hljs-string">&quot;initializer_list&quot;</span>: <span class="hljs-string">&quot;cpp&quot;</span>,<br>        <span class="hljs-string">&quot;iomanip&quot;</span>: <span class="hljs-string">&quot;cpp&quot;</span>,<br>        <span class="hljs-string">&quot;iosfwd&quot;</span>: <span class="hljs-string">&quot;cpp&quot;</span>,<br>        <span class="hljs-string">&quot;istream&quot;</span>: <span class="hljs-string">&quot;cpp&quot;</span>,<br>        <span class="hljs-string">&quot;limits&quot;</span>: <span class="hljs-string">&quot;cpp&quot;</span>,<br>        <span class="hljs-string">&quot;mutex&quot;</span>: <span class="hljs-string">&quot;cpp&quot;</span>,<br>        <span class="hljs-string">&quot;new&quot;</span>: <span class="hljs-string">&quot;cpp&quot;</span>,<br>        <span class="hljs-string">&quot;ostream&quot;</span>: <span class="hljs-string">&quot;cpp&quot;</span>,<br>        <span class="hljs-string">&quot;scoped_allocator&quot;</span>: <span class="hljs-string">&quot;cpp&quot;</span>,<br>        <span class="hljs-string">&quot;shared_mutex&quot;</span>: <span class="hljs-string">&quot;cpp&quot;</span>,<br>        <span class="hljs-string">&quot;sstream&quot;</span>: <span class="hljs-string">&quot;cpp&quot;</span>,<br>        <span class="hljs-string">&quot;stdexcept&quot;</span>: <span class="hljs-string">&quot;cpp&quot;</span>,<br>        <span class="hljs-string">&quot;streambuf&quot;</span>: <span class="hljs-string">&quot;cpp&quot;</span>,<br>        <span class="hljs-string">&quot;thread&quot;</span>: <span class="hljs-string">&quot;cpp&quot;</span>,<br>        <span class="hljs-string">&quot;typeindex&quot;</span>: <span class="hljs-string">&quot;cpp&quot;</span>,<br>        <span class="hljs-string">&quot;typeinfo&quot;</span>: <span class="hljs-string">&quot;cpp&quot;</span>,<br>        <span class="hljs-string">&quot;valarray&quot;</span>: <span class="hljs-string">&quot;cpp&quot;</span><br>    &#125;,<br>    <span class="hljs-string">&quot;editor.fontFamily&quot;</span>: <span class="hljs-string">&quot;Consolas, &#x27;Fira code&#x27;, monospace&quot;</span>,<br>    <span class="hljs-string">&quot;C_Cpp.errorSquiggles&quot;</span>: <span class="hljs-string">&quot;Disabled&quot;</span><br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><strong>tasks.json</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><code class="hljs java">&#123;<br>  <span class="hljs-string">&quot;version&quot;</span>: <span class="hljs-string">&quot;2.0.0&quot;</span>,<br>  <span class="hljs-string">&quot;command&quot;</span>: <span class="hljs-string">&quot;g++&quot;</span>,<br>  <span class="hljs-string">&quot;type&quot;</span>: <span class="hljs-string">&quot;shell&quot;</span>,<br>  <span class="hljs-string">&quot;presentation&quot;</span>: &#123;<br>    <span class="hljs-string">&quot;echo&quot;</span>: <span class="hljs-literal">true</span>,<br>    <span class="hljs-string">&quot;reveal&quot;</span>: <span class="hljs-string">&quot;always&quot;</span>,<br>    <span class="hljs-string">&quot;focus&quot;</span>: <span class="hljs-literal">false</span>,<br>    <span class="hljs-string">&quot;panel&quot;</span>: <span class="hljs-string">&quot;shared&quot;</span>,<br>    <span class="hljs-string">&quot;showReuseMessage&quot;</span>: <span class="hljs-literal">true</span>,<br>    <span class="hljs-string">&quot;clear&quot;</span>: <span class="hljs-literal">false</span><br>  &#125;,<br>  <span class="hljs-string">&quot;args&quot;</span>: [<span class="hljs-string">&quot;-g&quot;</span>, <span class="hljs-string">&quot;$&#123;file&#125;&quot;</span>, <span class="hljs-string">&quot;-o&quot;</span>, <span class="hljs-string">&quot;$&#123;fileDirname&#125;\\$&#123;fileBasenameNoExtension&#125;.exe&quot;</span>],<br>  <span class="hljs-string">&quot;problemMatcher&quot;</span>: &#123;<br>    <span class="hljs-string">&quot;owner&quot;</span>: <span class="hljs-string">&quot;cpp&quot;</span>,<br>    <span class="hljs-string">&quot;fileLocation&quot;</span>: [<span class="hljs-string">&quot;relative&quot;</span>, <span class="hljs-string">&quot;$&#123;workspaceRoot&#125;&quot;</span>],<br>    <span class="hljs-string">&quot;pattern&quot;</span>: &#123;<br>      <span class="hljs-string">&quot;regexp&quot;</span>: <span class="hljs-string">&quot;^(.*):(\\d+):(\\d+):\\s+(warning|error):\\s+(.*)$&quot;</span>,<br>      <span class="hljs-string">&quot;file&quot;</span>: <span class="hljs-number">1</span>,<br>      <span class="hljs-string">&quot;line&quot;</span>: <span class="hljs-number">2</span>,<br>      <span class="hljs-string">&quot;column&quot;</span>: <span class="hljs-number">3</span>,<br>      <span class="hljs-string">&quot;severity&quot;</span>: <span class="hljs-number">4</span>,<br>      <span class="hljs-string">&quot;message&quot;</span>: <span class="hljs-number">5</span><br>    &#125;<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<br>
+<br>
+<br>
+
+<blockquote>
+<p><strong><em>写在最后:</em></strong><br>我叫风骨散人，名字的意思是我多想可以不低头的自由生活，可现实却不是这样。家境贫寒，总得向这个世界低头，所以我一直在奋斗，想改变我的命运给亲人好的生活，希望同样被生活绑架的你可以通过自己的努力改变现状，深知成年人的世界里没有容易二字。目前是一名在校大学生，预计考研，热爱编程，热爱技术，喜欢分享，知识无界，希望我的分享可以帮到你！<br>如果有什么想看的，可以私信我，如果在能力范围内，我会发布相应的博文！<br>感谢大家的阅读！😘 你的点赞、收藏、关注是对我最大的鼓励！</p>
+</blockquote>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Windows/" class="category-chain-item">Windows</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>『Windows』Windows 10配置VS Code C++环境（超详细，面向小白以及大佬们）</div>
+      <div>https://chiamzhang.github.io/2024/06/29/『Windows』Windows 10配置VS Code C++环境（超详细，面向小白以及大佬们）/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>Chiam</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>June 29, 2024</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>Licensed under</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2024/06/29/%E3%80%8EWindows%E3%80%8FWindows%E7%B3%BB%E7%BB%9F%E4%BF%AE%E6%94%B9cmd%E7%AA%97%E5%8F%A3%E7%BC%96%E7%A0%81%E6%A0%BC%E5%BC%8F/" title="『Windows』Windows系统修改cmd窗口编码格式">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">『Windows』Windows系统修改cmd窗口编码格式</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/06/29/%E3%80%8EWindows%E3%80%8FWindowsTerminal%E5%AE%8C%E5%85%A8%E9%85%8D%E7%BD%AE%E6%95%99%E7%A8%8B%EF%BC%88%E4%B8%BB%E9%A2%98%E4%BB%A5%E5%8F%8A%E5%90%AF%E5%8A%A8%E8%AE%BE%E7%BD%AE%EF%BC%89/" title="『Windows』WindowsTerminal完全配置教程（主题以及启动设置）">
+                        <span class="hidden-mobile">『Windows』WindowsTerminal完全配置教程（主题以及启动设置）</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"fIfc7WqUDZohlQuPc2lz5mJy-MdYXbMMI","appKey":"zjlAG3ZA3o4cBHVAkjzc2Z20","path":"window.location.pathname","placeholder":"留言仅限讨论，禁止广告等行为","avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"https://fifc7wqu.api.lncldglobal.com","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>Table of Contents</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <meta name="referrer" content="no-referrer" /> <footer id="footer" role="contentinfo"> <meta name="referrer" content="no-referrer" /> <div class="divider"> <div class="wall"></div> <img class="animals" src="/img/footer_animals_new.png" srcset="/img/loading.gif" lazyload alt="Footer Animals"> </div> <div class="container" data-index="450"> <p> <a href="https://chiamzhang.github.io" target="_blank">DogEgg</a> <i class="iconfont icon-love"></i> <a href="#" target="_blank">LittePig</a> </p> <p> Powered by  <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-pen"></i> Theme  <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> </p> </div> </footer> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+  
+<script src="/js/love.js"></script>
+<script src="/js/funnyTitle.js"></script>
+<script src="/js/backTop.js"></script>
+<script src="//cdn.jsdelivr.net/gh/bynotes/texiao/source/js/xiaoxuehua.js"></script>
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+</html>

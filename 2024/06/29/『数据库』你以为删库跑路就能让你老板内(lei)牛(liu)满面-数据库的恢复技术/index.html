@@ -1,0 +1,1137 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/Mine.jpg">
+  <link rel="icon" href="/img/Mine.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Chiam">
+  <meta name="keywords" content="Algorithms，Cybersecurity">
+  
+    <meta name="description" content="『数据库』你以为删库跑路就能让你老板内(lei)牛(liu)满面-数据库的恢复技术数据库从入门到精通：戳我@[toc] 一、 事务的基本概念1.事务1.1what’s the 事务：事务(Transaction)是用户定义的一个数据库操作序列，这些操作要么全做，要么全不做，是一个不可分割的工作单位。 事务和程序是两个概念  在关系数据库中，一个事务可以是一条 SQL 语句，一组 SQL 语句或整个">
+<meta property="og:type" content="article">
+<meta property="og:title" content="『数据库』你以为删库跑路就能让你老板内(lei)牛(liu)满面-数据库的恢复技术">
+<meta property="og:url" content="https://chiamzhang.github.io/2024/06/29/%E3%80%8E%E6%95%B0%E6%8D%AE%E5%BA%93%E3%80%8F%E4%BD%A0%E4%BB%A5%E4%B8%BA%E5%88%A0%E5%BA%93%E8%B7%91%E8%B7%AF%E5%B0%B1%E8%83%BD%E8%AE%A9%E4%BD%A0%E8%80%81%E6%9D%BF%E5%86%85(lei)%E7%89%9B(liu)%E6%BB%A1%E9%9D%A2-%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9A%84%E6%81%A2%E5%A4%8D%E6%8A%80%E6%9C%AF/index.html">
+<meta property="og:site_name" content="Homepage of Chiam">
+<meta property="og:description" content="『数据库』你以为删库跑路就能让你老板内(lei)牛(liu)满面-数据库的恢复技术数据库从入门到精通：戳我@[toc] 一、 事务的基本概念1.事务1.1what’s the 事务：事务(Transaction)是用户定义的一个数据库操作序列，这些操作要么全做，要么全不做，是一个不可分割的工作单位。 事务和程序是两个概念  在关系数据库中，一个事务可以是一条 SQL 语句，一组 SQL 语句或整个">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200610223847213.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200610224554239.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200610225901499.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200611002841863.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200611003334321.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200611004015983.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200611004042579.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/2020061100410977.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200611004707640.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70">
+<meta property="article:published_time" content="2024-06-29T13:16:53.844Z">
+<meta property="article:modified_time" content="2023-12-05T16:18:08.201Z">
+<meta property="article:author" content="Chiam">
+<meta property="article:tag" content="Algorithms，Cybersecurity">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20200610223847213.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70">
+  
+  
+  
+  <title>『数据库』你以为删库跑路就能让你老板内(lei)牛(liu)满面-数据库的恢复技术 - Homepage of Chiam</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"chiamzhang.github.io","root":"/","version":"1.9.5-a","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":"❡"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":2},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
+
+
+<body>
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Chiam&#39;s Blogs</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                
+                <span>Home</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                
+                <span>Archives</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                
+                <span>Categories</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                
+                <span>About</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                
+                <span>Links</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="『数据库』你以为删库跑路就能让你老板内(lei)牛(liu)满面-数据库的恢复技术"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-06-29 21:16" pubdate>
+          June 29, 2024 pm
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          7.9k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          67 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">『数据库』你以为删库跑路就能让你老板内(lei)牛(liu)满面-数据库的恢复技术</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="『数据库』你以为删库跑路就能让你老板内-lei-牛-liu-满面-数据库的恢复技术"><a href="#『数据库』你以为删库跑路就能让你老板内-lei-牛-liu-满面-数据库的恢复技术" class="headerlink" title="『数据库』你以为删库跑路就能让你老板内(lei)牛(liu)满面-数据库的恢复技术"></a>『数据库』你以为删库跑路就能让你老板内(lei)牛(liu)满面-数据库的恢复技术</h1><p>数据库从入门到精通：<a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_43627118/article/details/105027257">戳我</a><br>@[toc]</p>
+<h3 id="一、-事务的基本概念"><a href="#一、-事务的基本概念" class="headerlink" title="一、 事务的基本概念"></a>一、 事务的基本概念</h3><h4 id="1-事务"><a href="#1-事务" class="headerlink" title="1.事务"></a>1.事务</h4><h5 id="1-1what’s-the-事务："><a href="#1-1what’s-the-事务：" class="headerlink" title="1.1what’s the 事务："></a>1.1what’s the 事务：</h5><p>事务(Transaction)是用户定义的一个数据库操作序列，这些操作要么全做，要么全不做，是一个不可分割的工作单位。</p>
+<p>事务和程序是两个概念</p>
+<ul>
+<li>在关系数据库中，一个事务可以是一条 SQL 语句，一组 SQL 语句或整个程序</li>
+<li>一个程序通常包含多个事务</li>
+</ul>
+<p>事务是恢复和并发控制的基本单位</p>
+<h5 id="1-2-事务的定义"><a href="#1-2-事务的定义" class="headerlink" title="1.2 事务的定义"></a>1.2 事务的定义</h5><h6 id="1-2-1-事务的显示定义"><a href="#1-2-1-事务的显示定义" class="headerlink" title="1.2.1 事务的显示定义"></a>1.2.1 事务的显示定义</h6><p><strong>COMMIT</strong></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">BEGIN</span> TRANSACTION<br><span class="hljs-keyword">SQL</span> 语句<span class="hljs-number">1</span><br><span class="hljs-keyword">SQL</span> 语句<span class="hljs-number">2</span><br>......<br><span class="hljs-keyword">COMMIT</span><br></code></pre></td></tr></table></figure>
+
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs c">事务正常结束<br><span class="hljs-string">&quot;提交&quot;</span> 事务的所有操作  -&gt;（读+更新）<br>事务中所有对数据库的更新写回到磁盘上的物理数据库中<br></code></pre></td></tr></table></figure>
+
+<p><strong>ROLLBACK</strong></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">BEGIN</span> TRANSACTION<br><span class="hljs-keyword">SQL</span> 语句<span class="hljs-number">1</span><br><span class="hljs-keyword">SQL</span> 语句<span class="hljs-number">2</span><br>......<br><span class="hljs-keyword">ROLLBACK</span><br></code></pre></td></tr></table></figure>
+
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs c">事务异常终止<br>事务运行的过程中发生了故障，不能继续执行<br>系统将事务中对数据库的所有已完成的操作全部撤销<br>事务滚回到<span class="hljs-string">&quot;开始&quot;</span>时的状态<br></code></pre></td></tr></table></figure>
+
+<h6 id="1-2-2-事务的隐式定义方式"><a href="#1-2-2-事务的隐式定义方式" class="headerlink" title="1.2.2 事务的隐式定义方式"></a>1.2.2 事务的隐式定义方式</h6><ul>
+<li>当用户没有显式地定义事务时，</li>
+<li>数据库管理系统按缺省规定自动划分事务</li>
+</ul>
+<h4 id="2-事务的-ACID-特性"><a href="#2-事务的-ACID-特性" class="headerlink" title="2.事务的 ACID 特性"></a>2.事务的 ACID 特性</h4><h5 id="2-1-原子性（Atomicity）"><a href="#2-1-原子性（Atomicity）" class="headerlink" title="2.1 原子性（Atomicity）"></a>2.1 原子性（Atomicity）</h5><pre><code class="hljs">事务是数据库的逻辑工作单位，即事务中包括的诸操作要么都做，要么都不做
+</code></pre>
+<h5 id="2-2-一致性（Consistency）"><a href="#2-2-一致性（Consistency）" class="headerlink" title="2.2 一致性（Consistency）"></a>2.2 一致性（Consistency）</h5><p>事务执行的结果必须是使数据库从一个一致性状态变到另一个一致性状态</p>
+<ul>
+<li>一致性状态<br>数据库中只包含成功事务提交的结果</li>
+<li>不一致状态<br>数据库系统运行中发生故障，有些事务尚未完成就被迫中断；<br>这些未完成事务对数据库所做的修改有一部分已写入物理数据库，这时数据库就处于一种不正确的状态</li>
+</ul>
+<h5 id="2-3-一致性与原子性"><a href="#2-3-一致性与原子性" class="headerlink" title="2.3 一致性与原子性"></a>2.3 一致性与原子性</h5><p>支付宝转帐：小明扫码支付 1000 元到小李的账户<br>定义一个事务，该事务包括两个操作</p>
+<table>
+<thead>
+<tr>
+<th>A</th>
+<th>B</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>小明-1000</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>小李+1000</td>
+</tr>
+</tbody></table>
+<p>这两个操作要么全做，要么全不做<br>全做或者全不做，数据库都处于一致性状态。<br>如果只做一个操作，用户逻辑上就会发生错误，总量上少了 1 千，数据库就处于不一致性状态。<br>只可能是少不可能是多，因为 A 操作不发生，B 操作也不会发生。</p>
+<h5 id="2-4-隔离性（Isolation）"><a href="#2-4-隔离性（Isolation）" class="headerlink" title="2.4 隔离性（Isolation）"></a>2.4 隔离性（Isolation）</h5><p>一个事务的执行不能被其他事务干扰</p>
+<ul>
+<li>一个事务内部的操作及使用的数据对其他并发事务是隔离的</li>
+<li>并发执行的各个事务之间不能互相干扰</li>
+</ul>
+<h5 id="2-5-持续性（Durability-）"><a href="#2-5-持续性（Durability-）" class="headerlink" title="2.5 持续性（Durability ）"></a>2.5 持续性（Durability ）</h5><ul>
+<li>一个事务一旦提交，它对数据库中数据的改变就应该是永久性的。</li>
+<li>接下来的其他操作或故障不应该对其执行结果有任何影响。</li>
+</ul>
+<h5 id="2-6-事务特性的保证与破坏"><a href="#2-6-事务特性的保证与破坏" class="headerlink" title="2.6 事务特性的保证与破坏"></a>2.6 事务特性的保证与破坏</h5><p>保证事务 ACID 特性是事务处理的任务<br>破坏事务 ACID 特性的因素：</p>
+<ul>
+<li>多个事务并行运行时，不同事务的操作交叉执行<br>数据库管理系统必须保证多个事务的交叉运行不影响这些事务的隔离性</li>
+<li>事务在运行过程中被强行停止<br>数据库管理系统必须保证被强行终止的事务对数据库和其他事务没有任何影响</li>
+</ul>
+<h3 id="二、-数据库恢复概述"><a href="#二、-数据库恢复概述" class="headerlink" title="二、 数据库恢复概述"></a>二、 数据库恢复概述</h3><h4 id="1-故障是不可避免的"><a href="#1-故障是不可避免的" class="headerlink" title="1.故障是不可避免的"></a>1.故障是不可避免的</h4><ul>
+<li>计算机硬件故障</li>
+<li>软件的错误</li>
+<li>操作员的失误</li>
+<li>恶意的破坏 &#x3D;&#x3D;（删库跑路）&#x3D;&#x3D; 嘟嘟嘟嘟嘟！</li>
+</ul>
+<h4 id="2-故障的影响"><a href="#2-故障的影响" class="headerlink" title="2.故障的影响"></a>2.故障的影响</h4><ul>
+<li>运行事务非正常中断，影响数据库中数据的正确性</li>
+<li>破坏数据库，全部或部分丢失数据</li>
+</ul>
+<h4 id="3-数据库的恢复"><a href="#3-数据库的恢复" class="headerlink" title="3.数据库的恢复"></a>3.数据库的恢复</h4><p>数据库管理系统必须具有把数据库从错误状态恢复到某一已知的正确状态(亦称为一致状态或完整状态)的功能，这就是数据库的恢复管理系统对故障的对策</p>
+<h4 id="4-恢复子系统是数据库管理系统的一个重要组成部分"><a href="#4-恢复子系统是数据库管理系统的一个重要组成部分" class="headerlink" title="4.恢复子系统是数据库管理系统的一个重要组成部分"></a>4.恢复子系统是数据库管理系统的一个重要组成部分</h4><h4 id="5-恢复技术是衡量系统优劣的重要指标"><a href="#5-恢复技术是衡量系统优劣的重要指标" class="headerlink" title="5.恢复技术是衡量系统优劣的重要指标"></a>5.恢复技术是衡量系统优劣的重要指标</h4><h3 id="三、-故障的种类"><a href="#三、-故障的种类" class="headerlink" title="三、 故障的种类"></a>三、 故障的种类</h3><h4 id="1-事务内部的故障"><a href="#1-事务内部的故障" class="headerlink" title="1.事务内部的故障"></a>1.事务内部的故障</h4><h5 id="1-1-可预期"><a href="#1-1-可预期" class="headerlink" title="1.1 可预期"></a>1.1 可预期</h5><p>有的是可以通过事务程序本身发现的</p>
+<p>支付宝转帐：小明转账一定金额到小李的账户</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">BEGIN</span> TRANSACTION<br>读小明账户的余额BALANCE;<br>BALANCE<span class="hljs-operator">=</span>BALANCE<span class="hljs-operator">-</span>AMOUNT;    <span class="hljs-comment">/*AMOUNT 为转账金额*/</span><br>IF(BALANCE <span class="hljs-operator">&lt;</span> <span class="hljs-number">0</span> ) <span class="hljs-keyword">THEN</span><br>&#123;<br>	打印‘金额不足，不能转账’； <span class="hljs-comment">/*事务内部可能造成事务被回滚的情况*/</span><br>	<span class="hljs-keyword">ROLLBACK</span>;                        <span class="hljs-comment">/*撤销刚才的修改，恢复事务*/</span><br>&#125;<br><span class="hljs-keyword">ELSE</span><br>&#123;<br>	读小李账户的余额BALANCE1;<br>	BALANCE1<span class="hljs-operator">=</span>BALANCE1<span class="hljs-operator">+</span>AMOUNT;<br>	写回BALANCE1;<br>	<span class="hljs-keyword">COMMIT</span>;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>这个例子所包括的两个更新操作要么全部完成要么全部不做。否则就会使数据库处于不一致状态，例如只把账户甲的余额减少了而没有把账户乙的余额增加。</li>
+<li>在这段程序中若产生账户甲余额不足的情况，应用程序可以发现并让事务滚回，撤销已作的修改，恢复数据库到正确状态。</li>
+</ul>
+<h5 id="1-2-不可预期"><a href="#1-2-不可预期" class="headerlink" title="1.2 不可预期"></a>1.2 不可预期</h5><p>非预期的，不能由事务程序处理的。<br>事务内部更多的故障是非预期的，是不能由应用程序处理的。</p>
+<ul>
+<li>运算溢出</li>
+<li>并发事务发生死锁而被选中撤销该事务</li>
+<li>违反了某些完整性限制而被终止等<br>下文中，事务故障仅指这类&#x3D;&#x3D;非预期的故障&#x3D;&#x3D;</li>
+</ul>
+<p>事务故障意味着</p>
+<ul>
+<li>事务没有达到预期的终点(COMMIT 或者显式的 ROLLBACK)</li>
+<li>数据库可能处于不正确状态。</li>
+</ul>
+<p>事务故障的恢复：事务撤消（UNDO）</p>
+<ul>
+<li>强行回滚（ROLLBACK）该事务</li>
+<li>撤销该事务已经作出的任何对数据库的修改，使得该事务象根本没有启动一样</li>
+</ul>
+<h4 id="2-系统故障"><a href="#2-系统故障" class="headerlink" title="2.系统故障"></a>2.系统故障</h4><p>称为软故障，是指造成系统停止运转的任何事件，使得系统要重新启动。</p>
+<ul>
+<li>整个系统的正常运行突然被破坏</li>
+<li>所有正在运行的事务都非正常终止</li>
+<li>不破坏数据库</li>
+<li>内存中数据库缓冲区的信息全部丢失</li>
+</ul>
+<h5 id="2-1-系统故障的常见原因"><a href="#2-1-系统故障的常见原因" class="headerlink" title="2.1 系统故障的常见原因"></a>2.1 系统故障的常见原因</h5><ul>
+<li>特定类型的硬件错误（如 CPU 故障）</li>
+<li>操作系统故障</li>
+<li>数据库管理系统代码错误</li>
+<li>系统断电</li>
+</ul>
+<h5 id="2-2-系统故障的恢复"><a href="#2-2-系统故障的恢复" class="headerlink" title="2.2 系统故障的恢复"></a>2.2 系统故障的恢复</h5><p>发生系统故障时，一些尚未完成的事务的结果可能已送入物理数据库，造成数据库可能处于不正确状态。</p>
+<p><strong>恢复策略：</strong> 系统重新启动时，恢复程序让所有非正常终止的事务回滚，强行撤消（UNDO）所有未完成事务</p>
+<p>发生系统故障时，有些已完成的事务可能有一部分甚至全部留在缓冲区，尚未写回到磁盘上的物理数据库中，系统故障使得这些事务对数据库的修改部分或全部丢失<br><strong>恢复策略：</strong> 系统重新启动时，恢复程序需要重做（REDO）所有已提交的事务</p>
+<h4 id="3-介质故障"><a href="#3-介质故障" class="headerlink" title="3.介质故障"></a>3.介质故障</h4><p>称为硬故障，指外存故障</p>
+<ul>
+<li>磁盘损坏</li>
+<li>磁头碰撞</li>
+<li>瞬时强磁场干扰<br>介质故障破坏数据库或部分数据库，并影响正在存取这部分数据的所有事务<br>介质故障比前两类故障的可能性小得多，但破坏性大得多</li>
+</ul>
+<h4 id="4-计算机病毒"><a href="#4-计算机病毒" class="headerlink" title="4.计算机病毒"></a>4.计算机病毒</h4><ul>
+<li>一种人为的故障或破坏，是一些恶作剧者研制的一种计算机程序</li>
+<li>可以繁殖和传播，造成对计算机系统包括数据库的危害</li>
+</ul>
+<h5 id="4-1-计算机病毒种类"><a href="#4-1-计算机病毒种类" class="headerlink" title="4.1 计算机病毒种类"></a>4.1 计算机病毒种类</h5><ul>
+<li>小的病毒只有 20 条指令，不到 50B</li>
+<li>大的病毒像一个操作系统，由上万条指令组成</li>
+</ul>
+<h5 id="4-2-计算机病毒的危害"><a href="#4-2-计算机病毒的危害" class="headerlink" title="4.2 计算机病毒的危害"></a>4.2 计算机病毒的危害</h5><ul>
+<li>有的病毒传播很快，一旦侵入系统就马上摧毁系统</li>
+<li>有的病毒有较长的潜伏期，计算机在感染后数天或数月才开始发病</li>
+<li>有的病毒感染系统所有的程序和数据</li>
+<li>有的只对某些特定的程序和数据感兴趣</li>
+</ul>
+<p>计算机病毒已成为计算机系统的主要威胁，自然也是数据库系统的主要威胁<br>数据库一旦被破坏仍要用恢复技术把数据库加以恢复</p>
+<h4 id="5-小结"><a href="#5-小结" class="headerlink" title="5. 小结"></a>5. 小结</h4><p>各类故障，对数据库的影响有两种可能性</p>
+<ul>
+<li><p>数据库本身被破坏</p>
+</li>
+<li><p>数据库没有被破坏，但数据可能不正确，这是由于事务的运行被非正常终止造成的。</p>
+<p><strong>恢复操作的基本原理：</strong> 冗余<br>利用存储在系统别处的冗余数据来重建数据库中已被破坏或不正确的那部分数据<br><strong>恢复的实现技术：</strong> 复杂<br>一个大型数据库产品，恢复子系统的代码要占全部代码的 10%以上</p>
+</li>
+</ul>
+<h3 id="四、-恢复的实现技术"><a href="#四、-恢复的实现技术" class="headerlink" title="四、 恢复的实现技术"></a>四、 恢复的实现技术</h3><h4>恢复机制涉及的关键问题</h4>
+
+<h4 id="1-如何建立冗余数据和如何利用这些冗余数据实施数据库恢复"><a href="#1-如何建立冗余数据和如何利用这些冗余数据实施数据库恢复" class="headerlink" title="1. 如何建立冗余数据和如何利用这些冗余数据实施数据库恢复"></a>1. 如何建立冗余数据和如何利用这些冗余数据实施数据库恢复</h4><h5 id="1-1-数据转储（backup）"><a href="#1-1-数据转储（backup）" class="headerlink" title="1.1 数据转储（backup）"></a>1.1 数据转储（backup）</h5><h6 id="1-1-1-什么是数据转储"><a href="#1-1-1-什么是数据转储" class="headerlink" title="1.1.1 什么是数据转储"></a>1.1.1 什么是数据转储</h6><ul>
+<li><p>转储是指数据库管理员定期地将整个数据库复制到磁带、磁盘或其他存储介质上保存起来的过程</p>
+</li>
+<li><p>备用的数据文本称为后备副本(backup)或后援副本</p>
+</li>
+<li><p>数据库遭到破坏后可以将后备副本重新装入</p>
+</li>
+<li><p>重装后备副本只能将数据库恢复到转储时的状态</p>
+</li>
+<li><p>要想恢复到故障发生时的状态，必须重新运行自转储以后的所有更新事务<br><img src="https://img-blog.csdnimg.cn/20200610223847213.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+</li>
+</ul>
+<p><strong>上图中：</strong></p>
+<ul>
+<li>系统在 Ta 时刻停止运行事务，进行数据库转储</li>
+<li>在 Tb 时刻转储完毕，得到 Tb 时刻的数据库一致性副本</li>
+<li>系统运行到 Tf 时刻发生故障</li>
+<li>为恢复数据库，首先由数据库管理员重装数据库后备副本，将数据库恢复至 Tb 时刻的状态</li>
+<li>重新运行自 Tb ～ Tf 时刻的所有更新事务，把数据库恢复到故障发生前的一致状态</li>
+</ul>
+<h6 id="1-1-2-转储方法"><a href="#1-1-2-转储方法" class="headerlink" title="1.1.2 转储方法"></a>1.1.2 转储方法</h6><p><strong>静态转储与动态转储</strong>:</p>
+<p>静态：</p>
+<ul>
+<li>在系统中无运行事务时进行的转储操作</li>
+<li>转储开始时数据库处于一致性状态</li>
+<li>转储期间不允许对数据库的任何存取、修改活动</li>
+<li>得到的一定是一个数据一致性的副本</li>
+<li>优点：实现简单</li>
+<li>缺点：降低了数据库的可用性<ul>
+<li>转储必须等待正运行的用户事务结束</li>
+<li>新的事务必须等转储结束</li>
+</ul>
+</li>
+</ul>
+<p>动态：</p>
+<ul>
+<li><p>转储操作与用户事务并发进行</p>
+</li>
+<li><p>转储期间允许对数据库进行存取或修改</p>
+</li>
+<li><p>优点</p>
+<ul>
+<li>不用等待正在运行的用户事务结束</li>
+<li>不会影响新事务的运行</li>
+</ul>
+</li>
+<li><p>动态转储的缺点 - 不能保证副本中的数据正确有效<br>例在转储期间的某时刻 Tc，系统把数据 A&#x3D;100 转储到磁带上，而在下一时刻 Td，某一事务将 A 改为 200。<br>后备副本上的 A 过时了</p>
+<p><strong>小结：</strong><br>利用动态转储得到的副本进行故障恢复<br>需要把动态转储期间各事务对数据库的修改活动登记下来，建立日志文件<br>后备副本加上日志文件就能把数据库恢复到某一时刻的正确状态</p>
+<p><strong>海量转储与增量转储：</strong></p>
+</li>
+<li><p>海量转储: 每次转储全部数据库</p>
+</li>
+<li><p>增量转储: 只转储上次转储后更新过的数据</p>
+</li>
+<li><p>海量转储与增量转储比较</p>
+<ul>
+<li>从恢复角度看，使用海量转储得到的后备副本进行恢复往往更方便</li>
+<li>如果数据库很大，事务处理又十分频繁，则增量转储方式更实用更有效</li>
+</ul>
+<p><strong>转储方法小结：</strong><br><img src="https://img-blog.csdnimg.cn/20200610224554239.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+</li>
+</ul>
+<h5 id="1-2-登记日志文件（logging）"><a href="#1-2-登记日志文件（logging）" class="headerlink" title="1.2 登记日志文件（logging）"></a>1.2 登记日志文件（logging）</h5><h6 id="1-2-1-日志文件的格式和内容"><a href="#1-2-1-日志文件的格式和内容" class="headerlink" title="1.2.1.日志文件的格式和内容"></a>1.2.1.日志文件的格式和内容</h6><p>什么是日志文件</p>
+<ul>
+<li>日志文件(log file)是用来记录事务对数据库的更新操作的文件</li>
+</ul>
+<p>日志文件的格式</p>
+<ul>
+<li>以记录为单位的日志文件</li>
+<li>以数据块为单位的日志文件</li>
+</ul>
+<p>以记录为单位的日志文件内容</p>
+<ul>
+<li>各个事务的开始标记(BEGIN TRANSACTION)</li>
+<li>各个事务的结束标记(COMMIT 或 ROLLBACK)</li>
+<li>各个事务的所有更新操作</li>
+</ul>
+<p>以上均作为日志文件中的一个日志记录 (log record)</p>
+<p>以记录为单位的日志文件，每条日志记录的内容</p>
+<ul>
+<li>事务标识（标明是哪个事务）</li>
+<li>操作类型（插入、删除或修改）</li>
+<li>操作对象（记录 ID、Block NO.）</li>
+<li>更新前数据的旧值（对插入操作而言，此项为空值）</li>
+<li>更新后数据的新值（对删除操作而言, 此项为空值）</li>
+</ul>
+<p>以数据块为单位的日志文件，每条日志记录的内容</p>
+<ul>
+<li>事务标识</li>
+<li>被更新的数据块</li>
+</ul>
+<h6 id="1-2-2-日志文件的作用"><a href="#1-2-2-日志文件的作用" class="headerlink" title="1.2.2.日志文件的作用"></a>1.2.2.日志文件的作用</h6><ul>
+<li><p>进行事务故障恢复</p>
+</li>
+<li><p>进行系统故障恢复</p>
+</li>
+<li><p>协助后备副本进行介质故障恢复</p>
+<p><strong>具体作用:</strong></p>
+</li>
+<li><p>事务故障恢复和系统故障恢复必须用日志文件。</p>
+</li>
+<li><p>在动态转储方式中必须建立日志文件，后备副本和日志文件结合起来才能有效地恢复数据库。</p>
+</li>
+<li><p>在静态转储方式中，也可以建立日志文件。</p>
+<ul>
+<li>当数据库毁坏后可重新装入后援副本把数据库恢复到转储结束时刻的正确状态</li>
+<li>利用日志文件，把已完成的事务进行重做处理</li>
+<li>对故障发生时尚未完成的事务进行撤销处理</li>
+<li>不必重新运行那些已完成的事务程序就可把数据库恢复到故障前某一时刻的正确状态</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://img-blog.csdnimg.cn/20200610225901499.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<h6 id="1-2-3-登记日志文件"><a href="#1-2-3-登记日志文件" class="headerlink" title="1.2.3.登记日志文件"></a>1.2.3.登记日志文件</h6><p>为保证数据库是可恢复的，登记日志文件时必须遵循两条原则</p>
+<ul>
+<li>登记的次序严格按并发事务执行的时间次序</li>
+<li>必须先写日志文件，后写数据库<ul>
+<li>写日志文件操作：把表示这个修改的日志记录写到日志文件中</li>
+<li>写数据库操作：把对数据的修改写到数据库中</li>
+</ul>
+</li>
+</ul>
+<p>为什么要先写日志文件</p>
+<ul>
+<li>写数据库和写日志文件是两个不同的操作</li>
+<li>在这两个操作之间可能发生故障</li>
+<li>如果先写了数据库修改，而在日志文件中没有登记下这个修改，则以后就无法恢复这个修改了</li>
+<li>如果先写日志，但没有修改数据库，按日志文件恢复时只不过是多执行一次不必要的 UNDO 操作，并不会影响数据库的正确性</li>
+</ul>
+<h3 id="五、-恢复策略"><a href="#五、-恢复策略" class="headerlink" title="五、 恢复策略"></a>五、 恢复策略</h3><h4 id="1-事务故障的恢复"><a href="#1-事务故障的恢复" class="headerlink" title="1. 事务故障的恢复"></a>1. 事务故障的恢复</h4><p>事务故障：事务在运行至正常终止点前被终止</p>
+<p>恢复方法：<br>由恢复子系统利用日志文件撤消（UNDO）此事务已对数据库进行的修改<br>事务故障的恢复由系统自动完成，对用户是透明的，不需要用户干预</p>
+<h5 id="1-1-事务故障的恢复步骤"><a href="#1-1-事务故障的恢复步骤" class="headerlink" title="1.1 事务故障的恢复步骤"></a>1.1 事务故障的恢复步骤</h5><ol>
+<li>反向扫描文件日志（即从最后向前扫描日志文件），查找该事务的更新操作。</li>
+<li>对该事务的更新操作执行逆操作。即将日志记录中“更新前的值” 写入数据库。<ul>
+<li>插入操作， “更新前的值”为空，则相当于做删除操作</li>
+<li>删除操作，“更新后的值”为空，则相当于做插入操作</li>
+<li>若是修改操作，则相当于用修改前值代替修改后值</li>
+</ul>
+</li>
+<li>继续反向扫描日志文件，查找该事务的其他更新操作，并做同样处理。</li>
+<li>如此处理下去，直至读到此事务的开始标记，事务故障恢复就完成了。</li>
+</ol>
+<h4 id="2-系统故障的恢复"><a href="#2-系统故障的恢复" class="headerlink" title="2 系统故障的恢复"></a>2 系统故障的恢复</h4><p>系统故障造成数据库不一致状态的原因</p>
+<ul>
+<li>未完成事务对数据库的更新可能已写入数据库</li>
+<li>已提交事务对数据库的更新可能还留在缓冲区没来得及写入数据库</li>
+</ul>
+<p><strong>恢复方法</strong></p>
+<ol>
+<li>Undo 故障发生时未完成的事务</li>
+<li>Redo 已完成的事务</li>
+</ol>
+<p>系统故障的恢复由系统在重新启动时自动完成，不需要用户干预</p>
+<h5 id="2-1-系统故障的恢复步骤"><a href="#2-1-系统故障的恢复步骤" class="headerlink" title="2.1 系统故障的恢复步骤"></a>2.1 系统故障的恢复步骤</h5><ol>
+<li>正向扫描日志文件（即从头扫描日志文件）<ul>
+<li>重做(REDO) 队列: 在故障发生前已经提交的事务<br>这些事务既有 BEGIN TRANSACTION 记录，也有 COMMIT 记录</li>
+<li>撤销 (UNDO)队列:故障发生时尚未完成的事务<br>这些事务只有 BEGIN TRANSACTION 记录，无相应的 COMMIT 记录</li>
+</ul>
+</li>
+<li>对撤销(UNDO)队列事务进行撤销(UNDO)处理<ul>
+<li>反向扫描日志文件，对每个撤销事务的更新操作执行逆操作</li>
+<li>即将日志记录中“更新前的值”写入数据库</li>
+</ul>
+</li>
+<li>对重做(REDO)队列事务进行重做(REDO)处理<ul>
+<li>正向扫描日志文件，对每个重做事务重新执行登记的操作</li>
+<li>即将日志记录中“更新后的值”写入数据库</li>
+</ul>
+</li>
+</ol>
+<h4 id="3-介质故障的恢复"><a href="#3-介质故障的恢复" class="headerlink" title="3 介质故障的恢复"></a>3 介质故障的恢复</h4><ol>
+<li>重装数据库<br>2 .重做已完成的事务</li>
+</ol>
+<h5 id="3-1-介质故障的恢复步骤"><a href="#3-1-介质故障的恢复步骤" class="headerlink" title="3.1 介质故障的恢复步骤"></a>3.1 介质故障的恢复步骤</h5><ol>
+<li>装入最新的后备数据库副本(离故障发生时刻最近的转储副本) ，使数据库恢复到最近一次转储时的一致性状态。<ul>
+<li>对于静态转储的数据库副本，装入后数据库即处于一致性状态</li>
+<li>对于动态转储的数据库副本，还须同时装入转储时刻的日志文件副本，利用恢复系统故障的方法（即 REDO+UNDO），才能将数据库恢复到一致性状态</li>
+</ul>
+</li>
+<li>装入有关的日志文件副本(转储结束时刻的日志文件副本) ，重做已完成的事务。</li>
+</ol>
+<ul>
+<li>首先扫描日志文件，找出故障发生时已提交的事务的标识，将其记入重做队列。</li>
+<li>然后正向扫描日志文件，对重做队列中的所有事务进行重做处理。即将日志记录中“更新后的值”写入数据库</li>
+</ul>
+<h5 id="3-2-介质故障的恢复需要数据库管理员介入"><a href="#3-2-介质故障的恢复需要数据库管理员介入" class="headerlink" title="3.2 介质故障的恢复需要数据库管理员介入"></a>3.2 介质故障的恢复需要数据库管理员介入</h5><ul>
+<li>数据库管理员的工作<ul>
+<li>重装最近转储的数据库副本和有关的各日志文件副本</li>
+<li>执行系统提供的恢复命令</li>
+</ul>
+</li>
+<li>具体的恢复操作仍由数据库管理系统完成</li>
+</ul>
+<h3 id="六、-具有检查点的恢复技术"><a href="#六、-具有检查点的恢复技术" class="headerlink" title="六、 具有检查点的恢复技术"></a>六、 具有检查点的恢复技术</h3><h4 id="1-问题的提出"><a href="#1-问题的提出" class="headerlink" title="1.问题的提出"></a>1.问题的提出</h4><p><strong>两个问题：</strong></p>
+<ul>
+<li>搜索整个日志将耗费大量的时间</li>
+<li>重做处理：重新执行，浪费了大量时间</li>
+</ul>
+<p><strong>解决方案：</strong><br>具有检查点（checkpoint）的恢复技术</p>
+<ul>
+<li>在日志文件中增加检查点记录（checkpoint）</li>
+<li>增加重新开始文件</li>
+<li>恢复子系统在登录日志文件期间动态地维护日志</li>
+</ul>
+<h4 id="2-检查点技术"><a href="#2-检查点技术" class="headerlink" title="2.检查点技术"></a>2.检查点技术</h4><h5 id="2-1-检查点记录的内容"><a href="#2-1-检查点记录的内容" class="headerlink" title="2.1 检查点记录的内容"></a>2.1 检查点记录的内容</h5><ul>
+<li>建立检查点时刻所有正在执行的事务清单</li>
+<li>这些事务最近一个日志记录的地址</li>
+</ul>
+<h5 id="2-2-重新开始文件的内容"><a href="#2-2-重新开始文件的内容" class="headerlink" title="2.2 重新开始文件的内容"></a>2.2 重新开始文件的内容</h5><ul>
+<li>记录各个检查点记录在日志文件中的地址</li>
+</ul>
+<p><img src="https://img-blog.csdnimg.cn/20200611002841863.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<h5 id="2-3-动态维护日志文件的方法"><a href="#2-3-动态维护日志文件的方法" class="headerlink" title="2.3 动态维护日志文件的方法"></a>2.3 动态维护日志文件的方法</h5><p>周期性地执行如下操作：建立检查点，保存数据库状态。<br>具体步骤是：</p>
+<ol>
+<li>将当前日志缓冲区中的所有日志记录写入磁盘的日志文件上</li>
+<li>在日志文件中写入一个检查点记录</li>
+<li>将当前数据缓冲区的所有数据记录写入磁盘的数据库中</li>
+<li>把检查点记录在日志文件中的地址写入一个重新开始文件</li>
+</ol>
+<h5 id="2-4-建立检查点"><a href="#2-4-建立检查点" class="headerlink" title="2.4 建立检查点"></a>2.4 建立检查点</h5><p>恢复子系统可以定期或不定期地建立检查点,保存数据库状态</p>
+<ul>
+<li>定期<br>按照预定的一个时间间隔，如每隔一小时建立一个检查点</li>
+<li>不定期<br>按照某种规则，如日志文件已写满一半建立一个检查点</li>
+</ul>
+<h4 id="3-利用检查点的恢复策略"><a href="#3-利用检查点的恢复策略" class="headerlink" title="3.利用检查点的恢复策略"></a>3.利用检查点的恢复策略</h4><h5 id="3-1-使用检查点方法可以改善恢复效率"><a href="#3-1-使用检查点方法可以改善恢复效率" class="headerlink" title="3.1 使用检查点方法可以改善恢复效率"></a>3.1 使用检查点方法可以改善恢复效率</h5><ul>
+<li>当事务 T 在一个检查点之前提交，T 对数据库所做的修改已写入数据库</li>
+<li>写入时间是在这个检查点建立之前或在这个检查点建立之时</li>
+<li>在进行恢复处理时，没有必要对事务 T 执行重做操作</li>
+</ul>
+<p>系统出现故障时，恢复子系统将根据事务的不同状态采取不同的恢复策略<br><img src="https://img-blog.csdnimg.cn/20200611003334321.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br>T1：在检查点之前提交<br>T2：在检查点之前开始执行，在检查点之后故障点之前提交<br>T3：在检查点之前开始执行，在故障点时还未完成<br>T4：在检查点之后开始执行，在故障点之前提交<br>T5：在检查点之后开始执行，在故障点时还未完成</p>
+<p><strong>恢复策略</strong></p>
+<ul>
+<li>T3 和 T5 在故障发生时还未完成，所以予以撤销</li>
+<li>T2 和 T4 在检查点之后才提交，它们对数据库所做的修改在故障发生时可能还在缓冲区中，尚未写入数据库，所以要重做</li>
+<li>T1 在检查点之前已提交，所以不必执行重做操作</li>
+</ul>
+<h5 id="3-2-利用检查点的恢复步骤"><a href="#3-2-利用检查点的恢复步骤" class="headerlink" title="3.2 利用检查点的恢复步骤"></a>3.2 利用检查点的恢复步骤</h5><ol>
+<li>从重新开始文件中找到最后一个检查点记录在日志文件中的地址，由该地址在日志文件中找到最后一个检查点记录</li>
+<li>由该检查点记录得到检查点建立时刻所有正在执行的事务清单 ACTIVE-LIST<ul>
+<li>建立两个事务队列<br>UNDO-LIST<br>REDO-LIST</li>
+<li>把 ACTIVE-LIST 暂时放入 UNDO-LIST 队列，REDO 队列暂为空。</li>
+</ul>
+</li>
+<li>从检查点开始正向扫描日志文件，直到日志文件结束</li>
+</ol>
+<ul>
+<li>如有新开始的事务 Ti，把 Ti 暂时放入 UNDO-LIST 队列</li>
+<li>如有提交的事务 Tj，把 Tj 从 UNDO-LIST 队列移到 REDO-LIST 队列;直到日志文件结束</li>
+</ul>
+<ol start="4">
+<li>对 UNDO-LIST 中的每个事务执行 UNDO 操作<br>对 REDO-LIST 中的每个事务执行 REDO 操作</li>
+</ol>
+<h3 id="七、-数据库镜像"><a href="#七、-数据库镜像" class="headerlink" title="七、 数据库镜像"></a>七、 数据库镜像</h3><p>介质故障是对系统影响最为严重的一种故障，严重影响数据库的可用性</p>
+<ul>
+<li>介质故障恢复比较费时</li>
+<li>为预防介质故障，数据库管理员必须周期性地转储数据库</li>
+</ul>
+<p>提高数据库可用性的解决方案</p>
+<ul>
+<li>数据库镜像（Mirror）</li>
+</ul>
+<p>数据库镜像</p>
+<ul>
+<li>数据库管理系统自动把整个数据库或其中的关键数据复制到另一个磁盘上</li>
+<li>数据库管理系统自动保证镜像数据与主数据的一致性<br>每当主数据库更新时，数据库管理系统自动把更新后的数据复制过去<br><img src="https://img-blog.csdnimg.cn/20200611004015983.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br>出现介质故障时</li>
+<li>可由镜像磁盘继续提供使用</li>
+<li>同时数据库管理系统自动利用镜像磁盘数据进行数据库的恢复</li>
+<li>不需要关闭系统和重装数据库副本<br><img src="https://img-blog.csdnimg.cn/20200611004042579.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70" srcset="/img/loading.gif" lazyload alt="-"><br>没有出现故障时</li>
+<li>可用于并发操作</li>
+<li>一个用户对数据加排他锁修改数据，其他用户可以读镜像数据库上的数据，而不必等待该用户释放锁<br><img src="https://img-blog.csdnimg.cn/2020061100410977.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></li>
+</ul>
+<p>频繁地复制数据自然会降低系统运行效率</p>
+<ul>
+<li>在实际应用中用户往往只选择对关键数据和日志文件镜像</li>
+<li>不是对整个数据库进行镜像</li>
+</ul>
+<h3 id="八、-小结"><a href="#八、-小结" class="headerlink" title="八、 小结"></a>八、 小结</h3><p>事务的概念和性质</p>
+<ul>
+<li>事务是数据库的逻辑工作单位</li>
+<li>数据库管理系统保证系统中一切事务的原子性、一致性、隔离性和持续性，就保证了事务处于一致状态</li>
+</ul>
+<p>故障的种类</p>
+<ul>
+<li>事务故障</li>
+<li>系统故障</li>
+<li>介质故障</li>
+</ul>
+<p>恢复中最经常使用的技术</p>
+<ul>
+<li>数据库转储</li>
+<li>登记日志文件</li>
+</ul>
+<p>恢复的基本原理</p>
+<ul>
+<li>利用存储在后备副本、日志文件和数据库镜像中的冗余数据来重建数据库</li>
+</ul>
+<p>事务</p>
+<ul>
+<li>不仅是恢复的基本单位</li>
+<li>也是并发控制的基本单位</li>
+</ul>
+<blockquote>
+<p>本文出自大学教材，《数据库系统概论》高等教育出版社，作者为王珊和萨师煊老师，本文不同于前文是自己写的，这篇是笔记倾向，特此注明，如果看到本文的概况后，想要详细了解，请购买该书籍。<br>王珊，女，1944 年生，工学硕士，中国人民大学信息学院教授、博士生导师，研究方向是高性能数据库新技术、内存数据库技术、Video 数据库技术、数据库信息检索新技术研究、数据仓库与商务智能技术等。科研和教学成果曾获得国家科技进步二等奖、电子部科技进步特等奖、北京市科技进步一等奖、北京市科技进步二等奖、教育部科技进步二等奖、北京市科技进步一等奖、国家级优秀教材奖等多项奖励；曾获得国家人事部授予的有突出贡献的中青年专家、北京市优秀教师、全国优秀教师、首都劳动奖章、全国五一劳动奖章、国家级教学名师等荣誉称号。<br>萨师煊（1922 年 12 月 27 日—2010 年 7 月 11 日），中国人民大学经济信息管理系的创建人之一，曾担任中国人民大学经济信息管理系采主任、名誉系主任。是中国数据库学科的奠基人之一，曾担任中国计算机学会常务理事、软件专业委员会常务委员数据库学组组长。<br>名家的书肯定是要比我写的好，而且本来就是总结的人家的书，倒不是我的文章没有作用，只是带你看个大概。<br><img src="https://img-blog.csdnimg.cn/20200611004707640.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+</blockquote>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" class="category-chain-item">数据库</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>『数据库』你以为删库跑路就能让你老板内(lei)牛(liu)满面-数据库的恢复技术</div>
+      <div>https://chiamzhang.github.io/2024/06/29/『数据库』你以为删库跑路就能让你老板内(lei)牛(liu)满面-数据库的恢复技术/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>Chiam</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>June 29, 2024</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>Licensed under</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2024/06/29/%E3%80%8E%E6%95%B0%E6%8D%AE%E5%BA%93%E3%80%8F%E5%85%A8%E7%BD%91%E6%9C%80%E7%AE%80%E5%8D%95%E6%98%8E%E4%BA%86%E7%9A%84MySQL%E8%BF%9E%E6%8E%A5Eclipse%E6%96%B9%E6%B3%95%EF%BC%88JDBC%E8%AF%A6%E7%BB%86%E5%AE%89%E8%A3%85%E6%96%B9%E5%BC%8F%E5%8F%8A%E7%AE%80%E5%8D%95%E6%93%8D%E4%BD%9C%EF%BC%892020%E6%96%B0%E7%89%88/" title="『数据库』全网最简单明了的MySQL连接Eclipse方法（JDBC详细安装方式及简单操作）2020新版">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">『数据库』全网最简单明了的MySQL连接Eclipse方法（JDBC详细安装方式及简单操作）2020新版</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/06/29/%E3%80%8E%E6%95%B0%E6%8D%AE%E5%BA%93%E3%80%8FMySQL%E9%94%99%E8%AF%AF%EF%BC%88%E6%8A%A5%E9%94%99%EF%BC%89%E4%B8%80%E8%A7%88%E8%A1%A8%EF%BC%88%E5%AF%B9%E7%85%A7%E8%A1%A8%EF%BC%89/" title="『数据库』MySQL错误（报错）一览表（对照表）">
+                        <span class="hidden-mobile">『数据库』MySQL错误（报错）一览表（对照表）</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"fIfc7WqUDZohlQuPc2lz5mJy-MdYXbMMI","appKey":"zjlAG3ZA3o4cBHVAkjzc2Z20","path":"window.location.pathname","placeholder":"留言仅限讨论，禁止广告等行为","avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"https://fifc7wqu.api.lncldglobal.com","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>Table of Contents</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <meta name="referrer" content="no-referrer" /> <footer id="footer" role="contentinfo"> <meta name="referrer" content="no-referrer" /> <div class="divider"> <div class="wall"></div> <img class="animals" src="/img/footer_animals_new.png" srcset="/img/loading.gif" lazyload alt="Footer Animals"> </div> <div class="container" data-index="450"> <p> <a href="https://chiamzhang.github.io" target="_blank">DogEgg</a> <i class="iconfont icon-love"></i> <a href="#" target="_blank">LittePig</a> </p> <p> Powered by  <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-pen"></i> Theme  <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> </p> </div> </footer> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+  
+<script src="/js/love.js"></script>
+<script src="/js/funnyTitle.js"></script>
+<script src="/js/backTop.js"></script>
+<script src="//cdn.jsdelivr.net/gh/bynotes/texiao/source/js/xiaoxuehua.js"></script>
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+</html>

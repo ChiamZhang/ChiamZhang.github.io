@@ -1,0 +1,803 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/Mine.jpg">
+  <link rel="icon" href="/img/Mine.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Chiam">
+  <meta name="keywords" content="Algorithms，Cybersecurity">
+  
+    <meta name="description" content="『算法-ACM 竞赛-最短路』Floyd —Warshall（最短路及其他用法详解）一、多元最短路求法多元都求出来了，单源的肯定也能求。思想是动态规划的思想：从任意节点 A 到任意节点 B 的最短路径不外乎 2 种可能，1 是直接从 A 到 B，2 是从 A 经过若干个节点 X 到 B。所以，我们假设 Dis(AB)为节点 A 到节点 B 的最短路径的距离，对于每一个节点 X，我们易写出状态转移方">
+<meta property="og:type" content="article">
+<meta property="og:title" content="『算法-ACM竞赛-最短路』Floyd —Warshall（最短路及其他用法详解）">
+<meta property="og:url" content="https://chiamzhang.github.io/2024/06/29/%E3%80%8E%E7%AE%97%E6%B3%95-ACM%E7%AB%9E%E8%B5%9B-%E6%9C%80%E7%9F%AD%E8%B7%AF%E3%80%8FFloyd%20%E2%80%94Warshall%EF%BC%88%E6%9C%80%E7%9F%AD%E8%B7%AF%E5%8F%8A%E5%85%B6%E4%BB%96%E7%94%A8%E6%B3%95%E8%AF%A6%E8%A7%A3%EF%BC%89/index.html">
+<meta property="og:site_name" content="Homepage of Chiam">
+<meta property="og:description" content="『算法-ACM 竞赛-最短路』Floyd —Warshall（最短路及其他用法详解）一、多元最短路求法多元都求出来了，单源的肯定也能求。思想是动态规划的思想：从任意节点 A 到任意节点 B 的最短路径不外乎 2 种可能，1 是直接从 A 到 B，2 是从 A 经过若干个节点 X 到 B。所以，我们假设 Dis(AB)为节点 A 到节点 B 的最短路径的距离，对于每一个节点 X，我们易写出状态转移方">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190521001639964.gif">
+<meta property="og:image" content="https://img-blog.csdn.net/20170409190428811?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvd3p3MTM3NjEyNDA2MQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center">
+<meta property="article:published_time" content="2024-06-29T13:16:54.460Z">
+<meta property="article:modified_time" content="2023-12-05T16:19:49.438Z">
+<meta property="article:author" content="Chiam">
+<meta property="article:tag" content="Algorithms，Cybersecurity">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20190521001639964.gif">
+  
+  
+  
+  <title>『算法-ACM竞赛-最短路』Floyd —Warshall（最短路及其他用法详解） - Homepage of Chiam</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"chiamzhang.github.io","root":"/","version":"1.9.5-a","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":"❡"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":2},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
+
+
+<body>
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Chiam&#39;s Blogs</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                
+                <span>Home</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                
+                <span>Archives</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                
+                <span>Categories</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                
+                <span>About</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                
+                <span>Links</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="『算法-ACM竞赛-最短路』Floyd —Warshall（最短路及其他用法详解）"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-06-29 21:16" pubdate>
+          June 29, 2024 pm
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          6.3k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          53 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">『算法-ACM竞赛-最短路』Floyd —Warshall（最短路及其他用法详解）</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="『算法-ACM-竞赛-最短路』Floyd-—Warshall（最短路及其他用法详解）"><a href="#『算法-ACM-竞赛-最短路』Floyd-—Warshall（最短路及其他用法详解）" class="headerlink" title="『算法-ACM 竞赛-最短路』Floyd —Warshall（最短路及其他用法详解）"></a>『算法-ACM 竞赛-最短路』Floyd —Warshall（最短路及其他用法详解）</h1><h3 id="一、多元最短路求法"><a href="#一、多元最短路求法" class="headerlink" title="一、多元最短路求法"></a>一、多元最短路求法</h3><p>多元都求出来了，单源的肯定也能求。<br>思想是动态规划的思想：从任意节点 A 到任意节点 B 的最短路径不外乎 2 种可能，1 是直接从 A 到 B，2 是从 A 经过若干个节点 X 到 B。所以，我们假设 Dis(AB)为节点 A 到节点 B 的最短路径的距离，对于每一个节点 X，我们易写出状态转移方程 Dis(AB) &#x3D;min（Dis(AX) + Dis(XB) ，Dis(AB)）这样一来，当我们遍历完所有节点 X，Dis(AB)中记录的便是 A 到 B 的最短路径的距离。</p>
+<p>memset（Dis，0x3f,sizeof(Dis);<br>&#x2F;&#x2F;初始化，这里采用 0x3f 而非 0x7f，是当两个 0x7f7f7f7f 相加符号变号成为一个无穷小量。<br>void floyd(int N）<br>{<br>int i,j,k;<br>for(k&#x3D;0;k&lt;N;k++)<br>{<br>for(i&#x3D;0;i&lt;N;i++)<br>{<br>for(j&#x3D;0;j&lt;N;j++)<br>{<br>if(Dis[i][k]+Dis[k][j]&lt;Dis[i][j])<br>{<br>Dis[i][j]&#x3D;Dis[i][k]+Dis[k][j];</p>
+<pre><code class="hljs">                &#125;
+            &#125;
+        &#125;
+    &#125;
+&#125;
+</code></pre>
+<p>这里一定要把 K 写到外边，需要先更新 K 前面的点在更新 K 后的点才有意义。<br><img src="https://img-blog.csdnimg.cn/20190521001639964.gif" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<blockquote>
+<p>结合代码 并参照上图所示 我们来模拟执行下 这样才能加深理解：<br>第一关键步骤：当 k 执行到 x，i&#x3D;v,j&#x3D;u 时，计算出 v 到 u 的最短路径要通过 x，此时 v、u 联通了。<br>第二关键步骤：当 k 执行到 u，i&#x3D;v，j&#x3D;y，此时计算出 v 到 y 的最短路径的最短路径为 v 到 u，再到 y(此时 v 到 u 的最短路径上一步我们已经计算过来，直接利用上步结果)。<br>第三关键步骤：当 k 执行到 y 时，i&#x3D;v，j&#x3D;w，此时计算出最短路径为 v 到 y(此时 v 到 y 的最短路径长在第二步我们已经计算出来了)，再从 y 到 w。<br>依次扫描每一点(k)，并以该点作为中介点，计算出通过 k 点的其他任意两点(i,j)的最短距离，这就是 floyd 算法的精髓！同时也解释了为什么 k 点这个中介点要放在最外层循环的原因.</p>
+</blockquote>
+<p>完整代码：</p>
+<figure class="highlight prolog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br></pre></td><td class="code"><pre><code class="hljs prolog">#include&lt;iostream&gt;<br>#include&lt;stack&gt;<br>using namespace std;<br>#define <span class="hljs-symbol">MAX</span> <span class="hljs-number">1000</span><br>int <span class="hljs-symbol">Graph</span>[<span class="hljs-symbol">MAX</span>][<span class="hljs-symbol">MAX</span>];<br>int <span class="hljs-symbol">Dis</span>[<span class="hljs-symbol">MAX</span>][<span class="hljs-symbol">MAX</span>];<br>#define infinite <span class="hljs-number">1000</span><br>int path[<span class="hljs-symbol">MAX</span>][<span class="hljs-symbol">MAX</span>];<br><br>void floyd(int <span class="hljs-symbol">N</span>)<br>&#123;<br>	int i,j,k;<br>	for(k=<span class="hljs-number">0</span>;k&lt;<span class="hljs-symbol">N</span>;k++)<br>	&#123;<br>		for(i=<span class="hljs-number">0</span>;i&lt;<span class="hljs-symbol">N</span>;i++)<br>		&#123;<br>			for(j=<span class="hljs-number">0</span>;j&lt;<span class="hljs-symbol">N</span>;j++)<br>			&#123;<br>				if(<span class="hljs-symbol">Dis</span>[i][k]+<span class="hljs-symbol">Dis</span>[k][j]&lt;<span class="hljs-symbol">Dis</span>[i][j])<br>				&#123;<br>					<span class="hljs-symbol">Dis</span>[i][j]=<span class="hljs-symbol">Dis</span>[i][k]+<span class="hljs-symbol">Dis</span>[k][j];<br>					path[i][j]=k;<br><br>				&#125;<br>			&#125;<br>		&#125;<br>	&#125;<br><br>&#125;<br><br>void print_path(int <span class="hljs-symbol">N</span>)<br>&#123;<br>	int i,j;<br>	for(i=<span class="hljs-number">0</span>;i&lt;<span class="hljs-symbol">N</span>;i++)<br>	&#123;<br>		for(j=<span class="hljs-number">0</span>;j&lt;<span class="hljs-symbol">N</span>;j++)<br>		&#123;<br>			if((i!=j) &amp;&amp;<span class="hljs-symbol">Dis</span>[i][j]!=infinite)<br>			&#123;<br>				cout&lt;&lt;i+<span class="hljs-number">1</span>&lt;&lt;<span class="hljs-string">&quot;----&quot;</span>&lt;&lt;j+<span class="hljs-number">1</span>&lt;&lt;<span class="hljs-string">&quot;   distance:&quot;</span>&lt;&lt;<span class="hljs-symbol">Dis</span>[i][j]&lt;&lt;endl;<br>				cout&lt;&lt;<span class="hljs-string">&quot;path:&quot;</span>&lt;&lt;endl;<br>				int k=j;<br>				stack &lt;int&gt; ph;<br>				do<br>				&#123;<br>					k=path[i][k];<br>					ph.push(k);<br>				&#125;while(k!=i);<br>				cout&lt;&lt;ph.top()+<span class="hljs-number">1</span>;<br>				ph.pop();<br>				while(!ph.empty())<br>				&#123;<br>					cout&lt;&lt;<span class="hljs-string">&quot;-&gt;&quot;</span>&lt;&lt;ph.top()+<span class="hljs-number">1</span>;<br>					ph.pop();<br>				&#125;<br>				cout&lt;&lt;<span class="hljs-string">&quot;-&gt;&quot;</span>&lt;&lt;j+<span class="hljs-number">1</span>&lt;&lt;endl;<br>			&#125;<br>		&#125;<br>	&#125;<br>&#125;<br><br>void main()<br>&#123;<br>	int <span class="hljs-symbol">N</span>,i,j;<br>	cin&gt;&gt;<span class="hljs-symbol">N</span>;<br>	for(i=<span class="hljs-number">0</span>;i&lt;<span class="hljs-symbol">N</span>;i++)<br>	&#123;<br>		for(j=<span class="hljs-number">0</span>;j&lt;<span class="hljs-symbol">N</span>;j++)<br>		&#123;<br>			int g;<br>			cin&gt;&gt;g;<br>			<span class="hljs-symbol">Graph</span>[i][j]=g;<br>			<span class="hljs-symbol">Dis</span>[i][j]=g;<br>		&#125;<br>	&#125;<br>//初始化路径<br>		for(i=<span class="hljs-number">0</span>;i&lt;<span class="hljs-symbol">N</span>;i++)<br>		&#123;<br>			for(j=<span class="hljs-number">0</span>;j&lt;<span class="hljs-symbol">N</span>;j++)<br>			&#123;<br>				path[i][j]=i;<br>			&#125;<br>		&#125;<br>	floyd(<span class="hljs-symbol">N</span>);<br>	print_path(<span class="hljs-symbol">N</span>);<br>    system(<span class="hljs-string">&quot;pause&quot;</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="二、连通性"><a href="#二、连通性" class="headerlink" title="二、连通性"></a>二、连通性</h3><p>讲 Dis[i][j]不连联通时设置为 0，联通时设置为 1.<br>则可得状态转移方程<br>dis[i][j]&#x3D;dp[i][j]||(dp[i][k]&amp;&amp;dp[k][j]);<br>跟上面代码除了状态转移方程之外还有初始化不同，这个都初始化为 0；<br>其余都一样。要么 ij 直接连通，要么 ij 通过 K 联通。</p>
+<figure class="highlight inform7"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs inform7">void floyd(int N)<br>&#123;<br>	int i,j,k;<br>	for(k=0;k&lt;N;k++)<br>	&#123;<br>		for(i=0;i&lt;N;i++)<br>		&#123;<br>			for(j=0;j&lt;N;j++)<br>			&#123;<br>				if((dp<span class="hljs-comment">[i]</span><span class="hljs-comment">[k]</span>&amp;&amp;dp<span class="hljs-comment">[k]</span><span class="hljs-comment">[j]</span>)&amp;&amp;!Dis<span class="hljs-comment">[i]</span><span class="hljs-comment">[j]</span>)<br>				&#123;<br>					Dis<span class="hljs-comment">[i]</span><span class="hljs-comment">[j]</span>=Dis<span class="hljs-comment">[i]</span><span class="hljs-comment">[k]</span>+Dis<span class="hljs-comment">[k]</span><span class="hljs-comment">[j]</span>;<br>					path<span class="hljs-comment">[i]</span><span class="hljs-comment">[j]</span>=k;<br>				&#125;<br>			&#125;<br>		&#125;<br>	&#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="三、求无向图中可以删除一些边，使得任意两点的最短路不改变，求这些边能删除的最大的条数。（最小生成树问题）"><a href="#三、求无向图中可以删除一些边，使得任意两点的最短路不改变，求这些边能删除的最大的条数。（最小生成树问题）" class="headerlink" title="三、求无向图中可以删除一些边，使得任意两点的最短路不改变，求这些边能删除的最大的条数。（最小生成树问题）"></a>三、求无向图中可以删除一些边，使得任意两点的最短路不改变，求这些边能删除的最大的条数。（最小生成树问题）</h3><p>首先先在输入边的时候将重边去掉，保留最小的。<br>然后进行佛洛依德。<br>如果原来两点的最短距离大于经过第三个点的最短距离的话，那么我们就将这两点的最短距离<br>替换成经过第三条边的最短距离，当循环节结束后通过对比两点之间的距离变化，即可知哪些边将被删去。但是~~~当两点之间本来没有边的情况下，我们肯定是经过第三个点所到达的。那么就没有替换原来的边，这种情况的话，就直接 continue；</p>
+<h3 id="四、无向图最小环"><a href="#四、无向图最小环" class="headerlink" title="四、无向图最小环"></a>四、无向图最小环</h3><p>若用 dis[i][j]表示 ij 之间的最小值，则由 i j 加线外一点 k 的环值为 dis[i][j]+length[i][k]+length[k][j];<br>枚举中间点 k，在用其更新最短路前，先找最小环，令 1&lt;&#x3D;i&lt;j&lt;k，即 k 点必定不在 i,j 的最短路上，则这个环中至少有三个点，可得状态转移方程 ans&#x3D;min(ans,dis[i][j]+length[i][k]+length[k][j]);</p>
+<pre><code class="hljs">#include &lt;cstdio&gt;
+#include &lt;cstring&gt;
+#include &lt;map&gt;
+#include &lt;queue&gt;
+#include &lt;algorithm&gt;
+
+using namespace std;
+
+struct Node &#123;
+    int s[9];//s数组表示包括本端所连的fence
+
+    Node() &#123;
+        memset(s,0,sizeof(s));
+    &#125;
+
+    bool operator &lt; (const Node&amp; a) const &#123;
+    for(int i=0;i&lt;9;++i)
+        if(s[i]&lt;a.s[i])
+            return true;
+        else if(s[i]&gt;a.s[i])
+            return false;
+    return false;
+&#125;
+
+bool operator ==(const Node&amp; a) const &#123;
+    for(int i=0;i&lt;9;++i)
+        if(s[i]!=a.s[i])
+            return false;
+    return true;
+&#125;
+
+&#125;fence[205];
+int n,s,ls,ns,n1s,n2s,sta,des,cur;
+int g[105][105],cnt=0,dis[105][105];
+bool vis[105];
+map&lt;Node,int&gt; mp;
+int floyd() &#123;
+    int ans=0x1f1f1f1f;
+    for(int i=1;i&lt;=n;++i)
+        for(int j=i;j&lt;=n;++j)
+            dis[i][j]=dis[j][i]=g[i][j];
+
+    for(int k=1;k&lt;=cnt;++k) &#123;
+        for(int i=1;i&lt;k;++i)//寻找最小环
+        for(int j=i+1;j&lt;k;++j)
+            if(dis[i][j]+g[i][k]+g[k][j]&lt;ans)//由于此处会存在三个INF相加，所以INF设为0x1f1f1f1f
+                ans=dis[i][j]+g[i][k]+g[k][j];
+    for(int i=1;i&lt;=n;++i)//更新最短路
+        for(int j=1;j&lt;=n;++j)
+            if(dis[i][j]&gt;dis[i][k]+dis[k][j])
+                dis[i][j]=dis[i][k]+dis[k][j];
+&#125;
+return ans;
+&#125;
+int main() &#123;
+    //freopen(&quot;fence6.in&quot;,&quot;r&quot;,stdin);
+   // freopen(&quot;fence6.out&quot;,&quot;w&quot;,stdout);
+
+    memset(g,0x1f,sizeof(g));
+    scanf(&quot;%d&quot;,&amp;n);
+    for(int i=1;i&lt;=n;++i) &#123;//读入边数据，并给每个点标一个数
+        scanf(&quot;%d%d%d%d&quot;,&amp;s,&amp;ls,&amp;n1s,&amp;n2s);
+        fence[i&lt;&lt;1].s[8]=fence[(i&lt;&lt;1)|1].s[8]=s;
+
+    while(n1s--&gt;0)
+        scanf(&quot;%d&quot;,&amp;fence[i&lt;&lt;1].s[n1s]);
+    sort(fence[i&lt;&lt;1].s,fence[i&lt;&lt;1].s+9);
+    if(mp[fence[i&lt;&lt;1]]==0)
+        mp[fence[i&lt;&lt;1]]=++cnt;
+
+    while(n2s--&gt;0)
+        scanf(&quot;%d&quot;,&amp;fence[(i&lt;&lt;1)|1].s[n2s]);
+    sort(fence[(i&lt;&lt;1)|1].s,fence[(i&lt;&lt;1)|1].s+9);
+    if(mp[fence[(i&lt;&lt;1)|1]]==0)
+        mp[fence[(i&lt;&lt;1)|1]]=++cnt;
+
+    sta=mp[fence[i&lt;&lt;1]];
+    des=mp[fence[(i&lt;&lt;1)|1]];
+    g[sta][des]=g[des][sta]=ls;//边信息转成点信息
+&#125;
+printf(&quot;%d\n&quot;,floyd());
+return 0;
+&#125;
+</code></pre>
+<h3 id="五、传递闭包问题"><a href="#五、传递闭包问题" class="headerlink" title="五、传递闭包问题"></a>五、传递闭包问题</h3><p>邻接矩阵是显示两点的直接关系，如 a 直接能到 b，就为 1。而传递闭包显示的是传递关系，如 a 不能直接到 c，却可以通过 a 到 b 到 d 再到 c，因此 a 到 c 为 1。<br><img src="https://img-blog.csdn.net/20170409190428811?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvd3p3MTM3NjEyNDA2MQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br>另外矩阵 A 进行自乘即 A^{2}得到的矩阵中，为 1 的值表示走最多两步可以到达。A^{3}矩阵中为 1 的值表示，最多走三步可以到达。<br>简单来说，就是有向图确定先后顺序。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-comment">/*</span><br><span class="hljs-comment">题目：n头牛进行m场比赛，问能确定排名的有多少头牛。</span><br><span class="hljs-comment">  解答：构造一个n个点的有向图，如果牛a胜b，那么a-&gt;b，如果a-&gt;b，b-&gt;c，则有a-&gt;c，这个用floyd。</span><br><span class="hljs-comment">  最后得到该图的传递闭包link的二维数组。最后统计每一个点入度和出度和为n-1的点的个数即可。</span><br><span class="hljs-comment">*/</span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;stdio.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;string.h&gt;</span></span><br><span class="hljs-type">const</span> <span class="hljs-type">int</span> MAX=<span class="hljs-number">105</span>;<br><span class="hljs-comment">/*</span><br><span class="hljs-comment">有向图的传递闭包！</span><br><span class="hljs-comment">注意传递之前一定要初始化！</span><br><span class="hljs-comment">如果i!=j&amp;&amp;(i,j)不属于E(边的集合) t[i][j]=0;</span><br><span class="hljs-comment">如果i=j||(i,j)属于E(边的集合)     t[i][j]=1;</span><br><span class="hljs-comment">*/</span><br><br><span class="hljs-comment">//传递闭包</span><br><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">Transitive_Closure</span><span class="hljs-params">(<span class="hljs-type">int</span> n,<span class="hljs-type">bool</span> t[][MAX])</span></span><br><span class="hljs-function"></span>&#123;<br>	<span class="hljs-type">int</span> i,j,k;<br>	<span class="hljs-keyword">for</span>(k=<span class="hljs-number">1</span>;k&lt;=n;k++)<br>		<span class="hljs-keyword">for</span>(i=<span class="hljs-number">1</span>;i&lt;=n;i++)<br>			<span class="hljs-keyword">for</span>(j=<span class="hljs-number">1</span>;j&lt;=n;j++)<br>				t[i][j]=t[i][j]|(t[i][k]&amp;t[k][j]);<br>&#125;<br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span><br><span class="hljs-function"></span>&#123;<br>	<span class="hljs-type">int</span> n,i,j,m,st,ed,sum,num;<br>	<span class="hljs-type">bool</span> t[MAX][MAX];<br>	<span class="hljs-keyword">while</span>(<span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%d%d&quot;</span>,&amp;n,&amp;m))<br>	&#123;<br>		<span class="hljs-keyword">if</span>(n==<span class="hljs-number">0</span>&amp;&amp;m==<span class="hljs-number">0</span>)<br>			<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>		<span class="hljs-built_in">memset</span>(t,<span class="hljs-literal">false</span>,<span class="hljs-built_in">sizeof</span>(t));<br>		<span class="hljs-keyword">for</span>(i=<span class="hljs-number">1</span>;i&lt;=n;i++)<br>			t[i][i]=<span class="hljs-literal">true</span>;<br>		<span class="hljs-keyword">for</span>(i=<span class="hljs-number">1</span>;i&lt;=m;i++)<br>		&#123;<br>			<span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%d%d&quot;</span>,&amp;st,&amp;ed);<br>			t[st][ed]=<span class="hljs-literal">true</span>;<br>		&#125;<span class="hljs-comment">//上面的代码都是初始化</span><br>		<span class="hljs-built_in">Transitive_Closure</span>(n,t);<br>		sum=<span class="hljs-number">0</span>;<br>		<span class="hljs-keyword">for</span>(i=<span class="hljs-number">1</span>;i&lt;=n;i++)<br>		&#123;<br>			num=<span class="hljs-number">0</span>;<br>			<span class="hljs-keyword">for</span>(j=<span class="hljs-number">1</span>;j&lt;=n;j++)<br>				<span class="hljs-keyword">if</span>(i==j)<br>					<span class="hljs-keyword">continue</span>;<br>				<span class="hljs-keyword">else</span><br>					num+=(t[i][j]||t[j][i]);<span class="hljs-comment">//统计出度和入度的个数!</span><br>				sum+=(num==n<span class="hljs-number">-1</span>);<br>		&#125;<br>		<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d\n&quot;</span>,sum);<br>	&#125;<br>	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br><span class="hljs-comment">/*</span><br><span class="hljs-comment">5 5</span><br><span class="hljs-comment">4 3</span><br><span class="hljs-comment">4 2</span><br><span class="hljs-comment">3 2</span><br><span class="hljs-comment">1 2</span><br><span class="hljs-comment">2 5</span><br><span class="hljs-comment">  2</span><br><span class="hljs-comment">*/</span><br></code></pre></td></tr></table></figure>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E7%AE%97%E6%B3%95/" class="category-chain-item">算法</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/%E7%AE%97%E6%B3%95/ACM%E7%AB%9E%E8%B5%9B/" class="category-chain-item">ACM竞赛</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/%E7%AE%97%E6%B3%95/ACM%E7%AB%9E%E8%B5%9B/%E6%9C%80%E7%9F%AD%E8%B7%AF/" class="category-chain-item">最短路</a>
+  
+  
+
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>『算法-ACM竞赛-最短路』Floyd —Warshall（最短路及其他用法详解）</div>
+      <div>https://chiamzhang.github.io/2024/06/29/『算法-ACM竞赛-最短路』Floyd —Warshall（最短路及其他用法详解）/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>Chiam</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>June 29, 2024</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>Licensed under</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2024/06/29/%E3%80%8E%E7%AE%97%E6%B3%95-ACM%E7%AB%9E%E8%B5%9B-%E6%9C%80%E7%9F%AD%E8%B7%AF%E3%80%8FHDU2066%EF%BC%9A%E4%B8%80%E4%B8%AA%E4%BA%BA%E7%9A%84%E6%97%85%E8%A1%8C%EF%BC%88Dijkstra%EF%BC%89/" title="『算法-ACM竞赛-最短路』HDU2066：一个人的旅行（Dijkstra）">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">『算法-ACM竞赛-最短路』HDU2066：一个人的旅行（Dijkstra）</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/06/29/%E3%80%8E%E7%AE%97%E6%B3%95-ACM%E7%AB%9E%E8%B5%9B-%E6%9C%80%E5%B0%8F%E7%94%9F%E6%88%90%E6%A0%91%E7%AE%97%E6%B3%95%E3%80%8F%E6%9C%80%E5%B0%8F%E7%94%9F%E6%88%90%E6%A0%91%E9%A2%98%E7%9B%AE%E6%80%BB%E7%BB%93/" title="『算法-ACM竞赛-最小生成树算法』最小生成树题目总结">
+                        <span class="hidden-mobile">『算法-ACM竞赛-最小生成树算法』最小生成树题目总结</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"fIfc7WqUDZohlQuPc2lz5mJy-MdYXbMMI","appKey":"zjlAG3ZA3o4cBHVAkjzc2Z20","path":"window.location.pathname","placeholder":"留言仅限讨论，禁止广告等行为","avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"https://fifc7wqu.api.lncldglobal.com","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>Table of Contents</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <meta name="referrer" content="no-referrer" /> <footer id="footer" role="contentinfo"> <meta name="referrer" content="no-referrer" /> <div class="divider"> <div class="wall"></div> <img class="animals" src="/img/footer_animals_new.png" srcset="/img/loading.gif" lazyload alt="Footer Animals"> </div> <div class="container" data-index="450"> <p> <a href="https://chiamzhang.github.io" target="_blank">DogEgg</a> <i class="iconfont icon-love"></i> <a href="#" target="_blank">LittePig</a> </p> <p> Powered by  <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-pen"></i> Theme  <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> </p> </div> </footer> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+  
+<script src="/js/love.js"></script>
+<script src="/js/funnyTitle.js"></script>
+<script src="/js/backTop.js"></script>
+<script src="//cdn.jsdelivr.net/gh/bynotes/texiao/source/js/xiaoxuehua.js"></script>
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+</html>

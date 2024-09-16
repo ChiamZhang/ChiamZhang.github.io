@@ -1,0 +1,1164 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/Mine.jpg">
+  <link rel="icon" href="/img/Mine.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Chiam">
+  <meta name="keywords" content="Algorithms，Cybersecurity">
+  
+    <meta name="description" content="『数据库』数据库编程（概念性的东西，应用一般，甚至有点过时，用来考试）数据库从入门到精通：戳我 嵌入式 SQLSQL 语言提供了两种不同的使用方式  交互式 嵌入式  为什么要引入嵌入式 SQL  SQL 语言是非过程性语言 事务处理应用需要高级语言  这两种方式细节上有差别，在程序设计的环境下，SQL 语句要做某些必要的扩充 一、嵌入式 SQL 的处理过程主语言  嵌入式 SQL 是将 SQL">
+<meta property="og:type" content="article">
+<meta property="og:title" content="『数据库』数据库编程（概念性的东西，应用一般，甚至有点过时，用来考试）">
+<meta property="og:url" content="https://chiamzhang.github.io/2024/06/29/%E3%80%8E%E6%95%B0%E6%8D%AE%E5%BA%93%E3%80%8F%E6%95%B0%E6%8D%AE%E5%BA%93%E7%BC%96%E7%A8%8B%EF%BC%88%E6%A6%82%E5%BF%B5%E6%80%A7%E7%9A%84%E4%B8%9C%E8%A5%BF%EF%BC%8C%E5%BA%94%E7%94%A8%E4%B8%80%E8%88%AC%EF%BC%8C%E7%94%9A%E8%87%B3%E6%9C%89%E7%82%B9%E8%BF%87%E6%97%B6%EF%BC%8C%E7%94%A8%E6%9D%A5%E8%80%83%E8%AF%95%EF%BC%89/index.html">
+<meta property="og:site_name" content="Homepage of Chiam">
+<meta property="og:description" content="『数据库』数据库编程（概念性的东西，应用一般，甚至有点过时，用来考试）数据库从入门到精通：戳我 嵌入式 SQLSQL 语言提供了两种不同的使用方式  交互式 嵌入式  为什么要引入嵌入式 SQL  SQL 语言是非过程性语言 事务处理应用需要高级语言  这两种方式细节上有差别，在程序设计的环境下，SQL 语句要做某些必要的扩充 一、嵌入式 SQL 的处理过程主语言  嵌入式 SQL 是将 SQL">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200612183953288.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzQ2MDIyNA==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200612225957939.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzQ2MDIyNA==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200612232930975.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzQ2MDIyNA==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200612233210427.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzQ2MDIyNA==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200612233258398.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzQ2MDIyNA==,size_16,color_FFFFFF,t_70">
+<meta property="article:published_time" content="2024-06-29T13:16:53.864Z">
+<meta property="article:modified_time" content="2023-12-05T16:18:14.057Z">
+<meta property="article:author" content="Chiam">
+<meta property="article:tag" content="Algorithms，Cybersecurity">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20200612183953288.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzQ2MDIyNA==,size_16,color_FFFFFF,t_70">
+  
+  
+  
+  <title>『数据库』数据库编程（概念性的东西，应用一般，甚至有点过时，用来考试） - Homepage of Chiam</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"chiamzhang.github.io","root":"/","version":"1.9.5-a","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":"❡"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":2},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
+
+
+<body>
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Chiam&#39;s Blogs</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                
+                <span>Home</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                
+                <span>Archives</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                
+                <span>Categories</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                
+                <span>About</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                
+                <span>Links</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="『数据库』数据库编程（概念性的东西，应用一般，甚至有点过时，用来考试）"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-06-29 21:16" pubdate>
+          June 29, 2024 pm
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          11k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          93 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">『数据库』数据库编程（概念性的东西，应用一般，甚至有点过时，用来考试）</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="『数据库』数据库编程（概念性的东西，应用一般，甚至有点过时，用来考试）"><a href="#『数据库』数据库编程（概念性的东西，应用一般，甚至有点过时，用来考试）" class="headerlink" title="『数据库』数据库编程（概念性的东西，应用一般，甚至有点过时，用来考试）"></a>『数据库』数据库编程（概念性的东西，应用一般，甚至有点过时，用来考试）</h1><p>数据库从入门到精通：<a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_43627118/article/details/105027257">戳我</a></p>
+<h2 id="嵌入式-SQL"><a href="#嵌入式-SQL" class="headerlink" title="嵌入式 SQL"></a>嵌入式 SQL</h2><p>SQL 语言提供了两种不同的使用方式</p>
+<ul>
+<li>交互式</li>
+<li>嵌入式</li>
+</ul>
+<p>为什么要引入嵌入式 SQL</p>
+<ul>
+<li>SQL 语言是非过程性语言</li>
+<li>事务处理应用需要高级语言</li>
+</ul>
+<p>这两种方式细节上有差别，在程序设计的环境下，SQL 语句要做某些必要的扩充</p>
+<p><strong>一、嵌入式 SQL 的处理过程</strong><br>主语言</p>
+<ul>
+<li>嵌入式 SQL 是将 SQL 语句嵌入程序设计语言中，被嵌入的程序设计语言，如 C、C++、Java，称为宿主语言，简称主语言。</li>
+</ul>
+<p>处理过程</p>
+<ul>
+<li>预编译方法</li>
+</ul>
+<p><img src="https://img-blog.csdnimg.cn/20200612183953288.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzQ2MDIyNA==,size_16,color_FFFFFF,t_70" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<p>为了区分 SQL 语句与主语言语句，所有 SQL 语句必须加前缀 EXEC SQL，<br>主语言为 C 语言时，语句格式：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs c">EXEC SQL &lt;SQL语句&gt;;<br></code></pre></td></tr></table></figure>
+
+<p><strong>二、嵌入式 SQL 语句与主语言之间的通信</strong><br>将 SQL 嵌入到高级语言中混合编程，程序中会含有两种不同计算模型的语句<br><strong>1.SQL 语句</strong></p>
+<ul>
+<li>描述性的面向集合的语句</li>
+<li>负责操纵数据库</li>
+</ul>
+<p><strong>2.高级语言语句</strong></p>
+<ul>
+<li>过程性的面向记录的语句</li>
+<li>负责控制逻辑流程</li>
+</ul>
+<p><strong>3.数据库工作单元与源程序工作单元之间的通信</strong><br>（1）向主语言传递 SQL 语句的执行状态信息，使主语言能够据此控制程序流程，主要用 SQL 通信区实现<br>（2）主语言向 SQL 语句提供参数，主要用主变量实现<br>（3）将 SQL 语句查询数据库的结果交主语言处理，主要用主变量和游标实现</p>
+<p><strong>4.SQLCA： SQL Communication Area</strong><br>SQLCA 是一个数据结构<br><strong>（1）SQLCA 的用途</strong></p>
+<ul>
+<li>SQL 语句执行后，系统反馈给应用程序信息<br>描述系统当前工作状态<br>描述运行环境</li>
+<li>这些信息将送到 SQL 通信区中</li>
+<li>应用程序从 SQL 通信区中取出这些状态信息，据此决定接下来执行的语句</li>
+</ul>
+<p><strong>（2）SQLCA 使用方法</strong></p>
+<ul>
+<li>定义 SQLCA<br>用<code>EXEC SQL INCLUDE SQLCA</code>定义</li>
+<li>使用 SQLCA<br><strong>a.</strong> SQLCA 中有一个存放每次执行 SQL 语句后返回代码的变量<code>SQLCODE</code><br><strong>b.</strong> 如果 SQLCODE 等于预定义的常量<code>SUCCESS</code>，则表示 SQL 语句成功，否则表示出错<br><strong>c.</strong> 应用程序每执行完一条 SQL 语句之后都应该测试一下 SQLCODE 的值，以了解该 SQL 语句执行情况并做相应处理</li>
+</ul>
+<p><strong>5.主变量</strong></p>
+<ul>
+<li>嵌入式 SQL 语句中可以使用主语言的程序变量来输入或输出数据</li>
+<li>在 SQL 语句中使用的主语言程序变量简称为主变量 （Host Variable）</li>
+</ul>
+<p><strong>主变量的类型</strong></p>
+<ul>
+<li>&#x3D;&#x3D;输入主变量&#x3D;&#x3D;<br>由应用程序对其赋值，SQL 语句引用</li>
+<li>&#x3D;&#x3D;输出主变量&#x3D;&#x3D;<br>由 SQL 语句对其赋值或设置状态信息，返回给应用程序</li>
+</ul>
+<p><strong>6.指示变量</strong></p>
+<ul>
+<li>是一个整型变量，用来“指示”所指主变量的值或条件</li>
+<li>一个主变量可以附带一个指示变量（Indicator Variable）</li>
+<li>指示变量的用途<br>指示输入主变量是否为空值<br>检测输出变量是否为空值，值是否被截断</li>
+</ul>
+<p><strong>7.在 SQL 语句中使用主变量和指示变量的方法</strong></p>
+<p>（1）说明主变量和指示变量</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs cpp">BEGIN DECLARE SECTION<br>	...<br>	...  		（说明主变量和指示变量）<br>	...<br>END DECLARE SECTION<br></code></pre></td></tr></table></figure>
+
+<p>（2）使用主变量</p>
+<ul>
+<li>说明之后的主变量可以在 SQL 语句中任何一个能够使用表达式的地方出现</li>
+<li>为了与数据库对象名（表名、视图名、列名等）区别，SQL 语句中的主变量名前要加冒号（:）作为标志</li>
+</ul>
+<p>（3）使用指示变量</p>
+<ul>
+<li>指示变量前也必须加冒号标志</li>
+<li>必须紧跟在所指主变量之后</li>
+</ul>
+<p>（4）在 SQL 语句之外（主语言语句中）使用主变量和指示变量的方法：<br>&#x3D;&#x3D;可以直接引用，不必加冒号&#x3D;&#x3D;</p>
+<p><strong>8.使用游标的原因</strong></p>
+<ul>
+<li>SQL 语言与主语言具有不同数据处理方式</li>
+<li>SQL 语言是面向集合的，一条 SQL 语句原则上可以产生或处理多条记录</li>
+<li>主语言是面向记录的，一组主变量一次只能存放一条记录</li>
+<li>仅使用主变量并不能完全满足 SQL 语句向应用程序输出数据的要求</li>
+<li>嵌入式 SQL 引入了游标的概念，用来协调这两种不同的处理方式</li>
+</ul>
+<p><strong>9.游标</strong></p>
+<ul>
+<li>游标是系统为用户开设的一个数据缓冲区，存放 SQL 语句的执行结果</li>
+<li>每个游标区都有一个名字</li>
+<li>用户可以用 SQL 语句逐一从游标中获取记录，并赋给主变量，交由主语言进一步处理</li>
+</ul>
+<p>（1）建立数据库连接</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs cpp">EXEC SQL CONNECT TO target[AS connection-name][USER user-name];<br><br>target是要连接的数据库服务器<br>a.常见的服务器标识串，如&lt;dbname&gt;@&lt;hostname&gt;:&lt;port&gt;<br>b.包含服务器标识的SQL串常量<br>c.DEFAULT<br>d.connect-name是可选的连接名，连接名必须是一个有效的标识符<br>e.在整个程序内只有一个连接时可以不指定连接名<br>f.程序运行过程中可以修改当前连接<br>EXEC SQL SET CONNECTION connection-name|DEFAULT;<br></code></pre></td></tr></table></figure>
+
+<p>（2）关闭数据库连接</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cpp">EXEC SQL DISCONNECT [connection];<br></code></pre></td></tr></table></figure>
+
+<p><strong>举个例子</strong><br>依次检查某个系的学生记录，交互式更新某些学生年龄。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><code class="hljs cpp">EXEC SQL BEGIN DECLARE SECTION;              <span class="hljs-comment">/*主变量说明开始*/</span><br>	<span class="hljs-type">char</span> Deptname[<span class="hljs-number">20</span>];<br>	<span class="hljs-type">char</span> Hsno[<span class="hljs-number">9</span>];<br>	<span class="hljs-type">char</span> Hsname[<span class="hljs-number">20</span>];<br>	<span class="hljs-type">char</span> Hssex[<span class="hljs-number">2</span>];<br>	<span class="hljs-type">int</span> HSage;<br>	<span class="hljs-type">int</span> NEWAGE;<br>EXEC SQL END DECLARE SECTION;                <span class="hljs-comment">/*主变量说明结束*/</span><br><span class="hljs-type">long</span> SQLCODE;<br>EXEC SQL INCLUDE SQLCA;                      <span class="hljs-comment">/*定义SQL通信区*/</span><br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">(<span class="hljs-type">void</span>)</span>                               <span class="hljs-comment">/*C语言主程序开始*/</span></span><br><span class="hljs-function"></span>&#123;<br>	<span class="hljs-type">int</span>  count = <span class="hljs-number">0</span>;<br>	<span class="hljs-type">char</span>  yn;                                <span class="hljs-comment">/*变量yn代表yes或no*/</span><br>	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Please choose the department name(CS/MA/IS): &quot;</span>);<br>	<span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%s&quot;</span>,deptname);                    <span class="hljs-comment">/*为主变量deptname赋值*/</span><br>	EXEC SQL CONNECT TO TEST@localhost:<span class="hljs-number">54321</span> USER <span class="hljs-string">&quot;SYSTEM&quot;</span>/<span class="hljs-string">&quot;MANAGER&quot;</span>;              <span class="hljs-comment">/*连接数据库TEST*/</span><br>	EXEC SQL DECLARE SX CURSOR FOR           <span class="hljs-comment">/*定义游标SX*/</span><br>		SELECT Sno,Sname,Ssex,Sage           <span class="hljs-comment">/*SX对应的语句*/</span><br>		FROM Student<br>		WHERE SDept = :deptname;<br>	EXEC SQL OPEN SX;                        <span class="hljs-comment">/*打开游标SX，指向查询结果的第一行*/</span><br>	<span class="hljs-keyword">for</span> ( ; ; )                              <span class="hljs-comment">/*用循环结构逐条处理结果集中的记录*/</span><br>    &#123;<br>        EXEC SQL FETCH SX INTO :HSno,:Hsname,:HSsex,:HSage;                         <span class="hljs-comment">/*推进游标，将当前数据放入主变量*/</span><br>        <span class="hljs-keyword">if</span> (SQLCA.SQLCODE!= <span class="hljs-number">0</span>)    	         <span class="hljs-comment">/*SQLCODE != 0，表示操作不成功*/</span><br>            <span class="hljs-keyword">break</span>;           	             <span class="hljs-comment">/*利用SQLCA中的状态信息决定何时退出循环*/</span><br>	    <span class="hljs-keyword">if</span>(count++ == <span class="hljs-number">0</span>)             	     <span class="hljs-comment">/*如果是第一行的话，先打出行头*/</span><br>	        <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;\n%-10s %-20s %-10s %-10s\n&quot;</span>,<span class="hljs-string">&quot;Sno&quot;</span>,<span class="hljs-string">&quot;Sname&quot;</span>,<span class="hljs-string">&quot;Ssex&quot;</span>, <span class="hljs-string">&quot;Sage&quot;</span>);<br>        <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%-10s %-20s %-10s %-10d\n&quot;</span>,HSno,Hsname,Hssex,HSage);                <span class="hljs-comment">/*打印查询结果*/</span><br>	    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;UPDATE AGE(y/n)?&quot;</span>);          <span class="hljs-comment">/*询问用户是否要更新该学生的年龄*/</span><br>	    <span class="hljs-keyword">do</span>&#123;<span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%c&quot;</span>,&amp;yn);&#125;<br>	    <span class="hljs-keyword">while</span>(yn != <span class="hljs-string">&#x27;N&#x27;</span> &amp;&amp; yn != <span class="hljs-string">&#x27;n&#x27;</span> &amp;&amp; yn != <span class="hljs-string">&#x27;Y&#x27;</span> &amp;&amp; yn != <span class="hljs-string">&#x27;y&#x27;</span>);<br>        <span class="hljs-keyword">if</span> (yn == <span class="hljs-string">&#x27;y&#x27;</span> || yn == <span class="hljs-string">&#x27;Y&#x27;</span>)          <span class="hljs-comment">/*如果选择更新操作*/</span><br>	    &#123;<br>            <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;INPUT NEW AGE:&quot;</span>);<br>	        <span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%d&quot;</span>,&amp;NEWAGE);             <span class="hljs-comment">/*用户输入新年龄到主变量中*/</span><br>            EXEC SQL UPDATE Student          <span class="hljs-comment">/*嵌入式SQL更新语句*/</span><br>                 SET Sage = :NEWAGE<br>		    WHERE CURRENT OF SX;<br>	    &#125;       	                         <span class="hljs-comment">/*对当前游标指向的学生年龄进行更新*/</span><br> &#125;<br>  EXEC SQL CLOSE SX;                         <span class="hljs-comment">/*关闭游标SX，不再和查询结果对应*/</span><br>  EXEC SQL COMMIT WORK;                      <span class="hljs-comment">/*提交更新*/</span><br>  EXEC SQL DISCONNECT TEST;                  <span class="hljs-comment">/*断开数据库连接*/</span><br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><strong>三、不用游标的 SQL 语句</strong><br><strong>（1）不用游标的 SQL 语句的种类</strong></p>
+<ul>
+<li>说明性语句</li>
+<li>数据定义语句</li>
+<li>数据控制语句</li>
+<li>查询结果为单记录的 SELECT 语句</li>
+<li>非 CURRENT 形式的增删改语句</li>
+</ul>
+<p>这类语句不需要使用游标，只需用 INTO 子句指定存放查询结果的主变量。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs cpp">[例] 根据学生号码查询学生信息。<br>EXEC SQL SELECT Sno,Sname,Ssex,Sage,Sdept<br>     	        INTO:Hsno,:Hname,:Hsex,:Hage,:Hdept<br>	            FROM  Student<br>     	        WHERE Sno=:givensno;<br><span class="hljs-comment">/*把要查询的学生的学号赋给为了主变量givensno*/</span><br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>INTO 子句、WHERE 子句和 HAVING 短语的条件表达式中均可以使用主变量</li>
+<li>查询返回的记录中，可能某些列为空值 NULL</li>
+<li>如果查询结果实际上并不是单条记录，而是多条记录，则程序出错，关系数据库管理系统会在 SQLCA 中返回错误信息</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs cpp">[例] 查询某个学生选修某门课程的成绩。假设已经把将要查询的学生的学号赋给了主变量givensno，将课程号赋给了主变量givencno。<br>EXEC SQL SELECT Sno,Cno,Grade<br>     	        INTO :Hsno,:Hcno,:Hgrade:Gradeid  <span class="hljs-comment">/*指示变量Gradeid*/</span><br>	            FROM  SC<br>     	        WHERE Sno=:givensno AND Cno=:givencno；<br>如果Gradeid &lt; <span class="hljs-number">0</span>，不论Hgrade为何值，均认为该学生成绩为空值。<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>在 UPDATE 的 SET 子句和 WHERE 子句中可以使用主变量，SET 子句还可以使用指示变量</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs cpp">[例] 修改某个学生选修<span class="hljs-number">1</span>号课程的成绩。<br>EXEC SQL UPDATE SC<br>                SET Grade=:newgrade  <span class="hljs-comment">/*修改的成绩已赋给主变量：newgrade*/</span><br>               WHERE Sno=:givensno;  <span class="hljs-comment">/*学号赋给主变量：givensno*/</span><br></code></pre></td></tr></table></figure>
+
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs cpp">[例] 某个学生新选修了某门课程，将有关记录插入SC表中。假设插入的学号已赋给主变量stdno，课程号已赋给主变量couno。<br>gradeid=<span class="hljs-number">-1</span>；            <span class="hljs-comment">/*gradeid为指示变量，赋为负值*/</span><br>EXEC SQL INSERT<br>            INTO <span class="hljs-built_in">SC</span>(Sno,Cno,Grade)<br>            <span class="hljs-built_in">VALUES</span>(:stdno,:couno,:gr :gradeid)；<span class="hljs-comment">/*:stdno，:couno，:gr为主变量*/</span><br>由于该学生刚选修课程，成绩应为空，所以要把指示变量赋为负值<br></code></pre></td></tr></table></figure>
+
+<p><strong>四、使用游标的 SQL 语句</strong><br><strong>1.必须使用游标的 SQL 语句</strong></p>
+<ul>
+<li>查询结果为多条记录的 SELECT 语句</li>
+<li>CURRENT 形式的 UPDATE 语句</li>
+<li>CURRENT 形式的 DELETE 语句</li>
+</ul>
+<p><strong>2.使用游标的步骤</strong><br>（1）说明游标<br>（2）打开游标<br>（3）推进游标指针并取当前记录<br>（4）关闭游标</p>
+<p><strong>3.使用 DECLARE 语句</strong><br>（1）语句格式</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs cpp">EXEC SQL DECLARE &lt;游标名&gt; CURSOR<br>                 FOR &lt;SELECT语句&gt;;<br></code></pre></td></tr></table></figure>
+
+<p>（2）功能</p>
+<ul>
+<li>是一条说明性语句，这时关系数据库管理系统并不执行 SELECT 语句</li>
+</ul>
+<p><strong>4.使用 OPEN 语句</strong><br>（1）语句格式</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cpp">EXEC SQL OPEN &lt;游标名&gt;;<br></code></pre></td></tr></table></figure>
+
+<p>（2）功能</p>
+<ul>
+<li>打开游标实际上是执行相应的 SELECT 语句，把查询结果取到缓冲区中</li>
+<li>这时游标处于活动状态，指针指向查询结果集中的第一条记录</li>
+</ul>
+<p><strong>5.使用 FETCH 语句</strong><br>（1）语句格式</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs cpp">EXEC SQL FETCH &lt;游标名&gt;<br>     INTO &lt;主变量&gt;[&lt;指示变量&gt;]<br>	  [,&lt;主变量&gt;[&lt;指示变量&gt;]]...;<br></code></pre></td></tr></table></figure>
+
+<p>（2）功能</p>
+<ul>
+<li>指定方向推动游标指针，同时将缓冲区中的当前记录取出来送至主变量供主语言进一步处理</li>
+</ul>
+<p><strong>6.使用 CLOSE 语句</strong><br>（1）语句格式</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cpp">EXEC SQL CLOSE &lt;游标名&gt;;<br></code></pre></td></tr></table></figure>
+
+<p>（2）功能</p>
+<ul>
+<li>关闭游标，释放结果集占用的缓冲区及其他资源</li>
+</ul>
+<p>（3）说明</p>
+<ul>
+<li>游标被关闭后，就不再和原来的查询结果集相联系</li>
+<li>被关闭的游标可以再次被打开，与新的查询结果相联系</li>
+</ul>
+<p><strong>7.CURRENT 形式的 UPDATE 语句和 DELETE 语句的用途</strong><br>（1）非 CURRENT 形式的 UPDATE 语句和 DELETE 语句</p>
+<ul>
+<li>面向集合的操作</li>
+<li>一次修改或删除所有满足条件的记录</li>
+</ul>
+<p>（2）如果只想修改或删除其中某个记录</p>
+<ul>
+<li>用带游标的 SELECT 语句查出所有满足条件的记录</li>
+<li>从中进一步找出要修改或删除的记录</li>
+<li>用 CURRENT 形式的 UPDATE 语句和 DELETE 语句修改或删除之</li>
+<li>UPDATE 语句和 DELETE 语句中要用子句</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cpp">WHERE CURRENT OF &lt;游标名&gt;<br></code></pre></td></tr></table></figure>
+
+<p>表示修改或删除的是最近一次取出的记录，即游标指针指向的记录<br><strong>8.不能使用 CURRENT 形式的 UPDATE 语句和 DELETE 语句</strong></p>
+<ul>
+<li>当游标定义中的 SELECT 语句带有 UNION 或 ORDER BY 子句</li>
+<li>该 SELECT 语句相当于定义了一个不可更新的视图</li>
+</ul>
+<p><strong>五、动态 SQL</strong></p>
+<p><strong>静态嵌入式 SQL</strong></p>
+<ul>
+<li>静态嵌入式 SQL 语句能够满足一般要求</li>
+<li>无法满足要到执行时才能够确定要提交的 SQL 语句、查询的条件</li>
+</ul>
+<p><strong>动态嵌入式 SQL</strong></p>
+<ul>
+<li>允许在程序运行过程中临时“组装”SQL 语句</li>
+<li>支持动态组装 SQL 语句和动态参数两种形式</li>
+</ul>
+<p><strong>1. 使用 SQL 语句主变量</strong></p>
+<ul>
+<li>程序主变量包含的内容是 SQL 语句的内容，而不是原来保存数据的输入或输出变量</li>
+<li>SQL 语句主变量在程序执行期间可以设定不同的 SQL 语句，然后立即执行</li>
+</ul>
+<p><strong>2. 动态参数</strong><br><strong>动态参数</strong></p>
+<ul>
+<li>SQL 语句中的可变元素</li>
+<li>使用参数符号（?）表示该位置的数据在运行时设定</li>
+</ul>
+<p><strong>和主变量的区别</strong></p>
+<ul>
+<li>动态参数的输入不是编译时完成绑定</li>
+<li>而是通过 PREPARE 语句准备主变量和执行语句 EXECUTE 绑定数据或主变量来完成</li>
+</ul>
+<p><strong>使用动态参数的步骤</strong><br>（1）声明 SQL 语句主变量<br>（2）准备 SQL 语句（PREPARE）</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs cpp">EXEC SQL PREPARE &lt;语句名&gt;<br>		   FROM &lt;SQL语句主变量&gt;;<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs cpp">EXEC SQL EXECUTE &lt;语句名&gt;<br>		    [INTO &lt;主变量表&gt;]<br>            [USING &lt;主变量或常量&gt;];<br></code></pre></td></tr></table></figure>
+
+<p><strong>3. 执行准备好的语句（EXECUTE）</strong></p>
+<h2 id="过程化-SQL"><a href="#过程化-SQL" class="headerlink" title="过程化 SQL"></a>过程化 SQL</h2><p><strong>一、过程化 SQL 的块结构</strong><br><strong>1.过程化 SQL</strong></p>
+<ul>
+<li>SQL 的扩展</li>
+<li>增加了过程化语句功能</li>
+<li>基本结构是块<br>块之间可以互相嵌套<br>每个块完成一个逻辑操作</li>
+</ul>
+<p><strong>2.过程化 SQL 块的基本结构</strong><br>（1）定义部分</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cpp">DECLARE 变量、常量、游标、异常等<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>定义的变量、常量等只能在该基本块中使用</li>
+<li>当基本块执行结束时，定义就不再存在<br>（2）执行部分</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs cpp">BEGIN<br>	 SQL语句、过程化SQL的流程控制语句<br>EXCEPTION<br>	 异常处理部分<br>END；<br></code></pre></td></tr></table></figure>
+
+<p><strong>二、变量和常量的定义</strong><br><strong>1. 变量定义</strong></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cpp">变量名 数据类型 [[NOT <span class="hljs-literal">NULL</span>]:=初值表达式]<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cpp">变量名 数据类型 [[NOT <span class="hljs-literal">NULL</span>] 初值表达式]<br></code></pre></td></tr></table></figure>
+
+<p><strong>2. 常量定义</strong></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cpp">常量名 数据类型 CONSTANT :=常量表达式<br></code></pre></td></tr></table></figure>
+
+<p>常量必须要给一个值，并且该值在存在期间或常量的作用域内不能改变。如果试图修改它，过程化 SQL 将返回一个异常<br><strong>3. 赋值语句</strong></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cpp">变量名称 :=表达式<br></code></pre></td></tr></table></figure>
+
+<p><strong>三、流程控制</strong><br>过程化 SQL 功能<br><strong>1. 条件控制语句</strong><br>IF-THEN，IF-THEN-ELSE 和嵌套的 IF 语句<br>（1）</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs cpp">IF condition THEN<br>   Sequence_of_statements;<br>END IF;<br></code></pre></td></tr></table></figure>
+
+<p>（2）</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs cpp">IF condition THEN<br>   Sequence_of_statements1;<br>ELSE<br>   Sequence_of_statements2;<br>END IF;<br></code></pre></td></tr></table></figure>
+
+<p>（3）在 THEN 和 ELSE 子句中还可以再包含 IF 语句，即 IF 语句可以嵌套</p>
+<p><strong>2. 循环控制语句</strong><br>LOOP，WHILE-LOOP 和 FOR-LOOP<br>（1）简单的循环语句 LOOP</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs cpp">LOOP<br>	Sequence_of_statements;<br>END LOOP;<br></code></pre></td></tr></table></figure>
+
+<p>多数数据库服务器的过程化 SQL 都提供 EXIT、BREAK 或 LEAVE 等循环结束语句，保证 LOOP 语句块能够结束。<br>（2）WHILE-LOOP</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs cpp">WHILE condition LOOP<br> 	  Sequence_of_statements;<br>END LOOP;<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>每次执行循环体语句之前，首先对条件进行求值</li>
+<li>如果条件为真，则执行循环体内的语句序列</li>
+<li>如果条件为假，则跳过循环并把控制传递给下一个语句</li>
+</ul>
+<p>（3）FOR-LOOP</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs cpp">FOR count IN [REVERSE] bound1 … bound2 LOOP<br>    Sequence_of_statements;<br>END LOOP;<br></code></pre></td></tr></table></figure>
+
+<p><strong>3. 错误处理</strong></p>
+<ul>
+<li>如果过程化 SQL 在执行时出现异常，则应该让程序在产生异常的语句处停下来，根据异常的类型去执行异常处理语句</li>
+<li>SQL 标准对数据库服务器提供什么样的异常处理做出了建议，要求过程化 SQL 管理器提供完善的异常处理机制</li>
+</ul>
+<h2 id="存储过程和函数"><a href="#存储过程和函数" class="headerlink" title="存储过程和函数"></a>存储过程和函数</h2><p><strong>一、存储过程</strong><br>过程化 SQL 块类型</p>
+<ul>
+<li>命名块<br>编译后保存在数据库中，可以被反复调用，运行速度较快，过程和函数是命名块</li>
+<li>匿名块<br>每次执行时都要进行编译，它不能被存储到数据库中，也不能在其他过程化 SQL 块中调用</li>
+</ul>
+<p><strong>1.存储过程</strong><br>由过程化 SQL 语句书写的过程，经编译和优化后存储在数据库服务器中，使用时只要调用即可。<br><strong>2.存储过程的优点</strong></p>
+<ul>
+<li>运行效率高</li>
+<li>降低了客户机和服务器之间的通信量</li>
+<li>方便实施企业规则</li>
+</ul>
+<p><strong>3.存储过程的用户接口</strong></p>
+<ul>
+<li>创建存储过程</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs cpp">CREATE OR REPLACE PROCEDURE 过程名([参数<span class="hljs-number">1</span>,参数<span class="hljs-number">2</span>,...]) AS &lt;过程化SQL块&gt;;<br><br>a.过程名：数据库服务器合法的对象标识<br>b.参数列表：用名字来标识调用时给出的参数值，必须指定值的数据类型。参数也可以定义输入参数、输出参数或输入/输出参数，默认为输入参数<br>c.过程体：是一个&lt;过程化SQL块&gt;，包括声明部分和可执行语句部分<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>执行存储过程</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs cpp"> CALL/PERFORM  PROCEDURE 过程名([参数<span class="hljs-number">1</span>,参数<span class="hljs-number">2</span>,...]);<br><br>a.使用CALL或者PERFORM等方式激活存储过程的执行<br>b.在过程化SQL中，数据库服务器支持在过程体中调用其他存储过程<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>修改存储过程</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cpp">ALTER PROCEDURE 过程名<span class="hljs-number">1</span>  RENAME TO 过程名<span class="hljs-number">2</span>;<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>删除存储过程</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cpp">DROP  PROCEDURE 过程名();<br></code></pre></td></tr></table></figure>
+
+<p><strong>二、函数</strong><br>函数和存储过程的异同</p>
+<ul>
+<li>同：都是持久性存储模块</li>
+<li>异：函数必须指定返回的类型</li>
+</ul>
+<p><strong>1. 函数的定义语句格式</strong></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cpp">CREATE OR REPLACE FUNCTION 函数名 ([参数<span class="hljs-number">1</span>,参数<span class="hljs-number">2</span>,…]) RETURNS &lt;类型&gt;  AS &lt;过程化SQL块&gt;;<br></code></pre></td></tr></table></figure>
+
+<p><strong>2. 函数的执行语句格式</strong></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cpp">CALL/SELECT 函数名 ([参数<span class="hljs-number">1</span>,参数<span class="hljs-number">2</span>,…]);<br></code></pre></td></tr></table></figure>
+
+<p><strong>3. 修改函数</strong><br><strong>重命名</strong></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cpp">ALTER FUNCTION 过程名<span class="hljs-number">1</span> RENAME TO 过程名<span class="hljs-number">2</span>;<br></code></pre></td></tr></table></figure>
+
+<p><strong>重新编译</strong></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cpp">ALTER FUNCTION 过程名 COMPILE;<br></code></pre></td></tr></table></figure>
+
+<h2 id="ODBC-编程"><a href="#ODBC-编程" class="headerlink" title="ODBC 编程"></a>ODBC 编程</h2><p>ODBC 优点</p>
+<ul>
+<li>移植性好</li>
+<li>能同时访问不同的数据库</li>
+<li>共享多个数据资源</li>
+</ul>
+<p><strong>一、ODBC 概述</strong><br><strong>1.ODBC 产生的原因</strong></p>
+<ul>
+<li>由于不同的数据库管理系统的存在，在某个关系数据库管理系统下编写的应用程序就不能在另一个关系数据库管理系统下运行</li>
+<li>许多应用程序需要共享多个部门的数据资源，访问不同的关系数据库管理系统</li>
+</ul>
+<p><strong>2.ODBC</strong></p>
+<ul>
+<li>是微软公司开放服务体系（Windows Open Services Architecture，WOSA）中有关数据库的一个组成部分</li>
+<li>提供了一组访问数据库的应用程序编程接口（Application Programming Interface，API ）</li>
+</ul>
+<p><strong>3.ODBC 约束力</strong></p>
+<ul>
+<li>规范应用开发</li>
+<li>规范关系数据库管理系统应用接口</li>
+</ul>
+<p><strong>二、ODBC 工作原理概述</strong><br><strong>1.ODBC 应用系统的体系结构</strong><br>（1）用户应用程序<br>（2）ODBC 驱动程序管理器<br>（3）数据库驱动程序<br>（4）数据源<br><img src="https://img-blog.csdnimg.cn/20200612225957939.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzQ2MDIyNA==,size_16,color_FFFFFF,t_70" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br><strong>2.ODBC 应用程序包括的内容</strong></p>
+<ul>
+<li>请求连接数据库</li>
+<li>向数据源发送 SQL 语句</li>
+<li>为 SQL 语句执行结果分配存储空间，定义所读取的数据格式</li>
+<li>获取数据库操作结果或处理错误</li>
+<li>进行数据处理并向用户提交处理结果</li>
+<li>请求事务的提交和回滚操作</li>
+<li>断开与数据源的连接</li>
+</ul>
+<p><strong>3.驱动程序管理器：用来管理各种驱动程序</strong></p>
+<ul>
+<li>包含在 ODBC32.DLL 中</li>
+<li>管理应用程序和驱动程序之间的通信</li>
+<li>建立、配置或删除数据源，并查看系统当前所安装的数据库 ODBC 驱动程序</li>
+</ul>
+<p><strong>4.主要功能</strong></p>
+<ul>
+<li>装载 ODBC 驱动程序</li>
+<li>选择和连接正确的驱动程序</li>
+<li>管理数据源</li>
+<li>检查 ODBC 调用参数的合法性</li>
+<li>记录 ODBC 函数的调用等</li>
+</ul>
+<p><strong>5.ODBC 通过驱动程序来提供应用系统与数据库平台的独立性</strong><br><strong>6.ODBC 应用程序不能直接存取数据库</strong></p>
+<ul>
+<li>其各种操作请求由驱动程序管理器提交给某个关系数据库管理系统的 ODBC 驱动程序</li>
+<li>通过调用驱动程序所支持的函数来存取数据库</li>
+<li>数据库的操作结果也通过驱动程序返回给应用程序</li>
+<li>如果应用程序要操纵不同的数据库，就要动态地链接到不同的驱动程序上</li>
+</ul>
+<p><strong>7.ODBC 驱动程序类型</strong><br>单束</p>
+<ul>
+<li>数据源和应用程序在同一台机器上</li>
+<li>驱动程序直接完成对数据文件的 I&#x2F;O 操作</li>
+<li>驱动程序相当于数据管理器</li>
+</ul>
+<p>多束</p>
+<ul>
+<li>支持客户机—服务器、客户机—应用服务器&#x2F;数据库服务器等网络环境下的数据访问</li>
+<li>由驱动程序完成数据库访问请求的提交和结果集接收</li>
+<li>应用程序使用驱动程序提供的结果集管理接口操纵执行后的结果数据</li>
+</ul>
+<p>8.数据源：是最终用户需要访问的数据，包含了数据库位置和数据库类型等信息，是一种数据连接的抽象<br>数据源对最终用户是透明的</p>
+<ul>
+<li>ODBC 给每个被访问的数据源指定唯一的数据源名（Data Source Name，简称 DSN），并映射到所有必要的、用来存取数据的低层软件</li>
+<li>在连接中，用数据源名来代表用户名、服务器名、所连接的数据库名等</li>
+<li>最终用户无须知道数据库管理系统或其他数据管理软件、网络以及有关 ODBC 驱动程序的细节</li>
+</ul>
+<p><strong>三、ODBC API 基础</strong><br>ODBC 应用程序编程接口的一致性<br>API 一致性</p>
+<ul>
+<li>包含核心级、扩展 1 级、扩展 2 级</li>
+</ul>
+<p>语法一致性</p>
+<ul>
+<li>包含最低限度 SQL 语法级、核心 SQL 语法级、扩展 SQL 语法级</li>
+</ul>
+<p><strong>1. 函数概述</strong><br>ODBC 3.0 标准提供了 76 个函数接口</p>
+<ul>
+<li>分配和释放环境句柄、连接句柄、语句句柄</li>
+<li>连接函数（SQLDriverconnect 等）</li>
+<li>与信息相关的函数（SQLGetinfo、SQLGetFuction 等）</li>
+<li>事务处理函数（如 SQLEndTran）</li>
+<li>执行相关函数（SQLExecdirect、SQLExecute 等）</li>
+<li>编目函数，ODBC 3.0 提供了 11 个编目函数，如 SQLTables、SQLColumn 等。应用程序可以通过对编目函数的调用来获取数据字典的信息，如权限、表结构等。</li>
+</ul>
+<p><strong>2. 句柄及其属性</strong><br>句柄是 32 位整数值，代表一个指针 。</p>
+<p><strong>ODBC 3.0 中句柄分类</strong></p>
+<ul>
+<li>环境句柄</li>
+<li>连接句柄</li>
+<li>语句句柄</li>
+<li>描述符句柄</li>
+</ul>
+<p><strong>应用程序句柄之间的关系</strong></p>
+<ul>
+<li>每个 ODBC 应用程序需要建立一个 ODBC 环境，分配一个环境句柄，存取数据的全局性背景，如环境状态、当前环境状态诊断、当前在环境上分配的连接句柄等</li>
+<li>一个环境句柄可以建立多个连接句柄，每一个连接句柄实现与一个数据源之间的连接<br><img src="https://img-blog.csdnimg.cn/20200612232930975.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzQ2MDIyNA==,size_16,color_FFFFFF,t_70" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></li>
+<li>在一个连接中可以建立多个语句句柄，它不只是一个 SQL 语句，还包括 SQL 语句产生的结果集以及相关的信息等</li>
+<li>在 ODBC 3.0 中又提出了描述符句柄的概念，它是描述 SQL 语句的参数、结果集列的元数据集合</li>
+</ul>
+<p><strong>3. 数据类型</strong></p>
+<ul>
+<li>ODBC 数据类型<br>SQL 数据类型：用于数据源<br>C 数据类型 ：用于应用程序的 C 代码</li>
+<li>应用程序可以通过 SQLGetTypeInfo 来获取不同的驱动程序对于数据类型的支持情况</li>
+<li>SQL 数据类型和 C 数据类型之间的转换规则<br><img src="https://img-blog.csdnimg.cn/20200612233210427.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzQ2MDIyNA==,size_16,color_FFFFFF,t_70" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></li>
+</ul>
+<p><strong>四、ODBC 的工作流程</strong><br><img src="https://img-blog.csdnimg.cn/20200612233258398.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzQ2MDIyNA==,size_16,color_FFFFFF,t_70" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br><strong>1. 配置数据源</strong><br>方法：</p>
+<ul>
+<li>运行数据源管理工具来进行配置</li>
+<li>使用 Driver Manager 提供的 ConfigDsn 函数来增加、修改或删除数据源</li>
+</ul>
+<p><strong>创建数据源—第一步：定义句柄和变量</strong></p>
+<ul>
+<li>没有和具体的驱动程序相关联，由 Driver Manager 来进行控制 ，并配置环境属性</li>
+<li>应用程序通过调用连接函数和某个数据源进行连接后，Driver Manager 才调用所连的驱动程序中的 SQLAllocHandle，来真正分配环境句柄的数据结构</li>
+</ul>
+<p><strong>创建数据源—第二步：初始化环境</strong></p>
+<ul>
+<li>应用程序调用 SQLAllocHandle 分配连接句柄，通过 SQLConnect、SQLDriverConnect 或 SQLBrowseConnect 与数据源连接</li>
+<li>SQLConnect 连接函数的输入参数为：<br>配置好的数据源名称<br>用户 ID<br>口令</li>
+</ul>
+<p><strong>创建数据源—第三步：建立连接</strong></p>
+<ul>
+<li>处理任何 SQL 语句之前，应用程序还需要首先分配一个语句句柄</li>
+<li>语句句柄含有具体的 SQL 语句以及输出的结果集等信息</li>
+<li>应用程序还可以通过 SQLtStmtAttr 来设置语句属性（也可以使用默认值）</li>
+</ul>
+<p><strong>创建数据源—第四步</strong></p>
+<ul>
+<li>应用程序处理 SQL 语句的两种方式<br>预处理（SQLPrepare、SQLExecute 适用于语句的多次执行）<br>直接执行（SQLExecdirect）</li>
+<li>如果 SQL 语句含有参数，应用程序为每个参数调用 SQLBindParameter，并把它们绑定至应用程序变量</li>
+<li>应用程序可以直接通过改变应用程序缓冲区的内容从而在程序中动态改变 SQL 语句的具体执行</li>
+<li>应用程序根据语句类型进行的处理<br>有结果集的语句（select 或是编目函数），则进行结果集处理<br>没有结果集的函数，可以直接利用本语句句柄继续执行新的语句或是获取行计数（本次执行所影响的行数）之后继续执行</li>
+<li>在插入数据时，采用了预编译的方式，首先通过 SQLPrepare 来预处理 SQL 语句，然后将每一列绑定到用户缓冲区</li>
+</ul>
+<p><strong>创建数据源—第五步：执行 SQL 语句</strong></p>
+<ul>
+<li>应用程序可以通过 SQLNumResultCols 来获取结果集中的列数</li>
+<li>通过 SQL DescribeCol 或 SQLColAttrbute 函数来获取结果集每一列的名称、数据类型、精度和范围</li>
+<li>ODBC 中使用游标来处理结果集数据</li>
+<li>ODBC 中游标类型<br>Forward-only 游标，是 ODBC 的默认游标类型<br>可滚动（Scroll）游标：静态（static）、动态（dynamic）、码集驱动（keyset-driven）、混合型（mixed）</li>
+</ul>
+<p><strong>结果集处理步骤</strong></p>
+<ul>
+<li>ODBC 游标的打开方式不同于嵌入式 SQL，不是显式声明而是系统自动产生一个游标，当结果集刚刚生成时，游标指向第一行数据之前</li>
+<li>应用程序通过 SQLBindCol 把查询结果绑定到应用程序缓冲区中，通过 SQLFetch 或是 SQLFetchScroll 来移动游标获取结果集中的每一行数据</li>
+<li>对于如图像这类特别的数据类型，当一个缓冲区不足以容纳所有的数据时，可以通过 SQLGetdata 分多次获取</li>
+<li>最后通过 SQLClosecursor 来关闭游标</li>
+</ul>
+<p><strong>创建数据源—第六步：结果集处理</strong><br>应用程序中止步骤</p>
+<ul>
+<li>释放语句句柄</li>
+<li>释放数据库连接</li>
+<li>与数据库服务器断开</li>
+<li>释放 ODBC 环境</li>
+</ul>
+<p><strong>创建数据源—第七步：中止处理</strong></p>
+<p><strong>2. 初始化环境</strong><br><strong>3. 建立连接</strong><br><strong>4. 分配语句句柄</strong><br><strong>5. 执行 SQL 语句</strong><br><strong>6. 结果集处理</strong><br><strong>7. 中止处理</strong></p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" class="category-chain-item">数据库</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>『数据库』数据库编程（概念性的东西，应用一般，甚至有点过时，用来考试）</div>
+      <div>https://chiamzhang.github.io/2024/06/29/『数据库』数据库编程（概念性的东西，应用一般，甚至有点过时，用来考试）/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>Chiam</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>June 29, 2024</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>Licensed under</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2024/06/29/%E3%80%8E%E6%95%B0%E6%8D%AE%E5%BA%93%E3%80%8F%E6%97%A0%E8%81%8A%E5%88%B0%E7%88%86%E7%82%B8%E7%9A%84%E6%95%B0%E6%8D%AE%E5%BA%93%E6%96%87%E7%AB%A0-%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9A%84%E5%AE%89%E5%85%A8%E6%80%A7/" title="『数据库』无聊到爆炸的数据库文章-数据库的安全性">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">『数据库』无聊到爆炸的数据库文章-数据库的安全性</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/06/29/%E3%80%8E%E6%95%B0%E6%8D%AE%E5%BA%93%E3%80%8F%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E6%95%88%E7%8E%87Max-%E6%95%B0%E6%8D%AE%E5%BA%93%E5%B9%B6%E5%8F%91%E6%8E%A7%E5%88%B6/" title="『数据库』数据库系统效率Max-数据库并发控制">
+                        <span class="hidden-mobile">『数据库』数据库系统效率Max-数据库并发控制</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"fIfc7WqUDZohlQuPc2lz5mJy-MdYXbMMI","appKey":"zjlAG3ZA3o4cBHVAkjzc2Z20","path":"window.location.pathname","placeholder":"留言仅限讨论，禁止广告等行为","avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"https://fifc7wqu.api.lncldglobal.com","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>Table of Contents</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <meta name="referrer" content="no-referrer" /> <footer id="footer" role="contentinfo"> <meta name="referrer" content="no-referrer" /> <div class="divider"> <div class="wall"></div> <img class="animals" src="/img/footer_animals_new.png" srcset="/img/loading.gif" lazyload alt="Footer Animals"> </div> <div class="container" data-index="450"> <p> <a href="https://chiamzhang.github.io" target="_blank">DogEgg</a> <i class="iconfont icon-love"></i> <a href="#" target="_blank">LittePig</a> </p> <p> Powered by  <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-pen"></i> Theme  <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> </p> </div> </footer> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+  
+<script src="/js/love.js"></script>
+<script src="/js/funnyTitle.js"></script>
+<script src="/js/backTop.js"></script>
+<script src="//cdn.jsdelivr.net/gh/bynotes/texiao/source/js/xiaoxuehua.js"></script>
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+</html>

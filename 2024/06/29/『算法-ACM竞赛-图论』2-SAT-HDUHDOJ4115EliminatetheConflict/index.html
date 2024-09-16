@@ -1,0 +1,871 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/Mine.jpg">
+  <link rel="icon" href="/img/Mine.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Chiam">
+  <meta name="keywords" content="Algorithms，Cybersecurity">
+  
+    <meta name="description" content="『算法-ACM 竞赛-图论』2-SAT-HDUHDOJ4115EliminatetheConflict图论–2-SAT–HDU&#x2F;HDOJ 4115 Eliminate the ConflictProblem DescriptionConflicts are everywhere in the world, from the young to the elderly, from famil">
+<meta property="og:type" content="article">
+<meta property="og:title" content="『算法-ACM竞赛-图论』2-SAT-HDUHDOJ4115EliminatetheConflict">
+<meta property="og:url" content="https://chiamzhang.github.io/2024/06/29/%E3%80%8E%E7%AE%97%E6%B3%95-ACM%E7%AB%9E%E8%B5%9B-%E5%9B%BE%E8%AE%BA%E3%80%8F2-SAT-HDUHDOJ4115EliminatetheConflict/index.html">
+<meta property="og:site_name" content="Homepage of Chiam">
+<meta property="og:description" content="『算法-ACM 竞赛-图论』2-SAT-HDUHDOJ4115EliminatetheConflict图论–2-SAT–HDU&#x2F;HDOJ 4115 Eliminate the ConflictProblem DescriptionConflicts are everywhere in the world, from the young to the elderly, from famil">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2024-06-29T13:16:54.114Z">
+<meta property="article:modified_time" content="2023-12-05T16:19:00.760Z">
+<meta property="article:author" content="Chiam">
+<meta property="article:tag" content="Algorithms，Cybersecurity">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>『算法-ACM竞赛-图论』2-SAT-HDUHDOJ4115EliminatetheConflict - Homepage of Chiam</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"chiamzhang.github.io","root":"/","version":"1.9.5-a","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":"❡"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":2},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
+
+
+<body>
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Chiam&#39;s Blogs</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                
+                <span>Home</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                
+                <span>Archives</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                
+                <span>Categories</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                
+                <span>About</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                
+                <span>Links</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="『算法-ACM竞赛-图论』2-SAT-HDUHDOJ4115EliminatetheConflict"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-06-29 21:16" pubdate>
+          June 29, 2024 pm
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          5.7k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          48 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">『算法-ACM竞赛-图论』2-SAT-HDUHDOJ4115EliminatetheConflict</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="『算法-ACM-竞赛-图论』2-SAT-HDUHDOJ4115EliminatetheConflict"><a href="#『算法-ACM-竞赛-图论』2-SAT-HDUHDOJ4115EliminatetheConflict" class="headerlink" title="『算法-ACM 竞赛-图论』2-SAT-HDUHDOJ4115EliminatetheConflict"></a>『算法-ACM 竞赛-图论』2-SAT-HDUHDOJ4115EliminatetheConflict</h1><h1 id="图论–2-SAT–HDU-HDOJ-4115-Eliminate-the-Conflict"><a href="#图论–2-SAT–HDU-HDOJ-4115-Eliminate-the-Conflict" class="headerlink" title="图论–2-SAT–HDU&#x2F;HDOJ 4115 Eliminate the Conflict"></a>图论–2-SAT–HDU&#x2F;HDOJ 4115 Eliminate the Conflict</h1><p>Problem Description<br>Conflicts are everywhere in the world, from the young to the elderly, from families to countries. Conflicts cause quarrels, fights or even wars. How wonderful the world will be if all conflicts can be eliminated.<br>Edward contributes his lifetime to invent a ‘Conflict Resolution Terminal’ and he has finally succeeded. This magic item has the ability to eliminate all the conflicts. It works like this:<br>If any two people have conflict, they should simply put their hands into the ‘Conflict Resolution Terminal’ (which is simply a plastic tube). Then they play ‘Rock, Paper and Scissors’ in it. After they have decided what they will play, the tube should be opened and no one will have the chance to change. Finally, the winner have the right to rule and the loser should obey it. Conflict Eliminated!<br>But the game is not that fair, because people may be following some patterns when they play, and if the pattern is founded by others, the others will win definitely.<br>Alice and Bob always have conflicts with each other so they use the ‘Conflict Resolution Terminal’ a lot. Sadly for Bob, Alice found his pattern and can predict how Bob plays precisely. She is very kind that doesn’t want to take advantage of that. So she tells Bob about it and they come up with a new way of eliminate the conflict:<br>They will play the ‘Rock, Paper and Scissors’ for N round. Bob will set up some restricts on Alice.<br>But the restrict can only be in the form of “you must play the same (or different) on the ith and jth rounds”. If Alice loses in any round or break any of the rules she loses, otherwise she wins.<br>Will Alice have a chance to win?</p>
+<p>Input<br>The first line contains an integer T(1 &lt;&#x3D; T &lt;&#x3D; 50), indicating the number of test cases.<br>Each test case contains several lines.<br>The first line contains two integers N,M(1 &lt;&#x3D; N &lt;&#x3D; 10000, 1 &lt;&#x3D; M &lt;&#x3D; 10000), representing how many round they will play and how many restricts are there for Alice.<br>The next line contains N integers B1,B2, …,BN, where Bi represents what item Bob will play in the ith round. 1 represents Rock, 2 represents Paper, 3 represents Scissors.<br>The following M lines each contains three integers A,B,K(1 &lt;&#x3D; A,B &lt;&#x3D; N,K &#x3D; 0 or 1) represent a restrict for Alice. If K equals 0, Alice must play the same on Ath and Bth round. If K equals 1, she must play different items on Ath and Bthround.</p>
+<p>Output<br>For each test case in the input, print one line: “Case #X: Y”, where X is the test case number (starting with 1) and Y is “yes” or “no” represents whether Alice has a chance to win.</p>
+<p>Sample Input<br>2 3 3 1 1 1 1 2 1 1 3 1 2 3 1 5 5 1 2 3 2 1 1 2 1 1 3 1 1 4 1 1 5 1 2 3 0</p>
+<p>Sample Output<br>Case #1: no Case #2: yes<br>Hint<br>‘Rock, Paper and Scissors’ is a game which played by two person. They should play Rock, Paper or Scissors by their hands at the same time. Rock defeats scissors, scissors defeats paper and paper defeats rock. If two people play the same item, the game is tied..</p>
+<p>题意：</p>
+<p>A 和 B 两个人要用 N 局“石头布剪刀”的游戏来决定胜负，现在给出 A 在每一轮游戏选择的手势（1 表示石头，2 表示布，3 表示剪刀）。另外 A 给 B 设置了 M 个如 a b k 的限制，当 k &#x3D; 0 时，要求 B 在第 a 局游戏和第 b 局游戏出的手势必须一样；当 k &#x3D; 1 时，要求 B 在第 a 局游戏和第 b 局游戏出的手势不能一样。对于 B 来说，输掉任意一局 或者 违反规则都是他输，反之他赢。这也就意味着在 A 和 B 全平局（每局出的手势一样）的情况下，是 B 赢。问你 B 有没有机会获胜。</p>
+<p>分析:</p>
+<p>因为 Alice 已经知道 Bob 的所有出拳，所以用 a[maxn][2]数组保存那些出拳的结果。然后对于下面的要求作出 Alice 在第 i 轮选 0 还是选 1 的推断即可。看看是否有方法满足本 2-SAT 的 n 个解。</p>
+<p>因为 Alice 一次都不能输，所以根据 Bob 出的拳，Alice 只可以赢或者平局，即每次有两种选择，是 2-SAT 模型</p>
+<p>然后会有一些矛盾对，假设第 a 次可以出 a1，a2， 第 b 次可以出 b1 和 b2</p>
+<p>如果第 a 次和 b 次要求相同， 但是 a1 和 b1 不同，说明这个矛盾，建立连接 a1—&gt;b2, b1—&gt;a2.(a1 与 b1 不同时最多有 4 种可能的情况需要考虑)</p>
+<p>同理，第 a 次和 b 次要求不相同，但是 a1 和 b2 相同，说明这个矛盾，建立链接 a1—&gt;b1, b2—&gt;a2</p>
+<p>……</p>
+<p>然后用 2-SAT 判断即可.</p>
+<pre><code class="hljs">#include &lt;cstdio&gt;
+#include &lt;cstring&gt;
+#include &lt;queue&gt;
+#include &lt;vector&gt;
+#include &lt;stack&gt;
+#include &lt;algorithm&gt;
+#define MAXN 60000+100
+#define MAXM 200000+10
+#define INF 100000000
+using namespace std;
+struct Edge
+&#123;
+    int from, to, next;
+&#125;;
+Edge edge[MAXM];
+int head[MAXN], edgenum;
+int low[MAXN], dfn[MAXN];
+int dfs_clock;
+int sccno[MAXN], scc_cnt;
+stack&lt;int&gt; S;
+bool Instack[MAXN];
+int N, M;//N局游戏 M个限制
+int TT = 1;
+void init()
+&#123;
+    edgenum = 0;
+    memset(head, -1, sizeof(head));
+&#125;
+void addEdge(int u, int v)
+&#123;
+    Edge E = &#123;u, v, head[u]&#125;;
+    edge[edgenum] = E;
+    head[u] = edgenum++;
+&#125;
+void getMap()
+&#123;
+    int a, b, k;
+    for(int i = 1; i &lt;= N; i++)
+    &#123;
+        scanf(&quot;%d&quot;, &amp;k);
+        switch(k)
+        &#123;
+            //对手出石头
+            case 1: //在第i局出布 或者 出石头
+                addEdge(i + 4 * N, i);//不出布 就必须出石头
+                addEdge(i + 3 * N, i + N);//不出石头 就必须出布
+                break;
+            //对手出布
+            case 2: //在第i局出剪刀 或者 出布
+                addEdge(i + 5 * N, i + N);//不出剪刀 就必须出布
+                addEdge(i + 4 * N, i + 2 * N);//不出布 就必须出剪刀
+                break;
+            //对手出剪刀
+            case 3: //在第i局出石头 或者 出剪刀
+                addEdge(i + 3 * N, i + 2 * N);//不出石头 就必须出剪刀
+                addEdge(i + 5 * N, i);//不出剪刀 就必须出石头
+                break;
+        &#125;
+    &#125;
+    //每局只能出一个
+    for(int i = 1; i &lt;= N; i++)
+    &#123;
+        //出了石头就不能出其他的
+        addEdge(i, i + 4 * N);
+        addEdge(i, i + 5 * N);
+        //出了布 就不能出其他的
+        addEdge(i + N, i + 3 * N);
+        addEdge(i + N, i + 5 * N);
+        //出了剪刀 就不能出其他的
+        addEdge(i + 2 * N, i + 3 * N);
+        addEdge(i + 2 * N, i + 4 * N);
+    &#125;
+    while(M--)
+    &#123;
+        scanf(&quot;%d%d%d&quot;, &amp;a, &amp;b, &amp;k);
+        if(k == 1)//a局和b局不同
+        &#123;
+            addEdge(a, b + 3 * N);//a局出石头 b局一定不能出石头
+            addEdge(b, a + 3 * N);//b局出石头 a局一定不能出石头
+            addEdge(a + N, b + 4 * N);//a局出布 b局一定不能出布
+            addEdge(b + N, a + 4 * N);//a局出布 b局一定不能出布
+            addEdge(a + 2 * N, b + 5 * N);//a局出剪刀 b局一定不能出剪刀
+            addEdge(b + 2 * N, a + 5 * N);//b局出剪刀 a局一定不能出剪刀
+        &#125;
+        else//a局和b局一样
+        &#123;
+            addEdge(a, b);//a局出石头 b局也出石头
+            addEdge(b, a);//b局出石头 a局也出石头
+            addEdge(a + N, b + N);//a局出布 b局也出布
+            addEdge(b + N, a + N);//b局出布 a局也出布
+            addEdge(a + 2 * N, b + 2 * N);//a局出剪刀 b局也出剪刀
+            addEdge(b + 2 * N, a + 2 * N);//b局出剪刀 a局也出剪刀
+        &#125;
+    &#125;
+&#125;
+void tarjan(int u, int fa)
+&#123;
+    int v;
+    low[u] = dfn[u] = ++dfs_clock;
+    S.push(u);
+    Instack[u] = true;
+    for(int i = head[u]; i != -1; i = edge[i].next)
+    &#123;
+        v = edge[i].to;
+        if(!dfn[v])
+        &#123;
+            tarjan(v, u);
+            low[u] = min(low[u], low[v]);
+        &#125;
+        else if(Instack[v])
+            low[u] = min(low[u], dfn[v]);
+    &#125;
+    if(low[u] == dfn[u])
+    &#123;
+        scc_cnt++;
+        for(;;)
+        &#123;
+            v = S.top(); S.pop();
+            Instack[v] = false;
+            sccno[v] = scc_cnt;
+            if(v == u) break;
+        &#125;
+    &#125;
+&#125;
+void find_cut(int l, int r)
+&#123;
+    memset(low, 0, sizeof(low));
+    memset(dfn, 0, sizeof(dfn));
+    memset(sccno, 0, sizeof(sccno));
+    memset(Instack, false, sizeof(Instack));
+    dfs_clock = scc_cnt = 0;
+    for(int i = l; i &lt;= r; i++)
+        if(!dfn[i]) tarjan(i, -1);
+&#125;
+void solve()
+&#123;
+    printf(&quot;Case #%d: &quot;, TT++);
+    for(int i = 1; i &lt;= 3 * N; i++)
+    &#123;
+        if(sccno[i] == sccno[i + 3 * N])
+        &#123;
+            printf(&quot;no\n&quot;);
+            return ;
+        &#125;
+    &#125;
+    printf(&quot;yes\n&quot;);
+&#125;
+int main()
+&#123;
+    int t;
+    scanf(&quot;%d&quot;, &amp;t);
+    while(t--)
+    &#123;
+        scanf(&quot;%d%d&quot;, &amp;N, &amp;M);
+        init();
+        getMap();
+        find_cut(1, 6 * N);
+        solve();
+    &#125;
+    return 0;
+&#125;
+</code></pre>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E7%AE%97%E6%B3%95/" class="category-chain-item">算法</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/%E7%AE%97%E6%B3%95/ACM%E7%AB%9E%E8%B5%9B/" class="category-chain-item">ACM竞赛</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/%E7%AE%97%E6%B3%95/ACM%E7%AB%9E%E8%B5%9B/%E5%9B%BE%E8%AE%BA/" class="category-chain-item">图论</a>
+  
+  
+
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>『算法-ACM竞赛-图论』2-SAT-HDUHDOJ4115EliminatetheConflict</div>
+      <div>https://chiamzhang.github.io/2024/06/29/『算法-ACM竞赛-图论』2-SAT-HDUHDOJ4115EliminatetheConflict/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>Chiam</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>June 29, 2024</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>Licensed under</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2024/06/29/%E3%80%8E%E7%AE%97%E6%B3%95-ACM%E7%AB%9E%E8%B5%9B-%E5%9B%BE%E8%AE%BA%E3%80%8F2-SAT-Ligthoj1407Explosion%E4%B8%89%E5%85%83%E5%85%B3%E7%B3%BB%E6%9E%9A%E4%B8%BE/" title="『算法-ACM竞赛-图论』2-SAT-Ligthoj1407Explosion三元关系枚举">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">『算法-ACM竞赛-图论』2-SAT-Ligthoj1407Explosion三元关系枚举</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/06/29/%E3%80%8E%E7%AE%97%E6%B3%95-ACM%E7%AB%9E%E8%B5%9B-%E5%9B%BE%E8%AE%BA%E3%80%8F2-SAT-HDUHDOJ1814PeacefulCommission/" title="『算法-ACM竞赛-图论』2-SAT-HDUHDOJ1814PeacefulCommission">
+                        <span class="hidden-mobile">『算法-ACM竞赛-图论』2-SAT-HDUHDOJ1814PeacefulCommission</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"fIfc7WqUDZohlQuPc2lz5mJy-MdYXbMMI","appKey":"zjlAG3ZA3o4cBHVAkjzc2Z20","path":"window.location.pathname","placeholder":"留言仅限讨论，禁止广告等行为","avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"https://fifc7wqu.api.lncldglobal.com","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>Table of Contents</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <meta name="referrer" content="no-referrer" /> <footer id="footer" role="contentinfo"> <meta name="referrer" content="no-referrer" /> <div class="divider"> <div class="wall"></div> <img class="animals" src="/img/footer_animals_new.png" srcset="/img/loading.gif" lazyload alt="Footer Animals"> </div> <div class="container" data-index="450"> <p> <a href="https://chiamzhang.github.io" target="_blank">DogEgg</a> <i class="iconfont icon-love"></i> <a href="#" target="_blank">LittePig</a> </p> <p> Powered by  <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-pen"></i> Theme  <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> </p> </div> </footer> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+  
+<script src="/js/love.js"></script>
+<script src="/js/funnyTitle.js"></script>
+<script src="/js/backTop.js"></script>
+<script src="//cdn.jsdelivr.net/gh/bynotes/texiao/source/js/xiaoxuehua.js"></script>
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+</html>

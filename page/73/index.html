@@ -1,0 +1,901 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/Mine.jpg">
+  <link rel="icon" href="/img/Mine.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Chiam">
+  <meta name="keywords" content="Algorithms，Cybersecurity">
+  
+    <meta name="description" content="Constant dripping wears away a stone">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Homepage of Chiam">
+<meta property="og:url" content="https://chiamzhang.github.io/page/73/index.html">
+<meta property="og:site_name" content="Homepage of Chiam">
+<meta property="og:description" content="Constant dripping wears away a stone">
+<meta property="og:locale" content="en_US">
+<meta property="article:author" content="Chiam">
+<meta property="article:tag" content="Algorithms，Cybersecurity">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>Homepage of Chiam</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"chiamzhang.github.io","root":"/","version":"1.9.5-a","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":"❡"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":2},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
+
+
+<body>
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><header>
+    
+
+<div class="header-inner" style="height: 100vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Chiam&#39;s Blogs</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                
+                <span>Home</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                
+                <span>Archives</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                
+                <span>Categories</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                
+                <span>About</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                
+                <span>Links</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/PartyAnimals.webp') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="&lt;font color=White &gt;life&amp;nbsp;&lt;/font&gt;  &lt;font color=White &gt;is&amp;nbsp;&lt;/font&gt;  &lt;font color=White &gt;struggle!!&lt;/font&gt;"></span>
+          
+        </div>
+
+        
+      </div>
+
+      
+        <div class="scroll-down-bar">
+          <i class="iconfont icon-arrowdown"></i>
+        </div>
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      <div class="container nopadding-x-md">
+        <div id="board"
+          style="margin-top: 0">
+          
+          <div class="container">
+            <div class="row">
+              <div class="col-12 col-md-10 m-auto">
+                
+
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2024/06/29/%E3%80%8ELinux%E3%80%8FUbuntu%20%E4%BF%AE%E6%94%B9Grub%EF%BC%8C%E6%B7%BB%E5%8A%A0%E5%88%A0%E9%99%A4%E5%90%AF%E5%8A%A8%E9%A1%B9%EF%BC%8C%E5%88%9D%E6%AD%A5%E8%BE%A8%E6%9E%90Grub%E6%96%87%E4%BB%B6%E3%80%82/" target="_self">
+          『Linux』Ubuntu 修改Grub，添加删除启动项，初步辨析Grub文件。
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2024/06/29/%E3%80%8ELinux%E3%80%8FUbuntu%20%E4%BF%AE%E6%94%B9Grub%EF%BC%8C%E6%B7%BB%E5%8A%A0%E5%88%A0%E9%99%A4%E5%90%AF%E5%8A%A8%E9%A1%B9%EF%BC%8C%E5%88%9D%E6%AD%A5%E8%BE%A8%E6%9E%90Grub%E6%96%87%E4%BB%B6%E3%80%82/" target="_self">
+        <div>
+          『Linux』Ubuntu 修改 Grub，添加删除启动项，初步辨析 Grub 文件。使用场景：由于我的电脑 装 Ubuntu 的时候电脑里只有一个 Windows 系统，所以 Ubuntu 就自动将我 Windows 的启动项添加进取。 后来我的电脑里又装了 Kali 和 Win11 所以想把这两个启动项也加进去。所以我们来了解一下 Ubuntu 的 Grub，还不是很完善，希望那个大家在评论给
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2024-06-29 21:16" pubdate>
+              2024-06-29
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Linux/" class="category-chain-item">Linux</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2024/06/29/%E3%80%8ELinux%E3%80%8FIDEA%20Java%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E8%AE%B0%E5%BD%95-%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/" target="_self">
+          『Linux』IDEA Java环境搭建记录-开发环境搭建
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2024/06/29/%E3%80%8ELinux%E3%80%8FIDEA%20Java%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E8%AE%B0%E5%BD%95-%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/" target="_self">
+        <div>
+          『Linux』IDEA Java 环境搭建记录-开发环境搭建Linux IDEA Java 环境搭建记录-开发环境搭建环境搭建记录-开发环境搭建： IDEA 安装  Download IntelliJ IDEA: The Capable &amp; Ergonomic Java IDE by JetBrains 解压后执行 bin 目录 idea.sh 运行  JDK 安装 下载 jdk15  官
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2024-06-29 21:16" pubdate>
+              2024-06-29
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Linux/" class="category-chain-item">Linux</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2024/06/29/%E3%80%8EJava%E3%80%8FJAVA%E8%BF%9E%E6%8E%A5Excel%E6%9C%80%E5%A5%BD%E7%94%A8%E7%9A%84%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AEEasyExcel,%E5%AE%98%E6%96%B9%E4%BD%BF%E7%94%A8%E6%96%87%E6%A1%A3%E5%8F%8A.jar%E5%8C%85%E4%B8%8B%E8%BD%BD/" target="_self">
+          『Java』JAVA连接Excel最好用的开源项目EasyExcel,官方使用文档及.jar包下载
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2024/06/29/%E3%80%8EJava%E3%80%8FJAVA%E8%BF%9E%E6%8E%A5Excel%E6%9C%80%E5%A5%BD%E7%94%A8%E7%9A%84%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AEEasyExcel,%E5%AE%98%E6%96%B9%E4%BD%BF%E7%94%A8%E6%96%87%E6%A1%A3%E5%8F%8A.jar%E5%8C%85%E4%B8%8B%E8%BD%BD/" target="_self">
+        <div>
+          『Java』JAVA 连接 Excel 最好用的开源项目 EasyExcel,官方使用文档及.jar 包下载 EasyExcel 是一个基于 Java 的简单、省内存的读写 Excel 的开源项目。在尽可能节约内存的情况下支持读写百 M 的 Excel。   github 地址:https://github.com/alibaba/easyexcel开源项目不容易，如果觉得本项目对您的工作还是有帮
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2024-06-29 21:16" pubdate>
+              2024-06-29
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Java/" class="category-chain-item">Java</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2024/06/29/%E3%80%8EJava%E3%80%8FJAVA%E5%A4%A7%E6%95%B0/" target="_self">
+          『Java』JAVA大数
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2024/06/29/%E3%80%8EJava%E3%80%8FJAVA%E5%A4%A7%E6%95%B0/" target="_self">
+        <div>
+          『Java』JAVA 大数JAVA 大数BigInteger abs() //返回大整数的绝对值 BigInteger add(BigInteger val)// 返回两个大整数的和 BigInteger and(BigInteger val) //返回两个大整数的按位与的结果 BigInteger andNot(BigInteger val) //返回两个大整数与非的结果 BigInteger
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2024-06-29 21:16" pubdate>
+              2024-06-29
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Java/" class="category-chain-item">Java</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2024/06/29/%E3%80%8EC++&amp;C%E8%AF%AD%E8%A8%80%E3%80%8F%E6%95%B0%E7%BB%84%E8%BE%93%E5%87%BA%E9%BB%91%E7%A7%91%E6%8A%80-fwrite()/" target="_self">
+          『C++&amp;C语言』数组输出黑科技-fwrite()
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2024/06/29/%E3%80%8EC++&amp;C%E8%AF%AD%E8%A8%80%E3%80%8F%E6%95%B0%E7%BB%84%E8%BE%93%E5%87%BA%E9%BB%91%E7%A7%91%E6%8A%80-fwrite()/" target="_self">
+        <div>
+          『C++&amp;C 语言』数组输出黑科技-fwrite()123456fwrite(const void*buffer,size_t size,size_t count,FILE*stream);（1）buffer：是一个指针，对 fwrite 来说，是要输出数据的地址。（2）size：要写入的字节数；（3）count:要进行写入 size 字节的数据项的个数；（4）stream:目标文件指针。
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2024-06-29 21:16" pubdate>
+              2024-06-29
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/C-C%E8%AF%AD%E8%A8%80/" class="category-chain-item">C++&amp;C语言</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2024/06/29/%E3%80%8EC++&amp;C%E8%AF%AD%E8%A8%80%E3%80%8F%E7%AE%80%E6%98%93%E9%80%9A%E8%AE%AF%E5%BD%95%E7%B1%BB%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/" target="_self">
+          『C++&amp;C语言』简易通讯录类实现原理
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2024/06/29/%E3%80%8EC++&amp;C%E8%AF%AD%E8%A8%80%E3%80%8F%E7%AE%80%E6%98%93%E9%80%9A%E8%AE%AF%E5%BD%95%E7%B1%BB%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/" target="_self">
+        <div>
+          『C++&amp;C 语言』简易通讯录类实现原理12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576777879808182838485868788899091929
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2024-06-29 21:16" pubdate>
+              2024-06-29
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/C-C%E8%AF%AD%E8%A8%80/" class="category-chain-item">C++&amp;C语言</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2024/06/29/%E3%80%8EC++&amp;C%E8%AF%AD%E8%A8%80%E3%80%8F%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-%E6%A0%88%EF%BC%88%E9%99%84%E4%B8%8ASTL%E6%A0%88%EF%BC%89/" target="_self">
+          『C++&amp;C语言』数据结构-栈（附上STL栈）
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2024/06/29/%E3%80%8EC++&amp;C%E8%AF%AD%E8%A8%80%E3%80%8F%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-%E6%A0%88%EF%BC%88%E9%99%84%E4%B8%8ASTL%E6%A0%88%EF%BC%89/" target="_self">
+        <div>
+          『C++&amp;C 语言』数据结构-栈（附上 STL 栈）数据结构–栈（附上 STL 栈）定义：栈是一种只能在某一端插入和删除数据的特殊线性表。他按照先进先出的原则存储数据，先进的数据被压入栈底，最后进入的数据在栈顶，需要读数据的时候从栈顶开始弹出数据(最后被压入栈的，最先弹出）。因此栈也称先进后出表。允许进行插入删除操作的一端称为栈顶，另一端称为栈底。栈底固定，栈顶浮动。插入元素称为进栈，删除
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2024-06-29 21:16" pubdate>
+              2024-06-29
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/C-C%E8%AF%AD%E8%A8%80/" class="category-chain-item">C++&amp;C语言</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2024/06/29/%E3%80%8EC++&amp;C%E8%AF%AD%E8%A8%80%E3%80%8F%E6%95%B0%E5%88%B6%E8%BD%AC%E6%8D%A2itoa%20atoi%20%20int%E8%BD%AC%E5%AD%97%E7%AC%A6%E4%B8%B2%20%E5%AD%97%E7%AC%A6%E4%B8%B2%E8%BD%ACint%20string%E8%BD%ACint%20int%E8%BD%ACstring/" target="_self">
+          『C++&amp;C语言』数制转换itoa atoi  int转字符串 字符串转int string转int int转string
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2024/06/29/%E3%80%8EC++&amp;C%E8%AF%AD%E8%A8%80%E3%80%8F%E6%95%B0%E5%88%B6%E8%BD%AC%E6%8D%A2itoa%20atoi%20%20int%E8%BD%AC%E5%AD%97%E7%AC%A6%E4%B8%B2%20%E5%AD%97%E7%AC%A6%E4%B8%B2%E8%BD%ACint%20string%E8%BD%ACint%20int%E8%BD%ACstring/" target="_self">
+        <div>
+          『C++&amp;C 语言』数制转换 itoa atoi int 转字符串 字符串转 int string 转 int int 转 string在苦于昨晚最后一个数制转换题，他的转换结果必须是整形数，纳尼？转换完放数组里又要变成整形数。这是什么操作，而且如果是 16 进制，用字母 A，B…..表示，在进行运算时都难以计算。突发奇想，当十进制成立的时候二进制一定成立，经验证，2 进制成立 10 进制
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2024-06-29 21:16" pubdate>
+              2024-06-29
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/C-C%E8%AF%AD%E8%A8%80/" class="category-chain-item">C++&amp;C语言</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2024/06/29/%E3%80%8EC++&amp;C%E8%AF%AD%E8%A8%80%E3%80%8F%E6%88%91%E6%83%B3%E5%AD%A6C++%EF%BC%8CC++%E5%A4%AA%E9%9A%BE%E4%BA%86%EF%BC%8C%E9%82%A3%E6%88%91%E6%83%B3%E5%85%A5%E9%97%A8%EF%BC%8C%E7%BB%99%E6%88%9110%E5%88%86%E9%92%9F%E6%88%91%E5%B8%A6%E4%BD%A0%E5%85%A5%E9%97%A8/" target="_self">
+          『C++&amp;C语言』我想学C++，C++太难了，那我想入门，给我10分钟我带你入门
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2024/06/29/%E3%80%8EC++&amp;C%E8%AF%AD%E8%A8%80%E3%80%8F%E6%88%91%E6%83%B3%E5%AD%A6C++%EF%BC%8CC++%E5%A4%AA%E9%9A%BE%E4%BA%86%EF%BC%8C%E9%82%A3%E6%88%91%E6%83%B3%E5%85%A5%E9%97%A8%EF%BC%8C%E7%BB%99%E6%88%9110%E5%88%86%E9%92%9F%E6%88%91%E5%B8%A6%E4%BD%A0%E5%85%A5%E9%97%A8/" target="_self">
+        <div>
+          『C++&amp;C 语言』我想学 C++，C++太难了，那我想入门，给我 10 分钟我带你入门从第一个 CPP 开始写起：“hello,world” 1234567#include&lt;iostream&gt;using namespace std;//使用所有命名空间int main()&#123;	 cout&lt;&lt;&quot;Hello World&quot;&lt;&lt;en
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2024-06-29 21:16" pubdate>
+              2024-06-29
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/C-C%E8%AF%AD%E8%A8%80/" class="category-chain-item">C++&amp;C语言</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2024/06/29/%E3%80%8EC++&amp;C%E8%AF%AD%E8%A8%80%E3%80%8F%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%90%8E%E9%9D%A2%E7%A9%BA%E5%AD%97%E7%AC%A6%E7%9A%84%E9%97%AE%E9%A2%98%EF%BC%88char_%E4%B8%8Estring%E7%9A%84%E8%BD%AC%E6%8D%A2%EF%BC%89/" target="_self">
+          『C++&amp;C语言』字符串后面空字符的问题（char_与string的转换）
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2024/06/29/%E3%80%8EC++&amp;C%E8%AF%AD%E8%A8%80%E3%80%8F%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%90%8E%E9%9D%A2%E7%A9%BA%E5%AD%97%E7%AC%A6%E7%9A%84%E9%97%AE%E9%A2%98%EF%BC%88char_%E4%B8%8Estring%E7%9A%84%E8%BD%AC%E6%8D%A2%EF%BC%89/" target="_self">
+        <div>
+          『C++&amp;C 语言』字符串后面空字符的问题（char_与 string 的转换）字符数组是以‘\0’结尾的，所以在字符数组赋值给字符串时会多出来一个’\0’。 123char a[]=&quot;mynameis&quot;string b=a;cout&lt;&lt;b&lt;&lt;endl;  此时输出结果应为 mynameis，然而输出结果为 mynameis 口（空字符标志打不出
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2024-06-29 21:16" pubdate>
+              2024-06-29
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/C-C%E8%AF%AD%E8%A8%80/" class="category-chain-item">C++&amp;C语言</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+      </div>
+    </article>
+  </div>
+
+
+
+  <nav aria-label="navigation">
+    <span class="pagination" id="pagination">
+      <a class="extend prev" rel="prev" href="/page/72/#board"><i class="iconfont icon-arrowleft"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/71/#board">71</a><a class="page-number" href="/page/72/#board">72</a><span class="page-number current">73</span><a class="page-number" href="/page/74/#board">74</a><a class="page-number" href="/page/75/#board">75</a><a class="page-number" href="/page/76/#board">76</a><a class="extend next" rel="next" href="/page/74/#board"><i class="iconfont icon-arrowright"></i></a>
+    </span>
+  </nav>
+
+
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <meta name="referrer" content="no-referrer" /> <footer id="footer" role="contentinfo"> <meta name="referrer" content="no-referrer" /> <div class="divider"> <div class="wall"></div> <img class="animals" src="/img/footer_animals_new.png" srcset="/img/loading.gif" lazyload alt="Footer Animals"> </div> <div class="container" data-index="450"> <p> <a href="https://chiamzhang.github.io" target="_blank">DogEgg</a> <i class="iconfont icon-love"></i> <a href="#" target="_blank">LittePig</a> </p> <p> Powered by  <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-pen"></i> Theme  <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> </p> </div> </footer> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+  
+<script src="/js/love.js"></script>
+<script src="/js/funnyTitle.js"></script>
+<script src="/js/backTop.js"></script>
+<script src="//cdn.jsdelivr.net/gh/bynotes/texiao/source/js/xiaoxuehua.js"></script>
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+</html>

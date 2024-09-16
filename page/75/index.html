@@ -1,0 +1,901 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/Mine.jpg">
+  <link rel="icon" href="/img/Mine.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Chiam">
+  <meta name="keywords" content="Algorithms，Cybersecurity">
+  
+    <meta name="description" content="Constant dripping wears away a stone">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Homepage of Chiam">
+<meta property="og:url" content="https://chiamzhang.github.io/page/75/index.html">
+<meta property="og:site_name" content="Homepage of Chiam">
+<meta property="og:description" content="Constant dripping wears away a stone">
+<meta property="og:locale" content="en_US">
+<meta property="article:author" content="Chiam">
+<meta property="article:tag" content="Algorithms，Cybersecurity">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>Homepage of Chiam</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"chiamzhang.github.io","root":"/","version":"1.9.5-a","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":"❡"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":2},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
+
+
+<body>
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><header>
+    
+
+<div class="header-inner" style="height: 100vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Chiam&#39;s Blogs</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                
+                <span>Home</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                
+                <span>Archives</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                
+                <span>Categories</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                
+                <span>About</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                
+                <span>Links</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/PartyAnimals.webp') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="&lt;font color=White &gt;life&amp;nbsp;&lt;/font&gt;  &lt;font color=White &gt;is&amp;nbsp;&lt;/font&gt;  &lt;font color=White &gt;struggle!!&lt;/font&gt;"></span>
+          
+        </div>
+
+        
+      </div>
+
+      
+        <div class="scroll-down-bar">
+          <i class="iconfont icon-arrowdown"></i>
+        </div>
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      <div class="container nopadding-x-md">
+        <div id="board"
+          style="margin-top: 0">
+          
+          <div class="container">
+            <div class="row">
+              <div class="col-12 col-md-10 m-auto">
+                
+
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2024/06/29/%E3%80%8EC++&amp;C%E8%AF%AD%E8%A8%80%E3%80%8FC++%E8%AF%BE%E7%A8%8B%E8%AE%BE%E8%AE%A1%EF%BC%8C12306%E6%A8%A1%E6%8B%9F%E5%86%99%E8%B5%B7%E6%9D%A5%E5%B0%B1%E6%98%AF%E8%BF%99%E4%B9%88%E7%B2%97%E6%9A%B4/" target="_self">
+          『C++&amp;C语言』C++课程设计，12306模拟写起来就是这么粗暴
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2024/06/29/%E3%80%8EC++&amp;C%E8%AF%AD%E8%A8%80%E3%80%8FC++%E8%AF%BE%E7%A8%8B%E8%AE%BE%E8%AE%A1%EF%BC%8C12306%E6%A8%A1%E6%8B%9F%E5%86%99%E8%B5%B7%E6%9D%A5%E5%B0%B1%E6%98%AF%E8%BF%99%E4%B9%88%E7%B2%97%E6%9A%B4/" target="_self">
+        <div>
+          『C++&amp;C 语言』C++课程设计，12306 模拟写起来就是这么粗暴这篇文章很详细，也很多希望可以好好看看！看完 C++稳过！一、12306 应该具备那些功能 1.查询（一个月以内的）： 1.查车票：出发地+目的地+出发时间-&gt;显示经过两站车票信息（余票，车次信息可直接查询直接打印，是否为过路车，历时不是总历时，是两站间历时）（只有这种查询方式能查询余票） 2.车站车次查询：车站+
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2024-06-29 21:16" pubdate>
+              2024-06-29
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/C-C%E8%AF%AD%E8%A8%80/" class="category-chain-item">C++&amp;C语言</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2024/06/29/%E3%80%8EC++&amp;C%E8%AF%AD%E8%A8%80%E3%80%8FC++%E8%AF%BE%E7%A8%8B%E8%AE%BE%E8%AE%A1%E8%AF%A6%E8%A7%A3-12306%E7%9A%84%E6%A8%A1%E6%8B%9F%E5%AE%9E%E7%8E%B0/" target="_self">
+          『C++&amp;C语言』C++课程设计详解-12306的模拟实现
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2024/06/29/%E3%80%8EC++&amp;C%E8%AF%AD%E8%A8%80%E3%80%8FC++%E8%AF%BE%E7%A8%8B%E8%AE%BE%E8%AE%A1%E8%AF%A6%E8%A7%A3-12306%E7%9A%84%E6%A8%A1%E6%8B%9F%E5%AE%9E%E7%8E%B0/" target="_self">
+        <div>
+          『C++&amp;C 语言』C++课程设计详解-12306 的模拟实现C++课程设计详解-12306 的模拟实现目录 设计思路… 3 思路分析：…. 3 数据组织：…. 4 具体功能实现过程… 4 管理端具体功能实现：…. 4 用户端具体功能实现：…. 5 调试截图和调试过程中遇到的问题及改进：… 12 时间类…. 12 站台类…. 14 列车站点类…. 16 列车类…. 17 车票类…. 19
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2024-06-29 21:16" pubdate>
+              2024-06-29
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/C-C%E8%AF%AD%E8%A8%80/" class="category-chain-item">C++&amp;C语言</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2024/06/29/%E3%80%8EC++&amp;C%E8%AF%AD%E8%A8%80%E3%80%8FC++%E8%8E%B7%E5%8F%96%E5%BD%93%E5%89%8D%E7%B3%BB%E7%BB%9F%E6%97%B6%E9%97%B4%E5%B9%B6%E6%A0%BC%E5%BC%8F%E5%8C%96%E8%BE%93%E5%87%BA/" target="_self">
+          『C++&amp;C语言』C++获取当前系统时间并格式化输出
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2024/06/29/%E3%80%8EC++&amp;C%E8%AF%AD%E8%A8%80%E3%80%8FC++%E8%8E%B7%E5%8F%96%E5%BD%93%E5%89%8D%E7%B3%BB%E7%BB%9F%E6%97%B6%E9%97%B4%E5%B9%B6%E6%A0%BC%E5%BC%8F%E5%8C%96%E8%BE%93%E5%87%BA/" target="_self">
+        <div>
+          『C++&amp;C 语言』C++获取当前系统时间并格式化输出C++中与系统时间相关的函数定义在头文件中。一、time(time_t * )函数函数定义如下： 1time_t time (time_t* timer);  获取系统当前日历时间 UTC 1970-01-01 00：00：00 开始的 unix 时间戳 Coordinated Universal Time（UTC）：协调世界时，又称为
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2024-06-29 21:16" pubdate>
+              2024-06-29
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/C-C%E8%AF%AD%E8%A8%80/" class="category-chain-item">C++&amp;C语言</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2024/06/29/%E3%80%8EC++&amp;C%E8%AF%AD%E8%A8%80%E3%80%8FC++%E7%B1%BB%E7%9A%84%E5%BC%80%E5%8F%91%E5%AE%9E%E6%88%98-%E7%8F%AD%E7%BA%A7%E6%88%90%E7%BB%A9%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F/" target="_self">
+          『C++&amp;C语言』C++类的开发实战-班级成绩管理系统
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2024/06/29/%E3%80%8EC++&amp;C%E8%AF%AD%E8%A8%80%E3%80%8FC++%E7%B1%BB%E7%9A%84%E5%BC%80%E5%8F%91%E5%AE%9E%E6%88%98-%E7%8F%AD%E7%BA%A7%E6%88%90%E7%BB%A9%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F/" target="_self">
+        <div>
+          『C++&amp;C 语言』C++类的开发实战-班级成绩管理系统#include&lt;bits&#x2F;stdc++.h&gt;using namespace std;struct birth{int year,month,day;};struct grade{int math;int english;int c ;int mks;int sx;int pe;};struct infor{st
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2024-06-29 21:16" pubdate>
+              2024-06-29
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/C-C%E8%AF%AD%E8%A8%80/" class="category-chain-item">C++&amp;C语言</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2024/06/29/%E3%80%8EC++&amp;C%E8%AF%AD%E8%A8%80%E3%80%8FC++%E6%A8%A1%E6%9D%BF(template)%E7%9A%84%E5%AE%9A%E4%B9%89/" target="_self">
+          『C++&amp;C语言』C++模板(template)的定义
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2024/06/29/%E3%80%8EC++&amp;C%E8%AF%AD%E8%A8%80%E3%80%8FC++%E6%A8%A1%E6%9D%BF(template)%E7%9A%84%E5%AE%9A%E4%B9%89/" target="_self">
+        <div>
+          『C++&amp;C 语言』C++模板(template)的定义C++ 模板(template) 的定义定义： 模板（template）是实现代码重用机制的一种工具，它可以实现类型参数化，把类型定义为参数（模板元编程），从而实现了真正的代码可重用性。 模板是用来批量生成功能和形式都几乎相同的代码的。编译器就能在需要的时候，根据模板自动生成程序的代码。从同一个模板自动生成的代码，形式几乎是一样的。
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2024-06-29 21:16" pubdate>
+              2024-06-29
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/C-C%E8%AF%AD%E8%A8%80/" class="category-chain-item">C++&amp;C语言</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2024/06/29/%E3%80%8EC++&amp;C%E8%AF%AD%E8%A8%80%E3%80%8FC++%E6%9D%A1%E4%BB%B6%E5%88%86%E6%94%AF%E7%BB%93%E6%9E%84/" target="_self">
+          『C++&amp;C语言』C++条件分支结构
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2024/06/29/%E3%80%8EC++&amp;C%E8%AF%AD%E8%A8%80%E3%80%8FC++%E6%9D%A1%E4%BB%B6%E5%88%86%E6%94%AF%E7%BB%93%E6%9E%84/" target="_self">
+        <div>
+          『C++&amp;C 语言』C++条件分支结构一、对于近期学习知识点的摘要：1. 从第一个.cpp 文件谈起，        #include&lt;iostream&gt;           //头文件         using namespace std;      //使用命名空间，namespace命名空间。         int main()
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2024-06-29 21:16" pubdate>
+              2024-06-29
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/C-C%E8%AF%AD%E8%A8%80/" class="category-chain-item">C++&amp;C语言</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2024/06/29/%E3%80%8EC++&amp;C%E8%AF%AD%E8%A8%80%E3%80%8FC++%E5%BE%AA%E7%8E%AF%E7%BB%93%E6%9E%84/" target="_self">
+          『C++&amp;C语言』C++循环结构
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2024/06/29/%E3%80%8EC++&amp;C%E8%AF%AD%E8%A8%80%E3%80%8FC++%E5%BE%AA%E7%8E%AF%E7%BB%93%E6%9E%84/" target="_self">
+        <div>
+          『C++&amp;C 语言』C++循环结构一、循环体部分知识点整理1.for 循环 for(表达式1;表达式2;表达式3）  {break; &#x2F;&#x2F;用于跳出当前循环体，结束循环。continue; &#x2F;&#x2F;跳过当前循环体 continue 后面的代码，继续执行下一个循环return 0; &#x2F;&#x2F;跳出该函数}程序执行顺序，先执行表达式 1，验证表达
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2024-06-29 21:16" pubdate>
+              2024-06-29
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/C-C%E8%AF%AD%E8%A8%80/" class="category-chain-item">C++&amp;C语言</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2024/06/29/%E3%80%8EC++&amp;C%E8%AF%AD%E8%A8%80%E3%80%8Fc++%E5%A6%82%E4%BD%95%E8%8E%B7%E5%8F%96%E7%B3%BB%E7%BB%9F%E5%BD%93%E5%89%8D%E6%97%B6%E9%97%B4%EF%BC%88%E8%B6%85%E7%BA%A7%E8%AF%A6%E7%BB%86%EF%BC%89/" target="_self">
+          『C++&amp;C语言』c++如何获取系统当前时间（超级详细）
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2024/06/29/%E3%80%8EC++&amp;C%E8%AF%AD%E8%A8%80%E3%80%8Fc++%E5%A6%82%E4%BD%95%E8%8E%B7%E5%8F%96%E7%B3%BB%E7%BB%9F%E5%BD%93%E5%89%8D%E6%97%B6%E9%97%B4%EF%BC%88%E8%B6%85%E7%BA%A7%E8%AF%A6%E7%BB%86%EF%BC%89/" target="_self">
+        <div>
+          『C++&amp;C 语言』c++如何获取系统当前时间（超级详细）12345678910void gettime() &#123;     time_t rawtime;     struct tm *ptminfo;     time(&amp;rawtime);     ptminfo = localtime(&amp;rawtime);     printf(&quot;current: %
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2024-06-29 21:16" pubdate>
+              2024-06-29
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/C-C%E8%AF%AD%E8%A8%80/" class="category-chain-item">C++&amp;C语言</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2024/06/29/%E3%80%8EC++&amp;C%E8%AF%AD%E8%A8%80%E3%80%8Fc++%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E8%BF%9B%E9%98%B6-%E5%BC%95%E7%94%A8%E4%B8%8E%E5%B8%B8%E9%87%8F/" target="_self">
+          『C++&amp;C语言』c++从入门到进阶-引用与常量
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2024/06/29/%E3%80%8EC++&amp;C%E8%AF%AD%E8%A8%80%E3%80%8Fc++%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E8%BF%9B%E9%98%B6-%E5%BC%95%E7%94%A8%E4%B8%8E%E5%B8%B8%E9%87%8F/" target="_self">
+        <div>
+          『C++&amp;C 语言』c++从入门到进阶-引用与常量一·常量表达式和 constexpr 与 const常量表达式概念：值不会改变并且在编译过程中就能计算出结果的表达式。 ps：constexpr int a=20； constexpr int b=20+a；  constexpr 必须用常量表达式初始化，也就是说必须在编译过程就能计算出结果（若要用函数作为 constexpr 的初始值那么
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2024-06-29 21:16" pubdate>
+              2024-06-29
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/C-C%E8%AF%AD%E8%A8%80/" class="category-chain-item">C++&amp;C语言</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2024/06/29/%E3%80%8EC++&amp;C%E8%AF%AD%E8%A8%80%E3%80%8FC++-%E6%B5%85%E8%B0%88%E5%BC%80%E5%8F%91%E7%B3%BB%E7%BB%9F%E7%9A%84%E7%BB%8F%E9%AA%8C/" target="_self">
+          『C++&amp;C语言』C++-浅谈开发系统的经验
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2024/06/29/%E3%80%8EC++&amp;C%E8%AF%AD%E8%A8%80%E3%80%8FC++-%E6%B5%85%E8%B0%88%E5%BC%80%E5%8F%91%E7%B3%BB%E7%BB%9F%E7%9A%84%E7%BB%8F%E9%AA%8C/" target="_self">
+        <div>
+          『C++&amp;C 语言』C++-浅谈开发系统的经验最近写了不少类了，从垃圾代码爬坑，虽然还是很垃圾，但是照葫芦画瓢，有几分神韵。在这里总结一下，写类的经验教训。第一步 分析：当拿到一个要求时，要先去考虑怎样一个类到底该实现什么样的功能，有什么样的数据，简而言之，就是分析。该用什么方式组织数据，达到解决一类问题的方式，在分析结束后脑子里会有一个大概的框架，在通过分析后将每个类的应该有的数据，与操
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2024-06-29 21:16" pubdate>
+              2024-06-29
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/C-C%E8%AF%AD%E8%A8%80/" class="category-chain-item">C++&amp;C语言</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+      </div>
+    </article>
+  </div>
+
+
+
+  <nav aria-label="navigation">
+    <span class="pagination" id="pagination">
+      <a class="extend prev" rel="prev" href="/page/74/#board"><i class="iconfont icon-arrowleft"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/73/#board">73</a><a class="page-number" href="/page/74/#board">74</a><span class="page-number current">75</span><a class="page-number" href="/page/76/#board">76</a><a class="extend next" rel="next" href="/page/76/#board"><i class="iconfont icon-arrowright"></i></a>
+    </span>
+  </nav>
+
+
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <meta name="referrer" content="no-referrer" /> <footer id="footer" role="contentinfo"> <meta name="referrer" content="no-referrer" /> <div class="divider"> <div class="wall"></div> <img class="animals" src="/img/footer_animals_new.png" srcset="/img/loading.gif" lazyload alt="Footer Animals"> </div> <div class="container" data-index="450"> <p> <a href="https://chiamzhang.github.io" target="_blank">DogEgg</a> <i class="iconfont icon-love"></i> <a href="#" target="_blank">LittePig</a> </p> <p> Powered by  <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-pen"></i> Theme  <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> </p> </div> </footer> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+  
+<script src="/js/love.js"></script>
+<script src="/js/funnyTitle.js"></script>
+<script src="/js/backTop.js"></script>
+<script src="//cdn.jsdelivr.net/gh/bynotes/texiao/source/js/xiaoxuehua.js"></script>
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+</html>

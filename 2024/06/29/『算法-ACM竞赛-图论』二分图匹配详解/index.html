@@ -1,0 +1,1075 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/Mine.jpg">
+  <link rel="icon" href="/img/Mine.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Chiam">
+  <meta name="keywords" content="Algorithms，Cybersecurity">
+  
+    <meta name="description" content="『算法-ACM 竞赛-图论』二分图匹配详解二分图匹配详解1.二分图的原始模型及相关概念二分图又称作二部图，是图论中的一种特殊模型。设 G&#x3D;(V,E)G&#x3D;(V,E)是一个无向图。如顶点集 VV 可分割为两个互不相交的子集，并且图中每条边依附的两个顶点都分属两个不同的子集。则称图 GG 为二分图。我们将上边顶点集合称为 XX 集合，下边顶点结合称为 YY 集合，如下图，就是一个二分">
+<meta property="og:type" content="article">
+<meta property="og:title" content="『算法-ACM竞赛-图论』二分图匹配详解">
+<meta property="og:url" content="https://chiamzhang.github.io/2024/06/29/%E3%80%8E%E7%AE%97%E6%B3%95-ACM%E7%AB%9E%E8%B5%9B-%E5%9B%BE%E8%AE%BA%E3%80%8F%E4%BA%8C%E5%88%86%E5%9B%BE%E5%8C%B9%E9%85%8D%E8%AF%A6%E8%A7%A3/index.html">
+<meta property="og:site_name" content="Homepage of Chiam">
+<meta property="og:description" content="『算法-ACM 竞赛-图论』二分图匹配详解二分图匹配详解1.二分图的原始模型及相关概念二分图又称作二部图，是图论中的一种特殊模型。设 G&#x3D;(V,E)G&#x3D;(V,E)是一个无向图。如顶点集 VV 可分割为两个互不相交的子集，并且图中每条边依附的两个顶点都分属两个不同的子集。则称图 GG 为二分图。我们将上边顶点集合称为 XX 集合，下边顶点结合称为 YY 集合，如下图，就是一个二分">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://img-blog.csdn.net/20170731214043177?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMzU2NDk3MDc=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:image" content="https://img-blog.csdn.net/20170801170121183?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMzU2NDk3MDc=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="article:published_time" content="2024-06-29T13:16:54.143Z">
+<meta property="article:modified_time" content="2023-12-05T16:19:05.471Z">
+<meta property="article:author" content="Chiam">
+<meta property="article:tag" content="Algorithms，Cybersecurity">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://img-blog.csdn.net/20170731214043177?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMzU2NDk3MDc=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+  
+  
+  
+  <title>『算法-ACM竞赛-图论』二分图匹配详解 - Homepage of Chiam</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"chiamzhang.github.io","root":"/","version":"1.9.5-a","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":"❡"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":2},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
+
+
+<body>
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Chiam&#39;s Blogs</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                
+                <span>Home</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                
+                <span>Archives</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                
+                <span>Categories</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                
+                <span>About</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                
+                <span>Links</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="『算法-ACM竞赛-图论』二分图匹配详解"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-06-29 21:16" pubdate>
+          June 29, 2024 pm
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          8.1k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          68 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">『算法-ACM竞赛-图论』二分图匹配详解</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="『算法-ACM-竞赛-图论』二分图匹配详解"><a href="#『算法-ACM-竞赛-图论』二分图匹配详解" class="headerlink" title="『算法-ACM 竞赛-图论』二分图匹配详解"></a>『算法-ACM 竞赛-图论』二分图匹配详解</h1><h1 id="二分图匹配详解"><a href="#二分图匹配详解" class="headerlink" title="二分图匹配详解"></a>二分图匹配详解</h1><h4 id="1-二分图的原始模型及相关概念"><a href="#1-二分图的原始模型及相关概念" class="headerlink" title="1.二分图的原始模型及相关概念"></a>1.二分图的原始模型及相关概念</h4><p><strong>二分图又称作二部图，是图论中的一种特殊模型。</strong><br>设 G&#x3D;(V,E)G&#x3D;(V,E)是一个无向图。如顶点集 VV 可分割为两个互不相交的子集，并且图中每<br>条边依附的两个顶点都分属两个不同的子集。则称图 GG 为二分图。我们将上边顶点集合称<br>为 XX 集合，下边顶点结合称为 YY 集合，如下图，就是一个二分图。</p>
+<p><img src="https://img-blog.csdn.net/20170731214043177?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMzU2NDk3MDc=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" srcset="/img/loading.gif" lazyload alt="这里写图片描述"></p>
+<p>给定一个二分图 G(无向图)，在 G 的一个子图 M 中，M 的边集中的任意两条边都不依附于同一个顶点，则称 M 是一个匹配.</p>
+<p>选择这样的边数最大的子集称为图的最大匹配问题（maximal matchingproblem)</p>
+<p>如果一个匹配中，图中的每个顶点都和图中某条边相关联，则称此匹配为完全匹配，也称作完备匹配。</p>
+<p>如果该二分图的每条边都有一个权值且存在完备匹配，那么我们要找出一个所有边权值和最大的完备匹配的问题叫做二分图的最优匹配问题。</p>
+<p><strong>二分图的最小覆盖数：</strong></p>
+<p>在二分图中选取最少数目的点集，使得二分图任意一边都至少有一个端点在该点集中。这个点集的大小是二分图的最小覆盖数，且二分图的最小覆盖数&#x3D;&#x3D;二分图的最大匹配数。</p>
+<p><strong>二分图的最大独立集：</strong></p>
+<p>在二分图中选取最多数目的点集，使得该点集中的任意两点在二分图中都不存在一条边相连。这个点集就是二分图的最大独立集。且二分图的最大独立集大小&#x3D;&#x3D;|G|(二分图顶点数) - 二分图最大匹配数。</p>
+<p>** DAG 的最小路径覆盖：**</p>
+<p>即在 DAG 图中寻找尽量少的路径，使得每个节点恰好在一条路径上(不同的路径不可能有公共点)。注意：单独的节点也可以作为一条路径。</p>
+<p><strong>DAG 最小路径覆盖解法如下：</strong></p>
+<p>把所有节点 i 拆为左边点集的 i 和右边点集的 i’，如果 DAG 图中有 i 到 j 的有向边，那么添加一条二分图的 i 到 j’的无向边。最终 DAG 的最小路径覆盖数&#x3D;&#x3D;DAG 图的节点数 n - 新二分图的最大匹配数 m。注意：该由原 DAG 图构建的新二分图的最大匹配数 m&lt;&#x3D;n-1.</p>
+<p><strong>有向图是否存在有向环覆盖？</strong>把有向图的所有节点 i 拆为左边点集的 i 和右边点集的 i’，如果有向图中有 i 到 j 的有向边，那么添加一条二分图的 i 到 j’的无向边。最终如果新二分图的最大匹配数 m&#x3D;&#x3D;有向图的节点数 n，那么说明该有向图的所有节点能被正好 1 个或多个不相交(没有公共节点)的有向环覆盖。</p>
+<p>原理类似于 DAG 的最小路径覆盖的解释，因为每个节点都能找到一个后继节点继续往下一直走，所以必然原来有向图存在环。又因为在一个可行的最大匹配中，每个节点只有一个后继，所以必然存在不相交的有向环覆盖。</p>
+<p>有向图的最优有向环覆盖：在有向图中找到 1 个或多个点不想交的环，这些环正好覆盖了有向图的所有节点且这些环上边的权值最大。本问题解法：把有向图的所有节点 i 拆为左边点集的 i 和右边点集的 i’，如果有向图中有 i 到 j 的有向边，那么添加一条二分图的 i 到 j’的无向边。最终计算二分图的最优完美匹配即可，该二分图的最优完美匹配的权值和就是有向图的最优有向环覆盖的权值和。</p>
+<h4 id="2-求解二分图最大匹配"><a href="#2-求解二分图最大匹配" class="headerlink" title="2.求解二分图最大匹配"></a>2.求解二分图最大匹配</h4><p><strong>网络流算法</strong><br>使用网络流算法：<br>实际上，可以将二分图最大匹配问题看成是最大流问题的一种特殊情况。<br>用网络流算法思想解决最大匹配问题的思路：<br>首先：建立源点 ss 和汇点 tt ，从 ss 向 XX 集合的所有顶点引一条边，容量为 11，从 YY 集合<br>的所有顶点向 TT 引一条边，容量为 11。<br>然后：将二分图的所有边看成是从 XiXi 到 YjYj 的一条有向边，容量为 1。<br>求最大匹配就是求 ss 到 tt 的最大流。<br>最大流图中从 XiXi 到 YjYj 有流量的边就是匹配集合中的一条边。</p>
+<p><strong>匈牙利算法</strong><br>发现了一篇写得非常好的博客，可以看看这里的解释：<a target="_blank" rel="noopener" href="http://blog.csdn.net/dark_scope/article/details/8880547/">趣写算法系列之–匈牙利算法</a></p>
+<h4 id="3-常见模型"><a href="#3-常见模型" class="headerlink" title="3.常见模型"></a>3.常见模型</h4><p>上面已经提到了图的匹配的概念，此外还有几个相关的有用的概念，在此我们再介绍除<br>匹配之外的三个概念：<br>记图 G&#x3D;(V,E)G&#x3D;(V,E)。</p>
+<p>匹配：在 GG 中两两没有公共端点的边集合 M⊂EM⊂E。<br>边覆盖：GG 中的任意顶点都至少是 FF 中某条边的端点的边集 F⊂EF⊂E。<br>独立集：在 GG 中两两互不相连的顶点集合 S⊂VS⊂V。<br>顶点覆盖：GG 中的任意边都有至少一个端点属于 SS 的顶点集合 S⊂VS⊂V 。</p>
+<p>相应的也有：最大匹配，最小边覆盖，最大独立集，最小顶点覆盖。<br>例如下图中，最大匹配为{e1,e3}{e1,e3}，最小边覆盖为{e1,e3,e4}{e1,e3,e4}，最大独立集为{v2,v4,v5}{v2,v4,v5}，</p>
+<p><img src="https://img-blog.csdn.net/20170801170121183?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMzU2NDk3MDc=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" srcset="/img/loading.gif" lazyload></p>
+<p><strong>三个重要等式：</strong><br>在二分图中满足：<br>(1) 对于不存在孤立点的图， 最大匹配 + 最小边覆盖 &#x3D;VV<br>证明:通过最大匹配加边得到最小边覆盖。</p>
+<p>(2) 最大独立集 +最小顶点覆盖&#x3D;VV<br>证明:独立集中若存在边，那么顶点覆盖不能覆盖完所有边，矛盾。</p>
+<p>(3)|最大匹配| &#x3D; |最小顶点覆盖|。<br>具体证明参考：<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/Konig%E5%AE%9A%E7%90%86/1845210?fr=aladdin">百度百科:Konig 定理</a><br><a target="_blank" rel="noopener" href="http://www.cnblogs.com/jianglangcaijin/p/6035945.html">二分图的最小顶点覆盖 最大独立集 最大团</a></p>
+<p><strong>有向图中应用二分匹配</strong><br>求有向图最小路径覆盖：<br>对于有向图的最小路径覆盖，先拆点，将每个点分为两个点，左边是 1-n 个点，右边是 1-n 个点<br>然后每一条有向边对应左边的点指向右边的点。对此图求最大匹配，再用 n-最大匹配即可。</p>
+<p>证明：<br>将图中顶点看做 n 条边，每次加入一条有向边相当于合并两条边，又因为一个点只能经过一次，与匹配的性质一样。</p>
+<p>例题<br>POJ3041(求最小点覆盖)</p>
+<p>将所有 x 行视为一个点集，所有 y 列视为一个点集，那么（x，y）就表示 x 和 y 之间有一条边了。而这题所求是最小点覆盖，即最大匹配。</p>
+<pre><code class="hljs">#include&lt;stdio.h&gt;
+#include&lt;algorithm&gt;
+#include&lt;string.h&gt;
+using namespace std;
+int n,map[510][510],flag[510],vis[510];
+int find(int k);
+int main()
+&#123;
+    int i,j,k,sum,m,x,y;
+    memset(map,0,sizeof(map));
+    memset(flag,0,sizeof(flag));
+    scanf(&quot;%d%d&quot;,&amp;n,&amp;m);
+    for(i=1;i&lt;=m;i++)
+    &#123;
+        scanf(&quot;%d%d&quot;,&amp;x,&amp;y);
+        map[x][y]=1;
+    &#125;
+    sum=0;
+    for(i=1;i&lt;=n;i++)
+    &#123;
+        memset(vis,0,sizeof(vis));
+        if(find(i))
+            sum+=1;
+    &#125;
+    printf(&quot;%d\n&quot;,sum);
+    return 0;
+&#125;
+int find(int k)
+&#123;
+    int i,j;
+    for(j=1;j&lt;=n;j++)
+    &#123;
+        if(map[k][j] &amp;&amp; !vis[j])
+        &#123;
+            vis[j]=1;
+            if(!flag[j] || find(flag[j]))
+            &#123;
+                flag[j]=k;
+                return 1;
+            &#125;
+        &#125;
+    &#125;
+    return 0;
+&#125;
+</code></pre>
+<p>POJ1422(有向图最小路径覆盖)</p>
+<p>其实每个伞兵走的就是一条有向的简单路径。我们要求的就是该 DAG 图的最少可以用多少条简单路径覆盖所有节点且任意两条路径不会有重复的节点。 这就是 DAG 的最小路径覆盖问题。</p>
+<p>DAG 最小路径覆盖问题的解 &#x3D; 节点数-二分图的最大匹配。</p>
+<p>首先要把 DAG 中的每个点在二分图的左右点集都保存一遍，然后对于 DAG 中的边 i-&gt;j， 那么就在二分图中添加边左 i-&gt;右 j。 之后求该二分图的最大匹配边数即可。</p>
+<pre><code class="hljs">#include&lt;cstdio&gt;
+#include&lt;cstring&gt;
+#include&lt;vector&gt;
+using namespace std;
+const int maxn=120+5;
+
+struct Max_Match
+&#123;
+    int n;
+    vector&lt;int&gt; g[maxn];
+    bool vis[maxn];
+    int left[maxn];
+
+    void init(int n)
+    &#123;
+        this-&gt;n=n;
+        for(int i=1; i&lt;=n; ++i) g[i].clear();
+        memset(left,-1,sizeof(left));
+    &#125;
+
+    bool match(int u)
+    &#123;
+        for(int i=0;i&lt;g[u].size();++i)
+        &#123;
+            int v=g[u][i];
+            if(!vis[v])
+            &#123;
+                vis[v]=true;
+                if(left[v]==-1 || match(left[v]))
+                &#123;
+                    left[v]=u;
+                    return true;
+                &#125;
+            &#125;
+        &#125;
+        return false;
+    &#125;
+
+    int solve()
+    &#123;
+        int ans=0;
+        for(int i=1; i&lt;=n; ++i)
+        &#123;
+            memset(vis,0,sizeof(vis));
+            if(match(i)) ++ans;
+        &#125;
+        return ans;
+    &#125;
+&#125;MM;
+
+int main()
+&#123;
+    int T; scanf(&quot;%d&quot;,&amp;T);
+    while(T--)
+    &#123;
+        int n,m;
+        scanf(&quot;%d%d&quot;,&amp;n,&amp;m);
+        MM.init(n);
+        while(m--)
+        &#123;
+            int u,v;
+            scanf(&quot;%d%d&quot;,&amp;u,&amp;v);
+            MM.g[u].push_back(v);
+        &#125;
+        printf(&quot;%d\n&quot;,n-MM.solve());
+    &#125;
+    return 0;
+&#125;
+</code></pre>
+<p>POJ1486Sorting Slides(判断唯一匹配)</p>
+<p>其实就是二分图最大匹配问题.左边点集用幻灯片编号表示,右边点集用数字表示. 如果某个幻灯片 i 包含了数字 j,那么从左边 i 到右边 j 就存在一条边.</p>
+<p>首先我们求出这个图的最大匹配数 x, 根据题意这 x 值一定是等于 n(幻灯片数的). 然后我们记录目前求到的最大匹配的各个边.</p>
+<p>我们每次判断最大匹配边集的某条边是否是必需边. 我们只要先删除这条边,如果之后求最大匹配数依然&#x3D;&#x3D;n,那么这条边不是必需边.如果之后求最大匹配数依然&lt;n,那么这条边是必需边.(做好标记）</p>
+<pre><code class="hljs">#include&lt;cstdio&gt;
+#include&lt;cstring&gt;
+using namespace std;
+const int maxn=26+5;
+
+struct Max_Match
+&#123;
+    int n,m;
+    bool g[maxn][maxn];
+    bool vis[maxn];
+    int left[maxn];
+
+    void init(int n)
+    &#123;
+        this-&gt;n=n;
+        memset(g,0,sizeof(g));
+        memset(left,-1,sizeof(left));
+    &#125;
+
+    bool match(int u)
+    &#123;
+        for(int v=1;v&lt;=n;v++)if(g[u][v] &amp;&amp; !vis[v])
+        &#123;
+            vis[v]=true;
+            if(left[v]==-1 || match(left[v]))
+            &#123;
+                left[v]=u;
+                return true;
+            &#125;
+        &#125;
+        return false;
+    &#125;
+
+    int solve()
+    &#123;
+        int ans=0;
+        for(int i=1;i&lt;=n;i++)
+        &#123;
+            memset(vis,0,sizeof(vis));
+            if(match(i)) ans++;
+        &#125;
+        return ans;
+    &#125;
+&#125;MM;
+
+int xmin[maxn],ymin[maxn],xmax[maxn],ymax[maxn];
+struct
+&#123;
+    int x;  // edge[i].x=x 表示第i个矩形配对的数字 是x;
+    bool ok;//标记该边是否是 必需边
+&#125;edge[maxn];
+
+int main()
+&#123;
+    int n,kase=0;
+    while(scanf(&quot;%d&quot;,&amp;n)==1&amp;&amp;n)
+    &#123;
+        MM.init(n);
+        memset(edge,0,sizeof(edge));
+        for(int i=1;i&lt;=n;i++)
+        &#123;
+            scanf(&quot;%d%d%d%d&quot;,&amp;xmin[i],&amp;xmax[i],&amp;ymin[i],&amp;ymax[i]);
+        &#125;
+        for(int i=1;i&lt;=n;i++)
+        &#123;
+            int x,y;
+            scanf(&quot;%d%d&quot;,&amp;x,&amp;y);
+            for(int j=1;j&lt;=n;j++)
+            &#123;
+                if(xmin[j]&lt;=x&amp;&amp;x&lt;=xmax[j]&amp;&amp;ymin[j]&lt;=y&amp;&amp;y&lt;=ymax[j])
+                    MM.g[j][i]=true;
+            &#125;
+        &#125;
+        MM.solve();
+        int edge_num=n;
+        for(int i=1;i&lt;=n;i++)
+        &#123;
+            edge[MM.left[i]].x=i;
+            edge[MM.left[i]].ok=true;
+        &#125;
+        for(int i=1;i&lt;=n;i++)//尝试删除第i条匹配边
+        &#123;
+            int j=edge[i].x;
+            MM.g[i][j]=false;//删除此边
+            memset(MM.left,-1,sizeof(MM.left));
+            int num = MM.solve();
+            if(num == n)//删除边后,匹配数不变
+            &#123;
+                edge[i].ok=false;
+                edge_num--;
+            &#125;
+            MM.g[i][j]=true;//还原此边
+        &#125;
+        printf(&quot;Heap %d\n&quot;,++kase);
+        if(edge_num==0) printf(&quot;none\n&quot;);
+        else
+        &#123;
+            for(int i=1;i&lt;=n;i++)if(edge[i].ok)
+                printf(&quot;(%c,%d) &quot;,i-1+&#39;A&#39;,edge[i].x);
+            printf(&quot;\n&quot;);
+        &#125;
+        printf(&quot;\n&quot;);
+    &#125;
+    return 0;
+&#125;
+</code></pre>
+<p>poj2724PurifyingMachine(求二分图最小边覆盖)</p>
+<p>也就是给你一些不同的(判重之后)二进制串,每个串可以通过 1 次操作净化,也可以把两个只有 1 位不同的串通过 1 次操作联合净化.要我们求最少的操作次数.</p>
+<p>我们把所有串按其中 1 的个数和是奇还是偶分成左右两个点集.</p>
+<p>对于任意两个串,如果他们只有 1 位不同,那么就在他们之间连接一条无向边.(这两个串一定分别属于不同的点集)</p>
+<p>由于串的总数是固定的,且一个串可以通过单独净化也可以通过联合净化.而我们向让净化的次数最少,我们自然想联合净化(即一次可以净化两个串)的次数尽量多了. 那么我们最多可以进行多少次联合净化呢? 这个数值&#x3D;&#x3D;我们建立二分图的最大匹配边数.(想想是不是,因为一个串最多只能被净化一次)</p>
+<p>假设总的不同串有 n 个,我们建立二分图的最大匹配数(即联合净化最大次数)为 ans,那么我们总共需要 n-ans 次净化即可.(想想为什么)</p>
+<p>当然本题也可以不用把串特意分成左右点集(本程序实现就是用的这种方式：未分左右点集),我们只需要把原图翻倍,然后求翻倍图的最大匹配数 ans,最后用 n-ans&#x2F;2 即可。</p>
+<pre><code class="hljs">#include&lt;cstdio&gt;
+#include&lt;cstring&gt;
+#include&lt;vector&gt;
+#include&lt;set&gt;
+#include&lt;string&gt;
+#include&lt;iostream&gt;
+using namespace std;
+const int maxn=1000+100;
+
+struct Max_Match
+&#123;
+    int n;
+    vector&lt;int&gt; g[maxn];
+    bool vis[maxn];
+    int left[maxn];
+
+    void init(int n)
+    &#123;
+        this-&gt;n=n;
+        for(int i=1;i&lt;=n;i++) g[i].clear();
+        memset(left,-1,sizeof(left));
+    &#125;
+
+    bool match(int u)
+    &#123;
+        for(int i=0;i&lt;g[u].size();i++)
+        &#123;
+            int v=g[u][i];
+            if(!vis[v])
+            &#123;
+                vis[v]=true;
+                if(left[v]==-1 || match(left[v]))
+                &#123;
+                    left[v]=u;
+                    return true;
+                &#125;
+            &#125;
+        &#125;
+        return false;
+    &#125;
+
+    int solve()
+    &#123;
+        int ans=0;
+        for(int i=1;i&lt;=n;i++)
+        &#123;
+            memset(vis,0,sizeof(vis));
+            if(match(i)) ++ans;
+        &#125;
+        return ans;
+    &#125;
+&#125;MM;
+
+struct Node
+&#123;
+    string s;
+    bool link(Node&amp; rhs)//判断两个string是否只相差1位
+    &#123;
+        int num = 0;
+        for(int i=0;i&lt;s.size(); i++)
+            if(s[i]!=(rhs.s)[i]) ++num;
+        return num==1;
+    &#125;
+&#125;node[maxn];
+
+int main()
+&#123;
+    int N,M;
+    while(scanf(&quot;%d%d&quot;,&amp;N,&amp;M)==2 &amp;&amp; N)
+    &#123;
+        int num=0;
+        set&lt;string&gt; st;//判重string
+        for(int i=1;i&lt;=M;i++)
+        &#123;
+            string s;
+            cin&gt;&gt;s;
+            if(s.find(&quot;*&quot;)!=-1)
+            &#123;
+                int pos=s.find(&quot;*&quot;);
+                string s1(s),s2(s);
+                s1[pos]=&#39;0&#39;;
+                s2[pos]=&#39;1&#39;;
+                if(st.find(s1) == st.end())//s1与已有string不重复
+                &#123;
+                    st.insert(s1);
+                    node[++num].s = s1;
+                &#125;
+                if(st.find(s2) == st.end())//s2与已有string不重复
+                &#123;
+                    st.insert(s2);
+                    node[++num].s = s2;
+                &#125;
+            &#125;
+            else
+            &#123;
+                if(st.find(s) == st.end())
+                &#123;
+                    st.insert(s);
+                    node[++num].s = s;
+                &#125;
+            &#125;
+        &#125;
+
+        MM.init(num);
+        for(int i=1;i&lt;=num;i++)
+        for(int j=1;j&lt;=num;j++)if(i!=j)
+        if(node[i].link(node[j]))
+            MM.g[i].push_back(j);
+        printf(&quot;%d\n&quot;,num-MM.solve()/2);
+    &#125;
+    return 0;
+&#125;
+</code></pre>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E7%AE%97%E6%B3%95/" class="category-chain-item">算法</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/%E7%AE%97%E6%B3%95/ACM%E7%AB%9E%E8%B5%9B/" class="category-chain-item">ACM竞赛</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/%E7%AE%97%E6%B3%95/ACM%E7%AB%9E%E8%B5%9B/%E5%9B%BE%E8%AE%BA/" class="category-chain-item">图论</a>
+  
+  
+
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>『算法-ACM竞赛-图论』二分图匹配详解</div>
+      <div>https://chiamzhang.github.io/2024/06/29/『算法-ACM竞赛-图论』二分图匹配详解/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>Chiam</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>June 29, 2024</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>Licensed under</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2024/06/29/%E3%80%8E%E7%AE%97%E6%B3%95-ACM%E7%AB%9E%E8%B5%9B-%E5%9B%BE%E8%AE%BA%E3%80%8F%E4%BA%8C%E5%88%86%E5%9B%BE%E6%9C%80%E4%BD%B3%E5%AE%8C%E7%BE%8E%E5%8C%B9%E9%85%8D%EF%BC%88KM%E6%A8%A1%E6%9D%BF%EF%BC%89/" title="『算法-ACM竞赛-图论』二分图最佳完美匹配（KM模板）">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">『算法-ACM竞赛-图论』二分图最佳完美匹配（KM模板）</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/06/29/%E3%80%8E%E7%AE%97%E6%B3%95-ACM%E7%AB%9E%E8%B5%9B-%E5%9B%BE%E8%AE%BA%E3%80%8F%E4%B8%80%E8%88%AC%E5%B8%A6%E8%8A%B1%E6%A0%91%E5%8C%B9%E9%85%8D/" title="『算法-ACM竞赛-图论』一般带花树匹配">
+                        <span class="hidden-mobile">『算法-ACM竞赛-图论』一般带花树匹配</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"fIfc7WqUDZohlQuPc2lz5mJy-MdYXbMMI","appKey":"zjlAG3ZA3o4cBHVAkjzc2Z20","path":"window.location.pathname","placeholder":"留言仅限讨论，禁止广告等行为","avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"https://fifc7wqu.api.lncldglobal.com","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>Table of Contents</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <meta name="referrer" content="no-referrer" /> <footer id="footer" role="contentinfo"> <meta name="referrer" content="no-referrer" /> <div class="divider"> <div class="wall"></div> <img class="animals" src="/img/footer_animals_new.png" srcset="/img/loading.gif" lazyload alt="Footer Animals"> </div> <div class="container" data-index="450"> <p> <a href="https://chiamzhang.github.io" target="_blank">DogEgg</a> <i class="iconfont icon-love"></i> <a href="#" target="_blank">LittePig</a> </p> <p> Powered by  <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-pen"></i> Theme  <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> </p> </div> </footer> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+  
+<script src="/js/love.js"></script>
+<script src="/js/funnyTitle.js"></script>
+<script src="/js/backTop.js"></script>
+<script src="//cdn.jsdelivr.net/gh/bynotes/texiao/source/js/xiaoxuehua.js"></script>
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+</html>

@@ -1,0 +1,91 @@
+
+/*评论框svg
+#textarea{
+    background: url(https://img.bytecho.net/media/cat.svg) no-repeat right 5% bottom;
+}*/
+#footer {
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-drag: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+}
+/*灰白
+html{
+    -webkit-filter: grayscale(.85) saturate(.8);
+    -moz-filter: grayscale(.85) saturate(.8);
+    -ms-filter: grayscale(.85) saturate(.8);
+    -o-filter: grayscale(.85) saturate(.8);
+    filter: grayscale(.85) saturate(.8);
+    filter: progid:DXImageTransform.Microsoft.BasicImage(grayscale=.85);
+} */
+
+/* party-animals theme */
+@font-face {
+    font-family: "HYZhengYuan";
+    font-display: swap;
+    src: url("//upyun.bytecho.net/font/hy/HYZhengYuan-65W.55d31eaf.woff"); 
+}
+.navbar-nav .nav-item a {
+    font-family: "HYZhengYuan";
+    font-size: 1.25rem;
+    font-weight: bold;
+    transition: all .4s;
+}
+.navbar-color .navbar-nav .nav-link, body.use-navbar .dropdown-item>a {
+    color: #4e443e;
+}
+.navbar-color .navbar-nav .nav-link:hover, .navbar-color .navbar-nav .nav-link:focus, body.use-navbar .dropdown-item>a:hover, body.use-navbar .dropdown-item>a:focus, .navbar-color .navbar-nav a.current {
+    color: #f87e35;
+}
+#footer a { 
+    color: #bdb3aa!important;
+    transition: color .2s ease-in-out;
+}
+#footer a:hover, #footer a:after { 
+    color: #f1e5dc!important;
+    border-color: #f1e5dc!important;
+}
+#footer .container p {
+    margin: 0.75rem 0;
+}
+.home-page-title {
+    font-family: "HYZhengYuan", 'Mirages Custom', 'Merriweather', 'Open Sans', 'PingFang SC';
+    font-weight: bold;
+}
+#backtop {
+    width: 4.25rem;
+    height: 195px;
+    bottom: 1.25rem;
+    background: url(//cdn.bytecho.net/static/party-animals-backtop_min.webp) no-repeat;
+    background-size: contain;
+    border-radius: 0;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+    animation: _heart_backtop 1.3s ease-in-out infinite alternate
+}
+@keyframes _heart_backtop {
+    0% {
+        transform: translate(0);
+    }
+    to {
+        transform: translateY(18px);
+    }
+}
+#backtop:hover {
+    opacity: 1!important;
+    color: #1abc9c;
+    -webkit-box-shadow: none; 
+    -moz-box-shadow: none;
+    box-shadow: none; 
+}
+#backtop .fa {
+    display: none;
+}
+#backtop .waves-ripple {
+    display: none;
+}
+#backtop.show, body.show-back-to-top #backtop {
+    opacity: .8;
+}

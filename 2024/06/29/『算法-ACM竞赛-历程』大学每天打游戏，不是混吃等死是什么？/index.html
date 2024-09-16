@@ -1,0 +1,709 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/Mine.jpg">
+  <link rel="icon" href="/img/Mine.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Chiam">
+  <meta name="keywords" content="Algorithms，Cybersecurity">
+  
+    <meta name="description" content="『算法-ACM 竞赛-历程』大学每天打游戏，不是混吃等死是什么？附一篇文章 https:&#x2F;&#x2F;blog.csdn.net&#x2F;yelvgou9995&#x2F;article&#x2F;details&#x2F;84635317 44000+ 人一夜之间失业：一拖二懒三不读书，不淘汰你淘汰谁？在中国，有 2000 万大学生在假装上课？你每天就打打游戏，社会不养闲人，你不被社会淘汰，社会淘汰谁?进入大学之后发现，安逸的现状让大学生失去">
+<meta property="og:type" content="article">
+<meta property="og:title" content="『算法-ACM竞赛-历程』大学每天打游戏，不是混吃等死是什么？">
+<meta property="og:url" content="https://chiamzhang.github.io/2024/06/29/%E3%80%8E%E7%AE%97%E6%B3%95-ACM%E7%AB%9E%E8%B5%9B-%E5%8E%86%E7%A8%8B%E3%80%8F%E5%A4%A7%E5%AD%A6%E6%AF%8F%E5%A4%A9%E6%89%93%E6%B8%B8%E6%88%8F%EF%BC%8C%E4%B8%8D%E6%98%AF%E6%B7%B7%E5%90%83%E7%AD%89%E6%AD%BB%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F/index.html">
+<meta property="og:site_name" content="Homepage of Chiam">
+<meta property="og:description" content="『算法-ACM 竞赛-历程』大学每天打游戏，不是混吃等死是什么？附一篇文章 https:&#x2F;&#x2F;blog.csdn.net&#x2F;yelvgou9995&#x2F;article&#x2F;details&#x2F;84635317 44000+ 人一夜之间失业：一拖二懒三不读书，不淘汰你淘汰谁？在中国，有 2000 万大学生在假装上课？你每天就打打游戏，社会不养闲人，你不被社会淘汰，社会淘汰谁?进入大学之后发现，安逸的现状让大学生失去">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://imgconvert.csdnimg.cn/aHR0cHM6Ly91cGxvYWQtaW1hZ2VzLmppYW5zaHUuaW8vdXBsb2FkX2ltYWdlcy83NTY0NTAxLTczYWU3MTU5ZjJiZjA3NDc?x-oss-process=image/format,png">
+<meta property="article:published_time" content="2024-06-29T13:16:54.090Z">
+<meta property="article:modified_time" content="2023-12-05T16:18:56.589Z">
+<meta property="article:author" content="Chiam">
+<meta property="article:tag" content="Algorithms，Cybersecurity">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://imgconvert.csdnimg.cn/aHR0cHM6Ly91cGxvYWQtaW1hZ2VzLmppYW5zaHUuaW8vdXBsb2FkX2ltYWdlcy83NTY0NTAxLTczYWU3MTU5ZjJiZjA3NDc?x-oss-process=image/format,png">
+  
+  
+  
+  <title>『算法-ACM竞赛-历程』大学每天打游戏，不是混吃等死是什么？ - Homepage of Chiam</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"chiamzhang.github.io","root":"/","version":"1.9.5-a","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":"❡"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":2},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
+
+
+<body>
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Chiam&#39;s Blogs</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                
+                <span>Home</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                
+                <span>Archives</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                
+                <span>Categories</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                
+                <span>About</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                
+                <span>Links</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="『算法-ACM竞赛-历程』大学每天打游戏，不是混吃等死是什么？"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-06-29 21:16" pubdate>
+          June 29, 2024 pm
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2.1k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          18 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">『算法-ACM竞赛-历程』大学每天打游戏，不是混吃等死是什么？</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="『算法-ACM-竞赛-历程』大学每天打游戏，不是混吃等死是什么？"><a href="#『算法-ACM-竞赛-历程』大学每天打游戏，不是混吃等死是什么？" class="headerlink" title="『算法-ACM 竞赛-历程』大学每天打游戏，不是混吃等死是什么？"></a>『算法-ACM 竞赛-历程』大学每天打游戏，不是混吃等死是什么？</h1><p><strong>附一篇文章 <a target="_blank" rel="noopener" href="https://blog.csdn.net/yelvgou9995/article/details/84635317">https://blog.csdn.net/yelvgou9995/article/details/84635317</a> 44000+ 人一夜之间失业：一拖二懒三不读书，不淘汰你淘汰谁？</strong><br>在中国，有 2000 万大学生在假装上课？<br>你每天就打打游戏，社会不养闲人，你不被社会淘汰，社会淘汰谁?<br>进入大学之后发现，安逸的现状让大学生失去斗志没有再去拼搏的动力，上课变成了负担，学习知识成了被逼无奈，最好的生活方式是在宿舍打打游戏，在床上呆一天，真的可以称得上垃圾这个词语，你不知道你没有学习能力，知识，毕业之后会有多水火热，起点比 TOP2 的学生低了很多，能力不一定比他们强，只会抱怨社会不公？社会是真的不公平？社会在某些方面确实不公平，有的人含着金钥匙出生，虽然努力不再是成功的充要条件，但是努力绝对是成功的充分条件，只要你足够努力！王侯将相，宁有种乎?不甘于现状就要努力改变，而不是在手机电脑的安慰下，做一个娱乐至死的年轻人。手机奴役了主人，人们不懂得反抗命运而是安于现状，这个世界，十分之一在拼命，十分之九在认命；十分之一在抢时间，十分之九在耗时间；十分之一在燃烧青春，十分之九在虚度光阴，你想做什么人？</p>
+<p><strong>今天,我们应该把视线投向内华达州的拉斯维加斯城。作为我们民族性格和抱负的象征,这个城市的标志是一幅 30 英尺高的老虎机图片以及表演歌舞的女演员。这是一个娱乐之城,在这里一切公众话语都日渐以娱乐的方式出现,并成为一种文化精神。我们的政治、宗教、新闻、体育、教育和商业都心甘情愿地成为娱乐的附庸,毫无怨言,甚至无声无息,其结果是我们成了一个娱乐至死的物种。 ——尼尔·波兹曼《娱乐至死》</strong></p>
+<p>世界上百分之二十的人掌握百分之八十的财富,你想做哪种人？<br><strong>管理学家从帕累托的研究中归纳出了一个简单的结果：如果 20%的人占有 80%的社会财富，由此可以预测， 10%的人所拥有的财富为 65%，5%的人享有的财富为 50%。1 管理学家看重的是这一结果体现的思想，即不平衡关系存在的确定性和可预测性。正如里查德·科克有一个精彩的描述：“在因和果、努力和收获之间，普遍存在着不平衡关系。典型的情况是：80%的收获来自 20%的努力；其他 80%的力气只带来 20%的结果。”</strong><br><img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly91cGxvYWQtaW1hZ2VzLmppYW5zaHUuaW8vdXBsb2FkX2ltYWdlcy83NTY0NTAxLTczYWU3MTU5ZjJiZjA3NDc?x-oss-process=image/format,png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<p>华中科技大学，如此重牌 985 大学的学生如此，其它大学的学习情况，你可想而知。</p>
+<p><strong>《人民日报》刊登过一篇文章，标题为《沉睡中的大学生：你不失业，天理难容》</strong></p>
+<p><strong>上课时，“清醒没有发呆的多，发呆没有睡觉的多，睡觉没有玩手机的多；下课时，自修没有吃零食多，吃零食没有看连续剧多，看连续剧没有游戏多。”<br>考试时，“不给范围就不会考试，给了范围也只是复印同学准备的答案。”<br>毕业前，“上大学前填报志愿，你说不知道自己的兴趣特长，好吧，大学毕业找工作了，同样不知道自己的兴趣特长。”<br>学了 4 年英语，勉强过了 4 级，可能和外国人基本沟通，都难；写篇 800 字的文章，比上天都难。<br>专业课一塌糊涂，做了 4 年试验，定容你都未必会；<br>每学期到来，领来一摞新书，期末再卖出去，还是新的，翻都没翻过；<br>这是在上学吗？这是在混日子，所以作家清欢说：“在中国，有 2000 万大学生，在假装上课。”<br>一直以来，大学都被当成学生乐园，无论老师，还是家长，都会告诉你：“苦过高中，到了大学就轻松了。”<br>真的是这样吗？我明确告诉你，不是。<br>大学，是你 12 年中小学教育之后，进入社会以前，最后一次系统学习。相对来说，大学更有包容度，更有自由度，塑造的，也不仅仅是你的知识，还有体系化思考，价值观锻造，良好习惯，学习和解决问题的能力等等。<br>大学混日子的人，废掉的不只是这 4 年，很有可能，废了一生。 很多大学生，直到大四开始找工作才发现问题的严重性，专业知识几近于零，社会技巧一无所有，前三年所有的不思进取终于在这一刻还给了他们。<br>等他们幡然醒悟，已被这个世界所淘汰。<br>社会跟高考毕竟不一样，不是靠小聪明高考前临门一脚刷分刷得很高考上 985、211 就算是功成名就的， 社会考验的是全方位的生存能力，在生存的压力下面自身一切的弱点都会被逼迫得无所遁形。<br>丁磊说过一句我很认可的话，人一生的成就，主要靠一命二运三风水四积德五读书。<br>人生难事，所谓一拖二懒三不读书！<br>大学，正因为其宽松，才更要学会自律。<br>不知道从哪听说了这句话，学渣找不到好工作是对学霸最起码的尊重，同理，贪图一时安逸的懒人赚不到钱也是最那些勤奋刻苦的人最起码的尊重。<br>很多人，好吃懒做，还整天抱怨自己怀才不遇，一副苦大仇深跟这个世界决裂的样子，却不知道自己就是个鼠目寸光的废物。<br>你可知道被你荒废的时间，多少人正在拼命？<br>你并不知道，毕业后的每一天都像劫后余生。</strong></p>
+<br>
+<br>
+<br>
+
+<blockquote>
+<p><strong><em>写在最后:</em></strong><br>我叫风骨散人，名字的意思是我多想可以不低头的自由生活，可现实却不是这样。家境贫寒，总得向这个世界低头，所以我一直在奋斗，想改变我的命运给亲人好的生活，希望同样被生活绑架的你可以通过自己的努力改变现状，深知成年人的世界里没有容易二字。目前是一名在校大学生，预计考研，热爱编程，热爱技术，喜欢分享，知识无界，希望我的分享可以帮到你！<br>如果有什么想看的，可以私信我，如果在能力范围内，我会发布相应的博文！<br>感谢大家的阅读！😘 你的点赞、收藏、关注是对我最大的鼓励！</p>
+</blockquote>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E7%AE%97%E6%B3%95/" class="category-chain-item">算法</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/%E7%AE%97%E6%B3%95/ACM%E7%AB%9E%E8%B5%9B/" class="category-chain-item">ACM竞赛</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/%E7%AE%97%E6%B3%95/ACM%E7%AB%9E%E8%B5%9B/%E5%8E%86%E7%A8%8B/" class="category-chain-item">历程</a>
+  
+  
+
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>『算法-ACM竞赛-历程』大学每天打游戏，不是混吃等死是什么？</div>
+      <div>https://chiamzhang.github.io/2024/06/29/『算法-ACM竞赛-历程』大学每天打游戏，不是混吃等死是什么？/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>Chiam</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>June 29, 2024</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>Licensed under</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2024/06/29/%E3%80%8E%E7%AE%97%E6%B3%95-ACM%E7%AB%9E%E8%B5%9B-%E5%8E%86%E7%A8%8B%E3%80%8F%E6%80%BB%E6%98%AF%E6%83%B3%E9%80%83%E9%81%BF%E4%B8%8D%E6%83%B3%E5%8E%BB%E9%9D%A2%E5%AF%B9%EF%BC%88%E5%8F%88%E6%98%AF%E5%8F%91%E7%89%A2%E9%AA%9A%E7%9A%84%E4%B8%80%E5%A4%A9%EF%BC%89/" title="『算法-ACM竞赛-历程』总是想逃避不想去面对（又是发牢骚的一天）">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">『算法-ACM竞赛-历程』总是想逃避不想去面对（又是发牢骚的一天）</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/06/29/%E3%80%8E%E7%AE%97%E6%B3%95-ACM%E7%AB%9E%E8%B5%9B-%E5%8E%86%E7%A8%8B%E3%80%8FACM%E6%88%90%E9%95%BF%E4%B9%8B%E8%B7%AF%EF%BC%88%E5%B9%B2%E8%B4%A7%EF%BC%89%20%E6%88%91%E7%88%B1ACM%EF%BC%8C%E4%B8%8E%E5%90%9B%E5%85%B1%E5%8B%89/" title="『算法-ACM竞赛-历程』ACM成长之路（干货） 我爱ACM，与君共勉">
+                        <span class="hidden-mobile">『算法-ACM竞赛-历程』ACM成长之路（干货） 我爱ACM，与君共勉</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"fIfc7WqUDZohlQuPc2lz5mJy-MdYXbMMI","appKey":"zjlAG3ZA3o4cBHVAkjzc2Z20","path":"window.location.pathname","placeholder":"留言仅限讨论，禁止广告等行为","avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"https://fifc7wqu.api.lncldglobal.com","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>Table of Contents</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <meta name="referrer" content="no-referrer" /> <footer id="footer" role="contentinfo"> <meta name="referrer" content="no-referrer" /> <div class="divider"> <div class="wall"></div> <img class="animals" src="/img/footer_animals_new.png" srcset="/img/loading.gif" lazyload alt="Footer Animals"> </div> <div class="container" data-index="450"> <p> <a href="https://chiamzhang.github.io" target="_blank">DogEgg</a> <i class="iconfont icon-love"></i> <a href="#" target="_blank">LittePig</a> </p> <p> Powered by  <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-pen"></i> Theme  <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> </p> </div> </footer> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+  
+<script src="/js/love.js"></script>
+<script src="/js/funnyTitle.js"></script>
+<script src="/js/backTop.js"></script>
+<script src="//cdn.jsdelivr.net/gh/bynotes/texiao/source/js/xiaoxuehua.js"></script>
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+</html>

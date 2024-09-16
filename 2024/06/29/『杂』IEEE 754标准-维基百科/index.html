@@ -1,0 +1,729 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/Mine.jpg">
+  <link rel="icon" href="/img/Mine.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Chiam">
+  <meta name="keywords" content="Algorithms，Cybersecurity">
+  
+    <meta name="description" content="『杂』IEEE 754 标准-维基百科IEEE 二进制浮点数算术标准（IEEE 754） 是 20 世纪 80 年代以来最广泛使用的浮点数运算标准，为许多 CPU 与浮点运算器所采用。这个标准定义了表示浮点数的格式（包括负零-0）与反常值（denormal number），一些特殊数值（（无穷（Inf）与非数值（NaN）），以及这些数值的“浮点数运算符”；它也指明了四种数值舍入规则和五种例外状况（">
+<meta property="og:type" content="article">
+<meta property="og:title" content="『杂』IEEE 754标准-维基百科">
+<meta property="og:url" content="https://chiamzhang.github.io/2024/06/29/%E3%80%8E%E6%9D%82%E3%80%8FIEEE%20754%E6%A0%87%E5%87%86-%E7%BB%B4%E5%9F%BA%E7%99%BE%E7%A7%91/index.html">
+<meta property="og:site_name" content="Homepage of Chiam">
+<meta property="og:description" content="『杂』IEEE 754 标准-维基百科IEEE 二进制浮点数算术标准（IEEE 754） 是 20 世纪 80 年代以来最广泛使用的浮点数运算标准，为许多 CPU 与浮点运算器所采用。这个标准定义了表示浮点数的格式（包括负零-0）与反常值（denormal number），一些特殊数值（（无穷（Inf）与非数值（NaN）），以及这些数值的“浮点数运算符”；它也指明了四种数值舍入规则和五种例外状况（">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200313215839985.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200313215944868.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200313220107190.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200313222834624.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200313220625443.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200313220638926.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/2020031322073766.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200313220801368.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200313220907948.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200313223048547.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/2020031322311822.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70">
+<meta property="article:published_time" content="2024-06-29T13:16:53.884Z">
+<meta property="article:modified_time" content="2023-12-05T16:18:19.027Z">
+<meta property="article:author" content="Chiam">
+<meta property="article:tag" content="Algorithms，Cybersecurity">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20200313215839985.png">
+  
+  
+  
+  <title>『杂』IEEE 754标准-维基百科 - Homepage of Chiam</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"chiamzhang.github.io","root":"/","version":"1.9.5-a","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":"❡"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":2},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
+
+
+<body>
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Chiam&#39;s Blogs</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                
+                <span>Home</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                
+                <span>Archives</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                
+                <span>Categories</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                
+                <span>About</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                
+                <span>Links</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="『杂』IEEE 754标准-维基百科"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-06-29 21:16" pubdate>
+          June 29, 2024 pm
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          4.2k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          36 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">『杂』IEEE 754标准-维基百科</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="『杂』IEEE-754-标准-维基百科"><a href="#『杂』IEEE-754-标准-维基百科" class="headerlink" title="『杂』IEEE 754 标准-维基百科"></a>『杂』IEEE 754 标准-维基百科</h1><p><strong>IEEE 二进制浮点数算术标准（IEEE 754）</strong> 是 20 世纪 80 年代以来最广泛使用的浮点数运算标准，为许多 CPU 与浮点运算器所采用。这个标准定义了表示浮点数的格式（包括负零-0）与反常值（denormal number），一些特殊数值（（无穷（Inf）与非数值（NaN）），以及这些数值的“浮点数运算符”；它也指明了四种数值舍入规则和五种例外状况（包括例外发生的时机与处理方式）。</p>
+<p>IEEE 754 规定了四种表示浮点数值的方式：单精确度（32 位）、双精确度（64 位）、延伸单精确度（43 比特以上，很少使用）与延伸双精确度（79 比特以上，通常以 80 位实现）。只有 32 位模式有强制要求，其他都是选择性的。大部分编程语言都提供了 IEEE 浮点数格式与算术，但有些将其列为非必需的。例如，IEEE 754 问世之前就有的 C 语言，现在包括了 IEEE 算术，但不算作强制要求（C 语言的 float 通常是指 IEEE 单精确度，而 double 是指双精确度）。</p>
+<p>该标准的全称为<strong>IEEE 二进制浮点数算术标准（ANSI&#x2F;IEEE Std 754-1985）</strong>，又称<strong>IEC 60559:1989，微处理器系统的二进制浮点数算术</strong>（本来的编号是 IEC 559:1989）[1]。后来还有“与基数无关的浮点数”的“IEEE 854-1987 标准”，有规定基数为 2 跟 10 的状况。现在最新标准是“ISO&#x2F;IEC&#x2F;IEEE FDIS 60559:2010”。</p>
+<p>在六、七十年代，各家计算机公司的各个型号的计算机，有着千差万别的浮点数表示，却没有一个业界通用的标准。这给数据交换、计算机协同工作造成了极大不便。IEEE 的浮点数专业小组于七十年代末期开始酝酿浮点数的标准。在 1980 年，英特尔公司就推出了单片的 8087 浮点数协处理器，其浮点数表示法及定义的运算具有足够的合理性、先进性，被 IEEE 采用作为浮点数的标准，于 1985 年发布。而在此前，这一标准的内容已在八十年代初期被各计算机公司广泛采用，成了事实上的业界工业标准。加州大学伯克利分校的数值计算与计算机科学教授威廉·卡韩被誉为“浮点数之父”。</p>
+<h4 id="浮点数剖析"><a href="#浮点数剖析" class="headerlink" title="浮点数剖析"></a>浮点数剖析</h4><p>一个浮点数 (Value) 的表示其实可以这样表示：<br><img src="https://img-blog.csdnimg.cn/20200313215839985.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<p>也就是浮点数的实际值，等于符号位（sign bit）乘以指数偏移值(exponent bias)再乘以分数值(fraction)。</p>
+<p>以下内文是 IEEE 754 对浮点数格式的描述。</p>
+<h5 id="本文表示比特的约定"><a href="#本文表示比特的约定" class="headerlink" title="本文表示比特的约定"></a>本文表示比特的约定</h5><p>把 W 个比特（bit）的数据，从内存地址低端到高端，以 0 到 W−1 编码。通常将内存地址低端的比特写在最右边，称作最低有效位（Least Significant Bit, LSB），代表最小的比特，改变时对整体数值影响最小的比特。声明这一点的必要性在于 X86 体系架构是小端序的数据存储。</p>
+<p>对于十进制整数 N，必要时表示为 N10 以与二进制的数的表示 N2 相区分。</p>
+<p>对于一个数，其二进制科学计数法表示下的指数的值，下文称之为<strong>指数的实际值</strong>；而根据 IEEE 754 标准对指数部分的编码的值，称之为浮点数表示法<strong>指数域的编码值</strong>。</p>
+<h5 id="整体呈现"><a href="#整体呈现" class="headerlink" title="整体呈现"></a>整体呈现</h5><p>IEEE 754 浮点数的三个域<br>二进制浮点数是以符号数值表示法的格式存储——最高有效位被指定为符号位（sign bit）；“指数部分”，即次高有效的 e 个比特，存储指数部分；最后剩下的 f 个低有效位的比特，存储“有效数”（significand）的小数部分（在非规约形式下整数部分默认为 0，其他情况下一律默认为 1）。<br><img src="https://img-blog.csdnimg.cn/20200313215944868.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<h6 id="指数偏移值"><a href="#指数偏移值" class="headerlink" title="指数偏移值"></a>指数偏移值</h6><p><img src="https://img-blog.csdnimg.cn/20200313220107190.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<p>采用指数的实际值加上固定的偏移值的办法表示浮点数的指数，好处是可以用长度为$e}e 个比特的无符号整数来表示所有的指数取值，这使得两个浮点数的指数大小的比较更为容易，实际上可以按照字典序比较两个浮点表示的大小。</p>
+<p>这种移码表示的指数部分，中文称作阶码。</p>
+<h6 id="规约形式的浮点数"><a href="#规约形式的浮点数" class="headerlink" title="规约形式的浮点数"></a>规约形式的浮点数</h6><p>如果浮点数中指数部分的编码值在 $0&lt;exponent\leqslant 2^{e}-2$之间，且在科学表示法的表示方式下，分数 (fraction) 部分最高有效位（即整数字）是 <strong>1</strong>，那么这个浮点数将被称为<strong>规约形式的浮点数</strong>。“规约”是指用唯一确定的浮点形式去表示一个值。</p>
+<p>由于这种表示下的尾数有一位隐含的二进制有效数字，为了与二进制科学计数法的尾数（mantissa）相区别，IEEE754 称之为有效数（significant）。</p>
+<p>举例来说，双精度 (64-bit) 的规约形式浮点数在指数偏移值的值域为$00000000001$(11-bit) 到$11111111110$ ，在分数部分则是$000…..000$ 到$111…..111$ (52-bit)</p>
+<h6 id="非规约形式的浮点数"><a href="#非规约形式的浮点数" class="headerlink" title="非规约形式的浮点数"></a>非规约形式的浮点数</h6><p>如果浮点数的指数部分的编码值是 0，分数部分非零，那么这个浮点数将被称为<strong>非规约形式的浮点数</strong>。一般是某个数字相当接近零时才会使用非规约型式来表示。 IEEE 754 标准规定：非规约形式的浮点数的指数偏移值比规约形式的浮点数的指数偏移值小 1。例如，最小的规约形式的单精度浮点数的指数部分编码值为 1，指数的实际值为-126；而非规约的单精度浮点数的指数域编码值为 0，对应的指数实际值也是-126 而不是-127。实际上非规约形式的浮点数仍然是有效可以使用的，只是它们的绝对值已经小于所有的规约浮点数的绝对值；即所有的非规约浮点数比规约浮点数更接近 0。规约浮点数的尾数大于等于 1 且小于 2，而非规约浮点数的尾数小于 1 且大于 0。</p>
+<p><img src="https://img-blog.csdnimg.cn/20200313222834624.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70" srcset="/img/loading.gif" lazyload></p>
+<h6 id="特殊值"><a href="#特殊值" class="headerlink" title="特殊值"></a>特殊值</h6><p>这里有三个特殊值需要指出：<br><img src="https://img-blog.csdnimg.cn/20200313220625443.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br>以上规则，总结如下：<br><img src="https://img-blog.csdnimg.cn/20200313220638926.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<h6 id="32-位单精度"><a href="#32-位单精度" class="headerlink" title="32 位单精度"></a>32 位单精度</h6><p>单精度二进制小数，使用 32 个比特存储。<br><img src="https://img-blog.csdnimg.cn/2020031322073766.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br>S 为符号位，Exp 为指数字，Fraction 为有效数字。 指数部分即使用所谓的偏正值形式表示，偏正值为实际的指数大小与一个固定值（32 位的情况是 127）的和。采用这种方式表示的目的是简化比较。因为，指数的值可能为正也可能为负，如果采用补码表示的话，全体符号位 S 和 Exp 自身的符号位将导致不能简单的进行大小比较。正因为如此，指数部分通常采用一个无符号的正数值存储。单精度的指数部分是 −126 ～+127 加上偏移值 127，指数值的大小从 1 ～ 254（0 和 255 是特殊值）。浮点小数计算时，指数值减去偏正值将是实际的指数大小。</p>
+<p>单精度浮点数各种极值情况： <img src="https://img-blog.csdnimg.cn/20200313220801368.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<h6 id="64-位双精度"><a href="#64-位双精度" class="headerlink" title="64 位双精度"></a>64 位双精度</h6><p>双精度二进制小数，使用 64 个比特存储。<br><img src="https://img-blog.csdnimg.cn/20200313220907948.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br>S 为符号位，Exp 为指数字，Fraction 为有效数字。指数部分即使用所谓的<strong>偏正值</strong>形式表示，偏正值为实际的指数大小与一个固定值（64 位的情况是 1023）的和。采用这种方式表示的目的是简化比较。因为，指数的值可能为正也可能为负，如果采用补码表示的话，全体符号位 S 和 Exp 自身的符号位将导致不能简单的进行大小比较。正因为如此，指数部分通常采用一个无符号的正数值存储。双精度的指数部分是 −1022 ～+1023 加上 1023，指数值的大小从 1 ～ 2046（0（2 进位全为 0）和 2047（2 进位全为 1）是特殊值）。浮点小数计算时，指数值减去偏正值将是实际的指数大小。</p>
+<h5 id="浮点数的比较"><a href="#浮点数的比较" class="headerlink" title="浮点数的比较"></a>浮点数的比较</h5><p>浮点数基本上可以按照符号位、指数域、尾数域的顺序作字典比较。显然，所有正数大于负数；正负号相同时，指数的二进制表示法更大的其浮点数值更大。</p>
+<h5 id="浮点数的舍入"><a href="#浮点数的舍入" class="headerlink" title="浮点数的舍入"></a>浮点数的舍入</h5><p>任何有效数上的运算结果，通常都存放在较长的寄存器中，当结果被放回浮点格式时，必须将多出来的比特丢弃。 有多种方法可以用来运行舍入作业，实际上 IEEE 标准列出 4 种不同的方法：</p>
+<p>舍入到最接近：舍入到最接近，在一样接近的情况下偶数优先（Ties To Even，这是默认的舍入方式）：会将结果舍入为最接近且可以表示的值，但是当存在两个数一样接近的时候，则取其中的偶数（在二进制中是以 0 结尾的）。<br><strong>朝+∞ 方向舍入：</strong> 会将结果朝正无限大的方向舍入。<br><strong>朝-∞ 方向舍入：</strong> 会将结果朝负无限大的方向舍入。<br><strong>朝 0 方向舍入：</strong> 会将结果朝 0 的方向舍入。</p>
+<h5 id="浮点数的运算与函数"><a href="#浮点数的运算与函数" class="headerlink" title="浮点数的运算与函数"></a>浮点数的运算与函数</h5><h6 id="标准运算"><a href="#标准运算" class="headerlink" title="标准运算"></a>标准运算</h6><p>下述函数必须提供:<br><img src="https://img-blog.csdnimg.cn/20200313223048547.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<h5 id="建议的函数与谓词"><a href="#建议的函数与谓词" class="headerlink" title="建议的函数与谓词"></a>建议的函数与谓词</h5><p><img src="https://img-blog.csdnimg.cn/2020031322311822.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<h5 id="精度"><a href="#精度" class="headerlink" title="精度"></a>精度</h5><p>在二进制，第一个有效数字必定是“1”，因此这个“1”并不会存储。</p>
+<h5 id="讨论一"><a href="#讨论一" class="headerlink" title="讨论一"></a>讨论一</h5><p>单精和双精浮点数的有效数字分别是有存储的 23 和 52 个位，加上最左手边没有存储的第 1 个位，即是 24 和 53 个位。</p>
+<p>$\log 2^{24}&#x3D;7.22$<br>$\log 2^{53}&#x3D;15.95$<br>由以上的计算，单精和双精浮点数可以保证 7 位和 15 位十进制有效数字。</p>
+<h5 id="讨论二"><a href="#讨论二" class="headerlink" title="讨论二"></a>讨论二</h5><p>C++语言标准定义的浮点数的十进制精度(decimal precision)：十进制数字的位数，可被(浮点数)表示而值不发生变化[3]。C 语言标准定义的浮点数的十进制精度为：十进制数字的位数 q，使得任何具有 q 位十进制数字的浮点数可近似表示为 b 进制的 p 位数字并且能近似回十进制表示而不改变这 q 位十进制数字[4]</p>
+<p>但由于相对近似误差不均匀，有的 7 位十进制浮点数不能保证近似转化为 32 比特浮点再近似转化回 7 位十进制浮点后保持值不变：例如 8.589973e9 将变成 8.589974e9。这种近似误差不会超过 1 比特的表示能力，因此(24-1)*std::log10(2)等于 6.92，下取整为 6，成为 std::numeric_limits<float>::digits10 以及 FLT_DIG 的值。std::numeric_limits<float>::max_digits10 的值为 9，含义是必须 9 位十进制数字才能区分 float 的所有值；也即 float 的最大表示区分度。</p>
+<p><code>类似的，std::numeric_limits&lt;double&gt;::digits10或DBL_DIG是15， std::numeric_limits&lt;double&gt;::max_digits10是17</code></p>
+<h5 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h5><p>以下的 C++程序，概略地展示了单精和双精浮点数的精度。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment">#include &lt;iostream&gt;</span><br><br><span class="hljs-built_in">int</span> main () &#123;<br>    std::cout.precision(<span class="hljs-number">20</span>);<br>    <span class="hljs-built_in">float</span> a=<span class="hljs-number">123.45678901234567890</span>;<br>    double b=<span class="hljs-number">123.45678901234567890</span>;<br>    std::cout &lt;&lt; a &lt;&lt; std::endl;<br>    std::cout &lt;&lt; b &lt;&lt; std::endl;<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br><br>// Xcode <span class="hljs-number">5.1</span><br>// Output:<br>// <span class="hljs-number">123.456787109375</span><br>// <span class="hljs-number">123.45678901234568059</span><br>// Program ended <span class="hljs-keyword">with</span> exit code: <span class="hljs-number">0</span><br></code></pre></td></tr></table></figure>
+
+<h1 id="全文由维基百科翻译–-维基百科，自由的百科全书"><a href="#全文由维基百科翻译–-维基百科，自由的百科全书" class="headerlink" title="全文由维基百科翻译– 维基百科，自由的百科全书"></a>全文由维基百科翻译– 维基百科，自由的百科全书</h1>
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E6%9D%82/" class="category-chain-item">杂</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>『杂』IEEE 754标准-维基百科</div>
+      <div>https://chiamzhang.github.io/2024/06/29/『杂』IEEE 754标准-维基百科/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>Chiam</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>June 29, 2024</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>Licensed under</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2024/06/29/%E3%80%8E%E6%9D%82%E3%80%8FMarkdown%E4%B8%AD%E5%B8%8C%E8%85%8A%E5%AD%97%E6%AF%8D%E4%B8%8E%E4%BB%A3%E7%A0%81%E5%AF%B9%E5%BA%94%E8%A1%A8/" title="『杂』Markdown中希腊字母与代码对应表">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">『杂』Markdown中希腊字母与代码对应表</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/06/29/%E3%80%8E%E6%9D%82%E3%80%8FIdea%20%E8%87%AA%E5%8A%A8%E7%94%9F%E6%88%90%E6%96%B9%E6%B3%95%E6%B3%A8%E9%87%8A%EF%BC%88%E5%90%AB%E5%8F%82%E6%95%B0%E5%8F%8A%E8%BF%94%E5%9B%9E%E5%80%BC%EF%BC%89%E5%90%84%E7%89%88%E6%9C%AC%E9%80%9A%E7%94%A8%E3%80%82/" title="『杂』Idea 自动生成方法注释（含参数及返回值）各版本通用。">
+                        <span class="hidden-mobile">『杂』Idea 自动生成方法注释（含参数及返回值）各版本通用。</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"fIfc7WqUDZohlQuPc2lz5mJy-MdYXbMMI","appKey":"zjlAG3ZA3o4cBHVAkjzc2Z20","path":"window.location.pathname","placeholder":"留言仅限讨论，禁止广告等行为","avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"https://fifc7wqu.api.lncldglobal.com","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>Table of Contents</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <meta name="referrer" content="no-referrer" /> <footer id="footer" role="contentinfo"> <meta name="referrer" content="no-referrer" /> <div class="divider"> <div class="wall"></div> <img class="animals" src="/img/footer_animals_new.png" srcset="/img/loading.gif" lazyload alt="Footer Animals"> </div> <div class="container" data-index="450"> <p> <a href="https://chiamzhang.github.io" target="_blank">DogEgg</a> <i class="iconfont icon-love"></i> <a href="#" target="_blank">LittePig</a> </p> <p> Powered by  <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-pen"></i> Theme  <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> </p> </div> </footer> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+  
+<script src="/js/love.js"></script>
+<script src="/js/funnyTitle.js"></script>
+<script src="/js/backTop.js"></script>
+<script src="//cdn.jsdelivr.net/gh/bynotes/texiao/source/js/xiaoxuehua.js"></script>
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+</html>

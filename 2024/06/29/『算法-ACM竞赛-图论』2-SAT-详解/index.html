@@ -1,0 +1,989 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/Mine.jpg">
+  <link rel="icon" href="/img/Mine.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Chiam">
+  <meta name="keywords" content="Algorithms，Cybersecurity">
+  
+    <meta name="description" content="『算法-ACM 竞赛-图论』2-SAT-详解图论–2-SAT–详解问题描述：现有一个由 N 个布尔值组成的序列 A，给出一些限制关系，比如 A[x]AND A[y]&#x3D;0、A[x] OR A[y] OR A[z]&#x3D;1 等，要确定 A[0..N-1]的值，使得其满足所有限制关系。这个称为 SAT 问题，特别的，若每种限制关系中最多只对两个元素进行限制，则称为 2-SAT 问题。 由">
+<meta property="og:type" content="article">
+<meta property="og:title" content="『算法-ACM竞赛-图论』2-SAT-详解">
+<meta property="og:url" content="https://chiamzhang.github.io/2024/06/29/%E3%80%8E%E7%AE%97%E6%B3%95-ACM%E7%AB%9E%E8%B5%9B-%E5%9B%BE%E8%AE%BA%E3%80%8F2-SAT-%E8%AF%A6%E8%A7%A3/index.html">
+<meta property="og:site_name" content="Homepage of Chiam">
+<meta property="og:description" content="『算法-ACM 竞赛-图论』2-SAT-详解图论–2-SAT–详解问题描述：现有一个由 N 个布尔值组成的序列 A，给出一些限制关系，比如 A[x]AND A[y]&#x3D;0、A[x] OR A[y] OR A[z]&#x3D;1 等，要确定 A[0..N-1]的值，使得其满足所有限制关系。这个称为 SAT 问题，特别的，若每种限制关系中最多只对两个元素进行限制，则称为 2-SAT 问题。 由">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://private.codecogs.com/gif.latex?%5Cneg%20%EF%BF%BDc">
+<meta property="og:image" content="https://private.codecogs.com/gif.latex?%5Cneg%20%EF%BF%BDa">
+<meta property="og:image" content="https://private.codecogs.com/gif.latex?%5Cneg%20%EF%BF%BDb">
+<meta property="og:image" content="https://private.codecogs.com/gif.latex?(%5Cneg%20a%5Cvee%20b%5Cvee%5Cneg%20c)%20%5Cwedge%20(a%5Cvee%20b%5Cvee%5Cneg%20c)%20%5Cwedge%20(%5Cneg%20a%5Cvee%5Cneg%20b%5Cvee%20c)(%EF%BF%BDa%25u2228b%25u2228%EF%BF%BDc)%25u2227(a%25u2228b%25u2228%EF%BF%BDc)%25u2227(%EF%BF%BDa%25u2228%EF%BF%BDb%25u2228c)">
+<meta property="og:image" content="https://private.codecogs.com/gif.latex?%5Cvee%25u2228">
+<meta property="og:image" content="https://private.codecogs.com/gif.latex?%5Cwedge%25u2227">
+<meta property="og:image" content="https://private.codecogs.com/gif.latex?%5Cneg%20cc">
+<meta property="og:image" content="https://private.codecogs.com/gif.latex?(%5Cneg%20a%5Cvee%20b)%20%5Cwedge%20(a%5Cvee%20b)%20%5Cwedge%20(%5Cneg%20a%5Cvee%5Cneg%20b)">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20191115214426333.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/2019111521442995.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9zMS5heDF4LmNvbS8yMDE4LzA4LzIyL1BUQWp5OS5wbmc?x-oss-process=image/format,png">
+<meta property="article:published_time" content="2024-06-29T13:16:54.124Z">
+<meta property="article:modified_time" content="2023-12-05T16:19:02.424Z">
+<meta property="article:author" content="Chiam">
+<meta property="article:tag" content="Algorithms，Cybersecurity">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://private.codecogs.com/gif.latex?%5Cneg%20%EF%BF%BDc">
+  
+  
+  
+  <title>『算法-ACM竞赛-图论』2-SAT-详解 - Homepage of Chiam</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"chiamzhang.github.io","root":"/","version":"1.9.5-a","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":"❡"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":2},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
+
+
+<body>
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Chiam&#39;s Blogs</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                
+                <span>Home</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                
+                <span>Archives</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                
+                <span>Categories</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                
+                <span>About</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                
+                <span>Links</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="『算法-ACM竞赛-图论』2-SAT-详解"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-06-29 21:16" pubdate>
+          June 29, 2024 pm
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          5.5k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          46 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">『算法-ACM竞赛-图论』2-SAT-详解</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="『算法-ACM-竞赛-图论』2-SAT-详解"><a href="#『算法-ACM-竞赛-图论』2-SAT-详解" class="headerlink" title="『算法-ACM 竞赛-图论』2-SAT-详解"></a>『算法-ACM 竞赛-图论』2-SAT-详解</h1><h1 id="图论–2-SAT–详解"><a href="#图论–2-SAT–详解" class="headerlink" title="图论–2-SAT–详解"></a>图论–2-SAT–详解</h1><h4 id="问题描述："><a href="#问题描述：" class="headerlink" title="问题描述："></a><strong>问题描述：</strong></h4><p>现有一个由 N 个布尔值组成的序列 A，给出一些限制关系，比如 A[x]AND A[y]&#x3D;0、A[x] OR A[y] OR A[z]&#x3D;1 等，要确定 A[0..N-1]的值，使得其满足所有限制关系。这个称为 SAT 问题，特别的，若每种限制关系中最多只对两个元素进行限制，则称为 2-SAT 问题。</p>
+<p>由于在 2-SAT 问题中，最多只对两个元素进行限制，所以可能的限制关系共有 11 种：</p>
+<ol>
+<li>A[x]</li>
+<li><em><strong>NOT</strong></em> A[x]</li>
+<li>A[x] <em><strong>AND</strong></em> A[y]</li>
+<li>A[x] <strong>_ AND_ <em>NOT</em></strong> A[y]</li>
+<li>A[x] <em><strong>OR</strong></em> A[y]</li>
+<li>A[x] <em><strong>OR</strong></em>** **_**NOT**_ A[y]</li>
+<li><em>** NOT**</em> (A[x] <em><strong>AND</strong></em> A[y])</li>
+<li>**<em>NOT</em> **(A[x] <em><strong>OR</strong></em> A[y])</li>
+<li>A[x] <em><strong>XOR</strong></em> A[y]</li>
+<li><em><strong>NOT</strong></em> (A[x] <em><strong>XOR</strong></em> A[y])</li>
+<li>A[x] <em><strong>XOR</strong></em>** **_**NOT**_ A[y]</li>
+</ol>
+<p>进一步，3 可以用 1 表示：A[x]，A[y]，NOT(A[x] XOR A[y]) 相当于 NOT A[x] AND NOT A[y]。狄摩根定律。只剩下了 9 中基本关系类型。</p>
+<p>在实际问题中，2-SAT 问题在大多数时候表现成以下形式：有 N 对物品，每对物品中必须选取一个，也只能选取一个，并且它们之间存在某些限制关系（如某两个物品不能都选，某两个物品不能都不选，某两个物品必须且只能选一个，某个物品必选）等，这时，可以将每对物品当成一个布尔值（选取第一个物品相当于 0，选取第二个相当于 1），如果所有的限制关系最多只对两个物品进行限制，则它们都可以转化成 9 种基本限制关系，从而转化为 2-SAT 模型。</p>
+<p>(引自：<a target="_blank" rel="noopener" href="http://www.cnblogs.com/kuangbin/archive/2012/10/05/2712429.html">http://www.cnblogs.com/kuangbin/archive/2012/10/05/2712429.html</a>)</p>
+<h4 id=""><a href="#" class="headerlink" title=""></a></h4><p><strong>2-SAT 模型建立:</strong></p>
+<p>1.我们利用一条有向边&lt;i,j&gt;，来表示选 i 的情况下，一定要选 j;</p>
+<p>2.用 i 表示某个点是 true,那么 i’表示某个点是 false</p>
+<p>3.因为限制的两两之间的关系，所以我们可以通过逻辑关系来建边：</p>
+<p>1）如果给出 A 和 B 的限制关系，A 和 B 必须一起选，(A and B)||(!A and !B )&#x3D;&#x3D;true 那么选 A 必须选 B，建边&lt;i,j&gt;和&lt;j,i&gt;还有&lt;i’,j’&gt;和&lt;j’,i’&gt;</p>
+<p>2）如果给出 A 和 B 的限制关系，选 A 不能选 B，那么(A &amp;&amp; !B)||(!A &amp;&amp; B )&#x3D;&#x3D;true,建边&lt;i,j’&gt;和&lt;j,i’&gt;</p>
+<p>3）如果必须选 A,那么 A&#x3D;&#x3D;true,建边&lt;i’,i&gt;</p>
+<p>4）如果 A 一定不能选，那么!A&#x3D;&#x3D;true.建边&lt;i,i’&gt;</p>
+<p>这么建图之后，会出现一个有向图，这个有向图会导致一个连通环，导致某个点一旦选取，那么这条链上的所有点都要被选中。如果我们找到一个强连通分量，那么这个强连通分量当中的点，如果选取必须全部选取，不选取的话一定是全部不选取，所以只要满足这个有向图中连通的点不会导致 i 和 i’同时被选取，如果不存在矛盾，那么当前问题就是有解的。但是往往在求解过程中，我们要求的解会要求一些性质，所以提供以下几种解决方案。</p>
+<p>用离散的的知识解释的话就是下面这位大佬的讲解（别人发给我的）</p>
+<p>首先，把「2」和「SAT」拆开。SAT 是 Satisfiability 的缩写，意为可满足性。即一串布尔变量，每个变量只能为真或假。要求对这些变量进行赋值，满足布尔方程。</p>
+<p>举个例子：教练正在讲授一个算法，代码要给教室中的多位同学阅读，代码的码风要满足所有学生。假设教室当中有三位学生：Anguei、Anfangen、Zachary_260325。现在他们每人有如下要求：</p>
+<ul>
+<li><strong>Anguei</strong>: 我要求代码当中满足下列条件之一：<ol>
+<li>不写 <code>using namespace std;</code> （ ¬a）</li>
+<li>使用读入优化 （b）</li>
+<li>大括号不换行 （ ¬c）</li>
+</ol>
+</li>
+<li><strong>Anfangen</strong>: 我要求代码当中满足下条件之一：<ol>
+<li>写 <code>using namespace std;</code> （a）</li>
+<li>使用读入优化 （b）</li>
+<li>大括号不换行 （<img src="https://private.codecogs.com/gif.latex?%5Cneg%20%EF%BF%BDc" srcset="/img/loading.gif" lazyload alt="\neg ¬c">）</li>
+</ol>
+</li>
+<li><strong>Zachary_260325</strong>：我要求代码当中满足下条件之一：<ol>
+<li>不写 <code>using namespace std;</code> （<img src="https://private.codecogs.com/gif.latex?%5Cneg%20%EF%BF%BDa" srcset="/img/loading.gif" lazyload alt="\neg ¬a">）</li>
+<li>使用 <code>scanf</code> （<img src="https://private.codecogs.com/gif.latex?%5Cneg%20%EF%BF%BDb" srcset="/img/loading.gif" lazyload alt="\neg ¬b">）</li>
+<li>大括号换行 （c）</li>
+</ol>
+</li>
+</ul>
+<p>我们不妨把三种要求设为 a,b,ca,b,c，变量前加 \neg¬ 表示「不」，即「假」。上述条件翻译成布尔方程即：<img src="https://private.codecogs.com/gif.latex?(%5Cneg%20a%5Cvee%20b%5Cvee%5Cneg%20c)%20%5Cwedge%20(a%5Cvee%20b%5Cvee%5Cneg%20c)%20%5Cwedge%20(%5Cneg%20a%5Cvee%5Cneg%20b%5Cvee%20c)(%EF%BF%BDa%25u2228b%25u2228%EF%BF%BDc)%25u2227(a%25u2228b%25u2228%EF%BF%BDc)%25u2227(%EF%BF%BDa%25u2228%EF%BF%BDb%25u2228c)" srcset="/img/loading.gif" lazyload alt="(\neg a\vee b\vee\neg c) \wedge (a\vee b\vee\neg c) \wedge (\neg a\vee\neg b\vee c)(¬a∨b∨¬c)∧(a∨b∨¬c)∧(¬a∨¬b∨c)">。其中，<img src="https://private.codecogs.com/gif.latex?%5Cvee%25u2228" srcset="/img/loading.gif" lazyload alt="\vee∨">表示或，<img src="https://private.codecogs.com/gif.latex?%5Cwedge%25u2227" srcset="/img/loading.gif" lazyload alt="\wedge∧">表示与。</p>
+<p>现在要做的是，为 ABC 三个变量赋值，满足三位学生的要求。</p>
+<p>Q: 这可怎么赋值啊？暴力？</p>
+<p>A: 对，这是 SAT 问题，已被证明为 <strong>NP 完全</strong> 的，只能暴力。</p>
+<p>Q: 那么 2-SAT 是什么呢？</p>
+<p>A: 2-SAT，即每位同学 <strong>只有两个条件</strong>（比如三位同学都对大括号是否换行不做要求，这就少了一个条件）不过，仍要使所有同学得到满足。于是，以上布尔方程当中的 c,<img src="https://private.codecogs.com/gif.latex?%5Cneg%20cc" srcset="/img/loading.gif" lazyload alt="\neg cc">,¬c 没了，变成了这个样子：<img src="https://private.codecogs.com/gif.latex?(%5Cneg%20a%5Cvee%20b)%20%5Cwedge%20(a%5Cvee%20b)%20%5Cwedge%20(%5Cneg%20a%5Cvee%5Cneg%20b)" srcset="/img/loading.gif" lazyload alt="(\neg a\vee b) \wedge (a\vee b) \wedge (\neg a\vee\neg b)"></p>
+<p><strong>公式杀招：</strong></p>
+<p><img src="https://img-blog.csdnimg.cn/20191115214426333.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://img-blog.csdnimg.cn/2019111521442995.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70" srcset="/img/loading.gif" lazyload></p>
+<h3 id="怎么求解-2-SAT-问题？"><a href="#怎么求解-2-SAT-问题？" class="headerlink" title="怎么求解 2-SAT 问题？"></a>怎么求解 2-SAT 问题？</h3><p><strong>使用强连通分量。</strong> 对于每个变量 xx，我们建立两个点：x ,¬x 分别表示变量 xx 取 <code>true</code> 和取 <code>false</code>。所以，<strong>图的节点个数是两倍的变量个数</strong>。<strong>在存储方式上，可以给第 ii 个变量标号为 ii，其对应的反值标号为 i + ni+n</strong>。对于每个同学的要求 (a∨b)，转换为 ¬a→b∧¬b→a。对于这个式子，可以理解为：「若 aa 假则 bb 必真，若 bb 假则 aa 必真」然后按照箭头的方向建有向边就好了。综上，我们这样对上面的方程建图：</p>
+<table>
+<thead>
+<tr>
+<th>原式</th>
+<th>建图</th>
+</tr>
+</thead>
+<tbody><tr>
+<td></td>
+<td>a→b∧¬b→¬a</td>
+</tr>
+<tr>
+<td></td>
+<td>¬a→b∧¬b→a</td>
+</tr>
+<tr>
+<td></td>
+<td>a→¬b∧b→¬a</td>
+</tr>
+</tbody></table>
+<p>于是我们得到了这么一张图：</p>
+<p><img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9zMS5heDF4LmNvbS8yMDE4LzA4LzIyL1BUQWp5OS5wbmc?x-oss-process=image/format,png" srcset="/img/loading.gif" lazyload alt="built"></p>
+<p>可以看到，¬a 与 b 在同一强连通分量内，a 与 ¬b 在同一强连通分量内。<strong>同一强连通分量内的变量值一定是相等的</strong>。也就是说，如果 x 与 ¬x 在同一强连通分量内部，一定无解。反之，就一定有解了。</p>
+<p>但是，对于一组布尔方程，可能会有多组解同时成立。要怎样判断给每个布尔变量赋的值是否恰好构成一组解呢？</p>
+<p>这个很简单，只需要 <strong>当 xx 所在的强连通分量的拓扑序在 \neg x¬x 所在的强连通分量的拓扑序之后取 xx 为真</strong> 就可以了。在使用 Tarjan 算法缩点找强连通分量的过程中，已经为每组强连通分量标记好顺序了——<strong>不过是反着的拓扑序</strong>。所以一定要写成 <code>color[x] &lt; color[-x]</code> 。</p>
+<h4 id="代码实现："><a href="#代码实现：" class="headerlink" title="代码实现："></a><strong>代码实现：</strong></h4><pre><code class="hljs">//暴力DFS，求字典序最小的解，也是求字典序唯一的方法
+#include&lt;cstdio&gt;
+#include&lt;cstring&gt;
+#include&lt;vector&gt;
+using namespace std;
+const int maxn=10000+10;
+struct TwoSAT
+&#123;
+    int n;//原始图的节点数(未翻倍)
+    vector&lt;int&gt; G[maxn*2];//G[i]==j表示如果mark[i]=true,那么mark[j]也要=true
+    bool mark[maxn*2];//标记
+    int S[maxn*2],c;//S和c用来记录一次dfs遍历的所有节点编号
+
+    void init(int n)
+    &#123;
+        this-&gt;n=n;
+        for(int i=0;i&lt;2*n;i++) G[i].clear();
+        memset(mark,0,sizeof(mark));
+    &#125;
+
+    //加入(x,xval)或(y,yval)条件
+    //xval=0表示假，yval=1表示真
+    void add_clause(int x,int xval,int y,int yval)
+    &#123;
+        x=x*2+xval;
+        y=y*2+yval;
+        G[x^1].push_back(y);
+        G[y^1].push_back(x);
+    &#125;
+
+    //从x执行dfs遍历,途径的所有点都标记
+    //如果不能标记,那么返回false
+    bool dfs(int x)
+    &#123;
+        if(mark[x^1]) return false;//这两句的位置不能调换
+        if(mark[x]) return true;
+        mark[x]=true;
+        S[c++]=x;
+        for(int i=0;i&lt;G[x].size();i++)
+            if(!dfs(G[x][i])) return false;
+        return true;
+    &#125;
+
+    //判断当前2-SAT问题是否有解
+    bool solve()
+    &#123;
+        for(int i=0;i&lt;2*n;i+=2)
+        if(!mark[i] &amp;&amp; !mark[i+1])
+        &#123;
+            c=0;
+            if(!dfs(i))
+            &#123;
+                while(c&gt;0) mark[S[--c]]=false;
+                if(!dfs(i+1)) return false;
+            &#125;
+        &#125;
+        return true;
+    &#125;
+&#125;;
+
+
+//联通分量+拓扑排序，求任意意一组解，比较快
+
+#include &lt;cstdio&gt;
+#include &lt;cstring&gt;
+#include &lt;queue&gt;
+#include &lt;vector&gt;
+#include &lt;stack&gt;
+#include &lt;algorithm&gt;
+#define MAXN 2000+10
+#define MAXM 400000
+#define INF 1000000
+using namespace std;
+vector&lt;int&gt; G[MAXN];
+int low[MAXN], dfn[MAXN];
+int dfs_clock;
+int sccno[MAXN], scc_cnt;
+stack&lt;int&gt; S;
+bool Instack[MAXN];
+int N, M;
+void init()
+&#123;
+    for(int i = 0; i &lt; 2*N; i++) G[i].clear();
+&#125;
+void getMap()
+&#123;
+    int a, b, c;
+    char op[10];
+    while(M--)
+    &#123;
+        scanf(&quot;%d%d%d%s&quot;, &amp;a, &amp;b, &amp;c, op);
+        switch(op[0])
+        &#123;
+            case &#39;A&#39;:
+            if(c == 1)//a,b取1
+            &#123;
+                G[a + N].push_back(a);
+                G[b + N].push_back(b);
+            &#125;
+            else//a,b至少一个不为真
+            &#123;
+                G[a].push_back(b + N);
+                G[b].push_back(a + N);
+            &#125;
+            break;
+            case &#39;O&#39;:
+            if(c == 1)//a,b最少有一个为真
+            &#123;
+                G[b + N].push_back(a);
+                G[a + N].push_back(b);
+            &#125;
+            else//a,b都为假
+            &#123;
+                G[a].push_back(a + N);
+                G[b].push_back(b + N);
+            &#125;
+            break;
+            case &#39;X&#39;:
+            if(c == 1)//a b 不同值
+            &#123;
+                G[a + N].push_back(b);
+                G[a].push_back(b + N);
+                G[b].push_back(a + N);
+                G[b + N].push_back(a);
+            &#125;
+            else//a b 同真同假
+            &#123;
+                G[a].push_back(b);
+                G[b].push_back(a);
+                G[a + N].push_back(b + N);
+                G[b + N].push_back(a + N);
+            &#125;
+        &#125;
+    &#125;
+&#125;
+void tarjan(int u, int fa)
+&#123;
+    int v;
+    low[u] = dfn[u] = ++dfs_clock;
+    S.push(u);
+    Instack[u] = true;
+    for(int i = 0; i &lt; G[u].size(); i++)
+    &#123;
+        v = G[u][i];
+        if(!dfn[v])
+        &#123;
+            tarjan(v, u);
+            low[u] = min(low[u], low[v]);
+        &#125;
+        else if(Instack[v])
+        low[u] = min(low[u], dfn[v]);
+    &#125;
+    if(low[u] == dfn[u])
+    &#123;
+        scc_cnt++;
+        for(;;)
+        &#123;
+            v = S.top(); S.pop();
+            Instack[v] = false;
+            sccno[v] = scc_cnt;
+            if(v == u) break;
+        &#125;
+    &#125;
+&#125;
+void find_cut(int l, int r)
+&#123;
+    memset(low, 0, sizeof(low));
+    memset(dfn, 0, sizeof(dfn));
+    memset(sccno, 0, sizeof(sccno));
+    memset(Instack, false, sizeof(Instack));
+    dfs_clock = scc_cnt = 0;
+    for(int i = l; i &lt;= r; i++)
+    if(!dfn[i]) tarjan(i, -1);
+&#125;
+void solve()
+&#123;
+    for(int i = 0; i &lt; N; i++)
+    &#123;
+        if(sccno[i] == sccno[i + N])
+        &#123;
+            printf(&quot;NO\n&quot;);
+            return ;
+        &#125;
+    &#125;
+    printf(&quot;YES\n&quot;);
+&#125;
+int main()
+&#123;
+    while(scanf(&quot;%d%d&quot;, &amp;N, &amp;M) != EOF)
+    &#123;
+        init();
+        getMap();
+        find_cut(0, 2*N-1);
+        solve();
+    &#125;
+    return 0;
+&#125;
+</code></pre>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E7%AE%97%E6%B3%95/" class="category-chain-item">算法</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/%E7%AE%97%E6%B3%95/ACM%E7%AB%9E%E8%B5%9B/" class="category-chain-item">ACM竞赛</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/%E7%AE%97%E6%B3%95/ACM%E7%AB%9E%E8%B5%9B/%E5%9B%BE%E8%AE%BA/" class="category-chain-item">图论</a>
+  
+  
+
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>『算法-ACM竞赛-图论』2-SAT-详解</div>
+      <div>https://chiamzhang.github.io/2024/06/29/『算法-ACM竞赛-图论』2-SAT-详解/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>Chiam</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>June 29, 2024</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>Licensed under</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2024/06/29/%E3%80%8E%E7%AE%97%E6%B3%95-ACM%E7%AB%9E%E8%B5%9B-%E5%9B%BE%E8%AE%BA%E3%80%8FBFS%E6%80%BB%E7%BB%93/" title="『算法-ACM竞赛-图论』BFS总结">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">『算法-ACM竞赛-图论』BFS总结</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/06/29/%E3%80%8E%E7%AE%97%E6%B3%95-ACM%E7%AB%9E%E8%B5%9B-%E5%9B%BE%E8%AE%BA%E3%80%8F2-SAT-%E6%9A%B4%E5%8A%9B%E6%9F%93%E8%89%B2%E6%B3%95%E6%B1%82%E5%AD%97%E5%85%B8%E5%BA%8F%E6%9C%80%E5%B0%8F%E6%A8%A1%E7%89%88/" title="『算法-ACM竞赛-图论』2-SAT-暴力染色法求字典序最小模版">
+                        <span class="hidden-mobile">『算法-ACM竞赛-图论』2-SAT-暴力染色法求字典序最小模版</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"fIfc7WqUDZohlQuPc2lz5mJy-MdYXbMMI","appKey":"zjlAG3ZA3o4cBHVAkjzc2Z20","path":"window.location.pathname","placeholder":"留言仅限讨论，禁止广告等行为","avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"https://fifc7wqu.api.lncldglobal.com","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>Table of Contents</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <meta name="referrer" content="no-referrer" /> <footer id="footer" role="contentinfo"> <meta name="referrer" content="no-referrer" /> <div class="divider"> <div class="wall"></div> <img class="animals" src="/img/footer_animals_new.png" srcset="/img/loading.gif" lazyload alt="Footer Animals"> </div> <div class="container" data-index="450"> <p> <a href="https://chiamzhang.github.io" target="_blank">DogEgg</a> <i class="iconfont icon-love"></i> <a href="#" target="_blank">LittePig</a> </p> <p> Powered by  <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-pen"></i> Theme  <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> </p> </div> </footer> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+  
+<script src="/js/love.js"></script>
+<script src="/js/funnyTitle.js"></script>
+<script src="/js/backTop.js"></script>
+<script src="//cdn.jsdelivr.net/gh/bynotes/texiao/source/js/xiaoxuehua.js"></script>
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+</html>

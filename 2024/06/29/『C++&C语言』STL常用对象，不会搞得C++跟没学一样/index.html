@@ -1,0 +1,822 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/Mine.jpg">
+  <link rel="icon" href="/img/Mine.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Chiam">
+  <meta name="keywords" content="Algorithms，Cybersecurity">
+  
+    <meta name="description" content="『C++&amp;C 语言』STL 常用对象，不会搞得 C++跟没学一样一、map&#x2F;multimapmap&#x2F;multimap 映射容器的元素数据是由一个 Key 和一个 Value 成的，key 与映照 value 之间具有一一映照的关系。map&#x2F;multimap 容器的数据结构也采用红黑树来实现的，map 插入元素的键值不允许重复，类似 multiset，multi">
+<meta property="og:type" content="article">
+<meta property="og:title" content="『C++&amp;C语言』STL常用对象，不会搞得C++跟没学一样">
+<meta property="og:url" content="https://chiamzhang.github.io/2024/06/29/%E3%80%8EC++&C%E8%AF%AD%E8%A8%80%E3%80%8FSTL%E5%B8%B8%E7%94%A8%E5%AF%B9%E8%B1%A1%EF%BC%8C%E4%B8%8D%E4%BC%9A%E6%90%9E%E5%BE%97C++%E8%B7%9F%E6%B2%A1%E5%AD%A6%E4%B8%80%E6%A0%B7/index.html">
+<meta property="og:site_name" content="Homepage of Chiam">
+<meta property="og:description" content="『C++&amp;C 语言』STL 常用对象，不会搞得 C++跟没学一样一、map&#x2F;multimapmap&#x2F;multimap 映射容器的元素数据是由一个 Key 和一个 Value 成的，key 与映照 value 之间具有一一映照的关系。map&#x2F;multimap 容器的数据结构也采用红黑树来实现的，map 插入元素的键值不允许重复，类似 multiset，multi">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2024-06-29T13:16:53.734Z">
+<meta property="article:modified_time" content="2023-12-05T16:17:42.438Z">
+<meta property="article:author" content="Chiam">
+<meta property="article:tag" content="Algorithms，Cybersecurity">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>『C++&amp;C语言』STL常用对象，不会搞得C++跟没学一样 - Homepage of Chiam</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"chiamzhang.github.io","root":"/","version":"1.9.5-a","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":"❡"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":2},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
+
+
+<body>
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Chiam&#39;s Blogs</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                
+                <span>Home</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                
+                <span>Archives</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                
+                <span>Categories</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                
+                <span>About</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                
+                <span>Links</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="『C++&amp;C语言』STL常用对象，不会搞得C++跟没学一样"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-06-29 21:16" pubdate>
+          June 29, 2024 pm
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          4.4k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          37 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">『C++&amp;C语言』STL常用对象，不会搞得C++跟没学一样</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="『C-C-语言』STL-常用对象，不会搞得-C-跟没学一样"><a href="#『C-C-语言』STL-常用对象，不会搞得-C-跟没学一样" class="headerlink" title="『C++&amp;C 语言』STL 常用对象，不会搞得 C++跟没学一样"></a>『C++&amp;C 语言』STL 常用对象，不会搞得 C++跟没学一样</h1><h4 id="一、map-multimap"><a href="#一、map-multimap" class="headerlink" title="一、map&#x2F;multimap"></a>一、map&#x2F;multimap</h4><p>map&#x2F;multimap 映射容器的元素数据是由一个 Key 和一个 Value 成的，key 与映照 value 之间具有一一映照的关系。<br>map&#x2F;multimap 容器的数据结构也采用红黑树来实现的，map 插入元素的键值不允许重复，类似 multiset，multimap 的 key 可以重复。比较函数只对元素的 key 进行比较，元素的各项数据只能通过 key 检索出来。虽然 map 与 set 采用的都是红黑树的结构，但跟 set 的区别主要是 set 的一个键值和一个映射数据相等，Key&#x3D;Value。</p>
+<pre><code class="hljs">map&lt;first,second&gt; a;
+//map，会按照first（键值）排序（查找也是）；
+</code></pre>
+<p><strong>map&#x2F;multimap 用法</strong><br>头文件</p>
+<pre><code class="hljs">#include&lt; map &gt;
+</code></pre>
+<p><strong>map 成员函数</strong></p>
+<pre><code class="hljs">begin()				 //返回指向 map 头部的迭代器
+clear(）			// 删除所有元素
+count() 			//返回指定元素出现的次数
+empty()				// 如果 map 为空则返回 true
+end() 				//返回指向 map 末尾的迭代器
+erase()				// 删除一个元素
+find()				// 查找一个元素
+insert()			 //插入元素
+key_comp() 			//返回比较元素 key 的函数
+lower_bound() 		//返回键值&gt;=给定元素的第一个位置
+max_size() 			//返回可以容纳的最大元素个数
+rbegin() 			//返回一个指向 map 尾部的逆向迭代器
+rend() 				//返回一个指向 map 头部的逆向迭代器
+size() 				//返回 map 中元素的个数
+swap()				 //交换两个 map
+upper_bound()		 //返回键值&gt;给定元素的第一个位置
+value_comp() 		//返回比较元素 value 的函数
+</code></pre>
+<p><strong>创建 map 对象</strong></p>
+<pre><code class="hljs">#include&lt;iostream&gt;
+#include&lt;map&gt;
+using namespace std;
+map&lt;int,char&gt;mp;//定义map容器
+</code></pre>
+<p><strong>创建结构体 map 对象</strong></p>
+<pre><code class="hljs">struct student&#123;
+int birth;
+string name;
+&#125;;
+int id;
+typedef map&lt;int,student&gt; Student;// 这里相当于给map&lt;int,student&gt; 起了个别名Student，后续代码均可以用student代替map&lt;int,student&gt; 使用。
+</code></pre>
+<p>插入结构体对象<br>接上文代码</p>
+<pre><code class="hljs">Stduent  a；
+cin&gt;&gt;id&gt;&gt;student.birth&gt;&gt;student.name;
+a.insert(make_pair(id,student）);
+</code></pre>
+<p><strong>通过 map 容器使得上述解题方式更简便。</strong></p>
+<h4 id="二、栈（stack"><a href="#二、栈（stack" class="headerlink" title="二、栈（stack)"></a>二、栈（stack)</h4><p><strong>1.定义：</strong><br>栈是一种只能在某一端插入和删除数据的特殊线性表。他按照先进先出的原则存储数据，先进的数据被压入栈底，最后进入的数据在栈顶，需要读数据的时候从栈顶开始弹出数据(最后被压入栈的，最先弹出）。因此栈也称先进后出表。<br>允许进行插入删除操作的一端称为栈顶，另一端称为栈底。栈底固定，栈顶浮动。插入元素称为进栈，删除一个元素称为进栈，栈内元素为零称为空栈。<br>2.stack 成员函数</p>
+<pre><code class="hljs">bool empty ( ) ————&gt;栈为空返回true，否则返回false；
+void pop （ ) ————&gt;删除栈顶元素，出栈；
+void push（const TYPE&amp;value）————&gt; 插入新元素value，放置在栈顶进栈；TYPE：类型int，char…；
+size_type size ( ) ————&gt; 返回堆栈中元素个数；（注意注意！！！！切不可赋值给int ，很容易超过int的范围
+TYPE&amp;top（）————&gt; 查看当前栈顶元素；
+</code></pre>
+<h4 id="三、向量（vector）"><a href="#三、向量（vector）" class="headerlink" title="三、向量（vector）"></a>三、向量（vector）</h4><blockquote>
+<p>它能够像容器一样存放各种类型的对象，简单地说，vector 是一个能够存放任意类型的动态数组，能够增加和压缩数据。vector 在 C++标准模板库中的部分内容，它是一个多功能的，能够操作多种数据结构和算法的模板类和函数库。</p>
+<p>使用 vector 需要注意以下几点：</p>
+<p>1、当 vector、string 大量插入数据后，即使删除了大量数据（或者全部都删除，即 clear） 并没有改变容器的容量（capacity），所以仍然会占用着内存。 为了避免这种情况，我们应该想办法改变容器的容量使之尽可能小的符合当前 数据所需（shrink to fit）。</p>
+</blockquote>
+<pre><code class="hljs">vector&lt;type&gt; vec=&#123;1,2,3,4.......................&#125;;
+vector&lt;type&gt;(v).swap(v);
+//此时v的容量已经尽可能的符合其当前包含的元素数量
+//对于string则可能像下面这样
+string(s).swap(s);
+
+
+
+
+  //  即执行交换后，临时变量会被销毁，内存得到释放。
+</code></pre>
+<p>(1)头文件</p>
+<pre><code class="hljs">   #include&lt;vector&gt;
+</code></pre>
+<p>(2)创建 vector 对象，<code>vector&lt; int &gt; vec;</code></p>
+<p>(3)尾部插入数字：<code>vec.push_back(a);</code></p>
+<p>(4)使用下标访问元素，<code>cout&lt;&lt;vec[0]&lt;&lt;endl;记住下标是从0开始的。</code></p>
+<p>(5)使用迭代器访问元素.</p>
+<pre><code class="hljs">vector&lt;int&gt;::iterator it;
+for(it=vec.begin();it!=vec.end();it++)
+cout&lt;&lt;*it&lt;&lt;endl;
+</code></pre>
+<p>(6)插入元素： <code>vec.insert(vec.begin()+i,a);在第i+1个元素前面插入a;</code></p>
+<p>(7)删除元素：</p>
+<pre><code class="hljs">vector.erase(vec.begin()+2);删除第3个元素
+   vector.erase(vec.begin()+i,vec.end()+j);删除区间[i,j);区间从0开始
+</code></pre>
+<p>(8)向量大小:<code>vector.size();</code></p>
+<p>(9)清空:<code>vec.clear();</code></p>
+<p>ps：<br>resize()，设置大小（size）; reserve()，设置容量（capacity）; size()是分配容器的内存大小，而 capacity()只是设置容器容量大小，但并没有真正分配内存。 打个比方：买了一个新房子，新房子里可以放 3 张床 reserve(3)，这是说房子的容量是最多放 3 张床，但是屋里并不是有三张床，二 resize(3),房里安装了 3 张床，此时房里的床可以使用了。<br>reserve 为容器预留足够的空间，避免不必要的重复分配，分配空间大于等于函数的参数，影响 capacity。<br>resize 调整容器中有效数据区域的尺寸，如果尺寸变小，原来数据多余的截掉。若尺寸变大，不够的数据用该函数第二个参数填充,影响 size。<br>由于 vector 是顺序容器，在内存中分配了一块连续的存储空间。为了保证动态添加元素的高效率，因此必须预先为 vector 分配一段空间，这个空间就是 capacity。<br>而容器中元素的个数就是 size()，在容器中，capacity 总是大于等于 size；</p>
+<h4 id="四、队列"><a href="#四、队列" class="headerlink" title="四、队列"></a>四、队列</h4><p>queue 是队列容器，是一种“先进先出”的容器。<br>头文件</p>
+<pre><code class="hljs">#include &lt;queue&gt;
+</code></pre>
+<p>queue 对象的默认构造形式：queue<Type> name; 如：</p>
+<pre><code class="hljs">queue&lt;int&gt; name;            //一个存放int的queue容器。
+
+queue&lt;float&gt; name;     //一个存放float的queue容器。
+
+queue&lt;string&gt; name;     //一个存放string的queue容器。
+
+//尖括号内还可以设置指针类型或自定义类型。
+</code></pre>
+<p><strong>queue 的成员函数</strong></p>
+<pre><code class="hljs">queue.push(elem);   //往队尾添加元素
+
+queue.pop();   //从队头移除第一个元素
+
+queue(const queue &amp;que);	     //拷贝构造函数
+
+queue&amp; operator=(const queue &amp;que);	//重载等号操作符
+
+queue.back();   //返回最后一个元素
+
+queue.front();   //返回第一个元素
+
+queue.empty();   //判断队列是否为空
+
+queue.size();      //返回队列的大小
+</code></pre>
+<h4 id="五、set-集合"><a href="#五、set-集合" class="headerlink" title="五、set 集合"></a>五、set 集合</h4><p>set&#x2F;multiset 与 map 类的区别是 set 的 key&#x3D;value。其余跟 map 类的可以类比。set 容器因为 key 等于 value 所以按照值排序，由小到大。<br>set 的各成员函数列表如下:</p>
+<pre><code class="hljs">set.begin()--返回指向第一个元素的迭代器
+ set.clear()--清除所有元素
+set.count()--返回某个值元素的个数
+set.empty()--如果集合为空，返回true
+set.end()--返回指向最后一个元素的迭代器
+set.equal_range()--返回集合中与给定值相等的上下限的两个迭代器
+set.erase()--删除集合中的元素
+set.find()--返回一个指向被查找到元素的迭代器
+set.get_allocator()--返回集合的分配器
+set.insert()--在集合中插入元素
+set.lower_bound()--返回指向大于（或等于）某值的第一个元素的迭代器
+set.key_comp()--返回一个用于元素间值比较的函数
+set.max_size()--返回集合能容纳的元素的最大限值
+set.rbegin()--返回指向集合中最后一个元素的反向迭代器
+set.rend()--返回指向集合中第一个元素的反向迭代器
+set.size()--集合中元素的数目
+set.swap()--交换两个集合变量
+set.upper_bound()--返回大于某个值元素的迭代器
+set.value_comp()--返回一个用于比较元素间的值的函数
+</code></pre>
+<h4 id="set-由大到小排序-set-M"><a href="#set-由大到小排序-set-M" class="headerlink" title="set 由大到小排序 set&lt;int,greater &lt; int &gt; &gt; M;"></a>set 由大到小排序 set&lt;int,greater &lt; int &gt; &gt; M;</h4><h4 id="七、迭代器"><a href="#七、迭代器" class="headerlink" title="七、迭代器"></a>七、迭代器</h4><pre><code class="hljs">vector&lt; int &gt;::iterator name
+容器类型&lt; type&gt; ::iterator name
+</code></pre>
+<p>是一类类似指针的，与指针的区别，map set 成员的迭代器不能加减一个整数，只能自增或自减运算。但是 vector 的可以。<br>双向迭代器（map multimap set multiset）<br>组合正向迭代器和逆向迭代器的功能，支持多遍算法<br>随机访问迭代器（vector deque）<br>组合双向迭代器的功能与直接访问容器中任何元素的功能，即可向前向后跳过任意个元素。即可以加减一个常数。</p>
+<h1 id="小白创作，还亲各位大佬指点，万分感谢！"><a href="#小白创作，还亲各位大佬指点，万分感谢！" class="headerlink" title="小白创作，还亲各位大佬指点，万分感谢！"></a>小白创作，还亲各位大佬指点，万分感谢！</h1>
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/C-C%E8%AF%AD%E8%A8%80/" class="category-chain-item">C++&amp;C语言</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>『C++&amp;C语言』STL常用对象，不会搞得C++跟没学一样</div>
+      <div>https://chiamzhang.github.io/2024/06/29/『C++&amp;C语言』STL常用对象，不会搞得C++跟没学一样/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>Chiam</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>June 29, 2024</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>Licensed under</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2024/06/29/%E3%80%8EC++&amp;C%E8%AF%AD%E8%A8%80%E3%80%8FSTL%E8%AE%AD%E7%BB%83%20HDU%20-%201716%20%20Ray%E5%8F%88%E5%AF%B9%E6%95%B0%E5%AD%97%E7%9A%84%E5%88%97%E4%BA%A7%E7%94%9F%E4%BA%86%E5%85%B4%E8%B6%A3%EF%BC%9A/" title="『C++&amp;C语言』STL训练 HDU - 1716  Ray又对数字的列产生了兴趣：">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">『C++&amp;C语言』STL训练 HDU - 1716  Ray又对数字的列产生了兴趣：</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/06/29/%E3%80%8EC++&amp;C%E8%AF%AD%E8%A8%80%E3%80%8FSTL%20%E8%AE%AD%E7%BB%83%20POJ%20-%201862%20Stripies/" title="『C++&amp;C语言』STL 训练 POJ - 1862 Stripies">
+                        <span class="hidden-mobile">『C++&amp;C语言』STL 训练 POJ - 1862 Stripies</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"fIfc7WqUDZohlQuPc2lz5mJy-MdYXbMMI","appKey":"zjlAG3ZA3o4cBHVAkjzc2Z20","path":"window.location.pathname","placeholder":"留言仅限讨论，禁止广告等行为","avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"https://fifc7wqu.api.lncldglobal.com","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>Table of Contents</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <meta name="referrer" content="no-referrer" /> <footer id="footer" role="contentinfo"> <meta name="referrer" content="no-referrer" /> <div class="divider"> <div class="wall"></div> <img class="animals" src="/img/footer_animals_new.png" srcset="/img/loading.gif" lazyload alt="Footer Animals"> </div> <div class="container" data-index="450"> <p> <a href="https://chiamzhang.github.io" target="_blank">DogEgg</a> <i class="iconfont icon-love"></i> <a href="#" target="_blank">LittePig</a> </p> <p> Powered by  <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-pen"></i> Theme  <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> </p> </div> </footer> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+  
+<script src="/js/love.js"></script>
+<script src="/js/funnyTitle.js"></script>
+<script src="/js/backTop.js"></script>
+<script src="//cdn.jsdelivr.net/gh/bynotes/texiao/source/js/xiaoxuehua.js"></script>
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+</html>

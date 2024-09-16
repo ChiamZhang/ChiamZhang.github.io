@@ -1,0 +1,1122 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/Mine.jpg">
+  <link rel="icon" href="/img/Mine.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Chiam">
+  <meta name="keywords" content="Algorithms，Cybersecurity">
+  
+    <meta name="description" content="『计算机组成原理』跟着博主玩转计算机组成结构–中央处理器 CPU（不知道 CPU 干啥的小伙伴看过来） 写在前面： 全文借鉴白中英唐朔飞老师的书，是对老师的书中所讲的知识按照考研大纲（一般校考的重点也相同）的重点形式来排序进行二次创作。   本文面向对象：计算机系考研学生，计算机系在读学生，学习计算机组成原理的本科生本文写作背景：博主也在学习计算机组成原理，并对计算机组成原理通透理解，一是为了自己">
+<meta property="og:type" content="article">
+<meta property="og:title" content="『计算机组成原理』跟着博主玩转计算机组成结构--中央处理器CPU（不知道CPU干啥的小伙伴看过来）">
+<meta property="og:url" content="https://chiamzhang.github.io/2024/06/29/%E3%80%8E%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86%E3%80%8F%E8%B7%9F%E7%9D%80%E5%8D%9A%E4%B8%BB%E7%8E%A9%E8%BD%AC%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E7%BB%93%E6%9E%84--%E4%B8%AD%E5%A4%AE%E5%A4%84%E7%90%86%E5%99%A8CPU%EF%BC%88%E4%B8%8D%E7%9F%A5%E9%81%93CPU%E5%B9%B2%E5%95%A5%E7%9A%84%E5%B0%8F%E4%BC%99%E4%BC%B4%E7%9C%8B%E8%BF%87%E6%9D%A5%EF%BC%89/index.html">
+<meta property="og:site_name" content="Homepage of Chiam">
+<meta property="og:description" content="『计算机组成原理』跟着博主玩转计算机组成结构–中央处理器 CPU（不知道 CPU 干啥的小伙伴看过来） 写在前面： 全文借鉴白中英唐朔飞老师的书，是对老师的书中所讲的知识按照考研大纲（一般校考的重点也相同）的重点形式来排序进行二次创作。   本文面向对象：计算机系考研学生，计算机系在读学生，学习计算机组成原理的本科生本文写作背景：博主也在学习计算机组成原理，并对计算机组成原理通透理解，一是为了自己">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200527161301800.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200528012230562.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200528002034175.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200528012621686.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200528155624653.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200529021150539.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200528162354340.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200529021539719.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200528162903292.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200529012344809.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200529013220398.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200529013227782.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200529014304960.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200529014509835.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200529014729125.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200529014801519.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200529015103453.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200529015135393.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/2020052902083946.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/2020052915383881.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200529151024387.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200529151712993.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200529162326419.gif">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200529162956354.gif">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200529163007336.gif">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200529165535446.gif">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200529165944201.gif">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200529170019621.gif">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/2020053023320975.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200530234046893.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200530234206186.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200531012909292.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200531012930282.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200531013431375.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200607230558476.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/2020060723522274.gif">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200607235711947.gif">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200607235811447.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200608000736884.gif">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/2020060723152434.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200607232122367.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200607232230363.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/2020060723261720.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200607232645357.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200608001038157.gif">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200607233525149.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200608001404978.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200608001509197.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200608002115553.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200608002148419.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200608002518259.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/2020060800285088.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200608004743453.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200608005409227.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200608005934896.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200608005448743.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70">
+<meta property="article:published_time" content="2024-06-29T13:16:54.650Z">
+<meta property="article:modified_time" content="2023-12-05T16:20:12.352Z">
+<meta property="article:author" content="Chiam">
+<meta property="article:tag" content="Algorithms，Cybersecurity">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20200527161301800.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70#pic_center">
+  
+  
+  
+  <title>『计算机组成原理』跟着博主玩转计算机组成结构--中央处理器CPU（不知道CPU干啥的小伙伴看过来） - Homepage of Chiam</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"chiamzhang.github.io","root":"/","version":"1.9.5-a","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":"❡"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":2},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
+
+
+<body>
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Chiam&#39;s Blogs</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                
+                <span>Home</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                
+                <span>Archives</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                
+                <span>Categories</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                
+                <span>About</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                
+                <span>Links</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="『计算机组成原理』跟着博主玩转计算机组成结构--中央处理器CPU（不知道CPU干啥的小伙伴看过来）"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-06-29 21:16" pubdate>
+          June 29, 2024 pm
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          11k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          93 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">『计算机组成原理』跟着博主玩转计算机组成结构--中央处理器CPU（不知道CPU干啥的小伙伴看过来）</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="『计算机组成原理』跟着博主玩转计算机组成结构–中央处理器-CPU（不知道-CPU-干啥的小伙伴看过来）"><a href="#『计算机组成原理』跟着博主玩转计算机组成结构–中央处理器-CPU（不知道-CPU-干啥的小伙伴看过来）" class="headerlink" title="『计算机组成原理』跟着博主玩转计算机组成结构–中央处理器 CPU（不知道 CPU 干啥的小伙伴看过来）"></a>『计算机组成原理』跟着博主玩转计算机组成结构–中央处理器 CPU（不知道 CPU 干啥的小伙伴看过来）</h1><blockquote>
+<p><strong>写在前面：</strong> 全文借鉴白中英唐朔飞老师的书，是对老师的书中所讲的知识按照考研大纲（一般校考的重点也相同）的重点形式来排序进行二次创作。</p>
+</blockquote>
+<blockquote>
+<p><strong>本文面向对象</strong>：计算机系考研学生，计算机系在读学生，学习计算机组成原理的本科生<br><strong>本文写作背景</strong>：博主也在学习计算机组成原理，并对计算机组成原理通透理解，一是为了自己复习考研时能够有所依赖，二是为了造福所有读者。<br><strong>本文构成</strong>：大的框架是五大部件，也会穿插一些小节，去两本书中优秀之处和互为补充，最后通过自己的理解给大家以便于接受和理解的方式，用精炼的语言给大家描述，以及文中自己有特殊理解的也会在文中体现。本文也绝非照抄全书，而是按照全书的行文方式和内容给大家经过自己的理解后的讲解。所以不能替代原书，希望大家能够在学有余力的基础上，购买原书。（一般我应该写的比书上要全一点，有侧重点，所以要想看原本的知识，或者我有什么讲错了的，建议参考原书，相互补充。&#x3D;&#x3D;<strong>而且我之所以把考研大纲放在这里，是怕不同的年份具体的考研大纲不同，所以一定要跟当年的考研大纲作比较</strong>&#x3D;&#x3D;，基本不变)<br>注意两本经典是：唐朔飞老师和白中英老师的书，不是其他任何人的书。<br>本文的图大部分是博主自己画的，有使用老师 PPT 进行制作的，也有在百度图片上找的，如果是图片的作者，请私信本人，本人将在文章开头公示您的名字，因为百度图片，作者不详，所以冒昧的先使用，多多见谅，如不能使用，本立即删除。<br><strong>&gt; 最后：2021 年考研加油</strong></p>
+</blockquote>
+<p>@[toc]</p>
+<h3 id="考研大纲要求："><a href="#考研大纲要求：" class="headerlink" title="考研大纲要求："></a>考研大纲要求：</h3><ol>
+<li><strong>中央处理器（CPU）的功能和基本结构</strong></li>
+<li><strong>指令执行过程</strong><ol>
+<li>&#x3D;&#x3D;给出数据通路，写出 取指周期、间址周期、执行周期和中断周期的微操作流程&#x3D;&#x3D;</li>
+</ol>
+</li>
+<li><strong>数据通路的功能和基本结构</strong></li>
+<li><strong>控制器的功能和工作原理</strong><ol>
+<li>硬布线控制器（组合逻辑控制器）</li>
+<li><strong>微程序控制器</strong><br>1.&#x3D;&#x3D;微程序、微指令和微命令（微操作） ，微指令格式，微命令的编码方式，微地址的形成方式。&#x3D;&#x3D;</li>
+</ol>
+</li>
+<li><strong>指令流水线</strong><ol>
+<li>&#x3D;&#x3D;指令流水线的基本概念&#x3D;&#x3D;</li>
+<li>&#x3D;&#x3D;指令流水线的基本实现&#x3D;&#x3D;</li>
+<li>超标量和动态流水的基本概念</li>
+</ol>
+</li>
+<li><strong>中断系统</strong></li>
+</ol>
+<hr>
+<hr>
+<h3 id="一、CPU-的功能"><a href="#一、CPU-的功能" class="headerlink" title="一、CPU 的功能"></a>一、CPU 的功能</h3><h4 id="1-控制器的功能："><a href="#1-控制器的功能：" class="headerlink" title="1.控制器的功能："></a>1.控制器的功能：</h4><ol>
+<li>控制器的能自动的形成指令的地址，并能发出取指令的命令，将对应此地址的指令取到控制器中，成为<code>指令控制</code></li>
+<li>取到指令之后，要产生完成每条指令的控制命令。称为<code>操作控制</code></li>
+<li>控命令产生后，需要对各条控制命令加以时间上的控制，称为<code>时间控制</code></li>
+<li>处理异常情况和特殊请求称为<code>中断处理</code></li>
+<li>总线管理功能</li>
+</ol>
+<h4 id="2-运算器的功能"><a href="#2-运算器的功能" class="headerlink" title="2.运算器的功能"></a>2.运算器的功能</h4><ol>
+<li>实现算术运算和逻辑运算 称为<code>数据加工</code></li>
+</ol>
+<h4 id="3-功能执行顺序"><a href="#3-功能执行顺序" class="headerlink" title="3.功能执行顺序"></a>3.功能执行顺序</h4><p><img src="https://img-blog.csdnimg.cn/20200527161301800.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70#pic_center" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<h4 id="4-计算机其他功能"><a href="#4-计算机其他功能" class="headerlink" title="4.计算机其他功能"></a>4.计算机其他功能</h4><p>CPU 的工作过程就是不停的执行指令，计算机各个部分的所进行的工作可以说都是由 CPU 根据指令来启动的（指的是进入操作系统之后，纯硬件的话还是有南北桥）。因为 CPU 的速度太快，为了使 CPU 减少等待时间，甚至不参与计算机输入输出过程（等待时间太久），采取程序中断的方式和 DMA 的方式。这两种方式下，外部设备需要向 CPU 提出中断请求或 DMA 请求，因此在执行指令过程中，CPU 还要按时通过采样相应的引脚来查询有没有中断请求或 DMA 请求。一般， 在一个机器 周期结束时，查询是否有 DMA 请求，如果有，则 CPU 脱离总线，由 DMA 控制器控制使用总线。在一个指令周期结束时，查询是否有中断请求，如果有，则进入中断响应机器周期，相当于执行了一条中断响应隐指令。在中断响应过程中，得到中断服务程序的入口地址，并送程序计数器(PC)中，下个指令周期开始时，取出中断服务程序的第一条指令 执行。</p>
+<p>&#x3D;&#x3D;不是很重要，为了方便理解的补充&#x3D;&#x3D; <strong>DMA(Direct Memory Access，直接存储器访问)</strong> 是所有现代电脑的重要特色，它允许不同速度的硬件装置来沟通，而不需要依赖于 CPU 的大量中断负载。否则，CPU 需要从来源把每一片段的资料复制到暂存器，然后把它们再次写回到新的地方。在这个时间中，CPU 对于其他的工作来说就无法使用。<br>DMA 传输将数据从一个地址空间复制到另外一个地址空间。当 CPU 初始化这个传输动作，传输动作本身是由 DMA 控制器来实行和完成。典型的例子就是移动一个外部内存的区块到芯片内部更快的内存区。像是这样的操作并没有让处理器工作拖延，反而可以被重新排程去处理其他的工作。DMA 传输对于高效能 嵌入式系统算法和网络是很重要的。<br>在实现 DMA 传输时，是由 DMA 控制器直接掌管总线，因此，存在着一个总线控制权转移问题。即 DMA 传输前，CPU 要把总线控制权交给 DMA 控制器，而在结束 DMA 传输后，DMA 控制器应立即把总线控制权再交回给 CPU。一个完整的 DMA 传输过程必须经过 DMA 请求、DMA 响应、DMA 传输、DMA 结束 4 个步骤。<br><img src="https://img-blog.csdnimg.cn/20200528012230562.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70#pic_center" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<h3 id="二、CPU-结构框图"><a href="#二、CPU-结构框图" class="headerlink" title="二、CPU 结构框图"></a>二、CPU 结构框图</h3><h4 id="1-CPU-与系统总线"><a href="#1-CPU-与系统总线" class="headerlink" title="1.CPU 与系统总线"></a>1.CPU 与系统总线</h4><p><img src="https://img-blog.csdnimg.cn/20200528002034175.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70#pic_center" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<h4 id="2-CPU-内部结构"><a href="#2-CPU-内部结构" class="headerlink" title="2.CPU 内部结构"></a>2.CPU 内部结构</h4><p><img src="https://img-blog.csdnimg.cn/20200528012621686.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70#pic_center" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<h4 id="3-运算器中的寄存器"><a href="#3-运算器中的寄存器" class="headerlink" title="3.运算器中的寄存器"></a>3.运算器中的寄存器</h4><ul>
+<li><strong>暂存寄存器：</strong><br>用于暂时存放从主存中读取来的数据，这个数据不能放在通用寄存器中，否则会破坏其原有的内容。</li>
+<li><strong>累加寄存器（ACC）</strong><br>累加寄存器通常简称累加器，他是一个通用寄存器。功能是：当运算器的 ALU 单元执行算数或逻辑运算时，为 ALU 提供一个工作其，累加寄存器也暂存 ALU 运算的结果。<br>一般通用寄存器的数量在 16 个以上，因此需要在指令格式中对寄存器号加以编址。·</li>
+<li><strong>通用寄存器</strong><br>可以作为某种寻址方式的专用寄存器，主要用于放操作数（源操作数和，目的操作数，以及中间结果）常见的通用寄存器有 AX、BX、CX、DX、以及堆栈指针 SP（指示栈顶地址）等。</li>
+<li><strong>状态条件寄存器（PSW）</strong><br>状态条件寄存器，也叫程序状态字寄存器，保存由算术指令和逻辑指令运行和测试的结果建立的各种条件码内容，如运算结果进位标志 C，运算结果溢出标志 V，运算结果为 0 标志 Z，运算结果为负的标志 N，这些标志通常分别由一位触发器保存。</li>
+</ul>
+<h4 id="4-控制器中的寄存器"><a href="#4-控制器中的寄存器" class="headerlink" title="4.控制器中的寄存器"></a>4.控制器中的寄存器</h4><ul>
+<li><strong>程序计数寄存器（PC）</strong><br>为了能够保证程序能够持续不断地执行，CPU 必须采取程序计数器这一手段，通常程序计数器又称为指令计数器。在程序开始前，必须将它的起始地址，及程序的第一条指令的所在内存单元的地址送入 PC。当执行指令时 CPU 会自动修改 PC 的内容，以便使其保存的总要是将要执行的下一条指令地址。但是要注意 JUMP 类指令取出时，PC 仍是先加 1，因为此时 JUMP 指令还未执行，当加 1 后在执行跳转命令。因此程序计数器是具有寄存信息和计数两种功能。</li>
+<li><strong>指令寄存器（IR)</strong><br>指令寄存器用来保存当前正在执行的指令（内容不可变），当执行一条指令时，先把它从内存取到数据缓冲寄存器中，然后传至指令寄存器。指令划分为操作码和地址码字段（参见指令系统章节),是以二进制形式存储。 为了执行任何给定的指令，必须对操作码进行测试，以便识别所要求的操作。指令译码器就是做这项工作的。指令寄存器中操作码字段的输出就是指令译码器的输入。操作码一经译码后，即可向操作控制器发出具体操作的特定信号。</li>
+<li><strong>存储器数据寄存器（MDR）</strong><br>主存数据寄存器(MDR)，与主存地址寄存器(MAR)帮助完成 CPU 和主存储器之间的通信，MDR 暂存要被写入地址单元或者从地址单元读出的数据。即暂存从主存读入一条指令或数字，反之，写入前也要有 MDR 暂存。<br><strong>作用：</strong> 1. 作为 CPU、内存和外部设备之间信息传送的中转站。 2. 补偿作为 CPU、内存和外部设备之间在操作速度上的差别。 3. 在单累加器结构的运算器中，MDR 还可作为操作数寄存器。</li>
+<li><strong>储存器地址寄存器（MAR）</strong><br>用于存放将被访问的存储单元的地址。</li>
+</ul>
+<h4 id="5-用户是否可见（2010-年考研考察）"><a href="#5-用户是否可见（2010-年考研考察）" class="headerlink" title="5.用户是否可见（2010 年考研考察）"></a>5.用户是否可见（2010 年考研考察）</h4><ul>
+<li><strong>可见</strong><br>即程序员可以通过程序去访问的寄存器：<ul>
+<li>通用寄存器</li>
+<li>数据寄存器</li>
+<li>地址寄存器</li>
+<li>条件码寄存器 PSW</li>
+<li>程序计数器 PC</li>
+</ul>
+</li>
+<li><strong>不可见</strong><br>即 CPU 内部工作寄存器：<ul>
+<li><pre><code class="hljs"> 指令寄存器 IR
+</code></pre>
+</li>
+<li>储存器地址寄存器 MAR</li>
+<li>存储器数据寄存器 MDR</li>
+</ul>
+</li>
+</ul>
+<h3 id="三、计算机执行指令的过程"><a href="#三、计算机执行指令的过程" class="headerlink" title="三、计算机执行指令的过程"></a>三、计算机执行指令的过程</h3><h4 id="1-指令周期的基本概念"><a href="#1-指令周期的基本概念" class="headerlink" title="1.指令周期的基本概念"></a>1.指令周期的基本概念</h4><p><img src="https://img-blog.csdnimg.cn/20200528155624653.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70#pic_center" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<ol>
+<li><p><strong>指令周期</strong>: 一条指令从取指令到执行完成的时间间隔</p>
+</li>
+<li><p><strong>CPU 周期通常又称时钟周期：</strong><br>通常把一条指令周期划分为若干个机器周期，每个机器周期完成一个基本操作。主存的工作周期(存取周期)为基础来规定 CPU 周期，比如，可以用 CPU 读取一个指令字的最短时间来规定 CPU 周期不同的指令，可能包含不同数目的 CPU 周期。一个 CPU 周期中，包含若干个节拍脉冲（T 周期）。<br><strong>指令执行方案：</strong> - 单周期的 CPU 会在一个时钟周期内完成所有的工作，既从指令取出，到得到结果，全部在一个时钟之内完成。</p>
+<pre><code class="hljs"> - 多周期CPU的设计是将整个CPU的执行过程分成几个阶段，每个阶段用一个时钟去完成。不仅能提高CPU的工作频率，还为组成指令流水线提供了基础。
+
+- 在多周期CPU设计的基础上，利用各阶段电路间可并行执行的特点，让各个阶段的执行在时间上重叠起来，这种技术就是流水线技术。
+</code></pre>
+</li>
+<li><p><strong>时钟周期</strong><br>在一个 CPU 周期内，要完成若干个微操作。这些微操作有的可以同时执行，有的需要按先后次序串行执行。因而需要把一个 CPU 周期分为若干个相等的时间段，每一个时间段称为一个节拍脉冲或 T 周期。<br>时钟周期通常定义为机器主频的倒数。时钟周期不等于 T 周期</p>
+</li>
+</ol>
+<p><strong>补充：详情参见计算机性能指标</strong></p>
+<blockquote>
+<p>时钟周期：一个时钟脉冲所需要的时间。在计算机组成原理中又叫 T 周期或节拍脉冲。是 CPU 和其他单片机的基本时间单位。它可以表示为时钟晶振频率（1 秒钟的时钟脉冲数）的倒数（也就是 1s&#x2F;时钟脉冲数，比如 1&#x2F;12MHz），对 CPU 来说，在一个时钟周期内，CPU 仅完成一个最基本的动作。时钟脉冲是计算机的基本工作脉冲，控制着计算机的工作节奏。时钟频率越高，时钟周期就越短，工作速度也就越快。时钟周期在 CPU 的描述里也叫节拍，即将一个机器周期划分成若干个相等的时间段，每一段仅完成一个基本操作，用一个电平信号宽度对应。举例：（个人理解）工作频率为 100MHZ 的芯片的时钟周期为 10000ns，理解为 1s(10 的 9 次方 ns)内的时钟周期个数为 10 的 8 次方，所以每个时钟周期的时间长为 10 的 9 次方 ns&#x2F;10 的 8 次方个时钟周期，结果为 10ns。</p>
+</blockquote>
+<blockquote>
+<p>总线周期：cpu 从内存中读取指令，向内存中存取数据，对外设端口读写数据，执行总线周期，总线周期通常包含 4 个 T 状态：T1，T2，T3,T4。所谓一个 T 状态就是一个时钟周期。它是 CPU 执行操作的最小时间单位。</p>
+</blockquote>
+<blockquote>
+<p>机器周期：通常用从内存中读取一个指令字的最短时间来规定 CPU 周期（机器周期），也即 CPU 完成一个基本操作所需的时间。通常一个机器周期包含 12 个时钟周期，在 8051 系列单片机的一个机器周期由 6 个 S 周期（状态周期）组成。 一个 S 周期&#x3D;2 个节拍（P），也就是一个状态周期包含 2 个时钟周期，所以 8051 单片机的一个机器周期&#x3D;6 个状态周期&#x3D;12 个时钟周期。又称 CPU 的工作周期或基本周期，总线周期。</p>
+</blockquote>
+<blockquote>
+<p>指令周期：执行一条指令所需要的时间，是从取指令、分析指令到执行完指令所需的全部时间，计算机中，常把一条指令的执行过程划分为若干个阶段，每一个阶段完成一项工作。每一项工作称为一个基本操作，完成一个基本操作所需要的时间称为机器周期，所以一个指令周期一般由若干个机器周期组成。指令不同，所需的机器周期也不同，比如一个复杂指令可能需要很多个机器周期才能完成，而每个机器周期又由多个时钟周期完成。</p>
+</blockquote>
+<h4 id="2-完整的指令周期流程"><a href="#2-完整的指令周期流程" class="headerlink" title="2.完整的指令周期流程"></a>2.完整的指令周期流程</h4><p><strong>指令周期：</strong> 取出并执行一条指令所需的全部时间</p>
+<ul>
+<li>取指周期</li>
+<li>间址周期<br><img src="https://img-blog.csdnimg.cn/20200529021150539.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70#pic_center" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20200528162354340.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70#pic_center" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></li>
+</ul>
+<p><strong>不同指令的指令周期不同:</strong><br><img src="https://img-blog.csdnimg.cn/20200529021539719.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70#pic_center" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<h4 id="3-数据通路"><a href="#3-数据通路" class="headerlink" title="3.数据通路"></a>3.数据通路</h4><p><img src="https://img-blog.csdnimg.cn/20200528162903292.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70#pic_center" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<h4 id="4-各个指令执行过程"><a href="#4-各个指令执行过程" class="headerlink" title="4.各个指令执行过程"></a>4.各个指令执行过程</h4><h5 id="4-1-MOV-指令"><a href="#4-1-MOV-指令" class="headerlink" title="4.1 MOV 指令"></a>4.1 MOV 指令</h5><br>
+
+<p><img src="https://img-blog.csdnimg.cn/20200529012344809.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70#pic_center" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br><strong>MOV 指令取指周期</strong><br><img src="https://img-blog.csdnimg.cn/20200529013220398.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70#pic_center" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br><strong>MOV 指令执行周期</strong><br><img src="https://img-blog.csdnimg.cn/20200529013227782.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70#pic_center" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<h5 id="4-2-LAD-指令"><a href="#4-2-LAD-指令" class="headerlink" title="4.2.LAD 指令"></a>4.2.LAD 指令</h5><p><img src="https://img-blog.csdnimg.cn/20200529014304960.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70#pic_center" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br><strong>LAD 执行总过程:</strong><br><img src="https://img-blog.csdnimg.cn/20200529014509835.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70#pic_center" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<h5 id="4-3-STO-指令："><a href="#4-3-STO-指令：" class="headerlink" title="4.3. STO 指令："></a>4.3. STO 指令：</h5><p><img src="https://img-blog.csdnimg.cn/20200529014729125.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70#pic_center" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20200529014801519.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70#pic_center" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<h5 id="4-4-JMP-指令"><a href="#4-4-JMP-指令" class="headerlink" title="4.4.JMP 指令"></a>4.4.JMP 指令</h5><p><img src="https://img-blog.csdnimg.cn/20200529015103453.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70#pic_center" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20200529015135393.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70#pic_center" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<h5 id="4-5-ADD-指令"><a href="#4-5-ADD-指令" class="headerlink" title="4.5.ADD 指令"></a>4.5.ADD 指令</h5><p>ADD 指令的变数真的很多，大致分为以下情况：</p>
+<ol>
+<li><code>ADD   R1 , R2</code> 需要两个周期，取指周期，执行周期。</li>
+<li><code>ADD  ( R1) , R2</code>需要四个周期，取指周期，间址周期，执行周期，间址周期</li>
+<li><code>ADD   R1 ,( R2)</code>需要三个周期，取指周期，间址周期，执行周期</li>
+<li><code>ADD   (R1) ,( R2)</code>需要五个周期，取指周期，间址周期，间址周期，执行周期，间址周期</li>
+</ol>
+<p>我们这里只给出第一种，剩下对照 STO 的间址方式即可推导。<br><img src="https://img-blog.csdnimg.cn/2020052902083946.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70#pic_center" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<h4 id="5-指令周期的数据信息流"><a href="#5-指令周期的数据信息流" class="headerlink" title="5.指令周期的数据信息流"></a>5.指令周期的数据信息流</h4><h5 id="5-1-取指周期数据信息流"><a href="#5-1-取指周期数据信息流" class="headerlink" title="5.1 取指周期数据信息流"></a>5.1 取指周期数据信息流</h5><p><img src="https://img-blog.csdnimg.cn/2020052915383881.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70#pic_center" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<ol>
+<li>(PC)➡MAR<br>将要执行指令的地址放到地址缓冲寄存器</li>
+<li>1➡R<br>发出读命令(固定写法)，但是这个也可以不写，</li>
+<li>M(MAR)➡MDR<br>将要执行的指令从存储器中读到数据缓冲寄存器， 其中(MAR)表示地址缓冲寄存器中的内容，所以 M(MAR)就表示在主存中此地址的内容，即欲执行指令本身</li>
+<li>(MDR)➡IR<br>将要执行的指令打入指令寄存器</li>
+<li>OP(IR)➡CU 也写作 OP(PC)➡CU<br>(IR)表示指令本身，OP(IR)表示指令的操作码，AD(IR)表示指令的地址码</li>
+<li>(PC)+1➡PC<br>形成下一条指令的地址</li>
+</ol>
+<h5 id="5-2-间址周期数据信息流"><a href="#5-2-间址周期数据信息流" class="headerlink" title="5.2 间址周期数据信息流"></a>5.2 间址周期数据信息流</h5><p><img src="https://img-blog.csdnimg.cn/20200529151024387.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70#pic_center" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<ol>
+<li>AD(IR)→MAR<br>将指令字中的地址码（形式地址）打入地址缓冲寄存器</li>
+<li>1→R<br>发出读命令</li>
+<li>M(MAR)→MDR<br>形成下一条指令地址</li>
+</ol>
+<h5 id="5-3-执行周期数据信息流"><a href="#5-3-执行周期数据信息流" class="headerlink" title="5.3 执行周期数据信息流"></a>5.3 执行周期数据信息流</h5><p>不同指令的执行周期不同，数据信息流不同。</p>
+<h5 id="5-4-中断周期周期数据信息流"><a href="#5-4-中断周期周期数据信息流" class="headerlink" title="5.4 中断周期周期数据信息流"></a>5.4 中断周期周期数据信息流</h5><p><img src="https://img-blog.csdnimg.cn/20200529151712993.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70#pic_center" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br>&#x3D;&#x3D;<strong>注：中断周期我们放到终端系统讲解。</strong>&#x3D;&#x3D;</p>
+<h4 id="6-指令周期的控制信号举例"><a href="#6-指令周期的控制信号举例" class="headerlink" title="6.指令周期的控制信号举例"></a>6.指令周期的控制信号举例</h4><h5 id="6-1-不采用-CPU-内部总线的方式"><a href="#6-1-不采用-CPU-内部总线的方式" class="headerlink" title="6.1 不采用 CPU 内部总线的方式"></a>6.1 不采用 CPU 内部总线的方式</h5><p>以 ADD @ X 为例:操作数的地址和操作数本身都在内存中，用内存中的数据与累加器 AC 中的数据相加为例<br><strong>取指周期：</strong><br><img src="https://img-blog.csdnimg.cn/20200529162326419.gif" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br><strong>间址周期：</strong><br><img src="https://img-blog.csdnimg.cn/20200529162956354.gif" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br><strong>执行周期：</strong><br><img src="https://img-blog.csdnimg.cn/20200529163007336.gif" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<h5 id="6-2-采用-CPU-内部总线方式"><a href="#6-2-采用-CPU-内部总线方式" class="headerlink" title="6.2 采用 CPU 内部总线方式"></a>6.2 采用 CPU 内部总线方式</h5><p><strong>取指周期：</strong><br><img src="https://img-blog.csdnimg.cn/20200529165535446.gif" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br><strong>间址周期：</strong><br><img src="https://img-blog.csdnimg.cn/20200529165944201.gif" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<p><strong>执行周期：</strong><br><img src="https://img-blog.csdnimg.cn/20200529170019621.gif" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<h3 id="四、控制器的功能和工作原理"><a href="#四、控制器的功能和工作原理" class="headerlink" title="四、控制器的功能和工作原理"></a>四、控制器的功能和工作原理</h3><h4 id="1-前置概念："><a href="#1-前置概念：" class="headerlink" title="1.前置概念："></a>1.前置概念：</h4><p>为啥把这段提前讲，主要是怕前的指令系统和这里突然一个转变难以理解。</p>
+<h5 id="1-1-微命令："><a href="#1-1-微命令：" class="headerlink" title="1.1 微命令："></a>1.1 微命令：</h5><p>控制部件向执行部件发出的各种控制命令叫作微命令，它是构成控制序列的最小单位。<br>例如：打开或关闭某个控制门的电位信号、某个寄存器的打入脉冲等。<br>微命令是控制计算机各部件完成某个基本微操作的命令。</p>
+<h5 id="1-2-微操作："><a href="#1-2-微操作：" class="headerlink" title="1.2 微操作："></a>1.2 微操作：</h5><p>即微命令的操作过程。</p>
+<ul>
+<li>微命令和微操作是一一对应的。</li>
+<li>微命令是微操作的控制信号，微操作是微命令的操作过程。</li>
+<li>微操作是执行部件中最基本的操作。</li>
+</ul>
+<h5 id="1-3-微指令："><a href="#1-3-微指令：" class="headerlink" title="1.3 微指令："></a>1.3 微指令：</h5><p>把在同一 CPU 周期内并行执行的微操作控制信息，存储在控制存储器里，称为一条微指令（Microinstruction）</p>
+<ul>
+<li>它是微命令的组合，微指令存储在控制器中的控制存储器中</li>
+<li>一条微指令通常至少包含两大部分信息：</li>
+<li>操作控制字段，又称微操作码字段，用以产生某一步操作所需的各个微操作控制信号。<ul>
+<li>某位为 1，表明发微指令</li>
+<li>微指令发出的控制信号都是节拍电位信号，持续时间为一个 CPU 周期</li>
+<li>微命令信号还要引入时间控制</li>
+</ul>
+</li>
+<li>顺序控制字段，又称微地址码字段，用以控制产生下一条要执行的微指令地址。</li>
+</ul>
+<h5 id="1-4-微程序："><a href="#1-4-微程序：" class="headerlink" title="1.4 微程序："></a>1.4 微程序：</h5><ul>
+<li>一系列微指令的有序集合就是微程序。</li>
+<li>一段微程序对应一条机器指令。</li>
+</ul>
+<h5 id="1-5-微地址-：存放微指令的控制存储器的单元地址"><a href="#1-5-微地址-：存放微指令的控制存储器的单元地址" class="headerlink" title="1.5 微地址 ：存放微指令的控制存储器的单元地址"></a>1.5 微地址 ：存放微指令的控制存储器的单元地址</h5><h4 id="2-控制方式"><a href="#2-控制方式" class="headerlink" title="2. 控制方式"></a>2. 控制方式</h4><h5 id="2-1-同步控制方式："><a href="#2-1-同步控制方式：" class="headerlink" title="2.1 同步控制方式："></a>2.1 同步控制方式：</h5><p>任何一条指令或指令中的任一微操作均由 统一基准时标 的时序信号控制。</p>
+<p><strong>2.1.1 采用<code>定长</code>的机器周期</strong><br>以 <code>最长</code>的微操作序列和<code>最繁</code>的微操作作为标准,而且机器周期内 节拍数相同。<br><img src="https://img-blog.csdnimg.cn/2020053023320975.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70#pic_center" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br><strong>2.1.2 采用不定长的机器周期:</strong><br>机器周期内 节拍数不等<br><img src="https://img-blog.csdnimg.cn/20200530234046893.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70#pic_center" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br><strong>2.1.3 采用中央控制和局部控制相结合的方法</strong><br><img src="https://img-blog.csdnimg.cn/20200530234206186.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70#pic_center" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<h5 id="2-2-异步控制方式"><a href="#2-2-异步控制方式" class="headerlink" title="2.2 异步控制方式"></a>2.2 异步控制方式</h5><ul>
+<li>无基准时标信号</li>
+<li>无固定的周期节拍和严格的时钟同步</li>
+<li>采用 应答方式</li>
+</ul>
+<p>&#x3D;&#x3D;<strong>用途：</strong> 一般用于主机与 I&#x2F;O 设备间的传送控制，使高速的主机与慢速的 I&#x2F;O 设备可以按照各自的需要的设置时序系统。<code>（考过）</code>&#x3D;&#x3D;</p>
+<p><strong>这不是本门学科的重点，一般是操作系统会讲！</strong></p>
+<h5 id="2-3-联合控制方式"><a href="#2-3-联合控制方式" class="headerlink" title="2.3 联合控制方式"></a>2.3 联合控制方式</h5><p>同步与异步相结合</p>
+<h5 id="2-4-人工控制方式"><a href="#2-4-人工控制方式" class="headerlink" title="2.4 人工控制方式"></a>2.4 人工控制方式</h5><ul>
+<li>Reset</li>
+<li>连续 和 单条 指令执行转换开关</li>
+<li>符合停机开关</li>
+</ul>
+<h4 id="3-控制单元的设计"><a href="#3-控制单元的设计" class="headerlink" title="3.控制单元的设计"></a>3.控制单元的设计</h4><h5 id="3-1-组合逻辑控制（硬布线逻辑控制）-不是重点"><a href="#3-1-组合逻辑控制（硬布线逻辑控制）-不是重点" class="headerlink" title="3.1 组合逻辑控制（硬布线逻辑控制）&#x3D;&#x3D;不是重点&#x3D;&#x3D;"></a>3.1 组合逻辑控制（硬布线逻辑控制）&#x3D;&#x3D;不是重点&#x3D;&#x3D;</h5><p>由基本的门电路组合实现。这种方式实现的控制器的处理速度快，但电路庞杂，制造周期长，不灵活，可维护性差。</p>
+<h6 id="3-1-1-硬布线逻辑控制："><a href="#3-1-1-硬布线逻辑控制：" class="headerlink" title="3.1.1 硬布线逻辑控制："></a>3.1.1 硬布线逻辑控制：</h6><ul>
+<li>实现方法：<br>通过逻辑电路直接连线而产生的，又称为组合逻辑控制方式</li>
+<li>设计目标<br>使用最少元件（复杂的树形网络）<br>速度最高</li>
+</ul>
+<h6 id="3-1-2-组合逻辑控制单元框图"><a href="#3-1-2-组合逻辑控制单元框图" class="headerlink" title="3.1.2 组合逻辑控制单元框图"></a>3.1.2 组合逻辑控制单元框图</h6><p><img src="https://img-blog.csdnimg.cn/20200531012909292.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20200531012930282.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<h6 id="3-1-3-节拍信号"><a href="#3-1-3-节拍信号" class="headerlink" title="3.1.3 节拍信号"></a>3.1.3 节拍信号</h6><p><img src="https://img-blog.csdnimg.cn/20200531013431375.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<h6 id="3-1-4-设计原则："><a href="#3-1-4-设计原则：" class="headerlink" title="3.1.4 设计原则："></a>3.1.4 设计原则：</h6><ol>
+<li><p>微操作的 先后顺序不得 随意 更改</p>
+</li>
+<li><p>被控对象不同 的微操作<br>尽量安排在 一个节拍 内完成</p>
+</li>
+<li><p>占用 时间较短 的微操作<br>尽量 安排在 一个节拍 内完成<br>并允许有先后顺序</p>
+</li>
+</ol>
+<h5 id="3-2-微程序控制"><a href="#3-2-微程序控制" class="headerlink" title="3.2 微程序控制"></a>3.2 微程序控制</h5><p>仿照程序设计的方法编制每个机器指令对应的微程序，每个微程序由若干条微指令构成，各微指令包含若干条微命令。所有指令对应的微程序放在只读存储器中。当执行到某条指令时，取出对应微程序中的各条微指令，译码产生对应的微命令，送到机器相应的地方，控制其动作。这个只读存储器称为控制存储器(CS)。 微程序控制方式下，控制单元的设计简单，指令添加容易(灵活)，可维护性好，但速度较慢。</p>
+<h6 id="3-2-1-微命令和微操作"><a href="#3-2-1-微命令和微操作" class="headerlink" title="3.2.1 微命令和微操作"></a>3.2.1 微命令和微操作</h6><ul>
+<li>微命令：控制部件向执行部件发出的各种控制命令叫作微命令，它是构成控制序列的最小单位。<ul>
+<li>例如：打开或关闭某个控制门的电位信号、某个寄存器的打入脉冲等。</li>
+<li>微命令是控制计算机各部件完成某个基本微操作的命令。</li>
+</ul>
+</li>
+<li>微操作：是微命令的操作过程。<ul>
+<li>微命令和微操作是一一对应的。</li>
+<li>微命令是微操作的控制信号，微操作是微命令的操作过程。</li>
+<li>微操作是执行部件中最基本的操作。</li>
+</ul>
+</li>
+</ul>
+<p>由于数据通路的结构关系，微操作可分为相容的和互斥的两种：</p>
+<ul>
+<li>互斥的微操作，是指不能同时或不能在同一个节拍内并行执行的微操作。可以编码</li>
+<li>相容的微操作，是指能够同时或在同一个节拍内并行执行的微操作。必须各占一位</li>
+</ul>
+<h6 id="3-2-2-微指令、微程序和微地址"><a href="#3-2-2-微指令、微程序和微地址" class="headerlink" title="3.2.2 微指令、微程序和微地址"></a>3.2.2 微指令、微程序和微地址</h6><p><strong>微指令：</strong><br>把在同一 CPU 周期内并行执行的微操作控制信息，存储在控制存储器里，称为一条微指令“Microinstruction”</p>
+<ul>
+<li>它是微命令的组合，微指令存储在控制器中的控制存储器中</li>
+<li>一条微指令通常至少包含两大部分信息：<ul>
+<li>操作控制字段，又称微操作码字段，用以产生某一步操作所需的各个微操作控制信号。<ul>
+<li>某位为 1，表明发微指令</li>
+<li>微指令发出的控制信号都是节拍电位信号，持续时间为一个 CPU 周期</li>
+<li>微命令信号还要引入时间控制</li>
+</ul>
+</li>
+<li>顺序控制字段，又称微地址码字段，用以控制产生下一条要执行的微指令地址。</li>
+</ul>
+</li>
+</ul>
+<p><strong>微程序：</strong></p>
+<ul>
+<li><p>一系列微指令的有序集合就是微程序。</p>
+</li>
+<li><p>一段微程序对应一条机器指令。</p>
+<p><strong>微地址 ：</strong><br>存放微指令的控制存储器的单元地址</p>
+</li>
+</ul>
+<h6 id="3-2-3-微程序控制器原理框图"><a href="#3-2-3-微程序控制器原理框图" class="headerlink" title="3.2.3 微程序控制器原理框图"></a>3.2.3 微程序控制器原理框图</h6><p><strong>1 机器指令对应的微程序</strong></p>
+<p><strong>2 .工作原理</strong><br><img src="https://img-blog.csdnimg.cn/20200607230558476.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/2020060723522274.gif" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20200607235711947.gif" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20200607235811447.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20200608000736884.gif" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br><strong>微程序控制器的工作过程</strong></p>
+<ul>
+<li>(1)执行取指令的公共操作。取指令的公共操作通常由一段取指微程序来完成，在机器开始运行时，自动将取指微程序的入口微地址送 μMAR，并从 μCM 中读出相应的微指令送入 μIR。微指令的操作控制字段产生有关的微命令，用来控制实现取机器指令的公共操作。取指微程序的入口地址一般为 μCM 的 0 号单元，当取指微程序执行完后，从主存中取出的机器指令就已存人指令寄存器 IR 中了。</li>
+<li>(2)由机器指令的操作码字段通过微地址形成部件产生出该机器指令所对应的微程序的入口地址，并送入 μMA</li>
+<li>(3)从 μCM 中逐条取出对应的微指令并执行之，每条微指令都能自动产生下一条微指令的地址。</li>
+<li>(4)一条机器指令对应的微程序的最后一条微指令执行完毕后，其下一条微指令地址又回到取指微程序的人口地址，从而继续第(1)步，以完成取下条机器指令的公共操作。<br>以上是一条机器指令的执行过程，如此周而复始，直到整个程序的所有机器指令执行完毕。</li>
+</ul>
+<h6 id="3-2-4-微指令的编码方式（控制方式）"><a href="#3-2-4-微指令的编码方式（控制方式）" class="headerlink" title="3.2.4 微指令的编码方式（控制方式）"></a>3.2.4 微指令的编码方式（控制方式）</h6><ol>
+<li><p><strong>直接编码（直接控制）方式</strong><br>在微指令的操作控制字段中，每一位代表一个微操作命令，某位为 “1” 表示该控制信号有效（速度最快）<br><img src="https://img-blog.csdnimg.cn/2020060723152434.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+</li>
+<li><p><strong>字段直接编码方式</strong>（显式编码）<br>将微指令的控制字段分成若干 “段”，每段经译码后发出控制信号。（执行速度较慢）</p>
+</li>
+</ol>
+<ul>
+<li>每个字段中的命令是 互斥 的</li>
+<li>缩短了微指令字长但增加了译码 时间<br><img src="https://img-blog.csdnimg.cn/20200607232122367.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></li>
+</ul>
+<ol start="3">
+<li><strong>字段间接编码方式(隐式编码)</strong><br><img src="https://img-blog.csdnimg.cn/20200607232230363.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></li>
+<li>混合编码<br>直接编码和字段编码（直接和间接）混合使用</li>
+</ol>
+<h6 id="3-2-5-微指令序列地址的形成"><a href="#3-2-5-微指令序列地址的形成" class="headerlink" title="3.2.5 微指令序列地址的形成"></a>3.2.5 微指令序列地址的形成</h6><ol>
+<li>微指令的 下地址字段 指出</li>
+<li>根据机器指令的 操作码 形成</li>
+<li>增量计数器 : ( CMAR ) + 1 ➡ CMAR</li>
+<li>分支转移<br><img src="https://img-blog.csdnimg.cn/2020060723261720.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></li>
+<li>通过测试网络<br><img src="https://img-blog.csdnimg.cn/20200607232645357.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></li>
+<li>由硬件产生微程序入口地址</li>
+</ol>
+<ul>
+<li>第一条微指令地址 由专门 硬件 产生</li>
+<li>中断周期 由 硬件 产生 中断周期微程序首地址</li>
+</ul>
+<ol start="7">
+<li>后续微指令地址形成方式原理图</li>
+</ol>
+<p><img src="https://img-blog.csdnimg.cn/20200608001038157.gif" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<h6 id="3-2-6-微指令格式"><a href="#3-2-6-微指令格式" class="headerlink" title="3.2.6 微指令格式"></a>3.2.6 微指令格式</h6><ol>
+<li><p>水平型微指令<br>一次能定义并执行多个并行操作</p>
+<ul>
+<li>直接编码</li>
+<li>字段直接编码</li>
+<li>字段间接编码</li>
+<li>直接和字段混合编码</li>
+</ul>
+</li>
+<li><p>垂直型微指令</p>
+<ul>
+<li>类似机器指令操作码 的方式</li>
+<li>由微操作码字段规定微指令的功能</li>
+</ul>
+</li>
+<li><p><strong>两种微指令格式的比较(重要哦）</strong></p>
+<ul>
+<li>(1) 水平型微指令比垂直型微指令 并行操作能力强 ，<br>灵活性强</li>
+<li>(2) 水平型微指令执行一条机器指令所要的<br>微指令 数目少，速度快</li>
+<li>(3) 水平型微指令 用较短的微程序结构换取较长的<br>微指令结构</li>
+<li>(4) 水平型微指令与机器指令 差别大</li>
+</ul>
+</li>
+</ol>
+<h6 id="3-2-7-微指令和程序指令的关系"><a href="#3-2-7-微指令和程序指令的关系" class="headerlink" title="3.2.7 微指令和程序指令的关系"></a>3.2.7 微指令和程序指令的关系</h6><p><img src="https://img-blog.csdnimg.cn/20200607233525149.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<h6 id="3-2-8-设计微指令应当追求的目标"><a href="#3-2-8-设计微指令应当追求的目标" class="headerlink" title="3.2.8 设计微指令应当追求的目标"></a>3.2.8 设计微指令应当追求的目标</h6><ul>
+<li>有利于缩短微指令的长度</li>
+<li>有利于缩小 CM 的容量</li>
+<li>有利于提高微程序的执行速度</li>
+<li>有利于对微指令的修改</li>
+<li>有利于提高微程序设计的灵活性</li>
+</ul>
+<h4 id="五、指令流水"><a href="#五、指令流水" class="headerlink" title="五、指令流水"></a>五、指令流水</h4><h5 id="1-指令流水原理"><a href="#1-指令流水原理" class="headerlink" title="1.指令流水原理"></a>1.指令流水原理</h5><p>可以将指令周期简单分为：IF 取指、ID 指令译码、EX 执行 、WD 写回</p>
+<p>取指令由取指部件完成，执行指令由执行部件完成，如果采用串行化执行，则在执行指令 1 时，取指部件是空闲的。<br><img src="https://img-blog.csdnimg.cn/20200608001404978.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<p>指令的四级流水</p>
+<p><img src="https://img-blog.csdnimg.cn/20200608001509197.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<p>在 ID 阶段，同时将指令 2 进行取指，理想情况，流水线的效率将加倍。</p>
+<h6 id="1-1-五级流水："><a href="#1-1-五级流水：" class="headerlink" title="1.1 五级流水："></a>1.1 五级流水：</h6><ul>
+<li>IF:Instruction Fetch,取指令,用到部件:指令存储器，Adder（ 全加器，full-adder，是用门电路实现两个二进制数相加并求出和的组合线路，称为一位全加器。一位全加器可以处理低位进位，并输出本位加法进位。多个一位全加器进行级联可以得到多位全加器。常用二进制四位全加器 74LS283）</li>
+<li>ID:Instruction Decode,译码（应该是取数同时译码的过程），用到部件：指令译码器寄存器堆读口（这里面的寄存器堆的读口和写口可以看作两个不同的部件），这块有大量寄存器，WB 也是从写口将数据写到这块的寄存器中。</li>
+<li>EX:Exec,执行，计算内存单元地址。用到部件：ALU，扩展器</li>
+<li>MEM：访存，从数据存储器中读。用到部件：数据存储器。</li>
+<li>WB:Write Back,写回，将数据写到寄存器中。用到部件：寄存器堆写口。</li>
+<li><img src="https://img-blog.csdnimg.cn/20200608002115553.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></li>
+</ul>
+<h6 id="1-2-六级流水："><a href="#1-2-六级流水：" class="headerlink" title="1.2 六级流水："></a>1.2 六级流水：</h6><ul>
+<li><p><strong>取指 FI</strong> 从存储器取出一条指令放入指令部件缓冲区</p>
+</li>
+<li><p><strong>指令译码 DI</strong> 确定操作性质和操作数地址形成方式</p>
+</li>
+<li><p><strong>计算操作数地址 CO</strong> 计算操作有效地址</p>
+</li>
+<li><p><strong>取操作数 FO</strong> 从存储器中取出操作数</p>
+</li>
+<li><p><strong>执行指令 EI</strong> 执行指令，将结果存入目的位置</p>
+</li>
+<li><p><strong>写操作书 WO</strong> 将结果存入寄存器</p>
+</li>
+</ul>
+<p><img src="https://img-blog.csdnimg.cn/20200608002148419.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<h5 id="2-影响流水线性能因素"><a href="#2-影响流水线性能因素" class="headerlink" title="2.影响流水线性能因素"></a>2.影响流水线性能因素</h5><h6 id="2-1-结构相关-资源相关"><a href="#2-1-结构相关-资源相关" class="headerlink" title="2.1 结构相关 资源相关"></a>2.1 结构相关 资源相关</h6><p>多条指令进入流水线后在同一时钟周期内争用同一功能部件。</p>
+<p>MEM 取数和 IF 取指会发生访存冲突：<br><img src="https://img-blog.csdnimg.cn/20200608002518259.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<p>解决方式：</p>
+<p>流水线完成前一条指令对数据的存储器访问时，暂停取后一条指令</p>
+<p>增设一个功能部件，独立存储器存放操作数和指令</p>
+<p>采用指令预取技术，将指令预取到指令队列中，这样取操作数操作便可以独占存储器访问</p>
+<p>2.2 数据相关<br>不同指令重叠操作，可能改变对操作数的读写访问顺序</p>
+<p>数据相关冲突有：</p>
+<ul>
+<li>RAW(Read After Write)<br>后面指令用到前面指令所写的数据</li>
+<li>WAW(Write After Write)<br>两条指令写同一个单元<br>在简单流水线中没有此类相关，因为不会乱序执行</li>
+<li>WAR(Write After Read)<br>后面指令覆盖前面指令所读的单元<br>在简单流水线中没有此类相关<br>解决办法：<br>可以推后后继指令对相关单元的读操作</li>
+</ul>
+<p>解决方式：</p>
+<ul>
+<li><p>后推法:<br>遇到数据相关时，停顿后继指令运行，直到前面指令结果已经生成</p>
+</li>
+<li><p>设置相关的直接通路”Forwarding”：<br>定向技术 旁路技术 将某条指令执行结果不送回寄存器而是直接送到其他指令所需的地方<br>例：两条指令发生数据相关冲突 RAW(Read After Write)</p>
+</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs cpp">ADD	R1,	R2,	R3		R2+R3--&gt;R1<br>SUB		R4,	R1,	R5		R1-R5--&gt;R4<br>AND	R6,	R1,	R7		R1^R7--&gt;R6<br></code></pre></td></tr></table></figure>
+
+<p>2.3 控制相关<br>由转移指令引起 若是条件转移指令，则转移目标地址可能发生跳转，影响流水线效率。<br><img src="https://img-blog.csdnimg.cn/2020060800285088.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<p>解决方式：</p>
+<ul>
+<li>延迟转移法</li>
+<li>转移预测法</li>
+</ul>
+<h5 id="3-流水线性能"><a href="#3-流水线性能" class="headerlink" title="3.流水线性能"></a>3.流水线性能</h5><h6 id="3-1-吞吐率"><a href="#3-1-吞吐率" class="headerlink" title="3.1 吞吐率"></a>3.1 吞吐率</h6><p>单位时间内流水线完成指令或输出结果数量</p>
+<p>最大吞吐率：流水线达到稳定状态后可获得的吞吐率<br>这个值是固定的的：</p>
+<p>$T_{max}&#x3D; \frac{1}{各段流水平均用时 }$</p>
+<p>实际吞吐率：流水线完成 n 条指令实际吞吐率</p>
+<p>$T_{act}&#x3D; \frac{某段时间执行指令总条数}{执行所有指令的用时}$</p>
+<h6 id="3-2-加速比"><a href="#3-2-加速比" class="headerlink" title="3.2 加速比"></a>3.2 加速比</h6><p>m 段流水线速度与等功能非流水线速度之比</p>
+<p>$S&#x3D; \frac{顺序执行所有指令的用时}{流水形式执行所有指令的用时}$</p>
+<h6 id="3-3-效率"><a href="#3-3-效率" class="headerlink" title="3.3 效率"></a>3.3 效率</h6><p>流水线中各功能段利用率</p>
+<p>$E&#x3D; \frac{流水线各段处于工作时间时空区}{流水线中各段总时空区}$<br>即在执行一段程序中，对 CPU 的有效利用率。<br><img src="https://img-blog.csdnimg.cn/20200608004743453.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br>效率和吞吐率的关系：<br>如果每段流水时间都是$⊿<em>T$的话<br>$E&#x3D;T</em>{act}*⊿_T$</p>
+<p>和加速比的关系：<br>$E&#x3D; \frac{S }{流水级数 }$</p>
+<h5 id="4-超级流水线技术"><a href="#4-超级流水线技术" class="headerlink" title="4.超级流水线技术"></a>4.超级流水线技术</h5><p>超级流水线（SuperPipeline)又叫做深度流水线，它是提高 cpu 速度通常采取的一种技术。<br>以四级流水为例：<br>IF 取指、ID 指令译码、EX 执行 、WD 写回</p>
+<h6 id="4-1-超标量技术"><a href="#4-1-超标量技术" class="headerlink" title="4.1 超标量技术"></a>4.1 超标量技术</h6><p>超标量（superscalar）是指在 CPU 中有一条以上的流水线，并且每时钟周期内可以完成一条以上的指令，这种设计就叫超标量技术。 其实质是以空间换取时间。而超流水线是通过细化流水、提高主频，使得在一个机器周期内完成一个甚至多个操作，其实质是以时间换取空间。</p>
+<p><img src="https://img-blog.csdnimg.cn/20200608005409227.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<h6 id="4-2-超流水线技术"><a href="#4-2-超流水线技术" class="headerlink" title="4.2 超流水线技术"></a>4.2 超流水线技术</h6><p>在一个时钟周期内再分段，一个功能部件使用多次<br><img src="https://img-blog.csdnimg.cn/20200608005934896.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<h6 id="4-3-超长指令字技术"><a href="#4-3-超长指令字技术" class="headerlink" title="4.3 超长指令字技术"></a>4.3 超长指令字技术</h6><p>超常指令字（VLIW：VeryLongInstructionWord）是由美国 Yale 大学教授 Fisher 提出的。它有点类似于超级标量，是一条指令来实现多个操作的并行执行，之所以放到一条指令是为了减少内存访问。通常一条指令多达上百位，有若干操作数，每条指令可以做不同的几种运算。那些指令可以并行执行是由编译器来选择的。通常 VLIW 机只有一个控制器，每个周期启动一条长指令，长指令被分为几个字段，每个字段控制相应的部件。由于编译器需要考虑数据相关性，避免冲突，并且尽可能利用并行，完成指令调度，所以硬件结构较简单。 　　<br>由编译程序挖掘出指令间潜在的并行性，将多条能并行操作的指令组合成一条具有多个操作码字段的超长指令字<br><img src="https://img-blog.csdnimg.cn/20200608005448743.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<br>
+
+<blockquote>
+<p><strong>写在最后：</strong><br>Name:风骨散人，目前是一名双非在校大学生，预计考研，热爱编程，热爱技术，喜欢分享，知识无界，希望我的分享可以帮到你！名字的含义：我想有一天我能有能力随心所欲不逾矩，不总是向生活低头，有能力让家人拥有富足的生活而不是为了生计而到处奔波。“世人慌慌张张，不过是图碎银几两。偏偏这碎银几两，能解世间惆怅，可让父母安康，可护幼子成长 …”<br><strong>文章主要内容：</strong><br>Python,C++,C 语言,JAVA,C#等语言的教程<br>ACM 题解、模板、算法等，主要是数据结构，数学和图论<br>设计模式，数据库，计算机网络，操作系统，计算机组成原理<br>Python 爬虫、深度学习、机器学习<br>计算机系<strong>408</strong>考研的所有专业课内容<br><strong>目前还在更新中，先关注不迷路。微信公众号，cnblogs（博客园），CSDN 同名“风骨散人”</strong></p>
+</blockquote>
+<blockquote>
+<p>如果有什么想看的，可以私信我，如果在能力范围内，我会发布相应的博文！<br>感谢大家的阅读！😘 你的点赞、收藏、关注是对我最大的鼓励！</p>
+</blockquote>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/" class="category-chain-item">计算机组成原理</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>『计算机组成原理』跟着博主玩转计算机组成结构--中央处理器CPU（不知道CPU干啥的小伙伴看过来）</div>
+      <div>https://chiamzhang.github.io/2024/06/29/『计算机组成原理』跟着博主玩转计算机组成结构--中央处理器CPU（不知道CPU干啥的小伙伴看过来）/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>Chiam</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>June 29, 2024</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>Licensed under</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2024/06/29/%E3%80%8E%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86%E3%80%8F%EF%BC%88%E7%82%B9%E8%BF%9B%E6%9D%A5%E4%B8%8D%E5%90%8E%E6%82%94%EF%BC%89/" title="『计算机组成原理』（点进来不后悔）">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">『计算机组成原理』（点进来不后悔）</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/06/29/%E3%80%8E%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86%E3%80%8F%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%80%A7%E8%83%BD%E6%8C%87%E6%A0%87%EF%BC%88%E9%99%84%E8%80%83%E7%A0%94%E9%A2%98%E7%9B%AE%EF%BC%89/" title="『计算机组成原理』计算机性能指标（附考研题目）">
+                        <span class="hidden-mobile">『计算机组成原理』计算机性能指标（附考研题目）</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"fIfc7WqUDZohlQuPc2lz5mJy-MdYXbMMI","appKey":"zjlAG3ZA3o4cBHVAkjzc2Z20","path":"window.location.pathname","placeholder":"留言仅限讨论，禁止广告等行为","avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"https://fifc7wqu.api.lncldglobal.com","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>Table of Contents</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <meta name="referrer" content="no-referrer" /> <footer id="footer" role="contentinfo"> <meta name="referrer" content="no-referrer" /> <div class="divider"> <div class="wall"></div> <img class="animals" src="/img/footer_animals_new.png" srcset="/img/loading.gif" lazyload alt="Footer Animals"> </div> <div class="container" data-index="450"> <p> <a href="https://chiamzhang.github.io" target="_blank">DogEgg</a> <i class="iconfont icon-love"></i> <a href="#" target="_blank">LittePig</a> </p> <p> Powered by  <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-pen"></i> Theme  <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> </p> </div> </footer> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+  
+<script src="/js/love.js"></script>
+<script src="/js/funnyTitle.js"></script>
+<script src="/js/backTop.js"></script>
+<script src="//cdn.jsdelivr.net/gh/bynotes/texiao/source/js/xiaoxuehua.js"></script>
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+</html>

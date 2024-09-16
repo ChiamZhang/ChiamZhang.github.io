@@ -1,0 +1,843 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/Mine.jpg">
+  <link rel="icon" href="/img/Mine.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Chiam">
+  <meta name="keywords" content="Algorithms，Cybersecurity">
+  
+    <meta name="description" content="『设计模式』 又谈麦当劳的食品-组合模式(Composite)23 种设计模式+额外常用设计模式汇总 (持续更新）我又又又谈了一期麦当劳，麦当劳看到了记得打钱 😂 引入  商品类别树的节点被分成两种，一种是容器节点,另一种是叶子节点。 容器节点可以包含其他容器节点或者叶子节点  组合模式  组合模式有时又叫做部分——整体模式(Part-Whole) 。组合模式将对象组织到树结构中，可以用来描述整">
+<meta property="og:type" content="article">
+<meta property="og:title" content="『设计模式』 又谈麦当劳的食品-组合模式(Composite)">
+<meta property="og:url" content="https://chiamzhang.github.io/2024/06/29/%E3%80%8E%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E3%80%8F%20%E5%8F%88%E8%B0%88%E9%BA%A6%E5%BD%93%E5%8A%B3%E7%9A%84%E9%A3%9F%E5%93%81-%E7%BB%84%E5%90%88%E6%A8%A1%E5%BC%8F(Composite)/index.html">
+<meta property="og:site_name" content="Homepage of Chiam">
+<meta property="og:description" content="『设计模式』 又谈麦当劳的食品-组合模式(Composite)23 种设计模式+额外常用设计模式汇总 (持续更新）我又又又谈了一期麦当劳，麦当劳看到了记得打钱 😂 引入  商品类别树的节点被分成两种，一种是容器节点,另一种是叶子节点。 容器节点可以包含其他容器节点或者叶子节点  组合模式  组合模式有时又叫做部分——整体模式(Part-Whole) 。组合模式将对象组织到树结构中，可以用来描述整">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200524232117853.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzQ2MDIyNA==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200618015738872.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70">
+<meta property="article:published_time" content="2024-06-29T13:16:54.665Z">
+<meta property="article:modified_time" content="2023-12-05T16:20:15.055Z">
+<meta property="article:author" content="Chiam">
+<meta property="article:tag" content="Algorithms，Cybersecurity">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20200524232117853.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzQ2MDIyNA==,size_16,color_FFFFFF,t_70">
+  
+  
+  
+  <title>『设计模式』 又谈麦当劳的食品-组合模式(Composite) - Homepage of Chiam</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"chiamzhang.github.io","root":"/","version":"1.9.5-a","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":"❡"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":2},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
+
+
+<body>
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Chiam&#39;s Blogs</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                
+                <span>Home</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                
+                <span>Archives</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                
+                <span>Categories</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                
+                <span>About</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                
+                <span>Links</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="『设计模式』 又谈麦当劳的食品-组合模式(Composite)"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-06-29 21:16" pubdate>
+          June 29, 2024 pm
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          4.9k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          41 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">『设计模式』 又谈麦当劳的食品-组合模式(Composite)</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="『设计模式』-又谈麦当劳的食品-组合模式-Composite"><a href="#『设计模式』-又谈麦当劳的食品-组合模式-Composite" class="headerlink" title="『设计模式』 又谈麦当劳的食品-组合模式(Composite)"></a>『设计模式』 又谈麦当劳的食品-组合模式(Composite)</h1><p><a target="_blank" rel="noopener" href="https://lunatic.blog.csdn.net/article/details/105578091">23 种设计模式+额外常用设计模式汇总 (持续更新）</a><br><strong>我又又又谈了一期麦当劳，麦当劳看到了记得打钱 😂</strong></p>
+<h2><a name="t0" class="one-pan-link-mark"></a><a name="t0" class="one-pan-link-mark"></a><a id="_0" class="one-pan-link-mark"></a>引入</h2>
+<ul>
+<li>商品类别树的节点被分成两种，一种是容器节点,另一种是叶子节点。</li>
+<li>容器节点可以包含其他容器节点或者叶子节点</li>
+</ul>
+<h2><a name="t1" class="one-pan-link-mark"></a><a name="t1" class="one-pan-link-mark"></a><a id="_5" class="one-pan-link-mark"></a>组合模式</h2>
+<ul>
+<li>组合模式有时又叫做部分——整体模式(Part-Whole)<br>
+。组合模式将对象组织到树结构中，可以用来描述整体与部分的关系。组合模式可以使客户端将单纯元素与复合元素同等看待。</li>
+<li>一个树结构由两种节点组成:<mark>树枝节点和树叶节点</mark>。树枝节点可以有子节点，而一个树叶节点不可以有子节点。除了根节点外，其它节点有且只有一个父节点。</li>
+</ul>
+<h2><a name="t2" class="one-pan-link-mark"></a><a name="t2" class="one-pan-link-mark"></a><a id="_11" class="one-pan-link-mark"></a>模式结构</h2>
+<p><img src="https://img-blog.csdnimg.cn/20200524232117853.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzQ2MDIyNA==,size_16,color_FFFFFF,t_70" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<ul>
+<li><strong>抽象构件(Component)角色</strong><br>
+这是一个抽象角色，它给参与组合的对象规定一个接口。这个角色给出共有接口及其默认行为。</li>
+<li><strong>树叶构件(Leaf) 角色</strong><br>
+代表参加组合的树叶对象。一个树叶对象没有下级子对象。</li>
+<li><strong>树枝构件(Composite)角色</strong><br>
+代表参加组合的有子对象的对象，并给出树枝构件对象的行为。</li>
+</ul>
+<h2><a name="t3" class="one-pan-link-mark"></a><a name="t3" class="one-pan-link-mark"></a><a id="_20" class="one-pan-link-mark"></a>示意性代码</h2>
+<pre class="prettyprint"><code class="prism language-csharp has-numbering" onclick="mdcp.copyCode(event)" style="position: unset;"><span class="token comment">//抽象节点类</span>
+    <span class="token keyword">abstract</span> <span class="token keyword">class</span> <span class="token class-name">Component</span>
+    <span class="token punctuation">{</span>
+        <span class="token keyword">protected</span> <span class="token keyword">string</span> name<span class="token punctuation">;</span>
+<span class="token keyword">public</span> <span class="token function">Component</span><span class="token punctuation">(</span><span class="token keyword">string</span> name<span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            <span class="token keyword">this</span><span class="token punctuation">.</span>name <span class="token operator">=</span> name<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">public</span> <span class="token keyword">abstract</span> <span class="token keyword">void</span> <span class="token function">Add</span><span class="token punctuation">(</span><span class="token class-name">Component</span> c<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">public</span> <span class="token keyword">abstract</span> <span class="token keyword">void</span> <span class="token function">Remove</span><span class="token punctuation">(</span><span class="token class-name">Component</span> c<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">public</span> <span class="token keyword">abstract</span> <span class="token keyword">void</span> <span class="token function">Display</span><span class="token punctuation">(</span><span class="token keyword">int</span> depth<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token comment">//叶子节点类</span>
+    <span class="token keyword">class</span> <span class="token class-name">Leaf</span><span class="token punctuation">:</span><span class="token class-name">Component</span>
+    <span class="token punctuation">{</span>
+        <span class="token keyword">public</span> <span class="token function">Leaf</span><span class="token punctuation">(</span><span class="token keyword">string</span> name<span class="token punctuation">)</span> <span class="token punctuation">:</span> <span class="token keyword">base</span><span class="token punctuation">(</span>name<span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token punctuation">}</span>
+        <span class="token keyword">public</span> <span class="token keyword">override</span> <span class="token keyword">void</span> <span class="token function">Add</span><span class="token punctuation">(</span><span class="token class-name">Component</span> c<span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+           Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token string">"Cannot add to a leaf"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">public</span> <span class="token keyword">override</span> <span class="token keyword">void</span> <span class="token function">Remove</span><span class="token punctuation">(</span><span class="token class-name">Component</span> c<span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token string">"Cannot remove from a leaf"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">public</span> <span class="token keyword">override</span> <span class="token keyword">void</span> <span class="token function">Display</span><span class="token punctuation">(</span><span class="token keyword">int</span> depth<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+            Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">String</span><span class="token punctuation">(</span><span class="token string">'-'</span><span class="token punctuation">,</span>depth<span class="token punctuation">)</span><span class="token operator">+</span>name<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+    <span class="token comment">//组合类</span>
+    <span class="token keyword">class</span> <span class="token class-name">Composite</span> <span class="token punctuation">:</span> <span class="token class-name">Component</span>
+    <span class="token punctuation">{</span>
+        <span class="token keyword">private</span> List<span class="token operator">&lt;</span>Component<span class="token operator">&gt;</span> children <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token generic-method"><span class="token function">List</span><span class="token punctuation">&lt;</span><span class="token class-name">Component</span><span class="token punctuation">&gt;</span></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">public</span> <span class="token function">Composite</span><span class="token punctuation">(</span><span class="token keyword">string</span> name<span class="token punctuation">)</span> <span class="token punctuation">:</span> <span class="token keyword">base</span><span class="token punctuation">(</span>name<span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token punctuation">}</span>
+        <span class="token keyword">public</span> <span class="token keyword">override</span> <span class="token keyword">void</span> <span class="token function">Add</span><span class="token punctuation">(</span><span class="token class-name">Component</span> c<span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            children<span class="token punctuation">.</span><span class="token function">Add</span><span class="token punctuation">(</span>c<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">public</span> <span class="token keyword">override</span> <span class="token keyword">void</span> <span class="token function">Display</span><span class="token punctuation">(</span><span class="token keyword">int</span> depth<span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">String</span><span class="token punctuation">(</span><span class="token string">'-'</span><span class="token punctuation">,</span> depth<span class="token punctuation">)</span> <span class="token operator">+</span> name<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">foreach</span><span class="token punctuation">(</span><span class="token class-name">Component</span> component <span class="token keyword">in</span> children<span class="token punctuation">)</span>
+            <span class="token punctuation">{</span>
+                component<span class="token punctuation">.</span><span class="token function">Display</span><span class="token punctuation">(</span>depth <span class="token operator">+</span> <span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">public</span> <span class="token keyword">override</span> <span class="token keyword">void</span> <span class="token function">Remove</span><span class="token punctuation">(</span><span class="token class-name">Component</span> c<span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            children<span class="token punctuation">.</span><span class="token function">Remove</span><span class="token punctuation">(</span>c<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">class</span> <span class="token class-name">Program</span>
+    <span class="token punctuation">{</span>
+        <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">Main</span><span class="token punctuation">(</span><span class="token keyword">string</span><span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            <span class="token class-name">Composite</span> root <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Composite</span><span class="token punctuation">(</span><span class="token string">"root"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            root<span class="token punctuation">.</span><span class="token function">Add</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Leaf</span><span class="token punctuation">(</span><span class="token string">"LeafA"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            root<span class="token punctuation">.</span><span class="token function">Add</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Leaf</span><span class="token punctuation">(</span><span class="token string">"LeafB"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token class-name">Composite</span> comp <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Composite</span><span class="token punctuation">(</span><span class="token string">"CompositeX"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            comp<span class="token punctuation">.</span><span class="token function">Add</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Leaf</span><span class="token punctuation">(</span><span class="token string">"LeafXA"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            comp<span class="token punctuation">.</span><span class="token function">Add</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Leaf</span><span class="token punctuation">(</span><span class="token string">"LeafXB"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            root<span class="token punctuation">.</span><span class="token function">Add</span><span class="token punctuation">(</span>comp<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token class-name">Composite</span> comp2 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Composite</span><span class="token punctuation">(</span><span class="token string">"CompositeXY"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            comp2<span class="token punctuation">.</span><span class="token function">Add</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Leaf</span><span class="token punctuation">(</span><span class="token string">"LeafXYA"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            comp2<span class="token punctuation">.</span><span class="token function">Add</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Leaf</span><span class="token punctuation">(</span><span class="token string">"LeafXYB"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            comp<span class="token punctuation">.</span><span class="token function">Add</span><span class="token punctuation">(</span>comp2<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            root<span class="token punctuation">.</span><span class="token function">Add</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Leaf</span><span class="token punctuation">(</span><span class="token string">"LeafC"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token class-name">Leaf</span> leaf <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Leaf</span><span class="token punctuation">(</span><span class="token string">"LeafD"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            root<span class="token punctuation">.</span><span class="token function">Add</span><span class="token punctuation">(</span>leaf<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            root<span class="token punctuation">.</span><span class="token function">Remove</span><span class="token punctuation">(</span>leaf<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            root<span class="token punctuation">.</span><span class="token function">Display</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            Console<span class="token punctuation">.</span><span class="token function">Read</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<h2><a name="t4" class="one-pan-link-mark"></a><a name="t4" class="one-pan-link-mark"></a><a id="_112" class="one-pan-link-mark"></a>认识组合模式</h2>
+<ul>
+<li>组合模式的目的<br>
+让客户端不再区分操作的是组合对象还是叶子对象，而是<mark>以一种统一的方式来操作</mark></li>
+<li>对象树<br>
+组合模式会组合出树形结构来，这也就意味着,<mark>所有可以使用对象树来描述或操作的功能，都可以考虑使用组合模式</mark>。比如读取XML文件，或是对语句进行语法分析等。</li>
+<li>组合模式的实现根据所实现接口的区别分为两种形式，分别称为安全模式和透明模式。组合模式可以不提供父对象的管理方法，但组合模式必须在合适的地方提供子对象的管理方法(诸如Fadd、remove、Display等)。</li>
+</ul>
+<h2><a name="t5" class="one-pan-link-mark"></a><a name="t5" class="one-pan-link-mark"></a><a id="_119" class="one-pan-link-mark"></a>透明方式</h2>
+<ul>
+<li>在Component里面声明所有的用来管理子类对象的方法，包括add ()、remove ()，以及Display ()方法。</li>
+<li>优点:所有的构件类都有相同的接口。在客户端看来，<mark>树叶类对象</mark>与<mark>组合类对象</mark>的区别起码在接口层次上消失了，客户端可以同等的对待所有的对象。这就是透明形式的组合模式。</li>
+<li>缺点:不够安全，因为树叶类对象和合成类对象在本质上是有区别的。树叶类对象不可能有下平个层次的对象,因此add()、remove(）以及Display ()方法没有意义，在编译时期不会出错，而会在运行时期才会出错。</li>
+</ul>
+<h2><a name="t6" class="one-pan-link-mark"></a><a name="t6" class="one-pan-link-mark"></a><a id="_123" class="one-pan-link-mark"></a>安全方式</h2>
+<ul>
+<li>在Composite类里面声明所有的用来管理子类对象的方法</li>
+<li>优点:这样的做法是安全的做法，树叶类型的对象根本就没有管理子类对象的方法,因此，如果客户端对树叶类对象使用这些方法时，程序会在编译时期出错。</li>
+<li>缺点:不够透明，树叶类和合成类将具有不同的接口</li>
+</ul>
+<h2><a name="t7" class="one-pan-link-mark"></a><a name="t7" class="one-pan-link-mark"></a><a id="_127" class="one-pan-link-mark"></a>使用情况</h2>
+<ul>
+<li>需求中是体现部分与整体层次的结构时</li>
+<li>希望用户忽略组合对象与单个对象的不同,统一的使用组合结构中的所有对象时。</li>
+</ul>
+<h2><a name="t8" class="one-pan-link-mark"></a><a name="t8" class="one-pan-link-mark"></a><a id="_130" class="one-pan-link-mark"></a>优点</h2>
+<ul>
+<li>定义了包含基本对象和组合对象的类层次结构<br>
+基本对象可以组合成组合对象，组合对象又能组合成更复杂的组合对象，可以不断地递归组合下去,从而构成一个统一的组合对象的类层次结构</li>
+<li><mark>统一了组合对象和叶子对象</mark></li>
+<li>简化了客户端调用<br>
+不用区分组合对象和叶子对象</li>
+<li>更容易扩展<br>
+由于客户端是统一的面对Component来操作，因此,新定义的Composite或leaf子类能够很容易的与已有的结构一起工作，而不需改变客户端</li>
+</ul>
+<h2><a name="t9" class="one-pan-link-mark"></a><a name="t9" class="one-pan-link-mark"></a><a id="_138" class="one-pan-link-mark"></a>缺点</h2>
+<p>很难限制组合中的组件类型<br>
+这是容易添加新的组件带来的问题，在需要检测组件类型的时候，使得我们不能依靠编译期的类型约束来完成，必须在运行期间动态检测</p>
+<h2><a name="t10" class="one-pan-link-mark"></a><a name="t10" class="one-pan-link-mark"></a><a id="_142" class="one-pan-link-mark"></a>本质</h2>
+<p>同意叶子对象和组合对象</p>
+<h2><a name="t11" class="one-pan-link-mark"></a><a name="t11" class="one-pan-link-mark"></a><a id="_145" class="one-pan-link-mark"></a>实例</h2>
+
+<p>麦当劳的食物的例子：</p>
+<pre><code class=" mermaid">graph LR
+A((主食)) --&gt; B((汉堡))
+A --&gt; C((三明治))
+B --&gt; D&#123;鸡腿堡&#125;
+B--&gt;E&#123;牛肉堡&#125;
+C --&gt; F&#123;黄油三明治&#125;
+C --&gt; G&#123;甜辣三明治&#125;
+</code></pre>
+
+<p>其中圆形为枝节点<br>菱形为叶节点<br><img src="https://img-blog.csdnimg.cn/20200618015738872.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br><strong>抽象节点</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> 组合模式;<br><br><span class="hljs-keyword">abstract</span> <span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Node</span> &#123;<br>	<span class="hljs-keyword">protected</span>   String Node_Name;<br><br>	<span class="hljs-keyword">public</span> <span class="hljs-title function_">Node</span><span class="hljs-params">(String node_Name)</span> &#123;<br><br>		Node_Name = node_Name;<br>	&#125;<br>	<span class="hljs-keyword">abstract</span> <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span>  <span class="hljs-title function_">add_Node</span><span class="hljs-params">(Node node)</span>;<br>	<span class="hljs-keyword">abstract</span> <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span>  <span class="hljs-title function_">remove_Node</span><span class="hljs-params">(Node node)</span>;<br>	<span class="hljs-keyword">abstract</span> <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span>  <span class="hljs-title function_">show</span><span class="hljs-params">()</span>;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+<p><strong>叶节点</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> 组合模式;<br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Leaf_Node</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_">Node</span>&#123;<br><br><br>	<span class="hljs-keyword">public</span> <span class="hljs-title function_">Leaf_Node</span><span class="hljs-params">(String node_Name)</span> &#123;<br>		<span class="hljs-built_in">super</span>(node_Name);<br><br>	&#125;<br>	<span class="hljs-meta">@Override</span><br>	<span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">add_Node</span><span class="hljs-params">(Node node)</span> &#123;<br>		<span class="hljs-comment">// TODO Auto-generated method stub</span><br>		System.out.println(<span class="hljs-string">&quot;Warning:此食物已经为最细化分类，不能进一步分类&quot;</span>);<br>	&#125;<br>	<span class="hljs-meta">@Override</span><br>	<span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">remove_Node</span><span class="hljs-params">(Node node)</span> &#123;<br>		<span class="hljs-comment">// TODO Auto-generated method stub</span><br>		System.out.println(<span class="hljs-string">&quot;Warning:此食物已经为最细化分类，无子分类&quot;</span>); <span class="hljs-comment">//暗示伍兹不行？玩梗！</span><br>	&#125;<br>	<span class="hljs-meta">@Override</span><br>	<span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">show</span><span class="hljs-params">()</span> &#123;<br>		System.out.println(<span class="hljs-string">&quot;  &quot;</span>+Node_Name);<br>	&#125;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+<p><strong>枝节点</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> 组合模式;<br><br><span class="hljs-keyword">import</span> java.util.ArrayList;<br><span class="hljs-keyword">import</span> java.util.List;<br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Branch_Node</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_">Node</span> &#123;<br>	List&lt;Node&gt; Node_List=<span class="hljs-keyword">new</span> <span class="hljs-title class_">ArrayList</span>&lt;Node&gt;();<br>	<span class="hljs-keyword">public</span> <span class="hljs-title function_">Branch_Node</span><span class="hljs-params">(String node_Name)</span> &#123;<br>		<span class="hljs-built_in">super</span>(node_Name);<br>	&#125;<br><br>	<span class="hljs-meta">@Override</span><br>	<span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">add_Node</span><span class="hljs-params">(Node node)</span> &#123;<br>		Node_List.add(node);<br>	&#125;<br><br>	<span class="hljs-meta">@Override</span><br>	<span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">remove_Node</span><span class="hljs-params">(Node node)</span> &#123;<br>		Node_List.remove(node);<br>	&#125;<br><br>	<span class="hljs-meta">@Override</span><br>	<span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">show</span><span class="hljs-params">()</span> &#123;<br>		 System.out.println(<span class="hljs-string">&quot;+&quot;</span>+Node_Name);<br>		 <span class="hljs-keyword">for</span>(Node node:Node_List)<br>		 &#123;<br>			 System.out.print(<span class="hljs-string">&quot;  &quot;</span>);<br>			 node.show();<br>		 &#125;<br>	&#125;<br><br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+<p><strong>客户端</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> 组合模式;<br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Client</span> &#123;<br>	<span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> &#123;<br>		Node Main_Food=<span class="hljs-keyword">new</span> <span class="hljs-title class_">Branch_Node</span>(<span class="hljs-string">&quot;主食&quot;</span>);<br>		Node Hamburger=<span class="hljs-keyword">new</span> <span class="hljs-title class_">Branch_Node</span>(<span class="hljs-string">&quot;汉堡&quot;</span>);<br>		Node Sandwich=<span class="hljs-keyword">new</span> <span class="hljs-title class_">Branch_Node</span>(<span class="hljs-string">&quot;三明治&quot;</span>);<br>		Node JTHB=<span class="hljs-keyword">new</span> <span class="hljs-title class_">Leaf_Node</span>(<span class="hljs-string">&quot;鸡腿堡&quot;</span>);<br>		Node NRHB=<span class="hljs-keyword">new</span> <span class="hljs-title class_">Leaf_Node</span>(<span class="hljs-string">&quot;牛肉堡&quot;</span>);<br>		Node HYSMZ=<span class="hljs-keyword">new</span> <span class="hljs-title class_">Leaf_Node</span>(<span class="hljs-string">&quot;黄油三明治&quot;</span>);<br>		Node TLSMZ=<span class="hljs-keyword">new</span> <span class="hljs-title class_">Leaf_Node</span>(<span class="hljs-string">&quot;甜辣三明治&quot;</span>);<br>		Sandwich.add_Node(HYSMZ);<br>		Sandwich.add_Node(TLSMZ);<br>		Hamburger.add_Node(JTHB);<br>		Hamburger.add_Node(NRHB);<br>		Main_Food.add_Node(Sandwich);<br>		Main_Food.add_Node(Hamburger);<br>		Main_Food.show();<br>	&#125;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" class="category-chain-item">设计模式</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>『设计模式』 又谈麦当劳的食品-组合模式(Composite)</div>
+      <div>https://chiamzhang.github.io/2024/06/29/『设计模式』 又谈麦当劳的食品-组合模式(Composite)/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>Chiam</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>June 29, 2024</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>Licensed under</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2024/06/29/%E3%80%8E%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E3%80%8F-%E5%B8%B8%E8%A7%81%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E8%AE%BE%E8%AE%A1%E5%8E%9F%E5%88%99/" title="『设计模式』-常见面向对象设计原则">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">『设计模式』-常见面向对象设计原则</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/06/29/%E3%80%8E%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E3%80%8F%E9%83%A8%E5%88%86%E7%AE%80%E7%AD%94%E9%A2%98/" title="『计算机网络』部分简答题">
+                        <span class="hidden-mobile">『计算机网络』部分简答题</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"fIfc7WqUDZohlQuPc2lz5mJy-MdYXbMMI","appKey":"zjlAG3ZA3o4cBHVAkjzc2Z20","path":"window.location.pathname","placeholder":"留言仅限讨论，禁止广告等行为","avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"https://fifc7wqu.api.lncldglobal.com","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>Table of Contents</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <meta name="referrer" content="no-referrer" /> <footer id="footer" role="contentinfo"> <meta name="referrer" content="no-referrer" /> <div class="divider"> <div class="wall"></div> <img class="animals" src="/img/footer_animals_new.png" srcset="/img/loading.gif" lazyload alt="Footer Animals"> </div> <div class="container" data-index="450"> <p> <a href="https://chiamzhang.github.io" target="_blank">DogEgg</a> <i class="iconfont icon-love"></i> <a href="#" target="_blank">LittePig</a> </p> <p> Powered by  <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-pen"></i> Theme  <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> </p> </div> </footer> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+  
+<script src="/js/love.js"></script>
+<script src="/js/funnyTitle.js"></script>
+<script src="/js/backTop.js"></script>
+<script src="//cdn.jsdelivr.net/gh/bynotes/texiao/source/js/xiaoxuehua.js"></script>
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+</html>

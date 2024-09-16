@@ -1,0 +1,976 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/Mine.jpg">
+  <link rel="icon" href="/img/Mine.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Chiam">
+  <meta name="keywords" content="Algorithms，Cybersecurity">
+  
+    <meta name="description" content="『算法-ACM 竞赛-图论』2-SAT-Ligthoj1407Explosion 三元关系枚举图论–2-SAT–Ligthoj 1407 Explosion 三元关系枚举Planet Krypton is about to explode. The inhabitants of this planet have to leave the planet immediately. But the pr">
+<meta property="og:type" content="article">
+<meta property="og:title" content="『算法-ACM竞赛-图论』2-SAT-Ligthoj1407Explosion三元关系枚举">
+<meta property="og:url" content="https://chiamzhang.github.io/2024/06/29/%E3%80%8E%E7%AE%97%E6%B3%95-ACM%E7%AB%9E%E8%B5%9B-%E5%9B%BE%E8%AE%BA%E3%80%8F2-SAT-Ligthoj1407Explosion%E4%B8%89%E5%85%83%E5%85%B3%E7%B3%BB%E6%9E%9A%E4%B8%BE/index.html">
+<meta property="og:site_name" content="Homepage of Chiam">
+<meta property="og:description" content="『算法-ACM 竞赛-图论』2-SAT-Ligthoj1407Explosion 三元关系枚举图论–2-SAT–Ligthoj 1407 Explosion 三元关系枚举Planet Krypton is about to explode. The inhabitants of this planet have to leave the planet immediately. But the pr">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2024-06-29T13:16:54.115Z">
+<meta property="article:modified_time" content="2023-12-05T16:19:00.988Z">
+<meta property="article:author" content="Chiam">
+<meta property="article:tag" content="Algorithms，Cybersecurity">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>『算法-ACM竞赛-图论』2-SAT-Ligthoj1407Explosion三元关系枚举 - Homepage of Chiam</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"chiamzhang.github.io","root":"/","version":"1.9.5-a","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":"❡"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":2},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
+
+
+<body>
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Chiam&#39;s Blogs</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                
+                <span>Home</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                
+                <span>Archives</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                
+                <span>Categories</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                
+                <span>About</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                
+                <span>Links</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="『算法-ACM竞赛-图论』2-SAT-Ligthoj1407Explosion三元关系枚举"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-06-29 21:16" pubdate>
+          June 29, 2024 pm
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          6.1k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          52 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">『算法-ACM竞赛-图论』2-SAT-Ligthoj1407Explosion三元关系枚举</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="『算法-ACM-竞赛-图论』2-SAT-Ligthoj1407Explosion-三元关系枚举"><a href="#『算法-ACM-竞赛-图论』2-SAT-Ligthoj1407Explosion-三元关系枚举" class="headerlink" title="『算法-ACM 竞赛-图论』2-SAT-Ligthoj1407Explosion 三元关系枚举"></a>『算法-ACM 竞赛-图论』2-SAT-Ligthoj1407Explosion 三元关系枚举</h1><h1 id="图论–2-SAT–Ligthoj-1407-Explosion-三元关系枚举"><a href="#图论–2-SAT–Ligthoj-1407-Explosion-三元关系枚举" class="headerlink" title="图论–2-SAT–Ligthoj 1407 Explosion 三元关系枚举"></a>图论–2-SAT–Ligthoj 1407 Explosion 三元关系枚举</h1><p>Planet Krypton is about to explode. The inhabitants of this planet have to leave the planet immediately. But the problem is that, still some decisions have to be made - where to go, how to go etc. So, the council of Krypton has invited some of the people to meet in a large hall.</p>
+<p>There are n people in planet Krypton, for simplicity they are given ids from 1 to n. The council uses a super computer named Oracle to call them in the meeting. Oracle has four types of messages for invitation. The message format is type x y, where x and y are two different person’s ids and type is an integer as follows:</p>
+<p>1. 1 x y means that either x or y should be present in the meeting.</p>
+<p>2. 2 x y means that if x is present, then no condition on y, but if x is absent y should be absent</p>
+<p>3. 3 x y means that either x or y must be absent.</p>
+<p>4. 4 x y means that either x or y must be present but not both.</p>
+<p>Each member of the council has an opinion too. The message format is type x y z, where x, y and z are three different person’s ids and type is an integer as follows:</p>
+<p>1. 1 x y z means that at least one of x, y or z should be present</p>
+<p>2. 2 x y z means that at least one of x, y or z should be absent</p>
+<p>Now you have to find whether the members can be invited such that every message by oracle and the council members are satisfied.</p>
+<p>Input<br>Input starts with an integer T (≤ 200), denoting the number of test cases.</p>
+<p>Each case starts with a blank line. Next line contains three integers n, m and k (3 ≤ n ≤ 1000, 0 ≤ m ≤ 2000, 0 ≤ k ≤ 5) where m means the number of messages by oracle, k means the total members in the council. Each of the next m lines will contain a message of Oracle in the format given above. Each of the next k lines will contain a message of a council member. You can assume that all the ids given are correct.</p>
+<p>Output<br>For each case, print the case number and whether it’s possible to invite the people such that all the messages are satisfied. If it’s not possible, then print’Impossible.’ in a single line. Otherwise, print ‘Possible’ and the number of invited people and the ids of the invited people in ascending order. Print the line leaving a single space between fields. Terminate this line with a ‘.’. See the samples for more details. There can be multiple answers; print any valid one.</p>
+<p>Sample Input<br>Output for Sample Input<br>3</p>
+<p>3 2 1</p>
+<p>3 2 1</p>
+<p>1 2 3</p>
+<p>1 1 2 3</p>
+<p>4 4 1</p>
+<p>2 2 1</p>
+<p>4 1 2</p>
+<p>4 1 3</p>
+<p>4 1 4</p>
+<p>2 2 3 4</p>
+<p>4 5 0</p>
+<p>3 1 2</p>
+<p>2 2 3</p>
+<p>2 2 4</p>
+<p>2 1 2</p>
+<p>2 2 1</p>
+<p>Case 1: Possible 2 1 3.</p>
+<p>Case 2: Impossible.</p>
+<p>Case 3: Possible 0.</p>
+<p>Note<br>This is a special judge problem; wrong output format may cause ‘Wrong Answer’.</p>
+<p><strong>题目大意：</strong></p>
+<p>有一个机器产生 m 个限制，限制有 4 种：</p>
+<p>1. x or y 至少有 1 个人参加</p>
+<p>2. x 不参加 则 y 必须不参加，（隐含 y 参加 x 必须参加）</p>
+<p>3. x or y 至少有 1 个人不参加</p>
+<p>4. x &amp; y 同时参加 或者不参加</p>
+<p>有 k 个人 进行投票，有 2 种类别</p>
+<p>1. x y z 至少有一个人参加</p>
+<p>2. x y z 至少有一个人不参加</p>
+<p>有 n 个人参加会议，m 个机器限制，k 个人投票 (3 ≤ n ≤ 1000, 0 ≤ m ≤ 2000, 0 ≤ k ≤ 5)</p>
+<p>解题思路：肯定是 2-sat，k 比较小直接枚举 3^k。剩下的就是一个模板。</p>
+<p><strong>建图：</strong></p>
+<p>二元关系直接建图，三元关系枚举成二元判断是否可行，不可行，继续枚举，可行输出答案，知道都枚举完，就无解。反正是一个 NP 完全问题，所以枚举无伤大雅。二元建图，看我博客 2-SAT 详解，一看就明白。<a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_43627118/article/details/103049798">戳死我</a></p>
+<pre><code class="hljs">#include &lt;cstdio&gt;
+#include &lt;cstring&gt;
+#include &lt;vector&gt;
+#include &lt;queue&gt;
+#include &lt;stack&gt;
+#include &lt;cmath&gt;
+#include &lt;cstdlib&gt;
+#include &lt;algorithm&gt;
+#define MAXN 2000+100
+#define MAXM 10000+100
+using namespace std;
+struct Edge
+&#123;
+    int from, to, next;
+&#125;;
+Edge edge[MAXM], Redge[MAXM];
+int head[MAXN], edgenum;
+int Rhead[MAXN], Redgenum;//这些数组用于copy 这样就不用再次建已经确定的边了
+struct Node
+&#123;
+    int op, x, y, z;
+&#125;;
+Node num[5];
+int low[MAXN], dfn[MAXN];
+int sccno[MAXN], scc_cnt;
+int dfs_clock;
+stack&lt;int&gt; S;
+bool Instack[MAXN];
+int N, M, K;
+void init()
+&#123;
+    edgenum = 0;
+    memset(head, -1, sizeof(head));
+&#125;
+void addEdge(int u, int v)
+&#123;
+    Edge E = &#123;u, v, head[u]&#125;;
+    edge[edgenum] = E;
+    head[u] = edgenum++;
+&#125;
+void input()
+&#123;
+    int x, y, z, op;
+    while(M--)
+    &#123;
+        scanf(&quot;%d%d%d&quot;, &amp;op, &amp;x, &amp;y);
+        if(op == 1)//x和y至少去一个
+        &#123;
+            addEdge(y + N, x);//y不去x去
+            addEdge(x + N, y);//x不去y去
+        &#125;
+        else if(op == 2)
+        &#123;
+            addEdge(y, x);//注意 若y去则x是一定去的
+            addEdge(x + N, y + N);//x不去y也不去
+        &#125;
+        else if(op == 3)//x和y至少一个不去
+        &#123;
+            addEdge(x, y + N);//x去 y不去
+            addEdge(y, x + N);//y去 x不去
+        &#125;
+        else//两个人只能去一个
+        &#123;
+            addEdge(x, y + N);
+            addEdge(y, x + N);
+            addEdge(x + N, y);
+            addEdge(y + N, x);
+        &#125;
+    &#125;
+
+    for(int i = 0; i &lt; K; i++)
+        scanf(&quot;%d%d%d%d&quot;, &amp;num[i].op, &amp;num[i].x, &amp;num[i].y, &amp;num[i].z);
+    memcpy(Rhead, head, sizeof(head));
+    memcpy(Redge, edge, sizeof(edge));
+    Redgenum = edgenum;
+&#125;
+void tarjan(int u, int fa)
+&#123;
+    int v;
+    low[u] = dfn[u] = ++dfs_clock;
+    S.push(u);
+    Instack[u] = true;
+    for(int i = head[u]; i != -1; i = edge[i].next)
+    &#123;
+        v = edge[i].to;
+        if(!dfn[v])
+        &#123;
+            tarjan(v, u);
+            low[u] = min(low[u], low[v]);
+        &#125;
+        else if(Instack[v])
+            low[u] = min(low[u], dfn[v]);
+    &#125;
+    if(low[u] == dfn[u])
+    &#123;
+        scc_cnt++;
+        for(;;)
+        &#123;
+            v = S.top(); S.pop();
+            Instack[v] = false;
+            sccno[v] = scc_cnt;
+            if(v == u) break;
+        &#125;
+    &#125;
+&#125;
+void find_cut(int l, int r)
+&#123;
+    memset(low, 0, sizeof(low));
+    memset(dfn, 0, sizeof(dfn));
+    memset(sccno, 0, sizeof(sccno));
+    memset(Instack, false, sizeof(Instack));
+    dfs_clock = scc_cnt = 0;
+    for(int i = l; i &lt;= r; i++)
+        if(!dfn[i]) tarjan(i, -1);
+&#125;
+int fp[MAXN];//建立SCC间的映射
+bool two_sat()//判断当前情况是否成立
+&#123;
+    find_cut(1, 2*N);
+    for(int i = 1; i &lt;= N; i++)
+    &#123;
+        if(sccno[i] == sccno[i+N])
+            return false;
+        else
+        &#123;
+            fp[sccno[i]] = sccno[i+N];
+            fp[sccno[i+N]] = sccno[i];
+        &#125;
+    &#125;
+    return true;
+&#125;
+int k = 1;
+vector&lt;int&gt; G[MAXN];//缩点后新图
+int in[MAXN];//记录SCC入度
+void suodian()//缩点
+&#123;
+    for(int i = 1; i &lt;= scc_cnt; i++) G[i].clear(), in[i] = 0;
+    for(int i = 0; i &lt; edgenum; i++)
+    &#123;
+        int u = sccno[edge[i].from];
+        int v = sccno[edge[i].to];
+        if(u != v)
+            G[v].push_back(u), in[u]++;
+    &#125;
+&#125;
+int color[MAXN];//染色
+void toposort()//拓扑染色
+&#123;
+    queue&lt;int&gt; Q;
+    memset(color, -1, sizeof(color));
+    for(int i = 1; i &lt;= scc_cnt; i++) if(in[i] == 0) Q.push(i);
+    while(!Q.empty())
+    &#123;
+        int u = Q.front();
+        Q.pop();
+        if(color[u] == -1)
+        &#123;
+            color[u] = 1;
+            color[fp[u]] = 0;
+        &#125;
+        for(int i = 0; i &lt; G[u].size(); i++)
+        &#123;
+            int v = G[u][i];
+            if(--in[v] == 0)
+                Q.push(v);
+        &#125;
+    &#125;
+&#125;
+void solve()
+&#123;
+    int State = (int)pow(3, K);//总状态数
+    bool flag = false;
+    for(int S = 0; S &lt; State; S++)//这里状态下标从1开始或从2开始 都不会影响 注意取值就行了
+    &#123;
+        memcpy(head, Rhead, sizeof(Rhead));//还原数组
+        memcpy(edge, Redge, sizeof(Redge));
+        edgenum = Redgenum;
+        int T = S;
+        for(int i = 0; i &lt; K; i++)//继续枚举状态建图
+        &#123;
+            int s;
+            switch(T % 3)//需要仔细琢磨 这个过程
+            &#123;
+                case 0: s = num[i].x; break;
+                case 1: s = num[i].y; break;
+                case 2: s = num[i].z; break;
+            &#125;
+            T /= 3;
+            if(num[i].op == 1)
+                addEdge(s + N, s);//s一定去
+            else
+                addEdge(s, s + N);//s一定不去
+        &#125;
+        if(two_sat())//成立
+        &#123;
+            flag = true;
+            break;
+        &#125;
+    &#125;
+    printf(&quot;Case %d: &quot;, k++);
+    if(!flag)
+    &#123;
+        printf(&quot;Impossible.\n&quot;);
+        return ;
+    &#125;
+    printf(&quot;Possible&quot;);
+    //输出可行解
+    suodian();
+    toposort();
+    int ans = 0;
+    for(int i = 1; i &lt;= N; i++)
+    &#123;
+        if(color[sccno[i]] == 1)
+            ans++;
+    &#125;
+    printf(&quot; %d&quot;, ans);
+    for(int i = 1; i &lt;= N; i++)
+        if(color[sccno[i]] == 1)
+            printf(&quot; %d&quot;, i);
+    printf(&quot;.\n&quot;);
+&#125;
+int main()
+&#123;
+    int t;
+    scanf(&quot;%d&quot;, &amp;t);
+    while(t--)
+    &#123;
+        scanf(&quot;%d%d%d&quot;, &amp;N, &amp;M, &amp;K);
+        init();
+        input();
+        solve();
+    &#125;
+    return 0;
+&#125;
+</code></pre>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E7%AE%97%E6%B3%95/" class="category-chain-item">算法</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/%E7%AE%97%E6%B3%95/ACM%E7%AB%9E%E8%B5%9B/" class="category-chain-item">ACM竞赛</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/%E7%AE%97%E6%B3%95/ACM%E7%AB%9E%E8%B5%9B/%E5%9B%BE%E8%AE%BA/" class="category-chain-item">图论</a>
+  
+  
+
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>『算法-ACM竞赛-图论』2-SAT-Ligthoj1407Explosion三元关系枚举</div>
+      <div>https://chiamzhang.github.io/2024/06/29/『算法-ACM竞赛-图论』2-SAT-Ligthoj1407Explosion三元关系枚举/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>Chiam</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>June 29, 2024</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>Licensed under</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2024/06/29/%E3%80%8E%E7%AE%97%E6%B3%95-ACM%E7%AB%9E%E8%B5%9B-%E5%9B%BE%E8%AE%BA%E3%80%8F2-SAT-poj3678-KatuPuzzle%EF%BC%88%E6%A8%A1%E6%9D%BF%E9%A2%98%EF%BC%89/" title="『算法-ACM竞赛-图论』2-SAT-poj3678-KatuPuzzle（模板题）">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">『算法-ACM竞赛-图论』2-SAT-poj3678-KatuPuzzle（模板题）</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/06/29/%E3%80%8E%E7%AE%97%E6%B3%95-ACM%E7%AB%9E%E8%B5%9B-%E5%9B%BE%E8%AE%BA%E3%80%8F2-SAT-HDUHDOJ4115EliminatetheConflict/" title="『算法-ACM竞赛-图论』2-SAT-HDUHDOJ4115EliminatetheConflict">
+                        <span class="hidden-mobile">『算法-ACM竞赛-图论』2-SAT-HDUHDOJ4115EliminatetheConflict</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"fIfc7WqUDZohlQuPc2lz5mJy-MdYXbMMI","appKey":"zjlAG3ZA3o4cBHVAkjzc2Z20","path":"window.location.pathname","placeholder":"留言仅限讨论，禁止广告等行为","avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"https://fifc7wqu.api.lncldglobal.com","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>Table of Contents</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <meta name="referrer" content="no-referrer" /> <footer id="footer" role="contentinfo"> <meta name="referrer" content="no-referrer" /> <div class="divider"> <div class="wall"></div> <img class="animals" src="/img/footer_animals_new.png" srcset="/img/loading.gif" lazyload alt="Footer Animals"> </div> <div class="container" data-index="450"> <p> <a href="https://chiamzhang.github.io" target="_blank">DogEgg</a> <i class="iconfont icon-love"></i> <a href="#" target="_blank">LittePig</a> </p> <p> Powered by  <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-pen"></i> Theme  <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> </p> </div> </footer> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+  
+<script src="/js/love.js"></script>
+<script src="/js/funnyTitle.js"></script>
+<script src="/js/backTop.js"></script>
+<script src="//cdn.jsdelivr.net/gh/bynotes/texiao/source/js/xiaoxuehua.js"></script>
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+</html>

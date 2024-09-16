@@ -1,0 +1,910 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/Mine.jpg">
+  <link rel="icon" href="/img/Mine.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Chiam">
+  <meta name="keywords" content="Algorithms，Cybersecurity">
+  
+    <meta name="description" content="『数据库』朴实无华的数据库绪论『数据库』 朴实无华且枯燥的数据库教程–入门必看！（不收藏，真的吃亏了）@[toc] 数据库系统概述一、四个基本概念 **1.数据(Data)**：数据是数据库中存储的基本对象 1)定义：描述事物的符号记录 2)种类：文本、图形、图像、音频、视频、学生的档案记录、货物的运输情况等 3)特点：数据与其语义是不可分的 2.数据库(Database): 1)定义:数据库是长">
+<meta property="og:type" content="article">
+<meta property="og:title" content="『数据库』朴实无华的数据库绪论">
+<meta property="og:url" content="https://chiamzhang.github.io/2024/06/29/%E3%80%8E%E6%95%B0%E6%8D%AE%E5%BA%93%E3%80%8F%E6%9C%B4%E5%AE%9E%E6%97%A0%E5%8D%8E%E7%9A%84%E6%95%B0%E6%8D%AE%E5%BA%93%E7%BB%AA%E8%AE%BA/index.html">
+<meta property="og:site_name" content="Homepage of Chiam">
+<meta property="og:description" content="『数据库』朴实无华的数据库绪论『数据库』 朴实无华且枯燥的数据库教程–入门必看！（不收藏，真的吃亏了）@[toc] 数据库系统概述一、四个基本概念 **1.数据(Data)**：数据是数据库中存储的基本对象 1)定义：描述事物的符号记录 2)种类：文本、图形、图像、音频、视频、学生的档案记录、货物的运输情况等 3)特点：数据与其语义是不可分的 2.数据库(Database): 1)定义:数据库是长">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200314231113248.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzQ2MDIyNA==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200314235703211.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzQ2MDIyNA==,size_16,color_FFFFFF,t_70">
+<meta property="article:published_time" content="2024-06-29T13:16:53.868Z">
+<meta property="article:modified_time" content="2023-12-05T16:18:15.449Z">
+<meta property="article:author" content="Chiam">
+<meta property="article:tag" content="Algorithms，Cybersecurity">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20200314231113248.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzQ2MDIyNA==,size_16,color_FFFFFF,t_70">
+  
+  
+  
+  <title>『数据库』朴实无华的数据库绪论 - Homepage of Chiam</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"chiamzhang.github.io","root":"/","version":"1.9.5-a","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":"❡"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":2},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
+
+
+<body>
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Chiam&#39;s Blogs</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                
+                <span>Home</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                
+                <span>Archives</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                
+                <span>Categories</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                
+                <span>About</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                
+                <span>Links</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="『数据库』朴实无华的数据库绪论"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-06-29 21:16" pubdate>
+          June 29, 2024 pm
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          7k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          59 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">『数据库』朴实无华的数据库绪论</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="『数据库』朴实无华的数据库绪论"><a href="#『数据库』朴实无华的数据库绪论" class="headerlink" title="『数据库』朴实无华的数据库绪论"></a>『数据库』朴实无华的数据库绪论</h1><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_43627118/article/details/105027257">『数据库』 朴实无华且枯燥的数据库教程–入门必看！（不收藏，真的吃亏了）</a><br>@[toc]</p>
+<h2 id="数据库系统概述"><a href="#数据库系统概述" class="headerlink" title="数据库系统概述"></a>数据库系统概述</h2><p><strong>一、四个基本概念</strong></p>
+<p>**1.数据(Data)**：数据是数据库中存储的基本对象 1)定义：描述事物的符号记录 2)种类：文本、图形、图像、音频、视频、学生的档案记录、货物的运输情况等 3)特点：数据与其语义是不可分的</p>
+<p><strong>2.数据库(Database)</strong>: 1)定义:数据库是长期储存在计算机内、有组织的、可共享的大量数据的集合。 2)基本特征:</p>
+<ul>
+<li>&#x3D;&#x3D;数据按一定的数据模型组织、描述和储存&#x3D;&#x3D;</li>
+<li>&#x3D;&#x3D;可为各种用户共享&#x3D;&#x3D;</li>
+<li>&#x3D;&#x3D;冗余度较小&#x3D;&#x3D;</li>
+<li>&#x3D;&#x3D;数据独立性较高&#x3D;&#x3D;</li>
+<li>&#x3D;&#x3D;易扩展&#x3D;&#x3D;</li>
+</ul>
+<p><strong>3.数据库管理系统(DBMS)</strong> 1)定义：<br>位于用户与操作系统之间的一层数据管理软件。<br>是基础软件，是一个大型复杂的软件系统 2)用途:<br>科学地组织和存储数据、高效地获取和维护数据 3)功能：</p>
+<ul>
+<li><p>&#x3D;&#x3D;数据定义功能&#x3D;&#x3D;</p>
+<p>提供数据定义语言(DDL)<br>定义数据库中的数据对象</p>
+</li>
+<li><p>&#x3D;&#x3D;数据组织、存储和管理&#x3D;&#x3D;</p>
+<p>分类组织、存储和管理各种数据<br>确定组织数据的文件结构和存取方式<br>实现数据之间的联系<br>提供多种存取方法提高存取效率</p>
+</li>
+<li><p>&#x3D;&#x3D;数据操纵功能&#x3D;&#x3D;</p>
+<pre><code class="hljs">  提供数据操纵语言(DML)
+  实现对数据库的基本操作  (查询、插入、删除和修改)
+</code></pre>
+<p>数据库的事务管理和运行管理<br>数据库在建立、运行和维护时由 DBMS 统一管理和控制<br>保证数据的安全性、完整性、多用户对数据的并发使用<br>发生故障后的系统恢复</p>
+</li>
+<li><p>&#x3D;&#x3D;数据库的建立和维护功能(实用程序)&#x3D;&#x3D;</p>
+<p>数据库初始数据装载转换<br>数据库转储<br>介质故障恢复<br>数据库的重组织<br>性能监视分析等</p>
+</li>
+<li><p>&#x3D;&#x3D;其它功能&#x3D;&#x3D;<br>DBMS 与网络中其它软件系统的通信<br>两个 DBMS 系统的数据转换<br>异构数据库之间的互访和互操作</p>
+</li>
+</ul>
+<p><strong>4.数据库系统(DBS)</strong> 1)定义：<br>在计算机系统中引入数据库后的系统构成 2)构成：</p>
+<ul>
+<li>数据库</li>
+<li>数据库管理系统（及其开发工具）</li>
+<li>应用系统</li>
+<li>数据库管理员</li>
+</ul>
+<p><strong>5.数据与信息</strong><br>&#x3D;&#x3D;数据是信息的载体<br>信息是数据的内涵&#x3D;&#x3D;</p>
+<p><strong>6.i 数据的分类</strong></p>
+<ul>
+<li><strong>格式化数据</strong>：EXCEL 表格，XML；THML；文件格式；特殊约定的格式</li>
+<li><strong>非格式化的数据</strong>：语言，音频，视频</li>
+</ul>
+<p><strong>二、数据管理技术的产生和发展</strong></p>
+<p><strong>1.什么是数据管理</strong><br>对数据进行分类、组织、编码、存储、检索和维护<br>数据处理的中心问题</p>
+<p><strong>2.数据管理技术的发展过程</strong><br><strong>1)动力:</strong>&#x3D;&#x3D;应用需求的推动;计算机硬件的发展;计算机软件的发展&#x3D;&#x3D;<br><strong>2)人工管理阶段(20 世纪 40 年代中–50 年代中):</strong><br>A.背景:<br>应用需求——科学计算<br>硬件水平——无直接存取存储设备<br>软件水平——没有操作系统<br>处理方式——批处理<br>B.特点:<br>数据的管理者：用户（程序员），数据不保存<br>数据面向的对象：某一应用程序<br>数据的共享程度：无共享、冗余度极大<br>数据的独立性：不独立，完全依赖于程序<br>数据的结构化：无结构<br>数据控制能力：应用程序自己控制<br><strong>3)文件系统阶段(20 世纪 50 年代末–60 年代中)</strong><br>A.背景:<br>应用需求——科学计算、管理<br>硬件水平——磁盘、磁鼓<br>软件水平——有文件系统<br>处理方式——联机实时处理、批处理<br>B.特点:<br>数据的管理者：文件系统，数据可长期保存<br>数据面向的对象：某一应用程序<br>数据的共享程度：共享性差、冗余度大<br>数据的结构化：记录内有结构,整体无结构<br>数据的独立性：独立性差，数据的逻辑结构改变必须<br> 修改应用程序<br>数据控制能力：应用程序自己控制<br>C.文件系统中数据的结构:<br>记录内有结构<br>数据的结构是靠程序定义和解释的<br>文件间是独立的，因此数据整体无结构<br>可以间接实现数据整体的有结构，但必须在应用程序中描述数据间的联系<br>数据的最小存取单位是记录<br><strong>4)数据库系统阶段(20 世纪 60 年代末–现在)</strong><br>A.背景：<br>应用背景——大规模管理<br>硬件背景——大容量磁盘、磁盘阵列<br>软件背景——有数据库管理系统<br>处理方式——联机实时处理,分布处理,批处理</p>
+<p><strong>3.数据库系统的特点</strong> 1)数据结构化 2)数据的共享性高，冗余度低，易扩充 3)数据独立性高 4)数据由 DBMS 统一管理和控制</p>
+<h2 id="数据模型"><a href="#数据模型" class="headerlink" title="数据模型"></a>数据模型</h2><p>在数据库中用数据模型这个工具来抽象、表示和处理现实世界中的数据和信息。<br>通俗地讲数据模型就是现实世界的模拟。<br>数据模型应满足三方面要求：能比较真实地模拟现实世界；容易为人所理解；便于在计算机上实现<br><strong>一、.两类数据模型</strong></p>
+<p><strong>1. 概念模型</strong>：也称信息模型，它是按用户的观点来对数据和信息建模，用于数据库设计。<br><strong>2.逻辑模型和物理模型</strong><br><strong>1)逻辑模型</strong>:主要包括网状模型、层次模型、关系模型、面向对象模型等，按计算机系统的观点对数据建模，用于 DBMS 实现。<br><strong>2)物理模型</strong>:是对数据最底层的抽象，描述数据在系统内部的表示方式和存取方法，在磁盘或磁带上的存储方式和存取方法。<br><strong>客观对象的抽象过程—两步抽象</strong><br>现实世界中的客观对象抽象为概念模型；<br>把概念模型转换为某一 DBMS 支持的数据模型。</p>
+<p><strong>二、数据模型的组成要素</strong></p>
+<p><strong>1.数据结构：</strong> 1)定义：描述数据库的组成对象，以及对象之间的联系 2)内容:<br>与数据类型、内容、性质有关的对象<br>与数据之间联系有关的对象<br>3)&#x3D;&#x3D;数据结构是对系统静态特性的描述&#x3D;&#x3D;</p>
+<p><strong>2.数据操作</strong> 1)定义：对数据库中各种对象(型)的实例(值)允许执行的操作及有关的操作规则 2)类型:<br>查询<br>更新(包括插入、删除、修改) 3)数据模型对操作的定义<br>操作的确切含义<br>操作符号<br>操作规则（如优先级）<br>实现操作的语言 4)数据操作是对系统动态特性的描述</p>
+<p><strong>3.数据的完整性约束条件</strong> 1)数据的完整性约束条件<br>一组完整性规则的集合。<br>完整性规则：给定的数据模型中数据及其联系所具有的制约和储存规则<br>用以限定符合数据模型的数据库状态以及状态的变化，以保证数据的正确、有效、相容。 2)数据模型对完整性约束条件的定义<br>反映和规定本&#x3D;&#x3D;数据模型&#x3D;&#x3D;必须遵守的&#x3D;&#x3D;基本的通用的完整性约束条件&#x3D;&#x3D;。例如在关系模型中，任何关系必须满足实体完整性和参照完整性两个条件。<br>提供定义完整性约束条件的机制，以反映&#x3D;&#x3D;具体应用&#x3D;&#x3D;所涉及的数据必须遵守的特定的语义约束条件。</p>
+<h2 id="概念模型"><a href="#概念模型" class="headerlink" title="概念模型"></a>概念模型</h2><p><strong>一、信息世界中的基本概念</strong><br><strong>1. 实体（Entity）</strong><br>客观存在并可相互区别的事物称为实体。<br>可以是具体的人、事、物或抽象的概念。<br><strong>2.属性（Attribute）</strong><br>实体所具有的某一特性称为属性。<br>一个实体可以由若干个属性来刻画。<br><strong>3.码（Key）</strong><br>唯一标识实体的属性集称为码。<br><strong>4. 域（Domain）</strong><br>属性的取值范围称为该属性的域。<br><strong>5.实体型（Entity Type）</strong><br>用实体名及其属性名集合来抽象和刻画同类实体称为实体型<br><strong>6.实体集（Entity Set）</strong><br>同一类型实体的集合称为实体集<br><strong>7.联系（Relationship</strong>）<br>现实世界中事物内部以及事物之间的联系在信息世界中反映为实体内部的联系和实体之间的联系。<br>&#x3D;&#x3D;实体内部的联系通常是指组成实体的各属性之间的联系<br>实体之间的联系通常是指不同实体集之间的联系&#x3D;&#x3D;</p>
+<p><strong>二、两个实体型之间的联系</strong></p>
+<p><strong>1.一对一联系（1:1）</strong><br>如果对于实体集 A 中的每一个实体，实体集 B 中至多有一个（也可以没有）实体与之联系，反之亦然，则称实体集 A 与实体集 B 具有一对一联系，记为 1:1 。</p>
+<p><strong>2.一对多联系（1:n）</strong><br>如果对于实体集 A 中的每一个实体，实体集 B 中有 n 个实体（n≥0）与之联系，反之，对于实体集 B 中的每一个实体，实体集 A 中至多只有一个实体与之联系，则称实体集 A 与实体集 B 有一对多联系，记为 1:n。</p>
+<p><strong>3.多对多联系（m:n）</strong><br>如果对于实体集 A 中的每一个实体，实体集 B 中有 n 个实体（n≥0）与之联系，反之，对于实体集 B 中的每一个实体，实体集 A 中也有 m 个实体（m≥0）与之联系，则称实体集 A 与实体 B 具有多对多联系，记为 m:n</p>
+<p><strong>三、两个以上实体型之间的联系</strong></p>
+<p><strong>1.两个以上实体型之间一对多联系</strong><br>若实体集 E1，E2，…，En 存在联系，对于实体集 Ej（j&#x3D;1，2，…，i-1，i+1，…，n）中的给定实体，最多只和 Ei 中的一个实体相联系，则我们说 Ei 与 E1，E2，…，Ei-1，Ei+1，…，En 之间的联系是一对多的<br><strong>2.两个以上实体型间的多对多联系</strong></p>
+<p><strong>四、单个实体型内的联系</strong><br><strong>1.一对多联系 2.一对一联系 3.多对多联系</strong></p>
+<p><strong>五、 概念模型的一种表示方法</strong></p>
+<p><strong>1.实体－联系方法(E-R 方法)</strong><br>用 E-R 图来描述现实世界的概念模型<br>E-R 方法也称为 E-R 模型<br><strong>1)实体型</strong><br>用矩形表示，矩形框内写明实体名。<br><strong>2)属性</strong><br>用椭圆形表示，并用无向边将其与相应的实体连接起来<br><strong>3)联系</strong><br>用菱形表示，菱形框内写明联系名，并用无向边分别与有关实体连接起来，同时在无向边旁标上联系的类型（1:1、1:n 或 m:n）<br><img src="https://img-blog.csdnimg.cn/20200314231113248.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzQ2MDIyNA==,size_16,color_FFFFFF,t_70" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br>联系的属性：<br>联系本身也是一种实体型，也可以有属性。如果一个联系具有属性，则这些属性也要用无向边与该联系连接起来</p>
+<p><strong>四、最常用的数据模型</strong><br><strong>1.非关系模型</strong><br><strong>1)层次模型(Hierarchical Model)</strong><br>层次模型是数据库系统中最早出现的数据模型<br>层次模型用树形结构来表示各类实体以及实体间的联系<br><strong>条件：</strong></p>
+<ul>
+<li>有且只有一个结点没有双亲结点，这个结点称为根结点</li>
+<li>根以外的其它结点有且只有一个双亲结点</li>
+</ul>
+<p><strong>特点：</strong></p>
+<ul>
+<li>结点的双亲是唯一的</li>
+<li>只能直接处理一对多的实体联系</li>
+<li>每个记录类型可以定义一个排序字段，也称为码字段</li>
+<li>任何记录值只有按其路径查看时，才能显出它的全部意义</li>
+<li>没有一个子女记录值能够脱离双亲记录值而独立存在</li>
+</ul>
+<p><strong>层次模型的完整性约束条件：</strong></p>
+<ul>
+<li>无相应的双亲结点值就不能插入子女结点值</li>
+<li>如果删除双亲结点值，则相应的子女结点值也被同时删除</li>
+<li>更新操作时，应更新所有相应记录，以保证数据的一致性</li>
+</ul>
+<p><strong>层次数据模型的存储结构</strong></p>
+<ul>
+<li>邻接法</li>
+<li>链接法：子女-兄弟链接法；层次序列链接法</li>
+</ul>
+<p><strong>优点</strong></p>
+<ul>
+<li>层次模型的数据结构比较简单清晰</li>
+<li>查询效率高，性能优于关系模型，不低于网状模型</li>
+<li>层次数据模型提供了良好的完整性支持</li>
+</ul>
+<p><strong>缺点</strong></p>
+<ul>
+<li>多对多联系表示不自然</li>
+<li>对插入和删除操作的限制多，应用程序的编写比较复杂</li>
+<li>查询子女结点必须通过双亲结点</li>
+<li>由于结构严密，层次命令趋于程序化</li>
+</ul>
+<p><strong>2)网状模型(Network Model)</strong><br>网状数据库系统采用网状模型作为数据的组织方式<br><strong>条件：</strong></p>
+<ul>
+<li>允许一个以上的结点无双亲</li>
+<li>一个结点可以有多于一个的双亲<br><strong>表示方法</strong><br><strong>实体型</strong>：用记录类型描述每个结点表示一个记录类型（实体）<br><strong>属性</strong>：用字段描述每个记录类型可包含若干个字段<br><strong>联系</strong>：用结点之间的连线表示记录类型（实体）之间的一对多的父子联系</li>
+</ul>
+<p><strong>网状模型与层次模型的区别</strong></p>
+<ul>
+<li>网状模型允许多个结点没有双亲结点</li>
+<li>网状模型允许结点有多个双亲结点</li>
+<li>网状模型允许两个结点之间有多种联系（复合联系）</li>
+<li>网状模型可以更直接地去描述现实世界</li>
+<li>层次模型实际上是网状模型的一个特例</li>
+</ul>
+<p>多对多联系在网状模型中的表示：&#x3D;&#x3D;将多对多联系直接分解成一对多联系&#x3D;&#x3D;</p>
+<p><strong>网状模型完整性约束</strong><br>码：唯一标识记录的数据项的集合<br>一个联系中双亲记录与子女记录之间是一对多联系<br>支持双亲记录和子女记录之间某些约束条件</p>
+<p><strong>网状模型存储常用方法</strong></p>
+<ul>
+<li>单向链接</li>
+<li>双向链接</li>
+<li>环状链接</li>
+<li>向首链接</li>
+</ul>
+<p><strong>优点</strong></p>
+<ul>
+<li>能够更为直接地描述现实世界，如一个结点可以有多个双亲</li>
+<li>具有良好的性能，存取效率较高</li>
+</ul>
+<p><strong>缺点</strong></p>
+<ul>
+<li>结构比较复杂，而且随着应用环境的扩大，数据库的结构就变</li>
+<li>得越来越复杂，不利于最终用户掌握</li>
+<li>DDL、DML 语言复杂，用户不容易使用</li>
+</ul>
+<p><strong>2.关系模型(Relational Model)</strong><br>关系数据库系统采用关系模型作为数据的组织方式<br><strong>关系数据模型的数据结构</strong><br><strong>1)关系（Relation）</strong><br>一个关系对应通常说的一张表<br><strong>2)元组（Tuple）</strong><br>表中的一行即为一个元组<br><strong>3)属性（Attribute）</strong><br>表中的一列即为一个属性，给每一个属性起一个名称即属性名<br><strong>4)主码（Key）</strong><br>表中的某个属性组，它可以唯一确定一个元组。<br><strong>5)域（Domain）</strong><br>属性的取值范围。<br><strong>6)分量</strong><br>元组中的一个属性值。<br><strong>7)关系模式</strong><br>对关系的描述<br><strong>8)关系名（属性 1，属性 2，…，属性 n）</strong><br>学生（学号，姓名，年龄，性别，系，年级）</p>
+<p><strong>关系模式最基本的规范条件</strong>：关系的每一个分量必须是一个不可分的数据项, 不允许表中还有表</p>
+<p><strong>关系的完整性约束条件</strong></p>
+<ul>
+<li>实体完整性</li>
+<li>参照完整性</li>
+<li>用户定义的完整性</li>
+</ul>
+<p><strong>优点</strong></p>
+<ul>
+<li>建立在严格的数学概念的基础上</li>
+<li>概念单一<br>实体和各类联系都用关系来表示<br>对数据的检索结果也是关系</li>
+<li>关系模型的存取路径对用户透明<br>具有更高的数据独立性，更好的安全保密性<br>简化了程序员的工作和数据库开发建立的工作</li>
+</ul>
+<p><strong>缺点</strong></p>
+<ul>
+<li>存取路径对用户透明导致查询效率往往不如非关系数据模型</li>
+<li>为提高性能，必须对用户的查询请求进行优化增加了开发 DBMS 的难度</li>
+</ul>
+<p><strong>3.面向对象模型(Object Oriented Model）</strong><br><strong>4.对象关系模型(Object Relational Model)</strong></p>
+<h2 id="数据库系统结构"><a href="#数据库系统结构" class="headerlink" title="数据库系统结构"></a>数据库系统结构</h2><p>1.从数据库管理系统角度看，数据库系统通常采用三级模式结构，是数据库系统内部的系统结构</p>
+<p>2.从数据库最终用户角度看（数据库系统外部的体系结构） ，数据库系统的结构分为:</p>
+<ul>
+<li>单用户结构</li>
+<li>主从式结构</li>
+<li>分布式结构</li>
+<li>客户／服务器</li>
+<li>浏览器／应用服务器／数据库服务器多层结构等</li>
+</ul>
+<p><strong>一、数据库系统模式的概念</strong></p>
+<p><strong>1.“型” 和“值” 的概念</strong><br><strong>型(Type)</strong><br>对某一类数据的结构和属性的说明<br><strong>值(Value)</strong><br>是型的一个具体赋值<br><strong>模式（Schema）</strong><br>数据库逻辑结构和特征的描述<br>是型的描述<br>反映的是数据的结构及其联系<br>模式是相对稳定的<br><strong>实例（Instance）</strong><br>模式的一个具体值<br>反映数据库某一时刻的状态<br>同一个模式可以有很多实例<br>实例随数据库中的数据的更新而变动</p>
+<p><strong>二、数据库系统的三级模式结构</strong><br><strong>1.模式（Schema）</strong></p>
+<ul>
+<li>模式（也称逻辑模式）<br>数据库中全体数据的逻辑结构和特征的描述<br>所有用户的公共数据视图，综合了所有用户的需求</li>
+<li>一个数据库只有一个模式</li>
+<li>模式的地位：是数据库系统模式结构的中间层<br>与数据的物理存储细节和硬件环境无关<br>与具体的应用程序、开发工具及高级程序设计语言无关</li>
+</ul>
+<p><strong>定义</strong></p>
+<ul>
+<li>数据的逻辑结构（数据项的名字、类型、取值范围等）</li>
+<li>数据之间的联系</li>
+<li>数据有关的安全性、完整性要求</li>
+</ul>
+<p><strong>2.外模式（External Schema）</strong></p>
+<ul>
+<li><p>数据库用户（包括应用程序员和最终用户）使用的局部数据的逻辑结构和特征的描述</p>
+</li>
+<li><p>数据库用户的数据视图，是与某一应用有关的数据的逻辑表示<br><strong>用途</strong></p>
+</li>
+<li><p>保证数据库安全性的一个有力措施</p>
+</li>
+<li><p>每个用户只能看见和访问所对应的外模式中的数据</p>
+</li>
+</ul>
+<p><strong>3.内模式（Internal Schema）</strong></p>
+<ul>
+<li>是数据物理结构和存储方式的描述</li>
+<li>是数据在数据库内部的表示方式</li>
+<li>一个数据库只有一个内模式</li>
+</ul>
+<p><img src="https://img-blog.csdnimg.cn/20200314235703211.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzQ2MDIyNA==,size_16,color_FFFFFF,t_70" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br><strong>三、数据库的二级映像功能与数据独立性</strong></p>
+<ul>
+<li>三级模式是对数据的三个抽象级别</li>
+<li>二级映象在 DBMS 内部实现这三个抽象层次的联系和转换<br>外模式／模式映像<br>模式／内模式映像</li>
+</ul>
+<p><strong>1.外模式／模式映象</strong></p>
+<ul>
+<li>模式：描述的是数据的全局逻辑结构</li>
+<li>外模式：描述的是数据的局部逻辑结构</li>
+<li>同一个模式可以有任意多个外模式</li>
+<li>每一个外模式，数据库系统都有一个外模式／模式映象，定义外模式与模式之间的对应关系</li>
+<li>映象定义通常包含在各自外模式的描述中</li>
+</ul>
+<p><strong>2.模式／内模式映象</strong></p>
+<ul>
+<li>模式／内模式映象定义了数据全局逻辑结构与存储结构之间的对应关系。</li>
+<li>数据库中模式／内模式映象是唯一的</li>
+<li>该映象定义通常包含在模式描述中</li>
+</ul>
+<h2 id="数据库系统的组成"><a href="#数据库系统的组成" class="headerlink" title="数据库系统的组成"></a>数据库系统的组成</h2><p><strong>一、数据库</strong><br><strong>1.硬件平台及数据库</strong><br>(1) 足够大的内存<br>操作系统<br>DBMS 的核心模块<br>数据缓冲区<br>应用程序<br>(2) 足够大的外存<br>磁盘或磁盘阵列<br>数据库<br>光盘、磁带<br>数据备份<br>(3) 较高的通道能力，提高数据传送率</p>
+<p><strong>2.软件</strong><br>DBMS<br>支持 DBMS 运行的操作系统<br>与数据库接口的高级语言及其编译系统<br>以 DBMS 为核心的应用开发工具<br>为特定应用环境开发的数据库应用系统</p>
+<p><strong>3.人员</strong><br>数据库管理员<br>系统分析员和数据库设计人员<br>应用程序员<br>用户</p>
+<p><strong>二、数据库管理系统（及其开发工具）</strong><br><strong>三、应用系统</strong><br><strong>四、数据库管理员</strong></p>
+<ul>
+<li><strong>监控数据库的使用和运行</strong><br>周期性转储数据库：数据文件；日志文件<br>系统故障恢复<br>介质故障恢复<br>监视审计文件</li>
+<li><strong>数据库的改进和重组</strong><br>性能监控和调优<br>定期对数据库进行重组织，以提高系统的性能<br>需求增加和改变时，数据库需要重构造</li>
+</ul>
+<blockquote>
+<p><strong>写在最后：</strong><br>本数据库专栏是由爱吃老谈酸菜的 DV 一同完成的，博客链接在主页友链，是我的好哥们 ✈<br>Name:风骨散人，目前是一名双非在校大学生，预计考研，热爱编程，热爱技术，喜欢分享，知识无界，希望我的分享可以帮到你！名字的含义：我想有一天我能有能力随心所欲不逾矩，不总是向生活低头，有能力让家人拥有富足的生活而不是为了生计而到处奔波。“世人慌慌张张，不过是图碎银几两。偏偏这碎银几两，能解世间惆怅，可让父母安康，可护幼子成长 …”<br><strong>文章主要内容：</strong><br>Python,C++,C 语言,JAVA,C#等语言的教程<br>ACM 题解、模板、算法等，主要是数据结构，数学和图论<br>设计模式，数据库，计算机网络，操作系统，计算机组成原理<br>Python 爬虫、深度学习、机器学习<br>计算机系<strong>408</strong>考研的所有专业课内容<br><strong>目前还在更新中，先关注不迷路。微信公众号，cnblogs（博客园），CSDN 同名“风骨散人”</strong></p>
+</blockquote>
+<blockquote>
+<p>如果有什么想看的，可以私信我，如果在能力范围内，我会发布相应的博文！<br>感谢大家的阅读！😘 你的点赞、收藏、关注是对我最大的鼓励！</p>
+</blockquote>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" class="category-chain-item">数据库</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>『数据库』朴实无华的数据库绪论</div>
+      <div>https://chiamzhang.github.io/2024/06/29/『数据库』朴实无华的数据库绪论/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>Chiam</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>June 29, 2024</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>Licensed under</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2024/06/29/%E3%80%8E%E6%95%B0%E6%8D%AE%E5%BA%93%E3%80%8F%E8%BF%99%E7%AF%87%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9A%84%E6%96%87%E7%AB%A0%E7%9C%9F%E6%B2%A1%E4%BA%BA%E7%9C%8B-%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AE%8C%E6%95%B4%E6%80%A7/" title="『数据库』这篇数据库的文章真没人看-数据库完整性">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">『数据库』这篇数据库的文章真没人看-数据库完整性</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/06/29/%E3%80%8E%E6%95%B0%E6%8D%AE%E5%BA%93%E3%80%8F%E6%9C%B4%E5%AE%9E%E6%97%A0%E5%8D%8E%E7%9A%84%E6%95%B0%E6%8D%AE%E5%BA%93%E5%A4%9A%E8%A1%A8%E6%9F%A5%E8%AF%A2%EF%BC%8C%E8%BF%9E%E6%8E%A5%E6%9F%A5%E8%AF%A2%E3%80%81%E7%AC%9B%E5%8D%A1%E5%B0%94%E7%A7%AF/" title="『数据库』朴实无华的数据库多表查询，连接查询、笛卡尔积">
+                        <span class="hidden-mobile">『数据库』朴实无华的数据库多表查询，连接查询、笛卡尔积</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"fIfc7WqUDZohlQuPc2lz5mJy-MdYXbMMI","appKey":"zjlAG3ZA3o4cBHVAkjzc2Z20","path":"window.location.pathname","placeholder":"留言仅限讨论，禁止广告等行为","avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"https://fifc7wqu.api.lncldglobal.com","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>Table of Contents</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <meta name="referrer" content="no-referrer" /> <footer id="footer" role="contentinfo"> <meta name="referrer" content="no-referrer" /> <div class="divider"> <div class="wall"></div> <img class="animals" src="/img/footer_animals_new.png" srcset="/img/loading.gif" lazyload alt="Footer Animals"> </div> <div class="container" data-index="450"> <p> <a href="https://chiamzhang.github.io" target="_blank">DogEgg</a> <i class="iconfont icon-love"></i> <a href="#" target="_blank">LittePig</a> </p> <p> Powered by  <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-pen"></i> Theme  <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> </p> </div> </footer> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+  
+<script src="/js/love.js"></script>
+<script src="/js/funnyTitle.js"></script>
+<script src="/js/backTop.js"></script>
+<script src="//cdn.jsdelivr.net/gh/bynotes/texiao/source/js/xiaoxuehua.js"></script>
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+</html>

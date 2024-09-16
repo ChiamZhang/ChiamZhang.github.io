@@ -1,0 +1,841 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/Mine.jpg">
+  <link rel="icon" href="/img/Mine.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Chiam">
+  <meta name="keywords" content="Algorithms，Cybersecurity">
+  
+    <meta name="description" content="『开发』吕云翔 软件工程课后题答案1. 与计算机硬件相比,计算机软件有哪些特点?     计算机硬件是有形的设备,具有明显的可见性。但是人们却不能直接观察计算机软件的物理形态，只能通过他的实际运行情况来了解他的功能，特性和质量。人们在分析，设计，开发，测试软件产品的过程中，以及在软件开发项目的管理过程中，渗透了大量的脑力劳动，人类的逻辑思维和智力活动和技术水平是生产软件产品的关键。计算机软件不存在">
+<meta property="og:type" content="article">
+<meta property="og:title" content="『开发』吕云翔 软件工程课后题答案">
+<meta property="og:url" content="https://chiamzhang.github.io/2024/06/29/%E3%80%8E%E5%BC%80%E5%8F%91%E3%80%8F%E5%90%95%E4%BA%91%E7%BF%94%20%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%E8%AF%BE%E5%90%8E%E9%A2%98%E7%AD%94%E6%A1%88/index.html">
+<meta property="og:site_name" content="Homepage of Chiam">
+<meta property="og:description" content="『开发』吕云翔 软件工程课后题答案1. 与计算机硬件相比,计算机软件有哪些特点?     计算机硬件是有形的设备,具有明显的可见性。但是人们却不能直接观察计算机软件的物理形态，只能通过他的实际运行情况来了解他的功能，特性和质量。人们在分析，设计，开发，测试软件产品的过程中，以及在软件开发项目的管理过程中，渗透了大量的脑力劳动，人类的逻辑思维和智力活动和技术水平是生产软件产品的关键。计算机软件不存在">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190227211938844.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0NDQ3J1bm5lcg==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190227212744196.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0NDQ3J1bm5lcg==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190306192144810.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0NDQ3J1bm5lcg==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190306194931843.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0NDQ3J1bm5lcg==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190306195738181.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0NDQ3J1bm5lcg==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190306195835633.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190306195907427.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190306195941866.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0NDQ3J1bm5lcg==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190306200011557.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/2019030620003497.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0NDQ3J1bm5lcg==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190306200131643.png">
+<meta property="article:published_time" content="2024-06-29T13:16:53.816Z">
+<meta property="article:modified_time" content="2023-12-05T16:18:01.094Z">
+<meta property="article:author" content="Chiam">
+<meta property="article:tag" content="Algorithms，Cybersecurity">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20190227211938844.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0NDQ3J1bm5lcg==,size_16,color_FFFFFF,t_70">
+  
+  
+  
+  <title>『开发』吕云翔 软件工程课后题答案 - Homepage of Chiam</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"chiamzhang.github.io","root":"/","version":"1.9.5-a","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":"❡"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":2},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
+
+
+<body>
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Chiam&#39;s Blogs</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                
+                <span>Home</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                
+                <span>Archives</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                
+                <span>Categories</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                
+                <span>About</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                
+                <span>Links</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="『开发』吕云翔 软件工程课后题答案"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-06-29 21:16" pubdate>
+          June 29, 2024 pm
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          8.4k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          71 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">『开发』吕云翔 软件工程课后题答案</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="『开发』吕云翔-软件工程课后题答案"><a href="#『开发』吕云翔-软件工程课后题答案" class="headerlink" title="『开发』吕云翔 软件工程课后题答案"></a>『开发』吕云翔 软件工程课后题答案</h1><h2><a name="t0" one-link-mark="yes"></a><a name="t0" one-link-mark="yes"></a><a id="1__0" one-link-mark="yes"></a>1. 与计算机硬件相比,计算机软件有哪些特点?</h2>
+
+<p><img src="https://img-blog.csdnimg.cn/20190227211938844.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0NDQ3J1bm5lcg==,size_16,color_FFFFFF,t_70" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br> <img src="https://img-blog.csdnimg.cn/20190227212744196.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0NDQ3J1bm5lcg==,size_16,color_FFFFFF,t_70" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p> 
+<ol><li>计算机硬件是有形的设备,具有明显的可见性。但是人们却<mark>不能直接观察计算机软件的物理形态，只能通过他的实际运行情况来了解他的功能，特性和质量。</mark></li><li><mark>人们在分析，设计，开发，测试软件产品的过程中，以及在软件开发项目的管理过程中，渗透了大量的脑力劳动</mark>，人类的逻辑思维和智力活动和技术水平是生产软件产品的关键。</li><li>计算机软件<mark>不存在像硬件一样的磨损和老化现象</mark>，他不会受引起计算机硬件老化的环境因素的影响，但是软件却<mark>存在着缺陷维护和技术更新的问题。</mark></li><li><mark>软件开发和运行必须依赖特定的计算机系统环境。</mark></li><li>软件<mark>具有可复用性</mark></li></ol> 
+<h2><a name="t1" one-link-mark="yes"></a><a name="t1" one-link-mark="yes"></a><a id="2__12" one-link-mark="yes"></a>2. <strong>为什么说软件工程的发展在一定程度上解决了软件危机的各种弊端?</strong></h2> 
+<p>因为软件工程提出是为了解决软件危机所带来的各种弊端。具体的讲，软件工程的目标主要包括以下几点。</p> 
+<ol><li>使软件的开发成本控制在预计的合理范围之内。</li><li>使软件产品的各项功能和性能能够满足用户需求。</li><li>提高软件产品的质量。</li><li>提高软件产品的可靠性。</li><li>使生产出来的软件产品易于移植,维护,升级和使用。</li><li>使软件的开发周期能够控制在预计的合理时间范围内。</li></ol> 
+<h2><a name="t2" one-link-mark="yes"></a><a name="t2" one-link-mark="yes"></a><a id="3__21" one-link-mark="yes"></a>3. <strong>简述软件工程的基本原则</strong></h2> 
+<p>1.== 将软件的生命周期划分为多个阶段,对各个阶段实行严格的项目管理。<mark>软件开发的生命周期可以划分为可行性研究，需求分析，软件设计，软件实现，软件测试，产品验收和交付手段。<br> 2. <mark>坚持阶段评审制度，以确保软件产品的质量。</mark><br> 3. 实施严格的产品控制，以适应软件规格的变更。在软件开发过程中，用户需求很可能不断发生变化。<br> 4. 采用现代程序设计</mark>技术==。<br> 5. 开发出来的软件产品应该能够清楚地被<mark>审查</mark>。<br> 6. 合理的安排开发软件小组人员，并且开发小组人员要<mark>小而精</mark>。<br> 7. 不断地改进软件工程<mark>实践</mark>。</p> 
+<h2><a name="t3" one-link-mark="yes"></a><a name="t3" one-link-mark="yes"></a><a id="4__32" one-link-mark="yes"></a>4. <strong>如何理解软件生命周期的内在特征？</strong></h2> 
+<p>答：软件产品的生命周期是指从设计该产品的构想开始，到软件需求的确定、软件设计、软件实现、产品测试与验收、投入使用以及产品版本的不断更新，到最终该产品被市场淘汰的全过程。软件生命周期这个概念从时间的角度将软件的开发和维护的复杂过程分解为了若干个阶段，每个阶段都完成特定的相对独立的任务。由于每个阶段的任务相对于总任务难度会大幅度降低，在资源分配、时间把握和项目管理上都会比较容易控制。合理地划分软件生命周期的各个阶段，使各个阶段之间既相互区别又相互联系，为每个阶段赋予特定的任务。</p> 
+<p>.</p> 
+<h2><a name="t4" one-link-mark="yes"></a><a name="t4" one-link-mark="yes"></a><a id="5__39" one-link-mark="yes"></a>5. <strong>请对比瀑布模型，原型模型，增量模型和螺旋模型</strong></h2> 
+<p><strong>瀑布模型</strong>是出现得比较早的软件开发模型。在这种模型中，各阶段之间的组织方式就如同瀑布流水一样，逐级下落。开发人员必须在完成前一阶段的任务后，才能开始下一阶段的工作，各个阶段之间通常是按固定顺序连接的，前一-阶段的输出往往就是后- -阶段的输入。<br> 根据瀑布模型的理论，这种模型具有以下几个<mark>特点。</mark><br> (1)瀑布模型是一种线性的软件开发模型，<mark>回溯性很差</mark>。<br> (2)瀑布模型是一种基于里程碑的<mark>阶段过程模型</mark>。<br> (3)瀑布模型强调软件开发过程的阶段性，每个阶段完成特定的任务。瀑布模型适用于具有以下特征的软件开发项目。</p> 
+<pre class="prettyprint"><code class="has-numbering" onclick="mdcp.copyCode(event)" style="position: unset;">     1) 在软件开发的过程中，需求不发生或很少发生变化，并且开发人员可以一次性获取到全部需求
+     2) 软件开发人员具有==丰富的经验，对软件应用领域很熟悉。
+     3）软件项目的风险较低。 瀑布模型不具有完善的风险控制机制。
+<div class="hljs-button &#123;2&#125;" data-title="复制" data-report-click="&#123;&quot;spm&quot;:&quot;1001.2101.3001.4259&quot;&#125;"></div></code><ul class="pre-numbering" style=""><li style="color: rgb(153, 153, 153);">1</li><li style="color: rgb(153, 153, 153);">2</li><li style="color: rgb(153, 153, 153);">3</li></ul></pre> 
+<pre class="prettyprint"><code class="has-numbering" onclick="mdcp.copyCode(event)" style="position: unset;">优缺点：  
+<div class="hljs-button &#123;2&#125;" data-title="复制" data-report-click="&#123;&quot;spm&quot;:&quot;1001.2101.3001.4259&quot;&#125;"></div></code><ul class="pre-numbering" style=""><li style="color: rgb(153, 153, 153);">1</li></ul></pre> 
+<p>瀑布模型的优点是<mark>阶段性强，易于对项目进行管理</mark>，缺点是开发过程<mark>不灵活</mark>，不能适应环境的变化。如果后续阶段中发现前期工作的错误或需求发生了变更，会造成巨大的损失。</p> 
+<p><strong>原型模型</strong>是开发人员为了快速而准确地获取需求经常采用的方法。在初步获取需求后，开发人员会快速地开发一个原型系统。通过对原型系统进行模拟操作，开发人员可以更直观、更全面和更准确地了解用户对待开发系统的各项要求，同时还能挖掘到隐藏的需求。如果开发人员对将采用的开发技术把握不大，也可以采用原型模型进行技术上的尝试，以降低后续开发的风险。原型模型具有以下<mark>特点。</mark><br> (1)原型模型主要用于<mark>挖掘需求</mark>，或是进行某种技术或开发方法的可行性研究。<br> (2)原型系统通常针对软件 开发系统的子功能模块，所以功能相对<mark>不完善</mark>。<br> (3)由于原型系统功能的局部性以及存在阶段的局部性，在软件开发的实践中，原型模型通常<mark>结合</mark>其他的软件开发模型共同使用，发挥作用。</p> 
+<p>原型模型适用于具有以下特征的软件开发项目。</p> 
+<pre class="prettyprint"><code class="has-numbering" onclick="mdcp.copyCode(event)" style="position: unset;">    (I)对现有的软件系统进行产品升级或功能完善。
+    (2)开发人员与用户之间交流受限，需求获取困难。
+    (3)开发人员对将要采用的技术手段不熟悉或把握性不大。
+    (4)具备快速开发的工具。
+<div class="hljs-button &#123;2&#125;" data-title="复制" data-report-click="&#123;&quot;spm&quot;:&quot;1001.2101.3001.4259&quot;&#125;"></div></code><ul class="pre-numbering" style=""><li style="color: rgb(153, 153, 153);">1</li><li style="color: rgb(153, 153, 153);">2</li><li style="color: rgb(153, 153, 153);">3</li><li style="color: rgb(153, 153, 153);">4</li></ul></pre> 
+<pre class="prettyprint"><code class="has-numbering" onclick="mdcp.copyCode(event)" style="position: unset;">优缺点
+<div class="hljs-button &#123;2&#125;" data-title="复制" data-report-click="&#123;&quot;spm&quot;:&quot;1001.2101.3001.4259&quot;&#125;"></div></code><ul class="pre-numbering" style=""><li style="color: rgb(153, 153, 153);">1</li></ul></pre> 
+<p>原型模型的优点是<mark>简单和快速</mark>，缺点是需要<mark>花费</mark>一些额外的<mark>成本</mark>来构造原型，并且不利于创新。</p> 
+<p><strong>增量模型</strong>是把待开发的软件系统模块化，将每个模块作为一个增量组件，从而分批次地分析、设计、编码和测试这些增量组件。运用增量模型的软件开发过程是递增式的过程。相对于瀑布模型而言，采用增量模型进行开发，开发人员不需要一次性地把整个软件产品提交给用户，而是可以分批次进行提交。增量模型的最大特点就是将待开发的软件系统模块化和组件化。基于这个特点，增量模型具有以下优点。</p> 
+<p>(1)将待开发的软件系统模块化，可以分批次地提交软件产品，使用户可以及时了解软件项目的进展。<br> (2)以组件为单位进行开发降低了软件开发的风险。-一个开发周期内的错误不会影响到整个软件系统。<br> (3)开发顺序灵活。</p> 
+<p>增量模型的<mark>缺点</mark>是要求待开发的软件系统可以被模块化。如果待开发的软件系统很难被模块化，那么将会给增量开发带来很多麻烦。</p> 
+<p>增量模型适用于具有以下特征的软件开发项目。<br> (1)软件产品可以分批次地进行交付。<br> (2)待开发的软件系统能够被模块化。<br> (3)软件开发人员对应用领域不熟悉，难以一-次性地进行系统开发。<br> (4)项目管理人员把握全局的水平较高。</p> 
+<p><strong>螺旋模型</strong>是一种用于风险较大的大型软件项目开发的过程模型。它把开发过程分为制定计划、风险分析、实施工程和客户评估4种活动。制定计划就是要确定软件系统的目标，了 解各种资源限制，并选定合适的开发方案。风险分析旨在对所选方案进行评价，识别潜在的风险，并制定消除风险的机制。实施工程的活动中渗透了瀑布模型的各个阶段，开发人员对下一版本的软件产品进行开发和验证。客户评估是获取客户意见的重要活动。<br> 螺旋模型适应于风险较大的大型软件项目的开发。它的优点是将风险分析扩展到各个阶段中，大幅度降低了软件开发的风险。但是这种模型的控制和管理较为复杂，可操作性不强，对项目管理人员的要求较高。</p> 
+<h2><a name="t5" one-link-mark="yes"></a><a name="t5" one-link-mark="yes"></a><a id="6__98" one-link-mark="yes"></a>6. <strong>在统一软件开发过程模型中,核心工作流程包括哪些?</strong></h2> 
+<p>核心工作流程有业务建模，需求分析，分析设计，实现，测试和部署</p>
+                </div><div><div></div></div>
+                <link href="https://csdnimg.cn/release/blogv2/dist/mdeditor/css/editerView/markdown_views-d7a94ec6ab.css" rel="stylesheet">
+                <link href="https://csdnimg.cn/release/blogv2/dist/mdeditor/css/style-ba784fbaf8.css" rel="stylesheet">
+        </div>
+    </article>
+</div>
+
+ <h2><a name="t0" one-link-mark="yes"></a><a name="t0" one-link-mark="yes"></a><a id="1_0" one-link-mark="yes"></a>1.可行性研究的内容有哪些?</h2> 
+<p>答:可行性研究主要是从<mark>技术、经济和社会</mark>三个方面对软件项目的可行性进行分析。<em>技术可行性研究</em>是对技术解决方案的<mark>实用性</mark>、技术资源的<mark>可用性</mark>和<mark>设备条件</mark>做出评估。<em>经济可行性研究</em>要对项目的开发总成本与开发系统将带来的经济效益之间的差值进行度量，从经济的角度去判断是否值得为软件开发项目进行投资。<em>社会可行性研究</em>从<mark>政策、法律和制度</mark>等社会因素方面考虑项目开发的合理性和意义。</p> 
+<h2><a name="t1" one-link-mark="yes"></a><a name="t1" one-link-mark="yes"></a><a id="2_4" one-link-mark="yes"></a>2.如何理解需求分析的作用和重要性。</h2> 
+<p>答:一般情况下，用户并不熟悉计算机的相关知识，而软件开发人员对相关的业务领域也不甚了解，用户与开发人员之间对同一问题理解的差异和习惯用语的不同往往会为需求分析带来很人的困难。所以，开发人员和用户之间充分和有效的沟通在需求分析的过程中至关重要。</p> 
+<h2><a name="t2" one-link-mark="yes"></a><a name="t2" one-link-mark="yes"></a><a id="3_8" one-link-mark="yes"></a>3.常用的需求获取的方法有哪些?对比各种方法的优缺点。</h2> 
+<p>答:获取需求的方法有很多种，比如，问卷调查、访谈、实地操作、建立原型和研究资料等。</p> 
+<p><strong>问卷调查法</strong>是采用调查问卷的形式来进行需求分析的一种方法。通过对用户填写的调查问卷进行汇总、统计和分析，开发人员便可以得到-一些有用的信息。一般在设计调查问卷时，要合理地控制开放式问题和封闭式问题的比例。<em>开放式问题</em>的回答<mark>不受限制</mark>，自由<mark>灵活</mark>，能够激发用户的思维，使他们能尽可能地阐述白己的真实想法。但是，对开放式问题进行汇总和分析的工作会<mark>比较复杂</mark>。<em>封闭式问题</em>的答案是<mark>预先设定</mark>的，用户从若干答案中进行选择。封闭式问题便于对问卷信息进行归纳与整理，但是会限制用户的思维。<br> <strong>访谈</strong>通过开发人员与特定的用户代表进行座谈，进而了解到用户的意见，是<mark>最直接</mark>的需求获取方法。由于被访谈的用户身份可能多种多样，开发人员要根据用户的身份特点，进行提问，给予启发。当然，进行详细的记录也是访谈过程中必不可少的工作。<br> <strong>亲身实践</strong>可以<mark>更直接</mark>地体会现有系统的弊端以及新系统应该解决的问题，这种需求获取方法就是<mark>实地操作</mark>。通过实地操作得到的信息会<mark>更加准确和真实</mark>，但是这种方法会比较<mark>费时间</mark>。<br> 当用户本身对需求的了解不太清晰的时候，开发人员通常采用<strong>建立原型系统</strong>的方法对用户需求进行挖掘。通过对原型系统进行<mark>模拟</mark>操作，开发人员能及时获得用户的意见，从而对需求进行明确。</p> 
+<h2><a name="t3" one-link-mark="yes"></a><a name="t3" one-link-mark="yes"></a><a id="4_17" one-link-mark="yes"></a>4.如何理解结构化需求分析方法的基本思想。</h2> 
+<p>答:结构化需求分析是一种面向<mark>数据流</mark>的需求分析方法。它基于==“分解”和“抽象”<mark>的基本思想，逐步建立目标系统的逻辑模型，进而描绘出满足用户要求的软件系统。<br> **“分解”**是指对于一个复杂的系统，为了将复杂性降低到可以掌握的程度，可以把大问题分解为若干个小问题，然后再分别解决。<br> <strong>最顶层</strong>描述了整个目标系统，中间层将目标系统划分为若千个模块，每个模块完成一定的功能，而最底层是对每个模块实现方法的细节性描述。可见，在逐层分解的过程中，起初并不考虑细节性的问题，而是先关注问题最本质的属性，随着分解自顶向下进行，才逐渐考虑越来越具体的细节。这种用</mark>最本质的属性<mark>表示一个软件系统的方法就是</mark>“抽象”==。</p> 
+<h2><a name="t4" one-link-mark="yes"></a><a name="t4" one-link-mark="yes"></a><a id="5_22" one-link-mark="yes"></a>5.请阐述面向对象的基本概念。</h2> 
+<p>答:。面向对象的基本概念包括<mark>对象、类、封装、继承和多态</mark>。对象可以是客观世界中存在的事物，也可以是概念化的实体，它由一组<mark>属性和操作</mark>组成。<strong>属性</strong>是用来描述对象<mark>静态特征</mark>的数据项，是对客观世界实体所具有性质的抽象。<strong>操作</strong>是用来描述对象<mark>动态特征</mark>。<strong>类</strong>是对对象的抽象，是对具有相同属性和相同操作的一组相似对象的定义。<strong>封装</strong>是指把对象的属性和操作结合在一起，组成一个独立的单元。<strong>继承</strong>表示类之间的层次关系，它使得某类对象可以自动拥有另外一个或多个对象的全部属性和操作。<strong>多态</strong>是一种使父类中定义的属性或操作被子类继承后，可以有不同的实现的机制。</p> 
+<h2><a name="t5" one-link-mark="yes"></a><a name="t5" one-link-mark="yes"></a><a id="6_27" one-link-mark="yes"></a>6.对比面向对象需求分析方法和结构化需求分析方法。</h2> 
+<p>答:<strong>结构化需求分析方法</strong><em>基于==“分解”和“抽象”==的基本思想</em>，逐步建立目标系统的逻辑模型，进而描绘出满足用户要求的软件系统。常用的结构化需求分析工具有数据流图、数据字典和ER图。数据流图把软件系统看成是由数据流联系的各种功能的组合，可以用来建立目标系统的逻辑模型。数据字典用于定义数据流图中各个图元的具体内容，为数据流图中出现的图形元素做出确切的解释。E-R图可以用于描述应用系统的概念结构数据模型，它采用实体、联系和属性这三个基本概念来进行建模。</p> 
+<p><strong>面向对象需求分析方法</strong>主要基于<mark>面向对象</mark>的思想，以用例模型为基础进行需求分析。面向对象的概念中主要涉及了对象、类、封装、继承和多态等概念。因为面向对象的软件工程方法<mark>更符合人类的思维习惯</mark>，<mark>稳定性好</mark>，而且<mark>可复用性好</mark>，所以在目前的软件开发领域中<mark>最为流行</mark>。</p>
+                </div><div><div></div></div>
+                <link href="https://csdnimg.cn/release/blogv2/dist/mdeditor/css/editerView/markdown_views-d7a94ec6ab.css" rel="stylesheet">
+                <link href="https://csdnimg.cn/release/blogv2/dist/mdeditor/css/style-ba784fbaf8.css" rel="stylesheet">
+        </div>
+    </article>
+</div>
+
+ <h2><a name="t0" one-link-mark="yes"></a><a name="t0" one-link-mark="yes"></a><a id="1_0" one-link-mark="yes"></a>1.比较概要设计和详细设计的目标，并分别阐述概要设计和详细设计的内容。</h2> 
+<p>答:<strong>概要设计</strong>，得到软件系统的基本框架。它以<mark>需求规格说明书</mark>为基础,概要地说明软件系统的实现方案，包括目标系统的总体架构、每个模块的功能描述、数据接口描述及模块之间的调用关系、数据库、数据定义和数据结构等。<br> <strong>详细设计</strong>，明确系统内部的实现细节。在进行详细设计的过程中，设计人员的工作涉及的内容有过程、数据和接口等。过程设计主要是指描述系统中每个模块的实现算法和细节。数据设计是对各模块所用到的数据结构的进一步细化。接口设计针对的是<em>软件系统各模块</em>之间的关系或<em>通信方式</em>以及<em>目标系统与外部系统</em>之间的联系。</p> 
+<h2><a name="t1" one-link-mark="yes"></a><a name="t1" one-link-mark="yes"></a><a id="2_5" one-link-mark="yes"></a>2.为什么说“高内聚、低耦合”的设计有利于提高系统的独立性?</h2> 
+<p>答:内聚和耦合往往密切相关，模块的高内聚通常意味着低耦合。低耦合因为模块之间的耦合程度越低，相互影响就越小，发生异常后产生<mark>连锁反应</mark>的<mark>概率</mark>就越<mark>低</mark>;在修改一个模块时，低耦合的系统可以把修改范围尽量控制在最小的范围内;对一个模块进行维护时，其他模块的内部程序的正常运行不会受到较大的影响。</p> 
+<h2><a name="t2" one-link-mark="yes"></a><a name="t2" one-link-mark="yes"></a><a id="4_9" one-link-mark="yes"></a>4.对基于面向对象思想的设计而言,有哪些方法或机制可以实现信息隐藏?</h2> 
+<p>答:通常，模块的信息隐藏可以通过<mark>接口</mark>来实现。模块通过接口与外部进行通信，而把模块的具体实现细节(如数据结构、算法等内部信息)隐藏起来。一般来说，一个模块具有有限个接口，外部模块通过调用相应的接口来实现对目标模块的操作。</p> 
+<h2><a name="t3" one-link-mark="yes"></a><a name="t3" one-link-mark="yes"></a><a id="6NSPAD_13" one-link-mark="yes"></a>6.如果要求两个正整数的最小公倍数，请用程序流程图，N-S图和PAD图分别表示出求解该问题的算法</h2> 
+<p><img src="https://img-blog.csdnimg.cn/20190306192144810.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0NDQ3J1bm5lcg==,size_16,color_FFFFFF,t_70" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p> 
+<h2><a name="t4" one-link-mark="yes"></a><a name="t4" one-link-mark="yes"></a><a id="7_16" one-link-mark="yes"></a>7.比较结构化软件设计方法和面向对象软件设计方法。</h2> 
+<p>答*:结构化软件设计方法<em>和</em>面向对象软件设计方法<em>是两种主流的软件设计方法。<br> <strong>结构化软件设计方法</strong>更关注于系统的功能，采用<mark>自顶向下、逐步求精</mark>的设计过程，<mark>以模块为中心</mark>来解决问题，按照工程标准和严格的规范将目标系统<mark>划分</mark>为若<mark>功能模块</mark>。<strong>面向数据流的方法</strong>和<strong>面向数据结构的方法</strong>是两种常用的结构化软件设计方法。<strong>面向数据流</strong>的设计方法多在</em>概要设计阶段<em>使用，它借助于数据流图来进行设计工作，而<strong>面向数据结构</strong>的设计方法通常在</em>详细设计阶段*使用，它按输入、输出以及计算机内部存储信息的数据结构进行软件结构的设计，从而把对数据结构的描述转换为对软件结构的描述。常用的结构化软件设工具有<mark>流程图、N S图和PAD图</mark>等。</p> 
+<p>与结构化软件设计方法相比，<strong>面向对象软件设计方法</strong>的使用范围更广。与传统的软件工程方法不同的是，面向对象的方法<mark>不强调需求分析</mark>和<mark>软件设计</mark>的严格区分。从分析到设计的过渡，是一个<mark>逐渐扩充、细化和</mark>完善分析阶段所得到的各种模型的过程。面向对象的设计可以分为系统设计和对象设计两个阶段。系统设计关注于确定实现系统的策略和目标系统的高层结构，而对象设计是对需求分析阶段得到的对象模型的进一步完善、细化或扩充。</p>
+                </div><div data-report-view="{&quot;mod&quot;:&quot;1585297308_001&quot;,&quot;dest&quot;:&quot;https://dqwang.blog.csdn.net/article/details/88251060&quot;,&quot;extend1&quot;:&quot;pc&quot;,&quot;ab&quot;:&quot;new&quot;}"><div></div></div>
+                <link href="https://csdnimg.cn/release/blogv2/dist/mdeditor/css/editerView/markdown_views-d7a94ec6ab.css" rel="stylesheet">
+                <link href="https://csdnimg.cn/release/blogv2/dist/mdeditor/css/style-ba784fbaf8.css" rel="stylesheet">
+        </div>
+    </article>
+</div>
+
+<h2><a name="t0" one-link-mark="yes"></a><a name="t0" one-link-mark="yes"></a><a id="2_0" one-link-mark="yes"></a>2.在选择编程语言时，通常要考虑哪些因素?答:在选择编程语言时，通常需考虑以下因素。</h2> 
+<p>(1)待开发系统的<mark>应用领域</mark>，即项目的应用范围。<br> (2)用户的<mark>要求</mark>。<br> (3)软件开发人员的<mark>喜好和能力</mark>。<br> (4)系统的<mark>可移植性</mark>要求。<br> (5)算法和数据结构的<mark>复杂性</mark>。</p> 
+<h2><a name="t1" one-link-mark="yes"></a><a name="t1" one-link-mark="yes"></a><a id="3_8" one-link-mark="yes"></a>3.对标识符命名时，要注意哪些原则?</h2> 
+<p>答:对标识符进行命名时，要注意以下几点。<br> (1)按照标识符的实际意义命名，使其名称具有直观性，能够体现标识符的语义。这样可以帮助开发人员对标识符进行理解和记忆。<br> (2)遵循一定的命名规则，比如缩写的使用，字母大小写的选择，对常量和变量命名的区分等。一般不推荐使用单词缩写进行命名，因为使用缩写在阅读时容易产生歧义。<br> (3)变量名不要过于相似，这样容易引起误解。<br> (4)在定义变量时，最好对其含义和用途做出注释。</p> 
+<h2><a name="t2" one-link-mark="yes"></a><a name="t2" one-link-mark="yes"></a><a id="4_16" one-link-mark="yes"></a>4.为什么要对源程序进行注释?</h2> 
+<p>答:<strong>注释</strong>是软件开发人员之间以及开发人员和用户之间进行交流的重要途径，它<mark>阐述</mark>了程序的<mark>细节</mark>，有利于日后的维护工作。经常对较难理解、逻辑性强或比较重要的代码进行解释，从而<mark>提高</mark>代码的<mark>可理解性</mark>。</p>
+                </div><div><div></div></div>
+                <link href="https://csdnimg.cn/release/blogv2/dist/mdeditor/css/editerView/markdown_views-d7a94ec6ab.css" rel="stylesheet">
+                <link href="https://csdnimg.cn/release/blogv2/dist/mdeditor/css/style-ba784fbaf8.css" rel="stylesheet">
+        </div>
+    </article>
+</div>
+
+<h2><a name="t0" one-link-mark="yes"></a><a name="t0" one-link-mark="yes"></a><a id="1_0" one-link-mark="yes"></a>1.简述静态测试和动态测试的区别。</h2> 
+<p>答:按照<mark>执行测试时是否需要运行程序</mark>，软件测试可以划分为静态测试和动态测试。</p> 
+<p><strong>静态测试</strong>以<mark>人工测试</mark>为主，通过测试人员认真阅读文档和代码，仔细分析其<mark>正确性、一致性及逻辑结构的正确性</mark>，从而找出软件产品中的错误或缺陷。静态测试对自动化工具的依赖性较小，通过人脑的思考和逻辑判断来查找错误，因而可以更好地发挥人的主观能动性。</p> 
+<p>与静态测试不同的是，<strong>动态测试</strong>需要通过<mark>实际运行</mark>被测程序来发现问题。测试人员可以输入一系列的测试用例，通过观察测试用例的输出结果是否与预期相符来检验系统内潜在的问题或缺陷。</p> 
+<h2><a name="t1" one-link-mark="yes"></a><a name="t1" one-link-mark="yes"></a><a id="2_8" one-link-mark="yes"></a>2.现有一段判定三角形类型的程序，可以根据输入的三角形的三边长来判定可构成的三角形是否为等腰三角形。请用等价类划分法来为此段代码设计测试用例。</h2> 
+<p>答:画出该问题的等价类表，并为每个等价类进行编号:<br> <img src="https://img-blog.csdnimg.cn/20190306194931843.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0NDQ3J1bm5lcg==,size_16,color_FFFFFF,t_70" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p> 
+<h2><a name="t2" one-link-mark="yes"></a><a name="t2" one-link-mark="yes"></a><a id="3_12" one-link-mark="yes"></a>3.为什么软件开发人员不能同时完成测试工作?</h2> 
+<p>答:开发工作和测试工作不能由同一部分人来完成。如果开发人员对程序的功能要求理解错了，就很容易按照错误的思路来设计测试用例。如果开发人员同时完成测试工作，那么测试工作就很难取得成功。</p> 
+<h2><a name="t3" one-link-mark="yes"></a><a name="t3" one-link-mark="yes"></a><a id="4_16" one-link-mark="yes"></a>4.软件测试的常用模型有哪些?请简述它们的优缺点。</h2> 
+<p>答:常用的软件测试模型有<mark>V模型、W模型和H模型</mark>。每种模型都有各自的优缺点。</p> 
+<p><strong>V模型</strong>的价值在于非常明确地<mark>标明</mark>了测试过程中存在的<mark>不同级别</mark>，并且清楚地描述了这些测试阶段和开发过程各阶段的对应关系。在V模型中,<mark>测试</mark>工作在<mark>编码之后</mark>才能<mark>进行</mark>，所以在软件开发早期各个阶段引入的<mark>错误不能及时被发现</mark>。尤其是需求阶段的错误只有等到最后的验收测试才能被识别。对分析、设计阶段产生的错误不能及时发现并改正的缺点会对后期的修复工作带来诸多不便，<mark>造成</mark>更多<mark>资源</mark>的<mark>浪费</mark>和<mark>时间</mark>的<mark>延迟</mark>。<br> 在V模型的基础上,增加开发阶段的同步测试，就是<strong>W模型</strong>。W模型的最大优势在于，测试活动可以与开发活动<mark>并行进行</mark>，这样有利于及早地发现错误，但是W模型也有一定的局限性。在W模型中，需求、设计、编码等活动依然是<mark>依次进行</mark>的，只有上一阶段完全结束，才有可能开始下一阶段的工作。与迭代的开发模型相比，这种线性的开发模型在<mark>灵活性</mark>和对环境的<mark>适应性</mark>上<mark>有</mark>很大<mark>差距</mark>。<br> 在<strong>H模型</strong>中，软件测试过程的活动<mark>完全独立</mark>，贯穿于整个软件产品的生命周期，与其他流程并行进行。当软件测试人员认为测试准备完成，即某个测试点准备就绪时，就可以从测试准备阶段进入到测试执行阶段。</p> 
+<h2><a name="t4" one-link-mark="yes"></a><a name="t4" one-link-mark="yes"></a><a id="5_24" one-link-mark="yes"></a>5.已知有如下一段代码:</h2> 
+<pre class="prettyprint"><code class="has-numbering" onclick="mdcp.copyCode(event)" style="position: unset;">      int a,b, c;
+      if(a&lt;1 and b&gt;0)
+         c=5;
+      else if (b&lt;-3)
+         c=4;
+      else
+         c= 3;
+<div class="hljs-button &#123;2&#125;" data-title="复制" data-report-click="&#123;&quot;spm&quot;:&quot;1001.2101.3001.4259&quot;&#125;"></div></code><ul class="pre-numbering" style=""><li style="color: rgb(153, 153, 153);">1</li><li style="color: rgb(153, 153, 153);">2</li><li style="color: rgb(153, 153, 153);">3</li><li style="color: rgb(153, 153, 153);">4</li><li style="color: rgb(153, 153, 153);">5</li><li style="color: rgb(153, 153, 153);">6</li><li style="color: rgb(153, 153, 153);">7</li></ul></pre> 
+<p><em>请画出这段代码的程序流程图，并分别采用语句覆盖、分支覆盖、条件覆盖、分支一条件覆盖、条件组合覆盖和路径覆盖的方法设计测试用例。</em><br> 答:程序流程图:<br> <img src="https://img-blog.csdnimg.cn/20190306195738181.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0NDQ3J1bm5lcg==,size_16,color_FFFFFF,t_70" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br> <strong>语句覆盖</strong><br> <img src="https://img-blog.csdnimg.cn/20190306195835633.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br> <strong>分支覆盖</strong><br> <img src="https://img-blog.csdnimg.cn/20190306195907427.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br> <strong>条件覆盖</strong><br> <img src="https://img-blog.csdnimg.cn/20190306195941866.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0NDQ3J1bm5lcg==,size_16,color_FFFFFF,t_70" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br> <strong>分支----条件覆盖</strong><br> <img src="https://img-blog.csdnimg.cn/20190306200011557.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br> <strong>条件组合覆盖</strong><br> <img src="https://img-blog.csdnimg.cn/2019030620003497.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0NDQ3J1bm5lcg==,size_16,color_FFFFFF,t_70" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br> <strong>路径覆盖</strong><br> <img src="https://img-blog.csdnimg.cn/20190306200131643.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+                </div><div data-report-view="{&quot;mod&quot;:&quot;1585297308_001&quot;,&quot;dest&quot;:&quot;https://dqwang.blog.csdn.net/article/details/88252813&quot;,&quot;extend1&quot;:&quot;pc&quot;,&quot;ab&quot;:&quot;new&quot;}"><div></div></div>
+                <link href="https://csdnimg.cn/release/blogv2/dist/mdeditor/css/editerView/markdown_views-d7a94ec6ab.css" rel="stylesheet">
+                <link href="https://csdnimg.cn/release/blogv2/dist/mdeditor/css/style-ba784fbaf8.css" rel="stylesheet">
+        </div>
+    </article>
+</div>
+
+<h2><a name="t0" one-link-mark="yes"></a><a name="t0" one-link-mark="yes"></a><a id="1_0" one-link-mark="yes"></a>1.为什么要进行软件维护?软件维护的作用有哪些?</h2> 
+<p>答:<strong>软件维护</strong>是软件产品生命周期的最后一个阶段。在产品交付并且投入使用之后，为了<mark>解决</mark>在使用过程中不断发现的各种<mark>问题</mark>，<mark>保证</mark>系统正常<mark>运行</mark>，同时使系统功能随着用户需求的更新而不断升级，软件维护的工作是非常必要的。概括地说，<strong>软件维护</strong>就是指在软件产品交付给用户之后，为了改正软件测试阶段未发现的缺陷，<mark>改进</mark>软件产品的<mark>性能</mark>，补充软件产品的新功能等，所进行的修改软件的过程。</p> 
+<h2><a name="t1" one-link-mark="yes"></a><a name="t1" one-link-mark="yes"></a><a id="2_4" one-link-mark="yes"></a>2.什么是软件的可维护性?软件的可维护性与哪些因素有关?</h2> 
+<p>答**:软件的可维护性**是用来衡量对软件产品进行维护的<mark>难易程度</mark>的标准，它是软件质量的主要特征之一。影响软件可维护性的因素有很多，如<mark>可理解性、可测试性、可修改性</mark>等。</p> 
+<h2><a name="t2" one-link-mark="yes"></a><a name="t2" one-link-mark="yes"></a><a id="3McCall_8" one-link-mark="yes"></a>3.请简述McCall对软件质量的定义。</h2> 
+<p>答: MCall软件质量特性模型中的每种特性的定义如下。</p> 
+<p><strong>正确性</strong>:系统在预定的环境下，正确完成系统预期功能的程度。效率:完成预期功能所需的时间、人力、计算机资源等指标。</p> 
+<p><strong>可靠性</strong>:在规定的时间和条件下，软件维持其性能水平能力的属性的组合。可用性:衡量软件产品在运行中使用灵活、方便的程度。</p> 
+<p><strong>完整性</strong>:保存必要的数据，使之免受偶然或有意的破坏、改动或遗失的能力。</p> 
+<p><strong>可维护性</strong>:当系统的使用环境发生变化、用户提出新的需求或者系统在运行中产生了错误时，对潜在的错误或缺陷进行定位并修改或对原系统的结构进行变更的难易程度。可测试性:测试软件系统，使之能够完成预期功能的难易程度。</p> 
+<p><strong>灵活性</strong>:对一个已投入运行使用的软件系统进行修改时所需工作量多少的度量。</p> 
+<p><strong>可移植性</strong>:反映了把软件系统从一种计算机环境移植到另一种计算机环境所需要的工作量的多少。互连性:将一个软件系统与其他软件系统相连接的难易程度。可复用性:软件系统在其他场合下被再次使用的程度。</p> 
+<h2><a name="t3" one-link-mark="yes"></a><a name="t3" one-link-mark="yes"></a><a id="4_24" one-link-mark="yes"></a>4.请简述配置管理的基本过程</h2> 
+<p>答:配置管理包含4个基本过程:<mark>标识配置项、进行配置控制、记录配置状态、执行配置审计。</mark></p> 
+<h2><a name="t4" one-link-mark="yes"></a><a name="t4" one-link-mark="yes"></a><a id="6_28" one-link-mark="yes"></a>6.什么是程序的正确性证明?它的意义在哪里?</h2> 
+<p>答:程序的正确性证明指采用某种方法对软件系统运行的正确性进行证明。软件测试有一条重要原则是:测试可以发现程序中的错误，但是不能证明程序中没有错误。可见，软件测试并不能完全证明程序的正确性和可靠性。如果能对程序的正确性进行证明，那么软件产品的质量将更有保证。</p> 
+<h2><a name="t5" one-link-mark="yes"></a><a name="t5" one-link-mark="yes"></a><a id="9_32" one-link-mark="yes"></a>9.软件工程文档可以分为哪几类?每类中具体包含的文档有哪些?</h2> 
+<p>答:总体上说，软件工程文档可以分为<strong>用户</strong>文档、<strong>开发</strong>文档和<strong>管理</strong>文档三类，用户文档包括用户手、操作手册、修改维护建议和用户需求报告，开发文档包括软件需求规格说明书、数据要求说明书、概要设计说明书、详细设计说明书、可行性研究报告、项目开发计划，管理文档项目开发计划、测试计划、测试分析报告、开发进度月报和开发总结报告。</p>
+                </div><div data-report-view="{&quot;mod&quot;:&quot;1585297308_001&quot;,&quot;dest&quot;:&quot;https://dqwang.blog.csdn.net/article/details/88253609&quot;,&quot;extend1&quot;:&quot;pc&quot;,&quot;ab&quot;:&quot;new&quot;}"><div></div></div>
+                <link href="https://csdnimg.cn/release/blogv2/dist/mdeditor/css/editerView/markdown_views-d7a94ec6ab.css" rel="stylesheet">
+                <link href="https://csdnimg.cn/release/blogv2/dist/mdeditor/css/style-ba784fbaf8.css" rel="stylesheet">
+        </div>
+    </article>
+</div>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E5%BC%80%E5%8F%91/" class="category-chain-item">开发</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>『开发』吕云翔 软件工程课后题答案</div>
+      <div>https://chiamzhang.github.io/2024/06/29/『开发』吕云翔 软件工程课后题答案/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>Chiam</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>June 29, 2024</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>Licensed under</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2024/06/29/%E3%80%8E%E5%BC%80%E5%8F%91%E3%80%8F%E5%BF%AB%E6%94%BE%E5%BC%83%E4%BD%A0%E7%9A%84%E7%AE%A1%E5%AE%B6%E8%BD%AF%E4%BB%B6%E5%90%A7%EF%BC%81%20Part%202%20%E5%BC%BA%E5%88%B6%E5%88%A0%E9%99%A4/" title="『开发』快放弃你的管家软件吧！ Part 2 强制删除">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">『开发』快放弃你的管家软件吧！ Part 2 强制删除</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/06/29/%E3%80%8E%E5%BC%80%E5%8F%91%E3%80%8F%E5%89%8D%E7%AB%AF%E5%BF%85%E5%A4%87%EF%BC%8CAdobe%20Premiere%20Pro%20%E5%B8%B8%E7%94%A8%E5%BF%AB%E6%8D%B7%E9%94%AE/" title="『开发』前端必备，Adobe Premiere Pro 常用快捷键">
+                        <span class="hidden-mobile">『开发』前端必备，Adobe Premiere Pro 常用快捷键</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"fIfc7WqUDZohlQuPc2lz5mJy-MdYXbMMI","appKey":"zjlAG3ZA3o4cBHVAkjzc2Z20","path":"window.location.pathname","placeholder":"留言仅限讨论，禁止广告等行为","avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"https://fifc7wqu.api.lncldglobal.com","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>Table of Contents</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <meta name="referrer" content="no-referrer" /> <footer id="footer" role="contentinfo"> <meta name="referrer" content="no-referrer" /> <div class="divider"> <div class="wall"></div> <img class="animals" src="/img/footer_animals_new.png" srcset="/img/loading.gif" lazyload alt="Footer Animals"> </div> <div class="container" data-index="450"> <p> <a href="https://chiamzhang.github.io" target="_blank">DogEgg</a> <i class="iconfont icon-love"></i> <a href="#" target="_blank">LittePig</a> </p> <p> Powered by  <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-pen"></i> Theme  <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> </p> </div> </footer> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+  
+<script src="/js/love.js"></script>
+<script src="/js/funnyTitle.js"></script>
+<script src="/js/backTop.js"></script>
+<script src="//cdn.jsdelivr.net/gh/bynotes/texiao/source/js/xiaoxuehua.js"></script>
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+</html>

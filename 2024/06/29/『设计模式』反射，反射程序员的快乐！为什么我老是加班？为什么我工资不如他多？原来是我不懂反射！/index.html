@@ -1,0 +1,783 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/Mine.jpg">
+  <link rel="icon" href="/img/Mine.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Chiam">
+  <meta name="keywords" content="Algorithms，Cybersecurity">
+  
+    <meta name="description" content="『设计模式』反射，反射程序员的快乐！为什么我老是加班？为什么我工资不如他多？原来是我不懂反射！23 种设计模式+额外常用设计模式汇总 (持续更新）Java 是一门准动态语言，是因为存在反射机制，如果你不会是不是就等于白学了？看完不会，请评论，我亲自给你解释，嘻嘻！ 什么是动态语言？动态语言，是指程序在运行时可以改变其结构：新的函数可以被引进，已有的函数可以被删除等在结构上的变化。比如 JavaSc">
+<meta property="og:type" content="article">
+<meta property="og:title" content="『设计模式』反射，反射程序员的快乐！为什么我老是加班？为什么我工资不如他多？原来是我不懂反射！">
+<meta property="og:url" content="https://chiamzhang.github.io/2024/06/29/%E3%80%8E%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E3%80%8F%E5%8F%8D%E5%B0%84%EF%BC%8C%E5%8F%8D%E5%B0%84%E7%A8%8B%E5%BA%8F%E5%91%98%E7%9A%84%E5%BF%AB%E4%B9%90%EF%BC%81%E4%B8%BA%E4%BB%80%E4%B9%88%E6%88%91%E8%80%81%E6%98%AF%E5%8A%A0%E7%8F%AD%EF%BC%9F%E4%B8%BA%E4%BB%80%E4%B9%88%E6%88%91%E5%B7%A5%E8%B5%84%E4%B8%8D%E5%A6%82%E4%BB%96%E5%A4%9A%EF%BC%9F%E5%8E%9F%E6%9D%A5%E6%98%AF%E6%88%91%E4%B8%8D%E6%87%82%E5%8F%8D%E5%B0%84%EF%BC%81/index.html">
+<meta property="og:site_name" content="Homepage of Chiam">
+<meta property="og:description" content="『设计模式』反射，反射程序员的快乐！为什么我老是加班？为什么我工资不如他多？原来是我不懂反射！23 种设计模式+额外常用设计模式汇总 (持续更新）Java 是一门准动态语言，是因为存在反射机制，如果你不会是不是就等于白学了？看完不会，请评论，我亲自给你解释，嘻嘻！ 什么是动态语言？动态语言，是指程序在运行时可以改变其结构：新的函数可以被引进，已有的函数可以被删除等在结构上的变化。比如 JavaSc">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200503024135960.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/2020050302422588.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200502165038564.PNG?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200503002603585.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200503002618116.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200503021855816.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200503013158287.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/2020050301511214.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200503020251837.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200503021136691.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200503024155206.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70">
+<meta property="article:published_time" content="2024-06-29T13:16:54.690Z">
+<meta property="article:modified_time" content="2023-12-05T16:20:18.503Z">
+<meta property="article:author" content="Chiam">
+<meta property="article:tag" content="Algorithms，Cybersecurity">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20200503024135960.png">
+  
+  
+  
+  <title>『设计模式』反射，反射程序员的快乐！为什么我老是加班？为什么我工资不如他多？原来是我不懂反射！ - Homepage of Chiam</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"chiamzhang.github.io","root":"/","version":"1.9.5-a","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":"❡"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":2},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
+
+
+<body>
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Chiam&#39;s Blogs</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                
+                <span>Home</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                
+                <span>Archives</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                
+                <span>Categories</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                
+                <span>About</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                
+                <span>Links</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="『设计模式』反射，反射程序员的快乐！为什么我老是加班？为什么我工资不如他多？原来是我不懂反射！"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-06-29 21:16" pubdate>
+          June 29, 2024 pm
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          8.3k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          69 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">『设计模式』反射，反射程序员的快乐！为什么我老是加班？为什么我工资不如他多？原来是我不懂反射！</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="『设计模式』反射，反射程序员的快乐！为什么我老是加班？为什么我工资不如他多？原来是我不懂反射！"><a href="#『设计模式』反射，反射程序员的快乐！为什么我老是加班？为什么我工资不如他多？原来是我不懂反射！" class="headerlink" title="『设计模式』反射，反射程序员的快乐！为什么我老是加班？为什么我工资不如他多？原来是我不懂反射！"></a>『设计模式』反射，反射程序员的快乐！为什么我老是加班？为什么我工资不如他多？原来是我不懂反射！</h1><p><a target="_blank" rel="noopener" href="https://lunatic.blog.csdn.net/article/details/105578091">23 种设计模式+额外常用设计模式汇总 (持续更新）</a><br>Java 是一门准动态语言，是因为存在反射机制，如果你不会是不是就等于白学了？<br>看完不会，请评论，我亲自给你解释，嘻嘻！<br><img src="https://img-blog.csdnimg.cn/20200503024135960.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<h4 id="什么是动态语言？"><a href="#什么是动态语言？" class="headerlink" title="什么是动态语言？"></a>什么是动态语言？</h4><p>动态语言，是指程序在运行时可以改变其结构：新的函数可以被引进，已有的函数可以被删除等在结构上的变化。比如 JavaScript 便是一个典型的动态语言。</p>
+<p>除此之外如 Ruby、Python、OC 等也都属于动态语言，而 C、C++、Java 等语言则不属于动态语言。</p>
+<p>动态类型语言，就是类型的检查是在运行时做的，是不是合法的要到运行时才判断，例如 JavaScript 就没有编译错误，只有运行错误。</p>
+<p><strong>静态语言</strong><br>　　而静态类型语言的类型判断是在运行前判断（如编译阶段），比如 java 就是静态类型语言，静态类型语言为了达到多态会采取一些类型鉴别手段，如继承、接口，而动态类型语言却不需要，</p>
+<p>Java 的反射机制被视为 Java 为准动态语言的主要的一个关键性质，这个机制允许程序在运行时透过反射取得任何一个已知名称的 class 的内部信息，包括：</p>
+<p>正在运行中的类的属性信息，正在运行中的类的方法信息，正在运行中的类的构造信息，正在运行中的类的访问修饰符，注解等等。</p>
+<p>动态语言无时不刻在体现动态性，而静态语言也在通过其他方法来趋近于去弥补静态语言的缺陷。</p>
+<h4 id="为什么么要使用反射："><a href="#为什么么要使用反射：" class="headerlink" title="为什么么要使用反射："></a><strong>为什么么要使用反射：</strong></h4><ol>
+<li>反射是框架设计的灵魂<br><strong>框架：</strong> 半成品软件。可以在框架的基础上进行软件开发，简化编码。学习框架并不需要了解反射，但是要是想自己写一个框架，那么就要对反射机制有很深入的了解。</li>
+<li>解耦，提高程序的可扩展性</li>
+<li>在运行时判断任意一个对象所属的类。</li>
+<li>在运行时构造任意一个类的对象。</li>
+<li>在运行时判断任意一个类所具有的成员变量和方法。</li>
+<li>在运行时调用任意一个对象的方法。</li>
+</ol>
+<h4 id="什么是反射："><a href="#什么是反射：" class="headerlink" title="什么是反射："></a>什么是反射：</h4><h5 id="定义："><a href="#定义：" class="headerlink" title="定义："></a><strong>定义：</strong></h5><p>JAVA 反射机制是在运行状态中，对于任意一个类，都能够知道这个类的所有属性和方法；对于任意一个对象，都能够调用它的任意方法和属性；这种动态获取信息以及动态调用对象方法的功能称为 java 语言的反射机制。</p>
+<p><strong>简单来说：</strong> 将类的各个组成部分封装成其他对象<br><img src="https://img-blog.csdnimg.cn/2020050302422588.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<h4 id="反射机制的实现原理"><a href="#反射机制的实现原理" class="headerlink" title="反射机制的实现原理"></a><strong>反射机制的实现原理</strong></h4><p><img src="https://img-blog.csdnimg.cn/20200502165038564.PNG?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<p><strong>Java 代码在计算机中经历的三个阶段</strong></p>
+<ol>
+<li>Source 源代码阶段：_.java 被编译成_.class 字节码文件。</li>
+<li>Class 类对象阶段：*.class 字节码文件被类加载器加载进内存，并将其封装成 Class 对象（用于在内存中描述字节码文件），Class 对象将原字节码文件中的成员变量抽取出来封装成数组 Field[],将原字节码文件中的构造函数抽取出来封装成数组 Construction[]，在将成员方法封装成 Method[]。当然 Class 类内不止这三个，还封装了很多，我们常用的就这三个。</li>
+<li>RunTime 运行时阶段：创建对象的过程 new。</li>
+</ol>
+<h5 id="获取-Class-对象的方式"><a href="#获取-Class-对象的方式" class="headerlink" title="获取 Class 对象的方式:"></a>获取 Class 对象的方式:</h5><ol>
+<li><strong>Class.forname(“类全名”):</strong><br>将字节码加载进内存，返回 Class 对象。<br><strong>一般用于：</strong> 配置文件，将类名定义在配置文件中，读取文件，加载类。</li>
+<li><strong>类名.class：</strong><br>通过类名的属性 Class 获取<br><strong>一般用于：</strong> 参数传递</li>
+<li><strong>对象.getclass()获取：</strong><br>getclass()方法在 Object 类中定义<br><strong>一般用于：</strong> 对象获取字节码的方式</li>
+</ol>
+<p><strong>补充：</strong><br>同一个字节码文件（*.class)在一次程序运行中，只会被加载一次，不论通过哪一种方式获取的 Class 对象都是同一个。</p>
+<p><strong>举例：</strong><br><img src="https://img-blog.csdnimg.cn/20200503002603585.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">Main</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> ClassNotFoundException &#123;<br>    <span class="hljs-comment">//方式一：Class.forName(&quot;全类名&quot;);</span><br>    <span class="hljs-type">Class</span> <span class="hljs-variable">cls1</span>  <span class="hljs-operator">=</span> Class.forName(<span class="hljs-string">&quot;Test.Test&quot;</span>);  <span class="hljs-comment">//Person自定义实体类</span><br>    System.out.println(<span class="hljs-string">&quot;cls1 = &quot;</span> + cls1);<br><br>    <span class="hljs-comment">//方式二：类名.class</span><br>    <span class="hljs-type">Class</span> <span class="hljs-variable">cls2</span> <span class="hljs-operator">=</span> Test.class;<br>    System.out.println(<span class="hljs-string">&quot;cls2 = &quot;</span> + cls2);<br><br>    <span class="hljs-comment">//方式三：对象.getClass();</span><br>    Test tst= <span class="hljs-keyword">new</span> <span class="hljs-title class_">Test</span>();<br>    <span class="hljs-type">Class</span> <span class="hljs-variable">cls3</span> <span class="hljs-operator">=</span>tst.getClass();<br>    System.out.println(<span class="hljs-string">&quot;cls3 = &quot;</span> + cls3);<br><br>    <span class="hljs-comment">// == 比较三个对象</span><br>    System.out.println(<span class="hljs-string">&quot;cls1 == cls2 : &quot;</span> + (cls1 == cls2));    <span class="hljs-comment">//true</span><br>    System.out.println(<span class="hljs-string">&quot;cls1 == cls3 : &quot;</span> + (cls1 == cls3));    <span class="hljs-comment">//true</span><br>    <span class="hljs-comment">//结论：同一个字节码文件(*.class)在一次程序运行过程中，只会被加载一次，无论通过哪一种方式获取的Class对象都是同一个。</span><br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://img-blog.csdnimg.cn/20200503002618116.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<h5 id="Class-对象功能："><a href="#Class-对象功能：" class="headerlink" title="Class 对象功能："></a>Class 对象功能：</h5><h6 id="获取功能："><a href="#获取功能：" class="headerlink" title="获取功能："></a><strong>获取功能：</strong></h6><p><strong>1 获取成员变量们</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs java">Field[] getFields() ：获取所有<span class="hljs-keyword">public</span>修饰的成员变量<br>Field <span class="hljs-title function_">getField</span><span class="hljs-params">(String name)</span>   获取指定名称的 <span class="hljs-keyword">public</span>修饰的成员变量<br><br>Field[] getDeclaredFields()  获取所有的成员变量，不考虑修饰符<br>Field <span class="hljs-title function_">getDeclaredField</span><span class="hljs-params">(String name)</span><br><span class="hljs-comment">//需要忽略访问权限修饰符的安全检查 setAccessible(true):暴力反射，不然会报错</span><br></code></pre></td></tr></table></figure>
+
+<blockquote>
+<p>具体测试看下文！</p>
+</blockquote>
+<p><strong>2.获取构造方法们</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs java">Constructor&lt;?&gt;[] getConstructors()<br>Constructor&lt;T&gt; <span class="hljs-title function_">getConstructor</span><span class="hljs-params">(类&lt;?&gt;... parameterTypes)</span><br><br>Constructor&lt;?&gt;[] getDeclaredConstructors()<br>Constructor&lt;T&gt; <span class="hljs-title function_">getDeclaredConstructor</span><span class="hljs-params">(类&lt;?&gt;... parameterTypes)</span><br></code></pre></td></tr></table></figure>
+
+<blockquote>
+<p>具体测试看下文！</p>
+<p><strong>3.获取成员方法们：</strong></p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs java">Method[] getMethods()<br>Method <span class="hljs-title function_">getMethod</span><span class="hljs-params">(String name, 类&lt;?&gt;... parameterTypes)</span><br><br>Method[] getDeclaredMethods()<br>Method <span class="hljs-title function_">getDeclaredMethod</span><span class="hljs-params">(String name, 类&lt;?&gt;... parameterTypes)</span><br><span class="hljs-comment">//需要忽略访问权限修饰符的安全检查 setAccessible(true):暴力反射，不然会报错</span><br></code></pre></td></tr></table></figure>
+
+<blockquote>
+<p>具体测试看下文！</p>
+<p><strong>4.获取全类名</strong></p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java">String <span class="hljs-title function_">getName</span><span class="hljs-params">()</span><br></code></pre></td></tr></table></figure>
+
+<p><code>getClass()</code>方法是 Object 类的方法，需要注意一点获取的类名是全类名（带有路径）<br><strong>举例：</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> Test;<br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Reflect</span> &#123;<br>	<span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> <span class="hljs-keyword">throws</span> Exception &#123;<br>		<span class="hljs-type">Class</span> <span class="hljs-variable">Tst</span> <span class="hljs-operator">=</span> Test.class;<br>		String s=Tst.getName();<br>		System.out.println(s);<br>	&#125;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+<p><strong>运行结果：</strong><br><img src="https://img-blog.csdnimg.cn/20200503021855816.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<pre><code class="hljs">![在这里插入图片描述](https://img-blog.csdnimg.cn/20200503024319516.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70)
+</code></pre>
+<h6 id="Field：成员变量"><a href="#Field：成员变量" class="headerlink" title="Field：成员变量"></a>Field：成员变量</h6><ol>
+<li>设置值 <code>void set(Object obj, Object value)</code></li>
+<li>获取值 <code>get(Object obj)</code></li>
+</ol>
+<p><strong>举例：</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> Test;<br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Test</span> &#123;<br>	<span class="hljs-keyword">public</span> String a;<br>	<span class="hljs-keyword">protected</span> String b;<br>	<span class="hljs-keyword">private</span> String c;<br>	String d;<br>&#125;<br><br><br><span class="hljs-keyword">package</span> Test;<br><br><span class="hljs-keyword">import</span> java.lang.reflect.Field;<br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Reflect</span> &#123;<br>	<span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> <span class="hljs-keyword">throws</span>  Exception &#123;<br>		<span class="hljs-type">Class</span> <span class="hljs-variable">Tst</span> <span class="hljs-operator">=</span> Test.class;<br>		Test tst=<span class="hljs-keyword">new</span> <span class="hljs-title class_">Test</span>();<br>		System.out.println(<span class="hljs-string">&quot;-------------------测试getField--------------------&quot;</span>);<br><br>		Field[] fields=Tst.getFields();<br>		<span class="hljs-keyword">for</span>(Field f:fields)<br>		&#123;<br>			System.out.println(f);<br>		&#125;<br><br>		Field a=Tst.getField(<span class="hljs-string">&quot;a&quot;</span>);<br>		a.set(tst, <span class="hljs-string">&quot;我是设置值&quot;</span>);<br>		System.out.println(a.get(tst));<br><br>		System.out.println(<span class="hljs-string">&quot;\n-------------测试getDeclaredField------------------&quot;</span>);<br><br>		Field[] fields2=Tst.getDeclaredFields();<br>		<span class="hljs-keyword">for</span>(Field f:fields2)<br>		&#123;<br>			f.setAccessible(<span class="hljs-literal">true</span>);<span class="hljs-comment">//不加出不来，详情请看上文</span><br>			System.out.println(f);<br>		&#125;<br><br>		Field b=Tst.getDeclaredField(<span class="hljs-string">&quot;b&quot;</span>);<br>		b.set(tst, <span class="hljs-string">&quot;我是私有的设置值&quot;</span>);<br>		System.out.println(b.get(tst));<br><br>	&#125;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+<p><strong>测试结果：</strong><br><img src="https://img-blog.csdnimg.cn/20200503013158287.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<h6 id="Constructor-构造方法"><a href="#Constructor-构造方法" class="headerlink" title="Constructor:构造方法"></a>Constructor:构造方法</h6><p>创建对象：T newInstance(Object… initargs)<br>注意：如果使用空参数构造方法创建对象，操作可以简化：Class 对象的 newInstance 方法<br>作用就是用它来创建对象<br><strong>举例：</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> Test;<br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Test</span> &#123;<br>	<span class="hljs-keyword">public</span> String a;<br>	<span class="hljs-comment">//构造方法</span><br>	<span class="hljs-keyword">public</span> <span class="hljs-title function_">Test</span><span class="hljs-params">( )</span> &#123;&#125;<br>	<span class="hljs-keyword">public</span> <span class="hljs-title function_">Test</span><span class="hljs-params">(String a)</span> &#123;<br>		<span class="hljs-built_in">this</span>.a = a;<br>	&#125;<br><br>&#125;<br><br><span class="hljs-keyword">package</span> Test;<br><br><span class="hljs-keyword">import</span> java.lang.reflect.Constructor;<br><span class="hljs-keyword">import</span> java.lang.reflect.Field;<br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Reflect</span> &#123;<br>	<span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> <span class="hljs-keyword">throws</span> Exception &#123;<br>		<span class="hljs-type">Class</span> <span class="hljs-variable">Tst</span> <span class="hljs-operator">=</span> Test.class;<br>		Constructor[] constructors = Tst.getConstructors();<br>		<span class="hljs-keyword">for</span> (Constructor constructor : constructors) &#123; <span class="hljs-comment">// Constructor 对象reflect包下的 import java.lang.reflect.Constructor;</span><br>			System.out.println(constructor);<br>		&#125;<br>		System.out.println(<span class="hljs-string">&quot;------------------无参构造函数创建对象----------------------&quot;</span>);<br>		Constructor cst=Tst.getConstructor(); <span class="hljs-comment">//获得无参构造函数</span><br>		System.out.println(cst);<br>		Object test=cst.newInstance(); <span class="hljs-comment">//利用无参构造函数创建对象</span><br>		System.out.println(test);<br><br>		System.out.println(<span class="hljs-string">&quot;------------------有参构造函数创建对象----------------------&quot;</span>);<br>		Constructor cst2=Tst.getConstructor(String.class); <span class="hljs-comment">//获得有参构造函数</span><br>		System.out.println(cst2);<br>		Object test2=cst2.newInstance(<span class="hljs-string">&quot;张3&quot;</span>);<span class="hljs-comment">//利用有参构造函数创建对象</span><br>		System.out.println(test2);<br><br>		System.out.println(<span class="hljs-string">&quot;------------------基于Class创建对象----------------------&quot;</span>);<br><br>		Object test3=Tst.newInstance();<br>		<span class="hljs-comment">//只能用于无参构函数，而且已经被弃用,不建议使用</span><br>		System.out.println(test3);<br><br>	&#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://img-blog.csdnimg.cn/2020050301511214.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br><strong>喜欢问问题的小朋友要来了？</strong><br>为什么没有 getDeclaredConstructor 方法和 getDeclaredConstructors 方法？<br>为什么？为什么？<br>有啊！！<br>getDeclaredConstructor 方法可以获取到任何访问权限的构造器，而 getConstructor 方法只能获取 public 修饰的构造器。具体不再测试。此外在构造器的对象内也有 setAccessible(true);方法，并设置成 true 就可以操作了。<br>关于为什么要使用 private 访问权限的构造器，使用这个构造器不就不能外部访问了嘛，不也就无法进行实例化对象了吗？无法在类的外部实例化对象正是私有构造器的意义所在，在单例模式下经常使用，整个项目只有一个对象，外部无法实例化对象，可以在类内的进行实例化并通过静态方法返回，由于实例化的对象是静态的，故只有一个对象，也就是单例的，这就是单例模式中的饿汉模式，不管是否调用，都创建一个对象。</p>
+<h6 id="Method：方法对象"><a href="#Method：方法对象" class="headerlink" title="Method：方法对象"></a>Method：方法对象</h6><p>执行方法：Object invoke(Object obj, Object… args)<br>获取方法名称：String getName();</p>
+<p><strong>举例：</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> Test;<br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Test</span> &#123;<br>	<span class="hljs-keyword">public</span> String a;<br><br>	<span class="hljs-comment">// 构造方法</span><br>	<span class="hljs-keyword">public</span> <span class="hljs-title function_">Test</span><span class="hljs-params">()</span> &#123;<br>	&#125;<br><br>	<span class="hljs-keyword">public</span> <span class="hljs-title function_">Test</span><span class="hljs-params">(String a)</span> &#123;<br>		<span class="hljs-built_in">this</span>.a = a;<br>	&#125;<br><br>	<span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">do_Something</span><span class="hljs-params">()</span>	&#123;<br>		System.out.println(<span class="hljs-string">&quot;吃饭睡觉打豆豆&quot;</span>);<br>	&#125;<br>	<span class="hljs-keyword">public</span> String <span class="hljs-title function_">do_Something</span><span class="hljs-params">(String s)</span>	&#123;<br>		System.out.println(<span class="hljs-string">&quot;吃饭睡觉打&quot;</span>+s);<br>		<span class="hljs-keyword">return</span> <span class="hljs-string">&quot;爽&quot;</span>;<br>	&#125;<br>&#125;<br><br><br><span class="hljs-keyword">package</span> Test;<br><br><span class="hljs-keyword">import</span> java.lang.reflect.Method;<br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Reflect</span> &#123;<br>	<span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> <span class="hljs-keyword">throws</span> Exception &#123;<br>		<span class="hljs-type">Class</span> <span class="hljs-variable">Tst</span> <span class="hljs-operator">=</span> Test.class;<br>		Method[] mtd=Tst.getMethods();<br>		<span class="hljs-keyword">for</span>(Method m:mtd) System.out.println(m);<br>	&#125;<br>&#125;<br><br><br></code></pre></td></tr></table></figure>
+
+<p><strong>运行结果：</strong><br><img src="https://img-blog.csdnimg.cn/20200503020251837.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br><strong>举例 2.0：</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> Test;<br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Test</span> &#123;<br>	<span class="hljs-keyword">public</span> String a;<br><br>	<span class="hljs-comment">// 构造方法</span><br>	<span class="hljs-keyword">public</span> <span class="hljs-title function_">Test</span><span class="hljs-params">()</span> &#123;<br>	&#125;<br><br>	<span class="hljs-keyword">public</span> <span class="hljs-title function_">Test</span><span class="hljs-params">(String a)</span> &#123;<br>		<span class="hljs-built_in">this</span>.a = a;<br>	&#125;<br><br>	<span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">do_Something</span><span class="hljs-params">()</span>	&#123;<br>		System.out.println(<span class="hljs-string">&quot;吃饭睡觉打豆豆&quot;</span>);<br>	&#125;<br>	<span class="hljs-keyword">public</span> String <span class="hljs-title function_">do_Something</span><span class="hljs-params">(String s)</span>	&#123;<br>		System.out.println(<span class="hljs-string">&quot;吃饭睡觉打&quot;</span>+s);<br>		<span class="hljs-keyword">return</span> <span class="hljs-string">&quot;爽&quot;</span>;<br>	&#125;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> Test;<br><br><span class="hljs-keyword">import</span> java.lang.reflect.Method;<br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Reflect</span> &#123;<br>	<span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> <span class="hljs-keyword">throws</span> Exception &#123;<br>		<span class="hljs-type">Class</span> <span class="hljs-variable">Tst</span> <span class="hljs-operator">=</span> Test.class;<br>		<span class="hljs-type">Test</span> <span class="hljs-variable">test</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Test</span>();<br><br>		System.out.println(<span class="hljs-string">&quot;-----------------无参测试----------------------&quot;</span>);<br>		<span class="hljs-type">Method</span> <span class="hljs-variable">mtd1</span> <span class="hljs-operator">=</span> Tst.getMethod(<span class="hljs-string">&quot;do_Something&quot;</span>);<span class="hljs-comment">// 获得无参的方法</span><br>		<span class="hljs-type">Object</span> <span class="hljs-variable">return_Value</span> <span class="hljs-operator">=</span> mtd1.invoke(test); <span class="hljs-comment">// 调用方法</span><br>		<span class="hljs-comment">// 有返回值就得到一个值，没有就得到一个null</span><br>		System.out.println(return_Value);<br><br>		System.out.println(<span class="hljs-string">&quot;-----------------含参测试----------------------&quot;</span>);<br>		<span class="hljs-type">Method</span> <span class="hljs-variable">mtd2</span> <span class="hljs-operator">=</span> Tst.getMethod(<span class="hljs-string">&quot;do_Something&quot;</span>, String.class);<span class="hljs-comment">// 获得无参的方法</span><br>		<span class="hljs-type">Object</span> <span class="hljs-variable">return_Value2</span> <span class="hljs-operator">=</span> mtd2.invoke(test, <span class="hljs-string">&quot;张三&quot;</span>); <span class="hljs-comment">// 调用方法</span><br>		<span class="hljs-comment">// 有返回值就得到一个值，没有就得到一个null</span><br>		System.out.println(return_Value2);<br>	&#125;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+<p><strong>运行结果：</strong><br><img src="https://img-blog.csdnimg.cn/20200503021136691.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><p>这时候又会有小朋友问：<br>为什么要这么麻烦，我直接调用不就好了？</p>
+<p>不知你是否发现，从类的创建的方法的使用，所有的一切都是用的字符串，那么也就是说，我可以通过读入数据，或者配置文件的方式，创建类，调用方法。</p>
+<p><strong>举个简单点的例子：</strong><br>就拿英雄联盟这款游戏来说，这游戏三天两头的轮换一个娱乐模式，难道每次上线都要对源代码进行修改,今天在 Client 调用“无限活力”，明天就要调用”魄罗大乱斗”，每天就对着源码改?几万行的代码就这么放心让你改？除非你老板想做空公司，故意的！必然不可能，这时候我们就算哪一个 txt 文件，就放一行字符串，用反射之后，只用改 txt 文件不就完了！不用反射，是做不到用字符串创建类，和运行方法（别抬杠，写个 if-else 或者 switch 啥的）。</p>
+<p>举例可能不太恰当，一般不会使用 txt，一般使用 XML 或者 java 配置文件。<br><img src="https://img-blog.csdnimg.cn/20200503024155206.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<blockquote>
+<p><strong>写在最后：</strong><br>我叫风骨散人，名字的意思是我多想可以<code>不低头的自由生活</code>，可现实却不是这样。家境贫寒，总得向这个世界低头，所以我一直在奋斗，想<code>改变我的命运</code>给亲人好的生活，希望<code>同样被生活绑架的你</code>可以通过自己的努力改变现状，深知成年人的世界里没有容易二字。目前是一名在校大学生，预计考研，热爱编程，热爱技术，喜欢分享，知识无界，希望我的分享可以帮到你！<br>如果有什么想看的，可以私信我，如果在能力范围内，我会发布相应的博文！<br>感谢大家的阅读！😘 你的点赞、收藏、关注是对我最大的鼓励！</p>
+</blockquote>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" class="category-chain-item">设计模式</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>『设计模式』反射，反射程序员的快乐！为什么我老是加班？为什么我工资不如他多？原来是我不懂反射！</div>
+      <div>https://chiamzhang.github.io/2024/06/29/『设计模式』反射，反射程序员的快乐！为什么我老是加班？为什么我工资不如他多？原来是我不懂反射！/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>Chiam</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>June 29, 2024</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>Licensed under</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2024/06/29/%E3%80%8E%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E3%80%8F%E5%A4%87%E5%BF%98%E5%BD%95%E6%A8%A1%E5%BC%8F(memento)%E4%B8%8B%E8%B1%A1%E6%A3%8B%EF%BC%8C%E6%88%91%E5%B0%B1%E6%83%B3%E6%82%94%E6%A3%8B%E6%80%8E%E4%B9%88%E5%8A%9E/" title="『设计模式』备忘录模式(memento)下象棋，我就想悔棋怎么办">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">『设计模式』备忘录模式(memento)下象棋，我就想悔棋怎么办</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/06/29/%E3%80%8E%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E3%80%8F%E5%86%99%E4%BB%A3%E7%A0%81%E5%81%B7%E6%87%92%E5%B0%8F%E6%8A%80%E5%B7%A7%EF%BC%8C%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91%E5%A4%A7%E6%99%BA%E6%85%A7-%E4%BA%AB%E5%85%83%E6%A8%A1%E5%BC%8F/" title="『设计模式』写代码偷懒小技巧，程序开发大智慧-享元模式">
+                        <span class="hidden-mobile">『设计模式』写代码偷懒小技巧，程序开发大智慧-享元模式</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"fIfc7WqUDZohlQuPc2lz5mJy-MdYXbMMI","appKey":"zjlAG3ZA3o4cBHVAkjzc2Z20","path":"window.location.pathname","placeholder":"留言仅限讨论，禁止广告等行为","avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"https://fifc7wqu.api.lncldglobal.com","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>Table of Contents</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <meta name="referrer" content="no-referrer" /> <footer id="footer" role="contentinfo"> <meta name="referrer" content="no-referrer" /> <div class="divider"> <div class="wall"></div> <img class="animals" src="/img/footer_animals_new.png" srcset="/img/loading.gif" lazyload alt="Footer Animals"> </div> <div class="container" data-index="450"> <p> <a href="https://chiamzhang.github.io" target="_blank">DogEgg</a> <i class="iconfont icon-love"></i> <a href="#" target="_blank">LittePig</a> </p> <p> Powered by  <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-pen"></i> Theme  <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> </p> </div> </footer> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+  
+<script src="/js/love.js"></script>
+<script src="/js/funnyTitle.js"></script>
+<script src="/js/backTop.js"></script>
+<script src="//cdn.jsdelivr.net/gh/bynotes/texiao/source/js/xiaoxuehua.js"></script>
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+</html>

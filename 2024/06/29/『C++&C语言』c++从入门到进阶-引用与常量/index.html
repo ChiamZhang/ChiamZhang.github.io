@@ -1,0 +1,848 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/Mine.jpg">
+  <link rel="icon" href="/img/Mine.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Chiam">
+  <meta name="keywords" content="Algorithms，Cybersecurity">
+  
+    <meta name="description" content="『C++&amp;C 语言』c++从入门到进阶-引用与常量一·常量表达式和 constexpr 与 const常量表达式概念：值不会改变并且在编译过程中就能计算出结果的表达式。 ps：constexpr int a&#x3D;20； constexpr int b&#x3D;20+a；  constexpr 必须用常量表达式初始化，也就是说必须在编译过程就能计算出结果（若要用函数作为 constexpr 的初始值那么">
+<meta property="og:type" content="article">
+<meta property="og:title" content="『C++&amp;C语言』c++从入门到进阶-引用与常量">
+<meta property="og:url" content="https://chiamzhang.github.io/2024/06/29/%E3%80%8EC++&C%E8%AF%AD%E8%A8%80%E3%80%8Fc++%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E8%BF%9B%E9%98%B6-%E5%BC%95%E7%94%A8%E4%B8%8E%E5%B8%B8%E9%87%8F/index.html">
+<meta property="og:site_name" content="Homepage of Chiam">
+<meta property="og:description" content="『C++&amp;C 语言』c++从入门到进阶-引用与常量一·常量表达式和 constexpr 与 const常量表达式概念：值不会改变并且在编译过程中就能计算出结果的表达式。 ps：constexpr int a&#x3D;20； constexpr int b&#x3D;20+a；  constexpr 必须用常量表达式初始化，也就是说必须在编译过程就能计算出结果（若要用函数作为 constexpr 的初始值那么">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2024-06-29T13:16:53.717Z">
+<meta property="article:modified_time" content="2023-12-05T16:17:37.777Z">
+<meta property="article:author" content="Chiam">
+<meta property="article:tag" content="Algorithms，Cybersecurity">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>『C++&amp;C语言』c++从入门到进阶-引用与常量 - Homepage of Chiam</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"chiamzhang.github.io","root":"/","version":"1.9.5-a","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":"❡"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":2},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
+
+
+<body>
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Chiam&#39;s Blogs</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                
+                <span>Home</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                
+                <span>Archives</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                
+                <span>Categories</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                
+                <span>About</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                
+                <span>Links</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="『C++&amp;C语言』c++从入门到进阶-引用与常量"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-06-29 21:16" pubdate>
+          June 29, 2024 pm
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          5.9k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          50 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">『C++&amp;C语言』c++从入门到进阶-引用与常量</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="『C-C-语言』c-从入门到进阶-引用与常量"><a href="#『C-C-语言』c-从入门到进阶-引用与常量" class="headerlink" title="『C++&amp;C 语言』c++从入门到进阶-引用与常量"></a>『C++&amp;C 语言』c++从入门到进阶-引用与常量</h1><h4 id="一·常量表达式和-constexpr-与-const"><a href="#一·常量表达式和-constexpr-与-const" class="headerlink" title="一·常量表达式和 constexpr 与 const"></a>一·常量表达式和 constexpr 与 const</h4><p><strong>常量表达式概念</strong>：值不会改变并且在编译过程中就能计算出结果的表达式。</p>
+<pre><code class="hljs">ps：constexpr int a=20；
+constexpr int b=20+a；
+</code></pre>
+<p>constexpr 必须用常量表达式初始化，也就是说必须在编译过程就能计算出结果（若要用函数作为 constexpr 的初始值那么该函数应该是 constexpr 类型的函数）。</p>
+<blockquote>
+<p>constexpr 函数必须满足下述限制：<br>函数返回值不能是 void 类型 函数体不能声明变量或定义新的类型<br>函数体只能包含声明、null 语句或者一条 return 语句<br>在形参实参结合后，return 语句中的表达式为常量表达式</p>
+</blockquote>
+<p>const 不要求在编译过程中就能计算出结果 <strong>（强调运行时不可改变）</strong> 大多数情况下并没有区别。</p>
+<h5 id="const-限定指针和引用。"><a href="#const-限定指针和引用。" class="headerlink" title="const 限定指针和引用。"></a>const 限定指针和引用。</h5><p><strong>指向 const 对象的指针 const type 指针</strong></p>
+<pre><code class="hljs">const int a=1;  //const地址无法赋给非const指针所以应该定义一个指向const的指针
+const int * b=&amp;a;     //指向常量的指针，而非常指针。
+const int c=2；
+b=&amp;c；   //指向对象可以改变，指向对象内容不能改变。
+int d=10;
+b=&amp;d;  //也可以将一个非const地址赋给 指向const的指针 但是不能通过该指针改变该变量的内容。
+*b=15；//错误
+</code></pre>
+<p><strong>指向非 const 对象地 const 指针（常指针 ）</strong> <strong>type const 指针</strong></p>
+<p>int num &#x3D;10；<br>int * const poi &#x3D;&amp;num；&#x2F;&#x2F; type const 指针 指针的值初始化后不能改变指向固定的单元（只能指一次）<br>*poi&#x3D;99;&#x2F;&#x2F;const 限定的是 poi 的值；可以对指向内容修改，但不可以对指针指向对象修改。<br>int member&#x3D;10；<br>poi&#x3D;&amp;member；&#x2F;&#x2F;错误</p>
+<p><strong>指向 const 对象的 const 指针</strong></p>
+<pre><code class="hljs">/*const type const 指针（第一个const限定int表示指针指向的单元是常量，
+第二个const限定‘指针’表示指针的值也是常量，因此该指针所在的内存值不允许改变它所指向内存的值也不能改变）*/
+int demo=10;
+const int *const pi=&amp;demo；对象及内容都不能改变
+</code></pre>
+<p><strong>const 限定引用，与 const 指针相似</strong></p>
+<pre><code class="hljs">const int a=1;
+int 7b=a;// const type &amp;引用名（不能用非const引用指向const对象)
+const int&amp; b=a;//right
+b=10；//错误，const引用不能用来修改他所绑定的对象。
+a=10；//const引用仅对自己可参与的操作进行了限定对所指向的对象本身是不是常量未作限定。因为指向的对象也可能不是const，所以允许通过其他途径改变它的值。
+const int &amp;c=a*10;//可以用任意表达式初始化const引用，只要表达式的结果能转换成引用的类型即可。
+</code></pre>
+<h4 id="二-auto-和-decltype"><a href="#二-auto-和-decltype" class="headerlink" title="二.auto 和 decltype"></a>二.auto 和 decltype</h4><p>由 auto 声明变量的类型由编译器去自动分析表达式的类型，推断出变量的实际类型（很好用）<br>auto x&#x3D;5<br>auto x&#x3D;1,c&#x3D;3.14;&#x2F;&#x2F;一个 int 一个 double 错!当 auto 后定义多个变量时类型要一致<br>auto poi&#x3D;Set.begin()&#x2F;&#x2F;很好用，省了 set<type>::iterator</p>
+<p>decltype 可以通过表达式推断出定义的变量的类型但是不用该表达式初始化。</p>
+<pre><code class="hljs">int i = 4;
+decltype(i) a; //推导结果为int。a的类型为int。
+</code></pre>
+<h4 id="三-new-和-delete"><a href="#三-new-和-delete" class="headerlink" title="三.new 和 delete"></a>三.new 和 delete</h4><p>new 在对上动态分配空间创建对象并返回对象的地址，一般将返回的地址保存在指针变量中，以便间接访问对上的对象</p>
+<pre><code class="hljs">int *pi=new int;
+int *poi=new int(1000);
+ /*   new表达式的形式
+1.分配单个对象new 类型，new 类型(初始值)
+2.分配多个连续存储的对象 new 类型[数组大小]
+3.定位new(将对象创建在已经分配好的内存中) new (指针) 类型；*/
+</code></pre>
+<p><strong>堆上的空间在使用后必须释放否则会造成内存泄漏,</strong></p>
+<pre><code class="hljs">delete  pi;
+delete poi[];
+
+/*new分配的空间用delete运算符释放。
+1释放 new分配的单个对象 delete 指针；
+2释放new分配的数组形式 delet[] 指针；
+3 定位new没有对应的形式；*/
+</code></pre>
+<p>执行 delete 运算后指针指向的空间被释放归还给自由空间不能再使用指针所指向的内容，但是指针自己的储存空间还是存在的。该指针被称为空悬指针指向不确定的单元如果在继续使用该指针间接使用这个单元就是非法的对自由空间造成损害进而引起不可预料的错误。</p>
+<h4 id="四-引用"><a href="#四-引用" class="headerlink" title="四.引用"></a>四.引用</h4><p><strong>左值与右值</strong></p>
+<table>
+<thead>
+<tr>
+<th>区别</th>
+<th>左值</th>
+<th>右值</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>赋值表达式</td>
+<td>出现在赋值号左边</td>
+<td>在赋值号右边的</td>
+</tr>
+<tr>
+<td>地址与名字</td>
+<td>可以取地址的有名字</td>
+<td>不能取地址的没有名字</td>
+</tr>
+<tr>
+<td>生成的表达式</td>
+<td>返回左值引用的函数 赋值 下标 解引用和前缀自增自减运算符</td>
+<td>返回非引用类型的函数 连同算术、关系、位运算、后缀自增自减运算符、字面值常量、要求转换的表达式。</td>
+</tr>
+<tr>
+<td><strong>左值引用</strong> （定义 类型 &amp;引用名&#x3D;目标变量名）</td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<pre><code class="hljs">int a=100;
+int &amp;b=a;/*&amp;是标识符(引用必须被初始化并且初始化完成之后引用将会和初始值对象一直绑定在一起)。*/
+b=10；//又称别名,它可以作为对象的另一个名字,通过引用可以间接的操纵对象，对引用的操作和对对象的直接操作一样。
+int *poi=&amp;a;
+int *pi=&amp;b;//此时a==b
+/* 声明一个引用，不是新定义了一个变量，它只表示该引用名是目标变量名的一个别名，它本身不是一种数据类型，因此引用本身不占存储单元，系统也不给引用分配存储单元。故：对引用求地址，就是对目标变量求地址。引用本身不是对象所以不能定义引用的引用。*/
+</code></pre>
+<p><strong>右值引用</strong>（必须要绑定到右值的引用）定义 类型 &amp;&amp;右值引用变量&#x3D;右值表达式;</p>
+<pre><code class="hljs">int &amp;&amp;a=10；//正确
+int &amp;&amp;b=10*5；//正确10*5是右值
+int &amp;&amp;c=a；//a的类型是int是左值
+</code></pre>
+<blockquote>
+<p>调用标准库中定义的函数 std::move() move()函数返回给定对象的右值引用， 可以显式的将一个左值转换为对应的右值引用类型。</p>
+</blockquote>
+<figure class="highlight isbl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs isbl"><span class="hljs-variable">int</span> &amp;&amp;<span class="hljs-variable">c</span>=<span class="hljs-function"><span class="hljs-title">move</span>(<span class="hljs-variable">a</span>);<span class="hljs-comment">//但是过程是销毁a，a的右值由c接管。此后不能使用a，但可以给它赋新右值。</span></span><br></code></pre></td></tr></table></figure>
+
+<h4 id="五-文件的输入输出"><a href="#五-文件的输入输出" class="headerlink" title="五.文件的输入输出"></a>五.文件的输入输出</h4><p><strong>文件的读写</strong><br>如果想以输入方式打开，就用 ifstream 来定义;<br>如果想以输出方式打开，就用 ofstream 来定义;<br>如果想以输入&#x2F;输出方式来打开，就用 fstream 来定义</p>
+<ul>
+<li><p>ofstream demo(“demotest.txt”); 可以分成两步<br>demo&lt;&lt;”demoout”;<br>demo.close(); &#x2F;&#x2F;完成操作后要关闭文件</p>
+</li>
+<li><p>ifstream demo(“test.txt”);<br> char dchar;<br>demo&gt;&gt;dchar;&#x2F;&#x2F;从文件中读取一个字符<br>char dworld[80];<br>demo&gt;&gt;dworld;&#x2F;&#x2F;从文件中读取一个单词<br>demo.getline(dworld，80);&#x2F;&#x2F;从文件中读取一行<br>string line;<br>getline(demo,line);&#x2F;&#x2F;读取一行转换成字符串<br>fin.close();</p>
+</li>
+<li><p><strong>区别</strong></p>
+</li>
+</ul>
+<figure class="highlight perl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs perl">ifstream ifile；<br>ofstream ofile；<br>ofile&lt;&lt;<span class="hljs-string">&quot;I Love You&quot;</span>;<span class="hljs-regexp">//</span>向文件写入字符串<span class="hljs-string">&quot;I Love You&quot;</span><br><span class="hljs-keyword">int</span> i;<br>ifile&gt;&gt;i;<span class="hljs-regexp">//</span>从文件输入一个整数值。<br></code></pre></td></tr></table></figure>
+
+<p><strong>字符串流 stringstream 是 C++ 提供的一个字符串流(stream)，和 iostream、fstream 有类似的操作方式</strong><br>istringstream 从 string 中读取数据 定义 istringstream is(strs);<br>ostringstream 向 string 对象写入格式化的内容。<br>stringstream 即可以读取也可以写入。</p>
+<pre><code class="hljs">stringstream ss;
+ss &lt;&lt; &quot;hello &quot;;
+ss &lt;&lt; &quot;world!&quot;;  // 对stringstream而言，operator&lt;&lt; 是一直往字符串流中写字符，而不是覆盖之前输入的字符
+cout &lt;&lt; ss.str() &lt;&lt;endl;
+/*str()函数创建的是一个临时的string对象这个string对象在函数str()语句结束就会被销毁，一般使用时应先声明一个string对象s，将str()赋值给sconst string s=ss.str();或者const string&amp; s=ss.str();这样就“延长了临时变量ss.str()的生命周期”，使得ss.str()生命结束时刻和s一样*/
+</code></pre>
+<p>与容器一样流不会降低自己空间，即使用了 ss.clear();( 清空操作如下 :(</p>
+<pre><code class="hljs">ss.clear();//清空流
+ss.str(&quot;&quot;);
+</code></pre>
+<h4 id="六-range-for"><a href="#六-range-for" class="headerlink" title="六.range -for"></a>六.range -for</h4><pre><code class="hljs">for(int ele :&#123;2,3,44,5,6,77&#125;)
+&#123;
+    cout&lt;&lt;ele&lt;&lt;endl;
+&#125;
+int arr []=&#123;1,2,3,4&#125;
+for(int ele :arr)
+&#123;
+    cout&lt;&lt;ele&lt;&lt;endl;
+&#125;
+vector&lt;int &gt; demo=&#123;1,2,3,4&#125;;//结合auto关键字可以方便地遍历STL容器
+for(auto ele:demo)
+&#123;
+    cout&lt;&lt;ele&lt;&lt;endl&lt;&lt;;
+&#125;
+</code></pre>
+<p>for(auto&amp; ele:demo) 如果需要修改其中元素可以引用；<br>{<br>ele+&#x3D;2;<br>}<br><strong>切记<code>！！！！！</code></strong> <strong>不能在遍历容器时，改变容器的 Size，即增删元素。</strong></p>
+<h4 id="七-函数"><a href="#七-函数" class="headerlink" title="七.函数"></a>七.函数</h4><p><strong>实参一定是确定值 不需要类型！！！</strong></p>
+<h6 id="1-函数的参数"><a href="#1-函数的参数" class="headerlink" title="1.函数的参数"></a>1.函数的参数</h6><p>1）形参和实参<br>形参:在定义函数的时候,函数名后面小括号中的参数 , 格式: 数据类型 变量 如:int x;<br>形参的作用域:只能在本函数中使用<br>实参:调用函数的时候传递的参数</p>
+<h6 id="2-参数的传递的过程"><a href="#2-参数的传递的过程" class="headerlink" title="2)参数的传递的过程"></a>2)参数的传递的过程</h6><p>实参的值拷贝一份放到函数形参中</p>
+<h6 id="3-函数传参有三种传参方式：传值、传址、传引用"><a href="#3-函数传参有三种传参方式：传值、传址、传引用" class="headerlink" title="3)函数传参有三种传参方式：传值、传址、传引用"></a>3)函数传参有三种传参方式：传值、传址、传引用</h6><p><strong>① 按值传递</strong><br>ⅰ 形参和实参各占一个独立的存储空间。<br>ⅱ 形参的存储空间是函数被调用时才分配的，调用开始，系统为形参开辟一个临时的存储区，然后将各实参传递给形参，这是形参就得到了实参的值。<br><strong>② 地址传递</strong><br>地址传递与值传递的不同在于，它把实参的存储地址传送给形参，使得形参指针和实参指针指向同一块地址。因此，被调用函数中对形参指针所指向的地址中内容的任何改变都会影响到实参。<br><strong>③ 引用传递</strong><br>引用传递是以引用为参数，则既可以使得对形参的任何操作都能改变相应数据，又使函数调用方便。引用传递是在形参调用前加入引用运算符“&amp;”。引用为实参的别名，和实参是同一个变量，则他们的值也相同，该引用改变则它的实参也改变。</p>
+<h6 id="2-函数的返回值"><a href="#2-函数的返回值" class="headerlink" title="2.函数的返回值"></a>2.函数的返回值</h6><p>概念：执行函数体中的程序段，最后获取的值并返回给主调函数，函数的返回值只能通过 return 关键字进行返回<br>格式：return 表达式；&#x2F; return (表达式)；<br>返回值类型要与返回值相同。<br>是否要定义形参看是否有未知内容参与运算,调用时实参必须对应.参数传递的是值。<br>函数中可以有多个 return ,但是只有一个起作用，因为函数会结束后会带回一个值。<br>函数调用和返回<br>函数调用会使程序的控制权传递给被调函数而当前活动会被挂起。<br>当前函数执行完成后主函数从调用语句之后的语句恢复执行。<br>函数在执行完函数体的最后一条语句或或遇到 return 语句时返回。</p>
+<p><strong>返回类型和 return 语句</strong><br>return 语句形式</p>
+<pre><code class="hljs">return;
+ return表达式;
+</code></pre>
+<p>非 void 函数必须返回一个与声明类型匹配的值否则会引起编译错误。<br>返回值 默认情况下，函数的返回值是按值传递的，得到控制权的函数将接受 return 语句中指定的表达式值得副本。</p>
+<h4 id="返回引用-我觉得特别重要）"><a href="#返回引用-我觉得特别重要）" class="headerlink" title="返回引用(我觉得特别重要）"></a><strong>返回引用</strong>(我觉得特别重要）</h4><p>函数声明为返回引用，则不需要对 return 语句中的表达式进行复制，而是返回对象本身。<br>函数返回引用仅是它所指向对象的一个别名。</p>
+<pre><code class="hljs">//找出s1和s2中比较短的一个并返回其引用
+const string&amp; shorter(const string&amp; s1, const string&amp; s2)
+&#123;
+return (s1.size() &lt;= s2.size()) ? s1 : s2;
+&#125;
+//函数返回结果时不会真正复制对象，返回的就是s1或s2本身。
+string a=hello；
+string b=word；
+shorter（a，b）=“Hello”；//返回值为引用。
+cout&lt;&lt;a&lt;&lt;&#39; &#39;&lt;&lt;b;//Hello word;
+</code></pre>
+<p>注：对引用返回值的修改会改变实际返回的对象，为了避免这种情况，可以将返回值声明称 const。<br>不能返回自动局部对象的指针或引用:函数执行结束后，函数占用的栈存储空间被释放，原本位于这段存储空间中的局部对象和临时变量都被释放，返回的局部对象引用或指针指向不再有效的内存区域<br><strong>重载函数</strong><br>如果同一个作用域内的几个函数名字相同但形参列表不同，则他们是重载函数<br>形参列表不同的概念： 1.形参数量不同 2.形参类型不同 3.常指针与指针不同，常引用与引用不同。<br><strong>调用函数时如果存在多个重载函数，编译器将根据函数调用中指定的实参进行选择。</strong><br>存储类别 static 静态存储<br>static 对象在控制流程第一次到达其定义点时被初始化，如果没有提供初始值就被自动初始化为 0；<br>在函数的后续调用中，初始化语句被跳过<br>静态对象的值在函数被多次调用之间保持有效，生存期会延续到整个程序结束但他的作用于仍然是局部的，因此需要在同一函数的两次调用之间保留某些数据时可以使用局部 static 对象。</p>
+<h4 id="八-指针"><a href="#八-指针" class="headerlink" title="八.指针"></a>八.指针</h4><blockquote>
+<p>附博客 <a target="_blank" rel="noopener" href="https://mp.csdn.net/mdeditor/86935527#">https://mp.csdn.net/mdeditor/86935527#</a><br> <a target="_blank" rel="noopener" href="https://mp.csdn.net/mdeditor/87398537#">https://mp.csdn.net/mdeditor/87398537#</a></p>
+</blockquote>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/C-C%E8%AF%AD%E8%A8%80/" class="category-chain-item">C++&amp;C语言</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>『C++&amp;C语言』c++从入门到进阶-引用与常量</div>
+      <div>https://chiamzhang.github.io/2024/06/29/『C++&amp;C语言』c++从入门到进阶-引用与常量/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>Chiam</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>June 29, 2024</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>Licensed under</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2024/06/29/%E3%80%8EC++&amp;C%E8%AF%AD%E8%A8%80%E3%80%8Fc++%E5%A6%82%E4%BD%95%E8%8E%B7%E5%8F%96%E7%B3%BB%E7%BB%9F%E5%BD%93%E5%89%8D%E6%97%B6%E9%97%B4%EF%BC%88%E8%B6%85%E7%BA%A7%E8%AF%A6%E7%BB%86%EF%BC%89/" title="『C++&amp;C语言』c++如何获取系统当前时间（超级详细）">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">『C++&amp;C语言』c++如何获取系统当前时间（超级详细）</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/06/29/%E3%80%8EC++&amp;C%E8%AF%AD%E8%A8%80%E3%80%8FC++-%E6%B5%85%E8%B0%88%E5%BC%80%E5%8F%91%E7%B3%BB%E7%BB%9F%E7%9A%84%E7%BB%8F%E9%AA%8C/" title="『C++&amp;C语言』C++-浅谈开发系统的经验">
+                        <span class="hidden-mobile">『C++&amp;C语言』C++-浅谈开发系统的经验</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"fIfc7WqUDZohlQuPc2lz5mJy-MdYXbMMI","appKey":"zjlAG3ZA3o4cBHVAkjzc2Z20","path":"window.location.pathname","placeholder":"留言仅限讨论，禁止广告等行为","avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"https://fifc7wqu.api.lncldglobal.com","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>Table of Contents</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <meta name="referrer" content="no-referrer" /> <footer id="footer" role="contentinfo"> <meta name="referrer" content="no-referrer" /> <div class="divider"> <div class="wall"></div> <img class="animals" src="/img/footer_animals_new.png" srcset="/img/loading.gif" lazyload alt="Footer Animals"> </div> <div class="container" data-index="450"> <p> <a href="https://chiamzhang.github.io" target="_blank">DogEgg</a> <i class="iconfont icon-love"></i> <a href="#" target="_blank">LittePig</a> </p> <p> Powered by  <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-pen"></i> Theme  <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> </p> </div> </footer> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+  
+<script src="/js/love.js"></script>
+<script src="/js/funnyTitle.js"></script>
+<script src="/js/backTop.js"></script>
+<script src="//cdn.jsdelivr.net/gh/bynotes/texiao/source/js/xiaoxuehua.js"></script>
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+</html>

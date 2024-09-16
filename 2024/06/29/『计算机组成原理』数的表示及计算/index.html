@@ -1,0 +1,800 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/Mine.jpg">
+  <link rel="icon" href="/img/Mine.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Chiam">
+  <meta name="keywords" content="Algorithms，Cybersecurity">
+  
+    <meta name="description" content="『计算机组成原理』数的表示及计算@[toc] 三、数的表示及计算1.定点数的表示1.原码表示范围：符号位和数据为 i 相对独立 N 位原码表示范围： 二进制形式：[1111….11,01111…111] 整数：$[-(2^{n-1}-1),2^{n-1}-1]$共计：$2^n-1$ 小数：$[-(1-2^{-(n-1)}),1-2^{-(n-1)}]$共计：$2^n-1$ 因为 0 有两种表示，所">
+<meta property="og:type" content="article">
+<meta property="og:title" content="『计算机组成原理』数的表示及计算">
+<meta property="og:url" content="https://chiamzhang.github.io/2024/06/29/%E3%80%8E%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86%E3%80%8F%E6%95%B0%E7%9A%84%E8%A1%A8%E7%A4%BA%E5%8F%8A%E8%AE%A1%E7%AE%97/index.html">
+<meta property="og:site_name" content="Homepage of Chiam">
+<meta property="og:description" content="『计算机组成原理』数的表示及计算@[toc] 三、数的表示及计算1.定点数的表示1.原码表示范围：符号位和数据为 i 相对独立 N 位原码表示范围： 二进制形式：[1111….11,01111…111] 整数：$[-(2^{n-1}-1),2^{n-1}-1]$共计：$2^n-1$ 小数：$[-(1-2^{-(n-1)}),1-2^{-(n-1)}]$共计：$2^n-1$ 因为 0 有两种表示，所">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200401180114109.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200401183031840.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzQ2MDIyNA==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200401183136443.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200401183728682.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzQ2MDIyNA==,size_16,color_FFFFFF,t_70">
+<meta property="article:published_time" content="2024-06-29T13:16:54.646Z">
+<meta property="article:modified_time" content="2023-12-05T16:20:11.680Z">
+<meta property="article:author" content="Chiam">
+<meta property="article:tag" content="Algorithms，Cybersecurity">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20200401180114109.png">
+  
+  
+  
+  <title>『计算机组成原理』数的表示及计算 - Homepage of Chiam</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"chiamzhang.github.io","root":"/","version":"1.9.5-a","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":"❡"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":2},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
+
+
+<body>
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Chiam&#39;s Blogs</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                
+                <span>Home</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                
+                <span>Archives</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                
+                <span>Categories</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                
+                <span>About</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                
+                <span>Links</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="『计算机组成原理』数的表示及计算"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-06-29 21:16" pubdate>
+          June 29, 2024 pm
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2.3k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          19 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">『计算机组成原理』数的表示及计算</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="『计算机组成原理』数的表示及计算"><a href="#『计算机组成原理』数的表示及计算" class="headerlink" title="『计算机组成原理』数的表示及计算"></a>『计算机组成原理』数的表示及计算</h1><p>@[toc]</p>
+<h3 id="三、数的表示及计算"><a href="#三、数的表示及计算" class="headerlink" title="三、数的表示及计算"></a>三、数的表示及计算</h3><h4 id="1-定点数的表示"><a href="#1-定点数的表示" class="headerlink" title="1.定点数的表示"></a>1.定点数的表示</h4><h5 id="1-原码表示范围："><a href="#1-原码表示范围：" class="headerlink" title="1.原码表示范围："></a>1.原码表示范围：</h5><p>符号位和数据为 i 相对独立</p>
+<p><strong>N 位原码表示范围：</strong></p>
+<p>二进制形式：<br>[1111….11,01111…111]</p>
+<p>整数：<br>$[-(2^{n-1}-1),2^{n-1}-1]$<br>共计：$2^n-1$</p>
+<p>小数：<br>$[-(1-2^{-(n-1)}),1-2^{-(n-1)}]$<br>共计：$2^n-1$</p>
+<p>因为 0 有两种表示，所以比 N 为能表示的状态少 1 种。</p>
+<h5 id="2-补码表示的范围"><a href="#2-补码表示的范围" class="headerlink" title="2.补码表示的范围"></a>2.补码表示的范围</h5><p><strong>N 位补码表示范围</strong></p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>-4</th>
+<th>-2</th>
+<th>-1</th>
+<th>0</th>
+<th>1</th>
+<th>2</th>
+<th>4</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>补码</td>
+<td>1100</td>
+<td>1110</td>
+<td>1111</td>
+<td>0000</td>
+<td>0001</td>
+<td>0010</td>
+<td>0100</td>
+</tr>
+<tr>
+<td>思考：</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>[1000]补 的真值是谁 ?</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<p>是-8，也就是说补码可以表示出比原码多一位的数，而且 0 的表示方法唯一。</p>
+<p><strong>考虑 N 为补码的表示形式：</strong></p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>形式</th>
+<th>真值 （整数）</th>
+<th>真值（小数）</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>最大正数</td>
+<td>011111…1111</td>
+<td>$2^{n-1}-1</td>
+<td>$1-2^{-(n-1)}$</td>
+</tr>
+<tr>
+<td>最大负数</td>
+<td>11..11111111</td>
+<td>$-2^{n-1}$</td>
+<td>$-(1-2^{-(n-1)})-2^{-(n-1)}&#x3D;-1$</td>
+</tr>
+</tbody></table>
+<h4 id="2-定点数运算"><a href="#2-定点数运算" class="headerlink" title="2.定点数运算"></a>2.定点数运算</h4><h5 id="1-加减运算："><a href="#1-加减运算：" class="headerlink" title="1.加减运算："></a>1.加减运算：</h5><p><strong>补码的加减法基本公式：</strong></p>
+<p>[A+B]补&#x3D;[A]补+[B]补<br>[A-B]补&#x3D;[A]补+[-B]补<br>优点：直接运算</p>
+<p><strong>溢出的判断：</strong><br>双符号位法：两个符号位同时运算，双符号位不同则溢出，上溢和下溢。</p>
+<h5 id="2-移位运算"><a href="#2-移位运算" class="headerlink" title="2.移位运算"></a>2.移位运算</h5><h6 id="逻辑移位：-逻辑左移，逻辑右移"><a href="#逻辑移位：-逻辑左移，逻辑右移" class="headerlink" title="逻辑移位： 逻辑左移，逻辑右移"></a><strong>逻辑移位：</strong> 逻辑左移，逻辑右移</h6><p>移出位移走，补位位补 0</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs">eg：1010<br>左移：0100<br>右移：0101<br></code></pre></td></tr></table></figure>
+
+<h6 id="循环移位："><a href="#循环移位：" class="headerlink" title="循环移位："></a><strong>循环移位：</strong></h6><p><strong>小循环移位</strong>小循环左移，小循环右移<br>移出移入到补位位，同时移入到标记为 C 中<br>在数字最前和最后分别有一个 C 位，储存溢出位</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-string">eg：1010</span><br><span class="hljs-string">左移：1</span>  <span class="hljs-number">0101</span><br><span class="hljs-string">右移：0101</span>   <span class="hljs-number">0</span><br></code></pre></td></tr></table></figure>
+
+<p><strong>大循环移位</strong>：大循环左移，大循环右移<br>移出位移入到 C 位，C 位移入到补位位</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-string">eg：0</span> <span class="hljs-number">1010</span><br> <span class="hljs-string">左移：1</span> <span class="hljs-number">0100</span><br> <span class="hljs-string">右移：0101</span> <span class="hljs-number">0</span><br></code></pre></td></tr></table></figure>
+
+<h6 id="算数移位："><a href="#算数移位：" class="headerlink" title="算数移位："></a><strong>算数移位：</strong></h6><p>（1）保留数值的数学意义，左移相当于乘以 2，右移相当于除以 2<br>（2）存在溢出或精度丧失<br>原码：符号位不动，数值位逻辑左右移<br>补码：带着符号位一起移动<br>移出位移走。补位位：高位补符号位，地位补零。</p>
+<h6 id="溢出过半："><a href="#溢出过半：" class="headerlink" title="溢出过半："></a>溢出过半：</h6><p>原码：符号位为 0 或 1，数值位最高位为 1<br>补码：符号位为 0，数值最高位为 1；符号位为 1，数值最高位为 0.</p>
+<h4 id="3-浮点数的表示"><a href="#3-浮点数的表示" class="headerlink" title="3.浮点数的表示"></a>3.浮点数的表示</h4><p><strong>规则：</strong><br>1）组成部分、顺序<br>2）每个组成部分位数<br>3）尾数和阶码表示形式：<br>尾数：定点小数<br>阶码：定点整数</p>
+<p><strong>一、IEEE754 标准</strong><br><strong>1.格式：</strong><br>32 位（float）和 64 位（double）<br><img src="https://img-blog.csdnimg.cn/20200401180114109.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br><strong>2. IEEE 有关阶码的规定</strong><br>（1）用修正过的移码表示<br>修正过的移码可以表示 0 和+-∞；</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-type">float</span>：真值（e）=机器数的值（E）<span class="hljs-number">-128</span><br><span class="hljs-type">double</span>：真值（e）=机器数的值（E）<span class="hljs-number">-1024</span><br></code></pre></td></tr></table></figure>
+
+<p>（2）有关移码<br>$$e&#x3D;E-2^{n-1}$$</p>
+<p>（3）E 位全零或者全 1 的状态都不用</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs cpp">全<span class="hljs-number">0</span>：表示数值<span class="hljs-number">0</span><br>全<span class="hljs-number">1</span>：表示+-∞<br></code></pre></td></tr></table></figure>
+
+<p>所以正式的 IEEE754 标准：<br>$$e&#x3D;E-(2^{n-1}-1)$$</p>
+<p><strong>3. IEEE 有关尾数的规定</strong><br>（1）用修正过的原码表示尾数<br>（2）最高数值位必须为 1，并且省略。<br>&#x3D;&#x3D;这样进一步提高了数据的精度。&#x3D;&#x3D;<br>（3）什么是规格化的尾数（M）<br>$$|M|&gt;&#x3D;1&#x2F;2&#x3D;(0.1)_2$$</p>
+<p>因为尾数最高的数值位为 1，并且省略。<br>E：阶码<br>S：符号位<br>M：尾数<br>float：$(-1)^s<em>1.M</em>2^{E-127}$<br>double:$(-1)^s<em>1.M</em>2^{E-1023}$</p>
+<p><strong>4. IEEE 与真值的相互转换</strong><br>eg:Float 类型 413C0000H 的真值是多少:</p>
+<p>$413C0000H<br>&#x3D;(0100 0001 0011 1100 0000 0000 0000 0000)_2$</p>
+<p>$S&#x3D;0；M&#x3D;0111；E&#x3D;1000 0010$</p>
+<p>$e&#x3D;(-1)^s<em>1.M</em>2^{E-127}$<br>$&#x3D;(-1)^0<em>1.01111</em>2^{130-127}$<br>$&#x3D;(1011.11)_2$<br>$&#x3D;11.75$</p>
+<p><strong>5. Float 类型的表示范围</strong><br><img src="https://img-blog.csdnimg.cn/20200401183031840.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzQ2MDIyNA==,size_16,color_FFFFFF,t_70" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br><strong>二、非 IEEE754 标准</strong></p>
+<p><strong>1.有机组成部分</strong><br><img src="https://img-blog.csdnimg.cn/20200401183136443.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br>每部分可以用不同的编码表示，最常见的阶码和尾数都用补码表示。</p>
+<p><strong>2. 表示范围</strong><br>（1）为什么要规格化？<br>&#x3D;&#x3D;为了进一步提高数据精度&#x3D;&#x3D;<br>（2）规格化的本质是什么？<br>$$|尾数|&gt;&#x3D;0.5$$</p>
+<p>(3)这种本质的体现是什么？<br>尾数分别用原码和补码表示的时候规格化的尾数是什么形式的？<br>原码：数值最高位为 1<br>补码：1.0xxxxx 或者 0.1xxxxx 或者 1.1xxxxx</p>
+<p>（4）IEEE754 标准如何做的规划化？<br>&#x3D;&#x3D;尾数最高的数值位为 1，并且省略。&#x3D;&#x3D;</p>
+<p>设某浮点数阶码和尾数都用 4 位二进制补码表示。<br><img src="https://img-blog.csdnimg.cn/20200401183728682.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzQ2MDIyNA==,size_16,color_FFFFFF,t_70" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<h4 id="4-浮点数的运算"><a href="#4-浮点数的运算" class="headerlink" title="4.浮点数的运算"></a>4.浮点数的运算</h4><p><strong>一、IEEE754 标准的加减运算</strong><br>（1）0 操作数检查<br>（2）对阶：小阶向大阶对齐，尾数右移<br>（3）尾数加减：补码双符号位<br>（4）规格化： 左规；右规</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs cpp">左规：尾数+-不发生溢出，结果不是规格化，左规尾数不定，阶码<span class="hljs-number">-1</span>，知道规格化为止；<br>右规：尾数+-发生溢出，带两个符号位右移移位，阶码+<span class="hljs-number">1</span><br></code></pre></td></tr></table></figure>
+
+<p>（5）舍入，阶码采用补码双符号位运算。&#x3D;&#x3D;0 舍 1 入。&#x3D;&#x3D;<br>（6）判断溢出<br>在溢出判断中，什么样的情况才算溢出？<br>&#x3D;&#x3D;阶码溢出才叫溢出&#x3D;&#x3D;<br>尾数溢出是否标志着结果的溢出？<br>&#x3D;&#x3D;尾数溢出不表示结果的溢出&#x3D;&#x3D;</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/" class="category-chain-item">计算机组成原理</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>『计算机组成原理』数的表示及计算</div>
+      <div>https://chiamzhang.github.io/2024/06/29/『计算机组成原理』数的表示及计算/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>Chiam</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>June 29, 2024</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>Licensed under</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2024/06/29/%E3%80%8E%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86%E3%80%8F%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%80%A7%E8%83%BD%E6%8C%87%E6%A0%87%EF%BC%88%E9%99%84%E8%80%83%E7%A0%94%E9%A2%98%E7%9B%AE%EF%BC%89/" title="『计算机组成原理』计算机性能指标（附考研题目）">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">『计算机组成原理』计算机性能指标（附考研题目）</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/06/29/%E3%80%8E%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86%E3%80%8F%E6%95%B0%E6%8D%AE%E7%9A%84%E8%A1%A8%E7%A4%BA%E5%8F%8A%E5%85%B6%E8%BF%90%E7%AE%97%E5%92%8C%E8%BF%90%E7%AE%97%E5%99%A8%EF%BC%88%E9%99%84%E8%80%83%E7%A0%94%E9%A2%98%E7%9B%AE%EF%BC%89/" title="『计算机组成原理』数据的表示及其运算和运算器（附考研题目）">
+                        <span class="hidden-mobile">『计算机组成原理』数据的表示及其运算和运算器（附考研题目）</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"fIfc7WqUDZohlQuPc2lz5mJy-MdYXbMMI","appKey":"zjlAG3ZA3o4cBHVAkjzc2Z20","path":"window.location.pathname","placeholder":"留言仅限讨论，禁止广告等行为","avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"https://fifc7wqu.api.lncldglobal.com","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>Table of Contents</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <meta name="referrer" content="no-referrer" /> <footer id="footer" role="contentinfo"> <meta name="referrer" content="no-referrer" /> <div class="divider"> <div class="wall"></div> <img class="animals" src="/img/footer_animals_new.png" srcset="/img/loading.gif" lazyload alt="Footer Animals"> </div> <div class="container" data-index="450"> <p> <a href="https://chiamzhang.github.io" target="_blank">DogEgg</a> <i class="iconfont icon-love"></i> <a href="#" target="_blank">LittePig</a> </p> <p> Powered by  <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-pen"></i> Theme  <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> </p> </div> </footer> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+  
+<script src="/js/love.js"></script>
+<script src="/js/funnyTitle.js"></script>
+<script src="/js/backTop.js"></script>
+<script src="//cdn.jsdelivr.net/gh/bynotes/texiao/source/js/xiaoxuehua.js"></script>
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+</html>

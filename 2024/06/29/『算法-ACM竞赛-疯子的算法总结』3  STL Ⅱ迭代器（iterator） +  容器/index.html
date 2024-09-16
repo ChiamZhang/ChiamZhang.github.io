@@ -1,0 +1,1022 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/Mine.jpg">
+  <link rel="icon" href="/img/Mine.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Chiam">
+  <meta name="keywords" content="Algorithms，Cybersecurity">
+  
+    <meta name="description" content="『算法-ACM 竞赛-疯子的算法总结』3 STL Ⅱ 迭代器（iterator） + 容器一、迭代器（Iterator）背景：指针可以用来遍历存储空间连续的数据结构，但是对于存储空间费连续的，就需要寻找一个行为类似指针的类，来对非数组的数据结构进行遍历。定义：迭代器是一种检查容器内元素并遍历元素的数据类型。迭代器提供对一个容器中的对象的访问方法，并且定义了容器中对象的范围。迭代器（Iterator">
+<meta property="og:type" content="article">
+<meta property="og:title" content="『算法-ACM竞赛-疯子的算法总结』3  STL Ⅱ迭代器（iterator） +  容器">
+<meta property="og:url" content="https://chiamzhang.github.io/2024/06/29/%E3%80%8E%E7%AE%97%E6%B3%95-ACM%E7%AB%9E%E8%B5%9B-%E7%96%AF%E5%AD%90%E7%9A%84%E7%AE%97%E6%B3%95%E6%80%BB%E7%BB%93%E3%80%8F3%20%20STL%20%E2%85%A1%E8%BF%AD%E4%BB%A3%E5%99%A8%EF%BC%88iterator%EF%BC%89%20+%20%20%E5%AE%B9%E5%99%A8/index.html">
+<meta property="og:site_name" content="Homepage of Chiam">
+<meta property="og:description" content="『算法-ACM 竞赛-疯子的算法总结』3 STL Ⅱ 迭代器（iterator） + 容器一、迭代器（Iterator）背景：指针可以用来遍历存储空间连续的数据结构，但是对于存储空间费连续的，就需要寻找一个行为类似指针的类，来对非数组的数据结构进行遍历。定义：迭代器是一种检查容器内元素并遍历元素的数据类型。迭代器提供对一个容器中的对象的访问方法，并且定义了容器中对象的范围。迭代器（Iterator">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2024-06-29T13:16:54.489Z">
+<meta property="article:modified_time" content="2023-12-05T16:19:51.586Z">
+<meta property="article:author" content="Chiam">
+<meta property="article:tag" content="Algorithms，Cybersecurity">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>『算法-ACM竞赛-疯子的算法总结』3  STL Ⅱ迭代器（iterator） +  容器 - Homepage of Chiam</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"chiamzhang.github.io","root":"/","version":"1.9.5-a","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":"❡"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":2},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
+
+
+<body>
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Chiam&#39;s Blogs</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                
+                <span>Home</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                
+                <span>Archives</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                
+                <span>Categories</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                
+                <span>About</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                
+                <span>Links</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="『算法-ACM竞赛-疯子的算法总结』3  STL Ⅱ迭代器（iterator） +  容器"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-06-29 21:16" pubdate>
+          June 29, 2024 pm
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          7.2k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          61 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">『算法-ACM竞赛-疯子的算法总结』3  STL Ⅱ迭代器（iterator） +  容器</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="『算法-ACM-竞赛-疯子的算法总结』3-STL-Ⅱ-迭代器（iterator）-容器"><a href="#『算法-ACM-竞赛-疯子的算法总结』3-STL-Ⅱ-迭代器（iterator）-容器" class="headerlink" title="『算法-ACM 竞赛-疯子的算法总结』3 STL Ⅱ 迭代器（iterator） + 容器"></a>『算法-ACM 竞赛-疯子的算法总结』3 STL Ⅱ 迭代器（iterator） + 容器</h1><h3 id="一、迭代器（Iterator）"><a href="#一、迭代器（Iterator）" class="headerlink" title="一、迭代器（Iterator）"></a>一、迭代器（Iterator）</h3><p>背景：指针可以用来遍历存储空间连续的数据结构，但是对于存储空间费连续的，就需要寻找一个行为类似指针的类，来对非数组的数据结构进行遍历。<br>定义：迭代器是一种检查容器内元素并遍历元素的数据类型。<br>迭代器提供对一个容器中的对象的访问方法，并且定义了容器中对象的范围。<br>迭代器（Iterator）是指针（pointer）的泛化，它允许程序员用相同的方式处理不同的数据结构（容器）。<br>（1）迭代器类似于 C 语言里面的指针类型，它提供了对对象的间接访问。<br>（2）指针是 C 语言中的知识点，迭代器是 C++中的知识点。指针较灵活，迭代器功能较丰富。<br>（3）迭代器提供一个对容器对象或者 string 对象的访问方法，并定义了容器范围。</p>
+<p>迭代器和指针的区别：<br>容器和 string 有迭代器类型同时拥有返回迭代器的成员。如：容器有成员 begin 和 end,其中 begin 成员复制返回指向第一个元素的迭代器，而 end 成员返回指向容器尾元素的下一个位置的迭代器，也就是说 end 指示的是第一个不合法地址，所以 end 返回的是尾后迭代器。</p>
+<p>容器迭代器的使用<br>每种容器类型都定义了自己的迭代器类型，如 vector：vector&lt; int&gt;:: iterator iter;&#x2F;&#x2F;定义一个名为 iter 的变量，数据类型是由 vector&lt; int&gt;定义的 iterator 类型。简单说就是容器类定义了自己的 iterator 类型，用于访问容器内的元素。每个容器定义了一种名为 iterator 的类型，这种类型支持迭代器的各种行为。<br><font size=4 color =red>我么们先讲一下各种迭代器的类型，在讲容器所用的迭代器类型，就可以明白怎么操作。<br>常见迭代器类型如下:</p>
+<table>
+<thead>
+<tr>
+<th>所有迭代器</th>
+<th>操作</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>p++</td>
+<td>后置自增迭代器</td>
+</tr>
+<tr>
+<td>++p</td>
+<td>前置自增迭代器</td>
+</tr>
+<tr>
+<td><strong>输入迭代器</strong></td>
+<td>操作介绍</td>
+</tr>
+<tr>
+<td>*p</td>
+<td>复引用迭代器，作为右值</td>
+</tr>
+<tr>
+<td>p&#x3D;p1</td>
+<td>将一个迭代器赋给另一个迭代器（迭代器指向地址值）</td>
+</tr>
+<tr>
+<td>p&#x3D;&#x3D;p1</td>
+<td>比较迭代器的相等性（比较地址）</td>
+</tr>
+<tr>
+<td>p!&#x3D;p1</td>
+<td>比较迭代器的不等性</td>
+</tr>
+<tr>
+<td><strong>输出迭代器</strong></td>
+<td>操作</td>
+</tr>
+<tr>
+<td>*p</td>
+<td>复引用迭代器，作为左值</td>
+</tr>
+<tr>
+<td>p&#x3D;p1</td>
+<td>将一个迭代器赋给另一个迭代器</td>
+</tr>
+<tr>
+<td><strong>正向迭代器</strong></td>
+<td>提供输入输出迭代器的所有功能</td>
+</tr>
+<tr>
+<td><strong>双向迭代器</strong></td>
+<td>操作</td>
+</tr>
+<tr>
+<td>–p</td>
+<td>前置自减迭代器</td>
+</tr>
+<tr>
+<td>p–</td>
+<td>后置自减迭代器</td>
+</tr>
+<tr>
+<td><strong>随机迭代器</strong></td>
+<td></td>
+</tr>
+<tr>
+<td>p+&#x3D;i</td>
+<td>将迭代器递增 i 位</td>
+</tr>
+<tr>
+<td>p-&#x3D;i</td>
+<td>将迭代器递减 i 位</td>
+</tr>
+<tr>
+<td>p+i</td>
+<td>在 p 位加 i 位后的迭代器</td>
+</tr>
+<tr>
+<td>p-i</td>
+<td>在 p 位减 i 位后的迭代器</td>
+</tr>
+<tr>
+<td>p[i]</td>
+<td>返回 p 位元素偏离 i 位的元素引用</td>
+</tr>
+<tr>
+<td>p&lt;p1</td>
+<td>如果迭代器 p 的位置在 p1 前，返回 true，否则返回 false</td>
+</tr>
+<tr>
+<td>p&lt;&#x3D;p1</td>
+<td>p 的位置在 p1 的前面或同一位置时返回 true，否则返回 false</td>
+</tr>
+<tr>
+<td>p&gt;p1</td>
+<td>如果迭代器 p 的位置在 p1 后，返回 true，否则返回 false</td>
+</tr>
+<tr>
+<td>p&gt;&#x3D;p1</td>
+<td>p 的位置在 p1 的后面或同一位置时返回 true，否则返回 false</td>
+</tr>
+</tbody></table>
+<p><strong>只有顺序容器和关联容器支持迭代器遍历，各容器支持的迭代器的类别如下：</strong></p>
+<table>
+<thead>
+<tr>
+<th>容器</th>
+<th>支持的迭代器类别</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>vector</td>
+<td>随机访问</td>
+<td>一种随机访问的数组类型，提供了对数组元素进行快速随机访问以及在序列尾部进行快速的插入和删除操作的功能。可以再需要的时候修改其自身的大小</td>
+</tr>
+<tr>
+<td>deque</td>
+<td>随机访问</td>
+<td>一种随机访问的数组类型，提供了序列两端快速进行插入和删除操作的功能。可以再需要的时候修改其自身的大小</td>
+</tr>
+<tr>
+<td>list</td>
+<td>双向</td>
+<td>一种不支持随机访问的数组类型，插入和删除所花费的时间是固定的，与位置无关。</td>
+</tr>
+<tr>
+<td>set</td>
+<td>双向</td>
+<td>一种随机存取的容器，其关键字和数据元素是同一个值。所有元素都必须具有惟一值。</td>
+</tr>
+<tr>
+<td>multiset</td>
+<td>双向</td>
+<td>一种随机存取的容器，其关键字和数据元素是同一个值。可以包含重复的元素。</td>
+</tr>
+<tr>
+<td>map</td>
+<td>双向</td>
+<td>一种包含成对数值的容器，一个值是实际数据值，另一个是用来寻找数据的关键字。一个特定的关键字只能与一个元素关联。</td>
+</tr>
+<tr>
+<td>multimap</td>
+<td>双向</td>
+<td>一种包含成对数值的容器，一个值是实际数据值，另一个是用来寻找数据的关键字。一个关键字可以与多个数据元素关联。</td>
+</tr>
+<tr>
+<td>stack</td>
+<td>不支持</td>
+<td>适配器容器类型，用 vector，deque 或 list 对象创建了一个先进后出容器</td>
+</tr>
+<tr>
+<td>queue</td>
+<td>不支持</td>
+<td>适配器容器类型，用 deque 或 list 对象创建了一个先进先出容器</td>
+</tr>
+<tr>
+<td>priority_queue</td>
+<td>不支持</td>
+<td>适配器容器类型，用 vector 或 deque 对象创建了一个排序队列</td>
+</tr>
+</tbody></table>
+<h4 id="二、容器"><a href="#二、容器" class="headerlink" title="二、容器"></a>二、容器</h4><p>所有容器都支持自定义数据类型，就是结构体。</p>
+<h6 id="一-vector"><a href="#一-vector" class="headerlink" title="(一) vector"></a>(一) vector</h6><p>使用此容器需在程序前加上头文件#include&lt; vector &gt;。<br>vector 可理解为变长数组，基于倍增思想。当以已申请 vector 长度为 m 时，若实际长度 n&#x3D;m,则申请长度为 2m 的数组，将内容转移至新地址上，并释放旧空间；删除元素时，若 n&lt;&#x3D;m&#x2F;4,则释放一半空间。<br>vector 容器能像数组一样随机访问第 i 个数 a[i]，但不支持随机插入.</p>
+<pre><code class="hljs">#include&lt;vector&gt;       //头文件
+vector&lt;int&gt; a;  定义了一个int类型的vector容器a
+vector&lt;int&gt; b[100];定义了一个int类型的vector容器b组
+struct rec&#123;···&#125;;
+vector&lt;rec&gt; c;           /定义了一个rec类型的vector容器c
+vector&lt;int&gt;::iterator it;           //vector的迭代器，与指针类似
+</code></pre>
+<p>具体操作如下：</p>
+<pre><code class="hljs"> a.size()            //返回实际长度（元素个数），O(1)复杂度
+    a.empty()           //容器为空返回1，否则返回0，O(1)复杂度
+    a.clear()           //把vector清空
+    a.begin()           //返回指向第一个元素的迭代器，*a.begin()与a[0]作用相同
+    a.end()             //越界访问，指向vector尾部，指向第n个元素再往后的边界
+    a.front()           //返回第一个元素的值，等价于*a.begin和a[0]
+    a.back()            //返回最后一个元素的值，等价于*--a.end()和a[size()-1]
+    a.push_back(x)      //把元素x插入vector尾部
+    a.pop_back()        //删除vector中最后一个元素
+</code></pre>
+<p>迭代器使用与指针类似,可如下遍历整个容器</p>
+<pre><code class="hljs">for ( vector&lt;int&gt;::iterator it=a.begin() ; it!=a.end() ; it++ )
+</code></pre>
+<p><strong>queue</strong><br>循环队列 queue 需使用头文件&lt; queue &gt;</p>
+<pre><code class="hljs">queue&lt;int&gt; q;   //定义了一个int类型的队列容器q
+struct rec&#123;···&#125;;queue&lt;rec&gt; q;      //定义了一个rec类型的队列容器q
+q.push(x);           //从队尾使元素x入队，O(1)
+q.pop(x);            //使队首元素出队，O(1)
+int x=q.front();     //询问队首元素的值，O(1)
+int y=q.back();      //询问队尾元素的值，O(1)
+</code></pre>
+<p><strong>priority_queue</strong><br>优先队列 priority_queue 可理解为一个大根二叉堆，必须定义“小于号”，而 int，string 本身就能比较。同样需要头文件&lt; queue &gt;。<br><strong>其定义方式与 queue 相似。</strong></p>
+<pre><code class="hljs">priority_queue&lt;int&gt; q;  由大到小
+priority_queue&lt;pair&lt;int,int&gt;&gt; q; //pair是一个数对，由first和scond两个元素构成，按照第一个排序
+priority_queue&lt;int, vector&lt;int&gt;, greater&lt;int&gt; &gt;qi2; //由小到大，小根堆，vector&lt;int&gt;是适配器，不用知道很详细，记住就行
+struct rec  //举个栗子
+&#123;
+    int a,b,c;
+    bool operator&lt;(const rec&amp;w)
+    &#123;
+        if(a==w.a) return b==w.b?c&lt;w.c:b&lt;w.b;
+        return a&lt;w.a;
+    &#125;
+&#125;;
+priority_queue&lt;rec&gt; q; 如果不写重载函数，会出错，他不知道怎么排序
+q.push(x);         //插入   O(log n)
+q.pop();           //删除堆顶元素    O(log n)
+q.top();           //查询堆顶元素   O(1)
+</code></pre>
+<p>可通过插入元素的相反数取出时再取反，或重载“小于号”的方式实现小根堆，通过懒惰删除法实现随机删除操作。</p>
+<p><strong>deque</strong><br>双端队列，是一个支持在两端高效插入或删除元素的连续线性存储空间，可像数组一样随机访问，使用前加头文件&lt; deque &gt;。</p>
+<pre><code class="hljs">q.begin()/q.end()              //头/尾迭代器，与vector类似
+q.front()/q.back()             //头/尾元素，与queue类似
+q.push_back(x)/q.push_front(x) //从队尾/队头入队
+q.pop_back(x)/q.pop_front(x)   //从队尾/队头出队
+q.clear()                      //清空队列
+</code></pre>
+<p>定义方式</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cpp">deque&lt;类型&gt; 名称<br></code></pre></td></tr></table></figure>
+
+<p>ps:clear 复杂度为 O(n),其余为 O(1)。</p>
+<p><strong>set&#x2F;multiset</strong><br>两容器相似，但 set 为有序集合，元素不能重复，multiset 为有序多重集合，可包含若干相等的元素，内部通过红黑树实现，支持的函数基本相同，同样必须定义“小于号”运算符，头文件为&lt; set &gt;。<br>其迭代器不支持随机访问，支持星号(*)结束引用，仅支持 ++ 、– 两个与算术有关的操作。迭代器 it++,则指向从小到大排序的结果中排在 it 下一名的元素，两操作时间复杂度均为 O(log n)。</p>
+<pre><code class="hljs">q.size()  //返回容器内元素个数
+q.empty()  //判断容器是否为空
+q.clear() //清空容器
+q.begin()/q.end()          //作用与上文几种容器类似
+q.insert(x)                //将元素x插入集合中，O(log n)
+q.find(x)                  //查找等于x的元素，返回其迭代器，无则返回q.end()，O(log n)
+q.lower_bound(x)           //查找&gt;=x的元素中最小的一个，返回指向该元素的迭代器
+q.upper_bound(x)           //查找&gt;x的元素中最小的一个，返回指向该元素的迭代器
+q.erase(it)                //删除迭代器it指向的元素，O(log n)
+q.erase(x)                 //删除所有等于x的元素，复杂度为O(k+log n),k为被删除的元素个数
+q.count(x)                 //返回等于x的元素个数，O(k+log n)，k为元素x的个数
+</code></pre>
+<p>定义方式</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs cpp">set&lt;<span class="hljs-type">int</span>&gt; demo 定义一个类型为<span class="hljs-type">int</span>的set容器<br><span class="hljs-keyword">struct</span>  <span class="hljs-title class_">rec</span><br>&#123;<br>    <span class="hljs-type">int</span> a,b,c;<br>    <span class="hljs-type">bool</span> <span class="hljs-keyword">operator</span>&lt;(<span class="hljs-type">const</span> rec&amp;w)<br>    &#123;<br>        <span class="hljs-keyword">if</span>(a==w.a) <span class="hljs-keyword">return</span> b==w.b?c&lt;w.c:b&lt;w.b;<br>        <span class="hljs-keyword">return</span> a&lt;w.a;<br>    &#125;<br>&#125;;<br>  set&lt;rec&gt; ob;  一样所有排序的容器不重载就出错<br></code></pre></td></tr></table></figure>
+
+<p><strong>map&#x2F;multimap</strong><br>map&#x2F;multimap 映射容器的元素数据是由一个 Key 和一个 Value 成的，key 与映照 value 之间具有一一映照的关系。</p>
+<p>map&#x2F;multimap 容器的数据结构也采用红黑树来实现的，map 插入元素的键值不允许重复，类似 multiset，multimap 的 key 可以重复。比较函数只对元素的 key 进行比较，元素的各项数据只能通过 key 检索出来。虽然 map 与 set 采用的都是红黑树的结构，但跟 set 的区别主要是 set 的一个键值和一个映射数据相等，Key&#x3D;Value。</p>
+<pre><code class="hljs">map&lt;first,second&gt; a;
+//map，会按照first（键值）排序（查找也是）；
+</code></pre>
+<p>map&#x2F;multimap 用法<br>头文件</p>
+<pre><code class="hljs">#include&lt; map &gt;
+</code></pre>
+<p>map 成员函数</p>
+<pre><code class="hljs">begin()				 //返回指向 map 头部的迭代器
+clear(）			// 删除所有元素
+count() 			//返回指定元素出现的次数
+empty()				// 如果 map 为空则返回 true
+end() 				//返回指向 map 末尾的迭代器
+erase()				// 删除一个元素
+find()				// 查找一个元素
+insert()			 //插入元素
+key_comp() 			//返回比较元素 key 的函数
+lower_bound() 		//返回键值&gt;=给定元素的第一个位置
+max_size() 			//返回可以容纳的最大元素个数
+rbegin() 			//返回一个指向 map 尾部的逆向迭代器
+rend() 				//返回一个指向 map 头部的逆向迭代器
+size() 				//返回 map 中元素的个数
+swap()				 //交换两个 map
+</code></pre>
+<p>创建 map 对象</p>
+<pre><code class="hljs">#include&lt;iostream&gt;
+#include&lt;map&gt;
+using namespace std;
+map&lt;int,char&gt;mp;//定义map容器
+</code></pre>
+<p>创建结构体 map 对象</p>
+<pre><code class="hljs">struct student&#123;
+int birth;
+string name;
+&#125;;
+int id;
+typedef map&lt;int,student&gt; Student;// 这里相当于给map&lt;int,student&gt; 起了个别名Student，后续代码均可以用student代替map&lt;int,student&gt; 使用。
+</code></pre>
+<p>插入结构体对象<br>接上文代码</p>
+<pre><code class="hljs">Stduent  a；
+cin&gt;&gt;id&gt;&gt;student.birth&gt;&gt;student.name;
+a.insert(make_pair(id,student）);
+</code></pre>
+<p><strong>栈（stack)</strong> 1.定义：<br>栈是一种只能在某一端插入和删除数据的特殊线性表。他按照先进先出的原则存储数据，先进的数据被压入栈底，最后进入的数据在栈顶，需要读数据的时候从栈顶开始弹出数据(最后被压入栈的，最先弹出）。因此栈也称先进后出表。<br>允许进行插入删除操作的一端称为栈顶，另一端称为栈底。栈底固定，栈顶浮动。插入元素称为进栈，删除一个元素称为进栈，栈内元素为零称为空栈。<br>2.stack 成员函数</p>
+<pre><code class="hljs">bool empty ( ) ————&gt;栈为空返回true，否则返回false；
+void pop （ ) ————&gt;删除栈顶元素，出栈；
+void push（const TYPE&amp;value）————&gt; 插入新元素value，放置在栈顶进栈；TYPE：类型int，char…；
+size_type size ( ) ————&gt; 返回堆栈中元素个数；（注意注意！！！！切不可赋值给int ，很容易超过int的范围
+TYPE&amp;top（）————&gt; 查看当前栈顶元素；
+</code></pre>
+<p><strong>List</strong><br>定义：List<T>类表示可通过索引访问的对象的强类型列表，提供用于对列表进行搜索、排序和操作的方法。<br>作用：<br>泛型最常见的用途是泛型集合<br>我们在创建列表类时，列表项的数据类型可能是 int,string 或其它类型，如果对列表类的处理方法相同，<br>就没有必要事先指定数据类型，留待列表类实例化时再指定。相当于把数据类型当成参数，这样可以最<br>大限度地重用代码，保护类型的安全以及提高性能。<br>定义 list&lt;类型&gt; 名称<br>成员函数</p>
+<pre><code class="hljs">l.begin()	将迭代器返回到开头(Return iterator to beginning)
+l.end()	将迭代器返回到最后(Return iterator to end)
+l.rbegin()	Return reverse iterator to reverse beginning
+l.rend()	Return reverse iterator to reverse end
+l.l.empty()	检查容器是否为空
+l.size()	返回当前容器内元素个数
+l.max_size()	返回当前容器能容纳的最大元素数量
+l.front()	访问第一个元素
+l.back()	访问最后一个元素
+l.push_front()	将元素插入到开头
+l.pop_front()	删除第一个元素
+l.push_back()	将元素插入到最后
+l.pop_back()	删除最后一个元素
+l.insert()	插入元素
+l.erase()	删除元素
+l.swap()	交换两个 list 内容
+l.resize	()改变容器大小
+l.clear()	删除容器所有内容
+</code></pre>
+<p><strong>bitset</strong><br>bitset 可看作一个多位二进制数，每 8 位占用 1 个字节，相当于采用了状态压缩的二进制数组，并支持基本的位运算。一般以 32 位整数的运算次数为基准估算运行时间，n 位 bitset 执行一次的位运算复杂度可视为 n&#x2F;32，效率较高。头文件&lt; bitset &gt;。<br>同样具有~,&amp;,|,^,&lt;&lt;,&gt;&gt;操作符，&#x3D;&#x3D;，!&#x3D;可比较二进制数是否相等</p>
+<pre><code class="hljs">bitset&lt;10000&gt; q;      //声明一个10000位的二进制数
+q[k]                  //表示q的第k位，可取值，赋值，最低位为q[0]
+q.count()             //返回有多少位1
+q.none()              //所有位都为0则返回true,至少1位为1则返回false
+q.any()               //所有位都为0则返回false,至少1位为1则返回true,与函数none相反
+q.set()               //把所有位变为1
+q.set(k,v)            //把第k位变为v，即q[k]=v
+q.reset()             //把所有位变为0
+q.reset(k)            //把第k位变为0，即q[k]=0
+q.flip()              //把所有位取反，即s=~s
+q.flip(k)             //把第k位取反，即q[k]^=1
+</code></pre>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E7%AE%97%E6%B3%95/" class="category-chain-item">算法</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/%E7%AE%97%E6%B3%95/ACM%E7%AB%9E%E8%B5%9B/" class="category-chain-item">ACM竞赛</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/%E7%AE%97%E6%B3%95/ACM%E7%AB%9E%E8%B5%9B/%E7%96%AF%E5%AD%90%E7%9A%84%E7%AE%97%E6%B3%95%E6%80%BB%E7%BB%93/" class="category-chain-item">疯子的算法总结</a>
+  
+  
+
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>『算法-ACM竞赛-疯子的算法总结』3  STL Ⅱ迭代器（iterator） +  容器</div>
+      <div>https://chiamzhang.github.io/2024/06/29/『算法-ACM竞赛-疯子的算法总结』3  STL Ⅱ迭代器（iterator） +  容器/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>Chiam</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>June 29, 2024</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>Licensed under</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2024/06/29/%E3%80%8E%E7%AE%97%E6%B3%95-ACM%E7%AB%9E%E8%B5%9B-%E7%96%AF%E5%AD%90%E7%9A%84%E7%AE%97%E6%B3%95%E6%80%BB%E7%BB%93%E3%80%8F4%20%E8%B4%AA%E5%BF%83%E7%AE%97%E6%B3%95/" title="『算法-ACM竞赛-疯子的算法总结』4 贪心算法">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">『算法-ACM竞赛-疯子的算法总结』4 贪心算法</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/06/29/%E3%80%8E%E7%AE%97%E6%B3%95-ACM%E7%AB%9E%E8%B5%9B-%E7%96%AF%E5%AD%90%E7%9A%84%E7%AE%97%E6%B3%95%E6%80%BB%E7%BB%93%E3%80%8F2%20STL%20%E2%85%A0%20%E7%AE%97%E6%B3%95%20%EF%BC%88%20algorithm%20%EF%BC%89/" title="『算法-ACM竞赛-疯子的算法总结』2 STL Ⅰ 算法 （ algorithm ）">
+                        <span class="hidden-mobile">『算法-ACM竞赛-疯子的算法总结』2 STL Ⅰ 算法 （ algorithm ）</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"fIfc7WqUDZohlQuPc2lz5mJy-MdYXbMMI","appKey":"zjlAG3ZA3o4cBHVAkjzc2Z20","path":"window.location.pathname","placeholder":"留言仅限讨论，禁止广告等行为","avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"https://fifc7wqu.api.lncldglobal.com","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>Table of Contents</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <meta name="referrer" content="no-referrer" /> <footer id="footer" role="contentinfo"> <meta name="referrer" content="no-referrer" /> <div class="divider"> <div class="wall"></div> <img class="animals" src="/img/footer_animals_new.png" srcset="/img/loading.gif" lazyload alt="Footer Animals"> </div> <div class="container" data-index="450"> <p> <a href="https://chiamzhang.github.io" target="_blank">DogEgg</a> <i class="iconfont icon-love"></i> <a href="#" target="_blank">LittePig</a> </p> <p> Powered by  <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-pen"></i> Theme  <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> </p> </div> </footer> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+  
+<script src="/js/love.js"></script>
+<script src="/js/funnyTitle.js"></script>
+<script src="/js/backTop.js"></script>
+<script src="//cdn.jsdelivr.net/gh/bynotes/texiao/source/js/xiaoxuehua.js"></script>
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+</html>

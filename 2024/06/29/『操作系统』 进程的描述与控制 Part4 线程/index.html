@@ -1,0 +1,834 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/Mine.jpg">
+  <link rel="icon" href="/img/Mine.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Chiam">
+  <meta name="keywords" content="Algorithms，Cybersecurity">
+  
+    <meta name="description" content="『操作系统』 进程的描述与控制 Part4 线程@[toc] 2.8 线程及其实现1.线程的基本概念 2.线程的实现及控制 引入进程 的目的：使多个程序能并发执行，提高资源利用率和系统吞吐量。引入线程 的目的：应用的需要&#x2F; 开销的考虑&#x2F; 性能的提升 开销的考虑 （1）进程相关的操作：  创建进程 撤消进程 进程通信 进程切换→ 时间&#x2F;空间开销大，限制了并发度的提高。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="『操作系统』 进程的描述与控制 Part4 线程">
+<meta property="og:url" content="https://chiamzhang.github.io/2024/06/29/%E3%80%8E%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E3%80%8F%20%E8%BF%9B%E7%A8%8B%E7%9A%84%E6%8F%8F%E8%BF%B0%E4%B8%8E%E6%8E%A7%E5%88%B6%20Part4%20%E7%BA%BF%E7%A8%8B/index.html">
+<meta property="og:site_name" content="Homepage of Chiam">
+<meta property="og:description" content="『操作系统』 进程的描述与控制 Part4 线程@[toc] 2.8 线程及其实现1.线程的基本概念 2.线程的实现及控制 引入进程 的目的：使多个程序能并发执行，提高资源利用率和系统吞吐量。引入线程 的目的：应用的需要&#x2F; 开销的考虑&#x2F; 性能的提升 开销的考虑 （1）进程相关的操作：  创建进程 撤消进程 进程通信 进程切换→ 时间&#x2F;空间开销大，限制了并发度的提高。">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20201107190605558.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzQ2MDIyNA==,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20201107190750785.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzQ2MDIyNA==,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20201107190851176.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzQ2MDIyNA==,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20201107193341617.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzQ2MDIyNA==,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/2020110719365990.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzQ2MDIyNA==,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20201107194240641.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzQ2MDIyNA==,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="article:published_time" content="2024-06-29T13:16:53.829Z">
+<meta property="article:modified_time" content="2023-12-05T16:18:04.392Z">
+<meta property="article:author" content="Chiam">
+<meta property="article:tag" content="Algorithms，Cybersecurity">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20201107190605558.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzQ2MDIyNA==,size_16,color_FFFFFF,t_70#pic_center">
+  
+  
+  
+  <title>『操作系统』 进程的描述与控制 Part4 线程 - Homepage of Chiam</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"chiamzhang.github.io","root":"/","version":"1.9.5-a","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":"❡"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":2},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
+
+
+<body>
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Chiam&#39;s Blogs</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                
+                <span>Home</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                
+                <span>Archives</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                
+                <span>Categories</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                
+                <span>About</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                
+                <span>Links</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="『操作系统』 进程的描述与控制 Part4 线程"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-06-29 21:16" pubdate>
+          June 29, 2024 pm
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          3.2k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          28 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">『操作系统』 进程的描述与控制 Part4 线程</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="『操作系统』-进程的描述与控制-Part4-线程"><a href="#『操作系统』-进程的描述与控制-Part4-线程" class="headerlink" title="『操作系统』 进程的描述与控制 Part4 线程"></a>『操作系统』 进程的描述与控制 Part4 线程</h1><p>@[toc]</p>
+<h1 id="2-8-线程及其实现"><a href="#2-8-线程及其实现" class="headerlink" title="2.8 线程及其实现"></a>2.8 线程及其实现</h1><p>1.线程的基本概念 2.线程的实现及控制</p>
+<p><strong>引入进程 的目的：</strong><br>使多个程序能并发执行，提高资源利用率和系统吞吐量。<br><strong>引入线程 的目的：</strong><br>应用的需要&#x2F; 开销的考虑&#x2F; 性能的提升</p>
+<p><strong>开销的考虑</strong></p>
+<p>（1）进程相关的操作：</p>
+<ul>
+<li>创建进程</li>
+<li>撤消进程</li>
+<li>进程通信</li>
+<li>进程切换<br>→ 时间&#x2F;空间开销大，限制了并发度的提高。</li>
+</ul>
+<p>（2）线程的开销小</p>
+<ul>
+<li>创建一个新线程花费时间少（撤销亦如此）</li>
+<li>两个线程切换花费时间少</li>
+<li>线程之间相互通信无须调用内核（同一进程内的线程共享内存和文件）</li>
+</ul>
+<p><strong>性能的提升</strong></p>
+<ul>
+<li>多个线程，有的计算，有的 I&#x2F;O，进一步提高并发度。</li>
+<li>充分利用多处理器的优势。</li>
+</ul>
+<h2 id="1-线程的概念"><a href="#1-线程的概念" class="headerlink" title="1.线程的概念"></a>1.线程的概念</h2><p>在同一进程增加了多个执行序列（线程）<br><img src="https://img-blog.csdnimg.cn/20201107190605558.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzQ2MDIyNA==,size_16,color_FFFFFF,t_70#pic_center" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br><strong>（1）线程</strong>：进程中的一个运行实体，是 CPU 的调度单位,有时将线程称为轻量级进程<br><strong>进程与线程</strong></p>
+<ul>
+<li>进程是资源分配单位</li>
+<li>线程是 CPU 执行单位<br><strong>多线程优点</strong></li>
+<li>切换速度快（地址空间不变）</li>
+<li>系统开销小</li>
+<li>通讯容易（共享数据空间）<br><img src="https://img-blog.csdnimg.cn/20201107190750785.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzQ2MDIyNA==,size_16,color_FFFFFF,t_70#pic_center" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20201107190851176.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzQ2MDIyNA==,size_16,color_FFFFFF,t_70#pic_center" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br><strong>（2）线程模型</strong><br>每个线程拥有自己的栈：局部变量、返回地址<br><strong>（3）线程控制块</strong></li>
+<li><strong>TCB（Thread control block)</strong><br>标志线程存在的数据结构， 其中包含对线程管理需要的全部信息．</li>
+<li><strong>内容</strong><br>线程标识、线程状态<br>调度参数、现场(通用寄存器,PC,SP)</li>
+<li><strong>存放位置</strong><br>用户级线程：目态空间<br>核心级线程：管态空间</li>
+</ul>
+<p><strong>（4）线程的属性</strong>：并发性、共享性、动态性</p>
+<ul>
+<li>轻型实体：只有一点必不可少的、能保证独立运行的资源</li>
+<li>CPU 调度的基本单位</li>
+<li>可并发执行</li>
+<li>共享进程资源</li>
+</ul>
+<p><strong>（5）线程的优点</strong></p>
+<ul>
+<li>快速切换；</li>
+<li>易于通信；</li>
+<li>并行度高；</li>
+<li>节省内存；</li>
+<li>减少管理开销。</li>
+</ul>
+<p><strong>（6）线程的基本状态</strong></p>
+<ul>
+<li>执行状态</li>
+<li>就绪状态</li>
+<li>阻塞状态</li>
+</ul>
+<p><strong>（7）线程的创建和终止</strong></p>
+<ul>
+<li><p><strong>线程的创建</strong><br>利用线程创建函数(或系统调用)；<br>创建成功后，返回一个线程标识符。</p>
+</li>
+<li><p><strong>线程的终止方式</strong><br>自愿退出<br>被其它线程强行终止</p>
+</li>
+</ul>
+<p><strong>（8）线程与进程的比较</strong></p>
+<ul>
+<li>线程：作为 CPU 调度单位。<br>线程只拥有必不可少的资源，如：线程状态、寄存器上下文和栈<br>同样具有就绪、阻塞和执行三种基本状态</li>
+<li>进程：其它资源分配单位（存储器、文件、IO 等）。</li>
+<li>调度：线程作为 CPU 调度的基本单位，而进程只作为其它资源分配单位。</li>
+<li>并发性：进程之间可以并发，且一个进程的多个线程之间亦可并发。</li>
+<li>拥有资源：进程间相互独立，同一进程的各线程间共享资源。某进程内的线程在其它进程不可见。</li>
+<li>系统开销：线程上下文切换比进程上下文切换要快得多。</li>
+</ul>
+<h3 id="练习题"><a href="#练习题" class="headerlink" title="练习题"></a>练习题</h3><p><strong>1.</strong> 线程机制中，一个进程可以对应多个线程，一个线程也可以对应若干个进程。<br><strong>解答：</strong> 错！<br>一个进程可以拥有若干个线程，线程从属于该进程，同一进程内所有线程共享该进程的地址空间，而不同进程之间的地址空间是完全独立的，如果一个线程可以对应若干个进程，那么也就意味着不同进程之间的地址空间可以共享，这显然是不合适的。</p>
+<h2 id="2-线程的实现及控制"><a href="#2-线程的实现及控制" class="headerlink" title="2.线程的实现及控制"></a>2.线程的实现及控制</h2><ul>
+<li>用户级线程——User-level thread</li>
+<li>核心级线程——Kernel-level thread</li>
+<li>混合线程——Hybrid approach</li>
+</ul>
+<p><strong>（1）用户级线程和内核支持线程</strong></p>
+<ul>
+<li><strong>内核支持线程</strong>，它们是依赖于内核的，即无论是用户进程中的线程，还是系统进程中的线程，它们的创建、撤消、切换都由内核实现。</li>
+<li><strong>用户级线程</strong>，对于这种线程的创建、撤消、和切换，都不用系统调用来实现。内核并不知道用户级线程的存在。</li>
+</ul>
+<p><strong>（2）核心级线程</strong></p>
+<ul>
+<li>所有线程管理由核心完成</li>
+<li>没有线程库，但核心提供 API</li>
+<li>核心维护进程和线程的上下文</li>
+<li>线程之间的切换需要核心支持</li>
+<li>以线程为基础进行调度<br><img src="https://img-blog.csdnimg.cn/20201107193341617.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzQ2MDIyNA==,size_16,color_FFFFFF,t_70#pic_center" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br>当一个线程想去创建一个新线程或撤消已存在的线程时，它发出一个内核调用，完成创建和回收工作。<br><strong>实现方法：</strong></li>
+<li>基于系统调用</li>
+<li>创建、撤销、状态转换由操作系统完成</li>
+</ul>
+<p><strong>优点：</strong></p>
+<ul>
+<li>对多处理器，核心可以同时调度同一进程的多个线程</li>
+<li>某线程阻塞，其它线程仍可执行</li>
+</ul>
+<p><strong>缺点：</strong></p>
+<ul>
+<li>应用程序线程在用户态运行，而线程调度和管理在内核实现,在同一进程中，控制权从一个线程传送到另一个线程时需要用户态-内核态-用户态的模式切换，系统开销较大。</li>
+<li>调度算法不能灵活控制</li>
+</ul>
+<p><strong>（3）用户级线程</strong><br><img src="https://img-blog.csdnimg.cn/2020110719365990.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzQ2MDIyNA==,size_16,color_FFFFFF,t_70#pic_center" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br>运行时系统：用于管理和控制线程的函数集合。<br><strong>（4）线程库</strong><br>提供线程运行管理系统：</p>
+<ul>
+<li>创建、撤消线程</li>
+<li>在线程之间传递消息和数据</li>
+<li>调度线程执行</li>
+<li>保护和恢复线程上下文</li>
+</ul>
+<p>用户级的线程库能在不支持线程的操作系统中实现线程</p>
+<ul>
+<li>切换效率高</li>
+<li>允许每一个进程有自已定制的调度算法</li>
+</ul>
+<p><strong>实现方法：</strong></p>
+<ul>
+<li>基于 library 函数，系统不可见</li>
+<li>线程创建、撤销、状态转换在目态完成</li>
+<li>TCB 在用户空间，每个进程一个系统栈</li>
+</ul>
+<p><strong>优点：</strong></p>
+<ul>
+<li>不依赖于操作系统，调度灵活</li>
+<li>切换无须从目态到管态，速度快</li>
+<li>ULT 可运行在任何操作系统上（只需要线程库），可以在一个不支持线程的 OS 上实现</li>
+</ul>
+<p><strong>缺点：</strong></p>
+<ul>
+<li>核心只将处理器分配给进程，在多处理机中同一进程中多个线程不能真正并行</li>
+<li>一个线程进入系统受阻，进程中其它线程不能执行</li>
+</ul>
+<h3 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h3><p><strong>1.</strong> 设进程 A 拥有 1 个用户级线程，进程 B 拥有 100 个用户级线程，则在系统调度时各占用几个时间片？<br><strong>答</strong>：1 个<br><strong>2.</strong> 设进程 A 拥有 1 个内核级线程，进程 B 拥有 100 个内核级线程，则在系统调度时各占用几个时间片？<br><strong>答</strong>：A:1 个;B:100 个</p>
+<p><strong>用户级线程与核心级线程的比较</strong><br><img src="https://img-blog.csdnimg.cn/20201107194240641.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzQ2MDIyNA==,size_16,color_FFFFFF,t_70#pic_center" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br><strong>（5）混合线程</strong></p>
+<ul>
+<li>在混合式线程系统中，内核支持 KLT 多线程的建立、调度和管理；</li>
+<li>同时,也提供线程库，允许用户应用程序建立、调度和管理 ULT；</li>
+<li>一个应用程序的多个 ULT 映射成一些 KLT,程序员可按应用需要和机器配置调整 KLT 数目，以达到较好效果；</li>
+<li>混合式中，一个应用中的多个线程能同时在多处理器上并行运行，且阻塞一个线程时并不需要封锁整个进程。如果设计得当，混合式多线程机制能够结合了两者优点，舍去缺点。</li>
+</ul>
+<h3 id="练习题-1"><a href="#练习题-1" class="headerlink" title="练习题"></a>练习题</h3><p><strong>1.</strong> 在以下描述中，（C）并不是多线程系统的特长。<br>A. 利用线程并行地执行矩阵的乘法运算<br>B. Web 服务器利用线程响应 HTTP 请求<br>&#x3D;&#x3D;C. 键盘驱动程序为每一个正在运行的应用配备一个线程，用以响应该应用的键盘输入&#x3D;&#x3D;<br>D. 基于 GUI 的调试程序用不同的线程分别处理用户输入、计算和跟踪等操作</p>
+<p><strong>2.</strong> 同一进程中的多个线程有哪些成分是共用的，哪些成分是私用的？<br><strong>答：</strong> 线程的公有成分包括:<br>代码区、数据区、动态堆空间。<br>线程的私有成分包括：<br>线程控制块；<br>一个执行栈；<br>运行时动态分给线程的寄存器。</p>
+<p><strong>3.</strong> [2012 考研试题 31]下列关于进程和线程的叙述中，正确的是(A)<br>&#x3D;&#x3D;A．不管系统是否支持线程，进程都是资源分配的基本单位&#x3D;&#x3D;<br>B．线程是资源分配的基本单位，进程是调度的基本单位<br>C．系统级线程和用户级线程的切换都需要内核的支持<br>D．同一进程中的各个线程拥有各自不同的地址空间</p>
+<p><strong>4.</strong> 在支持多线程的系统中，进程 P 创建的若干线程不嗯呢该共享的事（D）<br>A.进程的代码段<br>B.进程 P 中打开的文件<br>C.进程 P 的全局变量<br>&#x3D;&#x3D;D.进程 P 中某线程的栈指针&#x3D;&#x3D;</p>
+<p><strong>5.</strong> 下列对线程的描述中，(B)是错误的。<br>A．不同的线程可执行相同的程序<br>&#x3D;&#x3D;B．线程是资源分配单位&#x3D;&#x3D;<br>C．线程是调度和执行单位<br>D．同一进程中的线程可共享该进程的主存空间</p>
+<p><strong>6.</strong> 以下说法中哪个是正确的？（C）<br>A.线程是进程中可独立执行的子任务，一个进程可以包含一个或多个线程，一个线程可以属于一个或多个进程。<br>B.线程又称为轻型进程，因为线程都比进程小。<br>&#x3D;&#x3D;C.多线程技术具有明显的优越性，如速度快、通信简便、并行性高等。&#x3D;&#x3D;<br>D.由于线程不作为资源分配单位，线程之间可以无约束地并行执行。</p>
+<p>**7.**进程与线程的根本区别是（C）<br>A．进程要占用一个进程控制块，开销较大，而线程无此开销<br>B．进程会增加死锁的机会，而线程有效避免了这一问题<br>&#x3D;&#x3D;C. 进程是资源分配单位，而线程是调度和执行的单位&#x3D;&#x3D;<br>D. 进程是调度和执行的单位，而线程是资源分配单位</p>
+<p><strong>8.</strong> 用户级线程执行时，同一进程不同线程的切换不需要内核支持。<br><strong>答：</strong> 正确</p>
+<p><strong>9.</strong> 在支持线程的操作系统中，同一个进程中的各个线程共享该进程的用户栈。<br><strong>答：</strong> 错误</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" class="category-chain-item">操作系统</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>『操作系统』 进程的描述与控制 Part4 线程</div>
+      <div>https://chiamzhang.github.io/2024/06/29/『操作系统』 进程的描述与控制 Part4 线程/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>Chiam</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>June 29, 2024</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>Licensed under</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2024/06/29/%E3%80%8E%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E3%80%8F%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86-%E8%99%9A%E9%A1%B5%E9%9D%A2%E7%AE%A1%E7%90%86%E4%B9%8B%E9%A1%B5%E9%9D%A2%E7%BD%AE%E6%8D%A2%E7%AE%97%E6%B3%95/" title="『操作系统』内存管理-虚页面管理之页面置换算法">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">『操作系统』内存管理-虚页面管理之页面置换算法</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/06/29/%E3%80%8E%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E3%80%8F%20%E8%BF%9B%E7%A8%8B%E7%9A%84%E6%8F%8F%E8%BF%B0%E4%B8%8E%E6%8E%A7%E5%88%B6%20Part3%20%E7%AE%A1%E7%A8%8B/" title="『操作系统』 进程的描述与控制 Part3 管程">
+                        <span class="hidden-mobile">『操作系统』 进程的描述与控制 Part3 管程</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"fIfc7WqUDZohlQuPc2lz5mJy-MdYXbMMI","appKey":"zjlAG3ZA3o4cBHVAkjzc2Z20","path":"window.location.pathname","placeholder":"留言仅限讨论，禁止广告等行为","avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"https://fifc7wqu.api.lncldglobal.com","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>Table of Contents</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <meta name="referrer" content="no-referrer" /> <footer id="footer" role="contentinfo"> <meta name="referrer" content="no-referrer" /> <div class="divider"> <div class="wall"></div> <img class="animals" src="/img/footer_animals_new.png" srcset="/img/loading.gif" lazyload alt="Footer Animals"> </div> <div class="container" data-index="450"> <p> <a href="https://chiamzhang.github.io" target="_blank">DogEgg</a> <i class="iconfont icon-love"></i> <a href="#" target="_blank">LittePig</a> </p> <p> Powered by  <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-pen"></i> Theme  <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> </p> </div> </footer> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+  
+<script src="/js/love.js"></script>
+<script src="/js/funnyTitle.js"></script>
+<script src="/js/backTop.js"></script>
+<script src="//cdn.jsdelivr.net/gh/bynotes/texiao/source/js/xiaoxuehua.js"></script>
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+</html>

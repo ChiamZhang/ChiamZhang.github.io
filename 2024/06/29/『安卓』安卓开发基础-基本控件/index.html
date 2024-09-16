@@ -1,0 +1,718 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/Mine.jpg">
+  <link rel="icon" href="/img/Mine.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Chiam">
+  <meta name="keywords" content="Algorithms，Cybersecurity">
+  
+    <meta name="description" content="『安卓』安卓开发基础-基本控件1. Textview显示文字，相当于 Panel。一般用来文本展示，继承自 android.view.View，在 android.widget 包中。 12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758">
+<meta property="og:type" content="article">
+<meta property="og:title" content="『安卓』安卓开发基础-基本控件">
+<meta property="og:url" content="https://chiamzhang.github.io/2024/06/29/%E3%80%8E%E5%AE%89%E5%8D%93%E3%80%8F%E5%AE%89%E5%8D%93%E5%BC%80%E5%8F%91%E5%9F%BA%E7%A1%80-%E5%9F%BA%E6%9C%AC%E6%8E%A7%E4%BB%B6/index.html">
+<meta property="og:site_name" content="Homepage of Chiam">
+<meta property="og:description" content="『安卓』安卓开发基础-基本控件1. Textview显示文字，相当于 Panel。一般用来文本展示，继承自 android.view.View，在 android.widget 包中。 12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2024-06-29T13:16:53.804Z">
+<meta property="article:modified_time" content="2023-12-05T16:17:58.980Z">
+<meta property="article:author" content="Chiam">
+<meta property="article:tag" content="Algorithms，Cybersecurity">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>『安卓』安卓开发基础-基本控件 - Homepage of Chiam</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"chiamzhang.github.io","root":"/","version":"1.9.5-a","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":"❡"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":2},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
+
+
+<body>
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Chiam&#39;s Blogs</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                
+                <span>Home</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                
+                <span>Archives</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                
+                <span>Categories</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                
+                <span>About</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                
+                <span>Links</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="『安卓』安卓开发基础-基本控件"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-06-29 21:16" pubdate>
+          June 29, 2024 pm
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          12k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          103 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">『安卓』安卓开发基础-基本控件</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="『安卓』安卓开发基础-基本控件"><a href="#『安卓』安卓开发基础-基本控件" class="headerlink" title="『安卓』安卓开发基础-基本控件"></a>『安卓』安卓开发基础-基本控件</h1><h3 id="1-Textview"><a href="#1-Textview" class="headerlink" title="1. Textview"></a>1. Textview</h3><p>显示文字，相当于 Panel。一般用来文本展示，继承自 android.view.View，在 android.widget 包中。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br></pre></td><td class="code"><pre><code class="hljs java">&lt;TextView<br><br><span class="hljs-comment">//控件id</span><br>android:id = <span class="hljs-string">&quot;@+id/xxx&quot;</span>  @+id/xxx表示新增控件命名为xxx<br><span class="hljs-comment">//我们可以在Java代码中通过findViewById()的方法获取到该对象，然后进行相关属性的设置，又或者使用RelativeLayout时，参考组件用的也是id！</span><br><br><span class="hljs-comment">//宽度与高度</span><br>android:layout_width=<span class="hljs-string">&quot;wrap_content&quot;</span>  <span class="hljs-comment">//wrap_content或者match_parent</span><br>android:layout_height=<span class="hljs-string">&quot;wrap_content&quot;</span>  <span class="hljs-comment">//wrap_content或者match_parent</span><br><span class="hljs-comment">//wrap_content 控件显示的内容多大，控件就多大</span><br><span class="hljs-comment">//match_parent(fill_parent) 填满该控件所在的父容器</span><br><span class="hljs-comment">//当然也可以设置成特定的大小，</span><br><br><span class="hljs-comment">//文本文字</span><br>android:text=<span class="hljs-string">&quot;@string/hello_world&quot;</span> <span class="hljs-comment">//两种方式，直接具体文本或者引用values下面的string.xml里面的元素</span><br><br><span class="hljs-comment">//字体大小</span><br>android:textSize=<span class="hljs-string">&quot;24sp&quot;</span>  <span class="hljs-comment">//以sp为单位</span><br><br><span class="hljs-comment">//字体颜色</span><br>android:textColor=<span class="hljs-string">&quot;#0000FF&quot;</span>  <span class="hljs-comment">//RGB颜色</span><br><br><span class="hljs-comment">//字体格式</span><br>android:textStyle=<span class="hljs-string">&quot;normal&quot;</span>  <span class="hljs-comment">//normal,bold,italic分别为正常，加粗以及斜体，默认为normal</span><br><br><span class="hljs-comment">//文本显示位置</span><br>android:gravity=<span class="hljs-string">&quot;center&quot;</span>  <span class="hljs-comment">//来指定文字的对齐方式,可选值有 top、bottom、left、right、center 等</span><br><br><span class="hljs-comment">//是否只在一行内显示全部内容</span><br>android:singleLine=<span class="hljs-string">&quot;true&quot;</span>  <span class="hljs-comment">//true或者false，默认为false</span><br><br>android:background=<span class="hljs-string">&quot;&quot;</span><br><span class="hljs-comment">//控件的背景颜色，可以理解为填充整个控件的颜色，可以是图片哦！</span><br><br><span class="hljs-comment">//设置外边距</span><br>android:layout_margin=<span class="hljs-string">&quot;10dp&quot;</span> 同时设置四个方向的外边距<br><span class="hljs-comment">//同时可以单独设置某个方向的外边距。</span><br><br><span class="hljs-comment">//设置内边距</span><br>android:padding=<span class="hljs-string">&quot;30dp&quot;</span> 同时设置四个方向的内边距<br><span class="hljs-comment">//同时可以单独设置某个方向的内边距。</span><br><br><span class="hljs-comment">//设置重力方向</span><br>android:gravity=<span class="hljs-string">&quot;bottom|right&quot;</span><br><span class="hljs-comment">//可以设置四个方向</span><br><br><span class="hljs-comment">//设置方向</span><br>android:orientation=<span class="hljs-string">&quot;horizontal&quot;</span><br><span class="hljs-comment">//可选值：horizontal 横向 / vertical 纵向</span><br><br><br><span class="hljs-comment">//相对布局 RelativeLayout：内部的控件以某个其他的控件为参考系，在参考系的某个方位。</span><br><span class="hljs-comment">//作为参考系的控件必须有一个名字（id）</span><br>android:id=<span class="hljs-string">&quot;@+id/text1&quot;</span><br><br><span class="hljs-comment">//在名字叫text1的控件的右边</span><br>android:layout_toRightOf=<span class="hljs-string">&quot;@id/text1&quot;</span><br><span class="hljs-comment">//在名字叫text1的控件的下边</span><br>android:layout_below=<span class="hljs-string">&quot;@id/text1&quot;</span><br><span class="hljs-comment">//在名字叫text1的控件的左边</span><br>android:layout_toLeftOf=<span class="hljs-string">&quot;@id/text1&quot;</span><br><span class="hljs-comment">//在名字叫text1的控件的上边</span><br>android:layout_above=<span class="hljs-string">&quot;@id/text1&quot;</span><br><br><span class="hljs-comment">//比例划分前提是线性布局，内部元素可以按照比例划分</span><br><span class="hljs-comment">//需要设置权重：</span><br>android:layout_weight=<span class="hljs-string">&quot;2&quot;</span><br><span class="hljs-comment">//纵向布局只能分内部控件的高度，横向布局只能分内部控件的宽度。</span><br><span class="hljs-comment">//建议给要分比例的宽度或者高度写成0dp。</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="2-EditText"><a href="#2-EditText" class="headerlink" title="2. EditText"></a>2. EditText</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br></pre></td><td class="code"><pre><code class="hljs java">输入框，可编辑，可设置软键盘方式。继承自android.widget.TextView，在android.widget包中。<br><br><span class="hljs-comment">//控件id</span><br>android:id = <span class="hljs-string">&quot;@+id/xxx&quot;</span>  @+id/xxx表示新增控件命名为xxx<br><br><span class="hljs-comment">//宽度与高度</span><br>android:layout_width=<span class="hljs-string">&quot;wrap_content&quot;</span>  <span class="hljs-comment">//wrap_content或者match_parent</span><br>android:layout_height=<span class="hljs-string">&quot;wrap_content&quot;</span>  <span class="hljs-comment">//wrap_content或者match_parent</span><br><br><span class="hljs-comment">//文本文字</span><br>android:text=<span class="hljs-string">&quot;@string/hello_world&quot;</span> <span class="hljs-comment">//两种方式，直接具体文本或者引用values下面的string.xml里面的元素</span><br><br><span class="hljs-comment">//文本提示内容</span><br>android:hint=<span class="hljs-string">&quot;hello_world&quot;</span> <span class="hljs-comment">//android:text和android:hint区别是后者只是提示作用，真正需要输入的时候提示的内容会消失</span><br><br><span class="hljs-comment">//字体大小</span><br>android:textSize=<span class="hljs-string">&quot;24sp&quot;</span>  <span class="hljs-comment">//以sp为单位</span><br><br><span class="hljs-comment">//字体颜色</span><br>android:textColor=<span class="hljs-string">&quot;#0000FF&quot;</span>  <span class="hljs-comment">//RGB颜色</span><br><br><span class="hljs-comment">//字体格式</span><br>android:textStyle=<span class="hljs-string">&quot;normal&quot;</span>  <span class="hljs-comment">//normal,bold,italic分别为正常，加粗以及斜体，默认为normal</span><br><br><span class="hljs-comment">//文本显示位置</span><br>android:gravity=<span class="hljs-string">&quot;center&quot;</span>  <span class="hljs-comment">//来指定文字的对齐方式,可选值有 top、bottom、left、right、center 等</span><br><br><span class="hljs-comment">//是否只在一行内显示全部内容</span><br>android:singleLine=<span class="hljs-string">&quot;true&quot;</span>  <span class="hljs-comment">//true或者false，默认为false</span><br><br><span class="hljs-comment">//输入内容设置为password类型</span><br>android:password=<span class="hljs-string">&quot;true&quot;</span>  <span class="hljs-comment">//输入的内容会变成······</span><br><br><span class="hljs-comment">//输入内容设置为phoneNumber类型</span><br>android:phoneNumber=<span class="hljs-string">&quot;true&quot;</span>  <span class="hljs-comment">//只能输入数字</span><br><br><span class="hljs-comment">//设定光标为显示/隐藏</span><br>android:cursorVisible = <span class="hljs-string">&quot;false&quot;</span> <span class="hljs-comment">//true或者false，默认为true显示</span><br><br><br><span class="hljs-comment">//设置外边距</span><br>android:layout_margin=<span class="hljs-string">&quot;10dp&quot;</span> 同时设置四个方向的外边距<br><span class="hljs-comment">//同时可以单独设置某个方向的外边距。</span><br><br><span class="hljs-comment">//设置内边距</span><br>android:padding=<span class="hljs-string">&quot;30dp&quot;</span> 同时设置四个方向的内边距<br><span class="hljs-comment">//同时可以单独设置某个方向的内边距。</span><br><br><span class="hljs-comment">//设置重力方向</span><br>android:gravity=<span class="hljs-string">&quot;bottom|right&quot;</span><br><span class="hljs-comment">//可以设置四个方向</span><br><br><span class="hljs-comment">//设置方向</span><br>android:orientation=<span class="hljs-string">&quot;horizontal&quot;</span><br><span class="hljs-comment">//可选值：horizontal 横向 / vertical 纵向</span><br><br><br><span class="hljs-comment">//相对布局 RelativeLayout：内部的控件以某个其他的控件为参考系，在参考系的某个方位。</span><br><span class="hljs-comment">//作为参考系的控件必须有一个名字（id）</span><br>android:id=<span class="hljs-string">&quot;@+id/text1&quot;</span><br><br><span class="hljs-comment">//在名字叫text1的控件的右边</span><br>android:layout_toRightOf=<span class="hljs-string">&quot;@id/text1&quot;</span><br><span class="hljs-comment">//在名字叫text1的控件的下边</span><br>android:layout_below=<span class="hljs-string">&quot;@id/text1&quot;</span><br><span class="hljs-comment">//在名字叫text1的控件的左边</span><br>android:layout_toLeftOf=<span class="hljs-string">&quot;@id/text1&quot;</span><br><span class="hljs-comment">//在名字叫text1的控件的上边</span><br>android:layout_above=<span class="hljs-string">&quot;@id/text1&quot;</span><br></code></pre></td></tr></table></figure>
+
+<p>在 Activity 中的简单用法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">MainActivity</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_">Activity</span> &#123;<br>    <span class="hljs-comment">//声明一个EditText</span><br>    <span class="hljs-keyword">private</span> EditText edittext;<br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">onCreate</span><span class="hljs-params">(Bundle savedInstanceState)</span> &#123;<br>        <span class="hljs-built_in">super</span>.onCreate(savedInstanceState);<br>        <span class="hljs-comment">//给当前的活动加载一个布局</span><br>        setContentView(R.layout.activity_main);<br>        <span class="hljs-comment">//初始化edittext</span><br>        edittext=(EditText) findViewById(R.id.edit_text);<br>    &#125;<br><br>...<br>...<br>    <span class="hljs-comment">//在方法中调用给edittext赋值</span><br>    edittext.setText(<span class="hljs-string">&quot;success&quot;</span>);<br>...<br>...<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="3-Button"><a href="#3-Button" class="headerlink" title="3. Button"></a>3. Button</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><code class="hljs java">&lt;Button<br><br><span class="hljs-comment">//控件id</span><br>android:id = <span class="hljs-string">&quot;@+id/xxx&quot;</span>  @+id/xxx表示新增控件命名为xxx<br><br><span class="hljs-comment">//宽度与高度</span><br>android:layout_width=<span class="hljs-string">&quot;wrap_content&quot;</span>  <span class="hljs-comment">//wrap_content或者match_parent</span><br>android:layout_height=<span class="hljs-string">&quot;wrap_content&quot;</span>  <span class="hljs-comment">//wrap_content或者match_parent</span><br><br><span class="hljs-comment">//按钮上显示的文字</span><br>android:text=<span class="hljs-string">&quot;theButton&quot;</span> <span class="hljs-comment">//两种方式，直接具体文本或者引用values下面的string.xml里面的元素@string/button</span><br><br><span class="hljs-comment">//按钮字体大小</span><br>android:textSize=<span class="hljs-string">&quot;24sp&quot;</span>  <span class="hljs-comment">//以sp为单位</span><br><br><span class="hljs-comment">//字体颜色</span><br>android:textColor=<span class="hljs-string">&quot;#0000FF&quot;</span>  <span class="hljs-comment">//RGB颜色</span><br><br><span class="hljs-comment">//字体格式</span><br>android:textStyle=<span class="hljs-string">&quot;normal&quot;</span>  <span class="hljs-comment">//normal,bold,italic分别为正常，加粗以及斜体，默认为normal</span><br><br><span class="hljs-comment">//是否只在一行内显示全部内容</span><br>android:singleLine=<span class="hljs-string">&quot;true&quot;</span>  <span class="hljs-comment">//true或者false，默认为false</span><br><br><br><span class="hljs-comment">//设置外边距</span><br>android:layout_margin=<span class="hljs-string">&quot;10dp&quot;</span> 同时设置四个方向的外边距<br><span class="hljs-comment">//同时可以单独设置某个方向的外边距。</span><br><br><span class="hljs-comment">//设置内边距</span><br>android:padding=<span class="hljs-string">&quot;30dp&quot;</span> 同时设置四个方向的内边距<br><span class="hljs-comment">//同时可以单独设置某个方向的内边距。</span><br><br><span class="hljs-comment">//设置重力方向</span><br>android:gravity=<span class="hljs-string">&quot;bottom|right&quot;</span><br><span class="hljs-comment">//可以设置四个方向</span><br><br><br><br><span class="hljs-comment">//相对布局 RelativeLayout：内部的控件以某个其他的控件为参考系，在参考系的某个方位。</span><br><span class="hljs-comment">//作为参考系的控件必须有一个名字（id）</span><br>android:id=<span class="hljs-string">&quot;@+id/text1&quot;</span><br><br><span class="hljs-comment">//在名字叫text1的控件的右边</span><br>android:layout_toRightOf=<span class="hljs-string">&quot;@id/text1&quot;</span><br><span class="hljs-comment">//在名字叫text1的控件的下边</span><br>android:layout_below=<span class="hljs-string">&quot;@id/text1&quot;</span><br><span class="hljs-comment">//在名字叫text1的控件的左边</span><br>android:layout_toLeftOf=<span class="hljs-string">&quot;@id/text1&quot;</span><br><span class="hljs-comment">//在名字叫text1的控件的上边</span><br>android:layout_above=<span class="hljs-string">&quot;@id/text1&quot;</span><br></code></pre></td></tr></table></figure>
+
+<p>我们需要在 Activity 中为 Button 的点击事件注册一个监听器，以下介绍两种方式来实现按钮监听事件，更多方法可以参考下 Android 的按钮单击事件及监听器的实现方式，跟 JAVA JFrame 监听类似。</p>
+<p>1.通过匿名内部类作为事件监听器类，这种方法适用于事件监听器只是临时使用一次，因为大部分时候，事件处理器都没有什么利用价值（可利用代码通常都被抽象成了业务逻辑方法），这是一种使用最广泛的方法：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">MainActivity</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_">Activity</span> &#123;<br>    <span class="hljs-keyword">private</span> EditText edittext;<br>    <span class="hljs-keyword">private</span> Button button;<br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">onCreate</span><span class="hljs-params">(Bundle savedInstanceState)</span> &#123;<br>        <span class="hljs-built_in">super</span>.onCreate(savedInstanceState);<br>        setContentView(R.layout.activity_main);<br>        edittext=(EditText) findViewById(R.id.edit_text);<br>        button = (Button) findViewById(R.id.button);<br>        <span class="hljs-comment">//为button按钮注册监听器，并通过匿名内部类实现</span><br>        button.setOnClickListener(<span class="hljs-keyword">new</span> <span class="hljs-title class_">OnClickListener</span>() &#123;<br>            <span class="hljs-meta">@Override</span><br>            <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">onClick</span><span class="hljs-params">(View v)</span> &#123;<br>            <span class="hljs-comment">//点击Button会改变edittext的文字为&quot;点击了Button&quot;</span><br>            edittext.setText(<span class="hljs-string">&quot;点击了Button&quot;</span>);<br>            &#125;<br>        &#125;);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>2.使用实现接口的方式来进行注册，让 Activity 类实现了 OnClickListener 事件监听接口，从而可以在该 Activity 类中直接定义事件处理器方法：onClick(view v)，当为某个组件添加该事件监听器对象时，直接使用 this 作为事件监听器对象即可：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">MainActivity</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_">Activity</span> <span class="hljs-keyword">implements</span> <span class="hljs-title class_">OnClickListener</span> &#123;<br>    <span class="hljs-keyword">private</span> EditText edittext;<br>    <span class="hljs-keyword">private</span> Button button;<br>    <span class="hljs-keyword">private</span> Button button2;<br><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">onCreate</span><span class="hljs-params">(Bundle savedInstanceState)</span> &#123;<br>        <span class="hljs-built_in">super</span>.onCreate(savedInstanceState);<br>        setContentView(R.layout.activity_main);<br>        edittext=(EditText) findViewById(R.id.edit_text);<br>        button = (Button) findViewById(R.id.button);<br>        button2 = (Button) findViewById(R.id.button2);<br>        button.setOnClickListener(<span class="hljs-built_in">this</span>);<br>        button2.setOnClickListener(<span class="hljs-built_in">this</span>);<br>    &#125;<br><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-comment">//用switch区分是哪个id</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">onClick</span><span class="hljs-params">(View v)</span> &#123;<br>        <span class="hljs-keyword">switch</span> (v.getId())&#123;<br>        <span class="hljs-keyword">case</span> R.id.button:<br>            edittext.setText(<span class="hljs-string">&quot;点击了Button&quot;</span>);<br>            <span class="hljs-keyword">break</span>;<br>        <span class="hljs-keyword">case</span> R.id.button2:<br>            edittext.setText(<span class="hljs-string">&quot;点击了Button2&quot;</span>);<br>            <span class="hljs-keyword">break</span>;<br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="4-ImageButton"><a href="#4-ImageButton" class="headerlink" title="4.ImageButton"></a>4.ImageButton</h3><p>ImageButton 继承自 ImageView 类，与 Button 之间的最大区别在于 ImageButton 中没有 text 属性。ImageButton 控件中设置按钮中显示的图片可以通过 android：src 属性来设置。也可以通过 setImageResource(int)来设置。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><code class="hljs java">&lt;ImageButton<br><br><span class="hljs-comment">//控件id</span><br>android:id = <span class="hljs-string">&quot;@+id/xxx&quot;</span>  @+id/xxx表示新增控件命名为xxx<br><br><span class="hljs-comment">//宽度与高度</span><br>android:layout_width=<span class="hljs-string">&quot;wrap_content&quot;</span>   <span class="hljs-comment">//wrap_content或者match_parent</span><br>android:layout_height=<span class="hljs-string">&quot;wrap_content&quot;</span>  <span class="hljs-comment">//wrap_content或者match_parent</span><br><br><span class="hljs-comment">//此外，可以具体设置高度和宽度显示的像素，不过这样设置如果图片尺寸大于设置的显示的尺寸，则图片是显示不全的,这是可以配合android:scaleType属性。</span><br>android:layout_width=<span class="hljs-string">&quot;200dp&quot;</span><br>android:layout_height=<span class="hljs-string">&quot;200dp&quot;</span><br><br><span class="hljs-comment">//把原图按照指定的大小在View中显示，拉伸显示图片，不保持原比例，填满ImageButton.</span><br>android:scaleType=<span class="hljs-string">&quot;fitXY&quot;</span><br><br><span class="hljs-comment">//其他的关于android:scaleType的参数解释,也可以参考下面的直观图</span><br><span class="hljs-comment">//android:scaleType=&quot;center&quot;  在视图中心显示图片，并且不缩放图片</span><br><span class="hljs-comment">//android:scaleType=&quot;centercrop&quot;  按比例缩放图片，使得图片长 (宽)的大于等于视图的相应维度</span><br><span class="hljs-comment">//android:scaleType=&quot;centerinside&quot;  按比例缩放图片，使得图片长 (宽)的小于等于视图的相应维度</span><br><span class="hljs-comment">//android:scaleType=&quot;fitcenter&quot; 按比例缩放图片到视图的最小边，居中显示</span><br><span class="hljs-comment">//android:scaleType=&quot;fitend&quot; 按比例缩放图片到视图的最小边，显示在视图的下部分位置</span><br><span class="hljs-comment">//android:scaleType=&quot;fitstart&quot; 把图片按比例扩大/缩小到视图的最小边，显示在视图的上部分位置</span><br><span class="hljs-comment">//android:scaleType=&quot;matrix&quot; 用矩阵来绘制</span><br><br><span class="hljs-comment">//图片来源，需要将图片复制放到res/drawable文件夹里面，引用的时候不需要写图片的后缀</span><br>android:src =<span class="hljs-string">&quot;@drawable/beautiful&quot;</span>&gt;<br><br><span class="hljs-comment">//设置外边距</span><br>android:layout_margin=<span class="hljs-string">&quot;10dp&quot;</span> 同时设置四个方向的外边距<br><span class="hljs-comment">//同时可以单独设置某个方向的外边距。</span><br><br><span class="hljs-comment">//设置内边距</span><br>android:padding=<span class="hljs-string">&quot;30dp&quot;</span> 同时设置四个方向的内边距<br><span class="hljs-comment">//同时可以单独设置某个方向的内边距。</span><br><br><span class="hljs-comment">//设置重力方向</span><br>android:gravity=<span class="hljs-string">&quot;bottom|right&quot;</span><br><span class="hljs-comment">//可以设置四个方向</span><br><br><br><br><span class="hljs-comment">//相对布局 RelativeLayout：内部的控件以某个其他的控件为参考系，在参考系的某个方位。</span><br><span class="hljs-comment">//作为参考系的控件必须有一个名字（id）</span><br>android:id=<span class="hljs-string">&quot;@+id/text1&quot;</span><br><br><span class="hljs-comment">//在名字叫text1的控件的右边</span><br>android:layout_toRightOf=<span class="hljs-string">&quot;@id/text1&quot;</span><br><span class="hljs-comment">//在名字叫text1的控件的下边</span><br>android:layout_below=<span class="hljs-string">&quot;@id/text1&quot;</span><br><span class="hljs-comment">//在名字叫text1的控件的左边</span><br>android:layout_toLeftOf=<span class="hljs-string">&quot;@id/text1&quot;</span><br><span class="hljs-comment">//在名字叫text1的控件的上边</span><br>android:layout_above=<span class="hljs-string">&quot;@id/text1&quot;</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="5-RadioGroup-和-RadioButton"><a href="#5-RadioGroup-和-RadioButton" class="headerlink" title="5.RadioGroup 和 RadioButton"></a>5.RadioGroup 和 RadioButton</h3><p><code>RadioGroup</code> 多选<br><code>RadioButton</code> 单选选项</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs java">&lt;RadioGroup&gt;<br>       android:id=<span class="hljs-string">&quot;@+id/RG&quot;</span>  <span class="hljs-comment">//跟前文一样的ID</span><br>       android:layout_width=<span class="hljs-string">&quot;264dp&quot;</span> <span class="hljs-comment">//宽跟上面一样</span><br>       android:layout_height=<span class="hljs-string">&quot;202dp&quot;</span> <span class="hljs-comment">//高跟上面一样</span><br>       android:layout_marginTop=<span class="hljs-string">&quot;16dp&quot;</span><br>		android:orientation=<span class="hljs-string">&quot;horizontal&quot;</span> <span class="hljs-comment">//设置方向</span><br>	<span class="hljs-comment">//可选值：horizontal 横向 / vertical 纵向</span><br><br>       &lt;RadioButton<br>           android:id=<span class="hljs-string">&quot;@+id/RB1&quot;</span><br>           android:layout_width=<span class="hljs-string">&quot;wrap_content&quot;</span><br>           android:layout_height=<span class="hljs-string">&quot;wrap_content&quot;</span><br>           android:text=<span class="hljs-string">&quot;@string/radiobutton1&quot;</span> <span class="hljs-comment">//选项文字</span><br>	/&gt;<br>&lt;/RadioGroup&gt;<br></code></pre></td></tr></table></figure>
+
+<h3 id="6-CheckBox"><a href="#6-CheckBox" class="headerlink" title="6.CheckBox"></a>6.CheckBox</h3><p>复选框</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs java">&lt;CheckBox<br>	 android:id=<span class="hljs-string">&quot;@+id/RB1&quot;</span><br>	 android:layout_width=<span class="hljs-string">&quot;wrap_content&quot;</span><br>     android:layout_height=<span class="hljs-string">&quot;wrap_content&quot;</span><br>     android:text=<span class="hljs-string">&quot;@string/radiobutton1&quot;</span> <span class="hljs-comment">//选项文字</span><br>     android:checked=<span class="hljs-string">&quot;ture&quot;</span> <span class="hljs-comment">//是否默认选中</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="7-ImageView"><a href="#7-ImageView" class="headerlink" title="7.ImageView"></a>7.ImageView</h3><p>ImageView 控件负责显示图片，其图片的来源可以是在资源文件中的 id，也可以是 Drawable 对象或者位图对象。还可以是 Content Provider 的 URI。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><code class="hljs java">&lt;ImageView<br><span class="hljs-comment">//控件id</span><br>android:id = <span class="hljs-string">&quot;@+id/xxx&quot;</span>  @+id/xxx表示新增控件命名为xxx<br><br><span class="hljs-comment">//宽度与高度</span><br>android:layout_width=<span class="hljs-string">&quot;wrap_content&quot;</span>   <span class="hljs-comment">//wrap_content或者match_parent</span><br>android:layout_height=<span class="hljs-string">&quot;wrap_content&quot;</span>  <span class="hljs-comment">//wrap_content或者match_parent</span><br><br><span class="hljs-comment">//此外，可以具体设置高度和宽度显示的像素，不过这样设置如果图片尺寸大于设置的显示的尺寸，则图片是显示不全的,这是可以配合android:scaleType属性。</span><br>android:layout_width=<span class="hljs-string">&quot;200dp&quot;</span><br>android:layout_height=<span class="hljs-string">&quot;200dp&quot;</span><br><br><span class="hljs-comment">//把原图按照指定的大小在View中显示，拉伸显示图片，不保持原比例，填满ImageButton.</span><br>android:scaleType=<span class="hljs-string">&quot;fitXY&quot;</span><br><br><span class="hljs-comment">//其他的关于android:scaleType的参数解释,也可以参考下面的直观图</span><br><span class="hljs-comment">//android:scaleType=&quot;center&quot;  在视图中心显示图片，并且不缩放图片</span><br><span class="hljs-comment">//android:scaleType=&quot;centercrop&quot;  按比例缩放图片，使得图片长 (宽)的大于等于视图的相应维度</span><br><span class="hljs-comment">//android:scaleType=&quot;centerinside&quot;  按比例缩放图片，使得图片长 (宽)的小于等于视图的相应维度</span><br><span class="hljs-comment">//android:scaleType=&quot;fitcenter&quot; 按比例缩放图片到视图的最小边，居中显示</span><br><span class="hljs-comment">//android:scaleType=&quot;fitend&quot; 按比例缩放图片到视图的最小边，显示在视图的下部分位置</span><br><span class="hljs-comment">//android:scaleType=&quot;fitstart&quot; 把图片按比例扩大/缩小到视图的最小边，显示在视图的上部分位置</span><br><span class="hljs-comment">//android:scaleType=&quot;matrix&quot; 用矩阵来绘制</span><br><br><span class="hljs-comment">//图片来源，需要将图片复制放到res/drawable文件夹里面，引用的时候不需要写图片的后缀</span><br>android:src =<span class="hljs-string">&quot;@drawable/beautiful&quot;</span>&gt;<br><br><br><span class="hljs-comment">//设置外边距</span><br>android:layout_margin=<span class="hljs-string">&quot;10dp&quot;</span> 同时设置四个方向的外边距<br><span class="hljs-comment">//同时可以单独设置某个方向的外边距。</span><br><br><span class="hljs-comment">//设置内边距</span><br>android:padding=<span class="hljs-string">&quot;30dp&quot;</span> 同时设置四个方向的内边距<br><span class="hljs-comment">//同时可以单独设置某个方向的内边距。</span><br><br><span class="hljs-comment">//设置重力方向</span><br>android:gravity=<span class="hljs-string">&quot;bottom|right&quot;</span><br><span class="hljs-comment">//可以设置四个方向</span><br><br><span class="hljs-comment">//设置方向</span><br>android:orientation=<span class="hljs-string">&quot;horizontal&quot;</span><br><span class="hljs-comment">//可选值：horizontal 横向 / vertical 纵向</span><br><br><br><span class="hljs-comment">//相对布局 RelativeLayout：内部的控件以某个其他的控件为参考系，在参考系的某个方位。</span><br><span class="hljs-comment">//作为参考系的控件必须有一个名字（id）</span><br>android:id=<span class="hljs-string">&quot;@+id/text1&quot;</span><br><br><span class="hljs-comment">//在名字叫text1的控件的右边</span><br>android:layout_toRightOf=<span class="hljs-string">&quot;@id/text1&quot;</span><br><span class="hljs-comment">//在名字叫text1的控件的下边</span><br>android:layout_below=<span class="hljs-string">&quot;@id/text1&quot;</span><br><span class="hljs-comment">//在名字叫text1的控件的左边</span><br>android:layout_toLeftOf=<span class="hljs-string">&quot;@id/text1&quot;</span><br><span class="hljs-comment">//在名字叫text1的控件的上边</span><br>android:layout_above=<span class="hljs-string">&quot;@id/text1&quot;</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="7-ProgressBar"><a href="#7-ProgressBar" class="headerlink" title="7.ProgressBar"></a>7.ProgressBar</h3><p>ProgressBar 用于在界面上显示一个进度条,体现程序运行时正在加载数据。</p>
+<p>在布局文件中使用：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs java">&lt;ProgressBar<br>    android:id=<span class="hljs-string">&quot;@+id/pb&quot;</span><br>    android:layout_width=<span class="hljs-string">&quot;match_parent&quot;</span><br>    android:layout_height=<span class="hljs-string">&quot;wrap_content&quot;</span><br>    <span class="hljs-comment">//默认是圆形进度条，可以知道样式设置为水平进度条</span><br>    style=<span class="hljs-string">&quot;?android:attr/progressBarStyleHorizontal&quot;</span>/&gt;<br>    <span class="hljs-comment">//指定成水平进度条后,我们还可以通过 android:max属性给进度条设置一个最大值,然后在代码中动态地更改进度条的进度</span><br>    android:max=<span class="hljs-string">&quot;100&quot;</span><br></code></pre></td></tr></table></figure>
+
+<p>借助控件可见性，实现数据加载完成时消失。<br>借助 <code>setVisibility()</code>方法,可以传入 <code>View.VISIBLE</code>、<code>View.INVISIBLE</code> 和 <code>View.GONE</code> 三种值。</p>
+<p>下面实现点击一下按钮让进度条消失,再点击一下按钮让进度条出现的这种效果,这里只给出按钮监听的代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs java">button.setOnClickListener(<span class="hljs-keyword">new</span> <span class="hljs-title class_">OnClickListener</span>() &#123;<br>            <span class="hljs-meta">@Override</span><br>            <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">onClick</span><span class="hljs-params">(View v)</span> &#123;<br>                <span class="hljs-comment">//通过 getVisibility()方法来判断 ProgressBar 是否可见</span><br>                <span class="hljs-keyword">if</span> (progressBar.getVisibility() == View.GONE) &#123;<br>                    progressBar.setVisibility(View.VISIBLE);<br>                &#125; <span class="hljs-keyword">else</span> &#123;<br>                    progressBar.setVisibility(View.GONE);<br>                &#125;<br>            &#125;<br>        &#125;);<br></code></pre></td></tr></table></figure>
+
+<p>参考博客：<a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_38423829/article/details/80566203">Android 常用控件介绍及使用</a></p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E5%AE%89%E5%8D%93/" class="category-chain-item">安卓</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>『安卓』安卓开发基础-基本控件</div>
+      <div>https://chiamzhang.github.io/2024/06/29/『安卓』安卓开发基础-基本控件/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>Chiam</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>June 29, 2024</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>Licensed under</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2024/06/29/%E3%80%8E%E5%BC%80%E5%8F%91%E3%80%8FSpringboot%E6%8A%A5%E9%94%99/" title="『开发』Springboot报错">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">『开发』Springboot报错</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/06/29/%E3%80%8EWindwos%E3%80%8F%E7%BD%91%E9%80%9F%E6%85%A2%EF%BC%9F%E4%B8%8D%EF%BC%81%E5%8F%AF%E8%83%BD%E6%98%AFDNS%E5%87%BA%E4%BA%86%E9%97%AE%E9%A2%98%EF%BC%81%20%E5%85%AC%E5%85%B1DNS%E4%BC%98%E9%80%89%E4%B9%8B%20BAT%20%20%E7%99%BE%E5%BA%A6%E3%80%81%E8%85%BE%E8%AE%AF%E3%80%81%E9%98%BF%E9%87%8C%E3%80%81%E8%B0%B7%E6%AD%8CDNS%E5%93%AA%E4%B8%AA%E6%9B%B4%E5%BF%AB%EF%BC%9F/" title="『Windwos』网速慢？不！可能是DNS出了问题！ 公共DNS优选之 BAT  百度、腾讯、阿里、谷歌DNS哪个更快？">
+                        <span class="hidden-mobile">『Windwos』网速慢？不！可能是DNS出了问题！ 公共DNS优选之 BAT  百度、腾讯、阿里、谷歌DNS哪个更快？</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"fIfc7WqUDZohlQuPc2lz5mJy-MdYXbMMI","appKey":"zjlAG3ZA3o4cBHVAkjzc2Z20","path":"window.location.pathname","placeholder":"留言仅限讨论，禁止广告等行为","avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"https://fifc7wqu.api.lncldglobal.com","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>Table of Contents</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <meta name="referrer" content="no-referrer" /> <footer id="footer" role="contentinfo"> <meta name="referrer" content="no-referrer" /> <div class="divider"> <div class="wall"></div> <img class="animals" src="/img/footer_animals_new.png" srcset="/img/loading.gif" lazyload alt="Footer Animals"> </div> <div class="container" data-index="450"> <p> <a href="https://chiamzhang.github.io" target="_blank">DogEgg</a> <i class="iconfont icon-love"></i> <a href="#" target="_blank">LittePig</a> </p> <p> Powered by  <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-pen"></i> Theme  <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> </p> </div> </footer> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+  
+<script src="/js/love.js"></script>
+<script src="/js/funnyTitle.js"></script>
+<script src="/js/backTop.js"></script>
+<script src="//cdn.jsdelivr.net/gh/bynotes/texiao/source/js/xiaoxuehua.js"></script>
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+</html>

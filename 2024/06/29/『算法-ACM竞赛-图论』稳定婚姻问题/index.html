@@ -1,0 +1,714 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/Mine.jpg">
+  <link rel="icon" href="/img/Mine.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Chiam">
+  <meta name="keywords" content="Algorithms，Cybersecurity">
+  
+    <meta name="description" content="『算法-ACM 竞赛-图论』稳定婚姻问题**稳定婚姻问题**“稳定婚姻问题”在生活中是一个典型的问题,通俗地可叙述为:当前有 N 位男生和 N 位女生最后要组成稳定的婚姻家庭,过程开始之前男生和女生在各自的心目中都按照喜爱程度对 N 位异性有了各自的排序.然后开始选择自己的对象,其规则是:男生第一天均向各自最喜欢的女生写一封“情书”。 问题来源问题来自于一场“3 分钟相亲”活动，参加活动的有 n">
+<meta property="og:type" content="article">
+<meta property="og:title" content="『算法-ACM竞赛-图论』稳定婚姻问题">
+<meta property="og:url" content="https://chiamzhang.github.io/2024/06/29/%E3%80%8E%E7%AE%97%E6%B3%95-ACM%E7%AB%9E%E8%B5%9B-%E5%9B%BE%E8%AE%BA%E3%80%8F%E7%A8%B3%E5%AE%9A%E5%A9%9A%E5%A7%BB%E9%97%AE%E9%A2%98/index.html">
+<meta property="og:site_name" content="Homepage of Chiam">
+<meta property="og:description" content="『算法-ACM 竞赛-图论』稳定婚姻问题**稳定婚姻问题**“稳定婚姻问题”在生活中是一个典型的问题,通俗地可叙述为:当前有 N 位男生和 N 位女生最后要组成稳定的婚姻家庭,过程开始之前男生和女生在各自的心目中都按照喜爱程度对 N 位异性有了各自的排序.然后开始选择自己的对象,其规则是:男生第一天均向各自最喜欢的女生写一封“情书”。 问题来源问题来自于一场“3 分钟相亲”活动，参加活动的有 n">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2024-06-29T13:16:54.221Z">
+<meta property="article:modified_time" content="2023-12-05T16:19:17.547Z">
+<meta property="article:author" content="Chiam">
+<meta property="article:tag" content="Algorithms，Cybersecurity">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>『算法-ACM竞赛-图论』稳定婚姻问题 - Homepage of Chiam</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"chiamzhang.github.io","root":"/","version":"1.9.5-a","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":"❡"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":2},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
+
+
+<body>
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Chiam&#39;s Blogs</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                
+                <span>Home</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                
+                <span>Archives</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                
+                <span>Categories</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                
+                <span>About</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                
+                <span>Links</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="『算法-ACM竞赛-图论』稳定婚姻问题"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-06-29 21:16" pubdate>
+          June 29, 2024 pm
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2.6k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          22 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">『算法-ACM竞赛-图论』稳定婚姻问题</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="『算法-ACM-竞赛-图论』稳定婚姻问题"><a href="#『算法-ACM-竞赛-图论』稳定婚姻问题" class="headerlink" title="『算法-ACM 竞赛-图论』稳定婚姻问题"></a>『算法-ACM 竞赛-图论』稳定婚姻问题</h1><p>*<strong>*稳定婚姻问题**</strong><br>“稳定婚姻问题”在生活中是一个典型的问题,通俗地可叙述为:当前有 N 位男生和 N 位女生最后要组成稳定的婚姻家庭,过程开始之前男生和女生在各自的心目中都按照喜爱程度对 N 位异性有了各自的排序.然后开始选择自己的对象,其规则是:男生第一天均向各自最喜欢的女生写一封“情书”。</p>
+<p><strong>问题来源</strong><br>问题来自于一场“3 分钟相亲”活动，参加活动的有 n 位男士和 n 位女士。要求每位男士都要和所有的女士进行短暂的单独交流，并为她们打分，然后按照喜欢程度，对每一位女士进行排序；同样的，每位女士也要对所有男士进行打分和排序。</p>
+<p>对于典型“稳定婚姻问题”，借助矩阵(二维数组)给出了一种简明的实现方法。在本算法中，所采用的存储结构和实现方法灵活巧妙，通俗易懂，方便实现；而且用于存储所要处理数据的内存空间相对于其它一些算法节省了一半，空间复杂度为 O(1)；由于存储结构的巧妙性，算法的时间复杂度在最好的情况下为线性时间 N，在最坏的情况下为 O(N2)。</p>
+<p>这个是数学界切切实实研究过的问题。对于以前没有接触过这个问题的人，这个理论最出人意外的结论是:传统的求爱，结婚过程是 male-optimal 的，也就是说，男性能够得到尽可能好的心上人，女性却不然。这就是所谓的稳定匹配问题(StableMarriageProblem，也叫稳定婚姻问题）。</p>
+<p><strong>定理</strong><br>稳定婚姻问题。它有很多种可能的解法。<br>为了让大家相信数学家不是真得如此无聊，我要指出它确确实实是一个地道的组合数学问题，有其特定的数学价值。当然啦，它也有很多别的背景和应用，比如用来在若干个公司和应聘者之间进行招聘中介……但是数学家们怎么会放过如此八卦的一个名字呢？于是它就这样流传下来了。</p>
+<p>有很多组合数学问题都可以如此这般的翻译为生活中的问题。比如著名的 Hall 定理：给定 n 个有限集合（其间可以有交集），如果其中任意 m 个集合的并集的元素个数都不小于 m，那么一定存在 n 个不同的元素，使得它们正好依次存在于这 n 个集合之中。我相信没有人明白以上这是在说什么。可是它有一个很好的解释：把那 n 个集合想象成 n 个男生各自心仪的女孩子们（一般来说都不止一个），中间的那个条件是说，如果对于其中任意一部分男生，他们喜欢的女孩子的总数都不少于这组男生的人数（这个条件是必要的，否则就打起来了），那么总的说来一定存在一种办法给每个男生都分配一个女生恰好是他喜欢的。</p>
+<p><strong>活动方式</strong><br>1962 年，美国数学家 David Gale 和 Lloyd Shapley 发明了一种寻找稳定婚姻的策略，人们称之为延迟认可算法（Gale-Shapley 算法）。</p>
+<p>先对所有男士进行落选标记，称其为自由男。当存在自由男时，进行以下操作：</p>
+<p>① 每一位自由男在所有尚未拒绝她的女士中选择一位被他排名最优先的女士；</p>
+<p>② 每一位女士将正在追求她的自由男与其当前男友进行比较，选择其中排名优先的男士作为其男友，即若自由男优于当前男友，则抛弃前男友；否则保留其男友，拒绝自由男。</p>
+<p>③ 若某男士被其女友抛弃，重新变成自由男。</p>
+<p>在算法执行期间，自由男们主动出击，依次对最喜欢和次喜欢的女人求爱，一旦被接受，即失去自由身，进入订婚状态；而女人们则采取“守株待兔”和“喜新厌旧”策略，对前来求爱的男士进行选择：若该男子比未婚夫强，则悔婚，选择新的未婚夫；否则拒绝该男子的求婚。被女友抛弃的男人重获自由身，重新拥有了追求女人的权利——当然，新的追求对象比不过前女友。</p>
+<p>这样，在算法执行期间，每个人都有可能订婚多次——也有可能一开始就找到了自己的最爱，从一而终——每订一次婚，女人们的选择就会更有利，而男人们的品味则越来越差。只要男女生的数量相等，则经过多轮求婚，订婚，悔婚和再订婚之后，每位男女最终都会找到合适的伴侣——虽然不一定是自己的最爱（男人没能追到自己的最爱，或女人没有等到自己的最爱来追求），但绝对不会出现“虽然彼此相爱，却不能在一起”的悲剧，所有人都会组成稳定的婚姻。</p>
+<p><strong>求婚过程</strong><br>第一天上午，所有的男人都向自己最爱的女人求婚，下午，每个女人看看自己有没有收到，收到了多少人的求婚，如果只收到一个男人的求婚，那么就和他订婚。如果收到多于一个男人的求婚，那么就和其中她最爱的那个男人订婚，同时把其他男人都锯掉。如果一个求婚都没有，不要着急，最后总会有的。晚上，检查一遍，如果所有女人都订婚了，，万事大吉，明天举行集体婚礼，但如果还有女人没有订婚，那么事情还没有完，第二天还得重复，第二天上午，所有还没订婚的男人向自己次爱的女人求婚(因为昨天已经被他们的最爱锯了)。下午，每个女人再看一遍自己收到订婚的情况，如果她已经订婚了，但是又有一个她更爱的男人来向她求婚，那就把原来那个锯掉，再和这个更爱的男人订婚；如果还没订婚，那就和第一天的下午的处理一样。晚上再检查一遍，如果还是有人没有订婚，那第三天再重复，第三天上午，所有没有订婚的男人，包括第一天订了第二天又被踹出来的，再向还没有锯过他的女人中他最爱的那个求婚如此周而复始，直到最后大家都订了婚，便一起结婚。</p>
+<p>这么个过程数学上可以证明：</p>
+<p>第一，这个过程会中止，也就是说，总有大家都订了婚的一天，不可能无限循环。</p>
+<p>第二，中止后所有的婚姻是稳定婚姻。所谓不稳婚姻是说，比如说有两对夫妇 M1,F1 和 M2,F2,M1 的老婆是 F1,但他更爱 F2;而 F2 的老公虽说是 M2.但她更爱 M1,这样的婚姻就是不稳婚姻,M1 和 F2 理应结合,他们现在各自的婚姻都是错误.我们能证明的是,通过上面那个求婚过程,所有的婚姻都是稳定的,没有人犯错误。</p>
+<p>第三,比较引人注目的是，这个过程是 male-optimal 的，男性能够获得尽可能好的伴侣，比如说最后有二十个女人拒绝了他，他仍然能够得到剩下的八十个女人中他最爱的那一个。</p>
+<p>第四，更有甚者，这个过程是 female-pessimal 的,女人总是在可能的情况下被最不喜欢的人追上。这一点没有那么直观的理解，勉强要解释的话，可以这么看:虽说女人每换一次订婚对象，都往上升一层，但起点可能很低，虽说在一步步接近她最爱的目标，但最后往往达不到。比如说还差三十名就达到她最爱的人了，但这时 GameOver，所有的人都已订了婚，这样她也只能死了心了。还有三十个她更爱的人还没向她求过婚，可是她也无可奈何了，但她仍然能够得到剩下的七十个男人中她最爱的那一个。</p>
+<p><strong><div style="text-align: right"> <strong>–摘自百度百科</strong> </div></strong></p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E7%AE%97%E6%B3%95/" class="category-chain-item">算法</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/%E7%AE%97%E6%B3%95/ACM%E7%AB%9E%E8%B5%9B/" class="category-chain-item">ACM竞赛</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/%E7%AE%97%E6%B3%95/ACM%E7%AB%9E%E8%B5%9B/%E5%9B%BE%E8%AE%BA/" class="category-chain-item">图论</a>
+  
+  
+
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>『算法-ACM竞赛-图论』稳定婚姻问题</div>
+      <div>https://chiamzhang.github.io/2024/06/29/『算法-ACM竞赛-图论』稳定婚姻问题/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>Chiam</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>June 29, 2024</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>Licensed under</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2024/06/29/%E3%80%8E%E7%AE%97%E6%B3%95-ACM%E7%AB%9E%E8%B5%9B-%E5%9B%BE%E8%AE%BA%E3%80%8F%E7%AC%ACK%E7%9F%AD%E8%B7%AF+%E4%B8%A5%E6%A0%BC%E7%AC%ACK%E7%9F%AD%E8%B7%AF/" title="『算法-ACM竞赛-图论』第K短路+严格第K短路">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">『算法-ACM竞赛-图论』第K短路+严格第K短路</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/06/29/%E3%80%8E%E7%AE%97%E6%B3%95-ACM%E7%AB%9E%E8%B5%9B-%E5%9B%BE%E8%AE%BA%E3%80%8F%E7%94%9F%E6%88%90%E6%A0%91%E8%AE%A1%E6%95%B0%E6%A8%A1%E6%9D%BF/" title="『算法-ACM竞赛-图论』生成树计数模板">
+                        <span class="hidden-mobile">『算法-ACM竞赛-图论』生成树计数模板</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"fIfc7WqUDZohlQuPc2lz5mJy-MdYXbMMI","appKey":"zjlAG3ZA3o4cBHVAkjzc2Z20","path":"window.location.pathname","placeholder":"留言仅限讨论，禁止广告等行为","avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"https://fifc7wqu.api.lncldglobal.com","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>Table of Contents</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <meta name="referrer" content="no-referrer" /> <footer id="footer" role="contentinfo"> <meta name="referrer" content="no-referrer" /> <div class="divider"> <div class="wall"></div> <img class="animals" src="/img/footer_animals_new.png" srcset="/img/loading.gif" lazyload alt="Footer Animals"> </div> <div class="container" data-index="450"> <p> <a href="https://chiamzhang.github.io" target="_blank">DogEgg</a> <i class="iconfont icon-love"></i> <a href="#" target="_blank">LittePig</a> </p> <p> Powered by  <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-pen"></i> Theme  <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> </p> </div> </footer> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+  
+<script src="/js/love.js"></script>
+<script src="/js/funnyTitle.js"></script>
+<script src="/js/backTop.js"></script>
+<script src="//cdn.jsdelivr.net/gh/bynotes/texiao/source/js/xiaoxuehua.js"></script>
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+</html>

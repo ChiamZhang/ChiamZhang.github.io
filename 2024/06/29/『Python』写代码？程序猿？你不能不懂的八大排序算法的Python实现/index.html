@@ -1,0 +1,747 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/Mine.jpg">
+  <link rel="icon" href="/img/Mine.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Chiam">
+  <meta name="keywords" content="Algorithms，Cybersecurity">
+  
+    <meta name="description" content="『Python』写代码？程序猿？你不能不懂的八大排序算法的 Python 实现信息获取后通常需要进行处理，处理后的信息其目的是便于人们的应用。信息处理方法有多种，通常由数据的排序，查找，插入，删除等操作。本章介绍几种简单的数据排序算法和高效的排序算法. 本章主要涉及到的知识点有：简单排序算法： 学会选择排序、冒泡排序、桶排序、插入排序的原理以及代码编写高效排序算法： 理解希尔排序，基数排序，快速排">
+<meta property="og:type" content="article">
+<meta property="og:title" content="『Python』写代码？程序猿？你不能不懂的八大排序算法的Python实现">
+<meta property="og:url" content="https://chiamzhang.github.io/2024/06/29/%E3%80%8EPython%E3%80%8F%E5%86%99%E4%BB%A3%E7%A0%81%EF%BC%9F%E7%A8%8B%E5%BA%8F%E7%8C%BF%EF%BC%9F%E4%BD%A0%E4%B8%8D%E8%83%BD%E4%B8%8D%E6%87%82%E7%9A%84%E5%85%AB%E5%A4%A7%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%E7%9A%84Python%E5%AE%9E%E7%8E%B0/index.html">
+<meta property="og:site_name" content="Homepage of Chiam">
+<meta property="og:description" content="『Python』写代码？程序猿？你不能不懂的八大排序算法的 Python 实现信息获取后通常需要进行处理，处理后的信息其目的是便于人们的应用。信息处理方法有多种，通常由数据的排序，查找，插入，删除等操作。本章介绍几种简单的数据排序算法和高效的排序算法. 本章主要涉及到的知识点有：简单排序算法： 学会选择排序、冒泡排序、桶排序、插入排序的原理以及代码编写高效排序算法： 理解希尔排序，基数排序，快速排">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200313152123161.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200313145002256.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200313145016819.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200313145358523.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200313145436274.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200313145449195.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200313145459382.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200313145506381.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/2020031315011755.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200313150429267.gif">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200313151145900.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70">
+<meta property="article:published_time" content="2024-06-29T13:16:53.765Z">
+<meta property="article:modified_time" content="2023-12-05T16:17:49.267Z">
+<meta property="article:author" content="Chiam">
+<meta property="article:tag" content="Algorithms，Cybersecurity">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20200313152123161.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70">
+  
+  
+  
+  <title>『Python』写代码？程序猿？你不能不懂的八大排序算法的Python实现 - Homepage of Chiam</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"chiamzhang.github.io","root":"/","version":"1.9.5-a","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":"❡"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":2},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
+
+
+<body>
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Chiam&#39;s Blogs</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                
+                <span>Home</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                
+                <span>Archives</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                
+                <span>Categories</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                
+                <span>About</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                
+                <span>Links</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="『Python』写代码？程序猿？你不能不懂的八大排序算法的Python实现"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-06-29 21:16" pubdate>
+          June 29, 2024 pm
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          6.1k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          51 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">『Python』写代码？程序猿？你不能不懂的八大排序算法的Python实现</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="『Python』写代码？程序猿？你不能不懂的八大排序算法的-Python-实现"><a href="#『Python』写代码？程序猿？你不能不懂的八大排序算法的-Python-实现" class="headerlink" title="『Python』写代码？程序猿？你不能不懂的八大排序算法的 Python 实现"></a>『Python』写代码？程序猿？你不能不懂的八大排序算法的 Python 实现</h1><p><strong>信息获取后通常需要进行处理，处理后的信息其目的是便于人们的应用。信息处理方法有多种，通常由数据的排序，查找，插入，删除等操作。本章介绍几种简单的数据排序算法和高效的排序算法.</strong></p>
+<h4 id="本章主要涉及到的知识点有："><a href="#本章主要涉及到的知识点有：" class="headerlink" title="本章主要涉及到的知识点有："></a>本章主要涉及到的知识点有：</h4><p><strong>简单排序算法：</strong> 学会选择排序、冒泡排序、桶排序、插入排序的原理以及代码编写<br><strong>高效排序算法：</strong> 理解希尔排序，基数排序，快速排序和归并排序的原理<br><img src="https://img-blog.csdnimg.cn/20200313152123161.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<h4 id="1-简单排序算法"><a href="#1-简单排序算法" class="headerlink" title="1. 简单排序算法"></a>1. 简单排序算法</h4><p>简单排序算法包括选择排序、冒泡排序、桶排序和插入排序，本节重点介绍以上四种简单排序算法。</p>
+<h5 id="1-1-选择排序"><a href="#1-1-选择排序" class="headerlink" title="1.1 选择排序"></a>1.1 选择排序</h5><p><strong>基本思想：</strong></p>
+<p>每一趟从待排序的数据元素中选出最小（或最大）的一个元素，顺序放在待排序的数列的最前，知道全部待排序的数据元素排完。</p>
+<p><strong>排序过程：</strong></p>
+<p>例如:</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs cpp">初始：[<span class="hljs-number">5</span> <span class="hljs-number">4</span> <span class="hljs-number">6</span> <span class="hljs-number">8</span> <span class="hljs-number">7</span> <span class="hljs-number">1</span> <span class="hljs-number">2</span> <span class="hljs-number">3</span>]<br>第一趟排序后 <span class="hljs-number">1</span> [<span class="hljs-number">4</span> <span class="hljs-number">6</span> <span class="hljs-number">8</span> <span class="hljs-number">7</span> <span class="hljs-number">5</span> <span class="hljs-number">2</span> <span class="hljs-number">3</span>]<br>第二趟排序后 <span class="hljs-number">1</span> <span class="hljs-number">2</span> [<span class="hljs-number">6</span> <span class="hljs-number">8</span> <span class="hljs-number">7</span> <span class="hljs-number">5</span> <span class="hljs-number">4</span> <span class="hljs-number">3</span>]<br>第三趟排序后 <span class="hljs-number">1</span> <span class="hljs-number">2</span> <span class="hljs-number">3</span> [<span class="hljs-number">8</span> <span class="hljs-number">7</span> <span class="hljs-number">5</span> <span class="hljs-number">4</span> <span class="hljs-number">6</span>]<br>第四趟排序后 <span class="hljs-number">1</span> <span class="hljs-number">2</span> <span class="hljs-number">3</span> <span class="hljs-number">4</span> [<span class="hljs-number">7</span> <span class="hljs-number">5</span> <span class="hljs-number">8</span> <span class="hljs-number">6</span>]<br>第五趟排序后 <span class="hljs-number">1</span> <span class="hljs-number">2</span> <span class="hljs-number">3</span> <span class="hljs-number">4</span> <span class="hljs-number">5</span> [<span class="hljs-number">7</span> <span class="hljs-number">8</span> <span class="hljs-number">6</span>]<br>第六趟排序后 <span class="hljs-number">1</span> <span class="hljs-number">2</span> <span class="hljs-number">3</span> <span class="hljs-number">4</span> <span class="hljs-number">5</span> <span class="hljs-number">6</span> [<span class="hljs-number">8</span> <span class="hljs-number">7</span>]<br>第七趟排序后 <span class="hljs-number">1</span> <span class="hljs-number">2</span> <span class="hljs-number">3</span> <span class="hljs-number">4</span> <span class="hljs-number">5</span> <span class="hljs-number">6</span> <span class="hljs-number">7</span> [<span class="hljs-number">8</span>]<br>最后排序结果 <span class="hljs-number">1</span> <span class="hljs-number">2</span> <span class="hljs-number">3</span> <span class="hljs-number">4</span> <span class="hljs-number">5</span> <span class="hljs-number">6</span> <span class="hljs-number">7</span> <span class="hljs-number">8</span><br></code></pre></td></tr></table></figure>
+
+<p><strong>对应代码：</strong></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs cpp">a = [<span class="hljs-number">5</span>, <span class="hljs-number">4</span>, <span class="hljs-number">6</span>, <span class="hljs-number">8</span>, <span class="hljs-number">7</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>]<br>n = <span class="hljs-built_in">len</span>(a)<br><span class="hljs-keyword">for</span> i in <span class="hljs-built_in">range</span>(n - <span class="hljs-number">1</span>):<br>    k = i<br>    <span class="hljs-keyword">for</span> j in <span class="hljs-built_in">range</span>(i + <span class="hljs-number">1</span>, n):<br>        <span class="hljs-keyword">if</span> a[j] &lt; a[k]:<br>            k = j<br>    <span class="hljs-keyword">if</span> k != i:<br>        temp = a[i]<br>        a[i] = a[k]<br>        a[k] = temp<br><span class="hljs-built_in">print</span>(a)<br></code></pre></td></tr></table></figure>
+
+<h5 id="1-2-冒泡排序"><a href="#1-2-冒泡排序" class="headerlink" title="1.2 冒泡排序"></a>1.2 冒泡排序</h5><p><strong>基本思想：</strong><br>所谓冒泡排序就是依次将两个相邻的数进行比较，大的在前面，小的在后面。即先比较第一个数和第二个数，大数在前，小数在后，然后比较第 2 个数和第 3 个数，直到比较最后两个数。第一趟结束后，最小数的数一定在最后。第二趟在第一趟的基础上重复上述操作。<br>由于排序过程中总是大数在前，小数在后， 相当于气泡上升，所以叫冒泡排序。<br>大数在前，小数在后排序后得到的是降序，小数在前，大数在后排序后得到的是升序结果。<br><strong>排序过程(降序)</strong></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs cpp">初始数据：<span class="hljs-number">4</span> <span class="hljs-number">5</span> <span class="hljs-number">6</span> <span class="hljs-number">1</span> <span class="hljs-number">2</span> <span class="hljs-number">3</span><br>第一趟：<br>比较前两个数，<span class="hljs-number">4</span>比<span class="hljs-number">5</span>小，交换位置     <span class="hljs-number">5</span> <span class="hljs-number">4</span> <span class="hljs-number">6</span> <span class="hljs-number">1</span> <span class="hljs-number">2</span> <span class="hljs-number">3</span><br>比较第<span class="hljs-number">2</span>第<span class="hljs-number">3</span>个数，<span class="hljs-number">4</span>比<span class="hljs-number">6</span>小，交换位置 <span class="hljs-number">5</span> <span class="hljs-number">6</span> <span class="hljs-number">4</span> <span class="hljs-number">1</span> <span class="hljs-number">2</span> <span class="hljs-number">3</span><br>比较第<span class="hljs-number">3</span>第<span class="hljs-number">4</span>个数，<span class="hljs-number">5</span>比<span class="hljs-number">1</span>大，位置不变 <span class="hljs-number">5</span> <span class="hljs-number">6</span> <span class="hljs-number">4</span> <span class="hljs-number">1</span> <span class="hljs-number">2</span> <span class="hljs-number">3</span><br>比较第<span class="hljs-number">4</span>第<span class="hljs-number">5</span>个数，<span class="hljs-number">1</span>比<span class="hljs-number">2</span>小，交换位置 <span class="hljs-number">5</span> <span class="hljs-number">6</span> <span class="hljs-number">4</span> <span class="hljs-number">2</span> <span class="hljs-number">1</span> <span class="hljs-number">3</span><br>比较最后两个数 ，<span class="hljs-number">1</span>比<span class="hljs-number">3</span>小，交换位置  <span class="hljs-number">5</span> <span class="hljs-number">6</span> <span class="hljs-number">4</span> <span class="hljs-number">2</span> <span class="hljs-number">3</span> <span class="hljs-number">1</span><br>第一趟结束<br>第二趟重复第一趟过程得到 <span class="hljs-number">6</span> <span class="hljs-number">5</span> <span class="hljs-number">4</span> <span class="hljs-number">3</span> <span class="hljs-number">2</span> <span class="hljs-number">1</span><br>排序完毕。<br></code></pre></td></tr></table></figure>
+
+<p>可以发现，第二趟结束已经排好序了，实际上对于一组数据排 n-1 趟一定能排好序。因为第 i 趟都会有前 i 小的数排序好，n-1 趟前 n-1 小的数已排好序，最后一个数自然也排好序了。</p>
+<p><strong>对应代码：</strong></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs cpp">a = [<span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-number">6</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>]<br>n = <span class="hljs-built_in">len</span>(a)<br><span class="hljs-keyword">for</span> i in <span class="hljs-built_in">range</span>(n - <span class="hljs-number">1</span>):<br>    <span class="hljs-keyword">for</span> j in <span class="hljs-built_in">range</span>(n - i - <span class="hljs-number">1</span>):<br>        <span class="hljs-keyword">if</span> a[j] &lt; a[j + <span class="hljs-number">1</span>]:<br>            temp = a[j]<br>            a[j] = a[j + <span class="hljs-number">1</span>]<br>            a[j + <span class="hljs-number">1</span>] = temp<br><span class="hljs-built_in">print</span>(a)<br></code></pre></td></tr></table></figure>
+
+<h5 id="1-3-桶排序"><a href="#1-3-桶排序" class="headerlink" title="1.3 桶排序"></a>1.3 桶排序</h5><p><strong>基本思想：</strong><br>桶排序的思想是若待排序的记录的关键字在一个明显有限范围内（整型）时，可设计有限个有序桶，每个桶只能装与之对应的值，顺序输出各桶的值，将得到有序的序列。<br>例如,输入 n 个 0<del>9 之间的整数，由小到大排序输出<br>我们可以准备 10 个桶依次编号为 0</del>9。输入的数 0 入 0 号桶，1 入 1 号桶，依次类推。<br>如图所示：<br><img src="https://img-blog.csdnimg.cn/20200313145002256.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br>先准备好 10 个空桶并编号。<br>依次输入 8 个整数：2，5，6，8，5，2，9，6<br>每输入一次就将数放入对应的桶。<br>输入完毕后桶内数据如图所示：<br><img src="https://img-blog.csdnimg.cn/20200313145016819.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br><strong>桶排序过程</strong></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-number">2</span>号桶内有两个数字<span class="hljs-number">2</span>，<span class="hljs-number">5</span>号桶内有两个数字<span class="hljs-number">5</span>，<span class="hljs-number">6</span>号桶内有两个数字<span class="hljs-number">6</span>，<span class="hljs-number">8</span>号桶内有一个数字<span class="hljs-number">8</span>，<span class="hljs-number">9</span>号桶内有一个数字<span class="hljs-number">9.</span><br>然后按桶编号从小到大的顺序将桶内数字输出，得到 <span class="hljs-number">2</span>，<span class="hljs-number">2</span>，<span class="hljs-number">5</span>，<span class="hljs-number">5</span>，<span class="hljs-number">6</span>，<span class="hljs-number">6</span>，<span class="hljs-number">8</span>，<span class="hljs-number">9</span><br>此时就排好续了。<br></code></pre></td></tr></table></figure>
+
+<p><strong>实现代码：</strong></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs cpp">b=&#123;<span class="hljs-number">0</span>:<span class="hljs-number">0</span>,<span class="hljs-number">1</span>:<span class="hljs-number">0</span>,<span class="hljs-number">2</span>:<span class="hljs-number">0</span>,<span class="hljs-number">3</span>:<span class="hljs-number">0</span>,<span class="hljs-number">4</span>:<span class="hljs-number">0</span>,<span class="hljs-number">5</span>:<span class="hljs-number">0</span>,<span class="hljs-number">6</span>:<span class="hljs-number">0</span>,<span class="hljs-number">7</span>:<span class="hljs-number">0</span>,<span class="hljs-number">8</span>:<span class="hljs-number">0</span>,<span class="hljs-number">9</span>:<span class="hljs-number">0</span>&#125;<br>n=<span class="hljs-built_in">eval</span>(<span class="hljs-built_in">input</span>(<span class="hljs-string">&quot;输入整数n&quot;</span>))<br><span class="hljs-keyword">for</span> i in <span class="hljs-built_in">range</span>(n):<br>    x=<span class="hljs-built_in">eval</span>(<span class="hljs-built_in">input</span>(<span class="hljs-string">&quot;输入0~9之间的整数&quot;</span>))<br>    b[x]+=<span class="hljs-number">1</span><br><span class="hljs-keyword">for</span> key in <span class="hljs-built_in">range</span>(<span class="hljs-number">10</span>):<br>    <span class="hljs-keyword">while</span> b[key]&gt;<span class="hljs-number">0</span>:<br>        <span class="hljs-built_in">print</span>(key,end=<span class="hljs-string">&#x27; &#x27;</span>)<br>        b[key]-=<span class="hljs-number">1</span><br></code></pre></td></tr></table></figure>
+
+<h5 id="1-4-插入排序"><a href="#1-4-插入排序" class="headerlink" title="1.4 插入排序"></a>1.4 插入排序</h5><p><strong>基本思想：</strong><br>插入排序是一种简单的排序方法，其算法的基本思想是：<br>假设待排序的数据存放在数组 a[1…n]中，增加一个哨兵节点 x.<br>a[1]自成一个有序区，无序区为 a[2…n]；<br>从 i&#x3D;2 起直至 i&#x3D;n 为止，将 a[i]放在恰当的位置，使 a[1…i]数据序列有序；<br>x&#x3D;a[i]<br>将 x 与前 i-1 个数比较，j&#x3D;i-1;while(x&lt;a[j]) j-&#x3D;1<br>将 a 数组的元素从 j 位置开始向后移动：for k in range(j,i+1,-1): a[k]&#x3D;a[k-1]<br>a[j]&#x3D;x<br>生成包含 n 个数据的有序区。<br>例如 a&#x3D;[3 2 4 1 6 5 2 7]</p>
+<p><strong>排序过程：</strong></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs cpp">第<span class="hljs-number">0</span>步：[<span class="hljs-number">3</span>] <span class="hljs-number">2</span> <span class="hljs-number">4</span> <span class="hljs-number">1</span> <span class="hljs-number">6</span> <span class="hljs-number">5</span> <span class="hljs-number">2</span> <span class="hljs-number">7</span><br>第<span class="hljs-number">1</span>步：[<span class="hljs-number">2</span> <span class="hljs-number">3</span>] <span class="hljs-number">4</span> <span class="hljs-number">1</span> <span class="hljs-number">6</span> <span class="hljs-number">5</span> <span class="hljs-number">2</span> <span class="hljs-number">7</span><br>第<span class="hljs-number">2</span>步：[<span class="hljs-number">2</span> <span class="hljs-number">3</span> <span class="hljs-number">4</span>] <span class="hljs-number">1</span> <span class="hljs-number">6</span> <span class="hljs-number">5</span> <span class="hljs-number">2</span> <span class="hljs-number">7</span><br>第<span class="hljs-number">3</span>步：[<span class="hljs-number">1</span> <span class="hljs-number">2</span> <span class="hljs-number">3</span> <span class="hljs-number">4</span>] <span class="hljs-number">6</span> <span class="hljs-number">5</span> <span class="hljs-number">2</span> <span class="hljs-number">7</span><br>第<span class="hljs-number">4</span>步：[<span class="hljs-number">1</span> <span class="hljs-number">2</span> <span class="hljs-number">3</span> <span class="hljs-number">4</span> <span class="hljs-number">6</span>] <span class="hljs-number">5</span> <span class="hljs-number">2</span> <span class="hljs-number">7</span><br>第<span class="hljs-number">5</span>步：[<span class="hljs-number">1</span> <span class="hljs-number">2</span> <span class="hljs-number">3</span> <span class="hljs-number">4</span> <span class="hljs-number">5</span> <span class="hljs-number">6</span>] <span class="hljs-number">2</span> <span class="hljs-number">7</span><br>第<span class="hljs-number">6</span>步：[<span class="hljs-number">1</span> <span class="hljs-number">2</span> <span class="hljs-number">2</span> <span class="hljs-number">3</span> <span class="hljs-number">4</span> <span class="hljs-number">5</span> <span class="hljs-number">6</span>] <span class="hljs-number">7</span><br>第<span class="hljs-number">7</span>步：[<span class="hljs-number">1</span> <span class="hljs-number">2</span> <span class="hljs-number">2</span> <span class="hljs-number">3</span> <span class="hljs-number">4</span> <span class="hljs-number">5</span> <span class="hljs-number">6</span> <span class="hljs-number">7</span>]<br></code></pre></td></tr></table></figure>
+
+<p>插入排序的时间复杂度为 O(n*n)。插入排序适用于数据已经排好序，插入一个新数据的情况</p>
+<p><strong>实现代码：</strong></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs cpp">a = [<span class="hljs-number">0</span>, <span class="hljs-number">3</span>, <span class="hljs-number">2</span>, <span class="hljs-number">4</span>, <span class="hljs-number">1</span>, <span class="hljs-number">6</span>, <span class="hljs-number">5</span>, <span class="hljs-number">2</span>, <span class="hljs-number">7</span>]<br>n = <span class="hljs-built_in">len</span>(a)<br><span class="hljs-keyword">for</span> i in <span class="hljs-built_in">range</span>(<span class="hljs-number">2</span>, n):<br>    x = a[i]<br>    j = i - <span class="hljs-number">1</span><br>    <span class="hljs-keyword">while</span> x &lt; a[j]:<br>        a[j + <span class="hljs-number">1</span>] = a[j]<br>        j -= <span class="hljs-number">1</span><br>    a[j + <span class="hljs-number">1</span>] = x<br><span class="hljs-built_in">print</span>(a)<br></code></pre></td></tr></table></figure>
+
+<p><strong>注意：</strong>此数组有效数据从 i&#x3D;1 开始，a[0]&#x3D;0,是为了运算方便补上的。</p>
+<h4 id="2-高效排序算法"><a href="#2-高效排序算法" class="headerlink" title="2. 高效排序算法"></a>2. 高效排序算法</h4><p>第一节介绍了简单的排序算法，但在实际应用中，简单的排序算法很难达到效率的要求，所以本节介绍了两种高效的排序算法，使排序时间复杂度大大减少。</p>
+<h5 id="2-1-快速排序"><a href="#2-1-快速排序" class="headerlink" title="2.1 快速排序"></a>2.1 快速排序</h5><p><strong>基本思想：</strong><br>快速排序是一种采用分治法解决问题的一个典型应用,也是冒泡排序的一种改进。它的基本思想是，通过一趟排序将待排记录分割成独立的两部分，其中一部分均比另一部分小，则可分别对这两部分继续进行排序，已达到整个序列有序。排序的时间复杂度为 O(nlogn),相比于简单排序算法，运算效率大大提高。</p>
+<p><strong>算法步骤：</strong><br>① 从序列中取出一个数作为中轴数<br>② 将比这个数大的数放到它的右边，小于或等于他的数放到它的左边。<br>③ 再对左右区间重复第二步，知道各区间只有一个数<br>例如：对以下 10 个数进行快速排序：<br>6 1 2 7 9 3 4 5 10 8<br>以第一个数为基准数<br>在初始状态下，数字 6 在序列的第 1 位。我们的目标是将 6 挪到序列中间的某个位置，假设这个位置是 k。现在就需要寻找这个 k，并且以第 k 位为分界点，左边的数都 ≤6，右边的数都 ≥6。那么如何找到这个位置 k 呢？<br>我们要知道，快速排序其实是冒泡排序的一种改进，冒泡排序每次对相邻的两个数进行比较，这显然是一种比较浪费时间的。<br>而快速排序是分别从两端开始”探测”的，先从右往左找一个小于 6 的数，再从左往右找一个大于 6 的数，然后交换他们。这里可以用两个变量 i 和 j，分别指向序列最左边和最右边。我们为这两个变量起个好听的名字“哨兵 i”和“哨兵 j”。刚开始的时候让哨兵 i 指向序列的最左边，指向数字 6。让哨兵 j 指向序列的最右边，指向数字 8。<br><img src="https://img-blog.csdnimg.cn/20200313145358523.png" srcset="/img/loading.gif" lazyload alt="图8.3 快速排序初始状态"><br>首先哨兵 j 开始出动。因为此处设置的基准数是最左边的数，所以需要让哨兵 j 先出动，这一点非常重要。哨兵 j 一步一步地向左挪动，直到找到一个小于 6 的数停下来。接下来哨兵 i 再一步一步向右挪动），直到找到一个数大于 6 的数停下来。最后哨兵 j 停在了数字 5 面前，哨兵 i 停在了数字 7 面前<br><img src="https://img-blog.csdnimg.cn/20200313145436274.png" srcset="/img/loading.gif" lazyload alt="图8.4 快速排序过程"><br>现在交换哨兵 i 和哨兵 j 所指向元素的值。交换之后的序列如下。<br><img src="https://img-blog.csdnimg.cn/20200313145449195.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br>到此，第一次交换结束。接下来开始哨兵 j 继续向左挪动（再友情提醒，每次必须是哨兵 j 先出发）。他发现了 4&lt;6，停下来。哨兵 i 也继续向右挪动的，他发现了 9&gt;6，停下来。此时再次进行交换，交换之后的序列如下</p>
+<p><img src="https://img-blog.csdnimg.cn/20200313145459382.png" srcset="/img/loading.gif" lazyload alt="图8.6 快速排序过程"><br>第二次交换结束。哨兵 j 继续向左挪动，他发现了 3&lt;6,又停下来。哨兵 i 继续向右移动，此时哨兵 i 和哨兵 j 相遇了，哨兵 i 和哨兵 j 都走到 3 面前。说明此时“探测”结束。我们将基准数 6 和 3 进行交换。交换之后的序列如下。</p>
+<p><img src="https://img-blog.csdnimg.cn/20200313145506381.png" srcset="/img/loading.gif" lazyload alt="图8.7 快速排序一趟结果"><br>到此第一轮“探测”真正结束。现在基准数 6 已经归为，此时以基准数 6 为分界点，6 左边的数都小于等于 6，6 右边的数都大于等于 6。<br>现在我们将第一轮“探测”结束后的序列，以 6 为分界点拆分成两个序列，左边的序列是“3 1 2 5 4”，右边的序列是“9 7 10 8”。接下来还需要分别处理这两个序列，因为 6 左边和右边的序列目前都还是混乱的。不过不要紧 ，我们已经掌握了方法，接下来只要模拟刚才的方法分别处理 6 左边和右边的序列即可。<br>实际上快速排序的每一轮处理其实就是将这一轮的基准数归为，直到所有的数都归为为止，排序就结束了。<br><strong>实现代码：</strong></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-function">def <span class="hljs-title">qsort</span><span class="hljs-params">(l,r)</span>:</span><br><span class="hljs-function">      if(l&gt;r):</span><br><span class="hljs-function">          return None</span><br><span class="hljs-function">      tmp=</span>a[l]<br>      i=l<br>      j=r<br>      <span class="hljs-keyword">while</span> i!=j:<br>          <span class="hljs-keyword">while</span>(a[j]&gt;=tmp <span class="hljs-keyword">and</span> j&gt;i):<br>              j-=<span class="hljs-number">1</span><br>          <span class="hljs-keyword">while</span>(a[i]&lt;=tmp <span class="hljs-keyword">and</span> j&gt;i):<br>              i+=<span class="hljs-number">1</span><br>          <span class="hljs-keyword">if</span>(j&gt;i):<br>              t=a[i]<br>              a[i]=a[j]<br>              a[j]=t<br>          a[l]=a[i]<br>          a[i]=tmp<br>      <span class="hljs-built_in">qsort</span>(l,i<span class="hljs-number">-1</span>)<br>      <span class="hljs-built_in">qsort</span>(i+<span class="hljs-number">1</span>,r)<br></code></pre></td></tr></table></figure>
+
+<h5 id="2-2-归并排序"><a href="#2-2-归并排序" class="headerlink" title="2.2 归并排序"></a>2.2 归并排序</h5><p><strong>基本思想：</strong><br>归并排序是由递归实现的，主要是分而治之的思想，也就是通过将问题分解成多个容易求解的局部性小问题来解开原本的问题的技巧。<br>另外，归并排序在合并两个已排序数组时，如果遇到了相同的元素，只要保证前半部分数组优先于后半部分数组， 相同元素的顺序就不会颠倒。所以归并排序属于稳定的排序算法。</p>
+<p>每次分别排左半边和右半边，不断递归调用自己，直到只有一个元素递归结束，开始回溯，调用 merge 函数，合并两个有序序列，再合并的时候每次给末尾追上一个最大 int 这样就不怕最后一位的数字不会被排序。<br><strong>排序过程：</strong><br><img src="https://img-blog.csdnimg.cn/2020031315011755.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<p><strong>代码实现：</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">MergeSort</span>(<span class="hljs-params">lists</span>):<br>    <span class="hljs-keyword">if</span> <span class="hljs-built_in">len</span>(lists) &lt;= <span class="hljs-number">1</span>:<br>        <span class="hljs-keyword">return</span> lists<br>    num = <span class="hljs-built_in">int</span>( <span class="hljs-built_in">len</span>(lists) / <span class="hljs-number">2</span> )<br>    left = MergeSort(lists[:num])<br>    right = MergeSort(lists[num:])<br>    <span class="hljs-keyword">return</span> Merge(left, right)<br><span class="hljs-keyword">def</span> <span class="hljs-title function_">Merge</span>(<span class="hljs-params">left,right</span>):<br>    r, l=<span class="hljs-number">0</span>, <span class="hljs-number">0</span><br>    result=[]<br>    <span class="hljs-keyword">while</span> l&lt;<span class="hljs-built_in">len</span>(left) <span class="hljs-keyword">and</span> r&lt;<span class="hljs-built_in">len</span>(right):<br>        <span class="hljs-keyword">if</span> left[l] &lt;= right[r]:<br>            result.append(left[l])<br>            l += <span class="hljs-number">1</span><br>        <span class="hljs-keyword">else</span>:<br>            result.append(right[r])<br>            r += <span class="hljs-number">1</span><br>    result += <span class="hljs-built_in">list</span>(left[l:])<br>    result += <span class="hljs-built_in">list</span>(right[r:])<br>    <span class="hljs-keyword">return</span> result<br><span class="hljs-built_in">print</span> MergeSort([<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-number">6</span>, <span class="hljs-number">7</span>, <span class="hljs-number">90</span>, <span class="hljs-number">21</span>, <span class="hljs-number">23</span>, <span class="hljs-number">45</span>])<br></code></pre></td></tr></table></figure>
+
+<h5 id="2-3-基数排序："><a href="#2-3-基数排序：" class="headerlink" title="2.3 基数排序："></a>2.3 基数排序：</h5><p><strong>基本思想：</strong><br>基数排序（radix sort）属于“分配式排序”（distribution sort），又称“桶子法”（bucket sort）或 bin sort，顾名思义，它是透过键值的部份资讯，将要排序的元素分配至某些“桶”中，藉以达到排序的作用。参考桶排序。<br>基数排序算法不依靠直接比较元素排序。而是采用分配式排序，单独处理元素的每一位。从最高位向最低位处理称为：最高位优先（MSD）反之称为：最低位优先(LSD)。<br>下面以最低位优先为例：<br>（1）准备 10 个容器，编号 0-9，对应数字 0-9。 容器是有序的(按添加顺序)<br>（2）然后按待排序元素的某一位上的数字(比如:个位&#x2F;十位&#x2F;百位)将其存放到对应容器中（数字相同,如: 个位是数字 1 时, 就把这个元素放在 1 号桶），所有元素这样处理完后,再从 0 号容器开始依次到 9 号容器, 将其中的元素顺序取出放回原数组，然后再从下一位开始…(比如个位处理完后, 再处理十位&#x2F;百位….最高位)<br>基数排序，可以称之为，进阶版的桶排序。<br><strong>排序过程：</strong><img src="https://img-blog.csdnimg.cn/20200313150429267.gif" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/BORRISEE6/article/details/102771758?ops_request_misc=%257B%2522request%255Fid%2522%253A%2522158391688019195162531074%2522%252C%2522scm%2522%253A%252220140713.130056874..%2522%257D&request_id=158391688019195162531074&biz_id=0&utm_source=distribute.pc_search_result.none-task">这个图片的来源</a></p>
+<p><strong>代码实现：</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> math<br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">sort</span>(<span class="hljs-params">a, radix=<span class="hljs-number">10</span></span>):<br>    <span class="hljs-string">&quot;&quot;&quot;a为整数列表， radix为基数&quot;&quot;&quot;</span><br>    K = <span class="hljs-built_in">int</span>(math.ceil(math.log(<span class="hljs-built_in">max</span>(a), radix))) <span class="hljs-comment"># 用K位数可表示任意整数</span><br>    bucket = [[] <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(radix)] <span class="hljs-comment"># 不能用 [[]]*radix</span><br>    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">1</span>, K+<span class="hljs-number">1</span>): <span class="hljs-comment"># K次循环</span><br>        <span class="hljs-keyword">for</span> val <span class="hljs-keyword">in</span> a:<br>            bucket[val%(radix**i)/(radix**(i-<span class="hljs-number">1</span>))].append(val) <span class="hljs-comment"># 析取整数第K位数字 （从低到高）</span><br>        <span class="hljs-keyword">del</span> a[:]<br>        <span class="hljs-keyword">for</span> each <span class="hljs-keyword">in</span> bucket:<br>            a.extend(each) <span class="hljs-comment"># 桶合并</span><br>        bucket = [[] <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(radix)]<br></code></pre></td></tr></table></figure>
+
+<h5 id="2-4-希尔排序"><a href="#2-4-希尔排序" class="headerlink" title="2.4 希尔排序"></a>2.4 希尔排序</h5><p><strong>基本思想：</strong><br>希尔排序，也称递减增量排序算法，是插入排序的一种更高效的改进版本。希尔排序是非稳定排序算法。同时也突破了之前内排序算法复杂度为 O(n2)的限制。<br>希尔排序是基于插入排序的以下两点性质而提出改进方法的：</p>
+<p>插入排序在对几乎已经排好序的数据操作时，效率高，即可以达到线性排序的效率<br>插入排序一般来说是低效的，因为插入排序每次只能将数据移动一位<br>该方法的基本思想是：先将整个待排元素序列分割成若干个子序列（由相隔某个“增量”的元素组成的）分别进行直接插入排序，然后依次缩减增量再进行排序，待整个序列中的元素基本有序（增量足够小）时，再对全体元素进行一次直接插入排序。因为直接插入排序在元素基本有序的情况下（接近最好情况），效率是很高的，因此希尔排序在时间效率上比前两种方法有较大提高。</p>
+<p>其中增量序列的选择是非常关键的，但通常我们取步长为 n&#x2F;2（数组长度的一般）然后一直取半直到 1。</p>
+<p><strong>算法过程：</strong><br><img src="https://img-blog.csdnimg.cn/20200313151145900.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br>图片是之前看到的，如果有人知道出处，希望可以在评论区中指出，感谢。<br><strong>实现代码：</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs python">a = [<span class="hljs-number">56</span>,<span class="hljs-number">52</span>,-<span class="hljs-number">96</span>,-<span class="hljs-number">53</span>,<span class="hljs-number">23</span>,-<span class="hljs-number">789</span>,<span class="hljs-number">520</span>]    <span class="hljs-comment">#测试案例</span><br>b = <span class="hljs-built_in">len</span>(a)                         <span class="hljs-comment">#列表长度</span><br>gap = b // <span class="hljs-number">2</span>                       <span class="hljs-comment">#初始步长设置为总长度的一半</span><br><span class="hljs-keyword">while</span> gap &gt;= <span class="hljs-number">1</span>:<br>    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span> (b):<br>        j = i<br>        <span class="hljs-keyword">while</span> j&gt;=gap <span class="hljs-keyword">and</span> a[j-gap] &gt; a[j]:   <span class="hljs-comment">#在每一组里面进行直接插入排序</span><br>            a[j],a[j-gap] = a[j-gap],a[j]<br>            j-= gap<br>    gap=gap//<span class="hljs-number">2</span>                              <span class="hljs-comment">#更新步长</span><br><span class="hljs-built_in">print</span>(a)<br><br></code></pre></td></tr></table></figure>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Python/" class="category-chain-item">Python</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>『Python』写代码？程序猿？你不能不懂的八大排序算法的Python实现</div>
+      <div>https://chiamzhang.github.io/2024/06/29/『Python』写代码？程序猿？你不能不懂的八大排序算法的Python实现/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>Chiam</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>June 29, 2024</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>Licensed under</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2024/06/29/%E3%80%8ESDAU%20%E5%B1%B1%E4%B8%9C%E5%86%9C%E4%B8%9A%E5%A4%A7%E5%AD%A6%E6%9D%90%E6%96%99%E3%80%8FAI%E6%8A%80%E6%9C%AF%E6%8A%BC%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E8%80%83%E8%AF%95%E9%A2%98/" title="『SDAU 山东农业大学材料』AI技术押人工智能考试题">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">『SDAU 山东农业大学材料』AI技术押人工智能考试题</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/06/29/%E3%80%8EPython%E3%80%8FPython%E7%BC%96%E8%AF%91%E6%88%90%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%8F%AF%E6%89%A7%E8%A1%8C%E6%96%87%E4%BB%B6%EF%BC%88Windows%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%8F%AF%E6%89%A7%E8%A1%8C%E6%96%87%E4%BB%B6exe,Linux%20%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%8F%AF%E6%89%A7%E8%A1%8C%E6%96%87%E4%BB%B6elf,Mac%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%8F%AF%E6%89%A7%E8%A1%8C%E6%96%87%E4%BB%B6mach-O%EF%BC%89/" title="『Python』Python编译成计算机可执行文件（Windows计算机可执行文件exe,Linux 计算机可执行文件elf,Mac计算机可执行文件mach-O）">
+                        <span class="hidden-mobile">『Python』Python编译成计算机可执行文件（Windows计算机可执行文件exe,Linux 计算机可执行文件elf,Mac计算机可执行文件mach-O）</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"fIfc7WqUDZohlQuPc2lz5mJy-MdYXbMMI","appKey":"zjlAG3ZA3o4cBHVAkjzc2Z20","path":"window.location.pathname","placeholder":"留言仅限讨论，禁止广告等行为","avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"https://fifc7wqu.api.lncldglobal.com","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>Table of Contents</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <meta name="referrer" content="no-referrer" /> <footer id="footer" role="contentinfo"> <meta name="referrer" content="no-referrer" /> <div class="divider"> <div class="wall"></div> <img class="animals" src="/img/footer_animals_new.png" srcset="/img/loading.gif" lazyload alt="Footer Animals"> </div> <div class="container" data-index="450"> <p> <a href="https://chiamzhang.github.io" target="_blank">DogEgg</a> <i class="iconfont icon-love"></i> <a href="#" target="_blank">LittePig</a> </p> <p> Powered by  <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-pen"></i> Theme  <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> </p> </div> </footer> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+  
+<script src="/js/love.js"></script>
+<script src="/js/funnyTitle.js"></script>
+<script src="/js/backTop.js"></script>
+<script src="//cdn.jsdelivr.net/gh/bynotes/texiao/source/js/xiaoxuehua.js"></script>
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+</html>

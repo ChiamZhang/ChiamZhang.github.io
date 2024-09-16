@@ -1,0 +1,705 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/Mine.jpg">
+  <link rel="icon" href="/img/Mine.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Chiam">
+  <meta name="keywords" content="Algorithms，Cybersecurity">
+  
+    <meta name="description" content="『算法-ACM 竞赛-疯子的算法总结』6.1 简单排序总 选择排序+插入排序+比较排序+冒泡排序一、数组的排序算法1.选择排序选择排序是指每次选择所需排序数组中的最大值或者最小值（根据排序方式选择，从大到小选最大，从小到大选最小），将这个元素与前面没有进行排序的元素交换。下面以 1 4 2 5 9 6 这些乱序元素，来表现排序过程。第一次排序 9 4 2 5 1 6第二次排序 9 6 2 5 1">
+<meta property="og:type" content="article">
+<meta property="og:title" content="『算法-ACM竞赛-疯子的算法总结』6.1 简单排序总 选择排序+插入排序+比较排序+冒泡排序">
+<meta property="og:url" content="https://chiamzhang.github.io/2024/06/29/%E3%80%8E%E7%AE%97%E6%B3%95-ACM%E7%AB%9E%E8%B5%9B-%E7%96%AF%E5%AD%90%E7%9A%84%E7%AE%97%E6%B3%95%E6%80%BB%E7%BB%93%E3%80%8F6.1%20%E7%AE%80%E5%8D%95%E6%8E%92%E5%BA%8F%E6%80%BB%20%E9%80%89%E6%8B%A9%E6%8E%92%E5%BA%8F+%E6%8F%92%E5%85%A5%E6%8E%92%E5%BA%8F+%E6%AF%94%E8%BE%83%E6%8E%92%E5%BA%8F+%E5%86%92%E6%B3%A1%E6%8E%92%E5%BA%8F/index.html">
+<meta property="og:site_name" content="Homepage of Chiam">
+<meta property="og:description" content="『算法-ACM 竞赛-疯子的算法总结』6.1 简单排序总 选择排序+插入排序+比较排序+冒泡排序一、数组的排序算法1.选择排序选择排序是指每次选择所需排序数组中的最大值或者最小值（根据排序方式选择，从大到小选最大，从小到大选最小），将这个元素与前面没有进行排序的元素交换。下面以 1 4 2 5 9 6 这些乱序元素，来表现排序过程。第一次排序 9 4 2 5 1 6第二次排序 9 6 2 5 1">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2024-06-29T13:16:54.493Z">
+<meta property="article:modified_time" content="2023-12-05T16:19:52.338Z">
+<meta property="article:author" content="Chiam">
+<meta property="article:tag" content="Algorithms，Cybersecurity">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>『算法-ACM竞赛-疯子的算法总结』6.1 简单排序总 选择排序+插入排序+比较排序+冒泡排序 - Homepage of Chiam</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"chiamzhang.github.io","root":"/","version":"1.9.5-a","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":"❡"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":2},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
+
+
+<body>
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Chiam&#39;s Blogs</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                
+                <span>Home</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                
+                <span>Archives</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                
+                <span>Categories</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                
+                <span>About</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                
+                <span>Links</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="『算法-ACM竞赛-疯子的算法总结』6.1 简单排序总 选择排序+插入排序+比较排序+冒泡排序"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-06-29 21:16" pubdate>
+          June 29, 2024 pm
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          4.2k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          36 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">『算法-ACM竞赛-疯子的算法总结』6.1 简单排序总 选择排序+插入排序+比较排序+冒泡排序</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="『算法-ACM-竞赛-疯子的算法总结』6-1-简单排序总-选择排序-插入排序-比较排序-冒泡排序"><a href="#『算法-ACM-竞赛-疯子的算法总结』6-1-简单排序总-选择排序-插入排序-比较排序-冒泡排序" class="headerlink" title="『算法-ACM 竞赛-疯子的算法总结』6.1 简单排序总 选择排序+插入排序+比较排序+冒泡排序"></a>『算法-ACM 竞赛-疯子的算法总结』6.1 简单排序总 选择排序+插入排序+比较排序+冒泡排序</h1><h1 id="一、数组的排序算法"><a href="#一、数组的排序算法" class="headerlink" title="一、数组的排序算法"></a>一、数组的排序算法</h1><h2 id="1-选择排序"><a href="#1-选择排序" class="headerlink" title="1.选择排序"></a>1.选择排序</h2><p>选择排序是指每次选择所需排序数组中的最大值或者最小值（根据排序方式选择，从大到小选最大，从小到大选最小），将这个元素与前面没有进行排序的元素交换。<br>下面以 1 4 2 5 9 6 这些乱序元素，来表现排序过程。<br>第一次排序 9 4 2 5 1 6<br>第二次排序 9 6 2 5 1 4<br>第三次排序 9 6 5 2 1 4<br>第四次排序 9 6 5 4 1 2<br>第五次排序 9 6 5 4 2 1<br>用一段程序实现以上过程<br>以由大到小为例</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><code class="hljs c"><br>&#123;<br>	<span class="hljs-type">int</span> i,j;				<span class="hljs-comment">/*定义主函数局部变量*/</span><br>	<span class="hljs-type">int</span> a[<span class="hljs-number">6</span>];				<span class="hljs-comment">/*开设容量为6的数组用于存入数据*/</span><br>	<span class="hljs-type">int</span> iTemp;				<span class="hljs-comment">/*定义暂时存储最值的变量*/</span><br>	<span class="hljs-type">int</span> iPos;				<span class="hljs-comment">/*定义用于存储最值位置的变量*/</span><br>	<span class="hljs-keyword">for</span>(i=<span class="hljs-number">0</span>;i&lt;<span class="hljs-number">6</span>;i++)<br>		<span class="hljs-built_in">cin</span>&gt;&gt;a[i];			<span class="hljs-comment">/*输入数组的值*/</span><br>	<span class="hljs-keyword">for</span>(i=<span class="hljs-number">0</span>;i&lt;<span class="hljs-number">5</span>;i++)		<span class="hljs-comment">/*当剩余一个元素时循环即可停止，最后一个元素必定为最值*/</span><br>	&#123;<br>		iTemp=a[i];			<span class="hljs-comment">/*假设最值为第i个元素，开始时假设为第一个元素，0#位置*/</span><br>		iPos=i;	 			<span class="hljs-comment">/*最值位置为i*/</span><br>		<span class="hljs-keyword">for</span>(j=i+<span class="hljs-number">1</span>;j&lt;<span class="hljs-number">6</span>;j++)	<span class="hljs-comment">/*从最值的下一个元素开始循环，直到找到一个值比最大值还大的值*/</span><br>		&#123;<br>			<span class="hljs-keyword">if</span>(iTemp&lt;a[j])	<span class="hljs-comment">/*当找到那个值时*/</span><br>			&#123;<br>				iTemp=a[j];<span class="hljs-comment">/*重新记录最小值*/</span><br>				iPos=j;		<span class="hljs-comment">/*记录最值位置为*/</span><br>			&#125;<br>		&#125;<br>		a[iPos]=a[i];<br>		a[i]=iTemp;			<span class="hljs-comment">/*交换最大最小值*/</span><br>	&#125;<br>	<span class="hljs-keyword">for</span>(i=<span class="hljs-number">0</span>;i&lt;<span class="hljs-number">6</span>;i++)<br>		<span class="hljs-built_in">cout</span>&lt;&lt;a[i];			<span class="hljs-comment">/*输出数组的值*/</span><br>	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+<h2 id="2-冒泡排序法"><a href="#2-冒泡排序法" class="headerlink" title="2.冒泡排序法"></a>2.冒泡排序法</h2><p>冒泡排序法是指在排序是比较相邻两个元素的数值，换位置（从大到小，大在前。从小到大，小在前。）下面仍以 1 4 2 5 9 6 这些乱序元素为例<br>以由大到小排序<br>第一排序过程 sec1 &#160;&#160;&#160;&#160;&#160;&#160; 4 1 2 5 9 6 （1&#x2F;4 比较）<br>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;sec2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4 2 1 5 9 6 （1&#x2F;2 比较）<br>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;sec3&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4 2 5 1 9 6 （1&#x2F;5 比较）<br>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;sec4&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4 2 5 9 1 6 &#160;&#160;(1&#x2F;9 比较）<br>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;sec5&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4 2 5 9 6 1 （1&#x2F;6 比较）<br>第二排序过程 sec1 &#160;&#160;&#160;&#160;&#160;&#160; 4 2 5 9 6 1 （4&#x2F;2 比较）<br>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;sec2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4 5 2 9 6 1（2&#x2F;5 比较）<br>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;sec3&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4 5 9 2 6 1 （2&#x2F;9 比较）<br>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;sec4&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4 5 9 6 2 1 &#160;&#160;(6&#x2F;9 比较）<br>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;sec5&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4 5 9 6 2 1 （2&#x2F;1 比较）<br>第三排序过程：5 9 6 4 2 1（中间过程略）<br>第四排序过程：9 6 5 4 2 1（中间过程略）<br>第五排序过程：9 6 5 4 2 1（中间过程略）<br>虽然这个过程在四过程时就已经完成，这是针对特殊情况，一般情况要进行 n-1 此过程才能完全排序。<br>用程序实现上述过程</p>
+<figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs mipsasm">&#123;<br>	int i,<span class="hljs-keyword">j;</span><br><span class="hljs-keyword"></span>	int iTemp;<br>	int a[<span class="hljs-number">6</span>];<br>	for(i=<span class="hljs-number">0</span><span class="hljs-comment">;i&lt;6;i++)</span><br>		cin&gt;&gt;a[i];<br>	for(int i=<span class="hljs-number">0</span><span class="hljs-comment">;i&lt;5;i++)</span><br>	&#123;<br>		for(int <span class="hljs-keyword">j=0;j&lt;5;j++)</span><br><span class="hljs-keyword"></span>		&#123;<br>			if(a[<span class="hljs-keyword">j]&lt;a[j+1])	</span>	<span class="hljs-comment">/*比较相邻元素的值*/</span><br>			&#123;<br>				iTemp=a[<span class="hljs-keyword">j+1];</span><br><span class="hljs-keyword"></span>				a[<span class="hljs-keyword">j+1]=a[j];</span><br><span class="hljs-keyword"></span>				a[<span class="hljs-keyword">j]=iTemp;	</span>		<span class="hljs-comment">/*交换相邻元素的值*/</span><br>			&#125;<br>		&#125;<br>	&#125;<br>	for(i=<span class="hljs-number">0</span><span class="hljs-comment">;i&lt;6;i++)</span><br>		cout&lt;&lt;a[i];<br>	return <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h2 id="3-交换排序法"><a href="#3-交换排序法" class="headerlink" title="3.交换排序法"></a>3.交换排序法</h2><p>交换排序法，将每一位数于后边的数一一比较，如果发现符合交换条件的元素就进行交换；下面仍以下面仍以 1 4 2 5 9 6 这些乱序元素为例<br>以由大到小排序<br>第一次排序 1 与 4 比较，1 小于 4 交换 4 1 2 5 9 6。4 与 2 比较，4 大于 2 继续。4 与 5 比较，4 小于 5，交换 5 1 2 4 9 6。5 与 9 比较，5 小于 9，交换 9 1 2 4 5 6。9 与 6 比较，9 大于 6 继续。<br>第二次排序 1 与 2 比较，1 小于 2，交换 9 2 1 4 5 6。2 与 4 比较，2 小于 4 交换 9 4 1 2 5 6。4 与 5 比较，4 小于 5，交换 9 5 1 2 4 6。5 与 6 比较，5 小于 6，交换 9 6 1 2 4 5 。<br>第三次排序 9 6 5 1 2 4<br>第四次排序 9 6 5 4 1 2<br>第五次排序 9 6 5 4 2 1<br>用程序实现</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs c"> &#123;<br>	<span class="hljs-type">int</span> i,j;<br>	<span class="hljs-type">int</span> iTemp;<br>	<span class="hljs-type">int</span> a[<span class="hljs-number">6</span>];<br>	<span class="hljs-keyword">for</span>(i=<span class="hljs-number">0</span>;i&lt;<span class="hljs-number">6</span>;i++)<br>		<span class="hljs-built_in">cin</span>&gt;&gt;a[i];<br>	<span class="hljs-keyword">for</span>(i=<span class="hljs-number">0</span>;i&lt;<span class="hljs-number">5</span>;i++)<br>    &#123;<br>        <span class="hljs-keyword">for</span>(j=i+<span class="hljs-number">1</span>;j&lt;<span class="hljs-number">6</span>;j++)<br>        &#123;<br>            <span class="hljs-keyword">if</span>(a[i]&lt;a[j])	   <span class="hljs-comment">/*寻找符合条件的值*/</span><br>            &#123;<br>                iTemp=a[j];<br>                a[j]=a[i];<br>                a[i]=iTemp;			<span class="hljs-comment">/*交换*/</span><br>            &#125;<br>        &#125;<br>    &#125;<br>    <span class="hljs-keyword">for</span>(i=<span class="hljs-number">0</span>;i&lt;<span class="hljs-number">6</span>;i++)<br>		<span class="hljs-built_in">cout</span>&lt;&lt;a[i];<br>	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h2 id="4-插入排序法"><a href="#4-插入排序法" class="headerlink" title="4.插入排序法"></a>4.插入排序法</h2><p>插入排序法相对较为复杂，从数组中抽出一个是在前面的数据中选择合适的位置插入。<br>下面仍以下面仍以 1 4 2 5 9 6 这些乱序元素为例<br>以由大到小排序<br>第一次 取出 1 放在第一个位置 1<br>第二次 取出 4，跟 1 比较大小，大于 1 放在 1 前面。 4 1<br>第三次取出 2，跟 1 比较大小，比 1 大，则再跟 4 比较大小。小于 4，插入。 4 2 1<br>第四次取出 5，跟 1 比较大小，大于 1，则再跟前一元素 2 比较，大于 2，则再跟前一元素 4 比较，大于 4，插入。5 4 2 1<br>第五次 9 5 4 2 1<br>第六次 9 6 5 4 2 1<br>用程序实现上述过程</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs c">&#123;<br>	<span class="hljs-type">int</span> i,j;<br>	<span class="hljs-type">int</span> iTemp;<br>	<span class="hljs-type">int</span> iPos;<br>	<span class="hljs-type">int</span> a[<span class="hljs-number">6</span>];<br>	<span class="hljs-keyword">for</span>(i=<span class="hljs-number">0</span>;i&lt;<span class="hljs-number">6</span>;i++)<br>		<span class="hljs-built_in">cin</span>&gt;&gt;a[i];<br>	<span class="hljs-keyword">for</span>(i=<span class="hljs-number">1</span>;i&lt;<span class="hljs-number">6</span>;i++)<br>    &#123;<br>        iTemp=a[i];				<span class="hljs-comment">/*抽出要插入的值*/</span><br>        iPos=i<span class="hljs-number">-1</span>;<br>        <span class="hljs-keyword">while</span>(iPos&gt;=<span class="hljs-number">0</span>&amp;&amp;iTemp&gt;a[iPos])<br>        &#123;<br>            a[iPos+<span class="hljs-number">1</span>]=a[iPos];		<span class="hljs-comment">/*不符合条件i前的元素后移一位*/</span><br>            iPos--;<br>        &#125;<br>        a[iPos+<span class="hljs-number">1</span>]=iTemp;		<span class="hljs-comment">/*找到插入位置插入*/</span><br>    &#125;<br>    <span class="hljs-keyword">for</span>(i=<span class="hljs-number">0</span>;i&lt;<span class="hljs-number">6</span>;i++)<br>		<span class="hljs-built_in">cout</span>&lt;&lt;a[i];<br>	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E7%AE%97%E6%B3%95/" class="category-chain-item">算法</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/%E7%AE%97%E6%B3%95/ACM%E7%AB%9E%E8%B5%9B/" class="category-chain-item">ACM竞赛</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/%E7%AE%97%E6%B3%95/ACM%E7%AB%9E%E8%B5%9B/%E7%96%AF%E5%AD%90%E7%9A%84%E7%AE%97%E6%B3%95%E6%80%BB%E7%BB%93/" class="category-chain-item">疯子的算法总结</a>
+  
+  
+
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>『算法-ACM竞赛-疯子的算法总结』6.1 简单排序总 选择排序+插入排序+比较排序+冒泡排序</div>
+      <div>https://chiamzhang.github.io/2024/06/29/『算法-ACM竞赛-疯子的算法总结』6.1 简单排序总 选择排序+插入排序+比较排序+冒泡排序/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>Chiam</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>June 29, 2024</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>Licensed under</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2024/06/29/%E3%80%8E%E7%AE%97%E6%B3%95-ACM%E7%AB%9E%E8%B5%9B-%E7%96%AF%E5%AD%90%E7%9A%84%E7%AE%97%E6%B3%95%E6%80%BB%E7%BB%93%E3%80%8F6.2%E5%A4%8D%E6%9D%82%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%20%E2%91%A0%20%E5%BD%92%E5%B9%B6%E6%8E%92%E5%BA%8F%20merge_sort()/" title="『算法-ACM竞赛-疯子的算法总结』6.2复杂排序算法 ① 归并排序 merge_sort()">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">『算法-ACM竞赛-疯子的算法总结』6.2复杂排序算法 ① 归并排序 merge_sort()</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/06/29/%E3%80%8E%E7%AE%97%E6%B3%95-ACM%E7%AB%9E%E8%B5%9B-%E7%96%AF%E5%AD%90%E7%9A%84%E7%AE%97%E6%B3%95%E6%80%BB%E7%BB%93%E3%80%8F5%20%E7%9F%A9%E9%98%B5%E4%B9%98%E6%B3%95%20%EF%BC%88%E7%9F%A9%E9%98%B5%E5%BF%AB%E9%80%9F%E5%B9%82%EF%BC%89/" title="『算法-ACM竞赛-疯子的算法总结』5 矩阵乘法 （矩阵快速幂）">
+                        <span class="hidden-mobile">『算法-ACM竞赛-疯子的算法总结』5 矩阵乘法 （矩阵快速幂）</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"fIfc7WqUDZohlQuPc2lz5mJy-MdYXbMMI","appKey":"zjlAG3ZA3o4cBHVAkjzc2Z20","path":"window.location.pathname","placeholder":"留言仅限讨论，禁止广告等行为","avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"https://fifc7wqu.api.lncldglobal.com","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>Table of Contents</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <meta name="referrer" content="no-referrer" /> <footer id="footer" role="contentinfo"> <meta name="referrer" content="no-referrer" /> <div class="divider"> <div class="wall"></div> <img class="animals" src="/img/footer_animals_new.png" srcset="/img/loading.gif" lazyload alt="Footer Animals"> </div> <div class="container" data-index="450"> <p> <a href="https://chiamzhang.github.io" target="_blank">DogEgg</a> <i class="iconfont icon-love"></i> <a href="#" target="_blank">LittePig</a> </p> <p> Powered by  <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-pen"></i> Theme  <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> </p> </div> </footer> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+  
+<script src="/js/love.js"></script>
+<script src="/js/funnyTitle.js"></script>
+<script src="/js/backTop.js"></script>
+<script src="//cdn.jsdelivr.net/gh/bynotes/texiao/source/js/xiaoxuehua.js"></script>
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+</html>

@@ -1,0 +1,871 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/Mine.jpg">
+  <link rel="icon" href="/img/Mine.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Chiam">
+  <meta name="keywords" content="Algorithms，Cybersecurity">
+  
+    <meta name="description" content="『算法-ACM 竞赛-图论』网络流费用流-POJ2156MinimumCost图论–网络流–费用流–POJ 2156 Minimum CostDescription Dearboy, a goods victualer, now comes to a big problem, and he needs your help. In his sale area there are N shopkeep">
+<meta property="og:type" content="article">
+<meta property="og:title" content="『算法-ACM竞赛-图论』网络流费用流-POJ2156MinimumCost">
+<meta property="og:url" content="https://chiamzhang.github.io/2024/06/29/%E3%80%8E%E7%AE%97%E6%B3%95-ACM%E7%AB%9E%E8%B5%9B-%E5%9B%BE%E8%AE%BA%E3%80%8F%E7%BD%91%E7%BB%9C%E6%B5%81%E8%B4%B9%E7%94%A8%E6%B5%81-POJ2156MinimumCost/index.html">
+<meta property="og:site_name" content="Homepage of Chiam">
+<meta property="og:description" content="『算法-ACM 竞赛-图论』网络流费用流-POJ2156MinimumCost图论–网络流–费用流–POJ 2156 Minimum CostDescription Dearboy, a goods victualer, now comes to a big problem, and he needs your help. In his sale area there are N shopkeep">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2024-06-29T13:16:54.247Z">
+<meta property="article:modified_time" content="2023-12-05T16:19:21.307Z">
+<meta property="article:author" content="Chiam">
+<meta property="article:tag" content="Algorithms，Cybersecurity">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>『算法-ACM竞赛-图论』网络流费用流-POJ2156MinimumCost - Homepage of Chiam</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"chiamzhang.github.io","root":"/","version":"1.9.5-a","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":"❡"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":2},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
+
+
+<body>
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Chiam&#39;s Blogs</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                
+                <span>Home</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                
+                <span>Archives</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                
+                <span>Categories</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                
+                <span>About</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                
+                <span>Links</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="『算法-ACM竞赛-图论』网络流费用流-POJ2156MinimumCost"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-06-29 21:16" pubdate>
+          June 29, 2024 pm
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          4.5k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          38 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">『算法-ACM竞赛-图论』网络流费用流-POJ2156MinimumCost</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="『算法-ACM-竞赛-图论』网络流费用流-POJ2156MinimumCost"><a href="#『算法-ACM-竞赛-图论』网络流费用流-POJ2156MinimumCost" class="headerlink" title="『算法-ACM 竞赛-图论』网络流费用流-POJ2156MinimumCost"></a>『算法-ACM 竞赛-图论』网络流费用流-POJ2156MinimumCost</h1><h1 id="图论–网络流–费用流–POJ-2156-Minimum-Cost"><a href="#图论–网络流–费用流–POJ-2156-Minimum-Cost" class="headerlink" title="图论–网络流–费用流–POJ 2156 Minimum Cost"></a>图论–网络流–费用流–POJ 2156 Minimum Cost</h1><p>Description</p>
+<p>Dearboy, a goods victualer, now comes to a big problem, and he needs your help. In his sale area there are N shopkeepers (marked from 1 to N) which stocks goods from him.Dearboy has M supply places (marked from 1 to M), each provides K different kinds of goods (marked from 1 to K). Once shopkeepers order goods, Dearboy should arrange which supply place provide how much amount of goods to shopkeepers to cut down the total cost of transport.</p>
+<p>It’s known that the cost to transport one unit goods for different kinds from different supply places to different shopkeepers may be different. Given each supply places’ storage of K kinds of goods, N shopkeepers’ order of K kinds of goods and the cost to transport goods for different kinds from different supply places to different shopkeepers, you should tell how to arrange the goods supply to minimize the total cost of transport.</p>
+<p>Input</p>
+<p>The input consists of multiple test cases. The first line of each test case contains three integers N, M, K (0 &lt; N, M, K &lt; 50), which are described above. The next N lines give the shopkeepers’ orders, with each line containing K integers (there integers are belong to [0, 3]), which represents the amount of goods each shopkeeper needs. The next M lines give the supply places’ storage, with each line containing K integers (there integers are also belong to [0, 3]), which represents the amount of goods stored in that supply place.</p>
+<p>Then come K integer matrices (each with the size N * M), the integer (this integer is belong to (0, 100)) at the i-th row, j-th column in the k-th matrix represents the cost to transport one unit of k-th goods from the j-th supply place to the i-th shopkeeper.</p>
+<p>The input is terminated with three “0”s. This test case should not be processed.</p>
+<p>Output</p>
+<p>For each test case, if Dearboy can satisfy all the needs of all the shopkeepers, print in one line an integer, which is the minimum cost; otherwise just output “-1”.</p>
+<p>Sample Input</p>
+<pre><code class="hljs">1 3 3
+1 1 1
+0 1 1
+1 2 2
+1 0 1
+1 2 3
+1 1 1
+2 1 1
+
+1 1 1
+3
+2
+20
+
+0 0 0
+Sample Output
+4
+-1
+</code></pre>
+<p>这个直接把每件物品单出来考虑完事，单独建图跑就行，然后就很简单了。就变成了普通的费用流问题，那么建图套模板即可！</p>
+<pre><code class="hljs">#include&lt;cstdio&gt;
+#include&lt;cstring&gt;
+#include&lt;queue&gt;
+#include&lt;algorithm&gt;
+#include&lt;vector&gt;
+#define INF 1e9
+using namespace std;
+const int maxn=200+10;
+
+struct Edge
+&#123;
+    int from,to,cap,flow,cost;
+    Edge()&#123;&#125;
+    Edge(int f,int t,int c,int fl,int co):from(f),to(t),cap(c),flow(fl),cost(co)&#123;&#125;
+&#125;;
+
+struct MCMF
+&#123;
+    int n,m,s,t;
+    vector&lt;Edge&gt; edges;
+    vector&lt;int&gt; G[maxn];
+    bool inq[maxn];
+    int d[maxn];
+    int p[maxn];
+    int a[maxn];
+
+    void init(int n,int s,int t)
+    &#123;
+        this-&gt;n=n, this-&gt;s=s, this-&gt;t=t;
+        edges.clear();
+        for(int i=0;i&lt;n;++i) G[i].clear();
+    &#125;
+
+    void AddEdge(int from,int to,int cap,int cost)
+    &#123;
+        edges.push_back(Edge(from,to,cap,0,cost));
+        edges.push_back(Edge(to,from,0,0,-cost));
+        m=edges.size();
+        G[from].push_back(m-2);
+        G[to].push_back(m-1);
+    &#125;
+
+    bool BellmanFord(int &amp;flow, int &amp;cost)
+    &#123;
+        for(int i=0;i&lt;n;++i) d[i]=INF;
+        memset(inq,0,sizeof(inq));
+        d[s]=0, a[s]=INF, inq[s]=true, p[s]=0;
+        queue&lt;int&gt; Q;
+        Q.push(s);
+        while(!Q.empty())
+        &#123;
+            int u=Q.front(); Q.pop();
+            inq[u]=false;
+            for(int i=0;i&lt;G[u].size();++i)
+            &#123;
+                Edge &amp;e=edges[G[u][i]];
+                if(e.cap&gt;e.flow &amp;&amp; d[e.to]&gt;d[u]+e.cost)
+                &#123;
+                    d[e.to]= d[u]+e.cost;
+                    p[e.to]=G[u][i];
+                    a[e.to]= min(a[u],e.cap-e.flow);
+                    if(!inq[e.to])&#123; Q.push(e.to); inq[e.to]=true; &#125;
+                &#125;
+            &#125;
+        &#125;
+        if(d[t]==INF) return false;
+        flow +=a[t];
+        cost +=a[t]*d[t];
+        int u=t;
+        while(u!=s)
+        &#123;
+            edges[p[u]].flow += a[t];
+            edges[p[u]^1].flow -=a[t];
+            u = edges[p[u]].from;
+        &#125;
+        return true;
+    &#125;
+    int Min_cost()
+    &#123;
+        int flow=0,cost=0;
+        while(BellmanFord(flow,cost));
+        return cost;
+    &#125;
+&#125;MM;
+
+int n,m,k;
+int need[50+5][50+5];       //need[i][j]表i顾客对j商品的需求量
+int have[50+5][50+5];       //have[i][j]表i仓库对j商品的提供量
+int cost[50+5][50+5][50+5]; //cost[x][i][j] 表j仓库到i顾客对x商品的单位运费
+
+int main()
+&#123;
+    while(scanf(&quot;%d%d%d&quot;,&amp;n,&amp;m,&amp;k)==3 &amp;&amp; n)
+    &#123;
+        int goods[maxn];//货物需求量,用来判断货物是否足够
+        int enough=true;//初始货物充足
+        memset(goods,0,sizeof(goods));
+
+        for(int i=1;i&lt;=n;++i)
+        for(int j=1;j&lt;=k;++j)
+        &#123;
+            scanf(&quot;%d&quot;,&amp;need[i][j]);
+            goods[j]+= need[i][j];
+        &#125;
+
+        for(int i=1;i&lt;=m;++i)
+        for(int j=1;j&lt;=k;++j)
+        &#123;
+            scanf(&quot;%d&quot;,&amp;have[i][j]);
+            goods[j] -=have[i][j];
+        &#125;
+
+        for(int h=1;h&lt;=k;++h)
+        for(int i=1;i&lt;=n;++i)
+        for(int j=1;j&lt;=m;++j)
+            scanf(&quot;%d&quot;,&amp;cost[h][i][j]);
+
+        for(int i=1;i&lt;=k;++i)if(goods[i]&gt;0)//货物不足,不用计算了
+        &#123;
+            enough=false;
+            break;
+        &#125;
+        if(!enough)//初始货物不足
+        &#123;
+            printf(&quot;-1\n&quot;);
+            continue;
+        &#125;
+
+        int min_cost=0;
+        for(int g=1;g&lt;=k;++g)
+        &#123;
+            int src=0, dst=n+m+1;
+            MM.init(n+m+2,src,dst);
+            for(int i=1;i&lt;=m;++i) MM.AddEdge(src,i,have[i][g],0);
+            for(int i=1;i&lt;=n;++i) MM.AddEdge(m+i,dst,need[i][g],0);
+            for(int i=1;i&lt;=m;++i)
+            for(int j=1;j&lt;=n;++j)
+            &#123;
+                MM.AddEdge(i,j+m,INF,cost[g][j][i]);
+            &#125;
+            min_cost += MM.Min_cost();
+        &#125;
+        printf(&quot;%d\n&quot;,min_cost);
+    &#125;
+    return 0;
+&#125;
+</code></pre>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E7%AE%97%E6%B3%95/" class="category-chain-item">算法</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/%E7%AE%97%E6%B3%95/ACM%E7%AB%9E%E8%B5%9B/" class="category-chain-item">ACM竞赛</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/%E7%AE%97%E6%B3%95/ACM%E7%AB%9E%E8%B5%9B/%E5%9B%BE%E8%AE%BA/" class="category-chain-item">图论</a>
+  
+  
+
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>『算法-ACM竞赛-图论』网络流费用流-POJ2156MinimumCost</div>
+      <div>https://chiamzhang.github.io/2024/06/29/『算法-ACM竞赛-图论』网络流费用流-POJ2156MinimumCost/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>Chiam</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>June 29, 2024</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>Licensed under</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2024/06/29/%E3%80%8E%E7%AE%97%E6%B3%95-ACM%E7%AB%9E%E8%B5%9B-%E5%9B%BE%E8%AE%BA%E3%80%8F%E7%BD%91%E7%BB%9C%E6%B5%81%E8%B4%B9%E7%94%A8%E6%B5%81POJ2195GoingHome/" title="『算法-ACM竞赛-图论』网络流费用流POJ2195GoingHome">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">『算法-ACM竞赛-图论』网络流费用流POJ2195GoingHome</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/06/29/%E3%80%8E%E7%AE%97%E6%B3%95-ACM%E7%AB%9E%E8%B5%9B-%E5%9B%BE%E8%AE%BA%E3%80%8F%E7%BD%91%E7%BB%9C%E6%B5%81%E6%9C%80%E5%B0%8F%E8%B4%B9%E7%94%A8%E6%B5%81%E6%9C%80%E5%A4%A7%E6%B5%81%E6%A8%A1%E6%9D%BF/" title="『算法-ACM竞赛-图论』网络流最小费用流最大流模板">
+                        <span class="hidden-mobile">『算法-ACM竞赛-图论』网络流最小费用流最大流模板</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"fIfc7WqUDZohlQuPc2lz5mJy-MdYXbMMI","appKey":"zjlAG3ZA3o4cBHVAkjzc2Z20","path":"window.location.pathname","placeholder":"留言仅限讨论，禁止广告等行为","avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"https://fifc7wqu.api.lncldglobal.com","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>Table of Contents</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <meta name="referrer" content="no-referrer" /> <footer id="footer" role="contentinfo"> <meta name="referrer" content="no-referrer" /> <div class="divider"> <div class="wall"></div> <img class="animals" src="/img/footer_animals_new.png" srcset="/img/loading.gif" lazyload alt="Footer Animals"> </div> <div class="container" data-index="450"> <p> <a href="https://chiamzhang.github.io" target="_blank">DogEgg</a> <i class="iconfont icon-love"></i> <a href="#" target="_blank">LittePig</a> </p> <p> Powered by  <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-pen"></i> Theme  <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> </p> </div> </footer> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+  
+<script src="/js/love.js"></script>
+<script src="/js/funnyTitle.js"></script>
+<script src="/js/backTop.js"></script>
+<script src="//cdn.jsdelivr.net/gh/bynotes/texiao/source/js/xiaoxuehua.js"></script>
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+</html>

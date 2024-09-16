@@ -1,0 +1,1014 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/Mine.jpg">
+  <link rel="icon" href="/img/Mine.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Chiam">
+  <meta name="keywords" content="Algorithms，Cybersecurity">
+  
+    <meta name="description" content="『杂』复试-专业问题这是我的学长，SDZ 学长整理，我就发出了，如果你们有幸去了浙大软科记得谢谢他，哈哈哈这两种方法在形式上相像，其区别在于：pa 是指针变量，a 是数组名。值得注意的是：pa 是一个可以变化的指针变量，而 a 是一个常数。因为数组一经被说明，数组的地址也就是固定的，因此 a 是不能变化的，不允许使用 a ＋＋、＋＋ a 或语句 a ＋&#x3D;10，而 pa ＋＋、＋＋ pa、">
+<meta property="og:type" content="article">
+<meta property="og:title" content="『杂』复试-专业问题">
+<meta property="og:url" content="https://chiamzhang.github.io/2024/06/29/%E3%80%8E%E6%9D%82%E3%80%8F%E5%A4%8D%E8%AF%95-%E4%B8%93%E4%B8%9A%E9%97%AE%E9%A2%98/index.html">
+<meta property="og:site_name" content="Homepage of Chiam">
+<meta property="og:description" content="『杂』复试-专业问题这是我的学长，SDZ 学长整理，我就发出了，如果你们有幸去了浙大软科记得谢谢他，哈哈哈这两种方法在形式上相像，其区别在于：pa 是指针变量，a 是数组名。值得注意的是：pa 是一个可以变化的指针变量，而 a 是一个常数。因为数组一经被说明，数组的地址也就是固定的，因此 a 是不能变化的，不允许使用 a ＋＋、＋＋ a 或语句 a ＋&#x3D;10，而 pa ＋＋、＋＋ pa、">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/img_convert/08cd72d2872dce9353b738140f35e78d.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/img_convert/71deb919ed81f16c5d07478c5ee6154b.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/img_convert/12310e3ae6dc2990b414eb976771256b.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/img_convert/1e2033344bf59627bcc590468ff5212f.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/img_convert/152d879af6cc1c1cf7edfe0d9954a8b0.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/img_convert/306cc72a9828a06ca6b0d45bc26781ac.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/img_convert/0f41f2c90582e8e1afcecc5d0d32d004.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/img_convert/d28c6fff3f5d995aac0ccb1cb1fef6df.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/img_convert/f1d55bc5e8f546242cfdbd5ef759821f.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/img_convert/f2f9811e6d0418f21efa9f84c9d52aa0.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/img_convert/5c6d437c062f8c45d01691b2c56dff42.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/img_convert/59ad9f52c014779b5fd29ac5baabf30b.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/img_convert/643a03bad9306d62830b2151a5de54f2.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/img_convert/2a3f6d1651a00c7b406b1e391c1d763c.png">
+<meta property="article:published_time" content="2024-06-29T13:16:53.891Z">
+<meta property="article:modified_time" content="2023-12-05T16:18:20.438Z">
+<meta property="article:author" content="Chiam">
+<meta property="article:tag" content="Algorithms，Cybersecurity">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/img_convert/08cd72d2872dce9353b738140f35e78d.png">
+  
+  
+  
+  <title>『杂』复试-专业问题 - Homepage of Chiam</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"chiamzhang.github.io","root":"/","version":"1.9.5-a","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":"❡"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":2},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
+
+
+<body>
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Chiam&#39;s Blogs</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                
+                <span>Home</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                
+                <span>Archives</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                
+                <span>Categories</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                
+                <span>About</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                
+                <span>Links</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="『杂』复试-专业问题"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-06-29 21:16" pubdate>
+          June 29, 2024 pm
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          16k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          130 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">『杂』复试-专业问题</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="『杂』复试-专业问题"><a href="#『杂』复试-专业问题" class="headerlink" title="『杂』复试-专业问题"></a>『杂』复试-专业问题</h1><h2 id="这是我的学长，SDZ-学长整理，我就发出了，如果你们有幸去了浙大软科记得谢谢他，哈哈哈"><a href="#这是我的学长，SDZ-学长整理，我就发出了，如果你们有幸去了浙大软科记得谢谢他，哈哈哈" class="headerlink" title="这是我的学长，SDZ 学长整理，我就发出了，如果你们有幸去了浙大软科记得谢谢他，哈哈哈"></a>这是我的学长，SDZ 学长整理，我就发出了，如果你们有幸去了浙大软科记得谢谢他，哈哈哈</h2><p>这两种方法在形式上相像，其区别在于：pa 是指针变量，a 是数组名。值得注意的是：pa 是一个可以变化的指针变量，而 a 是一个常数。因为数组一经被说明，数组的地址也就是固定的，因此 a 是不能变化的，不允许使用 a ＋＋、＋＋ a 或语句 a ＋&#x3D;10，而 pa ＋＋、＋＋ pa、pa ＋&#x3D;10 则是正确的。</p>
+<p>假设现在我们有以下数组：</p>
+<pre><code class="hljs">int a[5] = &#123; 1,2,3,4,5 &#125;;
+那么，在C语言中如何取得数组中的元素呢？
+
+第一种方式：直接通过下标获取
+
+//取得第0个元素
+printf(&quot;%d\n&quot;, a[0]);
+</code></pre>
+<p>第二种方式：通过数组的地址，在 C 语言中，数组的名称实际上就是该数组首个元素的地址，可以通过(*名称)获取其中的值。</p>
+<pre><code class="hljs">//获取第0个元素
+printf(&quot;%d\n&quot;, *a);
+//获取第1个元素，只需要将地址+1，存储输出的是是连续的内存空间
+printf(&quot;%d\n&quot;, *(a+1));
+</code></pre>
+<p>第三种方式：通过指向该数组的指针。</p>
+<pre><code class="hljs">//声明一个指针，同时让其指向a
+int* p = a;
+//通过解引用来获取指针p指向的值，获得第0个元素
+printf(&quot;%d\n&quot;, *p);
+//指针+1即可获得第1个元素
+printf(&quot;%d\n&quot;, *(p + 1));
+</code></pre>
+<ul>
+<li>（1）栈（stack）：数调用过程中的各种参数、局部变量、返回值以及函数返回地址。</li>
+<li>（2）堆（heap）：用于程序动态申请分配和释放空间。C 语言中的 malloc 和 free，C++中的 new 和 delete 均是在堆中进行的。</li>
+<li>（3）全局（静态）存储区：分为 DATA 段和 BSS 段。DATA 段（全局初始化区）存放初始化的全局变量和静态变量；BSS 段（全局未初始化区）存放未初始化的全局变量和静态变量。</li>
+<li>（4）文字常量区：存放常量字符串。程序结束后由系统释放。</li>
+<li>（5）程序代码区：存放程序的二进制代码。</li>
+</ul>
+<p>英文自我介绍，提问你做过哪些项目并介绍项目内容实现方法，问你来自哪里介绍你的家乡&#x2F;学校，研究生计划，为什么想要读研等问题。</p>
+<h1 id="计算机网络"><a href="#计算机网络" class="headerlink" title="计算机网络"></a>计算机网络</h1><p>牢记每一层的协议及其内容、应用。</p>
+<ol>
+<li><p>物理层：</p>
+</li>
+<li><p>数据链路层</p>
+<p>功能：<strong>为网络层提供服务；封装成帧（透明传输）；链路管理；流量控制；差错控制；</strong></p>
+</li>
+<li><p>网络层</p>
+<ol>
+<li><p><strong>功能一：路由选择与分组转发（最佳路径）</strong></p>
+</li>
+<li><p><strong>功能二：异构网络互联</strong></p>
+</li>
+<li><p><strong>功能三：拥塞控制（全局性）</strong></p>
+</li>
+</ol>
+<p>协议：IP 协议</p>
+</li>
+<li><p>传输层</p>
+<ol>
+<li>传输层提供进程和进程之间的逻辑通信。<br>网络层提供主机之间的逻辑通信。</li>
+<li>复用和分用<br>复用：应用层所有的应用进程都可以通过传输层再传输到网络层。<br>分用：传输层从网络层收到数据后交付指明的应用进程。</li>
+<li>传输层对收到的报文进行差错检测。</li>
+<li>数据链路层的首部校验和只校验了首部</li>
+<li>传输层的两种协议 TCP 与 UDP。</li>
+</ol>
+</li>
+</ol>
+<h3 id="物理层"><a href="#物理层" class="headerlink" title="物理层"></a>物理层</h3><p>在物理层上所传送的数据单位是比特。 物理层(physical layer)的作用是实现相邻计算机节点之间比特流的透明传送，尽可能屏蔽掉具体传输介质和物理设备的差异。使其上面的数据链路层不必考虑网络的具体传输介质是什么。“透明传送比特流”表示经实际电路传送后的比特流没有发生变化，对传送的比特流来说，这个电路好像是看不见的。</p>
+<p>解释什么 DNS，为什么要用 DNS，有了 IP 地址为什么还要有域名？域名结构为什么这样设计？ICMP、IGMP 协议；IP 地址的分类？等。<br>1.OSl，TCP&#x2F;IP；五层协议的体系结构，以及各层协议<br>2.IP 地址的分类</p>
+<ul>
+<li>分类的 IP 地址(网络号+主机号)<br><img src="https://img-blog.csdnimg.cn/img_convert/08cd72d2872dce9353b738140f35e78d.png" srcset="/img/loading.gif" lazyload></li>
+<li>子网的划分（网络号+子网号+主机号)</li>
+<li>构成超网（无分类编址方法）</li>
+</ul>
+<p><strong>3.ARP 是地址解析协议，简单语言解释一下工作原理</strong> 1.首先，每个主机都会在自己的 ARP 缓冲区中建立一个 ARP 列表，<br>以表示 IP 地址和 MAC 地址之间的对应关系。</p>
+<p>2.当源主机要发送数据时，首先检查 ARP 列表中是否有对应 IP 地址的目的主机的 MAC 地址，<br>如果有，则直接发送数据，<br>如果没有，就向本网段的所有主机发送 ARP 数据包，<br>该数据包包括的内容有：源主机 IP 地址，源主机 MAC 地址，目的主机的 IP 地址。</p>
+<p>3.当本网络的所有主机收到该 ARP 数据包时，首先检查数据包中的 IP 地址是否是自己的 IP 地址，<br>如果不是，则忽略该数据包，<br>如果是，则首先从数据包中取出源主机 IP 地址和 MAC 地址写入到 ARP 列表中，<br>如果已经存在，则覆盖，<br>然后将自己的 MAC 地址写入 ARP 响应包中，告诉源主机自己是它想要找的 MAC 地址。</p>
+<p>4.源主机收到 ARP 响应包后，将目的主机的 IP 地址和 MAC 地址写入 ARP 列表，并利用此信息发送数据。<br>如果源主机一直没有收到 ARP 响应数据包，表示 ARP 查询失败。</p>
+<p>广播发送 ARP 请求，单播发送 ARP 响应。</p>
+<p>4.TCP 三次握手和四次挥手的全过程</p>
+<p>5.在浏览器中输入<a target="_blank" rel="noopener" href="http://www.baidu.com后执行的全部过程/">www.baidu.com后执行的全部过程</a></p>
+<p><strong>6.TCP 和 UDP 的区别？</strong><br>TCP 与 UDP 区别</p>
+<table>
+<thead>
+<tr>
+<th align="left"></th>
+<th align="left">UDP</th>
+<th>TCP</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">是否连接</td>
+<td align="left">无连接</td>
+<td>面向连接</td>
+</tr>
+<tr>
+<td align="left">是否可靠</td>
+<td align="left">不可靠传输，不使用流量控制和拥塞控制</td>
+<td>可靠传输，使用流量控制和拥塞控制</td>
+</tr>
+<tr>
+<td align="left">连接对象个数</td>
+<td align="left">支持一对一，一对多，多对一和多对多交互通信</td>
+<td>只能是一对一通信</td>
+</tr>
+<tr>
+<td align="left">传输方式</td>
+<td align="left">面向报文</td>
+<td>面向字节流</td>
+</tr>
+<tr>
+<td align="left">首部开销</td>
+<td align="left">首部开销小，仅 8 字节</td>
+<td>首部最小 20 字节，最大 60 字节</td>
+</tr>
+<tr>
+<td align="left">适用场景</td>
+<td align="left">适用于实时应用（IP 电话、视频会议、直播等）</td>
+<td>适用于要求可靠传输的应用，例如文件传输</td>
+</tr>
+</tbody></table>
+<p><strong>7.DNS 域名系统，简单描述其工作原理。</strong><br>当 DNS 客户机需要在程序中使用名称时，它会查询 DNS 服务器来解析该名称。客户机发送的每条查询信息包括三条信息：指定的 DNS 域名，指定的查询类型，DNS 域名的指定类别。基于 UDP 服务，端口 53. 该应用一般不直接为用户使用，而是为其他应用服务，如 HTTP，SMTP 等在其中需要完成主机名到 IP 地址的转换。</p>
+<ol>
+<li>客户机向其本地域名服务器发出 DNS 请求报文</li>
+<li>本地域名服务器收到请求后，查询本地缓存，假设没有该记录，则以 DNS 客户的身份向根域名服务器发出解析请求</li>
+<li>根域名服务器收到请求后，判断该域名所属域，将对应的顶级域名服务器的 IP 地址返回给本地域名服务器</li>
+<li>本地域名服务器向顶级域名服务器发出解析请求报文</li>
+<li>顶级域名服务器收到请求后，将所对应的授权域名服务器的 IP 地址返回给本地域名服务器</li>
+<li>本地域名服务器向授权域名服务器发起解析请求报文</li>
+<li>授权域名服务器收到请求后，将查询结果返回给本地域名服务器</li>
+<li>本地域名服务器将查询结果保存到本地缓存，同时返回给客户机</li>
+</ol>
+<p>8.了解交换机、路由器、网关的概念，并知道各自的用途</p>
+<p>交换机（<strong>多接口网桥</strong>）：<strong>扩展以太网</strong></p>
+<p><img src="https://img-blog.csdnimg.cn/img_convert/71deb919ed81f16c5d07478c5ee6154b.png" srcset="/img/loading.gif" lazyload></p>
+<p>路由器：<br>第一，网络互连<br>第二，数据处理，提供包括分组过滤、分组转发、优先级、复用、加密、压缩和<a target="_blank" rel="noopener" href="http://baike.baidu.com/view/3067.htm">防火墙</a>等功能；<br>第三，网络管理，路由器提供包括配置管理、性能管理、容错管理和流量控制等功能。</p>
+<p>网段：一般指一个计算机网络中使用同一物理层设备（传输介质，中继器，集线器等）能够直接通讯的那一部分。</p>
+<h1 id="数据结构"><a href="#数据结构" class="headerlink" title="数据结构"></a>数据结构</h1><h2 id="栈"><a href="#栈" class="headerlink" title="栈"></a>栈</h2><p>出栈顺序满足卡特兰数：$$ (1&#x2F;(n+1)) * C_{2n}^n $$<br>括号匹配，后缀式的求值</p>
+<h2 id="队列"><a href="#队列" class="headerlink" title="队列"></a>队列</h2><p>循环队列实现</p>
+<h2 id="稀疏矩阵的存储方法："><a href="#稀疏矩阵的存储方法：" class="headerlink" title="稀疏矩阵的存储方法："></a>稀疏矩阵的存储方法：</h2><p>顺序：三元组法和伪地址法<br>链式：邻接表法和十字链表法</p>
+<h2 id="KMP（O-m-n-）"><a href="#KMP（O-m-n-）" class="headerlink" title="KMP（O(m+n)）"></a>KMP（O(m+n)）</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;iostream&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><span class="hljs-type">const</span> <span class="hljs-type">int</span> N=<span class="hljs-number">1000010</span>;<br><span class="hljs-type">char</span> p[N],s[N];<br><span class="hljs-type">int</span> n,m;<br><span class="hljs-type">int</span> ne[N];<br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span><br><span class="hljs-function"></span>&#123;<br>    cin&gt;&gt;n&gt;&gt;p+<span class="hljs-number">1</span>&gt;&gt;m&gt;&gt;s+<span class="hljs-number">1</span>;<br><br>    <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">2</span>,j=<span class="hljs-number">0</span>;i&lt;=n;i++)<br>    &#123;<br>        <span class="hljs-keyword">while</span>(j&amp;&amp;p[i]!=p[j+<span class="hljs-number">1</span>]) j=ne[j];<br>        <span class="hljs-keyword">if</span>(p[i]==p[j+<span class="hljs-number">1</span>]) j++;<br>        ne[i]=j;<br>    &#125;<br>    <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">1</span>,j=<span class="hljs-number">0</span>;i&lt;=m;i++)<br>    &#123;<br>        <span class="hljs-keyword">while</span>(j&amp;&amp;s[i]!=p[j+<span class="hljs-number">1</span>]) j=ne[j];<br>        <span class="hljs-keyword">if</span>(s[i]==p[j+<span class="hljs-number">1</span>]) j++;<br>        <span class="hljs-keyword">if</span>(j==n)<br>        &#123;<br>            <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d &quot;</span>,i-j);<br>            j=ne[j];<br>        &#125;<br>    &#125;<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>普通模式串比较优点：适合规模较大的外存字符串匹配，因为可以分段进行，先读入内存一部分进行匹配，完成之后即可写回外存，确保发生不匹配的时候不需要将之前的写回外存的部分再次读入，减少了 I&#x2F;O 操作，提高效率。</p>
+<h2 id="二叉树"><a href="#二叉树" class="headerlink" title="二叉树"></a>二叉树</h2><p>五个主要性质</p>
+<ol>
+<li>在二叉树的第ｉ（ｉ&gt;&#x3D;１）层最多有２＾(ｉ - １)个结点。</li>
+<li>深度为 k(k&gt;&#x3D;0)的二叉树最少有 k 个结点，最多有２＾ｋ－１个结点。</li>
+<li>对于任一棵非空二叉树，若其叶结点数为 n0，度为 2 的非叶结点数为 n2，则ｎ 0 &#x3D; ｎ 2 ＋１。<br>灵活运用：n 个节点的树，空指针的个数为 n+1.</li>
+<li>具有 n 个结点的完全二叉树的深度为 int_down(log(2，ｎ)+1&#x3D;int_UP(log(2，n+1))</li>
+<li>如果将一棵有 n 个结点的完全二叉树自顶向下，同一层自左向右连续给结点编号１，２，３，．．．．．．，ｎ，然后按此结点编号将树中各结点顺序的存放于一个一维数组，并简称编号为 i 的结点为结点 i（ ｉ&gt;&#x3D;１ &amp;&amp; ｉ&lt;&#x3D;ｎ）,则有以下关系：<br>（1）若 ｉ&#x3D; 1，则结点 i 为根，无父结点；若 ｉ&gt; 1，则结点 i 的父结点为结点 int_DOWN（ｉ &#x2F; ２）;<br>（2）若 ２＊ｉ &lt;&#x3D; ｎ，则结点 ｉ 的左子女为结点 ２＊ｉ；<br>（3）若２＊ｉ＜＝ｎ，则结点ｉ的右子女为结点２＊ｉ＋１；<br>（4）若结点编号ｉ为奇数，且ｉ！＝１，它处于右兄弟位置，则它的左兄弟为结点ｉ－１；<br>（5）若结点编号ｉ为偶数，且ｉ！＝ｎ，它处于左兄弟位置，则它的右兄弟为结点ｉ＋１；<br>（6）结点ｉ所在的层次为 int_DOWN（log（2，ｉ））＋１。</li>
+</ol>
+<p>补充：<br>n 个节点可以构造的二叉树个数为卡特兰数：$$ (1&#x2F;(n+1)) * C_{2n}^n $$<br>遍历的改进：非递归（避免了系统栈）或线索二叉树（避免用户栈）</p>
+<p>数据结构：排序算法及时间复杂度，随手写一个你自己熟悉排序算法（伪代码形式），二叉树相关知识。<br>九大排序<a target="_blank" rel="noopener" href="https://blog.csdn.net/sdz20172133/article/details/93203610?ops_request_misc=%257B%2522request%255Fid%2522%253A%2522159445433919724839241272%2522%252C%2522scm%2522%253A%252220140713.130102334.pc%255Fblog.%2522%257D&request_id=159445433919724839241272&biz_id=0&utm_medium=distribute.pc_search_result.none-task-blog-2~blog~first_rank_v1~rank_blog_v1-7-93203610.pc_v1_rank_blog_v1&utm_term=%E6%8E%92%E5%BA%8F">九大排序</a><br><img src="https://img-blog.csdnimg.cn/img_convert/12310e3ae6dc2990b414eb976771256b.png" srcset="/img/loading.gif" lazyload></p>
+<p><strong>所有排序方法可分为两类，</strong></p>
+<p><strong>（1）一类是稳定的，包括直接插入排序、起泡排序、和归并排序，基数桶式排序；</strong></p>
+<p><strong>（2）另一类是不稳定的，包括直接选择排序、希尔排序、快速排序和堆排序。</strong></p>
+<p>二叉搜索树：<strong>中序遍历为顺序</strong></p>
+<p>AVL 树的旋转：</p>
+<p><img src="https://img-blog.csdnimg.cn/img_convert/1e2033344bf59627bcc590468ff5212f.png" srcset="/img/loading.gif" lazyload></p>
+<p>右旋 A：自己左儿子的右儿子–》自己的左儿子，自己–》自己的左儿子的右儿子。</p>
+<p>左旋 A：自己右儿子的左儿子–》自己的右儿子，自己–》自己的右儿子的左儿子。</p>
+<p><img src="https://img-blog.csdnimg.cn/img_convert/152d879af6cc1c1cf7edfe0d9954a8b0.png" srcset="/img/loading.gif" lazyload></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;iostream&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;cstring&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;vector&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;algorithm&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;unordered_map&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><span class="hljs-type">const</span> <span class="hljs-type">int</span> N=<span class="hljs-number">10005</span>,M=<span class="hljs-number">100005</span>;<br><span class="hljs-type">int</span> n,m,K,st[N],l[N],r[N],w[N],h[N],idx=<span class="hljs-number">0</span>;<br><br><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">update</span><span class="hljs-params">(<span class="hljs-type">int</span> u)</span></span><br><span class="hljs-function"></span>&#123;<br>	h[u]=<span class="hljs-built_in">max</span>(h[l[u]],h[r[u]])+<span class="hljs-number">1</span>;<br>&#125;<br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">get_balance</span><span class="hljs-params">(<span class="hljs-type">int</span> u)</span></span><br><span class="hljs-function"></span>&#123;<br>	<span class="hljs-keyword">return</span> h[l[u]]-h[r[u]];<br>&#125;<br><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">R</span><span class="hljs-params">(<span class="hljs-type">int</span> &amp;u)</span></span><br><span class="hljs-function"></span>&#123;<br>	<span class="hljs-type">int</span> p=l[u];<br>	l[u]=r[p],r[p]=u;<br>	<span class="hljs-built_in">update</span>(u),<span class="hljs-built_in">update</span>(p);<br>	u=p;<br>&#125;<br><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">L</span><span class="hljs-params">(<span class="hljs-type">int</span> &amp;u)</span></span><br><span class="hljs-function"></span>&#123;<br>	<span class="hljs-type">int</span> p=r[u];<br>	r[u]=l[p],l[p]=u;<br>	<span class="hljs-built_in">update</span>(u),<span class="hljs-built_in">update</span>(p);<br>	u=p;<br>&#125;<br><br><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">insert</span><span class="hljs-params">(<span class="hljs-type">int</span> &amp;u,<span class="hljs-type">int</span> val)</span></span><br><span class="hljs-function"></span>&#123;<br>	<span class="hljs-keyword">if</span>(u==<span class="hljs-number">-1</span>)<br>	&#123;<br>		u=++idx;<br>		w[idx]=val;<br>	&#125;<br>	<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(val&lt;=w[u])<br>	&#123;<br>		<span class="hljs-built_in">insert</span>(l[u],val);<br>		<span class="hljs-keyword">if</span>(<span class="hljs-built_in">get_balance</span>(u)==<span class="hljs-number">2</span>)<br>		&#123;<br>			 <span class="hljs-keyword">if</span>(<span class="hljs-built_in">get_balance</span>(l[u])==<span class="hljs-number">1</span>) <span class="hljs-built_in">R</span>(u);<br>			 <span class="hljs-keyword">else</span>  <span class="hljs-built_in">L</span>(l[u]),<span class="hljs-built_in">R</span>(u);<br>		&#125;<br>	&#125;<br>	<span class="hljs-keyword">else</span><br>	&#123;<br>		<span class="hljs-built_in">insert</span>(r[u],val);<br>		<span class="hljs-keyword">if</span>(<span class="hljs-built_in">get_balance</span>(u)==<span class="hljs-number">-2</span>)<br>		&#123;<br>			 <span class="hljs-keyword">if</span>(<span class="hljs-built_in">get_balance</span>(r[u])==<span class="hljs-number">-1</span>) <span class="hljs-built_in">L</span>(u);<br>			 <span class="hljs-keyword">else</span>  <span class="hljs-built_in">R</span>(r[u]),<span class="hljs-built_in">L</span>(u);<br>		&#125;<br>	&#125;<br>	<span class="hljs-built_in">update</span>(u);<br><br>&#125;<br><span class="hljs-type">int</span> q[N];<br><span class="hljs-type">int</span> maxx=<span class="hljs-number">0</span>;<br><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">bfs</span><span class="hljs-params">(<span class="hljs-type">int</span> u)</span></span><br><span class="hljs-function"></span>&#123;<br>	<span class="hljs-type">int</span> hh=<span class="hljs-number">0</span>,tt=<span class="hljs-number">-1</span>;<br><br>	q[++tt]=u;<br>	<span class="hljs-type">int</span> id=<span class="hljs-number">0</span>;<br>	<span class="hljs-keyword">while</span>(hh&lt;=tt)<br>	&#123;<br>		<span class="hljs-type">int</span> t=q[hh++];<br>		id++;<br>		<span class="hljs-keyword">if</span>(l[t]!=<span class="hljs-number">-1</span>) q[++tt]=l[t],maxx=<span class="hljs-built_in">max</span>(id*<span class="hljs-number">2</span>,maxx);<br>		<span class="hljs-keyword">if</span>(r[t]!=<span class="hljs-number">-1</span>) q[++tt]=r[t],maxx=<span class="hljs-built_in">max</span>(id*<span class="hljs-number">2</span>+<span class="hljs-number">1</span>,maxx);<br><br>	&#125;<br>&#125;<br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span><br><span class="hljs-function"></span>&#123;<br><br>	cin&gt;&gt;n;<br>	<span class="hljs-built_in">memset</span>(l, <span class="hljs-number">-1</span>, <span class="hljs-keyword">sizeof</span> l);<br>    <span class="hljs-built_in">memset</span>(r, <span class="hljs-number">-1</span>, <span class="hljs-keyword">sizeof</span> r);<br>    <span class="hljs-built_in">memset</span>(w,<span class="hljs-number">0x3f</span>,<span class="hljs-keyword">sizeof</span> w);<br>	<span class="hljs-type">int</span> root=<span class="hljs-number">-1</span>;<br>	<span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">1</span>;i&lt;=n;i++)<br>	&#123;<br>		<span class="hljs-type">int</span> val;<br>		<span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%d&quot;</span>,&amp;val);<br>		<span class="hljs-built_in">insert</span>(root,val);<br>	&#125;<br>	<span class="hljs-built_in">bfs</span>(root);<br>	<span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">0</span>;i&lt;n<span class="hljs-number">-1</span>;i++)<br>    &#123;<br>        <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d &quot;</span>,w[q[i]]);<br>    &#125;<br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d\n&quot;</span>,w[q[n<span class="hljs-number">-1</span>]]);<br>    <span class="hljs-comment">//cout&lt;&lt;idx&lt;&lt;&quot; &quot;&lt;&lt;maxx&lt;&lt;endl;</span><br>	 <span class="hljs-keyword">if</span>(maxx&gt;idx)<br>    &#123;<br>        <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;NO&quot;</span>);<br>    &#125;<br>    <span class="hljs-keyword">else</span><br>    &#123;<br>        <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;YES&quot;</span>);<br>    &#125;<br>	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>在大量查找的情况下，平衡二叉树的效率更高，也是首要选择。在大量增删的情况下，红黑树是首选。</p>
+<p>数据结构中有一类平衡的二叉搜索树，称为红黑树。</p>
+<p>它具有以下 5 个属性：</p>
+<ul>
+<li>节点是红色或黑色。</li>
+<li>根节点是黑色。</li>
+<li>所有叶子都是黑色。（叶子是 NULL 节点）</li>
+<li>每个红色节点的两个子节点都是黑色。</li>
+<li>从任一节点到其每个叶子的所有路径都包含相同数目的黑色节点。</li>
+</ul>
+<p><img src="https://img-blog.csdnimg.cn/img_convert/306cc72a9828a06ca6b0d45bc26781ac.png" srcset="/img/loading.gif" lazyload></p>
+<p>邻接矩阵与邻接表优缺点：<br>邻接矩阵的优点是可以快速判断两个顶点之间是否存在边，可以快速添加边或者删除边。而其缺点是如果顶点之间的边比较少，会比较浪费空间。因为是一个 n∗n 的矩阵。</p>
+<p>而邻接表的优点是节省空间，只存储实际存在的边。其缺点是关注顶点的度时，就可能需要遍历一个链表。还有一个缺点是，对于无向图，如果需要删除一条边，就需要在两个链表上查找并删除。</p>
+<p>扩展<br>逆邻接表<br>在邻接表中对于有向图有一个很大的缺陷，如果我们比较关心顶点入度那么就需要遍历所有链表。为了避免这种情况出现，我们可以采用逆邻接表来存储，它存储的链表是别的顶点指向它。这样就可以快速求得顶点的入度。<br>邻接表：反映的是顶点出度的情况。<br>逆邻接表：反映的是顶点的入度情况。</p>
+<p>十字链表的好处就是因为把邻接表和逆邻接表整合在一起，这样既容易找到 vi 为尾的弧，也容易打到以 vi 为头的弧，因而容易求得顶点的出度和入度。而且它除了结构复杂一点燃上，其实创建图的算法的时间复杂度与邻接表相同，因此，在有向图的应用中，十字链表是非常好的数据结构模型。</p>
+<h2 id="图论"><a href="#图论" class="headerlink" title="图论"></a>图论</h2><p><strong>最短路</strong><br><img src="https://img-blog.csdnimg.cn/img_convert/0f41f2c90582e8e1afcecc5d0d32d004.png" srcset="/img/loading.gif" lazyload><br>最短路算法分为两大类：<br>m：边数，n:点数</p>
+<ul>
+<li>单源最短路，常用算法有：<ol>
+<li>dijkstra，边权为正。在稠密图上的时间复杂度是 O($n^2$)，稀疏图上的时间复杂度是 O(mlogn)。<br>算法思想：<img src="https://img-blog.csdnimg.cn/img_convert/d28c6fff3f5d995aac0ccb1cb1fef6df.png" srcset="/img/loading.gif" lazyload><br>证明集合 S 里面的点已经是最短距离。假设集合 S 点为 x，dist[x]有两个选择：dist[x]，dist[u]+d[u][s],因为 d[u][s]&gt;0 且 dist[u]&gt;dist[x]。</li>
+<li>bellman - ford 算法，不论边权是正的是负。算法平均时间复杂度是 O(nm)<br>for n 次<br>for 所有边 a,b,w (松弛操作)<br>dist[b] &#x3D; min(dist[b],back[a] + w)</li>
+<li>spfa，不论边权是正的是负。算法平均时间复杂度是 O(km)，k 是常数。 强烈推荐该算法。</li>
+</ol>
+</li>
+<li>多源最短路，一般用 floyd 算法。代码很短，三重循环，时间复杂度是 O($n^3$)。</li>
+</ul>
+<p>代码：</p>
+<p>朴素 dijkstra 算法 —— 模板题 AcWing 849. Dijkstra 求最短路 I</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-type">int</span> g[N][N];  <span class="hljs-comment">// 存储每条边</span><br><span class="hljs-type">int</span> dist[N];  <span class="hljs-comment">// 存储1号点到每个点的最短距离</span><br><span class="hljs-type">bool</span> st[N];   <span class="hljs-comment">// 存储每个点的最短路是否已经确定</span><br><br><span class="hljs-comment">// 求1号点到n号点的最短路，如果不存在则返回-1</span><br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">dijkstra</span><span class="hljs-params">()</span></span><br><span class="hljs-function"></span>&#123;<br>    <span class="hljs-built_in">memset</span>(dist, <span class="hljs-number">0x3f</span>, <span class="hljs-keyword">sizeof</span> dist);<br>    dist[<span class="hljs-number">1</span>] = <span class="hljs-number">0</span>;<br><br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; n - <span class="hljs-number">1</span>; i ++ )<br>    &#123;<br>        <span class="hljs-type">int</span> t = <span class="hljs-number">-1</span>;     <span class="hljs-comment">// 在还未确定最短路的点中，寻找距离最小的点</span><br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> j = <span class="hljs-number">1</span>; j &lt;= n; j ++ )<br>            <span class="hljs-keyword">if</span> (!st[j] &amp;&amp; (t == <span class="hljs-number">-1</span> || dist[t] &gt; dist[j]))<br>                t = j;<br><br>        <span class="hljs-comment">// 用t更新其他点的距离</span><br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> j = <span class="hljs-number">1</span>; j &lt;= n; j ++ )<br>            dist[j] = <span class="hljs-built_in">min</span>(dist[j], dist[t] + g[t][j]);<br><br>        st[t] = <span class="hljs-literal">true</span>;<br>    &#125;<br><br>    <span class="hljs-keyword">if</span> (dist[n] == <span class="hljs-number">0x3f3f3f3f</span>) <span class="hljs-keyword">return</span> <span class="hljs-number">-1</span>;<br>    <span class="hljs-keyword">return</span> dist[n];<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>堆优化版 dijkstra —— 模板题 AcWing 850. Dijkstra 求最短路 II</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-keyword">typedef</span> pair&lt;<span class="hljs-type">int</span>, <span class="hljs-type">int</span>&gt; PII;<br><br><span class="hljs-type">int</span> n;      <span class="hljs-comment">// 点的数量</span><br><span class="hljs-type">int</span> h[N], w[N], e[N], ne[N], idx;       <span class="hljs-comment">// 邻接表存储所有边</span><br><span class="hljs-type">int</span> dist[N];        <span class="hljs-comment">// 存储所有点到1号点的距离</span><br><span class="hljs-type">bool</span> st[N];     <span class="hljs-comment">// 存储每个点的最短距离是否已确定</span><br><br><span class="hljs-comment">// 求1号点到n号点的最短距离，如果不存在，则返回-1</span><br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">dijkstra</span><span class="hljs-params">()</span></span><br><span class="hljs-function"></span>&#123;<br>    <span class="hljs-built_in">memset</span>(dist, <span class="hljs-number">0x3f</span>, <span class="hljs-keyword">sizeof</span> dist);<br>    dist[<span class="hljs-number">1</span>] = <span class="hljs-number">0</span>;<br>    priority_queue&lt;PII, vector&lt;PII&gt;, greater&lt;PII&gt;&gt; heap;<br>    heap.<span class="hljs-built_in">push</span>(&#123;<span class="hljs-number">0</span>, <span class="hljs-number">1</span>&#125;);      <span class="hljs-comment">// first存储距离，second存储节点编号</span><br><br>    <span class="hljs-keyword">while</span> (heap.<span class="hljs-built_in">size</span>())<br>    &#123;<br>        <span class="hljs-keyword">auto</span> t = heap.<span class="hljs-built_in">top</span>();<br>        heap.<span class="hljs-built_in">pop</span>();<br><br>        <span class="hljs-type">int</span> ver = t.second, distance = t.first;<br><br>        <span class="hljs-keyword">if</span> (st[ver]) <span class="hljs-keyword">continue</span>;<br>        st[ver] = <span class="hljs-literal">true</span>;<br><br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = h[ver]; i != <span class="hljs-number">-1</span>; i = ne[i])<br>        &#123;<br>            <span class="hljs-type">int</span> j = e[i];<br>            <span class="hljs-keyword">if</span> (dist[j] &gt; distance + w[i])<br>            &#123;<br>                dist[j] = distance + w[i];<br>                heap.<span class="hljs-built_in">push</span>(&#123;dist[j], j&#125;);<br>            &#125;<br>        &#125;<br>    &#125;<br><br>    <span class="hljs-keyword">if</span> (dist[n] == <span class="hljs-number">0x3f3f3f3f</span>) <span class="hljs-keyword">return</span> <span class="hljs-number">-1</span>;<br>    <span class="hljs-keyword">return</span> dist[n];<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>Bellman-Ford 算法 —— 模板题 AcWing 853. 有边数限制的最短路</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><code class="hljs c++">注意在模板题中需要对下面的模板稍作修改，加上备份数组，详情见模板题。<br><br><span class="hljs-type">int</span> n, m;       <span class="hljs-comment">// n表示点数，m表示边数</span><br><span class="hljs-type">int</span> dist[N];        <span class="hljs-comment">// dist[x]存储1到x的最短路距离</span><br><br><span class="hljs-keyword">struct</span> <span class="hljs-title class_">Edge</span>     <span class="hljs-comment">// 边，a表示出点，b表示入点，w表示边的权重</span><br>&#123;<br>    <span class="hljs-type">int</span> a, b, w;<br>&#125;edges[M];<br><br><span class="hljs-comment">// 求1到n的最短路距离，如果无法从1走到n，则返回-1。</span><br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">bellman_ford</span><span class="hljs-params">()</span></span><br><span class="hljs-function"></span>&#123;<br>    <span class="hljs-built_in">memset</span>(dist, <span class="hljs-number">0x3f</span>, <span class="hljs-keyword">sizeof</span> dist);<br>    dist[<span class="hljs-number">1</span>] = <span class="hljs-number">0</span>;<br><br>    <span class="hljs-comment">// 如果第n次迭代仍然会松弛三角不等式，就说明存在一条长度是n+1的最短路径，由抽屉原理，路径中至少存在两个相同的点，说明图中存在负权回路。</span><br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; n; i ++ )<br>    &#123;<br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> j = <span class="hljs-number">0</span>; j &lt; m; j ++ )<br>        &#123;<br>            <span class="hljs-type">int</span> a = edges[j].a, b = edges[j].b, w = edges[j].w;<br>            <span class="hljs-keyword">if</span> (dist[b] &gt; dist[a] + w)<br>                dist[b] = dist[a] + w;<br>        &#125;<br>    &#125;<br><br>    <span class="hljs-keyword">if</span> (dist[n] &gt; <span class="hljs-number">0x3f3f3f3f</span> / <span class="hljs-number">2</span>) <span class="hljs-keyword">return</span> <span class="hljs-number">-1</span>;<br>    <span class="hljs-keyword">return</span> dist[n];<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>spfa 算法（队列优化的 Bellman-Ford 算法） —— 模板题 AcWing 851. spfa 求最短路<br>时间复杂度 平均情况下 O(m)O(m)，最坏情况下 O(nm)O(nm), nn 表示点数，mm 表示边数</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-type">int</span> n;      <span class="hljs-comment">// 总点数</span><br><span class="hljs-type">int</span> h[N], w[N], e[N], ne[N], idx;       <span class="hljs-comment">// 邻接表存储所有边</span><br><span class="hljs-type">int</span> dist[N];        <span class="hljs-comment">// 存储每个点到1号点的最短距离</span><br><span class="hljs-type">bool</span> st[N];     <span class="hljs-comment">// 存储每个点是否在队列中</span><br><br><span class="hljs-comment">// 求1号点到n号点的最短路距离，如果从1号点无法走到n号点则返回-1</span><br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">spfa</span><span class="hljs-params">()</span></span><br><span class="hljs-function"></span>&#123;<br>    <span class="hljs-built_in">memset</span>(dist, <span class="hljs-number">0x3f</span>, <span class="hljs-keyword">sizeof</span> dist);<br>    dist[<span class="hljs-number">1</span>] = <span class="hljs-number">0</span>;<br><br>    queue&lt;<span class="hljs-type">int</span>&gt; q;<br>    q.<span class="hljs-built_in">push</span>(<span class="hljs-number">1</span>);<br>    st[<span class="hljs-number">1</span>] = <span class="hljs-literal">true</span>;<br><br>    <span class="hljs-keyword">while</span> (q.<span class="hljs-built_in">size</span>())<br>    &#123;<br>        <span class="hljs-keyword">auto</span> t = q.<span class="hljs-built_in">front</span>();<br>        q.<span class="hljs-built_in">pop</span>();<br><br>        st[t] = <span class="hljs-literal">false</span>;<br><br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = h[t]; i != <span class="hljs-number">-1</span>; i = ne[i])<br>        &#123;<br>            <span class="hljs-type">int</span> j = e[i];<br>            <span class="hljs-keyword">if</span> (dist[j] &gt; dist[t] + w[i])<br>            &#123;<br>                dist[j] = dist[t] + w[i];<br>                <span class="hljs-keyword">if</span> (!st[j])     <span class="hljs-comment">// 如果队列中已存在j，则不需要将j重复插入</span><br>                &#123;<br>                    q.<span class="hljs-built_in">push</span>(j);<br>                    st[j] = <span class="hljs-literal">true</span>;<br>                &#125;<br>            &#125;<br>        &#125;<br>    &#125;<br><br>    <span class="hljs-keyword">if</span> (dist[n] == <span class="hljs-number">0x3f3f3f3f</span>) <span class="hljs-keyword">return</span> <span class="hljs-number">-1</span>;<br>    <span class="hljs-keyword">return</span> dist[n];<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>spfa 判断图中是否存在负环 —— 模板题 AcWing 852. spfa 判断负环<br>时间复杂度是 O(nm), n 表示点数，m 表示边数</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-type">int</span> n;      <span class="hljs-comment">// 总点数</span><br><span class="hljs-type">int</span> h[N], w[N], e[N], ne[N], idx;       <span class="hljs-comment">// 邻接表存储所有边</span><br><span class="hljs-type">int</span> dist[N], cnt[N];        <span class="hljs-comment">// dist[x]存储1号点到x的最短距离，cnt[x]存储1到x的最短路中经过的点数</span><br><span class="hljs-type">bool</span> st[N];     <span class="hljs-comment">// 存储每个点是否在队列中</span><br><br><span class="hljs-comment">// 如果存在负环，则返回true，否则返回false。</span><br><span class="hljs-function"><span class="hljs-type">bool</span> <span class="hljs-title">spfa</span><span class="hljs-params">()</span></span><br><span class="hljs-function"></span>&#123;<br>    <span class="hljs-comment">// 不需要初始化dist数组</span><br>    <span class="hljs-comment">// 原理：如果某条最短路径上有n个点（除了自己），那么加上自己之后一共有n+1个点，由抽屉原理一定有两个点相同，所以存在环。</span><br><br>    queue&lt;<span class="hljs-type">int</span>&gt; q;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">1</span>; i &lt;= n; i ++ )<br>    &#123;<br>        q.<span class="hljs-built_in">push</span>(i);<br>        st[i] = <span class="hljs-literal">true</span>;<br>    &#125;<br><br>    <span class="hljs-keyword">while</span> (q.<span class="hljs-built_in">size</span>())<br>    &#123;<br>        <span class="hljs-keyword">auto</span> t = q.<span class="hljs-built_in">front</span>();<br>        q.<span class="hljs-built_in">pop</span>();<br><br>        st[t] = <span class="hljs-literal">false</span>;<br><br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = h[t]; i != <span class="hljs-number">-1</span>; i = ne[i])<br>        &#123;<br>            <span class="hljs-type">int</span> j = e[i];<br>            <span class="hljs-keyword">if</span> (dist[j] &gt; dist[t] + w[i])<br>            &#123;<br>                dist[j] = dist[t] + w[i];<br>                cnt[j] = cnt[t] + <span class="hljs-number">1</span>;<br>                <span class="hljs-keyword">if</span> (cnt[j] &gt;= n) <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;       <span class="hljs-comment">// 如果从1号点到x的最短路中包含至少n个点（不包括自己），则说明存在环</span><br>                <span class="hljs-keyword">if</span> (!st[j])<br>                &#123;<br>                    q.<span class="hljs-built_in">push</span>(j);<br>                    st[j] = <span class="hljs-literal">true</span>;<br>                &#125;<br>            &#125;<br>        &#125;<br>    &#125;<br><br>    <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>floyd 算法 —— 模板题 AcWing 854. Floyd 求最短路</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs c++">初始化：<br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">1</span>; i &lt;= n; i ++ )<br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> j = <span class="hljs-number">1</span>; j &lt;= n; j ++ )<br>            <span class="hljs-keyword">if</span> (i == j) d[i][j] = <span class="hljs-number">0</span>;<br>            <span class="hljs-keyword">else</span> d[i][j] = INF;<br><br><span class="hljs-comment">// 算法结束后，d[a][b]表示a到b的最短距离</span><br><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">floyd</span><span class="hljs-params">()</span></span><br><span class="hljs-function"></span>&#123;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> k = <span class="hljs-number">1</span>; k &lt;= n; k ++ )<br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">1</span>; i &lt;= n; i ++ )<br>            <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> j = <span class="hljs-number">1</span>; j &lt;= n; j ++ )<br>                d[i][j] = <span class="hljs-built_in">min</span>(d[i][j], d[i][k] + d[k][j]);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>什么图一定包含欧拉回路?<br>B 树和红黑树的区别是什么?<br>欧拉回路和哈密尔顿回路有啥区别<br>都是平衡的。 然后 B+树的高度是 log_m 的。 一个结点保存更多元素 因此对磁盘操作友好</p>
+<p>操作系统：解释操作系统的文件、链接，什么是抖动？<br>l 交流环节<br>数据结构：决策树相关知识问的非常多，因为涉及到现在广泛应用的机器学习基础算法<br>项目交流：<br>项目整体介绍<br>l 项目创新点、项目来源、项目的效益<br>l 项目负责部分，采用了什么技术实现的，所写代码量，与现有类似系统相比的有什么优势<br>l 然后老师会就你负责的部分深入问，比如你说采用了***技术老师反问现在用*****比较多为什么不用，一系列的问题问道哑口无言未知<br>论文交流：<br>（1）论文第几作者；<br>（2）论文中负责哪几部分；<br>（3）论文发表的期刊的性质（中文核心、SCI、EI、国家级、省级等）；<br>（4）有没有通讯作者（指导老师），若有老师给予你们什么帮助；<br>（5）论文发表的意义或者说为什么要发表这篇论文；<br>软著交流：此部分涉及的比较少，一般问在软著中第几位、软著的代码量、申请软著中你担任了什么角色此部分一般和项目交流结合。</p>
+<h1 id="操作系统"><a href="#操作系统" class="headerlink" title="操作系统"></a>操作系统</h1><p><strong>线程和进程的区别</strong></p>
+<ol>
+<li>进程是资源分配最小单位，线程是程序执行的最小单位。</li>
+<li>进程有自己独立的地址空间，每启动一个进程，系统都会为其分配地址空间，建立数据表来维护代码段、堆栈段和数据段，线程没有独立的地址空间，它使用相同的地址空间共享数据；</li>
+<li>资源拥有：进程之间的资源是独立的；同一进程内的线程共享本进程的资源。</li>
+<li>线程之间通信更方便，同一个进程下，线程共享全局变量，静态变量等数据，进程之间的通信需要以通信的方式（IPC）进行；（但多线程程序处理好同步与互斥是个难点）</li>
+</ol>
+<p><strong>进程的通信方式</strong></p>
+<ol>
+<li>共享存储</li>
+<li>消息传递<br>直接通信方式<br>间接通信方式（邮箱通信方式）</li>
+<li>管道通信<br>管道连接读进程和写进程实现他们通信的共享文件。（是共享存储的优化与发展，存储空间到缓冲区，可以实现一边读一遍写）</li>
+</ol>
+<p><strong>I&#x2F;O 系统的层次结构</strong></p>
+<p>1.用户层 I&#x2F;O 软件</p>
+<p>实现与用户的交互，用户可以直接调用此层提供的接口、函数等；</p>
+<p>2.设备独立性软件</p>
+<p>用于实现用户程序和设备驱动器的统一接口、设备命名、设备保护以及设备分配和释放等，同时为数据的传输提供必要的空间</p>
+<p>3.设备驱动程序</p>
+<p>与硬件直接相关，用于具体实现系统施加给硬件设备的指令</p>
+<p>4.中断处理程序</p>
+<p>保护被中断的 CPU 环境，转入中断处理程序，处理，返回恢复现场</p>
+<h2 id="虚拟存储器的定义和特征"><a href="#虚拟存储器的定义和特征" class="headerlink" title="虚拟存储器的定义和特征"></a>虚拟存储器的定义和特征</h2><p>基于局部性原理，在程序装入时，可以将程序的一部分装入内存，而将其余部分留在外存，就可以启动程序执行。在程序执行过程中，当所访问的信息不在内存时，由操作系统将所需要的部分调入内存,然后继续执行程序。另一方面，操作系统将内存中暂时不使用的内容换出到外存上，从而腾出空间存放将要调入内存的信息。这样，系统好像为用户提供了一个比实际内存 大得多的存储器，称为虚拟存储器。</p>
+<p>[外链图片转存失败,源站可能有防盗链机制,建议将图片保存下来直接上传(img-LaqC7Ybw-1626070952001)(C:%5CUsers%5Cpxlsdz%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20201229182347967.png)]</p>
+<p>为什么说分段系统较之分页系统更易于实现信息共享和保护？<br>A.对于分页系统，每个页面是分散存储的，为了实现信息共享和保护，则页面之间需要一一对应起来，为此需要建立大量的页表项；</p>
+<p>B.而对于分段系统，每个段都从 0 开始编址，并采用一段连续的地址空间，这样在实现共享和保护时，只需为所要共享和保护的程序设置一个段表项，将其中的基址与内存地址一一对应起来即可.</p>
+<h1 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h1><p><strong>在数据中查找异常值的方法</strong></p>
+<ol>
+<li><strong>简单统计</strong>,或者简单使用散点图也能很清晰的观察到异常值的存在,排序</li>
+<li><strong>3∂ 原则</strong><br>这个原则有个条件：数据需要服从正态分布。在 3∂ 原则下，异常值如超过 3 倍标准差，那么可以将其视为异常值。</li>
+<li><strong>箱型图</strong><br>四分位距(IQR)就是上四分位与下四分位的差值。而我们通过 IQR 的 1.5 倍为标准，规定：超过<strong>（上四分位+1.5 倍 IQR 距离，或者下四分位-1.5 倍 IQR 距离）</strong>的点为异常值。</li>
+</ol>
+<p>[外链图片转存失败,源站可能有防盗链机制,建议将图片保存下来直接上传(img-qLKtVeic-1626070952002)(C:%5CUsers%5Cpxlsdz%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20201229182357739.png)]</p>
+<p>LSTM<br>由于在误差反向传播时，算出来的梯度会随着往前传播而发生<strong>指数级</strong>的衰减或放大！而且这是在数学上板上钉钉的事情。因此，<strong>RNN**<strong>的记忆单元是短时的。<br>计一个全新的、</strong>可以解决梯度爆炸消失问题从而记住长距离依赖关系</strong>的神经网络。</p>
+<p>input gate 决定了对输入的数据做哪些处理，forget gate 决定了哪些知识被过滤掉，无需再继续传递，而 output gate 决定了哪些知识需要传递到下一个时间序列。<br>[外链图片转存失败,源站可能有防盗链机制,建议将图片保存下来直接上传(img-EcdWlPEF-1626070952003)(%E4%B8%93%E4%B8%9A%E9%97%AE%E9%A2%98_md_files&#x2F;image_20200717140940.png?v&#x3D;1&amp;type&#x3D;image&amp;token&#x3D;V1:xFVbt772xm4VIXnq0ZIOVRXoGy9X5rCXjU4CUYqmlGc)]</p>
+<p>二项分布的前提是什么<br><img src="https://img-blog.csdnimg.cn/img_convert/f1d55bc5e8f546242cfdbd5ef759821f.png" srcset="/img/loading.gif" lazyload><br>回归分析的应用场景</p>
+<p><strong>数据库数据模型的组成</strong> 1.数据模型通常由数据结构、数据操作和数据的完整性约束条件三部分组成。</p>
+<p>2.数据结构：数据结构描述数据库的组成对象以及对象之间的联系。</p>
+<p>3.数据操作：数据操作是指对数据库中各种对象（型）的实例（值）允许执行的操作的集合，包括操作及有关的操作规则。（增删改查）</p>
+<p>4.完整性约束条件：数据的完整性约束条件是一组完整性规则</p>
+<p>操作系统原理课程里面有很多数据结构的实现，部分归纳总结如下：</p>
+<h4 id="链表"><a href="#链表" class="headerlink" title="链表"></a><strong>链表</strong></h4><ul>
+<li>进程管理-PCB 的连接</li>
+<li>外存分配方式-链接分配</li>
+</ul>
+<h4 id="队列-1"><a href="#队列-1" class="headerlink" title="队列"></a><strong>队列</strong></h4><ul>
+<li>进程通信-消息队列的实现</li>
+<li>处理机调度-任务就绪列队的实现</li>
+<li>存储器管理-Clock 置换算法的实现（循环队列）</li>
+</ul>
+<h4 id="栈-1"><a href="#栈-1" class="headerlink" title="栈"></a><strong>栈</strong></h4><ul>
+<li>存储器管理-LRU(Least Recently used)置换算法</li>
+</ul>
+<h4 id="树"><a href="#树" class="headerlink" title="树"></a><strong>树</strong></h4><ul>
+<li>进程管理-进程家族关系描述：进程树</li>
+</ul>
+<h4 id="散列表"><a href="#散列表" class="headerlink" title="散列表"></a><strong>散列表</strong></h4><ul>
+<li>内存管理-连续分配方式：Hash 算法</li>
+<li>文件管理-hash 文件</li>
+</ul>
+<h1 id="计算机的启动过程？"><a href="#计算机的启动过程？" class="headerlink" title="计算机的启动过程？"></a>计算机的启动过程？</h1><p>开机上电–&gt;系统自检（POST）–&gt;运行主引导记录–&gt;装载操作系统–&gt;运行操作系统–&gt;进入桌面</p>
+<ul>
+<li><em>开机上电和系统自检与硬件设备有关</em></li>
+<li><em>运行主引导记录，装载操作系统和运行操作系统与操作系统有关</em></li>
+<li><em>进入桌面与应用软件有关</em></li>
+</ul>
+<p><strong>一、先验概率</strong></p>
+<p><strong>1.1 定义</strong></p>
+<p>直观理解，所谓“先”，就是在事情之前，即在事情发生之前事情发生的概率。是根据以往经验和分析得到的概率。</p>
+<p><strong>1.2 例子</strong></p>
+<p>比如抛硬币，我们都认为正面朝上的概率是 0.5，这就是一种先验概率，在抛硬币前，我们只有常识。这个时候事情还没发生，我们进行概率判断。所谓的先验概率是对事情发生可能性猜测的数学表示。</p>
+<p><strong>二、后验概率</strong></p>
+<p><strong>1.1 定义</strong></p>
+<p>事情已经发生了，事情发生可能有很多原因，判断事情发生时由哪个原因引起的概率。</p>
+<p><strong>贝叶斯定理</strong><br>概率是基于基于已有经验（背景信息）的更新<br>贝叶斯公式所讨论的事：我们的假设在现有证据下成立的概率<br>先验概率：在目前信息获得前&#x2F;没有任何信息情况下（仅有背景信息），假设的成立概率<br>似然概率：假设成立的情况下，看到证据的概率（假设成立的空间&lt;样本总数*先验概率&gt;中，包含证据的比例）<br>后验概率：分子–我们看见的信息 | 分母–所有的信息</p>
+<p>多态<br>不同对象对消息做出的不同的表现<br><img src="https://img-blog.csdnimg.cn/img_convert/f2f9811e6d0418f21efa9f84c9d52aa0.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://img-blog.csdnimg.cn/img_convert/5c6d437c062f8c45d01691b2c56dff42.png" srcset="/img/loading.gif" lazyload><br>相位（虚部）、频率（实部）<br>傅里叶变化就是去摘，根据标准正交基的含义。</p>
+<ol>
+<li>首先让做中文自我介绍，我叫….</li>
+<li>问题一:你知道数据库查询可以怎么优化吗？select 底层的东西是什么啊？mysql 是怎么优化这个的？</li>
+<li>问题二：python 中不用第三个变量怎么进行交换两个变量的值</li>
+<li>问题三：lucence 的检索方式有几种？分别介绍一下</li>
+<li>你搭建过 zookeeper 集群，你知道这种集群为什么都要用奇数台机器吗？你都用集群做了什么事情？</li>
+<li>问题五：你说一下反射的原理吗，是怎么实现的？<br>spring 核心：IOC（控制反转：依赖注入）和 AOP（面向切面编程），IOC 中最基本的技术就是“反射(Reflection)”编程，通俗来讲就是根据给出的类名来动态地生成对象。这种编程方式可以让对象在生成时才决定到底是哪一种对象。</li>
+<li>问题六：项目+毕业设计</li>
+<li>问题七：为什么想要做这个项目，你都用到了哪些技术？</li>
+<li>问题八：linux 问题：在一个文件夹下面怎么使用命令找含有某字段的文件</li>
+<li>问题九：Python 中对哪些库比较熟悉啊？</li>
+<li>问题十：学硕？专硕？</li>
+<li>问题十一：你想做什么方向？如果这个方向名额不够了，你愿意接收调剂吗？</li>
+</ol>
+<p>编译型：先将源代码编译成目标语言之后通过连接程序连接到生成的目标程序进行执行，例如 C++。</p>
+<p>解释型：由解释器根据输入的数据当场执行而不生成任何的目标程序，例如 python。</p>
+<p>混合型：两种语言的特征都存在，典型的就是 Java。</p>
+<p>c 和 c++，java 的区别?</p>
+<p>c 是纯过程，c++是对象加过程，java 是纯面向对象的<br>java 的特点？<br>一次编译到处运行，没有指针，完全对象化。</p>
+<p>后面就是专业面试：首先一个老师根据我的简历上的 java web 项目，问了我一下接口和抽象类的作用。然后又问了我 TCP 和 UDP 的区别；别的老师又问了我数据库的 ACID 属性；数学中距离的概念等等。</p>
+<p><img src="https://img-blog.csdnimg.cn/img_convert/59ad9f52c014779b5fd29ac5baabf30b.png" srcset="/img/loading.gif" lazyload></p>
+<p>一、原子性（atomicity)</p>
+<p>一个事务要么全部提交成功，要么全部失败回滚，不能只执行其中的一部分操作，这就是事务的原子性</p>
+<p>二、一致性（consistency)</p>
+<p>事务的执行不能破坏数据库数据的完整性和一致性，一个事务在执行之前和执行之后，数据库都必须处于一致性状态。</p>
+<p>如果数据库系统在运行过程中发生故障，有些事务尚未完成就被迫中断，这些未完成的事务对数据库所作的修改有一部分已写入物理数据库，这是数据库就处于一种不正确的状态，也就是不一致的状态</p>
+<p>三、隔离性（isolation）</p>
+<p>事务的隔离性是指在并发环境中，并发的事务时相互隔离的，一个事务的执行不能不被其他事务干扰。不同的事务并发操作相同的数据时，每个事务都有各自完成的数据空间，即一个事务内部的操作及使用的数据对其他并发事务时隔离的，并发执行的各个事务之间不能相互干扰。</p>
+<p>四、持久性（durability）</p>
+<p>一旦事务提交，那么它对数据库中的对应数据的状态的变更就会永久保存到数据库中。–即使发生系统崩溃或机器宕机等故障，只要数据库能够重新启动，那么一定能够将其恢复到事务成功结束的状态</p>
+<p><strong>欧氏距离</strong><br><strong>曼哈顿距离</strong><br><strong>切比雪夫距离</strong><br><strong>闵可夫斯基距离(Minkowski Distance)</strong><br><strong>马氏距离(Mahalanobis Distance)</strong><br><strong>夹角余弦(Cosine)</strong><br><img src="https://img-blog.csdnimg.cn/img_convert/643a03bad9306d62830b2151a5de54f2.png" srcset="/img/loading.gif" lazyload><br><strong>皮尔逊系数的定义</strong>：</p>
+<p>两个变量之间的皮尔逊相关系数定义为两个变量之间的协方差和标准差的商：<br><img src="https://img-blog.csdnimg.cn/img_convert/2a3f6d1651a00c7b406b1e391c1d763c.png" srcset="/img/loading.gif" lazyload></p>
+<p>比如简述虚拟地址的转换呐、静态变量有什么特征呐、如何在 64 位的操作系统中声明一个 64 位的 int（long long）呐等等<br>页号+页内偏移，TLB 或页表取出物理块号</p>
+<p>（1）它占据一个永久性的存储单元。随着文件的存在而存在。<br>（2）静态局部变量是在编译时赋初值，在程序执行期间，一旦存储单元中 的值改变，就不会再执行赋初值的语句。未赋初值的变量其值为 0。</p>
+<ul>
+<li>*<strong>*编译型语言 用专用的编译器，针对特定的操作系统，将高级语言一次性翻译成机器可执行的二进制机器码，如 C 语言、C++</strong></li>
+<li><strong>解释型语言 用专门的解释器对源程序解释成特定平台的机器码并立即执行，效率低，不能脱离解释器运行，跨平台容易，如 Python（同时也是脚本语言）与 Ruby 等</strong></li>
+<li><strong>脚本语言 程序代码即是最终的执行文件，过程需要解释器，如 JavaScript,Python，shell 等**</strong></li>
+</ul>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E6%9D%82/" class="category-chain-item">杂</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>『杂』复试-专业问题</div>
+      <div>https://chiamzhang.github.io/2024/06/29/『杂』复试-专业问题/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>Chiam</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>June 29, 2024</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>Licensed under</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2024/06/29/%E3%80%8E%E6%9D%82%E3%80%8F%E5%B0%8F%E8%80%81%E6%9D%BF%EF%BC%8C%E6%88%91300M%E7%9A%84%E7%BD%91%EF%BC%8C%E7%BD%91%E9%80%9F%E5%BE%88%E6%85%A2%E6%80%8E%E4%B9%88%E5%8A%9E%EF%BC%9F/" title="『杂』小老板，我300M的网，网速很慢怎么办？">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">『杂』小老板，我300M的网，网速很慢怎么办？</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/06/29/%E3%80%8E%E6%9D%82%E3%80%8F%E5%8D%8E%E6%B8%85%E5%AE%9E%E8%AE%AD%E7%9A%84%E6%94%B6%E8%8E%B7%EF%BC%88%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E7%9A%84%E5%B0%8F%E5%B9%BF%E5%91%8A%E5%92%8C%E7%A6%8F%E5%88%A9%EF%BC%89/" title="『杂』华清实训的收获（人工智能的小广告和福利）">
+                        <span class="hidden-mobile">『杂』华清实训的收获（人工智能的小广告和福利）</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"fIfc7WqUDZohlQuPc2lz5mJy-MdYXbMMI","appKey":"zjlAG3ZA3o4cBHVAkjzc2Z20","path":"window.location.pathname","placeholder":"留言仅限讨论，禁止广告等行为","avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"https://fifc7wqu.api.lncldglobal.com","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>Table of Contents</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <meta name="referrer" content="no-referrer" /> <footer id="footer" role="contentinfo"> <meta name="referrer" content="no-referrer" /> <div class="divider"> <div class="wall"></div> <img class="animals" src="/img/footer_animals_new.png" srcset="/img/loading.gif" lazyload alt="Footer Animals"> </div> <div class="container" data-index="450"> <p> <a href="https://chiamzhang.github.io" target="_blank">DogEgg</a> <i class="iconfont icon-love"></i> <a href="#" target="_blank">LittePig</a> </p> <p> Powered by  <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-pen"></i> Theme  <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> </p> </div> </footer> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+  
+<script src="/js/love.js"></script>
+<script src="/js/funnyTitle.js"></script>
+<script src="/js/backTop.js"></script>
+<script src="//cdn.jsdelivr.net/gh/bynotes/texiao/source/js/xiaoxuehua.js"></script>
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+</html>

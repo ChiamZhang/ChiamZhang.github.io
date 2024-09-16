@@ -1,0 +1,714 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/Mine.jpg">
+  <link rel="icon" href="/img/Mine.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Chiam">
+  <meta name="keywords" content="Algorithms，Cybersecurity">
+  
+    <meta name="description" content="『算法-ACM 竞赛-CodeForces』CodeCraft-20 (Div. 2) D. Nash Matrix 详解（DFS 构造）D. Nash Matrixtime limit per test2 secondsmemory limit per test256 megabytesinputstandard inputoutputstandard outputNash designed a">
+<meta property="og:type" content="article">
+<meta property="og:title" content="『算法-ACM竞赛-CodeForces』CodeCraft-20 (Div. 2) D. Nash Matrix 详解（DFS构造）">
+<meta property="og:url" content="https://chiamzhang.github.io/2024/06/29/%E3%80%8E%E7%AE%97%E6%B3%95-ACM%E7%AB%9E%E8%B5%9B-CodeForces%E3%80%8FCodeCraft-20%20(Div.%202)%20D.%20Nash%20Matrix%20%E8%AF%A6%E8%A7%A3%EF%BC%88DFS%E6%9E%84%E9%80%A0%EF%BC%89/index.html">
+<meta property="og:site_name" content="Homepage of Chiam">
+<meta property="og:description" content="『算法-ACM 竞赛-CodeForces』CodeCraft-20 (Div. 2) D. Nash Matrix 详解（DFS 构造）D. Nash Matrixtime limit per test2 secondsmemory limit per test256 megabytesinputstandard inputoutputstandard outputNash designed a">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2024-06-29T13:16:53.964Z">
+<meta property="article:modified_time" content="2023-12-05T16:18:33.031Z">
+<meta property="article:author" content="Chiam">
+<meta property="article:tag" content="Algorithms，Cybersecurity">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>『算法-ACM竞赛-CodeForces』CodeCraft-20 (Div. 2) D. Nash Matrix 详解（DFS构造） - Homepage of Chiam</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"chiamzhang.github.io","root":"/","version":"1.9.5-a","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":"❡"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":2},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
+
+
+<body>
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Chiam&#39;s Blogs</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                
+                <span>Home</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                
+                <span>Archives</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                
+                <span>Categories</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                
+                <span>About</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                
+                <span>Links</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="『算法-ACM竞赛-CodeForces』CodeCraft-20 (Div. 2) D. Nash Matrix 详解（DFS构造）"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-06-29 21:16" pubdate>
+          June 29, 2024 pm
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          6.3k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          53 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">『算法-ACM竞赛-CodeForces』CodeCraft-20 (Div. 2) D. Nash Matrix 详解（DFS构造）</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="『算法-ACM-竞赛-CodeForces』CodeCraft-20-Div-2-D-Nash-Matrix-详解（DFS-构造）"><a href="#『算法-ACM-竞赛-CodeForces』CodeCraft-20-Div-2-D-Nash-Matrix-详解（DFS-构造）" class="headerlink" title="『算法-ACM 竞赛-CodeForces』CodeCraft-20 (Div. 2) D. Nash Matrix 详解（DFS 构造）"></a>『算法-ACM 竞赛-CodeForces』CodeCraft-20 (Div. 2) D. Nash Matrix 详解（DFS 构造）</h1><p>D. Nash Matrix<br>time limit per test2 seconds<br>memory limit per test256 megabytes<br>inputstandard input<br>outputstandard output<br>Nash designed an interesting yet simple board game where a player is simply required to follow instructions written on the cell where the player currently stands.</p>
+<p>This board game is played on the n×n board. Rows and columns of this board are numbered from 1 to n. The cell on the intersection of the r-th row and c-th column is denoted by (r,c).</p>
+<p>Some cells on the board are called blocked zones. On each cell of the board, there is written one of the following 5 characters — U, D, L, R or X — instructions for the player. Suppose that the current cell is (r,c). If the character is R, the player should move to the right cell (r,c+1), for L the player should move to the left cell (r,c−1), for U the player should move to the top cell (r−1,c), for D the player should move to the bottom cell (r+1,c). Finally, if the character in the cell is X, then this cell is the blocked zone. The player should remain in this cell (the game for him isn’t very interesting from now on).</p>
+<p>It is guaranteed that the characters are written in a way that the player will never have to step outside of the board, no matter at which cell he starts.</p>
+<p>As a player starts from a cell, he moves according to the character in the current cell. The player keeps moving until he lands in a blocked zone. It is also possible that the player will keep moving infinitely long.</p>
+<p>For every of the n2 cells of the board Alice, your friend, wants to know, how will the game go, if the player starts in this cell. For each starting cell of the board, she writes down the cell that the player stops at, or that the player never stops at all. She gives you the information she has written: for each cell (r,c) she wrote:</p>
+<p>a pair (x,y), meaning if a player had started at (r,c), he would end up at cell (x,y).<br>or a pair (−1,−1), meaning if a player had started at (r,c), he would keep moving infinitely long and would never enter the blocked zone.<br>It might be possible that Alice is trying to fool you and there’s no possible grid that satisfies all the constraints Alice gave you. For the given information Alice provided you, you are required to decipher a possible board, or to determine that such a board doesn’t exist. If there exist several different boards that satisfy the provided information, you can find any of them.</p>
+<p>Input<br>The first line of the input contains a single integer n (1≤n≤103) — the side of the board.</p>
+<p>The i-th of the next n lines of the input contains 2n integers x1,y1,x2,y2,…,xn,yn, where (xj,yj) (1≤xj≤n,1≤yj≤n, or (xj,yj)&#x3D;(−1,−1)) is the pair written by Alice for the cell (i,j).</p>
+<p>Output<br>If there doesn’t exist a board satisfying the information that Alice gave you, print a single line containing INVALID.</p>
+<p>Otherwise, in the first line print VALID. In the i-th of the next n lines, print the string of n characters, corresponding to the characters in the i-th row of the suitable board you found. Each character of a string can either be U, D, L, R or X. If there exist several different boards that satisfy the provided information, you can find any of them.</p>
+<p>Examples<br>inputCopy<br>2<br>1 1 1 1<br>2 2 2 2<br>outputCopy<br>VALID<br>XL<br>RX<br>inputCopy<br>3<br>-1 -1 -1 -1 -1 -1<br>-1 -1 2 2 -1 -1<br>-1 -1 -1 -1 -1 -1<br>outputCopy<br>VALID<br>RRD<br>UXD<br>ULL<br>Note<br>For the sample test 1 :</p>
+<p>The given grid in output is a valid one.</p>
+<p>If the player starts at (1,1), he doesn’t move any further following X and stops there.<br>If the player starts at (1,2), he moves to left following L and stops at (1,1).<br>If the player starts at (2,1), he moves to right following R and stops at (2,2).<br>If the player starts at (2,2), he doesn’t move any further following X and stops there.<br>The simulation can be seen below :</p>
+<p>For the sample test 2 :</p>
+<p>The given grid in output is a valid one, as a player starting at any cell other than the one at center (2,2), keeps moving in an infinitely long cycle and never stops. Had he started at (2,2), he wouldn’t have moved further following instruction X .</p>
+<p>The simulation can be seen below :</p>
+<p>题意：<br>给出 n*n 的网格，再给出每个点的终点，-1 -1 为永不停止的运动，问你是否能构造出这样的地图。</p>
+<p>思路:<br>先处理-1 -1 的先找到一个环，然后找到所有的-1 -1 让他们进入循环，直到没有-1 -1 或者存在不能处理的（IV..),然后处理其他的，如果最后还是存在不能处理的，就（IV）都处理完了，就输出。<br>主要就是先构造环的过程比较难想。然后只要-1 -1 能连起来，就可以。<br>剩下的硬处理。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;bits/stdc++.h&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><span class="hljs-keyword">template</span> &lt;<span class="hljs-keyword">typename</span> t&gt;<br><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">read</span><span class="hljs-params">(t &amp;x)</span></span><br><span class="hljs-function"></span>&#123;<br>    <span class="hljs-type">char</span> ch = <span class="hljs-built_in">getchar</span>();<br>    x = <span class="hljs-number">0</span>;<br>    t f = <span class="hljs-number">1</span>;<br>    <span class="hljs-keyword">while</span> (ch &lt; <span class="hljs-string">&#x27;0&#x27;</span> || ch &gt; <span class="hljs-string">&#x27;9&#x27;</span>)<br>        f = (ch == <span class="hljs-string">&#x27;-&#x27;</span> ? <span class="hljs-number">-1</span> : f), ch = <span class="hljs-built_in">getchar</span>();<br>    <span class="hljs-keyword">while</span> (ch &gt;= <span class="hljs-string">&#x27;0&#x27;</span> &amp;&amp; ch &lt;= <span class="hljs-string">&#x27;9&#x27;</span>)<br>        x = x * <span class="hljs-number">10</span> + ch - <span class="hljs-string">&#x27;0&#x27;</span>, ch = <span class="hljs-built_in">getchar</span>();<br>    x *= f;<br>&#125;<br><br><span class="hljs-meta">#<span class="hljs-keyword">define</span> wi(n) printf(<span class="hljs-string">&quot;%d &quot;</span>, n)</span><br><span class="hljs-meta">#<span class="hljs-keyword">define</span> wl(n) printf(<span class="hljs-string">&quot;%lld &quot;</span>, n)</span><br><span class="hljs-meta">#<span class="hljs-keyword">define</span> P puts(<span class="hljs-string">&quot; &quot;</span>)</span><br><span class="hljs-keyword">typedef</span> <span class="hljs-type">long</span> <span class="hljs-type">long</span> ll;<br><span class="hljs-meta">#<span class="hljs-keyword">define</span> MOD 1000000007</span><br><span class="hljs-meta">#<span class="hljs-keyword">define</span> mp(a, b) make_pair(a, b)</span><br><span class="hljs-meta">#<span class="hljs-keyword">define</span> N 20005</span><br><span class="hljs-meta">#<span class="hljs-keyword">define</span> rep(i, j, n) for (int i = j; i &lt;= n; i++)</span><br><span class="hljs-meta">#<span class="hljs-keyword">define</span> red(i, n, j) for (int i = n; i &gt;= j; i--)</span><br><span class="hljs-meta">#<span class="hljs-keyword">define</span> fil(a, n) rep(i,0, n,) read(a[i])</span><br><br><span class="hljs-comment">//---------------https://lunatic.blog.csdn.net/-------------------//</span><br><br><span class="hljs-type">const</span> <span class="hljs-type">int</span> maxn = <span class="hljs-number">1e3</span> + <span class="hljs-number">9</span>;<br>pair&lt;<span class="hljs-type">int</span>,<span class="hljs-type">int</span>&gt; a[maxn][maxn];<br><span class="hljs-type">char</span> s[maxn][maxn];<br><span class="hljs-type">int</span> dir[<span class="hljs-number">4</span>][<span class="hljs-number">2</span>] = &#123;&#123;<span class="hljs-number">-1</span>, <span class="hljs-number">0</span>&#125;, &#123;<span class="hljs-number">1</span>, <span class="hljs-number">0</span>&#125;, &#123;<span class="hljs-number">0</span>, <span class="hljs-number">-1</span>&#125;, &#123;<span class="hljs-number">0</span>, <span class="hljs-number">1</span>&#125;&#125;;<br><span class="hljs-type">char</span> str1[<span class="hljs-number">5</span>] = &#123;<span class="hljs-string">&#x27;U&#x27;</span>, <span class="hljs-string">&#x27;D&#x27;</span>, <span class="hljs-string">&#x27;L&#x27;</span>, <span class="hljs-string">&#x27;R&#x27;</span>&#125;;<br><span class="hljs-type">char</span> str2[<span class="hljs-number">5</span>] = &#123;<span class="hljs-string">&#x27;D&#x27;</span>, <span class="hljs-string">&#x27;U&#x27;</span>, <span class="hljs-string">&#x27;R&#x27;</span>, <span class="hljs-string">&#x27;L&#x27;</span>&#125;;<br><span class="hljs-type">int</span> vis[maxn][maxn];<br><span class="hljs-type">int</span> n, flag = <span class="hljs-number">1</span>, flag1;<br><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">dfs</span><span class="hljs-params">(<span class="hljs-type">int</span> vax, <span class="hljs-type">int</span> vay, <span class="hljs-type">int</span> x, <span class="hljs-type">int</span> y, <span class="hljs-type">int</span> di)</span></span><br><span class="hljs-function"></span>&#123;<br>    <span class="hljs-keyword">if</span> (di == <span class="hljs-number">0</span>)<br>        s[x][y] = <span class="hljs-string">&#x27;D&#x27;</span>;<br>    <span class="hljs-keyword">if</span> (di == <span class="hljs-number">1</span>)<br>        s[x][y] = <span class="hljs-string">&#x27;U&#x27;</span>;<br>    <span class="hljs-keyword">if</span> (di == <span class="hljs-number">2</span>)<br>        s[x][y] = <span class="hljs-string">&#x27;R&#x27;</span>;<br>    <span class="hljs-keyword">if</span> (di == <span class="hljs-number">3</span>)<br>        s[x][y] = <span class="hljs-string">&#x27;L&#x27;</span>;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">4</span>; i++)<br>    &#123;<br>        <span class="hljs-type">int</span> xx = x + dir[i][<span class="hljs-number">0</span>];<br>        <span class="hljs-type">int</span> yy = y + dir[i][<span class="hljs-number">1</span>];<br>        <span class="hljs-keyword">if</span> (xx &lt; <span class="hljs-number">1</span> || xx &gt; n || yy &lt; <span class="hljs-number">1</span> || yy &gt; n || vis[xx][yy] || a[xx][yy].first != vax || a[xx][yy].second != vay)<br>            <span class="hljs-keyword">continue</span>;<br>        vis[xx][yy] = <span class="hljs-number">1</span>;<br>        <span class="hljs-built_in">dfs</span>(vax, vay, xx, yy, i);<br>    &#125;<br>&#125;<br><br><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">connect</span><span class="hljs-params">(<span class="hljs-type">int</span> x, <span class="hljs-type">int</span> y, <span class="hljs-type">int</span> xx, <span class="hljs-type">int</span> yy, <span class="hljs-type">char</span> c, <span class="hljs-type">char</span> st)</span></span><br><span class="hljs-function"></span>&#123;<br>    s[x][y] = c;<br>    <span class="hljs-keyword">if</span> (!vis[xx][yy])<br>        s[xx][yy] = st;<br>    vis[x][y] = vis[xx][yy] = <span class="hljs-number">1</span>;<br>&#125;<br><br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span><br><span class="hljs-function"></span>&#123;<br>    <span class="hljs-built_in">read</span>(n);<br>    <span class="hljs-built_in">rep</span>(i, <span class="hljs-number">1</span>, n)<br>    &#123;<br>        <span class="hljs-built_in">rep</span>(j, <span class="hljs-number">1</span>, n)<br>        &#123;<br>            cin &gt;&gt; a[i][j].first &gt;&gt; a[i][j].second;<br>            <span class="hljs-keyword">if</span> (a[i][j].first == i &amp;&amp; a[i][j].second == j)<br>            &#123;<br>                s[i][j] = <span class="hljs-string">&#x27;X&#x27;</span>;<br>            &#125;<br>        &#125;<br>    &#125;<br>    <span class="hljs-built_in">rep</span>(i, <span class="hljs-number">1</span>, n)<br>    &#123;<br>        <span class="hljs-built_in">rep</span>(j, <span class="hljs-number">1</span>, n)<br>        &#123;<br>            <span class="hljs-keyword">if</span> (s[i][j] == <span class="hljs-string">&#x27;X&#x27;</span>)<br>            &#123;<br>                vis[i][j] = <span class="hljs-number">1</span>;<br>                <span class="hljs-built_in">dfs</span>(a[i][j].first, a[i][j].second, i, j, <span class="hljs-number">-1</span>);<br>            &#125;<br>        &#125;<br>    &#125;<br>    <span class="hljs-built_in">rep</span>(i, <span class="hljs-number">1</span>, n)<br>    &#123;<br>        <span class="hljs-built_in">rep</span>(j, <span class="hljs-number">1</span>, n)<br>        &#123;<br>            <span class="hljs-keyword">if</span> (a[i][j].first == <span class="hljs-number">-1</span> &amp;&amp; !vis[i][j])<br>            &#123;<br>                <span class="hljs-type">int</span> flag = <span class="hljs-number">0</span>;<br>                <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> k = <span class="hljs-number">0</span>; k &lt; <span class="hljs-number">4</span>; k++)<br>                &#123;<br>                    <span class="hljs-type">int</span> xx = i + dir[k][<span class="hljs-number">0</span>];<br>                    <span class="hljs-type">int</span> yy = j + dir[k][<span class="hljs-number">1</span>];<br>                    <span class="hljs-keyword">if</span> (xx &lt; <span class="hljs-number">1</span> || xx &gt; n || yy &lt; <span class="hljs-number">1</span> || yy &gt; n || a[xx][yy].first != <span class="hljs-number">-1</span>)<br>                        <span class="hljs-keyword">continue</span>;<br>                    <span class="hljs-built_in">connect</span>(i, j, xx, yy, str1[k], str2[k]);<br>                    flag = <span class="hljs-number">1</span>;<br>                    <span class="hljs-keyword">break</span>;<br>                &#125;<br>                <span class="hljs-keyword">if</span> (!flag)<br>                &#123;<br>                    cout &lt;&lt; <span class="hljs-string">&quot;INVALID&quot;</span> &lt;&lt; endl;<br>                    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>                &#125;<br>            &#125;<br>        &#125;<br>    &#125;<br>    <span class="hljs-built_in">rep</span>(i, <span class="hljs-number">1</span>, n)<br>    &#123;<br>        <span class="hljs-built_in">rep</span>(j, <span class="hljs-number">1</span>, n)<br>        &#123;<br>            <span class="hljs-keyword">if</span> (!vis[i][j])<br>            &#123;<br>                cout &lt;&lt; <span class="hljs-string">&quot;INVALID&quot;</span> &lt;&lt; endl;<br>                <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>            &#125;<br>        &#125;<br>    &#125;<br>    cout &lt;&lt; <span class="hljs-string">&quot;VALID&quot;</span> &lt;&lt; endl;<br>    <span class="hljs-built_in">rep</span>(i, <span class="hljs-number">1</span>, n)<br>    &#123;<br>        <span class="hljs-built_in">rep</span>(j, <span class="hljs-number">1</span>, n)<br>        &#123;<br>            cout &lt;&lt; s[i][j];<br>        &#125;<br>        cout &lt;&lt; endl;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E7%AE%97%E6%B3%95/" class="category-chain-item">算法</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/%E7%AE%97%E6%B3%95/ACM%E7%AB%9E%E8%B5%9B/" class="category-chain-item">ACM竞赛</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/%E7%AE%97%E6%B3%95/ACM%E7%AB%9E%E8%B5%9B/CodeForces/" class="category-chain-item">CodeForces</a>
+  
+  
+
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>『算法-ACM竞赛-CodeForces』CodeCraft-20 (Div. 2) D. Nash Matrix 详解（DFS构造）</div>
+      <div>https://chiamzhang.github.io/2024/06/29/『算法-ACM竞赛-CodeForces』CodeCraft-20 (Div. 2) D. Nash Matrix 详解（DFS构造）/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>Chiam</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>June 29, 2024</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>Licensed under</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2024/06/29/%E3%80%8E%E7%AE%97%E6%B3%95-ACM%E7%AB%9E%E8%B5%9B-CodeForces%E3%80%8FCodeCraft-20%20(Div.%202)-A.%20Grade%20Allocation/" title="『算法-ACM竞赛-CodeForces』CodeCraft-20 (Div. 2)-A. Grade Allocation">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">『算法-ACM竞赛-CodeForces』CodeCraft-20 (Div. 2)-A. Grade Allocation</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/06/29/%E3%80%8E%E7%AE%97%E6%B3%95-ACM%E7%AB%9E%E8%B5%9B-CodeForces%E3%80%8F322ECieltheCommander%EF%BC%88%E7%82%B9%E5%88%86%E6%B2%BB%EF%BC%89/" title="『算法-ACM竞赛-CodeForces』322ECieltheCommander（点分治）">
+                        <span class="hidden-mobile">『算法-ACM竞赛-CodeForces』322ECieltheCommander（点分治）</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"fIfc7WqUDZohlQuPc2lz5mJy-MdYXbMMI","appKey":"zjlAG3ZA3o4cBHVAkjzc2Z20","path":"window.location.pathname","placeholder":"留言仅限讨论，禁止广告等行为","avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"https://fifc7wqu.api.lncldglobal.com","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>Table of Contents</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <meta name="referrer" content="no-referrer" /> <footer id="footer" role="contentinfo"> <meta name="referrer" content="no-referrer" /> <div class="divider"> <div class="wall"></div> <img class="animals" src="/img/footer_animals_new.png" srcset="/img/loading.gif" lazyload alt="Footer Animals"> </div> <div class="container" data-index="450"> <p> <a href="https://chiamzhang.github.io" target="_blank">DogEgg</a> <i class="iconfont icon-love"></i> <a href="#" target="_blank">LittePig</a> </p> <p> Powered by  <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-pen"></i> Theme  <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> </p> </div> </footer> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+  
+<script src="/js/love.js"></script>
+<script src="/js/funnyTitle.js"></script>
+<script src="/js/backTop.js"></script>
+<script src="//cdn.jsdelivr.net/gh/bynotes/texiao/source/js/xiaoxuehua.js"></script>
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+</html>

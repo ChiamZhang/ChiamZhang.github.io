@@ -1,0 +1,790 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/Mine.jpg">
+  <link rel="icon" href="/img/Mine.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Chiam">
+  <meta name="keywords" content="Algorithms，Cybersecurity">
+  
+    <meta name="description" content="『数据库』这篇数据库的文章真没人看-数据库完整性『数据库』 朴实无华且枯燥的数据库教程–入门必看！（不收藏，真的吃亏了）@[toc]什么是数据库的完整性➢ 数据的正确性和相容性➢ 防止不合语义的数据进入数据库。➢ 完整性：真实地反映现实世界 数据的完整性和安全性是两个不同概念  数据的完整性➢ 防止数据库中存在不符合语义的数据，也就是防止数据库中存在不正确的数据➢ 防范对象：不合语义的、不正确的数">
+<meta property="og:type" content="article">
+<meta property="og:title" content="『数据库』这篇数据库的文章真没人看-数据库完整性">
+<meta property="og:url" content="https://chiamzhang.github.io/2024/06/29/%E3%80%8E%E6%95%B0%E6%8D%AE%E5%BA%93%E3%80%8F%E8%BF%99%E7%AF%87%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9A%84%E6%96%87%E7%AB%A0%E7%9C%9F%E6%B2%A1%E4%BA%BA%E7%9C%8B-%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AE%8C%E6%95%B4%E6%80%A7/index.html">
+<meta property="og:site_name" content="Homepage of Chiam">
+<meta property="og:description" content="『数据库』这篇数据库的文章真没人看-数据库完整性『数据库』 朴实无华且枯燥的数据库教程–入门必看！（不收藏，真的吃亏了）@[toc]什么是数据库的完整性➢ 数据的正确性和相容性➢ 防止不合语义的数据进入数据库。➢ 完整性：真实地反映现实世界 数据的完整性和安全性是两个不同概念  数据的完整性➢ 防止数据库中存在不符合语义的数据，也就是防止数据库中存在不正确的数据➢ 防范对象：不合语义的、不正确的数">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/2020040600310258.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzQ2MDIyNA==,size_16,color_FFFFFF,t_70">
+<meta property="article:published_time" content="2024-06-29T13:16:53.870Z">
+<meta property="article:modified_time" content="2023-12-05T16:18:15.723Z">
+<meta property="article:author" content="Chiam">
+<meta property="article:tag" content="Algorithms，Cybersecurity">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/2020040600310258.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzQ2MDIyNA==,size_16,color_FFFFFF,t_70">
+  
+  
+  
+  <title>『数据库』这篇数据库的文章真没人看-数据库完整性 - Homepage of Chiam</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"chiamzhang.github.io","root":"/","version":"1.9.5-a","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":"❡"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":2},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
+
+
+<body>
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Chiam&#39;s Blogs</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                
+                <span>Home</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                
+                <span>Archives</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                
+                <span>Categories</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                
+                <span>About</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                
+                <span>Links</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="『数据库』这篇数据库的文章真没人看-数据库完整性"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-06-29 21:16" pubdate>
+          June 29, 2024 pm
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          3.8k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          32 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">『数据库』这篇数据库的文章真没人看-数据库完整性</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="『数据库』这篇数据库的文章真没人看-数据库完整性"><a href="#『数据库』这篇数据库的文章真没人看-数据库完整性" class="headerlink" title="『数据库』这篇数据库的文章真没人看-数据库完整性"></a>『数据库』这篇数据库的文章真没人看-数据库完整性</h1><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_43627118/article/details/105027257">『数据库』 朴实无华且枯燥的数据库教程–入门必看！（不收藏，真的吃亏了）</a><br>@[toc]<br><strong>什么是数据库的完整性</strong><br>➢ 数据的正确性和相容性<br>➢ 防止不合语义的数据进入数据库。<br>➢ 完整性：真实地反映现实世界</p>
+<p><strong>数据的完整性和安全性是两个不同概念</strong></p>
+<ol>
+<li>数据的完整性<br>➢ 防止数据库中存在不符合语义的数据，也就是防止数据库中存在不正确的数据<br>➢ 防范对象：不合语义的、不正确的数据</li>
+<li>数据的安全性<br>➢ 保护数据库防止恶意的破坏和非法的存取<br>➢ 防范对象：非法用户和非法操作</li>
+</ol>
+<p><strong>为维护数据库的完整性，DBMS 必须：</strong></p>
+<ul>
+<li>提供定义完整性约束条件的机制</li>
+<li>提供完整性检查的方法</li>
+<li>违约处理</li>
+</ul>
+<p><strong>完整性约束条件定义</strong></p>
+<ol>
+<li>完整性约束条件：数据模型的组成部分约束数据库中数据的语义。</li>
+<li>DBMS 应提供定义数据库完整性约束条件，并把它们作为模式的一部分存入数据库中。</li>
+</ol>
+<p><strong>完整性控制机制</strong><br>检查用户发出的操作请求是否违背了完整性约束条件</p>
+<p><strong>违约反应</strong><br>如果发现用户的操作请求使数据违背了完<br>整性约束条件，则采取一定的动作来保证<br>数据的完整性。</p>
+<h2 id="实体完整性"><a href="#实体完整性" class="headerlink" title="实体完整性"></a>实体完整性</h2><p><strong>一、实体完整性定义</strong></p>
+<ol>
+<li>关系模型的实体完整性<br>➢ CREATE TABLE 中用 PRIMARY KEY 定义</li>
+<li>单属性构成的码有两种说明方法<br>➢ 定义为列级约束条件<br>➢ 定义为表级约束条件</li>
+<li>对多个属性构成的码只有一种说明方法<br>➢ 定义为表级约束条件</li>
+</ol>
+<p><strong>【例 1】</strong><br>将 Student 表中的 Sno 属性定义为码<br>(1)在列级定义主码</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-function">CREATE TABLE <span class="hljs-title">Student</span></span><br><span class="hljs-function"><span class="hljs-params">(Sno CHAR(<span class="hljs-number">9</span>) PRIMARY KEY，</span></span><br><span class="hljs-params"><span class="hljs-function">Sname CHAR(<span class="hljs-number">20</span>) NOT <span class="hljs-literal">NULL</span>，</span></span><br><span class="hljs-params"><span class="hljs-function">Ssex CHAR(<span class="hljs-number">2</span>) ，</span></span><br><span class="hljs-params"><span class="hljs-function">Sage SMALLINT，</span></span><br><span class="hljs-params"><span class="hljs-function">Sdept CHAR(<span class="hljs-number">20</span>))</span></span>;<br></code></pre></td></tr></table></figure>
+
+<p>(2)在表级定义主码</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-function">CREATE TABLE <span class="hljs-title">Student</span></span><br><span class="hljs-function"><span class="hljs-params">(Sno CHAR(<span class="hljs-number">9</span>)，</span></span><br><span class="hljs-params"><span class="hljs-function">Sname CHAR(<span class="hljs-number">20</span>) NOT <span class="hljs-literal">NULL</span>，</span></span><br><span class="hljs-params"><span class="hljs-function">Ssex CHAR(<span class="hljs-number">2</span>) ，</span></span><br><span class="hljs-params"><span class="hljs-function">Sage SMALLINT，</span></span><br><span class="hljs-params"><span class="hljs-function">Sdept CHAR(<span class="hljs-number">20</span>)，</span></span><br><span class="hljs-params"><span class="hljs-function">PRIMARY KEY (Sno)</span></span><br><span class="hljs-params"><span class="hljs-function">)</span></span>;<br></code></pre></td></tr></table></figure>
+
+<p><strong>二、实体完整性检查和违约处理</strong></p>
+<ol>
+<li>插入或对主码列进行更新操作时，RDBMS 按照实体完整性规则自动进行检查。包括：<br>➢ 检查主码值是否唯一，如果不唯一则拒绝插入或修改。检查记录中主码值是否唯一的一种方法是进行全表扫描。<br>➢ 检查主码的各个属性是否为空，只要有一个为空就拒绝插入或修改。</li>
+</ol>
+<h2 id="参照完整性"><a href="#参照完整性" class="headerlink" title="参照完整性"></a>参照完整性</h2><p><strong>一、参照完整性定义</strong></p>
+<ol>
+<li>关系模型的参照完整性定义<br>➢ 在 CREATE TABLE 中用 FOREIGN KEY 短语定义哪些列为外码<br>➢ 用 REFERENCES 短语指明这些外码参照哪些表的主码</li>
+</ol>
+<p><strong>【例 2】</strong><br>例如，关系 SC 中一个元组表示一个学生选修的某门课程的成绩，<br>（Sno，Cno）是主码。Sno，Cno 分别参照引用 Student 表的主<br>码和 Course 表的主码<br>定义 SC 中的参照完整性</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-function">CREATE TABLE <span class="hljs-title">SC</span></span><br><span class="hljs-function"><span class="hljs-params">(Sno CHAR(<span class="hljs-number">9</span>) NOT <span class="hljs-literal">NULL</span>，</span></span><br><span class="hljs-params"><span class="hljs-function">Cno CHAR(<span class="hljs-number">4</span>) NOT <span class="hljs-literal">NULL</span>，</span></span><br><span class="hljs-params"><span class="hljs-function">Grade SMALLINT，</span></span><br><span class="hljs-params"><span class="hljs-function">PRIMARY KEY (Sno， Cno)， <span class="hljs-comment">/*在表级定义实体完</span></span></span><br><span class="hljs-comment"><span class="hljs-params"><span class="hljs-function">整性*/</span></span></span><br><span class="hljs-params"><span class="hljs-function">FOREIGN KEY (Sno) REFERENCES Student(Sno)，</span></span><br><span class="hljs-params"><span class="hljs-function"><span class="hljs-comment">/*在表级定义参照完整性*/</span></span></span><br><span class="hljs-params"><span class="hljs-function">FOREIGN KEY (Cno) REFERENCES Course(Cno)</span></span><br><span class="hljs-params"><span class="hljs-function"><span class="hljs-comment">/*在表级定义参照完整性*/</span></span></span><br><span class="hljs-params"><span class="hljs-function">)</span></span>;<br></code></pre></td></tr></table></figure>
+
+<p><strong>二、参照完整性检查和违约处理</strong><br><img src="https://img-blog.csdnimg.cn/2020040600310258.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzQ2MDIyNA==,size_16,color_FFFFFF,t_70" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br><strong>1. 参照完整性违约处理</strong><br>➢ 拒绝(NO ACTION)执行：默认策略<br>➢ 级联(CASCADE)操作<br>➢ 设置为空值（SET-NULL）<br>对于参照完整性，除了应该定义外码，还应定义外码列&#x3D;&#x3D;是否允许空值&#x3D;&#x3D;</p>
+<p><strong>【例 3】</strong><br>显式说明参照完整性的违约处理示例</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-function">CREATE TABLE <span class="hljs-title">SC</span></span><br><span class="hljs-function"><span class="hljs-params">(Sno CHAR(<span class="hljs-number">9</span>) NOT <span class="hljs-literal">NULL</span>，</span></span><br><span class="hljs-params"><span class="hljs-function">Cno CHAR(<span class="hljs-number">4</span>) NOT <span class="hljs-literal">NULL</span>，</span></span><br><span class="hljs-params"><span class="hljs-function">Grade SMALLINT，</span></span><br><span class="hljs-params"><span class="hljs-function">PRIMARY KEY（Sno，Cno），</span></span><br><span class="hljs-params"><span class="hljs-function">FOREIGN KEY (Sno) REFERENCES Student(Sno)</span></span><br><span class="hljs-params"><span class="hljs-function">ON DELETE CASCADE <span class="hljs-comment">/*级联删除SC表中相应的元组*/</span></span></span><br><span class="hljs-params"><span class="hljs-function">ON UPDATE CASCADE， <span class="hljs-comment">/*级联更新SC表中相应的元组*/</span></span></span><br><span class="hljs-params"><span class="hljs-function">FOREIGN KEY (Cno) REFERENCES Course(Cno)</span></span><br><span class="hljs-params"><span class="hljs-function">ON DELETE NO ACTION</span></span><br><span class="hljs-params"><span class="hljs-function"><span class="hljs-comment">/*当删除course 表中的元组造成了与SC表不一致时拒绝删除*/</span></span></span><br><span class="hljs-params"><span class="hljs-function">ON UPDATE CASCADE</span></span><br><span class="hljs-params"><span class="hljs-function"><span class="hljs-comment">/*当更新course表中的cno时，级联更新SC表中相应的元组*/</span> )</span>；</span><br></code></pre></td></tr></table></figure>
+
+<h2 id="用户定义的完整性"><a href="#用户定义的完整性" class="headerlink" title="用户定义的完整性"></a>用户定义的完整性</h2><ol>
+<li>用户定义的完整性就是针对某一具体应用的数据必须满足的语义要求</li>
+<li>RDBMS 提供，而不必由应用程序承担</li>
+</ol>
+<p><strong>一、属性上的约束条件的定义</strong></p>
+<p><strong>CREATE TABLE 时定义</strong><br>➢ 列值非空（NOT NULL）<br>➢ 列值唯一（UNIQUE）<br>➢ 检查列值是否满足一个布尔表达式（CHECK）</p>
+<p><strong>二、属性上的约束条件检查和违约处理</strong></p>
+<ul>
+<li>插入元组或修改属性的值时，RDBMS 检查属性上的约束条件是否被满足</li>
+<li>如果不满足则操作被拒绝执行</li>
+</ul>
+<p><strong>三、元组上的约束条件的定义</strong></p>
+<ul>
+<li>在 CREATE TABLE 时可以用 CHECK 短语定义元组上的约束条件，即元组级的限制</li>
+<li>同属性值限制相比，元组级的限制可以设置不同属性之间的取值的相互约束条件</li>
+</ul>
+<p><strong>四、元组上的约束条件检查和违约处理</strong></p>
+<ol>
+<li>插入元组或修改属性的值时，RDBMS 检查元组上的约束条件是否被满足</li>
+<li>如果不满足则操作被拒绝执行</li>
+</ol>
+<h2 id="完整性约束命名子句"><a href="#完整性约束命名子句" class="headerlink" title="完整性约束命名子句"></a>完整性约束命名子句</h2><ol>
+<li>CONSTRAINT 约束</li>
+</ol>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs cpp">CONSTRAINT &lt;完整性约束条件名&gt;<br>［PRIMARY KEY短语<br>|FOREIGN KEY短语<br>|CHECK短语］<br></code></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>修改表中的完整性限制<br>使用 ALTER TABLE 语句修改表中的完整性限制</li>
+</ol>
+<h2 id="域中的完整性限制"><a href="#域中的完整性限制" class="headerlink" title="域中的完整性限制"></a>域中的完整性限制</h2><p>SQL 支持域的概念，并可以用 CREATE DOMAIN 语句建立一个域以及该域应该满足的完整性约束条件。</p>
+<h2 id="触发器"><a href="#触发器" class="headerlink" title="触发器"></a>触发器</h2><ol>
+<li>触发器（Trigger）是用户定义在关系表上的一类由事件驱动的特殊过程<br>➢ 由服务器自动激活<br>➢ 可以进行更为复杂的检查和操作，具有更精细和更强大的数据控制能力</li>
+</ol>
+<p><strong>一、定义触发器</strong><br><strong>1. CREATE TRIGGER 语法格式</strong></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs cpp">CREATE TRIGGER &lt;触发器名&gt;<br>&#123;BEFORE | AFTER&#125; &lt;触发事件&gt; ON &lt;表名&gt;<br>FOR EACH &#123;ROW | STATEMENT&#125;<br>［WHEN &lt;触发条件&gt;］ &lt;触发动作体&gt;<br></code></pre></td></tr></table></figure>
+
+<p><strong>2.定义触发器的语法说明</strong><br>1）创建者：表的拥有者<br>2）触发器名<br>3）表名：触发器的目标表<br>4）触发事件：INSERT、DELETE、UPDATE<br>5）触发器类型：<br>➢ 行级触发器（FOR EACH ROW）<br>➢ 语句级触发器（FOR EACH STATEMENT）<br>6）触发条件<br>➢ 触发条件为真<br>➢ 省略 WHEN 触发条件<br>7） 触发动作体<br>➢ 触发动作体可以是一个匿名 PL&#x2F;SQL 过程块<br>➢ 也可以是对已创建存储过程的调用</p>
+<p><strong>【例 4】</strong><br>定义一个 BEFORE 行级触发器，为教师表 Teacher 定义完整性规则“教授的工资不得低于 4000 元，如果低于 4000 元，自动改为 4000 元”。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs cpp">CREATE TRIGGER Insert_Or_Update_Sal<br>BEFORE INSERT OR UPDATE ON Teacher<br><span class="hljs-comment">/*触发事件是插入或更新操作*/</span><br>FOR EACH ROW <span class="hljs-comment">/*行级触发器*/</span><br>AS BEGIN <span class="hljs-comment">/*定义触发动作</span><br><span class="hljs-comment">体，是PL/SQL过程块*/</span><br><span class="hljs-built_in">IF</span> (<span class="hljs-keyword">new</span>.Job=<span class="hljs-string">&#x27;教授&#x27;</span>) <span class="hljs-built_in">AND</span> (<span class="hljs-keyword">new</span>.Sal &lt; <span class="hljs-number">4000</span>) THEN<br><span class="hljs-keyword">new</span>.Sal :=<span class="hljs-number">4000</span>;<br>END IF;<br>END;<br></code></pre></td></tr></table></figure>
+
+<h2 id="激活触发器"><a href="#激活触发器" class="headerlink" title="激活触发器"></a>激活触发器</h2><ol>
+<li>触发器的执行，是由触发事件激活的，并由数据库服务器自动执行</li>
+<li>一个数据表上可能定义了多个触发器<br>同一个表上的多个触发器激活时遵循如下的执行顺序：<br>（1） 执行该表上的 BEFORE 触发器；<br>（2） 激活触发器的 SQL 语句；<br>（3） 执行该表上的 AFTER 触发器</li>
+</ol>
+<h2 id="删除触发器"><a href="#删除触发器" class="headerlink" title="删除触发器"></a>删除触发器</h2><ol>
+<li>删除触发器的 SQL 语法：</li>
+</ol>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cpp">DROP TRIGGER &lt;触发器名&gt; ON &lt;表名&gt;;<br></code></pre></td></tr></table></figure>
+
+<ol>
+<li>触发器必须是一个已经创建的触发器，并且只能由具有相应权限的用户删除</li>
+</ol>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><ol>
+<li>数据库的完整性是为了保证数据库中存储的数据是正确的</li>
+<li>RDBMS 完整性实现的机制<br>➢ 完整性约束定义机制<br>➢ 完整性检查机制<br>➢ 违背完整性约束条件时 RDBMS 应采取的动作<blockquote>
+<p><strong>写在最后：</strong><br>本数据库专栏是由爱吃老谈酸菜的 DV 一同完成的，博客链接在主页友链，是我的好哥们 ✈<br>Name:风骨散人，目前是一名双非在校大学生，预计考研，热爱编程，热爱技术，喜欢分享，知识无界，希望我的分享可以帮到你！名字的含义：我想有一天我能有能力随心所欲不逾矩，不总是向生活低头，有能力让家人拥有富足的生活而不是为了生计而到处奔波。“世人慌慌张张，不过是图碎银几两。偏偏这碎银几两，能解世间惆怅，可让父母安康，可护幼子成长 …”<br><strong>文章主要内容：</strong><br>Python,C++,C 语言,JAVA,C#等语言的教程<br>ACM 题解、模板、算法等，主要是数据结构，数学和图论<br>设计模式，数据库，计算机网络，操作系统，计算机组成原理<br>Python 爬虫、深度学习、机器学习<br>计算机系<strong>408</strong>考研的所有专业课内容<br><strong>目前还在更新中，先关注不迷路。微信公众号，cnblogs（博客园），CSDN 同名“风骨散人”</strong></p>
+</blockquote>
+</li>
+</ol>
+<blockquote>
+<p>如果有什么想看的，可以私信我，如果在能力范围内，我会发布相应的博文！<br>感谢大家的阅读！😘 你的点赞、收藏、关注是对我最大的鼓励！</p>
+</blockquote>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" class="category-chain-item">数据库</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>『数据库』这篇数据库的文章真没人看-数据库完整性</div>
+      <div>https://chiamzhang.github.io/2024/06/29/『数据库』这篇数据库的文章真没人看-数据库完整性/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>Chiam</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>June 29, 2024</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>Licensed under</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2024/06/29/%E3%80%8E%E6%95%B0%E6%8D%AE%E5%BA%93%E3%80%8F%E9%9C%87%E6%83%8A%EF%BC%8C%E6%9F%90%E5%8D%9A%E4%B8%BB%E4%B8%BA%E5%90%B8%E5%BC%95%E7%9C%BC%E7%90%83%E6%8B%BF%E5%87%BA%E5%8E%8B%E7%AE%B1%E5%BA%95SQL%E6%80%BB%E7%BB%93%EF%BC%8C%E5%A6%82%E6%9E%9C%E4%BD%A0%E6%B2%A1%E7%9C%8B%E9%82%A3%E5%B0%B1%E5%90%83%E4%BA%8F%E4%BA%86%EF%BC%81%EF%BC%88%E8%B6%85%E7%BA%A7%E8%AF%A6%E7%BB%86%E7%9A%84SQL%E5%9F%BA%E7%A1%80%EF%BC%8C%E4%BD%A0%E8%BF%98%E4%B8%8D%E4%BC%9A%E7%9A%84%E8%AF%9D%E5%B0%B1%E5%88%AB%E5%AD%A6%E6%95%B0%E6%8D%AE%E5%BA%93%E4%BA%86%EF%BC%89/" title="『数据库』震惊，某博主为吸引眼球拿出压箱底SQL总结，如果你没看那就吃亏了！（超级详细的SQL基础，你还不会的话就别学数据库了）">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">『数据库』震惊，某博主为吸引眼球拿出压箱底SQL总结，如果你没看那就吃亏了！（超级详细的SQL基础，你还不会的话就别学数据库了）</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/06/29/%E3%80%8E%E6%95%B0%E6%8D%AE%E5%BA%93%E3%80%8F%E6%9C%B4%E5%AE%9E%E6%97%A0%E5%8D%8E%E7%9A%84%E6%95%B0%E6%8D%AE%E5%BA%93%E7%BB%AA%E8%AE%BA/" title="『数据库』朴实无华的数据库绪论">
+                        <span class="hidden-mobile">『数据库』朴实无华的数据库绪论</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"fIfc7WqUDZohlQuPc2lz5mJy-MdYXbMMI","appKey":"zjlAG3ZA3o4cBHVAkjzc2Z20","path":"window.location.pathname","placeholder":"留言仅限讨论，禁止广告等行为","avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"https://fifc7wqu.api.lncldglobal.com","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>Table of Contents</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <meta name="referrer" content="no-referrer" /> <footer id="footer" role="contentinfo"> <meta name="referrer" content="no-referrer" /> <div class="divider"> <div class="wall"></div> <img class="animals" src="/img/footer_animals_new.png" srcset="/img/loading.gif" lazyload alt="Footer Animals"> </div> <div class="container" data-index="450"> <p> <a href="https://chiamzhang.github.io" target="_blank">DogEgg</a> <i class="iconfont icon-love"></i> <a href="#" target="_blank">LittePig</a> </p> <p> Powered by  <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-pen"></i> Theme  <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> </p> </div> </footer> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+  
+<script src="/js/love.js"></script>
+<script src="/js/funnyTitle.js"></script>
+<script src="/js/backTop.js"></script>
+<script src="//cdn.jsdelivr.net/gh/bynotes/texiao/source/js/xiaoxuehua.js"></script>
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+</html>

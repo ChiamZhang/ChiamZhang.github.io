@@ -1,0 +1,818 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/Mine.jpg">
+  <link rel="icon" href="/img/Mine.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Chiam">
+  <meta name="keywords" content="Algorithms，Cybersecurity">
+  
+    <meta name="description" content="『算法-ACM 竞赛』应该是最全的算法学习路线了吧法学习路线了吧应该是最全的算法学习路线了吧法学习路线了吧 写在前面： 因为博主的技术有限，算法也是很难得一门科学，我只能给出尽量全的分类，然后尽可能的讲解。 但是有些算法超出了本人的能力范畴，说实在的就是我太菜了。所以大家就当本文是目录型的文章即可。 本人是退役 ACMer 选手，因为自己太菜，所以选择退出，别去丢人了。  1.基础算法 ** 递归">
+<meta property="og:type" content="article">
+<meta property="og:title" content="『算法-ACM竞赛』应该是最全的算法学习路线了吧法学习路线了吧">
+<meta property="og:url" content="https://chiamzhang.github.io/2024/06/29/%E3%80%8E%E7%AE%97%E6%B3%95-ACM%E7%AB%9E%E8%B5%9B%E3%80%8F%E5%BA%94%E8%AF%A5%E6%98%AF%E6%9C%80%E5%85%A8%E7%9A%84%E7%AE%97%E6%B3%95%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF%E4%BA%86%E5%90%A7%E6%B3%95%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF%E4%BA%86%E5%90%A7/index.html">
+<meta property="og:site_name" content="Homepage of Chiam">
+<meta property="og:description" content="『算法-ACM 竞赛』应该是最全的算法学习路线了吧法学习路线了吧应该是最全的算法学习路线了吧法学习路线了吧 写在前面： 因为博主的技术有限，算法也是很难得一门科学，我只能给出尽量全的分类，然后尽可能的讲解。 但是有些算法超出了本人的能力范畴，说实在的就是我太菜了。所以大家就当本文是目录型的文章即可。 本人是退役 ACMer 选手，因为自己太菜，所以选择退出，别去丢人了。  1.基础算法 ** 递归">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2024-06-29T13:16:54.567Z">
+<meta property="article:modified_time" content="2023-12-05T16:20:02.392Z">
+<meta property="article:author" content="Chiam">
+<meta property="article:tag" content="Algorithms，Cybersecurity">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>『算法-ACM竞赛』应该是最全的算法学习路线了吧法学习路线了吧 - Homepage of Chiam</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"chiamzhang.github.io","root":"/","version":"1.9.5-a","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":"❡"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":2},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
+
+
+<body>
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Chiam&#39;s Blogs</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                
+                <span>Home</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                
+                <span>Archives</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                
+                <span>Categories</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                
+                <span>About</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                
+                <span>Links</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="『算法-ACM竞赛』应该是最全的算法学习路线了吧法学习路线了吧"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-06-29 21:16" pubdate>
+          June 29, 2024 pm
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.5k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          13 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">『算法-ACM竞赛』应该是最全的算法学习路线了吧法学习路线了吧</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="『算法-ACM-竞赛』应该是最全的算法学习路线了吧法学习路线了吧"><a href="#『算法-ACM-竞赛』应该是最全的算法学习路线了吧法学习路线了吧" class="headerlink" title="『算法-ACM 竞赛』应该是最全的算法学习路线了吧法学习路线了吧"></a>『算法-ACM 竞赛』应该是最全的算法学习路线了吧法学习路线了吧</h1><h1 id="应该是最全的算法学习路线了吧法学习路线了吧"><a href="#应该是最全的算法学习路线了吧法学习路线了吧" class="headerlink" title="应该是最全的算法学习路线了吧法学习路线了吧"></a>应该是最全的算法学习路线了吧法学习路线了吧</h1><blockquote>
+<p><strong>写在前面：</strong></p>
+<p><strong>因为博主的技术有限，算法也是很难得一门科学，我只能给出尽量全的分类，然后尽可能的讲解。</strong></p>
+<p><strong>但是有些算法超出了本人的能力范畴，说实在的就是我太菜了。所以大家就当本文是目录型的文章即可。</strong></p>
+<p><strong>本人是退役 ACMer 选手，因为自己太菜，所以选择退出，别去丢人了。</strong></p>
+</blockquote>
+<h3 id="1-基础算法"><a href="#1-基础算法" class="headerlink" title="1.基础算法"></a><strong>1.基础算法</strong></h3><ol>
+<li>** 递归**</li>
+<li>** 递推**</li>
+<li><strong>分治</strong></li>
+<li><strong>贪心</strong></li>
+<li><strong>二分</strong></li>
+<li><strong>回溯搜索</strong></li>
+</ol>
+<h3 id="2-动态规划"><a href="#2-动态规划" class="headerlink" title="2.动态规划"></a><strong>2.动态规划</strong></h3><ol>
+<li><strong>背包</strong></li>
+<li><strong>线性 DP</strong></li>
+<li><strong><a target="_blank" rel="noopener" href="http://blog.csdn.net/Fire_to_cheat_/article/details/79626156">区间 DP</a></strong></li>
+<li><strong>数位 DP</strong></li>
+<li><strong>状态压缩 DP</strong></li>
+<li><strong>树形 DP</strong></li>
+<li><strong>概率&#x2F;期望 DP</strong></li>
+<li><strong>插头 DP</strong></li>
+</ol>
+<hr>
+<h3 id="图论"><a href="#图论" class="headerlink" title="** 图论**"></a>** 图论**</h3><ol>
+<li><strong><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_43627118/article/details/100088087">BFS </a><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_43627118/article/details/100107848">DFS</a></strong></li>
+<li><strong><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_43627118/article/category/8966859">最短路 </a></strong></li>
+<li><strong><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_43627118/article/details/102526662">第 K 短路 </a></strong></li>
+<li><strong><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_43627118/article/category/8966863">最小生成树（森林）</a></strong></li>
+<li><strong><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_43627118/article/details/102527903">次小生成树 </a></strong></li>
+<li><strong><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_43627118/article/details/102539860">曼哈顿最小生成树 </a></strong></li>
+<li><strong><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_43627118/article/details/102534985">最短路径生成树</a></strong></li>
+<li><strong><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_43627118/article/category/9043016">欧拉路径 </a></strong></li>
+<li><strong><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_43627118/article/details/100168052">拓扑排序 </a></strong></li>
+<li><strong><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_43627118/article/details/102558959">最小树形图</a></strong></li>
+<li>** <a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_43627118/article/details/99695754">生成树计数 </a>**</li>
+<li><strong><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_43627118/article/details/100572068">树的重心 </a></strong></li>
+<li><strong><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_43627118/article/details/102558179">DAG 的深度优先搜索标记 </a></strong></li>
+<li><strong><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_43627118/article/details/102558664">图的割点、桥和双连通分支的基本概念 </a></strong></li>
+<li><strong><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_43627118/article/category/9402075">LCA </a></strong></li>
+<li>**无向图找桥 **</li>
+<li><strong>无向图连通度（割）</strong></li>
+<li>**最大团问题 **</li>
+<li>**一般图匹配带花树 **</li>
+<li>**有向图的强连通分量 **</li>
+<li><strong>Tarjan 强连通分量</strong></li>
+<li>**弦图判断 **</li>
+<li>**弦图的 Perfect Elimination 点排列 **</li>
+<li>**稳定婚姻问题 **</li>
+<li>**双连通分支 **</li>
+<li>**无向图连通分支 **</li>
+<li>**有向图强连通分支 **</li>
+<li>**有向图最小点基 **</li>
+<li>**Floyd 求最小环 **</li>
+<li>**2-SAT **</li>
+</ol>
+<h3 id="数据结构："><a href="#数据结构：" class="headerlink" title="数据结构："></a><strong>数据结构：</strong></h3><ol>
+<li><strong><a target="_blank" rel="noopener" href="https://blog.csdn.net/fire_to_cheat_/article/details/79838123">Splay 树</a></strong></li>
+<li><strong>划分树</strong></li>
+<li><strong><a target="_blank" rel="noopener" href="https://blog.csdn.net/fire_to_cheat_/article/details/80170752">左偏树</a></strong></li>
+<li><strong><a target="_blank" rel="noopener" href="https://blog.csdn.net/fire_to_cheat_/article/details/80202076">线段树</a></strong></li>
+<li><strong>树链剖分</strong></li>
+<li><strong>动态树</strong></li>
+<li><strong><a target="_blank" rel="noopener" href="https://blog.csdn.net/Fire_to_cheat_/article/details/80201696">主席树</a></strong></li>
+<li><strong>Trie 树</strong></li>
+<li><strong><a target="_blank" rel="noopener" href="https://blog.csdn.net/Fire_to_cheat_/article/details/80202092">RMQ</a></strong></li>
+<li><strong>二分查找</strong></li>
+<li><strong><a target="_blank" rel="noopener" href="https://blog.csdn.net/Fire_to_cheat_/article/details/80202008">树状数组</a></strong></li>
+<li><strong>滚动数组</strong></li>
+<li><strong>逆序数</strong></li>
+<li><strong>带权值的并查集</strong></li>
+<li><strong><a target="_blank" rel="noopener" href="https://blog.csdn.net/Fire_to_cheat_/article/details/79911946">Chtholly Tree (珂朵莉树) ODT</a></strong></li>
+<li><strong>SBT 算法</strong></li>
+<li><strong>AVL 树</strong></li>
+<li><strong>替罪羊树</strong></li>
+</ol>
+<h3 id="数学："><a href="#数学：" class="headerlink" title="数学："></a><strong>数学：</strong></h3><h4 id="一、组合数学"><a href="#一、组合数学" class="headerlink" title="一、组合数学:"></a><strong>一、组合数学:</strong></h4><ol>
+<li>** Polya 定理、burnside 定理**</li>
+<li>** 置换，置换的运算**</li>
+<li>** 排列组合，区间计数，计数序列 **</li>
+<li>** 鸽笼原理、容斥原理**</li>
+<li>** 递推关系**</li>
+<li><strong>母函数</strong></li>
+<li><strong>莫比乌斯反演</strong></li>
+<li>**偏序关系理论 **</li>
+</ol>
+<h4 id="二、数论"><a href="#二、数论" class="headerlink" title="二、数论."></a><strong>二、数论.</strong></h4><ol>
+<li><strong>素数与整除问题</strong></li>
+<li><strong>进制位.</strong></li>
+<li><strong>同余模运算.</strong></li>
+<li><strong>欧拉函数</strong></li>
+</ol>
+<h4 id="三、计算方法"><a href="#三、计算方法" class="headerlink" title="三、计算方法"></a><strong>三、计算方法</strong></h4><ol>
+<li>** 二分法求解单调函数相关知识.**</li>
+<li>** 三分法求解单峰(单谷)的极值.**</li>
+<li>** 0&#x2F;1 分数规划. **</li>
+<li>** 矩阵法**</li>
+<li>** 随机化算法**</li>
+<li>** 迭代逼近**</li>
+</ol>
+<h4 id="四、计算几何"><a href="#四、计算几何" class="headerlink" title="四、计算几何"></a><strong>四、计算几何</strong></h4><ol>
+<li><strong>叉积和点积的运用(如线段相交的判定,点到线段的距离等).</strong></li>
+<li><strong>多边型的简单算法(求面积)和相关判定(点在多边型内,多边型是否相交)</strong></li>
+<li><strong>二维、三维凸包</strong></li>
+<li><strong>扫描线算法(例如求矩形的面积和周长并,常和线段树或堆一起使用).</strong></li>
+<li><strong>半平面求交</strong></li>
+<li><strong>点集最小圆覆盖.</strong></li>
+<li><strong>对踵点（最远点对）</strong></li>
+</ol>
+<h4 id="五、博弈论"><a href="#五、博弈论" class="headerlink" title="五、博弈论"></a><strong>五、博弈论</strong></h4><ol>
+<li><strong>巴什博奕（BashGame）</strong></li>
+<li><strong>威佐夫博奕（WythoffGame）</strong></li>
+<li><strong>尼姆博奕（NimmGame）</strong></li>
+<li><strong>组合博弈</strong></li>
+</ol>
+<h4 id="六、其他数学"><a href="#六、其他数学" class="headerlink" title="六、其他数学"></a><strong>六、其他数学</strong></h4><ol>
+<li><strong>高斯消元法</strong></li>
+<li>** 概率问题.**</li>
+<li><strong>GCD、扩展的欧几里德(中国剩余定理)</strong></li>
+<li>**高次同余方程 **</li>
+<li><strong>矩阵变换</strong></li>
+</ol>
+<blockquote>
+<blockquote>
+<p><strong>写在最后：</strong><br>Name:风骨散人，喜欢码代码，码字，目前是一名双非在校大学生，预计考研，热爱编程，热爱技术，喜欢分享，知识无界，希望我的分享可以帮到你！名字的来源：我想有一天我能有能力随心所欲不逾矩，不总是向生活低头，有能力让家人拥有富足的生活而不是为了生计而到处奔波。<br><strong>文章主要内容：</strong><br>Python,C++,C 语言,JAVA,C#等语言的教程<br>ACM 题解、模板、算法等，主要是数据结构，数学和图论<br>设计模式，数据库，计算机网络，操作系统，计算机组成原理<br>Python 爬虫、深度学习、机器学习<br>计算机系<strong>408</strong>考研的所有专业课内容<br>一些程序猿常用的软件或者黑科技什么的<br><strong>目前还在更新中，先关注不迷路。微信公众号，cnblogs（博客园），CSDN 同名“风骨散人”</strong></p>
+</blockquote>
+<blockquote>
+<p>如果有什么想看的，可以私信我，如果在能力范围内，我会发布相应的博文！<br>感谢大家的阅读！😘 你的点赞、收藏、关注是对我最大的鼓励！</p>
+</blockquote>
+</blockquote>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E7%AE%97%E6%B3%95/" class="category-chain-item">算法</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/%E7%AE%97%E6%B3%95/ACM%E7%AB%9E%E8%B5%9B/" class="category-chain-item">ACM竞赛</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>『算法-ACM竞赛』应该是最全的算法学习路线了吧法学习路线了吧</div>
+      <div>https://chiamzhang.github.io/2024/06/29/『算法-ACM竞赛』应该是最全的算法学习路线了吧法学习路线了吧/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>Chiam</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>June 29, 2024</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>Licensed under</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2024/06/29/%E3%80%8E%E7%AE%97%E6%B3%95-ACM%E7%AB%9E%E8%B5%9B%E3%80%8F%E6%80%9D%E7%BB%B4+%E6%A8%A1%E6%8B%9F-POJ%201013%20Counterfeit%20Dollar/" title="『算法-ACM竞赛』思维+模拟-POJ 1013 Counterfeit Dollar">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">『算法-ACM竞赛』思维+模拟-POJ 1013 Counterfeit Dollar</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/06/29/%E3%80%8E%E7%AE%97%E6%B3%95-ACM%E7%AB%9E%E8%B5%9B%E3%80%8F%E5%BD%92%E5%B9%B6%E6%8E%92%E5%BA%8F%E6%B1%82%E9%80%86%E5%BA%8F%E5%AF%B9/" title="『算法-ACM竞赛』归并排序求逆序对">
+                        <span class="hidden-mobile">『算法-ACM竞赛』归并排序求逆序对</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"fIfc7WqUDZohlQuPc2lz5mJy-MdYXbMMI","appKey":"zjlAG3ZA3o4cBHVAkjzc2Z20","path":"window.location.pathname","placeholder":"留言仅限讨论，禁止广告等行为","avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"https://fifc7wqu.api.lncldglobal.com","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>Table of Contents</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <meta name="referrer" content="no-referrer" /> <footer id="footer" role="contentinfo"> <meta name="referrer" content="no-referrer" /> <div class="divider"> <div class="wall"></div> <img class="animals" src="/img/footer_animals_new.png" srcset="/img/loading.gif" lazyload alt="Footer Animals"> </div> <div class="container" data-index="450"> <p> <a href="https://chiamzhang.github.io" target="_blank">DogEgg</a> <i class="iconfont icon-love"></i> <a href="#" target="_blank">LittePig</a> </p> <p> Powered by  <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-pen"></i> Theme  <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> </p> </div> </footer> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+  
+<script src="/js/love.js"></script>
+<script src="/js/funnyTitle.js"></script>
+<script src="/js/backTop.js"></script>
+<script src="//cdn.jsdelivr.net/gh/bynotes/texiao/source/js/xiaoxuehua.js"></script>
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+</html>

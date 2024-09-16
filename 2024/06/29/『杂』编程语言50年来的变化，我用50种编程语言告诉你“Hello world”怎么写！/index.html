@@ -1,0 +1,859 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/Mine.jpg">
+  <link rel="icon" href="/img/Mine.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Chiam">
+  <meta name="keywords" content="Algorithms，Cybersecurity">
+  
+    <meta name="description" content="『杂』编程语言 50 年来的变化，我用 50 种编程语言告诉你“Hello world”怎么写！ 当我们学习一门新的语言时，“Hello, World!“通常是我们所写的第一个程序。因此，所有程序员在职业生涯中至少完成了“Hello, World!“程序员在职业生涯中通常使用一种以上的编程语言，他们中的大多数甚至至少已经实现了十几种。 甚至有一个名为 TTHW 的指标来衡量一个程序员接触一门新的编">
+<meta property="og:type" content="article">
+<meta property="og:title" content="『杂』编程语言50年来的变化，我用50种编程语言告诉你“Hello world”怎么写！">
+<meta property="og:url" content="https://chiamzhang.github.io/2024/06/29/%E3%80%8E%E6%9D%82%E3%80%8F%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%8050%E5%B9%B4%E6%9D%A5%E7%9A%84%E5%8F%98%E5%8C%96%EF%BC%8C%E6%88%91%E7%94%A850%E7%A7%8D%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80%E5%91%8A%E8%AF%89%E4%BD%A0%E2%80%9CHello%20world%E2%80%9D%E6%80%8E%E4%B9%88%E5%86%99%EF%BC%81/index.html">
+<meta property="og:site_name" content="Homepage of Chiam">
+<meta property="og:description" content="『杂』编程语言 50 年来的变化，我用 50 种编程语言告诉你“Hello world”怎么写！ 当我们学习一门新的语言时，“Hello, World!“通常是我们所写的第一个程序。因此，所有程序员在职业生涯中至少完成了“Hello, World!“程序员在职业生涯中通常使用一种以上的编程语言，他们中的大多数甚至至少已经实现了十几种。 甚至有一个名为 TTHW 的指标来衡量一个程序员接触一门新的编">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200315192133480.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70">
+<meta property="article:published_time" content="2024-06-29T13:16:53.897Z">
+<meta property="article:modified_time" content="2023-12-05T16:18:21.837Z">
+<meta property="article:author" content="Chiam">
+<meta property="article:tag" content="Algorithms，Cybersecurity">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20200315192133480.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70">
+  
+  
+  
+  <title>『杂』编程语言50年来的变化，我用50种编程语言告诉你“Hello world”怎么写！ - Homepage of Chiam</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"chiamzhang.github.io","root":"/","version":"1.9.5-a","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":"❡"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":2},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
+
+
+<body>
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Chiam&#39;s Blogs</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                
+                <span>Home</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                
+                <span>Archives</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                
+                <span>Categories</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                
+                <span>About</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                
+                <span>Links</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="『杂』编程语言50年来的变化，我用50种编程语言告诉你“Hello world”怎么写！"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-06-29 21:16" pubdate>
+          June 29, 2024 pm
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          9.3k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          78 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">『杂』编程语言50年来的变化，我用50种编程语言告诉你“Hello world”怎么写！</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="『杂』编程语言-50-年来的变化，我用-50-种编程语言告诉你“Hello-world”怎么写！"><a href="#『杂』编程语言-50-年来的变化，我用-50-种编程语言告诉你“Hello-world”怎么写！" class="headerlink" title="『杂』编程语言 50 年来的变化，我用 50 种编程语言告诉你“Hello world”怎么写！"></a>『杂』编程语言 50 年来的变化，我用 50 种编程语言告诉你“Hello world”怎么写！</h1><p><img src="https://img-blog.csdnimg.cn/20200315192133480.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<p>当我们学习一门新的语言时，“Hello, World!“通常是我们所写的第一个程序。<br>因此，所有程序员在职业生涯中至少完成了“Hello, World!“程序员在职业生涯中通常使用一种以上的编程语言，他们中的大多数甚至至少已经实现了十几种。</p>
+<p>甚至有一个名为 TTHW 的指标来衡量一个程序员接触一门新的编程语言时，成功写出“Hello, World!“并运行所需要的时间。<br>然而，如果今天我问你，你可以写多少种不同的编程语言，你写一个”Hello word”<br>为了帮助你，刷新你的记忆力，我建议在计算机编程世界中走一段短暂的穿越时间的旅程。为此，我将向您展示”你好，世界！这将允许您了解计算机编程语言随时间的演变。</p>
+<h4 id="1-汇编语言-Assembly-Language-1949"><a href="#1-汇编语言-Assembly-Language-1949" class="headerlink" title="1. 汇编语言(Assembly Language) - 1949"></a>1. 汇编语言(Assembly Language) - 1949</h4><p>汇编语言诞生于 1949 年。本文我向你展示的是适用于 Intel 8080 的 8 位处理器的，发布于 1974 年 4 月的汇编语言经典代码。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs sql">bdos    equ    <span class="hljs-number">0005</span>H    ; BDOS entry point<br><span class="hljs-keyword">start</span>:  mvi    c,<span class="hljs-number">9</span>      ; BDOS <span class="hljs-keyword">function</span>: output string<br>        lxi    d,msg$   ; address <span class="hljs-keyword">of</span> msg<br>        <span class="hljs-keyword">call</span>   bdos<br>        ret             ; <span class="hljs-keyword">return</span> <span class="hljs-keyword">to</span> CCP<br><br>msg$:   db    <span class="hljs-string">&#x27;Hello, world!$&#x27;</span><br><span class="hljs-keyword">end</span>     <span class="hljs-keyword">start</span><br></code></pre></td></tr></table></figure>
+
+<h4 id="2-Fortran-1957"><a href="#2-Fortran-1957" class="headerlink" title="2. Fortran - 1957"></a>2. Fortran - 1957</h4><p>Fortran 是 Formula Translation 的衍生物，这是一种通用的交互式编程语言，特别适合于数值和科学计算。Fortran 创建于 1957 年，下面是它的第一个“Hello, World!”程序：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs sql">PROGRAM Hello<br>WRITE (<span class="hljs-operator">*</span>,<span class="hljs-operator">*</span>) <span class="hljs-string">&#x27;Hello, World!&#x27;</span><br>STOP<br><span class="hljs-keyword">END</span><br></code></pre></td></tr></table></figure>
+
+<p>Fortran 90 或 95 的写法有所不同：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs sql">PROGRAM Hello<br>WRITE (<span class="hljs-operator">*</span>,<span class="hljs-operator">*</span>) <span class="hljs-string">&#x27;Hello, World!&#x27;</span><br><span class="hljs-keyword">END</span> PROGRAM Hello<br></code></pre></td></tr></table></figure>
+
+<h4 id="3-Lisp-1958"><a href="#3-Lisp-1958" class="headerlink" title="3. Lisp - 1958"></a>3. Lisp - 1958</h4><p>Lisp 是最古老的编程语言系列，它既是交互式的又是函数式的。1958 年，Lisp 作为一种实用的演示程序模型被创建出来，但是直到 1970 和 1980 年代，Lisp 才成为人工智能世界中非常流行的语言。</p>
+<p>下面是 Lisp 的“Hello, World!”程序：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql">(write<span class="hljs-operator">-</span>line &quot;Hello, World!&quot;)<br></code></pre></td></tr></table></figure>
+
+<h4 id="4-Cobol-1959"><a href="#4-Cobol-1959" class="headerlink" title="4. Cobol - 1959"></a>4. Cobol - 1959</h4><p>Cobol 语言于 1959 年正式创立，并且在 2019 年刚刚庆祝过创立 60 周年。Cobol 表示面向通用业务的语言（COmmon Business Oriented Language），目标是成为编程业务应用程序的通用语言。在 2019 年，Cobol 仍被广泛应用于银行和保险的相关系统中。</p>
+<p>下面是 Cobol 的“Hello, World!”程序：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs sql">IDENTIFICATION DIVISION.<br>PROGRAM<span class="hljs-operator">-</span>ID. HELLO<span class="hljs-operator">-</span>WORLD.<br><span class="hljs-keyword">PROCEDURE</span> DIVISION.<br>    DISPLAY &quot;Hello, World!&quot;<br>    STOP RUN.<br></code></pre></td></tr></table></figure>
+
+<h4 id="5-BASIC-1964"><a href="#5-BASIC-1964" class="headerlink" title="5. BASIC - 1964"></a>5. BASIC - 1964</h4><p>BASIC 是 Beginner’s All-purpose Symbolic Instruction Code（初学者通用符号说明代码）的缩写。它是一门高级编程语言，其主要目标在于易用。它的“Hello, World!”程序如下：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs sql">PRINT &quot;Hello, World!&quot;<br><span class="hljs-keyword">END</span><br></code></pre></td></tr></table></figure>
+
+<h4 id="6-Logo-1968"><a href="#6-Logo-1968" class="headerlink" title="6. Logo - 1968"></a>6. Logo - 1968</h4><p>Logo 旨在成为易用的 Lisp，通常被称为“Lisp without brackets”，Logs 并不是面向对象编程语言，但它可以帮助你入门计算机编程。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql">print [Hello World <span class="hljs-operator">!</span>]<br></code></pre></td></tr></table></figure>
+
+<h4 id="7-B-1969"><a href="#7-B-1969" class="headerlink" title="7. B - 1969"></a>7. B - 1969</h4><p>B 语言创建于 1969 年，它现在已经过时了，但它的计算机编程语言的发展史上发挥着重要的作用。因为正是 B 语言启发了现在广泛应用的 C 语言。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs sql">main()<br>&#123;<br>  putstr(&quot;Hello world!*n&quot;);<br>  <span class="hljs-keyword">return</span>(<span class="hljs-number">0</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>是不是语法层面就非常像 C 语言了。</p>
+<h4 id="8-Pascal-1970"><a href="#8-Pascal-1970" class="headerlink" title="8. Pascal - 1970"></a>8. Pascal - 1970</h4><p>Pascal 是一种交互式编程语言，它创建于 1970 年。它被设计出来主要出于教学目的，因为这个语言的特点是清晰，且严格的语法有助于良好的程序结构。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-function">begin</span><br><span class="hljs-function">  <span class="hljs-title">writeln</span><span class="hljs-params">(<span class="hljs-string">&#x27;Hello, World!&#x27;</span>)</span></span><br><span class="hljs-function">end.</span><br></code></pre></td></tr></table></figure>
+
+<p>Turbo Pascal 是 Pascal 语言的集成开发环境，在 1983 年被创建，并在 1980 年代和 1990 年代取得了巨大的成功。</p>
+<p>Turbo Pascal 的“Hello, World!“程序如下：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-function">program <span class="hljs-title">HelloWorld</span><span class="hljs-params">(output)</span></span>;<br><span class="hljs-function">begin</span><br><span class="hljs-function">  <span class="hljs-title">writeln</span><span class="hljs-params">(<span class="hljs-string">&#x27;Hello, World!&#x27;</span>)</span></span>;<br>  readln;<br>end.<br></code></pre></td></tr></table></figure>
+
+<h4 id="9-Forth-1970"><a href="#9-Forth-1970" class="headerlink" title="9. Forth - 1970"></a>9. Forth - 1970</h4><p>Forth 是一门基于栈的交互式编程语言，由 Charles H. Moore 在 1960 年代发明。但它的第一个大版本是在 1970 年发布的。它于 1994 年被 ANSI 标准化，并于 1997 年被 ISO 采纳。2014 年的 Forth2012 为语言的发展又焕发了生机。</p>
+<p>下面是 1970 年版本 Forth 语言的“Hello, World!” 程序：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs cpp">: <span class="hljs-built_in">HELLO</span>  ( -- )  .<span class="hljs-string">&quot; Hello, World!&quot;</span> CR ;<br>  HELLO<br></code></pre></td></tr></table></figure>
+
+<h4 id="10-C-1972"><a href="#10-C-1972" class="headerlink" title="10. C - 1972"></a>10. C - 1972</h4><p>1972 年的贝尔实验室中，Dennis Ritchie 和 Ken Thompson 两位大佬为了开发 UNIX 发明了 C 语言。Ken Thompson 曾开发过 B 语言，Dennis Ritchie 决定通过对 B 语言添加类型来创造 C 语言。所以说 B 语言为 C 语言提供了灵感。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span><br><br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">(<span class="hljs-type">void</span>)</span> </span>&#123;<br>  <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Hello, World!\n&quot;</span>);<br>  <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h4 id="11-Smalltalk-1972"><a href="#11-Smalltalk-1972" class="headerlink" title="11. Smalltalk - 1972"></a>11. Smalltalk - 1972</h4><p>Smalltalk 受到 Lisp 的启发，它是一门面向对象的，动态类型的编程语言，它被发明于 1972 年。Smalltalk 是最早具有集成开发环境的编程语言之一。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cpp">Transcript show: <span class="hljs-string">&#x27;Hello, world!&#x27;</span>; cr.<br></code></pre></td></tr></table></figure>
+
+<h4 id="12-Prolog-1972"><a href="#12-Prolog-1972" class="headerlink" title="12. Prolog - 1972"></a>12. Prolog - 1972</h4><p>Prolog 是与人工智能和计算语言学相关的逻辑编程语言，被创建于 1972 年。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cpp">:- <span class="hljs-built_in">write</span>(<span class="hljs-string">&#x27;Hello, World!&#x27;</span>),nl.<br></code></pre></td></tr></table></figure>
+
+<h4 id="13-ML-1973"><a href="#13-ML-1973" class="headerlink" title="13. ML - 1973"></a>13. ML - 1973</h4><p>ML 是 Meta Language 的简称，是一种以 Lisp 为基础的函数型编程语言。ML 通常以 Lisp 为特征，具有类型。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cpp">print <span class="hljs-string">&quot;Hello, World!\n&quot;</span>;<br></code></pre></td></tr></table></figure>
+
+<h4 id="14-Scheme-1975"><a href="#14-Scheme-1975" class="headerlink" title="14. Scheme - 1975"></a>14. Scheme - 1975</h4><p>Scheme 创建于 1975 年，是一种多范式编程语言，支持函数式和交互式编程。它是 Lisp 三种重要的变种之一，由 Common Lisp 和 Clojure 共同开发。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cpp">(display <span class="hljs-string">&quot;Hello, World!&quot;</span>) (newline)<br></code></pre></td></tr></table></figure>
+
+<h4 id="15-SQL-1978"><a href="#15-SQL-1978" class="headerlink" title="15. SQL - 1978"></a>15. SQL - 1978</h4><p>SQL 即结构化查询语言，是用于操作关系数据库的标准计算机编程语言。虽然在设计时不能创建简单的“Hello, World!“程序，但我想写出来应该是一个有趣的程序，如果你想学习 SQL，这里有一些推荐课程。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-function">CREATE TABLE <span class="hljs-title">message</span> <span class="hljs-params">(text <span class="hljs-type">char</span>(<span class="hljs-number">15</span>))</span></span>;<br><span class="hljs-function">INSERT INTO <span class="hljs-title">message</span> <span class="hljs-params">(text)</span> <span class="hljs-title">VALUES</span> <span class="hljs-params">(<span class="hljs-string">&#x27;Hello, World!&#x27;</span>)</span></span>;<br>SELECT text FROM message;<br>DROP TABLE message;<br></code></pre></td></tr></table></figure>
+
+<h4 id="16-C-1980"><a href="#16-C-1980" class="headerlink" title="16. C++ - 1980"></a>16. C++ - 1980</h4><p>C++是由 Bjarne Stroustrup 在 1980 年创建，他为 C 语言增加了类，在 1983 年得名 C++。现在 C++已经通过了 ISO 标准化，并广泛应用于工业和其他领域。如果你想要学习 C++，这里有一些推荐课程。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;<br>  cout &lt;&lt; <span class="hljs-string">&quot;Hello, World!&quot;</span> &lt;&lt; endl;<br>  <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h4 id="17-Ada-1983"><a href="#17-Ada-1983" class="headerlink" title="17. Ada - 1983"></a>17. Ada - 1983</h4><p>Ada 是一种面向对象编程语言，其开发始于 1980 年初，并在 1983 年完成发布。之所以叫做 Ada 是为了纪念 Ada Lovelace，这可能是历史上第一位女性计算机科学家。</p>
+<p>Ada 通常用于需要很高可靠性和安全性的实时系统和嵌入式系统中。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs cpp">with Ada.Text_IO;<br>procedure Hello is<br>begin<br>   Ada.Text_IO.<span class="hljs-built_in">Put_Line</span> (<span class="hljs-string">&quot;Hello, World!&quot;</span>);<br>end Hello;<br></code></pre></td></tr></table></figure>
+
+<h4 id="18-Common-Lisp-1984"><a href="#18-Common-Lisp-1984" class="headerlink" title="18. Common Lisp - 1984"></a>18. Common Lisp - 1984</h4><p>Common Lisp，通常缩写为 CL，是 ANSI 标准化的 Lisp 语言规范。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cpp">(princ <span class="hljs-string">&quot;Hello, World!&quot;</span>)<br></code></pre></td></tr></table></figure>
+
+<h4 id="19-MATLAB-1984"><a href="#19-MATLAB-1984" class="headerlink" title="19. MATLAB - 1984"></a>19. MATLAB - 1984</h4><p>MATLAB 是一种用于数值计算的脚本语言，被用于“Matrix Laboratory”。MATLAB 是由同名的开发环境模拟的。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-built_in">disp</span>(<span class="hljs-string">&#x27;Hello, World!&#x27;</span>)<br></code></pre></td></tr></table></figure>
+
+<h4 id="20-Eiffel-1985"><a href="#20-Eiffel-1985" class="headerlink" title="20. Eiffel - 1985"></a>20. Eiffel - 1985</h4><p>Eiffel 是一种围绕设计方法设计的面向对象编程语言，它具有当下非常流行的概念，例如“按约定编程”或复用。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-keyword">class</span></span><br><span class="hljs-function">    HELLO_WORLD</span><br><span class="hljs-function">create</span><br><span class="hljs-function">    make</span><br><span class="hljs-function">feature</span><br><span class="hljs-function">    make</span><br><span class="hljs-function">        <span class="hljs-keyword">do</span></span><br><span class="hljs-function">            <span class="hljs-title">print</span> <span class="hljs-params">(<span class="hljs-string">&quot;Hello, world!%N&quot;</span>)</span></span><br><span class="hljs-function">        end</span><br><span class="hljs-function">end</span><br></code></pre></td></tr></table></figure>
+
+<h4 id="21-Objective-C-1986"><a href="#21-Objective-C-1986" class="headerlink" title="21. Objective-C - 1986"></a>21. Objective-C - 1986</h4><p>Objective-C 是一种面向对象编程语言，它像 C++一样，是 C 语言的扩展，而与 C++的区别在于它的动态消息分发或动态加载。</p>
+<p>现在，它主要用于 Apple 操作系统：macOS 以及 iOS 的衍生品。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#import <span class="hljs-string">&lt;Foundation/Foundation.h&gt;</span></span><br><br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;<br>    @autoreleasepool &#123;<br>        <span class="hljs-built_in">NSLog</span>(@<span class="hljs-string">&quot;Hello, World!&quot;</span>);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h4 id="22-Erlang-1986"><a href="#22-Erlang-1986" class="headerlink" title="22. Erlang - 1986"></a>22. Erlang - 1986</h4><p>Erlang 是一种支持多种范式的编程语言：并发、实时、分布式。它基于 Actor Model，具有容错能力以及代码热更新能力，所以 Erlang 开发的应用可用性通常很高。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cpp">io:format(<span class="hljs-string">&quot;Hello world!~n&quot;</span>).<br></code></pre></td></tr></table></figure>
+
+<h4 id="23-Perl-1987"><a href="#23-Perl-1987" class="headerlink" title="23. Perl - 1987"></a>23. Perl - 1987</h4><p>Perl 是由 Larry Wall 在 1987 年创建的编程语言，它可以轻松处理基于文本的消息。Perl 是一种解释型语言，它受 C 语言的控制和打印结构以及 shell 脚本的启发。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cpp">print <span class="hljs-string">&quot;Hello, World!\n&quot;</span>;<br></code></pre></td></tr></table></figure>
+
+<h4 id="24-Caml-1987"><a href="#24-Caml-1987" class="headerlink" title="24. Caml - 1987"></a>24. Caml - 1987</h4><p>Caml 代表 Categorical Abstract Machine Language（分类抽象机器语言），是一种通用的编程语言，旨在提高程序的安全性和可靠性。Caml 是一种致力于函数式、交互式和面向对象风格，这也是一种非常独特的语言。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cpp">print_string <span class="hljs-string">&quot;Hello, World!\n&quot;</span>;;<br></code></pre></td></tr></table></figure>
+
+<h4 id="25-Tcl-1988"><a href="#25-Tcl-1988" class="headerlink" title="25. Tcl - 1988"></a>25. Tcl - 1988</h4><p>Tool Command Language（工具命令行语言），是 John Ousterhout 在 1988 年开发的一种脚本语言。它是一种动态类型语言，具有跨平台、可扩展、易学习等特点。并且可以轻松和 C 语言进行交互。</p>
+<p>在 1990 年， John Ousterhout 又开发了 Tcl 的扩展——Tk，这是一个可移植的用于创建图形界面的库。我们今天所讨论的 Tcl，多数情况是指 Tcl 和 Tk 的组合。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cpp">puts <span class="hljs-string">&quot;Hello, World!&quot;</span><br></code></pre></td></tr></table></figure>
+
+<ol start="26">
+<li>Haskell - 1990<br>Haskell 是一种基于 lambda 计算和组合逻辑的函数式编程语言。</li>
+</ol>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cpp">main = putStrLn <span class="hljs-string">&quot;Hello, World!&quot;</span><br></code></pre></td></tr></table></figure>
+
+<h4 id="27-Python-1991"><a href="#27-Python-1991" class="headerlink" title="27. Python - 1991"></a>27. Python - 1991</h4><p>相信大家对 Python 都比较熟悉，即使没有过，基本上也都听说过。它是一门解释型语言，可以跨平台。Python 支持结构体，函数和面向对象的交互式编程。随着 AI 的发展，近几年 Python 的热度也是持续上涨。</p>
+<p>如果你想学 Python，可以参考这份课程推荐。</p>
+<p>下面是 Python3.0 以后版本“Hello, World“程序的写法。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;Hello, World!&quot;</span>)<br></code></pre></td></tr></table></figure>
+
+<p>1</p>
+<h4 id="28-Visual-Basic-1991"><a href="#28-Visual-Basic-1991" class="headerlink" title="28. Visual Basic - 1991"></a>28. Visual Basic - 1991</h4><p>Visual Basic，通常简称为 VB，是第三代事件编程语言。微软也为其创建了集成开发环境。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-function">Public Sub <span class="hljs-title">Main</span><span class="hljs-params">()</span></span><br><span class="hljs-function">    Debug.Print &quot;Hello, World!&quot;</span><br><span class="hljs-function">End Sub</span><br></code></pre></td></tr></table></figure>
+
+<h4 id="29-Lua-1993"><a href="#29-Lua-1993" class="headerlink" title="29. Lua - 1993"></a>29. Lua - 1993</h4><p>Lua 创建于 1993 年，是交互式编程语言。它专注于嵌入其他应用程序以对其进行扩展。</p>
+<p>译者注：我们之前介绍过 Lua 在 Redis 中的应用，不知道你是否还记得。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;Hello, World!&quot;</span>)<br></code></pre></td></tr></table></figure>
+
+<h4 id="30-Ruby-1995"><a href="#30-Ruby-1995" class="headerlink" title="30. Ruby - 1995"></a>30. Ruby - 1995</h4><p>由于对 Smalltalk 和 Lisp 的开发感到沮丧，Yukihiro Matsumoto 从 1993 年起开始在 Emacs 上设计 Ruby 语言，并于 1995 年发布了第一版。Ruby 是解释型、面向对象、多范式的编程语言。如果你感兴趣，可以看一下这些课程。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cpp">puts <span class="hljs-string">&#x27;Hello, World!&#x27;</span><br></code></pre></td></tr></table></figure>
+
+<h4 id="31-Java-1995"><a href="#31-Java-1995" class="headerlink" title="31. Java - 1995"></a>31. Java - 1995</h4><p>Java 是 James Gosling（我们常说的高司令）在 1995 年时创建的一门面向对象编程语言，到目前为止，Java 仍然是业界最流行、使用最广泛的语言。使用 Java 可以开发从客户端到服务端到各种应用，Google 选择 Java 作为 Android 开发语言这件事使得 Java 得到了更进一步的发展。想要学习 Java 的话可以关注这几门课程。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">HelloWorld</span> &#123;<br>  <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-type">static</span> <span class="hljs-type">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>&#123;<br>    System.out.<span class="hljs-built_in">println</span>(<span class="hljs-string">&quot;Hello, World!&quot;</span>);<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h4 id="32-JavaScript-1995"><a href="#32-JavaScript-1995" class="headerlink" title="32. JavaScript - 1995"></a>32. JavaScript - 1995</h4><p>JavaScript 是一门主要用于开发 Web 页面的脚本语言，但现在也可以用作服务端开发，如 Nodejs。JS 是一门面向过程的语言，推荐课程在这里。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cpp">document.<span class="hljs-built_in">write</span>(<span class="hljs-string">&#x27;Hello, World!&#x27;</span>);<br></code></pre></td></tr></table></figure>
+
+<h4 id="33-PHP-1995"><a href="#33-PHP-1995" class="headerlink" title="33. PHP - 1995"></a>33. PHP - 1995</h4><p>1995 年对于编程语言而言绝对是非常重要的一年，在 Java 和 JavaScript 之后，PHP 也于同年诞生。PHP 是一门解释型的面向对象编程语言。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cpp">&lt;? echo <span class="hljs-string">&quot;Hello, World!&quot;</span> ?&gt;<br></code></pre></td></tr></table></figure>
+
+<h4 id="34-Rebol-1997"><a href="#34-Rebol-1997" class="headerlink" title="34. Rebol - 1997"></a>34. Rebol - 1997</h4><p>Rebol 是一种高级脚本语言，自称“消息传递语言”。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cpp">print <span class="hljs-string">&quot;Hello, World!&quot;</span><br></code></pre></td></tr></table></figure>
+
+<h5 id="35-ActionScript-—-1998"><a href="#35-ActionScript-—-1998" class="headerlink" title="35. ActionScript — 1998"></a>35. ActionScript — 1998</h5><p>ActionScript 可以用于开发客户端应用程序，如 Adobe Flash 和 Adobe Flex；也可以用于服务端开发（Flash media server, JRun, Macromedia Generator）。现在，ActionScript 在 Unity 图形引擎中被当作脚本语言使用。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs cpp">package &#123;<br>  <span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">HelloWorld</span> &#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> function <span class="hljs-title">HelloWorld</span><span class="hljs-params">()</span> </span>&#123;<br>      <span class="hljs-built_in">trace</span>(<span class="hljs-string">&quot;Hello World !&quot;</span>);<br>    &#125;<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h4 id="36-D-1999"><a href="#36-D-1999" class="headerlink" title="36. D - 1999"></a>36. D - 1999</h4><p>D 语言是一门面向对象编程语言，它的设计借鉴于许多语言，包括 C++、Java 和 Eiffel。D 语言是一门优秀的语言，但是一直都没有像它的创造者期望的那样获得成功。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">import</span> std.stdio;<br><br><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">main</span> <span class="hljs-params">()</span> </span>&#123;<br>  <span class="hljs-built_in">writefln</span>(<span class="hljs-string">&quot;Hello, World!&quot;</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h4 id="37-C-2000"><a href="#37-C-2000" class="headerlink" title="37. C# - 2000"></a>37. C# - 2000</h4><p>2000 年，微软就 Java 语言与 Sun 公司发生争议，随后便创造了 C#，C#是一种被设计为在 Microsoft.NET 平台上开发的面向对象的编程语言，它是由 C++和 Java 派生而来，使用了许多它们的通用特性和概念。C#也可以用来在 ASP.NET 平台上开发 Web 应用。C#课程自取。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">using</span> System;<br><br>internal <span class="hljs-type">static</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">HelloWorld</span> &#123;<br>  <span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-type">static</span> <span class="hljs-type">void</span> <span class="hljs-title">Main</span><span class="hljs-params">()</span> </span>&#123;<br>    Console.<span class="hljs-built_in">WriteLine</span>(<span class="hljs-string">&quot;Hello, World!&quot;</span>);<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h4 id="38-Groovy-2003"><a href="#38-Groovy-2003" class="headerlink" title="38. Groovy - 2003"></a>38. Groovy - 2003</h4><p>Groovy 是运行在 Java 虚拟机上的一门面向对象编程语言，它是 Java 的超集，其设计受到了 Python、Ruby 和 Smalltalk 的启发。这里有一些学习书籍可以参考。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cpp">println <span class="hljs-string">&quot;Hello, World!&quot;</span><br></code></pre></td></tr></table></figure>
+
+<h4 id="39-Scala-2003"><a href="#39-Scala-2003" class="headerlink" title="39. Scala - 2003"></a>39. Scala - 2003</h4><p>Scala 是一种多范式编程语言，旨在以简洁、优雅的形式表达常见的编程模型。Scala 通过静态类型集成了面向对象和函数式编程的范例。Scala 课程。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs cpp">object HelloWorld extends App &#123;<br>  <span class="hljs-built_in">println</span>(<span class="hljs-string">&quot;Hello, World!&quot;</span>)<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h4 id="40-F-2005"><a href="#40-F-2005" class="headerlink" title="40. F# - 2005"></a>40. F# - 2005</h4><p>F#是一门在.NET 平台上开发的函数式、面向对象编程语言。F#源自与它高度兼容的 OCaml，它们都属于 ML 语言这一系列的。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cpp">printfn <span class="hljs-string">&quot;Hello, World!&quot;</span><br></code></pre></td></tr></table></figure>
+
+<h4 id="41-Windows-PowerShell-2006"><a href="#41-Windows-PowerShell-2006" class="headerlink" title="41. Windows PowerShell - 2006"></a>41. Windows PowerShell - 2006</h4><p>Windows PowerShell 是 Microsoft 开发的软件套件，包括命令行界面，称为 PowerShell 的脚本语言和开发套件。 从 Windows 7 开始，PowerShell 已作为标准配置提供。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cpp">echo <span class="hljs-string">&quot;Hello, World!&quot;</span><br></code></pre></td></tr></table></figure>
+
+<h4 id="42-Clojure-2007"><a href="#42-Clojure-2007" class="headerlink" title="42. Clojure - 2007"></a>42. Clojure - 2007</h4><p>Clojure 是编译型、跨平台的函数式编程语言，它可以安全、简单的开发分布式系统。Clojure 是 Lisp 的三种主要方言之一。Clojure 可以编译成 Java 字节码，JavaScript 代码或者是.NET 字节码，因此它可以运行在 JVM、CLR 和浏览器上。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cpp">(println <span class="hljs-string">&quot;Hello, World!&quot;</span>)<br></code></pre></td></tr></table></figure>
+
+<h4 id="43-Go-2009"><a href="#43-Go-2009" class="headerlink" title="43. Go - 2009"></a>43. Go - 2009</h4><p>Go 是一种编译型的支持并发的编程语言，它的设计受到了 C 和 Pascal 的启发，该语言由 Google 从 Robert Griesemer，Rob Pike 和 Ken Thompson 的最初概念开发而来。没错，这个 Ken Thompson 就是在 1969 年设计 B 语言的人！</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs cpp">package main<br><br><span class="hljs-keyword">import</span> <span class="hljs-string">&quot;fmt&quot;</span><br><br><span class="hljs-function">func <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;<br>  fmt.<span class="hljs-built_in">Println</span>(<span class="hljs-string">&quot;Hello, World!&quot;</span>)<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h4 id="44-Rust-2010"><a href="#44-Rust-2010" class="headerlink" title="44. Rust - 2010"></a>44. Rust - 2010</h4><p>Rust 是由 Mozilla 设计并开发的一门多范式的编译型编程语言。Rust 被设计为“安全、并发、实用的语言”，在某些方面支持函数式编程风格，面向对象编程。Rust 被认为有望替代 C++。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-function">fn <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;<br>    <span class="hljs-built_in">println</span>(<span class="hljs-string">&quot;Hello, World!&quot;</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h4 id="45-Dart-2011"><a href="#45-Dart-2011" class="headerlink" title="45. Dart - 2011"></a>45. Dart - 2011</h4><p>Dart 是由 Google 开发的用于 web 应用的编程语言，它最初的目标是替代 JavaScript。目前，Dart 的目标还没有实现，开发人员的首要任务是可以将 Dart 转换成与所有现代浏览器兼容的 JavaScript 代码。Dart 也可以用于服务端的开发。</p>
+<p>Dart 最近的势头很猛，主要是因为它是手机端流行框架 Flutter 的开发语言。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-built_in">main</span>() &#123;<br>  <span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;Hello, World!&#x27;</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h4 id="46-Kotlin-—-2011"><a href="#46-Kotlin-—-2011" class="headerlink" title="46. Kotlin — 2011"></a>46. Kotlin — 2011</h4><p>Kotlin 是一门面向对象编程语言，支持静态类型，可以被编译成字节码运行在 Java 虚拟机上。也可以编译成 JavaScript 语言，或者在其他多个平台运行的语言。（感谢 LLVM）2017 年，Google 使 Kotlin 成为继 Java 之后 Android 正式支持的第二种语言。如果你想学 Kotlin，可以参考这些课程。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-function">fun <span class="hljs-title">main</span><span class="hljs-params">(args: Array&lt;String&gt;)</span> </span>&#123;<br>    <span class="hljs-built_in">println</span>(<span class="hljs-string">&quot;Hello, World!&quot;</span>)<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h4 id="47-Ceylon-2011"><a href="#47-Ceylon-2011" class="headerlink" title="47. Ceylon - 2011"></a>47. Ceylon - 2011</h4><p>Ceylon 是由“红帽”创建的开源的强类型和静态类型的高级编程语言，它的语法类似于 Java。可以将其编译成 Java 字节码和 JavaScript。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">hello</span><span class="hljs-params">()</span> </span>&#123;<br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;Hello, World!&quot;</span>);<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+<h4 id="48-TypeScript-2012"><a href="#48-TypeScript-2012" class="headerlink" title="48. TypeScript - 2012"></a>48. TypeScript - 2012</h4><p>TypeScript 是由微软开发的免费、开源的编程语言。用于改善和保护 JavaScript 代码的生产。TypeScript 是 JavaScript 的超集，可以转换为 JavaScript，以便由任何 Web 浏览器或 JavaScript 引擎解释。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cpp">console.<span class="hljs-built_in">log</span>(<span class="hljs-string">&quot;Hello, World!&quot;</span>);<br></code></pre></td></tr></table></figure>
+
+<h4 id="49-Julia-2012"><a href="#49-Julia-2012" class="headerlink" title="49. Julia - 2012"></a>49. Julia - 2012</h4><p>Julia 是用于科学计算的高级、强大、动态的编程语言，使用的是其他类似开发环境（例如 MATLAB、R 或 Python）的用户熟悉的语法。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-built_in">println</span>(<span class="hljs-string">&quot;Hello, World!&quot;</span>)<br></code></pre></td></tr></table></figure>
+
+<h4 id="50-Swift-2014"><a href="#50-Swift-2014" class="headerlink" title="50. Swift - 2014"></a>50. Swift - 2014</h4><p>Swift 是一门编译型、多范式的编程语言，它简单、高效、安全。它由苹果开发并开源。使其成为与 Objective-C 一样开发 iOS 移动应用的解决方案。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;Hello, World!&quot;</span>)<br></code></pre></td></tr></table></figure>
+
+<h4 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h4><p>我们的旅行到此就要告一段落了，我想你介绍了 50 种语言的“Hello, World!“程序的写法。本文所提供的编程语言列表远非详尽。希望你能和我分享你喜欢的语言的“Hello, World!“程序。</p>
+<p>译注：<br>50 年来的更新换代，有的语言还是一样流行，相信你还记得第一个 Hello word 程序，每一个程序员都有一个世界和平的梦想“Hello world”。</p>
+<p>你不会真的以为这叫你好世界吧。</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E6%9D%82/" class="category-chain-item">杂</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>『杂』编程语言50年来的变化，我用50种编程语言告诉你“Hello world”怎么写！</div>
+      <div>https://chiamzhang.github.io/2024/06/29/『杂』编程语言50年来的变化，我用50种编程语言告诉你“Hello world”怎么写！/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>Chiam</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>June 29, 2024</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>Licensed under</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2024/06/29/%E3%80%8E%E6%9D%82%E3%80%8F%E7%BD%91%E9%80%9F%E6%85%A2%EF%BC%9FNO%E5%8F%AF%E8%83%BD%E6%98%AF%E8%B7%AF%E7%94%B1%E5%99%A8%E7%9A%84%E5%8E%9F%E5%9B%A0%EF%BC%9F/" title="『杂』网速慢？NO可能是路由器的原因？">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">『杂』网速慢？NO可能是路由器的原因？</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/06/29/%E3%80%8E%E6%9D%82%E3%80%8F%E7%A8%8B%E5%BA%8F%E5%91%98%E6%9C%80%E5%96%9C%E6%AC%A2%E7%94%A8%E7%9A%84%E5%9C%A8%E7%BA%BF%E4%BB%A3%E7%A0%81%E7%BC%96%E8%AF%91%E5%99%A8%EF%BC%8C%E4%BB%80%E4%B9%88%EF%BC%9F%E4%BD%A0%E7%AB%9F%E7%84%B6%E4%B8%8D%E7%9F%A5%E9%81%93%EF%BC%81%E5%8F%AF%E4%BB%A5%E5%9C%A8%E7%BD%91%E9%A1%B5%E6%95%B2%E4%BB%A3%E7%A0%81%EF%BC%8C%E8%BF%90%E8%A1%8C%E8%B0%83%E8%AF%95%EF%BC%81/" title="『杂』程序员最喜欢用的在线代码编译器，什么？你竟然不知道！可以在网页敲代码，运行调试！">
+                        <span class="hidden-mobile">『杂』程序员最喜欢用的在线代码编译器，什么？你竟然不知道！可以在网页敲代码，运行调试！</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"fIfc7WqUDZohlQuPc2lz5mJy-MdYXbMMI","appKey":"zjlAG3ZA3o4cBHVAkjzc2Z20","path":"window.location.pathname","placeholder":"留言仅限讨论，禁止广告等行为","avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"https://fifc7wqu.api.lncldglobal.com","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>Table of Contents</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <meta name="referrer" content="no-referrer" /> <footer id="footer" role="contentinfo"> <meta name="referrer" content="no-referrer" /> <div class="divider"> <div class="wall"></div> <img class="animals" src="/img/footer_animals_new.png" srcset="/img/loading.gif" lazyload alt="Footer Animals"> </div> <div class="container" data-index="450"> <p> <a href="https://chiamzhang.github.io" target="_blank">DogEgg</a> <i class="iconfont icon-love"></i> <a href="#" target="_blank">LittePig</a> </p> <p> Powered by  <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-pen"></i> Theme  <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> </p> </div> </footer> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+  
+<script src="/js/love.js"></script>
+<script src="/js/funnyTitle.js"></script>
+<script src="/js/backTop.js"></script>
+<script src="//cdn.jsdelivr.net/gh/bynotes/texiao/source/js/xiaoxuehua.js"></script>
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+</html>

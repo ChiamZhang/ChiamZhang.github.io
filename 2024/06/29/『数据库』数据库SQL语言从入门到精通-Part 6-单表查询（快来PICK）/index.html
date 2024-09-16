@@ -1,0 +1,1676 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/Mine.jpg">
+  <link rel="icon" href="/img/Mine.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Chiam">
+  <meta name="keywords" content="Algorithms，Cybersecurity">
+  
+    <meta name="description" content="『数据库』数据库 SQL 语言从入门到精通-Part 6-单表查询（快来 PICK）数据库从入门到精通合集（超详细，学习数据库必看） 查询操作是 SQL 语言中很重要的操作，我们今天就来详细的学习一下。 一、数据查询的语句格式123456 SELECT [ALL|DISTINCT] &lt;目标列表达式&gt;[，&lt;目标列表达式&gt; ....] --可以选择多个列FROM &lt;表名或">
+<meta property="og:type" content="article">
+<meta property="og:title" content="『数据库』数据库SQL语言从入门到精通-Part 6-单表查询（快来PICK）">
+<meta property="og:url" content="https://chiamzhang.github.io/2024/06/29/%E3%80%8E%E6%95%B0%E6%8D%AE%E5%BA%93%E3%80%8F%E6%95%B0%E6%8D%AE%E5%BA%93SQL%E8%AF%AD%E8%A8%80%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E7%B2%BE%E9%80%9A-Part%206-%E5%8D%95%E8%A1%A8%E6%9F%A5%E8%AF%A2%EF%BC%88%E5%BF%AB%E6%9D%A5PICK%EF%BC%89/index.html">
+<meta property="og:site_name" content="Homepage of Chiam">
+<meta property="og:description" content="『数据库』数据库 SQL 语言从入门到精通-Part 6-单表查询（快来 PICK）数据库从入门到精通合集（超详细，学习数据库必看） 查询操作是 SQL 语言中很重要的操作，我们今天就来详细的学习一下。 一、数据查询的语句格式123456 SELECT [ALL|DISTINCT] &lt;目标列表达式&gt;[，&lt;目标列表达式&gt; ....] --可以选择多个列FROM &lt;表名或">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2024-06-29T13:16:53.858Z">
+<meta property="article:modified_time" content="2023-12-05T16:18:12.376Z">
+<meta property="article:author" content="Chiam">
+<meta property="article:tag" content="Algorithms，Cybersecurity">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>『数据库』数据库SQL语言从入门到精通-Part 6-单表查询（快来PICK） - Homepage of Chiam</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"chiamzhang.github.io","root":"/","version":"1.9.5-a","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":"❡"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":2},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
+
+
+<body>
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Chiam&#39;s Blogs</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                
+                <span>Home</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                
+                <span>Archives</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                
+                <span>Categories</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                
+                <span>About</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                
+                <span>Links</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="『数据库』数据库SQL语言从入门到精通-Part 6-单表查询（快来PICK）"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-06-29 21:16" pubdate>
+          June 29, 2024 pm
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          7.8k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          66 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">『数据库』数据库SQL语言从入门到精通-Part 6-单表查询（快来PICK）</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="『数据库』数据库-SQL-语言从入门到精通-Part-6-单表查询（快来-PICK）"><a href="#『数据库』数据库-SQL-语言从入门到精通-Part-6-单表查询（快来-PICK）" class="headerlink" title="『数据库』数据库 SQL 语言从入门到精通-Part 6-单表查询（快来 PICK）"></a>『数据库』数据库 SQL 语言从入门到精通-Part 6-单表查询（快来 PICK）</h1><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_43627118/article/details/105027257">数据库从入门到精通合集（超详细，学习数据库必看）</a></p>
+<p><strong>查询操作是 SQL 语言中很重要的操作，我们今天就来详细的学习一下。</strong></p>
+<h4 id="一、数据查询的语句格式"><a href="#一、数据查询的语句格式" class="headerlink" title="一、数据查询的语句格式"></a>一、数据查询的语句格式</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs sql"> <span class="hljs-keyword">SELECT</span> [<span class="hljs-keyword">ALL</span><span class="hljs-operator">|</span><span class="hljs-keyword">DISTINCT</span>] <span class="hljs-operator">&lt;</span>目标列表达式<span class="hljs-operator">&gt;</span>[，<span class="hljs-operator">&lt;</span>目标列表达式<span class="hljs-operator">&gt;</span> ....] <span class="hljs-comment">--可以选择多个列</span><br><span class="hljs-keyword">FROM</span> <span class="hljs-operator">&lt;</span>表名或视图名<span class="hljs-operator">&gt;</span>[， <span class="hljs-operator">&lt;</span>表名或视图名<span class="hljs-operator">&gt;</span> ....]<span class="hljs-comment">--可以选择多个表或视图</span><br>[ <span class="hljs-keyword">WHERE</span> <span class="hljs-operator">&lt;</span>条件表达式<span class="hljs-operator">&gt;</span> ]  <span class="hljs-comment">--查询什么条件的数据</span><br>[ <span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span> <span class="hljs-operator">&lt;</span>列名<span class="hljs-number">1</span><span class="hljs-operator">&gt;</span> [ <span class="hljs-keyword">HAVING</span> <span class="hljs-operator">&lt;</span>条件表达式<span class="hljs-operator">&gt;</span> ] ]  <span class="hljs-comment">--按什么条件分组</span><br>[ <span class="hljs-keyword">ORDER</span> <span class="hljs-keyword">BY</span> <span class="hljs-operator">&lt;</span>列名<span class="hljs-number">2</span><span class="hljs-operator">&gt;</span> [ <span class="hljs-keyword">ASC</span><span class="hljs-operator">|</span><span class="hljs-keyword">DESC</span> ] ]；<span class="hljs-comment">--按什么条件排序</span><br><br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>SELECT 子句：指定要显示的属性列</li>
+<li>FROM 子句：指定查询对象(基本表或视图)</li>
+<li>WHERE 子句：指定查询条件</li>
+<li>GROUP BY 子句：<br>细化聚集函数的作用对象<ul>
+<li>未对查询结果分组，聚集函数将作用于整个查询结果</li>
+<li>对查询结果分组后，聚集函数将分别作用于每个组</li>
+<li>作用对象是查询的中间结果表</li>
+<li>按指定的一列或多列值分组，值相等的为一组</li>
+</ul>
+</li>
+</ul>
+<p>合计函数 (比如 SUM) 常常需要添加 GROUP BY 语句。</p>
+<p>例子：<br>BILL 表</p>
+<table>
+<thead>
+<tr>
+<th>Customer</th>
+<th>Quantity</th>
+<th>Date</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>张三</td>
+<td>10</td>
+<td>2020-3-19</td>
+</tr>
+<tr>
+<td>李四</td>
+<td>29</td>
+<td>2020-3-19</td>
+</tr>
+<tr>
+<td>王五</td>
+<td>9</td>
+<td>2020-3-19</td>
+</tr>
+<tr>
+<td>张三</td>
+<td>21</td>
+<td>2020-3-19</td>
+</tr>
+<tr>
+<td>王五</td>
+<td>19</td>
+<td>2020-3-20</td>
+</tr>
+<tr>
+<td>执行<code>SELECT Customer ,SUM(Quantity) FROM BILL GROUP BY Customer</code></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>我们会得到如下表</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Customer</td>
+<td>Quantity</td>
+<td></td>
+</tr>
+<tr>
+<td>–</td>
+<td>–</td>
+<td></td>
+</tr>
+<tr>
+<td>张三</td>
+<td>31</td>
+<td>2020-3-19</td>
+</tr>
+<tr>
+<td>李四</td>
+<td>29</td>
+<td>2020-3-19</td>
+</tr>
+<tr>
+<td>王五</td>
+<td>28</td>
+<td>2020-3-19</td>
+</tr>
+<tr>
+<td>如果我们不加 GROUP BY 会得到这样一个表</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Customer</td>
+<td>Quantity</td>
+<td></td>
+</tr>
+<tr>
+<td>–</td>
+<td>–</td>
+<td></td>
+</tr>
+<tr>
+<td>张三</td>
+<td>88</td>
+<td>2020-3-19</td>
+</tr>
+<tr>
+<td>李四</td>
+<td>88</td>
+<td>2020-3-19</td>
+</tr>
+<tr>
+<td>王五</td>
+<td>88</td>
+<td>2020-3-19</td>
+</tr>
+<tr>
+<td>张三</td>
+<td>88</td>
+<td>2020-3-19</td>
+</tr>
+<tr>
+<td>王五</td>
+<td>88</td>
+<td>2020-3-20</td>
+</tr>
+<tr>
+<td>当然 GROUP BY 也可以按多个列分组，即两个都想同时才会被分到一个组</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>还是对 BILL 表操作 <code>SELECT Customer ,SUM(Quantity) FROM BILL GROUP BY Customer,Date </code></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>我们会得到如下表</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Customer</td>
+<td>Quantity</td>
+<td></td>
+</tr>
+<tr>
+<td>–</td>
+<td>–</td>
+<td></td>
+</tr>
+<tr>
+<td>张三</td>
+<td>31</td>
+<td>2020-3-19</td>
+</tr>
+<tr>
+<td>李四</td>
+<td>29</td>
+<td>2020-3-19</td>
+</tr>
+<tr>
+<td>王五</td>
+<td>9</td>
+<td>2020-3-19</td>
+</tr>
+<tr>
+<td>王五</td>
+<td>19</td>
+<td>2020-3-20</td>
+</tr>
+</tbody></table>
+<ul>
+<li>HAVING 短语：<br>筛选出只有满足指定条件的组<br>例子：<br>BILL 表<table>
+<thead>
+<tr>
+<th>Customer</th>
+<th>Quantity</th>
+<th>Date</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>张三</td>
+<td>10</td>
+<td>2020-3-19</td>
+</tr>
+<tr>
+<td>李四</td>
+<td>29</td>
+<td>2020-3-19</td>
+</tr>
+<tr>
+<td>王五</td>
+<td>9</td>
+<td>2020-3-19</td>
+</tr>
+<tr>
+<td>张三</td>
+<td>21</td>
+<td>2020-3-19</td>
+</tr>
+<tr>
+<td>王五</td>
+<td>19</td>
+<td>2020-3-20</td>
+</tr>
+<tr>
+<td>我们查询购买总量小于 30 的 Customer</td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span>  Customer，<span class="hljs-built_in">SUM</span>(Quantity)  <span class="hljs-keyword">From</span> BILL<br><span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span> Customer<br><span class="hljs-keyword">HAVING</span> <span class="hljs-built_in">SUM</span>(Quantity)<span class="hljs-operator">&gt;</span><span class="hljs-number">30</span><br></code></pre></td></tr></table></figure>
+我们会得到如下：<table>
+<thead>
+<tr>
+<th>Customer</th>
+<th>Quantity</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>张三</td>
+<td>31</td>
+</tr>
+</tbody></table>
+</li>
+<li>ORDER BY 子句：对查询结果表按指定列值的升序或降序排序<br>还是对 BILL 表操作<table>
+<thead>
+<tr>
+<th>Customer</th>
+<th>Quantity</th>
+<th>Date</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>张三</td>
+<td>10</td>
+<td>2020-3-19</td>
+</tr>
+<tr>
+<td>李四</td>
+<td>29</td>
+<td>2020-3-19</td>
+</tr>
+<tr>
+<td>王五</td>
+<td>9</td>
+<td>2020-3-19</td>
+</tr>
+<tr>
+<td>张三</td>
+<td>21</td>
+<td>2020-3-19</td>
+</tr>
+<tr>
+<td>王五</td>
+<td>19</td>
+<td>2020-3-20</td>
+</tr>
+<tr>
+<td>我们想按照购买总数量排列查询结果</td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> Customer ,<span class="hljs-built_in">SUM</span>(Quantity) <span class="hljs-keyword">FROM</span> BILL<br><span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span> Customer<br><span class="hljs-keyword">ORDER</span> <span class="hljs-keyword">BY</span> <span class="hljs-built_in">SUM</span>(Quantity) <span class="hljs-keyword">ASC</span><br></code></pre></td></tr></table></figure>
+
+我们会得到如下表<table>
+<thead>
+<tr>
+<th>Customer</th>
+<th>Quantity</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>王五</td>
+<td>28</td>
+</tr>
+<tr>
+<td>李四</td>
+<td>29</td>
+</tr>
+<tr>
+<td>张三</td>
+<td>31</td>
+</tr>
+</tbody></table>
+</li>
+</ul>
+<p><strong>ORDER BY 子句</strong></p>
+<ul>
+<li>可以按一个或多个属性列排序</li>
+<li>升序：ASC；降序：DESC；缺省值为升序</li>
+<li>当排序列含空值时</li>
+<li>ASC：排序列为空值的元组最后显示</li>
+<li>DESC：排序列为空值的元组最先显示</li>
+</ul>
+<h4 id="二、单表查询"><a href="#二、单表查询" class="headerlink" title="二、单表查询"></a>二、单表查询</h4><p>刚才在介绍那几个保留字的时候，我们简单的举了几个查询的例子，现在我们详细系统的介绍一下，有点重复，但是比较基础，加深印象。</p>
+<h5 id="1-选择表中的若干列查询"><a href="#1-选择表中的若干列查询" class="headerlink" title="1.选择表中的若干列查询"></a>1.选择表中的若干列查询</h5><p>选择某几列查询：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> <span class="hljs-operator">&lt;</span>列<span class="hljs-number">1</span><span class="hljs-operator">&gt;</span>,<span class="hljs-operator">&lt;</span>列<span class="hljs-number">2</span><span class="hljs-operator">&gt;</span>......<br><span class="hljs-keyword">FROM</span> <span class="hljs-operator">&lt;</span>数据表<span class="hljs-operator">&gt;</span>;<br></code></pre></td></tr></table></figure>
+
+<p>选择全部列查询：<br>当然我们可以，把所有的列一一列举，我们也可以使用<code>SELECT *</code></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span>  <span class="hljs-operator">*</span><br><span class="hljs-keyword">FROM</span> <span class="hljs-operator">&lt;</span>数据表<span class="hljs-operator">&gt;</span>；<br></code></pre></td></tr></table></figure>
+
+<p>举例：<br>还是 BILL 表</p>
+<table>
+<thead>
+<tr>
+<th>Customer</th>
+<th>Quantity</th>
+<th>Date</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>张三</td>
+<td>10</td>
+<td>2020-3-19</td>
+</tr>
+<tr>
+<td>李四</td>
+<td>29</td>
+<td>2020-3-19</td>
+</tr>
+<tr>
+<td>王五</td>
+<td>9</td>
+<td>2020-3-19</td>
+</tr>
+<tr>
+<td>张三</td>
+<td>21</td>
+<td>2020-3-19</td>
+</tr>
+<tr>
+<td>王五</td>
+<td>19</td>
+<td>2020-3-20</td>
+</tr>
+</tbody></table>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> Customer <span class="hljs-keyword">From</span> BILL<br></code></pre></td></tr></table></figure>
+
+<p>得到如下表</p>
+<p>| Customer|<br>|–|–|–|<br>| 张三|10 |2020-3-19<br>| 李四| 29 |2020-3-19<br>| 王五| 9 |2020-3-19<br>| 张三| 21 |2020-3-19<br>| 王五|19 |2020-3-20<br>执行：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> Customer ,Quantity,<span class="hljs-type">Date</span> <span class="hljs-keyword">FROM</span> BILL<br><span class="hljs-comment">--或者</span><br><span class="hljs-keyword">SELECT</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">FROM</span> BILL<br></code></pre></td></tr></table></figure>
+
+<p>得到如下结果</p>
+<table>
+<thead>
+<tr>
+<th>Customer</th>
+<th>Quantity</th>
+<th>Date</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>张三</td>
+<td>10</td>
+<td>2020-3-19</td>
+</tr>
+<tr>
+<td>李四</td>
+<td>29</td>
+<td>2020-3-19</td>
+</tr>
+<tr>
+<td>王五</td>
+<td>9</td>
+<td>2020-3-19</td>
+</tr>
+<tr>
+<td>张三</td>
+<td>21</td>
+<td>2020-3-19</td>
+</tr>
+<tr>
+<td>王五</td>
+<td>19</td>
+<td>2020-3-20</td>
+</tr>
+</tbody></table>
+<h5 id="2-查询经过计算的值"><a href="#2-查询经过计算的值" class="headerlink" title="2.查询经过计算的值"></a>2.查询经过计算的值</h5><p>之前我们给出了 SELECT 标准格式：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs sql"> <span class="hljs-keyword">SELECT</span> [<span class="hljs-keyword">ALL</span><span class="hljs-operator">|</span><span class="hljs-keyword">DISTINCT</span>] <span class="hljs-operator">&lt;</span>目标列表达式<span class="hljs-operator">&gt;</span>[，<span class="hljs-operator">&lt;</span>目标列表达式<span class="hljs-operator">&gt;</span> ....] <span class="hljs-comment">--可以选择多个列</span><br><span class="hljs-keyword">FROM</span> <span class="hljs-operator">&lt;</span>表名或视图名<span class="hljs-operator">&gt;</span>[， <span class="hljs-operator">&lt;</span>表名或视图名<span class="hljs-operator">&gt;</span> ....]<span class="hljs-comment">--可以选择多个表或视图</span><br>[ <span class="hljs-keyword">WHERE</span> <span class="hljs-operator">&lt;</span>条件表达式<span class="hljs-operator">&gt;</span> ]  <span class="hljs-comment">--查询什么条件的数据</span><br>[ <span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span> <span class="hljs-operator">&lt;</span>列名<span class="hljs-number">1</span><span class="hljs-operator">&gt;</span> [ <span class="hljs-keyword">HAVING</span> <span class="hljs-operator">&lt;</span>条件表达式<span class="hljs-operator">&gt;</span> ] ]  <span class="hljs-comment">--按什么条件分组</span><br>[ <span class="hljs-keyword">ORDER</span> <span class="hljs-keyword">BY</span> <span class="hljs-operator">&lt;</span>列名<span class="hljs-number">2</span><span class="hljs-operator">&gt;</span> [ <span class="hljs-keyword">ASC</span><span class="hljs-operator">|</span><span class="hljs-keyword">DESC</span> ] ]；<span class="hljs-comment">--按什么条件排序</span><br><br></code></pre></td></tr></table></figure>
+
+<p>其中目标表达式可以为：</p>
+<ul>
+<li>算术表达式</li>
+<li>字符串常量</li>
+<li>函数</li>
+<li>列别名</li>
+</ul>
+<p>例子：<br>Students 表</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Birth</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>李勇</td>
+<td>1999</td>
+</tr>
+<tr>
+<td>刘晨</td>
+<td>1997</td>
+</tr>
+<tr>
+<td>王敏</td>
+<td>1996</td>
+</tr>
+<tr>
+<td>张立</td>
+<td>1998</td>
+</tr>
+</tbody></table>
+<p>我们查询每个人的年龄：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> NAME,<span class="hljs-number">2020</span><span class="hljs-operator">-</span>Birth<br><span class="hljs-keyword">FROM</span> Student；<br></code></pre></td></tr></table></figure>
+
+<p>得道如下的查询结果：</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>2020-Birth</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>李勇</td>
+<td>21</td>
+</tr>
+<tr>
+<td>刘晨</td>
+<td>23</td>
+</tr>
+<tr>
+<td>王敏</td>
+<td>24</td>
+</tr>
+<tr>
+<td>张立</td>
+<td>22</td>
+</tr>
+</tbody></table>
+<p><strong>在查询中添加新的字符串列</strong><br>例子</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Birth</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>李勇</td>
+<td>1999</td>
+</tr>
+<tr>
+<td>刘晨</td>
+<td>1997</td>
+</tr>
+<tr>
+<td>王敏</td>
+<td>1996</td>
+</tr>
+<tr>
+<td>张立</td>
+<td>1998</td>
+</tr>
+</tbody></table>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span>  Name,<span class="hljs-string">&#x27;Birth is:&#x27;</span>,Birth<br><span class="hljs-keyword">FROM</span> Students ;<br></code></pre></td></tr></table></figure>
+
+<p>结果：</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>‘Birth is:’</th>
+<th>Birth</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>李勇</td>
+<td>Birth is:</td>
+<td>1999</td>
+</tr>
+<tr>
+<td>刘晨</td>
+<td>Birth is:</td>
+<td>1997</td>
+</tr>
+<tr>
+<td>王敏</td>
+<td>Birth is:</td>
+<td>1996</td>
+</tr>
+<tr>
+<td>张立</td>
+<td>Birth is:</td>
+<td>1998</td>
+</tr>
+</tbody></table>
+<p><strong>查询中显示列别名</strong><br>例子<br>Students 表</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Birth</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>李勇</td>
+<td>1999</td>
+</tr>
+<tr>
+<td>刘晨</td>
+<td>1997</td>
+</tr>
+<tr>
+<td>王敏</td>
+<td>1996</td>
+</tr>
+<tr>
+<td>张立</td>
+<td>1998</td>
+</tr>
+</tbody></table>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span>  Name 姓名, Birth 生日<br><span class="hljs-keyword">FROM</span> Students ;<br></code></pre></td></tr></table></figure>
+
+<p>结果</p>
+<table>
+<thead>
+<tr>
+<th>姓名</th>
+<th>生日</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>李勇</td>
+<td>1999</td>
+</tr>
+<tr>
+<td>刘晨</td>
+<td>1997</td>
+</tr>
+<tr>
+<td>王敏</td>
+<td>1996</td>
+</tr>
+<tr>
+<td>张立</td>
+<td>1998</td>
+</tr>
+</tbody></table>
+<h5 id="3-选择表中的若干元组（行）"><a href="#3-选择表中的若干元组（行）" class="headerlink" title="3.选择表中的若干元组（行）"></a>3.选择表中的若干元组（行）</h5><p>元组（tuple）是关系数据库中的基本概念，关系是一张表，表中的每行（即数据库中的每条记录）就是一个元组，每列就是一个属性。 在二维表里，元组也称为行。</p>
+<p><strong>DISTINCT 语句：</strong><br>指定 DISTINCT 关键词，去掉表中重复的行<br>例子：<br>BILL 表</p>
+<table>
+<thead>
+<tr>
+<th>Customer</th>
+<th>Quantity</th>
+<th>Date</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>张三</td>
+<td>10</td>
+<td>2020-3-19</td>
+</tr>
+<tr>
+<td>李四</td>
+<td>29</td>
+<td>2020-3-19</td>
+</tr>
+<tr>
+<td>王五</td>
+<td>9</td>
+<td>2020-3-19</td>
+</tr>
+<tr>
+<td>张三</td>
+<td>21</td>
+<td>2020-3-19</td>
+</tr>
+<tr>
+<td>王五</td>
+<td>19</td>
+<td>2020-3-20</td>
+</tr>
+</tbody></table>
+<p>我们执行以下语句查看区别：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">DISTINCT</span> Customer <span class="hljs-keyword">FROM</span> BILL<br></code></pre></td></tr></table></figure>
+
+<p>| Customer |<br>| ——– | — | ——— |<br>| 张三     | 10  | 2020-3-19 |<br>| 李四     | 29  | 2020-3-19 |<br>| 王五     | 9   | 2020-3-19 |</p>
+<p>如果不加 DISTINCT，结果如下：</p>
+<p>| Customer|<br>|–|–|–|<br>| 张三|10 |2020-3-19<br>| 李四| 29 |2020-3-19<br>| 王五| 9 |2020-3-19<br>| 张三| 21 |2020-3-19<br>| 王五|19 |2020-3-20</p>
+<p>作用显而易见</p>
+<p><strong>查询满足条件的元组：</strong></p>
+<table>
+<thead>
+<tr>
+<th>常用的查询条件</th>
+<th>谓词</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>比 较</td>
+<td>&#x3D;，&gt;，&lt;，&gt;&#x3D;，&lt;&#x3D;，!&#x3D;，&lt;&gt;，!&gt;，!&lt;；NOT+上述比较运算符</td>
+</tr>
+<tr>
+<td>确定范围</td>
+<td>BETWEEN AND，NOT BETWEEN AND</td>
+</tr>
+<tr>
+<td>确定集合</td>
+<td>IN，NOT IN</td>
+</tr>
+<tr>
+<td>字符匹配</td>
+<td>LIKE，NOT LIKE</td>
+</tr>
+<tr>
+<td>空 值</td>
+<td>IS NULL，IS NOT NULL</td>
+</tr>
+<tr>
+<td>多重条件（逻辑运算）</td>
+<td>AND，OR，NOT</td>
+</tr>
+</tbody></table>
+<p>这次我们多举几个例子：<br>Student 表</p>
+<table>
+<thead>
+<tr>
+<th>Sname</th>
+<th>Sage</th>
+<th>Sdept</th>
+<th>Sgrade</th>
+<th>Ssex</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>张三</td>
+<td>18</td>
+<td>C.S</td>
+<td>80</td>
+<td>1</td>
+</tr>
+<tr>
+<td>李四</td>
+<td>18</td>
+<td>C.S</td>
+<td>72</td>
+<td>0</td>
+</tr>
+<tr>
+<td>王五</td>
+<td>17</td>
+<td>I.C.S</td>
+<td>63</td>
+<td>0</td>
+</tr>
+<tr>
+<td>韩六</td>
+<td>18</td>
+<td>C.S</td>
+<td>98</td>
+<td>1</td>
+</tr>
+<tr>
+<td>周七</td>
+<td>19</td>
+<td>I.C.S</td>
+<td>34</td>
+<td>0</td>
+</tr>
+<tr>
+<td>赵八</td>
+<td>20</td>
+<td>C.S</td>
+<td>60</td>
+<td>1</td>
+</tr>
+<tr>
+<td>以下所有查询的基本表都默认为 Student 表</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<p><strong>例一：</strong> 查询计算机科学系全体学生的名单</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> Sname<br>    <span class="hljs-keyword">FROM</span> Student<br>    <span class="hljs-keyword">WHERE</span> Sdept<span class="hljs-operator">=</span><span class="hljs-string">&#x27;C.S.&#x27;</span>；<br></code></pre></td></tr></table></figure>
+
+<p>结果：</p>
+<p>|Sname|<br>|–|–|–|–|–|<br>|张三|18|C.S|90|1<br>|李四|18|C.S|90|0<br>|韩六|18|C.S|90|1<br>|赵八|20|C.S|90|1</p>
+<p><strong>例二：</strong> 查询所有年龄在 18 岁以上的学生姓名及其年龄。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> Sname，Sage<br><span class="hljs-keyword">FROM</span>    Student<br><span class="hljs-keyword">WHERE</span> Sage<span class="hljs-operator">&gt;</span><span class="hljs-number">18</span>；<br></code></pre></td></tr></table></figure>
+
+<p>结果</p>
+<p>|Sname|Sage<br>|–|–|–|–|–|<br>|周七|19|I.C.S|90|0<br>|赵八|20|C.S|90|1</p>
+<p><strong>BETWEEN…AND…语句</strong><br><strong>例三：</strong> 查询年龄在 18~20 岁（包括 18 岁和 20 岁）之间的学生的姓名、系别和年龄</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> Sname，Sage，Sdept<br><span class="hljs-keyword">FROM</span>     Student<br><span class="hljs-keyword">WHERE</span>   Sage <span class="hljs-keyword">BETWEEN</span> <span class="hljs-number">18</span> <span class="hljs-keyword">AND</span> <span class="hljs-number">20</span>；<br></code></pre></td></tr></table></figure>
+
+<p>结果</p>
+<p>|Sname|Sage|Sdept|<br>|–|–|–|–|–|<br>|张三|18|C.S|80|1<br>|李四|18|C.S|72|0<br>|韩六|18|C.S|98|1<br>|周七|19|I.C.S|34|0<br>|赵八|20|C.S|60|1<br><strong>例四：</strong> 查询年龄<strong>不</strong>在 18~20 岁（包括 18 岁和 20 岁）之间的学生的姓名、系别和年龄</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> Sname，Sage，Sdept<br><span class="hljs-keyword">FROM</span>     Student<br><span class="hljs-keyword">WHERE</span>   Sage <span class="hljs-keyword">NOT</span> <span class="hljs-keyword">BETWEEN</span> <span class="hljs-number">18</span> <span class="hljs-keyword">AND</span> <span class="hljs-number">20</span>；<br></code></pre></td></tr></table></figure>
+
+<p>结果</p>
+<p>|Sname|Sage|Sdept|<br>|–|–|–|–|–|<br>|王五|17|I.C.S|63|0</p>
+<p><strong>IN&#x2F;NOT IN 语句</strong><br><strong>例四：</strong> 查询年龄为 17 和 20 岁的学生姓名，年龄及专业</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> Sname，Sage，Sdept<br><span class="hljs-keyword">FROM</span>     Student<br><span class="hljs-keyword">WHERE</span>   Sage <span class="hljs-keyword">IN</span> (<span class="hljs-number">17</span>，<span class="hljs-number">20</span>);<br></code></pre></td></tr></table></figure>
+
+<p>结果</p>
+<p>|Sname|Sage|Sdept|<br>|–|–|–|–|–|<br>|王五|17|I.C.S|63|0<br>|赵八|20|C.S|60|1</p>
+<p><strong>例五：</strong> 查询年龄不为 17 和 20 岁的学生姓名，年龄及专业</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> Sname，Sage，Sdept<br><span class="hljs-keyword">FROM</span>     Student<br><span class="hljs-keyword">WHERE</span>   Sage <span class="hljs-keyword">NOT</span> <span class="hljs-keyword">IN</span> (<span class="hljs-number">17</span>，<span class="hljs-number">20</span>);<br></code></pre></td></tr></table></figure>
+
+<p>| Sname | Sage | Sdept |<br>| —– | —- | —– | — | — |<br>| 张三  | 18   | C.S   | 80  | 1   |<br>| 李四  | 18   | C.S   | 72  | 0   |<br>| 韩六  | 18   | C.S   | 98  | 1   |<br>| 周七  | 19   | I.C.S | 34  | 0   |</p>
+<p><strong>字符串匹配：</strong><br>语法格式：<br><strong>谓词：</strong><br>[NOT] LIKE ‘&lt;匹配串&gt;’ [ESCAPE ‘ &lt;换码字符&gt;’]<br>&lt;匹配串&gt;：指定匹配模板<br>匹配模板：固定字符串或含通配符的字符串<br>当匹配模板为固定字符串时，<br>可以用 &#x3D; 运算符取代 LIKE 谓词<br>用 !&#x3D; 或 &lt; &gt;运算符取代 NOT LIKE 谓词</p>
+<p><strong>通配符：</strong></p>
+<table>
+<thead>
+<tr>
+<th>通配符</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>%</td>
+<td>代表任意长度（长度可以为 0）的字符串</td>
+</tr>
+<tr>
+<td>_</td>
+<td>仅替代一个字符</td>
+</tr>
+<tr>
+<td>[charlist]</td>
+<td>字符列中的任何单一字符</td>
+</tr>
+<tr>
+<td>[^charlist]或者[!charlist]</td>
+<td>不在字符列中的任何单一字符</td>
+</tr>
+</tbody></table>
+<p><strong>例：</strong><br>a%b 表示以 a 开头，以 b 结尾的任意长度的字符串。如 acb，addgb，ab 等都满足该匹配串<br>a*b 表示以 a 开头，以 b 结尾的长度为 3 的任意字符串。如 acb，afb 等都满足该匹配串<br><strong>ESCAPE 短语：</strong><br>当用户要查询的字符串本身就含有 % 或 * 时，要使用 ESCAPE ‘&lt;换码字符&gt;’ 短语对通配符进行转义。</p>
+<p><strong>类型 1：</strong> 匹配串为固定字符串<br>查询学号为 200215121 的学生的详细情况。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> <span class="hljs-operator">*</span><br>   <span class="hljs-keyword">FROM</span>  Student<br>   <span class="hljs-keyword">WHERE</span>  Sno <span class="hljs-keyword">LIKE</span> ‘<span class="hljs-number">200215121</span><span class="hljs-string">&#x27;；</span><br></code></pre></td></tr></table></figure>
+
+<p>等价于：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span>  <span class="hljs-operator">*</span><br><span class="hljs-keyword">FROM</span>  Student<br><span class="hljs-keyword">WHERE</span> Sno <span class="hljs-operator">=</span> <span class="hljs-string">&#x27; 200215121 &#x27;</span>；<br></code></pre></td></tr></table></figure>
+
+<p><strong>类型 2：</strong> 匹配串为含通配符的字符串</p>
+<p>查询所有姓刘学生的姓名、学号和性别。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> Sname，Sno，Ssex<br><span class="hljs-keyword">FROM</span> Student<br><span class="hljs-keyword">WHERE</span>  Sname <span class="hljs-keyword">LIKE</span> ‘刘<span class="hljs-operator">%</span>’；<br></code></pre></td></tr></table></figure>
+
+<p>查询姓”欧阳”且全名为三个汉字的学生的姓名。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> Sname<br><span class="hljs-keyword">FROM</span>   Student<br><span class="hljs-keyword">WHERE</span>  Sname <span class="hljs-keyword">LIKE</span> <span class="hljs-string">&#x27;欧阳__&#x27;</span>；<br></code></pre></td></tr></table></figure>
+
+<p>查询名字中第 2 个字为”阳”字的学生的姓名和学号。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> Sname，Sno<br><span class="hljs-keyword">FROM</span> Student<br><span class="hljs-keyword">WHERE</span> Sname <span class="hljs-keyword">LIKE</span> ‘__阳<span class="hljs-operator">%</span>’；<br></code></pre></td></tr></table></figure>
+
+<p>查询所有不姓刘的学生姓名。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> Sname，Sno，Ssex<br>   <span class="hljs-keyword">FROM</span> Student<br>   <span class="hljs-keyword">WHERE</span> Sname <span class="hljs-keyword">NOT</span> <span class="hljs-keyword">LIKE</span> <span class="hljs-string">&#x27;刘%&#x27;</span>；<br></code></pre></td></tr></table></figure>
+
+<p><strong>类型 3：</strong> 使用换码字符将通配符转义为普通字符</p>
+<p>查询 DB_Design 课程的课程号和学分。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> Cno，Ccredit<br><span class="hljs-keyword">FROM</span> Course<br><span class="hljs-keyword">WHERE</span> Cname <span class="hljs-keyword">LIKE</span> <span class="hljs-string">&#x27;DB\_Design&#x27;</span> <span class="hljs-keyword">ESCAPE</span> <span class="hljs-string">&#x27;\‘；</span><br></code></pre></td></tr></table></figure>
+
+<p>查询以”DB_“开头，且倒数第 3 个字符为 i 的课程的详细情况。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span>  <span class="hljs-operator">*</span><br><span class="hljs-keyword">FROM</span>   Course<br><span class="hljs-keyword">WHERE</span>  Cname <span class="hljs-keyword">LIKE</span>  <span class="hljs-string">&#x27;DB\_%i_ _&#x27;</span> <span class="hljs-keyword">ESCAPE</span> <span class="hljs-string">&#x27; \ ‘；</span><br></code></pre></td></tr></table></figure>
+
+<p>ESCAPE ‘＼’ 表示“ ＼” 为换码字符<br>学过 C++的大家都知道\n 代表换行，\为转义字符。这里是说，我们通过 ESCAPE 语句将\定义为换码字符（可以理解为转义字符）</p>
+<p><strong>类型 4：</strong> 涉及空值的查询</p>
+<p>谓词：IS NULL 或 IS NOT NULL 而且 “IS” 不能用 “&#x3D;” 代替。<br>如果某些同学的信息不完整，比如在某个表中手机号未填写，那这位同学的元组中的手机号这一属性为 NULL；<br>要想查出这类同学的姓名我们可以执行以下操作</p>
+<p>Student 表</p>
+<table>
+<thead>
+<tr>
+<th>Sname</th>
+<th>Sage</th>
+<th>Sdept</th>
+<th>Sgrade</th>
+<th>Ssex</th>
+<th>Spho</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>张三</td>
+<td>18</td>
+<td>C.S</td>
+<td>80</td>
+<td>1</td>
+<td>12345678</td>
+</tr>
+<tr>
+<td>李四</td>
+<td>18</td>
+<td>C.S</td>
+<td>72</td>
+<td>0</td>
+<td>12345679</td>
+</tr>
+<tr>
+<td>王五</td>
+<td>17</td>
+<td>I.C.S</td>
+<td>63</td>
+<td>0</td>
+<td>12345680</td>
+</tr>
+<tr>
+<td>韩六</td>
+<td>18</td>
+<td>C.S</td>
+<td>98</td>
+<td>1</td>
+<td>NULL</td>
+</tr>
+<tr>
+<td>周七</td>
+<td>19</td>
+<td>I.C.S</td>
+<td>34</td>
+<td>0</td>
+<td>234234234</td>
+</tr>
+<tr>
+<td>赵八</td>
+<td>20</td>
+<td>C.S</td>
+<td>60</td>
+<td>1</td>
+<td>NULL</td>
+</tr>
+</tbody></table>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> Sname,Spho <span class="hljs-keyword">From</span> Student<br><span class="hljs-keyword">WHERE</span> Spho <span class="hljs-keyword">IS</span> <span class="hljs-keyword">NULL</span>;<br></code></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th>Sname</th>
+<th>Spho</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>韩六</td>
+<td>NULL</td>
+</tr>
+<tr>
+<td>赵八</td>
+<td>NULL</td>
+</tr>
+</tbody></table>
+<p><strong>类型 5：</strong> 多重条件查询<br>逻辑运算符：<br>AND：且 连接前后两个条件都成立时表达式为真<br>OR：或 连接前后表达式有一个为真时表达式为真<br>AND 优先级大于 OR,可以加括号进行复合运算，进而改变优先级。</p>
+<table>
+<thead>
+<tr>
+<th>常用的查询条件</th>
+<th>谓词</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>比 较</td>
+<td>&#x3D;，&gt;，&lt;，&gt;&#x3D;，&lt;&#x3D;，!&#x3D;，&lt;&gt;，!&gt;，!&lt;；NOT+上述比较运算符</td>
+</tr>
+<tr>
+<td>确定范围</td>
+<td>BETWEEN AND，NOT BETWEEN AND</td>
+</tr>
+<tr>
+<td>确定集合</td>
+<td>IN，NOT IN</td>
+</tr>
+<tr>
+<td>字符匹配</td>
+<td>LIKE，NOT LIKE</td>
+</tr>
+<tr>
+<td>空 值</td>
+<td>IS NULL，IS NOT NULL</td>
+</tr>
+<tr>
+<td>多重条件（逻辑运算）</td>
+<td>AND，OR，NOT</td>
+</tr>
+<tr>
+<td><strong>可以连接上面表中的所有运算符，只要保证最后得到表达可以分辨真假有意义即可。</strong></td>
+<td></td>
+</tr>
+</tbody></table>
+<p>这个比较简单我们举一个例子：<br>查询 18 岁的学生且属于计算机科学专业的姓名，年龄，专业</p>
+<table>
+<thead>
+<tr>
+<th>Sname</th>
+<th>Sage</th>
+<th>Sdept</th>
+<th>Sgrade</th>
+<th>Ssex</th>
+<th>Spho</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>张三</td>
+<td>18</td>
+<td>C.S</td>
+<td>80</td>
+<td>1</td>
+<td>12345678</td>
+</tr>
+<tr>
+<td>李四</td>
+<td>18</td>
+<td>C.S</td>
+<td>72</td>
+<td>0</td>
+<td>12345679</td>
+</tr>
+<tr>
+<td>王五</td>
+<td>17</td>
+<td>I.C.S</td>
+<td>63</td>
+<td>0</td>
+<td>12345680</td>
+</tr>
+<tr>
+<td>韩六</td>
+<td>18</td>
+<td>C.S</td>
+<td>98</td>
+<td>1</td>
+<td>NULL</td>
+</tr>
+<tr>
+<td>周七</td>
+<td>19</td>
+<td>I.C.S</td>
+<td>34</td>
+<td>0</td>
+<td>234234234</td>
+</tr>
+<tr>
+<td>赵八</td>
+<td>20</td>
+<td>C.S</td>
+<td>60</td>
+<td>1</td>
+<td>NULL</td>
+</tr>
+</tbody></table>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> Sname,Sage,Sdept <span class="hljs-keyword">FROM</span> Students<br><span class="hljs-keyword">WHERE</span> Sage<span class="hljs-operator">=</span><span class="hljs-number">18</span> <span class="hljs-keyword">AND</span> Sdept<span class="hljs-operator">=</span><span class="hljs-string">&#x27;C.S.&#x27;</span>;<br></code></pre></td></tr></table></figure>
+
+<p>| Sname | Sage | Sdept |<br>| —– | —- | —– | — | — | ——– |<br>| 张三  | 18   | C.S   | 80  | 1   | 12345678 |<br>| 李四  | 18   | C.S   | 72  | 0   | 12345679 |<br>| 韩六  | 18   | C.S   | 98  | 1   | NULL     |</p>
+<h5 id="4-聚集函数"><a href="#4-聚集函数" class="headerlink" title="4.聚集函数"></a>4.聚集函数</h5><p><strong>计数</strong><br><strong>SQL COUNT(column_name) 语法</strong><br>COUNT(column_name) 函数返回指定列的值的数目（NULL 不计入）：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> <span class="hljs-built_in">COUNT</span>(column_name) <span class="hljs-keyword">FROM</span> table_name<br></code></pre></td></tr></table></figure>
+
+<p><strong>SQL COUNT(*) 语法</strong><br>COUNT(*) 函数返回表中的记录数：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> <span class="hljs-built_in">COUNT</span>(<span class="hljs-operator">*</span>) <span class="hljs-keyword">FROM</span> table_name<br></code></pre></td></tr></table></figure>
+
+<p><strong>SQL COUNT(DISTINCT column_name) 语法</strong><br>COUNT(DISTINCT column_name) 函数返回指定列的不同值的数目：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> <span class="hljs-built_in">COUNT</span>(<span class="hljs-keyword">DISTINCT</span> column_name) <span class="hljs-keyword">FROM</span> table_name<br></code></pre></td></tr></table></figure>
+
+<p>例：<br><strong>查询学生总人数。</strong></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> <span class="hljs-built_in">COUNT</span>(<span class="hljs-operator">*</span>)<br><span class="hljs-keyword">FROM</span>  Student；<br></code></pre></td></tr></table></figure>
+
+<p><strong>查询选修了课程的学生人数。</strong></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> <span class="hljs-built_in">COUNT</span>(<span class="hljs-keyword">DISTINCT</span> Sno)<br><span class="hljs-keyword">FROM</span> SC<br></code></pre></td></tr></table></figure>
+
+<p><strong>计算总和</strong></p>
+<p><strong>SQL SUM() 语法</strong></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> <span class="hljs-built_in">SUM</span>(column_name) <span class="hljs-keyword">FROM</span> table_name<br></code></pre></td></tr></table></figure>
+
+<p>开头举过例子，这里就不再重复赘述。</p>
+<p><strong>计算平均值</strong></p>
+<p>AVG 函数返回数值列的平均值。NULL 值不包括在计算中。</p>
+<p><strong>SQL AVG() 语法</strong></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> <span class="hljs-built_in">AVG</span>(column_name) <span class="hljs-keyword">FROM</span> table_name<br></code></pre></td></tr></table></figure>
+
+<p><strong>例</strong><br>计算 1 号课程的学生平均成绩。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> <span class="hljs-built_in">AVG</span>(Grade)<br><span class="hljs-keyword">FROM</span> SC<br><span class="hljs-keyword">WHERE</span> Cno<span class="hljs-operator">=</span> ‘ <span class="hljs-number">1</span> ’；<br></code></pre></td></tr></table></figure>
+
+<p><strong>最大最小值</strong></p>
+<p><strong>MAX() 函数和 MIN()函数</strong><br>MAX 函数返回一列中的最大值，MIN 函数返回一列中的最小值。<strong>NULL 值不包括在计算中。</strong></p>
+<p><strong>SQL 中的语法</strong></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> <span class="hljs-built_in">MAX</span>(column_name) <span class="hljs-keyword">FROM</span> table_name<br><span class="hljs-keyword">SELECT</span> <span class="hljs-built_in">MIN</span>(column_name) <span class="hljs-keyword">FROM</span> table_name<br></code></pre></td></tr></table></figure>
+
+<p><strong>MIN 和 MAX 也可用于文本列，以获得按字母顺序排列的最高或最低值。</strong><br><strong>例：</strong><br>查询选修 1 号课程的学生最高分数。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> <span class="hljs-built_in">MAX</span>(Grade)<br><span class="hljs-keyword">FROM</span> SC<br><span class="hljs-keyword">WHERE</span> Cno<span class="hljs-operator">=</span> ‘ <span class="hljs-number">1</span> ’；<br></code></pre></td></tr></table></figure>
+
+<br>
+<br>
+<br>
+
+<blockquote>
+<p><strong>写在最后：</strong><br>我叫风骨散人，名字的意思是我多想可以不低头的自由生活，可现实却不是这样。家境贫寒，总得向这个世界低头，所以我一直在奋斗，想<code>改变我的命运</code>给亲人好的生活，希望<code>同样被生活绑架的你</code>可以通过自己的努力改变现状，深知成年人的世界里没有容易二字。目前是一名在校大学生，预计考研，热爱编程，热爱技术，喜欢分享，知识无界，希望我的分享可以帮到你！<br>如果有什么想看的，可以私信我，如果在能力范围内，我会发布相应的博文！<br>谢谢大家的阅读！😘</p>
+</blockquote>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" class="category-chain-item">数据库</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>『数据库』数据库SQL语言从入门到精通-Part 6-单表查询（快来PICK）</div>
+      <div>https://chiamzhang.github.io/2024/06/29/『数据库』数据库SQL语言从入门到精通-Part 6-单表查询（快来PICK）/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>Chiam</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>June 29, 2024</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>Licensed under</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2024/06/29/%E3%80%8E%E6%95%B0%E6%8D%AE%E5%BA%93%E3%80%8F%E6%95%B0%E6%8D%AE%E5%BA%93%E5%85%A5%E9%97%A8%E5%BC%80%E5%8F%91%E6%A1%88%E4%BE%8B%EF%BC%8C%E7%9C%9F%E7%9A%84%E6%98%AF%E5%85%A5%E9%97%A8%E7%BA%A7%E5%88%AB%E7%9A%84%EF%BC%81%EF%BC%81%E7%9C%8B%E4%BA%86%E4%B8%8D%E5%90%8E%E6%82%94%E3%80%82/" title="『数据库』数据库入门开发案例，真的是入门级别的！！看了不后悔。">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">『数据库』数据库入门开发案例，真的是入门级别的！！看了不后悔。</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/06/29/%E3%80%8E%E6%95%B0%E6%8D%AE%E5%BA%93%E3%80%8F%E6%95%B0%E6%8D%AE%E5%BA%93SQL%E8%AF%AD%E8%A8%80%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E7%B2%BE%E9%80%9A-Part%204-SQL%E8%AF%AD%E8%A8%80%E4%B8%AD%E7%9A%84%E6%A8%A1%E5%BC%8F%E3%80%81%E5%9F%BA%E6%9C%AC%E8%A1%A8%E3%80%81%E8%A7%86%E5%9B%BE/" title="『数据库』数据库SQL语言从入门到精通-Part 4-SQL语言中的模式、基本表、视图">
+                        <span class="hidden-mobile">『数据库』数据库SQL语言从入门到精通-Part 4-SQL语言中的模式、基本表、视图</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"fIfc7WqUDZohlQuPc2lz5mJy-MdYXbMMI","appKey":"zjlAG3ZA3o4cBHVAkjzc2Z20","path":"window.location.pathname","placeholder":"留言仅限讨论，禁止广告等行为","avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"https://fifc7wqu.api.lncldglobal.com","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>Table of Contents</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <meta name="referrer" content="no-referrer" /> <footer id="footer" role="contentinfo"> <meta name="referrer" content="no-referrer" /> <div class="divider"> <div class="wall"></div> <img class="animals" src="/img/footer_animals_new.png" srcset="/img/loading.gif" lazyload alt="Footer Animals"> </div> <div class="container" data-index="450"> <p> <a href="https://chiamzhang.github.io" target="_blank">DogEgg</a> <i class="iconfont icon-love"></i> <a href="#" target="_blank">LittePig</a> </p> <p> Powered by  <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-pen"></i> Theme  <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> </p> </div> </footer> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+  
+<script src="/js/love.js"></script>
+<script src="/js/funnyTitle.js"></script>
+<script src="/js/backTop.js"></script>
+<script src="//cdn.jsdelivr.net/gh/bynotes/texiao/source/js/xiaoxuehua.js"></script>
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+</html>

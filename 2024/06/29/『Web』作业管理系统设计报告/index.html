@@ -1,0 +1,916 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/Mine.jpg">
+  <link rel="icon" href="/img/Mine.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Chiam">
+  <meta name="keywords" content="Algorithms，Cybersecurity">
+  
+    <meta name="description" content="『Web』作业管理系统设计报告作业管理系统设计报告目录一、 引言（Introduction）. 3 1. 背景（Background）. 3 2. 开发计划的目的. 3 3. 项目开发参考资料（References）. 4 4. 涉及名词（Related Noun）. 4 二、 项目概述. 5 1. 项目目标. 5 2. 功能模块列表. 5 三、 计算机系统支持及开发环境. 7 1. 开发技术：.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="『Web』作业管理系统设计报告">
+<meta property="og:url" content="https://chiamzhang.github.io/2024/06/29/%E3%80%8EWeb%E3%80%8F%E4%BD%9C%E4%B8%9A%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1%E6%8A%A5%E5%91%8A/index.html">
+<meta property="og:site_name" content="Homepage of Chiam">
+<meta property="og:description" content="『Web』作业管理系统设计报告作业管理系统设计报告目录一、 引言（Introduction）. 3 1. 背景（Background）. 3 2. 开发计划的目的. 3 3. 项目开发参考资料（References）. 4 4. 涉及名词（Related Noun）. 4 二、 项目概述. 5 1. 项目目标. 5 2. 功能模块列表. 5 三、 计算机系统支持及开发环境. 7 1. 开发技术：.">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210315195815469.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70">
+<meta property="article:published_time" content="2024-06-29T13:16:53.783Z">
+<meta property="article:modified_time" content="2023-12-05T16:17:54.385Z">
+<meta property="article:author" content="Chiam">
+<meta property="article:tag" content="Algorithms，Cybersecurity">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20210315195815469.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70">
+  
+  
+  
+  <title>『Web』作业管理系统设计报告 - Homepage of Chiam</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"chiamzhang.github.io","root":"/","version":"1.9.5-a","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":"❡"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":2},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
+
+
+<body>
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Chiam&#39;s Blogs</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                
+                <span>Home</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                
+                <span>Archives</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                
+                <span>Categories</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                
+                <span>About</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                
+                <span>Links</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="『Web』作业管理系统设计报告"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-06-29 21:16" pubdate>
+          June 29, 2024 pm
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          8.9k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          74 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">『Web』作业管理系统设计报告</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="『Web』作业管理系统设计报告"><a href="#『Web』作业管理系统设计报告" class="headerlink" title="『Web』作业管理系统设计报告"></a>『Web』作业管理系统设计报告</h1><h1 id="作业管理系统设计报告"><a href="#作业管理系统设计报告" class="headerlink" title="作业管理系统设计报告"></a>作业管理系统设计报告</h1><h2 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h2><p>一、 引言（Introduction）. 3</p>
+<p>1. 背景（Background）. 3</p>
+<p>2. 开发计划的目的. 3</p>
+<p>3. 项目开发参考资料（References）. 4</p>
+<p>4. 涉及名词（Related Noun）. 4</p>
+<p>二、 项目概述. 5</p>
+<p>1. 项目目标. 5</p>
+<p>2. 功能模块列表. 5</p>
+<p>三、 计算机系统支持及开发环境. 7</p>
+<p>1. 开发技术：. 7</p>
+<p>2. 开发硬件. 7</p>
+<p>3. 服务器环境. 7</p>
+<p>4. 软件. 7</p>
+<p>四、 需求分析. 8</p>
+<p>1. 该系统的用例图. 8</p>
+<p>2. 结构图. 13</p>
+<p>3. 工作流程图. 15</p>
+<p>3.1 系统总体工作流程图. 15</p>
+<p>五、 模块设计. 15</p>
+<p>1. 用户登录模块. 15</p>
+<p>2. 作业管理模块. 16</p>
+<p>3. 学生管理模块. 16</p>
+<p>4. 学生完成作业模块. 17</p>
+<p>5. 系统角色划分. 17</p>
+<p>六、 数据库设计. 18</p>
+<p>1. 数据表. 18</p>
+<p>七、 功能测试报告. 19</p>
+<p>八、 部分运行截图. 21</p>
+<p>九、 收获与体会. 25</p>
+<p>**设计报告 **</p>
+<ul>
+<li><strong>引言（Introduction）</strong></li>
+</ul>
+<ol>
+<li>背景（Background）</li>
+</ol>
+<p>在科技高速发展的当下，互联网也进入了一个新时期，无论是离不开网络的我们，还是收益于互联网的生活，对于作业采用网上管理也是一个必然的方向，这次借着 JavaEE 大作业的机会，进行对作业管理系统的设计。作业管理系统要适用于在校师生。而且不应考虑经济效益，应将服务器成本以及设计成本控制在预期范围内。</p>
+<p><strong>这次不仅是 JavaEE 的设计作业，更是一次本学期软件工程学习成果的检验。本次开发文档将会按照软件工程开发的方式编写。</strong></p>
+<ol>
+<li>开发计划的目的</li>
+</ol>
+<p>为了能够使的项目在规定时间内完成，特此设立如下阶段：</p>
+<p><strong>第一阶段：第一天</strong></p>
+<p>确定开发项目课题，并根据课题内容进行需求分析并且根据分析结果建立数据库。</p>
+<p>第一阶段主要的工作：</p>
+<p>（1） 就是建立数据库，将其完善。</p>
+<p>（2） 确定功能模块。</p>
+<p>（3） 确定该项目每个功能需要使用的技术，并且需要在这个基础之上进行代码的编写。</p>
+<p>（4） 根据写好的数据库，给出操作数据库的实体类和操作类。</p>
+<p>本阶段的硬性要求就是数据库必须建立好，以方便后期各组的工作。</p>
+<p><strong>第二阶段：第二到第四天</strong></p>
+<p>思考目前进度存在的问题以及需要解决的问题的方案。</p>
+<p>第二阶段主要的工作：</p>
+<p>（1） 完善第一阶段写好的数据库操作对象。</p>
+<p>（2） 写好需要的工具类。</p>
+<p>（3） 进行前端以及绘图等工作。</p>
+<p>（4） 编写逻辑部分代码。</p>
+<p>（5） 对项目进行第一次的完善</p>
+<p><strong>第三阶段：第五到第六天</strong></p>
+<p>将前段时间写好的代码进行整合并且测试项目找出其中的问题，然后将之前需要将项目完善完全，最后进行文档的编写。</p>
+<p>第三阶段主要的工作：</p>
+<p>（1） 进行整合并进行测试，对其中问题进行处理。</p>
+<p>（2） 在这期间将文档编写并且完善。</p>
+<ol>
+<li>项目开发参考资料（References）</li>
+</ol>
+<p>[1] 张继军 董卫.Java EE 框架开发技术与案例教程 2016</p>
+<p>[2] 吕云翔.软件工程理论与实践.北京：机械工业出版社，2017.</p>
+<ol>
+<li>涉及名词（Related Noun）</li>
+</ol>
+<p>[1] 学生： 网站的主要使用人员，由教师创建或导入，不能独立存在于该系统。</p>
+<p>[2] 教师： 网站身份为教师的用户，拥有发布、修改、删除、批阅作业的权限，并能对学生用户进行管理。</p>
+<p>[3] 作业： 由教师创建，并由学生完善后交付给教师批阅，批阅后批阅信息交付给学生。</p>
+<ul>
+<li><strong>项目概述</strong></li>
+</ul>
+<ol>
+<li>项目目标</li>
+</ol>
+<p>教师可以将一个教学班的学生信息一次导入（也可以单独添加一个学生），用户名和密码默认为学号，并且按教学班组织管理。可以发布作业（一次可以发布多个题目）每个题目包含：题号、题干（题目内容）、要求、并且给出作业提交的最迟时间等相关内容。可以批阅作业（对每个题目给出评阅意见和成绩），批阅完成后，自动形成该次的评阅成绩和意见。并且对于上传的附件文档，可以直接打开（不要下载），这样方便教师的批阅。具有统计成绩功能，教师可以统计到目前为止，学生作业完成情况以及相应的成绩与评价。</p>
+<p>学生可以查阅所布置的作业，并选择题目完成解答并提交（可以上传附件文件）。可以查阅教师返回的批阅意见和成绩，若对成绩或评阅有问题，可以返回信息给教师。可以列出到目前所作的所有作业情况（包括成绩与评阅信息）</p>
+<ol>
+<li>功能模块列表</li>
+</ol>
+<p>| 模块编号 | 名称 | 模块功能描述 |<br>| 101 | 注册 | 不对学生开放 |<br>| 102 | 登录 | 已注册用户登录系统 |<br>| 103 | 查看个人信息 | 学生或老师查看个人信息 |<br>| 104 | 修改个人信息 | 学生或老师修改个人信息 |<br>| 105 | 学生管理 | 老师可以对学生信息进行管理 |<br>| 106 | 学生导入 | 老师可以批量导入也可以单个添加 |<br>| 107 | 删除成员 | 老师可以删除创建的学生 |<br>| 201 | 发布作业 | 老师可以发布作业 |<br>| 202 | 查看作业 | 老师可以查看作业 |<br>| 203 | 修改作业 | 老师可以修改作业 |<br>| 204 | 删除作业 | 老师可以删除作业 |<br>| 205 | 批改作业 | 老师可以批改已经提交的作业 |<br>| 206 | 成绩分析 | 老师可以对已经批改的作业进行成绩统计 |<br>| 301 | 完成作业 | 学生可以完成作业并上传附件 |<br>| 302 | 查阅评级 | 学生可以查阅老师的评价 |<br>| 303 | 联系老师 | 学生可以联系老师对批阅情况进行反馈 |</p>
+<ul>
+<li><strong>计算机系统支持及开发环境</strong></li>
+</ul>
+<ol>
+<li>开发技术：</li>
+</ol>
+<p>首次开发采用 MVC 模式+Struts2 框架技术，前端采用 Vue 和 Jquery 技术。</p>
+<p>二次开发采用 Spring 框架进行整合</p>
+<p>三次开发采用 Hibernate 框架进行数据库整合</p>
+<ol>
+<li>开发硬件</li>
+</ol>
+<p>处理器：Intel(R) Core(TM) i7-8750 CPU @2.80Ghz 3.60GHz</p>
+<p>内存：24.00GB</p>
+<p>显卡：Nvidia 1050Ti 4G</p>
+<ol>
+<li>服务器环境</li>
+</ol>
+<p>服务器：Tomcat 9.0</p>
+<p>数据库：Mysql 8.0</p>
+<ol>
+<li>软件</li>
+</ol>
+<p>Web 项目：Eclipse 2019-9</p>
+<p>前端界面：HBuilerX</p>
+<p>部分代码编辑：VScode</p>
+<ul>
+<li><strong>需求分析</strong></li>
+</ul>
+<ol>
+<li>该系统的用例图</li>
+<li><img src="https://img-blog.csdnimg.cn/20210315195815469.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70" srcset="/img/loading.gif" lazyload></li>
+</ol>
+<p>| 编号 | 102 | 用例名称 | 登录 |<br>| 使用人员 | 所有用户 | 扩展点 | 无 |<br>| 输入 | 账户密码 |<br>| 系统响应 | 数据库查询密码是否符合 |<br>| 输出 | 符合后跳转至主页，不符合给出提示信息 |<br>| 前置条件 | 未登录 | 后置条件 | 已登录 |<br>| 活动步骤 | 用户在登陆界面输入账号密码系统查询数据库检验是否账号密码对应符合后跳转至主页，不符合给出提示信息 |<br>| 异常处理 | 无此用户账号不为纯数字学号 |</p>
+<p>| 编号 | 201 | 用例名称 | 发布作业 |<br>| 使用人员 | 教师 | 扩展点 | 无 |<br>| 输入 | 系统自动转换，不需输入 |<br>| 系统响应 | 系统将相应的作业信息添加到数据库中 |<br>| 输出 | 作业列表栏中新增刚添加的作业，并且给学生消息提醒 |<br>| 前置条件 | 用户是教师并且处于发布作业 | 后置条件 | 用户发布作业成功 |<br>| 活动步骤 | 用户点击“发表作业”按钮用户输入作业信息用户完成输入，点击“发布作业”按钮返回原界面 |<br>| 异常处理 | 用户未登录或非本人或教师，则没有发表作业功能系统异常，系统给出相应提示信息 |</p>
+<p>| 编号 | 202 | 用例名称 | 查看作业 |<br>| 使用人员 | 所有用户 | 扩展点 | 无 |<br>| 输入 | 系统自动转换，不需输入 |<br>| 系统响应 | 系统对数据库中相应的作业进行提取 |<br>| 输出 | 将被选中的作业信息呈现给申请者 |<br>| 前置条件 | 已登录且点击查看作业 | 后置条件 | 用户查看作业成功 |<br>| 活动步骤 | 用户点击“查看作业”按钮查看成功，返回作业界面 |<br>| 异常处理 | 系统异常，并给出相应的提示信息 |</p>
+<p>| 编号 | 203 | 用例名称 | 修改作业 |<br>| 使用人员 | 教师 | 扩展点 | 无 |<br>| 输入 | 系统自动跳转，不需要输入 |<br>| 系统响应 | 系统对数据库中相应的作业信息进行修改 |<br>| 输出 | 被选中的作业信息被修改 |<br>| 前置条件 | 用户是教师并且处于修改界面 | 后置条件 | 用户修改作业成功 |<br>| 活动步骤 | 用户点击“修改作业”按钮用户输入修改的信息用户完成输入，点击“提交”按钮修改成功，返回原界面 |<br>| 异常处理 | 系统异常，并给出相应的提示信息 |</p>
+<p>| 编号 | 204 | 用例名称 | 删除作业 |<br>| 使用人员 | 教师 | 扩展点 | 无 |<br>| 输入 | 系统自动跳转，不需要输入 |<br>| 系统响应 | 系统修改数据库，将该作业从作业列表中删除。 |<br>| 输出 | 系统提示作业删除成功 |<br>| 前置条件 | 用户是教师并且处于个用户列表页面 | 后置条件 | 用户删除作业成功 |<br>| 活动步骤 | 用户点击“删除作业”按钮评论成功，返回原界面 |<br>| 异常处理 | 无 |</p>
+<p>| 编号 | 205 | 用例名称 | 批改作业 |<br>| 使用人员 | 教师 | 扩展点 | 无 |<br>| 输入 | 系统将已提交的作业添加到带批改的作业列表中，教师点击作业并对作业进行评价。 |<br>| 系统响应 | 将批阅信息写入数据库 |<br>| 输出 | 系统提示作业批阅成功 |<br>| 前置条件 | 用户是教师并且处于批阅页面 | 后置条件 | 批阅作业成功 |<br>| 活动步骤 | 教师选择需要批阅的作业并点击批阅选项系统提示教师将批阅信息输入 系统提示批阅成功并返回带批阅列表页面 |<br>| 异常处理 | 系统异常，并给出相应的提示信息 |</p>
+<p>| 编号 | 206 | 用例名称 | 成绩分析 |<br>| 使用人员 | 教师 | 扩展点 | 无 |<br>| 输入 | 系统自动跳转，不需要输入 |<br>| 系统响应 | 系统调取数据库中的信息 |<br>| 输出 | 系统跳转到学生成绩列表 |<br>| 前置条件 | 用户是教师并且处查看成绩页面 | 后置条件 | 查看成绩 |<br>| 活动步骤 | 教师点击成绩分析选项跳转之成绩列表查看成功，返回原界面。 |<br>| 异常处理 | 系统异常，并给出相应的提示信息 |</p>
+<p>| 编号 | 301 | 用例名称 | 完成作业 |<br>| 使用人员 | 学生 | 扩展点 | 无 |<br>| 输入 | 完成的作业信息或上传附件 |<br>| 系统响应 | 将作业信息或附件写入数据库 |<br>| 输出 | 系统提示作业提交成功 |<br>| 前置条件 | 用户是学生并处于完成作业页面 | 后置条件 | 作业提交成功 |<br>| 活动步骤 | 用户点击“完成作业”按钮用户输入作业内容或上传附件用户完成输入，点击“发表留言”按钮返回原界面 |<br>| 异常处理 | 系统异常，并给出相应的提示信息 |</p>
+<p>| 编号 | 302 | 用例名称 | 查阅评级 |<br>| 使用人员 | 学生 | 扩展点 | 无 |<br>| 输入 | 系统自动跳转，不需要输入 |<br>| 系统响应 | 系统加载数据库中相应的用户成绩信息 |<br>| 输出 | 系统跳转到自己成绩页面 |<br>| 前置条件 | 用户是学生并且处于查看成绩页面 | 后置条件 | 查阅评级 |<br>| 活动步骤 | 用户点击“查阅评级”按钮查阅成功，返回原界面 |<br>| 异常处理 | 系统异常，并给出相应的提示信息 |</p>
+<p>| 编号 | 303 | 用例名称 | 联系老师 |<br>| 使用人员 | 学生 | 扩展点 | 无 |<br>| 输入 | 与老师反馈的信息 |<br>| 系统响应 | 系统将信息写入数据库，并提醒老师。 |<br>| 输出 | 反馈成功的提示信息 |<br>| 前置条件 | 用户使学生并处联系老师用户页面 | 后置条件 | 反馈成功 |<br>| 活动步骤 | 用户点击“联系老师”按钮用户输入反馈内容用户完成输入，点击“反馈信息”按钮 返回原界面 |<br>| 异常处理 | 系统异常，并给出相应的提示信息 |</p>
+<ol>
+<li><p>结构图</p>
+</li>
+<li><p>工作流程图</p>
+</li>
+</ol>
+<h4 id="3-1-系统总体工作流程图"><a href="#3-1-系统总体工作流程图" class="headerlink" title="3.1 系统总体工作流程图"></a>3.1 系统总体工作流程图</h4><ul>
+<li><strong>模块设计</strong></li>
+</ul>
+<ol>
+<li>用户登录模块</li>
+</ol>
+<p>系统的使用者必须是教师分配的学生账号，而不能通过自己注册得到账号。一个学生账号信息有：学号、密码、真实名字、班级等信息。</p>
+<p>用户登录：在登录时，如果用户名和密码正确，进入系统页面。</p>
+<p>这里，将注册表单提交后，有后台 structs 检验是否符合要求，不符合要求跳转至密码错误页面页面并弹出提示框，符合要求后将跳转至登陆页面，并弹出提示框。 登录 Form 表单中的元素由账号和密码组成。</p>
+<ol>
+<li>作业管理模块</li>
+</ol>
+<p>一个作业包含信息有：序号（id）、教学班、作业名称、发布日期、截止日期、作业内容等。需要完成对作业有关的管理操作，主要有：</p>
+<p>（1）发布作业：增加作业信息到数据库内。</p>
+<p>（2）修改作业：修改作业信息如要求等。</p>
+<p>（3）查询作业：用教学班号为关键字查询</p>
+<p>（4）删除作业： 删除作业一般是直接删除</p>
+<p>作业展示功能没有用 Jquery，虽然功能强大，但是确实没有 JSP 方便，直接用 JSP 调用</p>
+<p>这里首先应该写出作业题目的实体类，用于 MVC 模式，通过 DAO 完成信息交互。发布作业将作业信息写入数据库。</p>
+<p>对于用户的查询，通过 Mysql 语言的通配符%来代替，通过 WHERE LIKE，从而达到模糊查询的效果，比如输入计算机，就要把计算机 18-1、计算机 18-2、计算机 18-3、等班级的作业查出来，没有使用通配符_，是因为只能代替一个字，不符合我们的需求。</p>
+<p>对于删除，直接从过调用 Junit 从数据库中删除数据即可。</p>
+<p>对于浏览，我一开始打算用 Jquery 传 Jason 放到 Html 容器里，后来还是采用老师上课用的 jsp 方法，那我直接用 JSP 输出成一个表格就很方便，这里通过 DAO，在 JSP 页面获得一个 List，通过 JSP 的 java 表达式直接输出成一个表格，这里我觉得这个方法比他们方法要方便，前后端的分离是产品化开发的产物，而不是高效完成工作的用途，既然我开发全栈，那么我觉得 JSP 的方法更加适合我。</p>
+<ol>
+<li>学生管理模块</li>
+</ol>
+<p>老师可以增加用户，可以单个导入也可以批量导入，单个导入等同于在管理员的权限下调用用户注册的接口，因此可以简化为用户注册，但是只能由教师进行操作。批量导入，首先要选择教学班号，然后按照学号 姓名两栏的 Excel 进行导入，默认密码是他的学号。</p>
+<p>删除操作，是将学生信息从数据库中删除的操作，Servlet 的实现跟作业删除相似，仅是调用不同的 Dao。</p>
+<ol>
+<li>学生完成作业模块</li>
+</ol>
+<p>学生可以查阅所布置的作业，老师按教学班号布置作业，然后学生可以查看，学生完成作业，将作业编号、学号以及完成内容写入数据库，成为一条记录，有时需要选择上传附件，数据库中由文件一栏的表项，存的是地址。上传的服务器后，会有专门的位置存放文件，查询时会返回一个 URL。</p>
+<p>学生可以根据老师的批阅记录联系老师，反馈批阅信息，具体实现跟提交作业一样，填入内容即可。都是形成一条记录写入数据库。</p>
+<ol>
+<li>系统角色划分</li>
+</ol>
+<p>该系统分为两个角色：系统教师、学生用户。每种角色功能要求如下。</p>
+<p>（1）系统教师</p>
+<p>系统教师，可以完成系统中所规定的所有功能，且可以对所有数据具有操作权限，并可以对学生用户进行管理（删除），注意，当删除该注册用户时，对应于该用户的所有提交的作业记录也全部删除。</p>
+<p>（2）学生用户</p>
+<p>由老师进行注册用户，只能对分配给自己的作业记录有操作权限（完成和修改）。对于其它的学生的记录是不可见的。</p>
+<ul>
+<li><strong>数据库设计</strong></li>
+</ul>
+<ol>
+<li>数据表</li>
+</ol>
+<p>| 字段名 | # | 数据类型 | 非空 | 自增 | 键 | 缺省 |<br>| TeaID | 1 | int | TRUE | FALSE | PRI | [NULL] |<br>| TeaName | 2 | varchar(66) | FALSE | FALSE | [NULL] | [NULL] |<br>| TeaPwd | 3 | varchar(55) | FALSE | FALSE | [NULL] | [NULL] |</p>
+<p>| 字段名 | # | 数据类型 | 非空 | 自增 | 键 | 缺省 |<br>| id | 1 | int | TRUE | FALSE | PRI | [NULL] |<br>| Name | 2 | varchar(50) | FALSE | FALSE | [NULL] | [NULL] |<br>| File | 3 | varchar(50) | FALSE | FALSE | [NULL] | [NULL] |<br>| TijiaoTime | 4 | varchar(50) | FALSE | FALSE | [NULL] | [NULL] |<br>| Student_id | 5 | int | FALSE | FALSE | [NULL] | [NULL] |<br>| ZuoYeID | 6 | int | FALSE | FALSE | [NULL] | [NULL] |<br>| FanKuiWenTi | 7 | varchar(255) | FALSE | FALSE | [NULL] | [NULL] |</p>
+<p>| 字段名 | # | 数据类型 | 非空 | 自增 | 键 | 缺省 |<br>| id | 1 | int | TRUE | FALSE | PRI | [NULL] |<br>| Name | 2 | varchar(66) | FALSE | FALSE | [NULL] | [NULL] |<br>| File | 3 | varchar(50) | FALSE | FALSE | [NULL] | [NULL] |<br>| FileName | 4 | varchar(55) | FALSE | FALSE | [NULL] | [NULL] |<br>| Time | 5 | varchar(50) | FALSE | FALSE | [NULL] | [NULL] |<br>| Deleted | 6 | varchar(50) | FALSE | FALSE | [NULL] | [NULL] |</p>
+<p>| 字段名 | # | 数据类型 | 非空 | 自增 | 键 | 缺省 |<br>| id | 1 | int | TRUE | FALSE | PRI | [NULL] |<br>| NeiRong | 2 | varchar(2000) | FALSE | FALSE | [NULL] | [NULL] |<br>| Time | 3 | varchar(55) | FALSE | FALSE | [NULL] | [NULL] |<br>| Student_ID | 4 | int | FALSE | FALSE | [NULL] | [NULL] |<br>| Tea_HuiFu | 5 | varchar(2000) | FALSE | FALSE | [NULL] | [NULL] |<br>| HuiFu_Time | 6 | varchar(50) | FALSE | FALSE | [NULL] | [NULL] |</p>
+<p>| 字段名 | # | 数据类型 | 非空 | 自增 | 键 | 缺省 |<br>| stu_id | 1 | int | TRUE | FALSE | PRI | [NULL] |<br>| Stu_Xuehao | 2 | varchar(66) | FALSE | FALSE | [NULL] | [NULL] |<br>| Stu_Name | 3 | varchar(50) | FALSE | FALSE | [NULL] | [NULL] |<br>| Stu_Sex | 4 | varchar(50) | FALSE | FALSE | [NULL] | [NULL] |<br>| Stu_Age | 5 | varchar(55) | FALSE | FALSE | [NULL] | [NULL] |<br>| Stu_Pwd | 6 | varchar(50) | FALSE | FALSE | [NULL] | [NULL] |</p>
+<p>| 字段名 | # | 数据类型 | 非空 | 自增 | 键 | 缺省 |<br>| id | 1 | int | TRUE | FALSE | PRI | [NULL] |<br>| Name | 2 | varchar(50) | FALSE | FALSE | [NULL] | [NULL] |<br>| File | 3 | varchar(50) | FALSE | FALSE | [NULL] | [NULL] |<br>| YaoQiu | 4 | varchar(255) | FALSE | FALSE | [NULL] | [NULL] |<br>| Fabu_Time | 5 | varchar(50) | FALSE | FALSE | [NULL] | [NULL] |<br>| JieZhi_Time | 5 | varchar(50) | FALSE | FALSE | [NULL] | [NULL] |<br>| Tea_ID | 6 | int | FALSE | FALSE | [NULL] | [NULL] |</p>
+<p>| 字段名 | # | 数据类型 | 非空 | 自增 | 键 | 缺省 |<br>| Tea_id | 1 | int | TRUE | FALSE | PRI | [NULL] |<br>| Tea_Xuehao | 2 | varchar(66) | FALSE | FALSE | [NULL] | [NULL] |<br>| Tea_Name | 3 | varchar(50) | FALSE | FALSE | [NULL] | [NULL] |<br>| Tea_Sex | 4 | varchar(50) | FALSE | FALSE | [NULL] | [NULL] |<br>| Tea_Age | 5 | varchar(55) | FALSE | FALSE | [NULL] | [NULL] |<br>| Tea_Pwd | 6 | varchar(50) | FALSE | FALSE | [NULL] | [NULL] |</p>
+<ul>
+<li><strong>功能测试报告</strong></li>
+</ul>
+<ol>
+<li>软件环境</li>
+</ol>
+<p>（1）测试工具软件：Eclipse 2019-10</p>
+<p>（2）操作系统：Windows 10</p>
+<p>（3）浏览器：Google Chrome 87.0.4280.66 正式版 (x64 zh-CN)</p>
+<ol>
+<li>硬件环境</li>
+</ol>
+<p>（1）处理器：2.40 GHz Intel Core i7-8750H</p>
+<p>（2）内存：24.00GB 非对称双通道</p>
+<p>（3）图形卡：NVIDIA GeForce GT 1050Ti</p>
+<p>（4）网络：1000M 网卡</p>
+<ol>
+<li>单元测试</li>
+</ol>
+<p>3.1 测试描述</p>
+<p>对于单元测试，主要采用静态分析法和白盒测试方法，辅之以黑盒测试法进行设计。由于本系统主要为网页开发，并未涉及过多算法，且页面代码中并没有带有返回值的函数，因此单元测试（函数测试）在实现模块后直接测试，并进行改善。对于数据库中的数据操作的测试则包含在系统测试中。</p>
+<p>在开发过程中，每当完成一个模块就进行一次测试，对于每个模块的每个功能也都进行了独立的测试。</p>
+<p>3.2 测试结果</p>
+<p>单元测试阶段完成后，已修复跳转 BUG 以及数据显示不全的 BUG 和缺陷，最后全部模块和组件测试正常，并无缺陷发现。</p>
+<ol>
+<li>集成测试</li>
+</ol>
+<p>4.1 测试描述</p>
+<p>集成测试，是在单元测试的基础上，将所有模块按照设计要求组装成为子系统或系统，主要测试软件单元的组合能否正常工作。故本项目的集成测试重点是页面间的跳转是否正确以及页面间的参数传递是否正确。</p>
+<p>对于页面间跳转的测试，主要测试单击本系统中的各个界面的导航链接提示是否跳转到相应界面。对于参数传递的测试，主要测试页面间传递参数所产生的结果是否正确。</p>
+<p>4.2 测试结果</p>
+<p>集成测试阶段完成后，本系统的各个界面的导航链接都能跳转到相应的界面，页面间传递参数所产生的结果正确。</p>
+<ol>
+<li>系统测试</li>
+</ol>
+<p>5.1 测试描述</p>
+<p>按照老师所给定的要求进行测试，每个功能都要进行测试，除此之外，个页面之间的跳转，Struts 的跳转，等功能都进行了反复的测试。</p>
+<ul>
+<li><p><strong>部分运行截图</strong></p>
+</li>
+<li><p><strong>收获与体会</strong></p>
+</li>
+</ul>
+<p>我在调试这些功能时选择了按操作类型逐项调试，进行增删改查的调试，过程持续地比较久。在调试中出现了点击修改信息完成后，数据库中未进行更新的错误，后来经分析，是由于发送的请求里缺少了一些属性，导致操作失败。后来也都进行改正。</p>
+<p>这是第一次接触框架的开发，比单纯的 Web 开发更加的工程化，商业化，一开始用的时候觉得这东西很麻烦后来发现，原来 Struts2 框架能够替代 Servlet 使用，大大减少类的创建个数，减少了工作量，确实有他的优点。慢慢的就用的顺手了，在写的时候也是查书，查资料发现 Struts 和最新的技术的 Controller 很相似，也就是说师傅领进门修行在个人，一门技术的只是将你领进门，技术的更新非常快，不能说 SSM 火就要去学 SSM，那是对于上班找了工作的人来说，而对于学生，我们更多的属于学术，要学精髓，而不是一味追求最新的，就像李开复教授说的一样。</p>
+<p>Struts2 的拦截器一直没用好，正常拦截还是可以的，想把没登录的用户拦截在外边，不让他们访问主页以及各种功能页，但是一直没改出来，不是全部登陆不进去，要么就是全都放进去了，有时候还会在跳转页面被拦截，这一点是我比较遗憾的，因为时间比较紧张，希望在以后的时间能够更加熟练的使用 Struts2 框架以及融会贯通其他的框架技术。最后感谢张继军老师一学期的指导,获益匪浅。</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Web/" class="category-chain-item">Web</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>『Web』作业管理系统设计报告</div>
+      <div>https://chiamzhang.github.io/2024/06/29/『Web』作业管理系统设计报告/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>Chiam</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>June 29, 2024</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>Licensed under</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2024/06/29/%E3%80%8EWeb%E3%80%8F%E5%9B%BE%E4%B9%A6%E9%A6%86%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F%E7%94%A8%E6%88%B7%E7%AB%AF%E5%BF%83%E5%BE%97/" title="『Web』图书馆管理系统用户端心得">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">『Web』图书馆管理系统用户端心得</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/06/29/%E3%80%8EWeb%E3%80%8F%E4%BD%9C%E4%B8%9A%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1%E6%8A%A5%E5%91%8A_Struts2_%E8%AE%BE%E8%AE%A1%E6%8A%A5%E5%91%8A/" title="『Web』作业管理系统设计报告_Struts2_设计报告">
+                        <span class="hidden-mobile">『Web』作业管理系统设计报告_Struts2_设计报告</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"fIfc7WqUDZohlQuPc2lz5mJy-MdYXbMMI","appKey":"zjlAG3ZA3o4cBHVAkjzc2Z20","path":"window.location.pathname","placeholder":"留言仅限讨论，禁止广告等行为","avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"https://fifc7wqu.api.lncldglobal.com","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>Table of Contents</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <meta name="referrer" content="no-referrer" /> <footer id="footer" role="contentinfo"> <meta name="referrer" content="no-referrer" /> <div class="divider"> <div class="wall"></div> <img class="animals" src="/img/footer_animals_new.png" srcset="/img/loading.gif" lazyload alt="Footer Animals"> </div> <div class="container" data-index="450"> <p> <a href="https://chiamzhang.github.io" target="_blank">DogEgg</a> <i class="iconfont icon-love"></i> <a href="#" target="_blank">LittePig</a> </p> <p> Powered by  <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-pen"></i> Theme  <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> </p> </div> </footer> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+  
+<script src="/js/love.js"></script>
+<script src="/js/funnyTitle.js"></script>
+<script src="/js/backTop.js"></script>
+<script src="//cdn.jsdelivr.net/gh/bynotes/texiao/source/js/xiaoxuehua.js"></script>
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+</html>

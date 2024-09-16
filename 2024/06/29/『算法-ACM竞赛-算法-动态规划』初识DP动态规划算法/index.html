@@ -1,0 +1,884 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/Mine.jpg">
+  <link rel="icon" href="/img/Mine.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Chiam">
+  <meta name="keywords" content="Algorithms，Cybersecurity">
+  
+    <meta name="description" content="『算法-ACM 竞赛-算法-动态规划』初识 DP 动态规划算法一、多阶段决策过程的最优化问题在现实生活中,有类活 动的过程，由于 它的特殊性，可将过程分成若干个互相阶段。在它的每一阶段都需要作出决策,从而使整个过程达到最好的活动效果。当阶段决策的选取不是任意确定的，它依赖于当前面临的状态,又影响以后的发展，当段决策确定后，就组成一个决策序列,因而也就确定了整个过程的一条活动路线,这个问题看作是个前">
+<meta property="og:type" content="article">
+<meta property="og:title" content="『算法-ACM竞赛-算法-动态规划』初识DP动态规划算法">
+<meta property="og:url" content="https://chiamzhang.github.io/2024/06/29/%E3%80%8E%E7%AE%97%E6%B3%95-ACM%E7%AB%9E%E8%B5%9B-%E7%AE%97%E6%B3%95-%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E3%80%8F%E5%88%9D%E8%AF%86DP%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E7%AE%97%E6%B3%95/index.html">
+<meta property="og:site_name" content="Homepage of Chiam">
+<meta property="og:description" content="『算法-ACM 竞赛-算法-动态规划』初识 DP 动态规划算法一、多阶段决策过程的最优化问题在现实生活中,有类活 动的过程，由于 它的特殊性，可将过程分成若干个互相阶段。在它的每一阶段都需要作出决策,从而使整个过程达到最好的活动效果。当阶段决策的选取不是任意确定的，它依赖于当前面临的状态,又影响以后的发展，当段决策确定后，就组成一个决策序列,因而也就确定了整个过程的一条活动路线,这个问题看作是个前">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://img-blog.csdn.net/20150517230613588">
+<meta property="og:image" content="https://img-blog.csdn.net/20150517230613588">
+<meta property="article:published_time" content="2024-06-29T13:16:54.543Z">
+<meta property="article:modified_time" content="2023-12-05T16:19:58.975Z">
+<meta property="article:author" content="Chiam">
+<meta property="article:tag" content="Algorithms，Cybersecurity">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://img-blog.csdn.net/20150517230613588">
+  
+  
+  
+  <title>『算法-ACM竞赛-算法-动态规划』初识DP动态规划算法 - Homepage of Chiam</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"chiamzhang.github.io","root":"/","version":"1.9.5-a","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":"❡"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":2},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
+
+
+<body>
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Chiam&#39;s Blogs</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                
+                <span>Home</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                
+                <span>Archives</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                
+                <span>Categories</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                
+                <span>About</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                
+                <span>Links</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="『算法-ACM竞赛-算法-动态规划』初识DP动态规划算法"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-06-29 21:16" pubdate>
+          June 29, 2024 pm
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          6.4k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          54 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">『算法-ACM竞赛-算法-动态规划』初识DP动态规划算法</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="『算法-ACM-竞赛-算法-动态规划』初识-DP-动态规划算法"><a href="#『算法-ACM-竞赛-算法-动态规划』初识-DP-动态规划算法" class="headerlink" title="『算法-ACM 竞赛-算法-动态规划』初识 DP 动态规划算法"></a>『算法-ACM 竞赛-算法-动态规划』初识 DP 动态规划算法</h1><p>一、多阶段决策过程的最优化问题<br>在现实生活中,有类活 动的过程，由于 它的特殊性，可将过程分成若干个互相阶段。在它的每一阶段都需要作出决策,从而使整个过程达到最好的活动效果。当阶段决策的选取不是任意确定的，它依赖于当前面临的状态,又影响以后的发展，当段决策确定后，就组成一个决策序列,因而也就确定了整个过程的一条活动路线,这个问题看作是个前后关联具有链状结构的 多阶段过程就称为多阶段决策过程，这就称为多阶段决策问题。<br>多阶段决策过程,是指这样的一类特殊的活动过程,问题可以按时间顺序分解互联系的阶段，在每-个阶段都要作出决策,全部过程的决策是-个决策序列。</p>
+<p>二、能采用动态规划求解的问题的一般要具有 3 个性质：<br>最优化原理：如果问题的最优解所包含的子问题的解也是最优的，就称该问题具有最优子结构，即满足最优化原理。<br>无后效性：即某阶段状态一旦确定，就不受这个状态以后决策的影响。也就是说，某状态以后的过程不会影响以前的状态，只 与当前状态有关。<br>有重叠子问题：即子问题之间是不独立的，一个子问题在下一阶段决策中可能被多次使用到。（该性质并不是动态规划适用的必要条件，但是如果没有这条性质，动态规划算法同其他算法相比就不具备优势）<br>三、动态规划基本概念<br>状态：描述事物的性质，不同事物有不同的性质，因而用不同的状态来刻画。对问题的求解状态的描述是分阶段的。<br>决策：根据题意要求，对每个阶段所做出的某种选择性操作。<br>状态转移方程：用数学公式描述与阶段相关的状态间的演变规律。<br>四、解题步骤：</p>
+<ol>
+<li>拆分问题</li>
+<li>定义状态(并找出初状态)</li>
+<li>状态转移方程</li>
+</ol>
+<p>五、模型方法<br>第一种递归搜索法。<br>第二种递归搜索法+记忆。<br>第三种递推式法。</p>
+<p>六、例题<br>数塔问题<br><img src="https://img-blog.csdn.net/20150517230613588" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br>思路分析：<br>贪心不可解，每一步都会影响后续的操作。<br>在用动态规划考虑数塔问题时可以自顶向下的分析，自底向上的计算。<br>从顶点出发时到底向左走还是向右走应取决于是从左走能取到最大值还是从右走能取到最大值，只要左右两道路径上的最大值求出来了才能作出决策。同样的道理下一层的走向又要取决于再下一层上的最大值是否已经求出才能决策。这样一层一层推下去，直到倒数第二层时就非常明了。<br>所以第一步对第五层的 8 个数据，做如下四次决策：<br>如果经过第四层 2，则在第五层的 19 和 7 中肯定是 19；<br>如果经过第四层 18，则在第五层的 7 和 10 中肯定是 10；<br>如果经过第四层 9，则在第五层的 10 和 4 中肯定是 10；<br>如果经过第四层 5，则在第五层的 4 和 16 中肯定是 16；<br>经过一次决策，问题降了一阶。5 层数塔问题转换成 4 层数塔问题，如此循环决策…… 最后得到 1 阶的数塔问题。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><code class="hljs java">#include &lt;bits/stdc++.h<br>using namespace std;<br>const <span class="hljs-type">int</span> <span class="hljs-variable">MAXN</span> <span class="hljs-operator">=</span> <span class="hljs-number">100</span>+<span class="hljs-number">10</span>;<br><span class="hljs-type">int</span> num[MAXN][MAXN];<br><span class="hljs-type">int</span> dp[MAXN][MAXN];<br><span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">()</span><br>&#123;<br>    <span class="hljs-type">int</span> t;<br>    scanf(<span class="hljs-string">&quot;%d&quot;</span>, &amp;t);<br>    <span class="hljs-keyword">while</span>( t-- )<br>    &#123;<br>        memset(dp, <span class="hljs-number">0</span>, sizeof(dp));<br>        <span class="hljs-type">int</span> n;<br>        scanf(<span class="hljs-string">&quot;%d&quot;</span>, &amp;n);<br>        <span class="hljs-keyword">for</span>( <span class="hljs-type">int</span> i=<span class="hljs-number">1</span>; i&lt;=n; i++ )<br>        &#123;<br>            <span class="hljs-keyword">for</span>( <span class="hljs-type">int</span> j=<span class="hljs-number">1</span>; j&lt;=i; j++ )<br>                scanf(<span class="hljs-string">&quot;%d&quot;</span>, &amp;num[i][j]);<br>        &#125;<br>        <span class="hljs-keyword">for</span>( <span class="hljs-type">int</span> j=<span class="hljs-number">1</span>; j&lt;=n; j++ )<br>            dp[n][j] = num[n][j];<br>        <span class="hljs-keyword">for</span>( <span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> n-<span class="hljs-number">1</span>; i = <span class="hljs-number">1</span>; i-- )<br>        &#123;<br>             <span class="hljs-keyword">for</span>( <span class="hljs-type">int</span> j=<span class="hljs-number">1</span>; j &lt;= i; j++ )<br>             &#123;<br>                 dp[i][j] = num[i][j] + max(dp[i+<span class="hljs-number">1</span>][j], dp[i+<span class="hljs-number">1</span>][j+<span class="hljs-number">1</span>]);<br>             &#125;<br>        &#125;<br>        printf(<span class="hljs-string">&quot;%d\n&quot;</span>, dp[<span class="hljs-number">1</span>][<span class="hljs-number">1</span>] );<br>    &#125;<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><strong>1.以上篇文章数塔为例</strong><br><img src="https://img-blog.csdn.net/20150517230613588" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br>上一章用的是递归的做法，这次我们采用递推的做法。</p>
+<p>递归：从已知问题的结果出发，用迭代表达式逐步推算出问题的开始的条件，即顺推法的逆过程，称为递归。<br>递推：递推算法是一种用若干步可重复运算来描述复杂问题的方法。递推是序列计算中的一种常用算法。通常是通过计算机前面的一些项来得出序列中的指定象的值。<br>递归与递推区别：相对于递归算法,递推算法免除了数据进出栈的过程，也就是说,不需要函数不断的向边界值靠拢,而直接从边界出发,直到求出函数值。<br>斐波那契数列：已知 f(1) &#x3D; 1 , f(2) &#x3D; 1 , 且满足关系式 f(n) &#x3D; f(n-1) + f(n-2)，则 f(50)等于多少？<br>分析：根据初始条件 f(1) &#x3D; 1 , f(2) &#x3D; 1 和关系式 f(n) &#x3D; f(n-1) + f(n-2)，可知，f(3) &#x3D; f(2) + f(1) , f(3) &#x3D; f(2) + f(1) …….<br>编写代码（递归）</p>
+<p>第四层的取值等于左下或者右下与自己的加和，第四层就有 max{2+19，2+7} max{18+7,18+10} max{9+10,9+4} max{5+4,5+16}<br>结果第四层就变成了 21，28，19，21。这样五层变成了四层。以此类推 n 层变为 n-1 层到 1 层。更易求出最大值。<br>代码实现过程如下</p>
+<pre><code class="hljs">#include&lt;bits/stdc++.h
+using namespace std;
+int main
+&#123;
+    int ob[10][10];
+    int temp;
+    cinN;//数塔层数
+    for(int i=0；i&lt;N;i++)
+    &#123;
+        for(t=0;t&lt;=i;t++)
+        &#123;
+            cina[i][j];
+        &#125;
+    &#125;
+    for(int i=N-1;i=1;i--)
+    &#123;
+        for(int t=0;t&lt;=i;t++)
+        &#123;
+            temp=max&#123;a[i+1][t],a[i+1][t+1]；
+            a[i][t]=a[i][t]+temp；
+        &#125;
+    &#125;
+</code></pre>
+<p>1、线性模型<br>线性模型的是动态规划中最常用的模型，上文讲到的最长单调子序列就是经典的线性模型，这里的线性指的是状态的排布是性的。<br>2、区间模型<br>区间模型的状态表示一般为 d[i][j]，表示区间[i, j]上的最优解，然后通过状态转移计算出[i+1, j]或者[i, j+1]上的最优解，逐步扩大区间的范围，最终求得[1, len]的最优解。</p>
+<p>3、背包模型<br>背包问题是动态规划中一个最典型的问题之一。由于网上有非常详尽的背包讲解，这里只将常用部分抽出来，具体推导过程详见 《背包九讲》。<br>a.0&#x2F;1 背包<br>有 N 种物品（每种物品 1 件）和一个容量为 V 的背包。放入第 i 种物品耗费的空间是 Ci，得到 的价值是 Wi。求解将哪些物品装入背包可使价值总和最大。<br>f[i][v]表示前 i 种物品恰好放入一个容量为 v 的背包可以获得的最大价值。<br>决策为第 i 个物品在前 i-1 个物品放置完毕后，是选择放还是不放，状态转移方程为：<br>f[i][v] &#x3D; max{ f[i-1][v], f[i-1][v - Ci] +Wi }<br>时间复杂度 O(VN)，空间复杂度 O(VN) （空间复杂度可利用滚动数组进行优化达到 O(V)，下文会介绍滚动数组优化）。</p>
+<pre><code class="hljs"> b.完全背包
+             有N种物品（每种物品无限件）和一个容量为V的背包。放入第 i 种物品耗费的空间是Ci，得到 的价值是Wi。求解将哪些物品装入背包可使价值总和最大。
+             f[i][v]表示前i种物品恰好放入一个容量为v的背包可以获得的最大价值。
+            f[i][v] = max&#123; f[i-1][v - kCi] + kWi  | 0 &lt;= k &lt;= v/Ci  &#125;        (当k的取值为0,1时，这就是01背包的状态转移方程）
+            时间复杂度O( VNsum&#123;V/Ci&#125; )，空间复杂度在用滚动数组优化后可以达到 O( V )。
+            进行优化后（此处省略500字），状态转移方程变成：
+            f[i][v] = max&#123; f[i-1][v],  f[i][v - Ci] +Wi &#125;
+            时间复杂度降为 O(VN)。
+   c.多重背包
+            有N种物品（每种物品Mi件）和一个容量为V的背包。放入第i种物品耗费的空间是Ci，得到 的价值是Wi。求解将哪些物品装入背包可使价值总和最大。
+            f[i][v]表示前i种物品恰好放入一个容量为v的背包可以获得的最大价值。
+            f[i][v] = max&#123; f[i-1][v - kCi] + kWi  | 0 &lt;= k &lt;= Mi &#125;
+            时间复杂度O( Vsum(Mi) )， 空间复杂度仍然可以用滚动数组优化后可以达到 O( V )。
+            优化：采用二进制拆分物品，将Mi个物品拆分成容量为1、2、4、8、... 2^k、Mi-( 2^(k+1) - 1 ) 个对应价值为Wi、2Wi、4Wi、8Wi、...、2^kWi、（ Mi-( 2^(k+1) - 1 )
+</code></pre>
+<p>）Wi 的物品，然后采用 01 背包求解。 这样做的时间复杂度降为 O(Vsum(logMi) )。<strong>找不到出处了</strong></p>
+<p>给定一个字符串 s，你可以从中删除一些字符，使得剩下的串是一个回文串。如何删除才能使得回文串最长呢？ 输出需要删除的字符个数。</p>
+<p>本题可转化为动态规划算法求解最长公共子序列问题，然后用总字符串长度减去最长子序列长度，便得出问题的答案。</p>
+<p>先将给定的初始字符串 S1 反过来排列，设为 S2，求 S1 和 S2 的最长公共子序列便可。C++代码如下：</p>
+<pre><code class="hljs">#include &lt;iostream
+#include &lt;string
+#include &lt;algorithm
+using namespace std;
+int temp[100][100];
+
+void caculate(string s1)&#123;
+    string s2(s1);
+    reverse(s2.begin(), s2.end());
+    int len = s1.length();
+    memset(temp, 0, sizeof(temp));
+    for (int i = 0; i&lt;len; ++i)
+    &#123;
+        for (int j = 0; j&lt;len; ++j)
+        &#123;
+            if (s1[i] == s2[j])
+                temp[i + 1][j + 1] = temp[i][j] + 1;
+            else
+                temp[i + 1][j + 1] = max(temp[i][j + 1], temp[i + 1][j]);
+        &#125;
+    &#125;
+    cout &lt;&lt; len - temp[len][len] &lt;&lt; endl;
+&#125;
+
+int main()
+&#123;
+    string s;
+    getline(cin, s);
+    caculate(s);
+    system(&quot;pause&quot;);
+    return 0;
+&#125;
+</code></pre>
+<p><strong>相关题目：</strong></p>
+<h5 id="简单基础-dp"><a href="#简单基础-dp" class="headerlink" title="简单基础 dp"></a>简单基础 dp</h5><p>hdu 2084 数塔 简单从上往下递推</p>
+<p>hdu 2018 母牛的故事 简单递推计数</p>
+<p>hdu 2044 一只小蜜蜂… 简单递推计数（Fibonacci）</p>
+<p>hdu 2041 超级楼梯 Fibonacci</p>
+<p>hdu 2050 折线分割平面 找递推公式</p>
+<p>CF 429B B.Working out 四个角递推</p>
+<p>zoj 3747 Attack on Titans 带限制条件的计数递推 dp</p>
+<p>uva 10328 Coin Toss 同上题</p>
+<p>hdu 4747 Mex</p>
+<p>hdu 4489 The King’s Ups and Downs</p>
+<p>hdu 4054 Number String</p>
+<h5 id="背包"><a href="#背包" class="headerlink" title="背包"></a>背包</h5><p>hdu 2955 Robberies 01 背包</p>
+<p>hdu 1864 最大报销额 01 背包</p>
+<p>hdu 2602 Bone Collector 01 背包</p>
+<p>hdu 2844 Coins 多重背包</p>
+<p>hdu 2159 FATE 完全背包</p>
+<p>woj 1537 A Stone-I 转化成背包</p>
+<p>woj 1538 B Stone-II 转化成背包</p>
+<p>poj 1170 Shopping Offers 状压+背包</p>
+<p>zoj 3769 Diablo III 带限制条件的背包</p>
+<p>zoj 3638 Fruit Ninja 背包的转化成组合数学</p>
+<p>hdu 3092 Least common multiple 转化成完全背包问题</p>
+<p>poj 1015 Jury Compromise 扩大区间+输出路径</p>
+<p>poj 1112 Team Them UP 图论+背包</p>
+<h4 id="LIS"><a href="#LIS" class="headerlink" title="LIS"></a>LIS</h4><p>hdu 1003 Max Sum</p>
+<p>hdu 1087 Super Jumping!</p>
+<p>uva 10635 Prince and Princess LCS 转化成 LIS</p>
+<p>hdu 4352 XHXJ’s LIS 　数位 dp+LIS 思想</p>
+<p>srm div2 1000 状态压缩+LIS</p>
+<p>poj 1239 Increasing Sequence 两次 dp</p>
+<h5 id="LCS"><a href="#LCS" class="headerlink" title="LCS"></a>LCS</h5><p>hdu 1503 Advanced Fruits</p>
+<p>hdu 1159 Common Subsequence</p>
+<p>uva 111 History Grading</p>
+<p>poj 1080 Human Gene Functions</p>
+<h5 id="区间-dp"><a href="#区间-dp" class="headerlink" title="区间 dp"></a>区间 dp</h5><p>poj 1141 Brackets Sequence 括号匹配并输出方案</p>
+<p>hdu 4745 Two Rabbits 转化成求回文串</p>
+<p>zoj 3541 The Last Puzzle 贪心+区间 dp</p>
+<p>poj 2955 Brackets</p>
+<p>hdu 4283 You Are the One 常见写法</p>
+<p>hdu 2476 String Printer</p>
+<p>zoj 3537 Cake</p>
+<p>CF 149D Coloring Brackets</p>
+<p>zoj 3469 Food Delivery</p>
+<h5 id="树形-dp"><a href="#树形-dp" class="headerlink" title="树形 dp"></a>树形 dp</h5><p>hdu 4123 Bob’s Race 二分+树形 dp+单调队列</p>
+<p>hdu 4514 求树的直径</p>
+<p>poj 1655 Balancing Act</p>
+<p>hdu 4714 Tree2Cycle 思维</p>
+<p>hdu 4616 Game</p>
+<p>hdu 4126 Genghis Kehan the Conqueror MST+树形 dp 比较经典</p>
+<p>hdu 4756 Install Air Conditioning MST+树形 dp 同上</p>
+<p>hdu 3660 Alice and Bob’s Trip 有点像对抗搜索</p>
+<p>CF 337D Book of Evil 树直径的思想 思维</p>
+<p>hdu 2196 Computer 搜两遍</p>
+<h5 id="数位-dp"><a href="#数位-dp" class="headerlink" title="数位 dp"></a>数位 dp</h5><p>hdu 2089 不要 62 简单数位 dp</p>
+<p>hdu 3709 Balanced Number 比较简单</p>
+<p>CF 401D Roman and Numbers 状压+数位 dp</p>
+<p>hdu 4398 X mod f(x) 把模数加进状态里面</p>
+<p>hdu 4734 F(x) 简单数位 dp</p>
+<p>hdu 3693 Math teacher’s homework 思维变换的数位 dp</p>
+<p>hdu 4352 XHXJ’s LIS 　数位 dp+LIS 思想</p>
+<p>CF 55D Beautiful Numbers 比较巧妙的数位 dp</p>
+<p>hdu 3565 Bi-peak Numbers 比较难想</p>
+<p>CF 258B Little Elephant and Elections 数位 dp+组合数学+逆元</p>
+<h5 id="概率-期望-dp"><a href="#概率-期望-dp" class="headerlink" title="概率(期望) dp"></a>概率(期望) dp</h5><p>ural 1776 Anniversiry Firework 比较基础</p>
+<p>hdu 4418 Time travel 比较经典 BFS+概率 dp+高斯消元</p>
+<p>hdu 4586 Play the Dice 推公式比较水</p>
+<p>hdu 4487 Maximum Random Walk</p>
+<p>jobdu 1546 迷宫问题 高斯消元+概率 dp+BFS 预处理</p>
+<p>hdu 3853 LOOPS 简单概率 dp</p>
+<p>hdu 4405 Aeroplane chess 简单概率 dp,比较直接</p>
+<p>hdu 4089 Activation 比较经典</p>
+<p>poj 2096 Collecting Bugs 题目比较难读懂</p>
+<p>zoj 3640 Help me Escape 从后往前，比较简单</p>
+<p>hdu 4034 Maze 经典好题，借助树的概率 dp</p>
+<p>hdu 4336 Card Collector 状态压缩+概率 dp</p>
+<p>hdu 4326 Game 这个题状态有点难抽象</p>
+<h6 id="状态压缩-dp"><a href="#状态压缩-dp" class="headerlink" title="状态压缩 dp"></a>状态压缩 dp</h6><p>这类问题有 TSP、插头 dp(轮廓线 DP）等。<br>hdu 1693 Eat the Trees 插头 dp</p>
+<p>hdu 4568 Hunter 最短路+TSP</p>
+<p>hdu 4539 插头 dp</p>
+<p>hdu 4529 状压 dp</p>
+<p>poj 1185 炮兵阵地</p>
+<p>poj 2411 Mandriann’s Dream 轮廓线 dp</p>
+<p>hdu 3811 Permutation</p>
+<p>poj 1038</p>
+<p>poj 2441</p>
+<p>hdu 2167</p>
+<p>hdu 4026</p>
+<p>hdu 4281</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E7%AE%97%E6%B3%95/" class="category-chain-item">算法</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/%E7%AE%97%E6%B3%95/ACM%E7%AB%9E%E8%B5%9B/" class="category-chain-item">ACM竞赛</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/%E7%AE%97%E6%B3%95/ACM%E7%AB%9E%E8%B5%9B/%E7%AE%97%E6%B3%95/" class="category-chain-item">算法</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/%E7%AE%97%E6%B3%95/ACM%E7%AB%9E%E8%B5%9B/%E7%AE%97%E6%B3%95/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" class="category-chain-item">动态规划</a>
+  
+  
+
+  
+
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>『算法-ACM竞赛-算法-动态规划』初识DP动态规划算法</div>
+      <div>https://chiamzhang.github.io/2024/06/29/『算法-ACM竞赛-算法-动态规划』初识DP动态规划算法/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>Chiam</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>June 29, 2024</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>Licensed under</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2024/06/29/%E3%80%8E%E7%AE%97%E6%B3%95-ACM%E7%AB%9E%E8%B5%9B-%E7%AE%97%E6%B3%95-%E5%9B%BE%E8%AE%BA%E3%80%8F%E7%AE%97%E6%B3%95%E7%AB%9E%E8%B5%9B%E8%BF%9B%E9%98%B6%E6%8C%87%E5%8D%97-hamilton%E8%B7%AF%E5%BE%84%EF%BC%88%E6%A8%A1%E6%9D%BF%EF%BC%89/" title="『算法-ACM竞赛-算法-图论』算法竞赛进阶指南-hamilton路径（模板）">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">『算法-ACM竞赛-算法-图论』算法竞赛进阶指南-hamilton路径（模板）</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/06/29/%E3%80%8E%E7%AE%97%E6%B3%95-ACM%E7%AB%9E%E8%B5%9B-%E7%AE%97%E6%B3%95-%E4%BA%8C%E5%88%86%E6%B3%95%E3%80%8F%E7%AE%97%E6%B3%95%E7%AB%9E%E8%B5%9B%E8%BF%9B%E9%98%B6%E6%8C%87%E5%8D%97-%E5%9C%A8%E5%8D%95%E8%B0%83%E9%80%92%E5%A2%9E%E5%BA%8F%E5%88%97a%E4%B8%AD%E6%9F%A5%E6%89%BE%E5%A4%A7%E4%BA%8E%E7%AD%89%E4%BA%8EX%E7%9A%84%E6%95%B0%E4%B8%AD%E6%9C%80%E5%B0%8F%E7%9A%84%E4%B8%80%E4%B8%AA%EF%BC%8C%E5%8D%B3X%E6%88%96X%E7%9A%84%E5%90%8E%E7%BB%A7/" title="『算法-ACM竞赛-算法-二分法』算法竞赛进阶指南-在单调递增序列a中查找大于等于X的数中最小的一个，即X或X的后继">
+                        <span class="hidden-mobile">『算法-ACM竞赛-算法-二分法』算法竞赛进阶指南-在单调递增序列a中查找大于等于X的数中最小的一个，即X或X的后继</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"fIfc7WqUDZohlQuPc2lz5mJy-MdYXbMMI","appKey":"zjlAG3ZA3o4cBHVAkjzc2Z20","path":"window.location.pathname","placeholder":"留言仅限讨论，禁止广告等行为","avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"https://fifc7wqu.api.lncldglobal.com","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>Table of Contents</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <meta name="referrer" content="no-referrer" /> <footer id="footer" role="contentinfo"> <meta name="referrer" content="no-referrer" /> <div class="divider"> <div class="wall"></div> <img class="animals" src="/img/footer_animals_new.png" srcset="/img/loading.gif" lazyload alt="Footer Animals"> </div> <div class="container" data-index="450"> <p> <a href="https://chiamzhang.github.io" target="_blank">DogEgg</a> <i class="iconfont icon-love"></i> <a href="#" target="_blank">LittePig</a> </p> <p> Powered by  <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-pen"></i> Theme  <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> </p> </div> </footer> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+  
+<script src="/js/love.js"></script>
+<script src="/js/funnyTitle.js"></script>
+<script src="/js/backTop.js"></script>
+<script src="//cdn.jsdelivr.net/gh/bynotes/texiao/source/js/xiaoxuehua.js"></script>
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+</html>

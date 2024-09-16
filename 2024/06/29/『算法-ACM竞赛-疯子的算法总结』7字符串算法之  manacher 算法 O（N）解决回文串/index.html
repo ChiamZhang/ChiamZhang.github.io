@@ -1,0 +1,699 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/Mine.jpg">
+  <link rel="icon" href="/img/Mine.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Chiam">
+  <meta name="keywords" content="Algorithms，Cybersecurity">
+  
+    <meta name="description" content="『算法-ACM 竞赛-疯子的算法总结』7 字符串算法之 manacher 算法 O（N）解决回文串有点像 DP 的思想，写写就会做。 1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768697071">
+<meta property="og:type" content="article">
+<meta property="og:title" content="『算法-ACM竞赛-疯子的算法总结』7字符串算法之  manacher 算法 O（N）解决回文串">
+<meta property="og:url" content="https://chiamzhang.github.io/2024/06/29/%E3%80%8E%E7%AE%97%E6%B3%95-ACM%E7%AB%9E%E8%B5%9B-%E7%96%AF%E5%AD%90%E7%9A%84%E7%AE%97%E6%B3%95%E6%80%BB%E7%BB%93%E3%80%8F7%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%AE%97%E6%B3%95%E4%B9%8B%20%20manacher%20%E7%AE%97%E6%B3%95%20O%EF%BC%88N%EF%BC%89%E8%A7%A3%E5%86%B3%E5%9B%9E%E6%96%87%E4%B8%B2/index.html">
+<meta property="og:site_name" content="Homepage of Chiam">
+<meta property="og:description" content="『算法-ACM 竞赛-疯子的算法总结』7 字符串算法之 manacher 算法 O（N）解决回文串有点像 DP 的思想，写写就会做。 1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768697071">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190802101739787.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190802101756711.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70">
+<meta property="article:published_time" content="2024-06-29T13:16:54.496Z">
+<meta property="article:modified_time" content="2023-12-05T16:19:52.886Z">
+<meta property="article:author" content="Chiam">
+<meta property="article:tag" content="Algorithms，Cybersecurity">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20190802101739787.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70">
+  
+  
+  
+  <title>『算法-ACM竞赛-疯子的算法总结』7字符串算法之  manacher 算法 O（N）解决回文串 - Homepage of Chiam</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"chiamzhang.github.io","root":"/","version":"1.9.5-a","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":"❡"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":2},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
+
+
+<body>
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Chiam&#39;s Blogs</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                
+                <span>Home</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                
+                <span>Archives</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                
+                <span>Categories</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                
+                <span>About</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                
+                <span>Links</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="『算法-ACM竞赛-疯子的算法总结』7字符串算法之  manacher 算法 O（N）解决回文串"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-06-29 21:16" pubdate>
+          June 29, 2024 pm
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          8.6k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          72 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">『算法-ACM竞赛-疯子的算法总结』7字符串算法之  manacher 算法 O（N）解决回文串</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="『算法-ACM-竞赛-疯子的算法总结』7-字符串算法之-manacher-算法-O（N）解决回文串"><a href="#『算法-ACM-竞赛-疯子的算法总结』7-字符串算法之-manacher-算法-O（N）解决回文串" class="headerlink" title="『算法-ACM 竞赛-疯子的算法总结』7 字符串算法之 manacher 算法 O（N）解决回文串"></a>『算法-ACM 竞赛-疯子的算法总结』7 字符串算法之 manacher 算法 O（N）解决回文串</h1><p><img src="https://img-blog.csdnimg.cn/20190802101739787.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20190802101756711.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br>有点像 DP 的思想，写写就会做。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;bits/stdc++.h&gt;</span></span><br>using namespace <span class="hljs-built_in">std</span>;<br><span class="hljs-type">const</span> <span class="hljs-type">int</span> maxn=<span class="hljs-number">1e7</span>+<span class="hljs-number">5</span>;<br><span class="hljs-type">char</span> a[maxn];<br><span class="hljs-type">char</span> s[<span class="hljs-number">2</span>*maxn];<br><span class="hljs-type">int</span> len[maxn*<span class="hljs-number">2</span>];<br><span class="hljs-type">int</span> <span class="hljs-title function_">manachar</span><span class="hljs-params">(<span class="hljs-type">char</span> *p)</span><br>&#123;<br>    <span class="hljs-type">int</span> le=<span class="hljs-built_in">strlen</span>(p);<br>    <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">0</span>;i&lt;le;i++)<br>    &#123;<br>        s[i*<span class="hljs-number">2</span>+<span class="hljs-number">2</span>]=p[i];<br>        s[i*<span class="hljs-number">2</span>+<span class="hljs-number">1</span>]=<span class="hljs-string">&#x27;+&#x27;</span>;<br>        <span class="hljs-comment">//cout&lt;&lt;s[i*2+1]&lt;&lt;s[i*2+2];</span><br>    &#125;<br>    s[<span class="hljs-number">0</span>]=<span class="hljs-string">&#x27;^&#x27;</span>,s[le*<span class="hljs-number">2</span>+<span class="hljs-number">1</span>]=<span class="hljs-string">&#x27;+&#x27;</span>;<span class="hljs-comment">//选取不可能出现的字符即可。</span><br>    <span class="hljs-comment">//预处理字符串成为一个奇数串；</span><br>    <span class="hljs-type">int</span> Max=<span class="hljs-number">0</span>,pos=<span class="hljs-number">0</span>,ans=<span class="hljs-number">0</span>;<br>    le=<span class="hljs-number">2</span>*le+<span class="hljs-number">1</span>;<br>    <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">1</span>;i&lt;=le;i++)<br>    &#123;<br>        <span class="hljs-keyword">if</span>(Max&gt;i)<br>        &#123;<br>            len[i]=min(len[<span class="hljs-number">2</span>*pos-i],Max-i);<br>        &#125;<br>        <span class="hljs-keyword">else</span>  len[i]=<span class="hljs-number">1</span>;<br>        <span class="hljs-keyword">while</span>(s[i-len[i]]==s[i+len[i]])len[i]++;<br>        ans =max(len[i],ans);<br>        <span class="hljs-keyword">if</span>(i+len[i]&gt;Max)<br>        &#123;<br>            Max=len[i]+i;<br>            pos=i;<br>        &#125;<br>    &#125;<br>    <span class="hljs-keyword">return</span> ans<span class="hljs-number">-1</span>;<br>&#125;<br><span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">()</span><br>&#123;<br>    <span class="hljs-type">int</span> cnt=<span class="hljs-number">0</span>;<br>    <span class="hljs-keyword">while</span>(~<span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot; %s&quot;</span>,a))&#123;<br>        <span class="hljs-keyword">if</span>(a[<span class="hljs-number">0</span>]==<span class="hljs-string">&#x27;E&#x27;</span>)<span class="hljs-keyword">break</span>;<br>        <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Case %d: %d\n&quot;</span>,++cnt,manachar(a));<br>        <span class="hljs-built_in">memset</span>(a,<span class="hljs-number">0</span>,<span class="hljs-keyword">sizeof</span>(a));<br>    &#125;<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br><span class="hljs-comment">/*</span><br><span class="hljs-comment"></span><br><span class="hljs-comment">                                                                     ..ii7vJJuJ1juJJYL7r::.</span><br><span class="hljs-comment">                                                                :71XPKK5IU1JjssLYLJYJJUU5SKSX1Li.</span><br><span class="hljs-comment">                                                           .r1KPX2Yv77r7r7r777r7r7r7r7r7r7777sJ25XUJi.</span><br><span class="hljs-comment">                                                        :sPPXY7r7r7r77LrvL7r7r7r7r7r7r7r7r7r7r7777vYUSKJr.              .</span><br><span class="hljs-comment">                                     :7ISKSX5Ur      :1bKu7777r7r7777ULr7us7777777r7r7r7r7r77777r7r77v7s2K27.      :vI5K5KSILi</span><br><span class="hljs-comment">                                   rS51v7777vLXg   vbqu7777r777777777rrr7r7r777r7r777r777r7r777r7r7r777r77L1qUi  .Equvv777v7u2q1i</span><br><span class="hljs-comment">                                 .5577777v77r7iXSvb577r7r7r7r7777777717rLjr7r77777777777r777r777r7r7r7r7r7777L5SLgv77777r7r7777YIXi</span><br><span class="hljs-comment">                                .qs777vu2j1Jrr2XXYrr7r77777r7r7r77v11JUJ1U1r7r7r77777r7r777r7777777r7r77777r7r7rBvr77r7r777r77777vX2</span><br><span class="hljs-comment">                                KY777vIi   :dP1ri7r777r777777777rvs.  7r  .2r7r7777777r7r7777777r777r77777r7r7rvZrr7rrv22UL777r7r77UK</span><br><span class="hljs-comment">                               rX77r72.    sbrrr7r777r77777r7r7r7ss   7i   S7r7r777r77777r77777777777777777r7r77vr7r7u1:::YSJr777777US</span><br><span class="hljs-comment">                               qv77775   rEuirr7r7r7777777r7r7r7r7sJvUsJsuuvr7r7r7r7r7r77777777777r7r7r7r777r7r7r7777d     .1Ur7r777rq7</span><br><span class="hljs-comment">                               Evr777L7rPq7r7r777r77777r7rrrrirvju2IXUII5II1u7v77r7rrr7r777r777r7777777r777r7r777r7r7S.      Yur7r7777D</span><br><span class="hljs-comment">                               sP7r7riXQYrr77777r7r777r7vuuJjddY77rriiiiiririEI15KuX2UL7rrr7r777r7r77777r77777r77777rv5L.    jJ7r7r7rrEi</span><br><span class="hljs-comment">                                2b2vrKPirr7r7r7r7r7rLuSIur.:SdY              Iv.sL :i7JISIJrrr7r7r7r777r7r7r7777777r777sSJJLIs7r77777LR</span><br><span class="hljs-comment">                                 .irgIirr777r7rriv1X17:.  :qiP ............. 5r.rU .   ..:Lg117rr777777777r77777r7r777r77vvL77rrrr7sSd.</span><br><span class="hljs-comment">                                   iXi7r777r7r7vP5r.     UZ.vv ............. S.  I .....  u7:YRJIvrr7r7r7r7r7r777777777r7r777r77YY1Ji</span><br><span class="hljs-comment">                                  vZi7r77777rU57g. ... :gS  X............... P:  q ..... ib:i:E::IXjr7r7r7r7r7r777r777r777777S2IUg</span><br><span class="hljs-comment">                                 7gr777777rLbL iv ... vRr  .P .............. P.  X..... .grr. iP  :JP17r7r7r777r777r7r7r7r7r7rrirYb</span><br><span class="hljs-comment">          :                     :Qr7r777rr5q. .Z .. .qX.   jv .............. E   K .... Pui.   17   .Jq2r7r7r777r7777777r7r7r7r7rrug</span><br><span class="hljs-comment">          B.i:                  Q777777rvbL  iBr   rQ7     P:................b   2 ... UXi.     g.... .LPjrr7r777r7r7r7777777r7r7rr1D</span><br><span class="hljs-comment">         iXBvL                 gY7r7r7r1d:  jPS  :bK...i.  E............... vU .:d::. sKi.      v2 .... .uKYr7r777r7r7r777r777r777772b</span><br><span class="hljs-comment">          i7di:s:             Yqr77r7rKX. .P1:v :Pr     . .K .............. E:. :S...Sgr.   .    D....... :IXr7r77777r777r77777r7r77rXI</span><br><span class="hljs-comment">             ..  r.           g7r7r7rEs  :Dv :::7         .S ............. iX   .L  2q:.         iK ....7:  rPYrr777r77777r7r7r777r7rrd7</span><br><span class="hljs-comment">               vrSM.         U2r7r7rE7  iZ:  rri    .     :j ............. P:   r:.K1             P:... J:.. .S5rr77777r777r777r777r7r7D.</span><br><span class="hljs-comment">              E1             Dr7r7rP7  i5    u.        .  :Y P:...........iK    7rIi              .E .. 1:...  Lq7r7r7r7r7777777r7r7r7rJb</span><br><span class="hljs-comment">              .iv7          jU7r7rI2  i1    ..        .   :rr77 ......... D    .Y.            .    57 . X...... rPvr7r7777777r7r7r7r7r7rP7</span><br><span class="hljs-comment">                            b777rLqi :j              .    .Iv X ........ 17              .         .Z ..q....... :qLr77777r7r7r777r7r7r7rM</span><br><span class="hljs-comment">                           7Sr7rrK7:.L          .   .      g. E:....... iX              . . . . .   Pr .d ....... :Pvr7r77777r777r777r77712</span><br><span class="hljs-comment">           7               Zr7r7jL::7.                     P  rS ......:P        .     .            :E :q ........ :P7r7777777r7r7r7r7r77rZ.</span><br><span class="hljs-comment">          :B7:7.          vX7r7rP.rr.                      :   E:.....:I    .     . .       .        q.iJ ......... iP7r7r7r7r7r777777777r1I</span><br><span class="hljs-comment">          .Qq:r7          Evr7rLI J.          .r7.             :P ...rL                .   .   .     vrr:........... L5rr77777r7r77777r7r7rD</span><br><span class="hljs-comment">            XYir         :Er7rrJS..         vBBBBB.   .     .   Jr..7i              .       .        :PL............. qY7r777r7r7777777r77711</span><br><span class="hljs-comment">             .::   .7    1I7r7rXP  .......  vBBQKi   . . .       Lir.      :BBBgv                .   :X: ............ .Er77777r777r7r7777777E</span><br><span class="hljs-comment">                  :12    USr7rJ2  .........                       :        :BBBBBg                   :I .............. vUr777r7r777r77777r7rPi</span><br><span class="hljs-comment">                 g:      :grrLP. .::::.:.:...           .:     .             .i7v.  ........ .       :1 .............. :gir777r777r77777r7r7LX</span><br><span class="hljs-comment">                 K7v.     Purg: :ii:::r::::.... .               .   . .           ......:........    :s .............. vB7rr777r7r777r777r7r7d</span><br><span class="hljs-comment">                           DPJ ii:i::r::::::.... . . . . . . . . . .         ......:::::.:i:.:....   r7............... EQS:7r7r7r77777777777rP:</span><br><span class="hljs-comment">                           .B.i::r::r.:ri.:.:.. . .         . . .   .     . .....:r::::::ri.:::....  si ............. .QPEir7r7777777r7r777r7UY</span><br><span class="hljs-comment">                           .U ..::ir.:r:.:.:....           . . . .     .:. ....::r::r:.:ri.i::::::.. X:.............. rBIM7rr777r7r7r7r7r7777LX</span><br><span class="hljs-comment">                           2i ..::i.:::::i7vi..    :ii.               ::. ....:ri..ii.:ri.:r:::::.:. P............... bESDui777r7r7r7r7r7r7777d</span><br><span class="hljs-comment">                           d. ...:.:::::.i7r..   :i: i7   ..         ri    ...ii.::7.:ri.:r:.:::::. .P ............. .QKIg1ir777r7r777r77777r7P.</span><br><span class="hljs-comment">              .:iii.       b  ........... .     :.   .r i7iu:.7:.ii.ir    ......::i::ri.:ii.:::::.. 7U ............. 7BISD2i77777r7r7r7r777r7rb.</span><br><span class="hljs-comment">           :uqKPXXSPqI:    d   . ....... .     .      :i.   :: ::. .K      ......:.:::::::::::::... u7 ............. ZdS2Rvr777777r7r777777777b.</span><br><span class="hljs-comment">          uZIsJLsvYLs1ZK.  2:                                      .r       . ....:.:.:.:::::.....  P:............. :BXIPEir7r77777777777r777rE</span><br><span class="hljs-comment">         :QLvYvLvLvLvsLMv  :5            .   .     .               i.          . ...............    P.............. UR55gsi777777777r7r7r777rLK</span><br><span class="hljs-comment">         LPsvvYvLvLvYvI:.   Z.    .     .      ru   .     . . .    i.                 ... . .      :K ............  BXSPbirr777r777777777r7r72L</span><br><span class="hljs-comment">         2uJJvvYvLvYvLU:.:   g     .   .       .:              .   i.                              Yv ............ sQSqgrrr7r7r7r7r777r7r7r7rZ.</span><br><span class="hljs-comment">         1MsUjYvYvYvvrv2j.   .Z.                            .      .i      .:.  :rY7r.             X:............ .QqKg7rr7r7r777r777r77777r12</span><br><span class="hljs-comment">          QBPvvLvLvvYIvv12s.   Pi      .           . .   .     .    ..   sPPqK5SXS25SM2      .     P ............ 2BdZ7ir7r7r777r77777r7r777Z</span><br><span class="hljs-comment">           :P7vvLvL7UgD17YKP.   YU.       . .                     .     gPJvLvsLLvvsL7Qi  . .     7J............ :Bb1iir7r7r7r7r7777777r7r7Pr</span><br><span class="hljs-comment">            gLvYvYvv7EEdvvLIZ    .YX.            . .                   KSv7vvv7LLL7YI712          K:............ M1rirr7r777r7r777r7r7r7rrU5</span><br><span class="hljs-comment">            gKJLY7vrJDZPJ7Yuq      qLuv:                            .:52v71ZZL7vY7rLQquI         .S ........... K2ir7r7r777r777r777r77777JE</span><br><span class="hljs-comment">             jKSLsr7rsJY7LvIs      7:.ivssri..                    .IXXJLv7qQgX7v77vEEZ57        .5. .......... 7drr7r7r777r7r777r7777777YZ</span><br><span class="hljs-comment">               rKIZPqu77YvYYd       U . ::igKSX21YL7r:..         :MuYLYvY7LUKJvvvUgEPS1  .i72qgQBr uR ....... :g7r777777777r777r77777r7sZ</span><br><span class="hljs-comment">                2QgDd57LvYvvZi      r7..r .57777LuuXPRQBQBQBPj1I5QvYvL7Lvv77r7vL7jussPbEBBBBQRZR5 jEb. ..... .dYr7r777r7r7r777r777r777jE</span><br><span class="hljs-comment">                 .vKSvsLYLL7b.       7::i  2771XXSX2UYLvYYJSv7Krq2777rYvLvLvLvLvL77ruj1UUJjYY77L:uji1r ..... 52r7r777r777r7r7r7r7r7r7IP</span><br><span class="hljs-comment">                    YPKPXSUqB.        iv.  ES5r.   ..ivuuuYIPJUjSJ7ssURU7LvLvLvYvL72JiiriiiriirjYvr7v2 .... vPr777r7777777r7r777r7rrUv</span><br><span class="hljs-comment">                      ...iYrsr         :  jq:           ..:::rsJd57PMgEYvvv7vvLvL7vgvi7r7r7r7iX1rr7r7P.... iZr7r77777r77777r777r7irE:</span><br><span class="hljs-comment">                             .vi::..   .ii.                      PYLLJ77v7r77v7Lv2DdSXLrr7r777vrr7r7rbi . .E7777r777r777r7r7r7rriLPBi</span><br><span class="hljs-comment">                          i   v   ..::i.     .                   iX7v7v7vLSbgqJSbS.  iqdUrrr7r7r7r77r2s   Pv7r777r777777777r7rr7XbPDP</span><br><span class="hljs-comment">                          .RbQQi .          r.                   .ZUYv7vvDQggRJi  .    :KEurr7r7r777rJu  5Jrr7r7r777r77777777rrdPX5PB</span><br><span class="hljs-comment">                           jRPQP .:::.. :rYDU                   .:sJPP2u25PXU.   r:      iSPvi7r7r7r772 Yjrr77777r77777r77777isbKI5SB:</span><br><span class="hljs-comment">                            .:.        .PuLd                   .:    sRqJi.     s.        :rP5i7r777rrJLJ77777r777777777r777r7rbqXISgX</span><br><span class="hljs-comment">                                       ILrq7                   .      :   ..::iJ      i   ::.2Pr7r777rLsr77r7r7r7777777r7r7r7rr7PqXIqB</span><br><span class="hljs-comment">                                     .Ss77Z                    27:....i      ..     :r.    r:.Ydr7r777r7r777r7r77777r7r777r777rirPqKSRX</span><br><span class="hljs-comment">                                    iKLr7jI                  7PPbEBBi .:i::.      :7:      :r:.vdr7r7r7r777r7r7r7r7r77777r7r777rrrXPKXB.</span><br><span class="hljs-comment">                                   1S777ib:                 LB1JYJR1     ..:irii:7i        .ri:.jKi7r7r7r7777777r7r77777r777r7r7rri2PPZQ</span><br><span class="hljs-comment">                                  P17r7iYM                  .5PSqKr           ..:           ii::.XUr7r7r7r7r777r7r777r7r77777r777rriYqPB7</span><br><span class="hljs-comment">                                .ZL7rriJB1                                                  :r::.:d7r7r77777r7r7r777r777r777r7r7r777irKMQ</span><br><span class="hljs-comment">                                gv7rriIZB                                                   :r:::.7qrr7r7r7r7r7r77777r777r7r77777r777irXBi</span><br><span class="hljs-comment">                               dJ7rrrKbBs                                .                  .r::::.Ks7r777r777r77777r7777777r7777777r7irMg</span><br><span class="hljs-comment">                              rErrrrPPZS                               .i                   .i::::.:bi7r777r777r7777777r77777r7r777r7r7iuB</span><br><span class="hljs-comment">                              EsrriqqKg:                             :vi                     r:i:::.Ijr7r7r7r7r7r7r777r7r7r777r7r7r777rrrB.</span><br><span class="hljs-comment">                              Dr7iudPdBBv.                        :7Kj.                     .r:::::.rPrr777777777r777777777r7r7r7r7r7r7rrR:</span><br><span class="hljs-comment">                           ::vPrr7bgQD7iivvvi:.                :rISs.                       .r::::::.Kv7r7r7r7r777r7r777r777777777r7r7r7rE:</span><br><span class="hljs-comment">                      .:rvsv7rqrruQ2:       ...           ..rjX5Ji                          .i::i:::.v5r7777777777777r777r77777r7r7r777rrPi</span><br><span class="hljs-comment">                   .ivYL7rrrii27i1:                     ...:i:.                             :i::::::::Krr7r7777777r7r77777r7777777r777r7iKS:.</span><br><span class="hljs-comment">                 :vYvrrrririiiYZZESDQqi                                                     r:::i::::.Sv7r7r77777r7777777r7r7r777777777riquiYvi</span><br><span class="hljs-comment">               :vYrririririrYji.:vPXUZBB.                                                  .ri:::::::.vjr7r777r777r7r77777r7r7r777r77777rMrii7vs:</span><br><span class="hljs-comment">              7L7rrirrL7rrjv:      XKUSQBr                                                 :r:::::::: vJrr7r7r77777r7r7r77777r7r7r7r777iub:irirrYv</span><br><span class="hljs-comment">             7Lririr7  rjr    .:r7rdRd5SKBS.                                               r::::::...vQvr7777777r77777r7777777r7r777r7rrgr:ririrrLv</span><br><span class="hljs-comment">             s7iririru    .iLJuL7ii:LqDPKKgQ5.                                            iii:::..:vbQdi7r77777r77777r777r777r7r7r7r7ivEL:iiririrru</span><br><span class="hljs-comment">             7vrrririvs.rsYvrriririi::7XdDPdgBPr                                         :r::..:rSZgZDrrr7r777r7r77777r7777777r7r7rr7Sq7:iiriririvv</span><br><span class="hljs-comment">              Yv7rriri7Y7iiiririririii::iLKEgDQBBbji:.       .isqK7                     .i:..iUbgdPPb7ir7r7r7r7r777777777r7r7r7rr7u5KYi:iiririrrLY.</span><br><span class="hljs-comment">               rYvrririiiriririririririi:::i7uSbDQBBBBBBMRBBRQQBBQBB2                   :.:JqgdPKdPUirr7777777r777r7r7r7rrrrrvsI5Ssr::iiirirrr7Jr</span><br><span class="hljs-comment">                 iYv7rriririririririririiii::.::ii7L1IqKBBU     iS2PBBI.               :vSgZbXPPb27irr7r777r7r7rrrrr7rvvYJ22S217r:::iirirrr7Lvr.</span><br><span class="hljs-comment">                   :rYLvrrrririririririririririiiiii.:rj7       .PDEbgQBQgjr.        .2ggDKPPdXU7ii7r7rrrrrrr7vYJUUI25UUJs7rii::iiirrrr77Yv7:</span><br><span class="hljs-comment">                      .i7LY77rririririririririri7: rjLi    .rvJv7:::iir71KQBBBRXY:..IQQdbPP517riiirr7r7vsJI2522JY77rii::::i:iirirrrrvLY7i.</span><br><span class="hljs-comment">                          .irvvYv7rrrririririririU  .   :7Yjvririiii:i:::::r71qRQBBBQEXIsvri:irvvjjI2IU1YY7rii:::i:iiiiririrr77vvYv7i:</span><br><span class="hljs-comment">                               .:ivvYvY7vrrrrrriivY .isJsrriririririiiriiii:::::irvJ1YsvLvJJ1UUjjv7rrii:i:i:iiririrrrr77vvYvL7r:.</span><br><span class="hljs-comment">                                     ..:r77LvYvLv7JIjYrrrrrririrrriririririririi:i::::iirrrriiii:iiiirirrrr7r77vvLLLvv7ri:..</span><br><span class="hljs-comment">                                             ...iirr77YvYLYvLvL7v7v7vr7777777r7r7r7r7r7rrrrr7r77v7LvYvsLYvv77ri::..</span><br><span class="hljs-comment">                                                         ....::::iirrrr7r777777v77777777rrrriiii::.....</span><br><span class="hljs-comment"></span><br><span class="hljs-comment">                                                         */</span><br></code></pre></td></tr></table></figure>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E7%AE%97%E6%B3%95/" class="category-chain-item">算法</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/%E7%AE%97%E6%B3%95/ACM%E7%AB%9E%E8%B5%9B/" class="category-chain-item">ACM竞赛</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/%E7%AE%97%E6%B3%95/ACM%E7%AB%9E%E8%B5%9B/%E7%96%AF%E5%AD%90%E7%9A%84%E7%AE%97%E6%B3%95%E6%80%BB%E7%BB%93/" class="category-chain-item">疯子的算法总结</a>
+  
+  
+
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>『算法-ACM竞赛-疯子的算法总结』7字符串算法之  manacher 算法 O（N）解决回文串</div>
+      <div>https://chiamzhang.github.io/2024/06/29/『算法-ACM竞赛-疯子的算法总结』7字符串算法之  manacher 算法 O（N）解决回文串/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>Chiam</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>June 29, 2024</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>Licensed under</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2024/06/29/%E3%80%8E%E7%AE%97%E6%B3%95-ACM%E7%AB%9E%E8%B5%9B-%E7%96%AF%E5%AD%90%E7%9A%84%E7%AE%97%E6%B3%95%E6%80%BB%E7%BB%93%E3%80%8F6.3%E5%A4%8D%E6%9D%82%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%20%E2%91%A1%20%E6%A1%B6%E6%8E%92%E5%BA%8F/" title="『算法-ACM竞赛-疯子的算法总结』6.3复杂排序算法 ② 桶排序">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">『算法-ACM竞赛-疯子的算法总结』6.3复杂排序算法 ② 桶排序</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/06/29/%E3%80%8E%E7%AE%97%E6%B3%95-ACM%E7%AB%9E%E8%B5%9B-%E7%96%AF%E5%AD%90%E7%9A%84%E7%AE%97%E6%B3%95%E6%80%BB%E7%BB%93%E3%80%8F6.2%E5%A4%8D%E6%9D%82%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%20%E2%91%A0%20%E5%BD%92%E5%B9%B6%E6%8E%92%E5%BA%8F%20merge_sort()/" title="『算法-ACM竞赛-疯子的算法总结』6.2复杂排序算法 ① 归并排序 merge_sort()">
+                        <span class="hidden-mobile">『算法-ACM竞赛-疯子的算法总结』6.2复杂排序算法 ① 归并排序 merge_sort()</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"fIfc7WqUDZohlQuPc2lz5mJy-MdYXbMMI","appKey":"zjlAG3ZA3o4cBHVAkjzc2Z20","path":"window.location.pathname","placeholder":"留言仅限讨论，禁止广告等行为","avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"https://fifc7wqu.api.lncldglobal.com","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>Table of Contents</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <meta name="referrer" content="no-referrer" /> <footer id="footer" role="contentinfo"> <meta name="referrer" content="no-referrer" /> <div class="divider"> <div class="wall"></div> <img class="animals" src="/img/footer_animals_new.png" srcset="/img/loading.gif" lazyload alt="Footer Animals"> </div> <div class="container" data-index="450"> <p> <a href="https://chiamzhang.github.io" target="_blank">DogEgg</a> <i class="iconfont icon-love"></i> <a href="#" target="_blank">LittePig</a> </p> <p> Powered by  <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-pen"></i> Theme  <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> </p> </div> </footer> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+  
+<script src="/js/love.js"></script>
+<script src="/js/funnyTitle.js"></script>
+<script src="/js/backTop.js"></script>
+<script src="//cdn.jsdelivr.net/gh/bynotes/texiao/source/js/xiaoxuehua.js"></script>
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+</html>

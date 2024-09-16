@@ -1,0 +1,716 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/Mine.jpg">
+  <link rel="icon" href="/img/Mine.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Chiam">
+  <meta name="keywords" content="Algorithms，Cybersecurity">
+  
+    <meta name="description" content="『算法-ACM 竞赛-图论』图的割点、桥和双连通分支的基本概念点连通度与边连通度回到正题，首先介绍下什么是图的边连通度和点连通度。一般来说，点连通度是指对应一个图 G，对于所有点集 U 属于 V（G），也就是 V（G）的子集中，使得 G-U 要么是一个非连通图，要么就是一个平凡图（即仅包含一个独立点的图），其中最小的集合 U 的大小就是图 G 的点连通度，有时候也直接称为图的连通度。通俗点说，就是">
+<meta property="og:type" content="article">
+<meta property="og:title" content="『算法-ACM竞赛-图论』图的割点、桥和双连通分支的基本概念">
+<meta property="og:url" content="https://chiamzhang.github.io/2024/06/29/%E3%80%8E%E7%AE%97%E6%B3%95-ACM%E7%AB%9E%E8%B5%9B-%E5%9B%BE%E8%AE%BA%E3%80%8F%E5%9B%BE%E7%9A%84%E5%89%B2%E7%82%B9%E3%80%81%E6%A1%A5%E5%92%8C%E5%8F%8C%E8%BF%9E%E9%80%9A%E5%88%86%E6%94%AF%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/index.html">
+<meta property="og:site_name" content="Homepage of Chiam">
+<meta property="og:description" content="『算法-ACM 竞赛-图论』图的割点、桥和双连通分支的基本概念点连通度与边连通度回到正题，首先介绍下什么是图的边连通度和点连通度。一般来说，点连通度是指对应一个图 G，对于所有点集 U 属于 V（G），也就是 V（G）的子集中，使得 G-U 要么是一个非连通图，要么就是一个平凡图（即仅包含一个独立点的图），其中最小的集合 U 的大小就是图 G 的点连通度，有时候也直接称为图的连通度。通俗点说，就是">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/2019101423052417.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70">
+<meta property="article:published_time" content="2024-06-29T13:16:54.160Z">
+<meta property="article:modified_time" content="2023-12-05T16:19:08.021Z">
+<meta property="article:author" content="Chiam">
+<meta property="article:tag" content="Algorithms，Cybersecurity">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/2019101423052417.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70">
+  
+  
+  
+  <title>『算法-ACM竞赛-图论』图的割点、桥和双连通分支的基本概念 - Homepage of Chiam</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"chiamzhang.github.io","root":"/","version":"1.9.5-a","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":"❡"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":2},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
+
+
+<body>
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Chiam&#39;s Blogs</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                
+                <span>Home</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                
+                <span>Archives</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                
+                <span>Categories</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                
+                <span>About</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                
+                <span>Links</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="『算法-ACM竞赛-图论』图的割点、桥和双连通分支的基本概念"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-06-29 21:16" pubdate>
+          June 29, 2024 pm
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          6.7k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          56 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">『算法-ACM竞赛-图论』图的割点、桥和双连通分支的基本概念</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="『算法-ACM-竞赛-图论』图的割点、桥和双连通分支的基本概念"><a href="#『算法-ACM-竞赛-图论』图的割点、桥和双连通分支的基本概念" class="headerlink" title="『算法-ACM 竞赛-图论』图的割点、桥和双连通分支的基本概念"></a>『算法-ACM 竞赛-图论』图的割点、桥和双连通分支的基本概念</h1><h2 id="点连通度与边连通度"><a href="#点连通度与边连通度" class="headerlink" title="点连通度与边连通度"></a><strong>点连通度与边连通度</strong></h2><p>回到正题，首先介绍下什么是图的边连通度和点连通度。一般来说，点连通度是指对应一个图 G，对于所有点集 U 属于 V（G），也就是 V（G）的子集中，使得 G-U 要么是一个非连通图，要么就是一个平凡图（即仅包含一个独立点的图），其中最小的集合 U 的大小就是图 G 的点连通度，有时候也直接称为图的连通度。通俗点说，就是一个图 G 最少要去掉多少个点会变成非连通图或者平凡图。当然对于一个完全图来说 Kn 来说，它的连通度就是 n-1。<br>同理，边连通度就是对于一个非平凡图 G，至少去掉多少条边才能使得该图变成非连通图。我们的问题就是，对于任意一个图，如何求该图的连通度以及边连通度？这跟最大流问题有什么联系？<br>简单起见，我们先说如何求一个图的边连通度 lamda(G)。（基于无向图考虑）<br>对于图 G，设 u，v 是图 G 上的两个顶点，定义 r（u，v）为删除最少的边，使得 u 到 v 之间没有通路。将图 G 转换成一个流网络 H，u 为源点，v 是汇点，边容量均为 1，那么显然 r（u，v）就是流网络的最小割，根据（二）里的介绍，其等于流网络的最大流。<br>但是，目前为止我们还没解决完问题，因为显然我们要求的边连通度 lamda（G）是所有的点对&lt;u,v&gt;对应的 r（u，v）中最小的那个值。这样的话我们就必须遍历所有的点对，遍历的的复杂度为 O（n*n）。这显然代价太高，而事实上，我们也不必遍历所有点对。</p>
+<p><img src="https://img-blog.csdnimg.cn/2019101423052417.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br>如图所示，设 S 为图 G 的最小割集，那么 lamda（G）&#x3D;|S|。设在取任意一个点 u，若 u 在 L 内，那么必然至少存在一个点 v，使得 r（u，v）&#x3D;|S|（v 是在 R 内时即成立）。所以，我们只需要任取一个点 u，计算 u 和其他点的 r（u，v），取最小者，必然是等于最小割集，即边连通度。</p>
+<h2 id="双连通图、割点与桥"><a href="#双连通图、割点与桥" class="headerlink" title="双连通图、割点与桥"></a>双连通图、割点与桥</h2><p><strong>点连通度与边连通度：</strong><br>在一个无向连通图中，如果有一个顶点集合 v，删除顶点集合 v，以及与 v 中顶点相连 （至少有一端在 v 中）的所有边后，原图不连通，就称这个点集 v 为割点集合。<br>一个图的点连通度的定义为：最小割点集合中的顶点数。<br>类似的，如果有一个边集合，删除这个边集合以后，原图不连通，就称这个点集为割边 集合。<br>一个图的边连通度的定义为：最小割边集合中的边数。</p>
+<p><strong>双连通图、割点与桥：</strong><br>如果一个无向连通图的点连通度大于 1，则称该图是点双连通的 (point biconnected)，简 称双连通或重连通。一个图有割点，当且仅当这个图的点连通度为 1，则割点集合的唯一元素被称为割点(cut point)，又叫关节点(articulationpoint)。一个图可能有多个割点。<br>如果一个无向连通图的边连通度大于 1，则称该图是边双连通的 (edge biconnected)，简 称双连通或重连通。一个图有桥，当且仅当这个图的边连通度为 ，则割边集合的唯一元素 被称为桥(bridge)，又叫关节边(articulationedge)。一个图可能有多个桥。<br>可以看出，点双连通与边双连通都可以简称为双连通，它们之间是有着某种联系的，下 文中提到的双连通，均既可指点双连通，又可指边双连通。（但这并不意味着它们等价)。</p>
+<p><strong>双连通分量（分支）</strong><br>在图 G 的所有子图 G’中，如果 G’是双连通的，则称 G’为双连通 子图。如果一个双连通子图 G’它不是任何一个双连通子图的真子集，则 为极大双连通子 图。双连通分量(biconnectedcomponent)，或重连通分量，就是图的极大双连通子图。特殊的，点双连通分量又叫做块。</p>
+<p><strong>Tarjan 算法</strong><br>与有向图求强连通分量的 Tarjan 算法类似，只需通过求 dfn 值与 low 值来得出割点与桥。<br>对图深度优先搜索(DFS)，定义 dfn(u)为 u 在搜索树 （以下简称为树）中被遍历到的次序号。定义 low(u)为 u 或 u 子树中的结点经过最多一条后向边能追溯到的最早的树中结点次序号(注意：与 DAG 不同的是，这里的后向边不包括与搜索树中父亲的连边)。<br>根据定义，则有：<br>low(u)&#x3D;Min{}dfn(u)dfn(v)(u,v)为后向边（返祖边）（一定注意不包括与父节点的连边）low(v)(u,v)为树枝边 low(u)&#x3D;Min{dfn(u)dfn(v)(u,v)为后向边（返祖边）（一定注意不包括与父节点的连边）low(v)(u,v)为树枝边}<br>一个顶点 u 是割点，当且仅当满足 (1)或(2)：<br>(1)u 为树根，且 u 有多于一个子树。因为无向图 DFS 搜索树中不存在横叉边，所以若有多个子树，这些子树间不会有边相连。<br>(2)u 不为树根，且满足存在(u,v)为树枝边 （即 为 在搜索树中的父亲），并使得 DFN(u)&lt;&#x3D;Low(v).（因为删去 后 以及 的子树不能到达 的其他子树以及祖先）。</p>
+<p>实现时，因为有重边的问题，所以需要将一条无向边拆为两条编号一样的有向边，用邻 接表进行存储。在判断 是否为后向边时要注意是树枝边的反向边还是新的一条反向边。</p>
+<p><strong>求双连通分量</strong><br>下面要分开讨论点双连通分量与边双连通分量的求法。</p>
+<p>对于点双连通分量，实际上在求割点的过程中就能顺便把每个点双连通分支求量。建立 一个栈，存储当前双连通分量，在搜索图时，每找到一条树枝边或后向边（非横叉边），就 把这条边加入栈中。如果遇到某时满足 DFN(u)&lt;&#x3D;Low(v) 说明 u 是一个割点，同时把边从栈 顶一个个取出，直到遇到了边(u,v) ，取出的这些边与其相连的点，组成一个点双连通分量。割点可以属于多个点双连通分量，其余点和每条边只属于且属于一个点双连通分量。<br>（这里选择储存边而不是储存点是因为一个割点可以属于多个点双连通分量）</p>
+<p>对于边双连通分量，求法更为简单。只需在求出所有的桥以后，把桥边删除，原图变成了多个连通块，则每个连通块就是一个边双连通分量。桥不属于任何一个边双连通分量，其 余的边和每个顶点都属于且只属于一个边双连通分量。可以用并查集实现。 （一定注意考虑重边的可能性）</p>
+<p>一个有桥的连通图，如何把它通过加边变成边双连通图？</p>
+<p>方法为首先求出所有的桥，然 后删除这些桥边，剩下的每个连通块都是一个双连通子图。把每个双连通子图收缩为一个顶点，再把桥边加回来，最后的这个图一定是一棵树，边连通度为 1。<br>统计出树中度为 1 的节点的个数，即为叶节点的个数，记为 leaf 。则至少在树上添加 (leaf+1)&#x2F;2 条边，就能使树达到边二连通，所以至少添加的边数就是(leaf+1)&#x2F;2。<br>(证明略，请读者感性思考。。。)</p>
+<h2 id="双连通分支"><a href="#双连通分支" class="headerlink" title="双连通分支"></a>双连通分支</h2><p>在图 G 的所有子图 G’中，如果 G’是双连通的,则称 G’为双连通子图。如果一个双连通子图 G’它不是任何一个双连通子图的真子集,则 G’为极大双连通子图。双连通分支(biconnected component),或重连通分支, 就是图的极大双连通子图。特殊的,点双连通分支又叫做块。</p>
+<h2 id="求割点与桥"><a href="#求割点与桥" class="headerlink" title="求割点与桥"></a>求割点与桥</h2><p>该算法是 R.Tarjan 发明的。对图深度优先搜索,定义 DFS(u)为 u 在搜索树(以下简称为树)中被遍历到的次序号。定义 Low(u)为 u 或 u 的子树中能通过非父子边追溯到的最早的节点,即 DFS 序号最小的节点。根据定义,则有:Low(u)&#x3D;Min{DFS(u)DFS(v)(u,v)为后向边(返祖边)等价于 DFS(v) &lt; DFS(u)且 v 不为 u 的父亲节点 Low(v)(u,v)为树枝边(父子边)}一个顶点 u 是割点,当且仅当满足(1)或(2)(1)u 为树根,且 u 有多于一个子树。(2)u 不为树根,且满足存在(u,v)为树枝边(或称父子边,即 u 为 v 在搜索树中的父亲),使得 DFS(u) &lt;&#x3D; Low(v)。一条无向边(u,v)是桥,当且仅当(u,v)为树枝边,且满足 DFS(u) &lt; Low(v)。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><br><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">Tarjan</span><span class="hljs-params">(<span class="hljs-type">int</span> u, <span class="hljs-type">int</span> father)</span> <span class="hljs-comment">//father 是u的父节点</span></span><br><span class="hljs-function"></span>&#123;<br>	Father[u] = father;<br>	<span class="hljs-type">int</span> i,j,k;<br>	low[u] = dfn[u] = nTime ++;<br>	<span class="hljs-keyword">for</span>( i = <span class="hljs-number">0</span>;i &lt; G[u].<span class="hljs-built_in">size</span>() ;i ++ ) &#123;<br>		<span class="hljs-type">int</span> v = G[u][i];<br>		<span class="hljs-keyword">if</span>( ! dfn[v]) &#123;<br>			<span class="hljs-built_in">Tarjan</span>(v,u);<br>			low[u] = <span class="hljs-built_in">min</span>(low[u],low[v]);<br>                        <span class="hljs-keyword">if</span>(low[u]&gt;low[u]) u,v为桥<br> &#125;<br>		<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>( father != v ) <span class="hljs-comment">//连到父节点的回边不考虑，否则求不出桥</span><br>			low[u] = <span class="hljs-built_in">min</span>(low[u],dfn[v]);<br>	&#125;<br>&#125;<br><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">Count</span><span class="hljs-params">()</span></span><br><span class="hljs-function"></span>&#123; <span class="hljs-comment">//计算割点和桥</span><br>    <span class="hljs-type">int</span> nRootSons = <span class="hljs-number">0</span>;    <span class="hljs-type">int</span> i;<br>    <span class="hljs-built_in">Tarjan</span>(<span class="hljs-number">1</span>,<span class="hljs-number">0</span>);<br>    <span class="hljs-keyword">for</span>( i = <span class="hljs-number">2</span>;i &lt;= n;i ++ ) &#123;<br>        <span class="hljs-type">int</span> v = Father[i];<br>        <span class="hljs-keyword">if</span>( v == <span class="hljs-number">1</span> )<br>            nRootSons ++; <span class="hljs-comment">//DFS树中根节点有几个子树</span><br>        <span class="hljs-keyword">else</span> &#123;<br>            <span class="hljs-keyword">if</span>( dfn[v] &lt;= low[i])<br>                bIsCutVetext[v] = <span class="hljs-literal">true</span>;<br>        &#125;<br>    &#125;<br>    <span class="hljs-keyword">if</span>( nRootSons &gt; <span class="hljs-number">1</span>)<br>        bIsCutVetext[<span class="hljs-number">1</span>] = <span class="hljs-literal">true</span>;<br>    <span class="hljs-keyword">for</span>( i = <span class="hljs-number">1</span>;i &lt;= n;i ++ )<br>        <span class="hljs-keyword">if</span>( bIsCutVetext[i] )<br>            cout &lt;&lt; i &lt;&lt; endl;<br>    <span class="hljs-keyword">for</span>( i = <span class="hljs-number">1</span>;i &lt;= n;i ++) &#123;<br>        <span class="hljs-type">int</span> v = Father[i];<br>        <span class="hljs-keyword">if</span>(v &gt;<span class="hljs-number">0</span> &amp;&amp;  dfn[v] &lt; low[i])<br>            cout &lt;&lt; v &lt;&lt; <span class="hljs-string">&quot;,&quot;</span> &lt;&lt; i &lt;&lt;endl;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h2 id="求双连通分支"><a href="#求双连通分支" class="headerlink" title="求双连通分支"></a>求双连通分支</h2><p>下面要分开讨论点双连通分支与边双连通分支的求法。<br>对于点双连通分支,实际上在求割点的过程中就能顺便把每个点双连通分支求出。建立一个栈,存储当前双连通分支,在搜索图时,每找到一条树枝边或后向边(非横叉边),就把这条边加入栈中。如果遇到某时满 足 DFS(u) &lt;&#x3D; Low(v),说明 u 是一个割点,同时把边从栈顶一个个取出,直到遇到了边(u,v),取出的这些边与其关联的点,组成一个点双连通分支。割点可以属于多个点双连通分支,其余点和每条边只属于且属于一个点双连通分支。对于边双连通分支,求法更为简单。只需在求出所有的桥以后,把桥边删除,原图变成了多个连通块,则每个连通块就是一个边双连通分支。桥不属于任何一个边双连通分支,其余的边和每个顶点都属于且只属于一个边双连通分支。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;iostream&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;cstdio&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;cstring&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;algorithm&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;map&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std ;<br><br><span class="hljs-type">const</span> <span class="hljs-type">int</span> maxn = <span class="hljs-number">5000</span> + <span class="hljs-number">10</span> ;<br><span class="hljs-type">const</span> <span class="hljs-type">int</span> maxm = <span class="hljs-number">20000</span> + <span class="hljs-number">10</span> ;<br><span class="hljs-keyword">struct</span> <span class="hljs-title class_">Edge</span>&#123;<br>    <span class="hljs-type">int</span> to , next ;<br>    <span class="hljs-comment">//该边是否为桥</span><br>    <span class="hljs-type">bool</span> cut ;<br>&#125;edge[maxm];<br><span class="hljs-type">int</span> head[maxn] , tot ;<br><br><span class="hljs-comment">//Low[u]表示u所能追溯到的在栈中最早的节点，该Low数组和求割点与桥的Low数组定义不一样</span><br><span class="hljs-type">int</span> Low[maxn] , DFN[maxn] , Stack[maxn] , Belong[maxn] ;<br><span class="hljs-type">int</span> Index , top ;<br><span class="hljs-comment">//边双连通块数</span><br><span class="hljs-type">int</span> block ;<br><span class="hljs-type">bool</span> Instack[maxn] ;<br><span class="hljs-comment">//桥的数目</span><br><span class="hljs-type">int</span> bridge ;<br><br><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">addedge</span><span class="hljs-params">( <span class="hljs-type">int</span> u , <span class="hljs-type">int</span> v)</span></span>&#123;<br>    edge[tot].to = v ;edge[tot].next = head[u] ;edge[tot].cut = <span class="hljs-literal">false</span> ;<br>    head[u] = tot ++ ;<br>&#125;<br><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">Tarjan</span><span class="hljs-params">( <span class="hljs-type">int</span> u , <span class="hljs-type">int</span> pre)</span></span>&#123;<br>    <span class="hljs-type">int</span>  v ;<br>    Low[u] = DFN[u] = ++ Index ;<br>    Stack[top ++] = u ;<br>    Instack[u] = <span class="hljs-literal">true</span> ;<br><br>    <span class="hljs-keyword">for</span>( <span class="hljs-type">int</span> i = head[u] ; i != <span class="hljs-number">-1</span> ;i = edge[i].next )&#123;<br>        v = edge[i].to ;<br>        <span class="hljs-keyword">if</span>( v == pre) <span class="hljs-keyword">continue</span> ;<br>        <span class="hljs-comment">//树枝边</span><br>        <span class="hljs-keyword">if</span>( !DFN[v  ])&#123;<br>            <span class="hljs-comment">//回溯从叶子结点开始处理，一直到根节点</span><br>            <span class="hljs-built_in">Tarjan</span>( v , u ) ;<br>            <span class="hljs-comment">//对于树枝边（u，v)，修改low[u]之前一定有何v相连的回向边修改了 Low[v]，造成v的Low数值变小</span><br>            <span class="hljs-keyword">if</span>( Low[u] &gt; Low[v] )<br>                Low[u] = Low[v] ;<br>            <span class="hljs-comment">//桥边，回溯过后v所能追溯到的标号最小的节点依旧比u的编号大，这时Low[v] = DFN[v] ;</span><br>            <span class="hljs-keyword">if</span>( Low[v] &gt; DFN[u])&#123;<br>                bridge ++ ;<br>                edge[i].cut = <span class="hljs-literal">true</span> ;<br>                edge[i ^ <span class="hljs-number">1</span>].cut = <span class="hljs-literal">true</span> ;<br>            &#125;<br>        &#125;<br>        <span class="hljs-comment">//（u，v)回向边，修改u所能追溯到的编号最小的节点</span><br>        <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>( Instack[v] &amp;&amp; Low[u] &gt; DFN[v])<br>            Low[u] = DFN[v] ;<br>    &#125;<br>    <span class="hljs-comment">//u节点是该连通分量的根节点</span><br>    <span class="hljs-keyword">if</span>( Low[u] == DFN[u])&#123;<br>        block ++ ;<br>        <span class="hljs-keyword">do</span>&#123;<br>            v = Stack[ -- top ] ;<br>            Instack[v] = <span class="hljs-literal">false</span> ;<br>            Belong[v] = block ;<br>        &#125;<br>        <span class="hljs-keyword">while</span>( v != u ) ;<br>    &#125;<br>&#125;<br><br><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">ini</span><span class="hljs-params">()</span></span>&#123;<br>    tot = <span class="hljs-number">0</span> ;<br>    <span class="hljs-built_in">memset</span>( head , <span class="hljs-number">-1</span> , <span class="hljs-built_in">sizeof</span>( head ) ) ;<br>&#125;<br><br><span class="hljs-comment">//缩点后形成树，每个点的度数</span><br><span class="hljs-type">int</span> du[maxn] ;<br><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">solve</span><span class="hljs-params">( <span class="hljs-type">int</span> n )</span></span>&#123;<br>    <span class="hljs-built_in">memset</span>( DFN , <span class="hljs-number">0</span> ,<span class="hljs-built_in">sizeof</span>( DFN )) ;<br>    <span class="hljs-built_in">memset</span>( Instack , <span class="hljs-literal">false</span> , <span class="hljs-built_in">sizeof</span>( Instack )) ;<br>    Index = top = block = <span class="hljs-number">0</span> ;<br>    <span class="hljs-built_in">Tarjan</span>( <span class="hljs-number">1</span> , <span class="hljs-number">0</span> ) ;<br><br><br>    <span class="hljs-type">int</span> ans = <span class="hljs-number">0</span> ;<br>    <span class="hljs-built_in">memset</span>( du , <span class="hljs-number">0</span> , <span class="hljs-built_in">sizeof</span>( du )) ;<br>    <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i = <span class="hljs-number">1</span> ;i&lt;=n ;i++)&#123;<br>        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> j = head[i] ;j!=<span class="hljs-number">-1</span> ; j=edge[j].next )<br>            <span class="hljs-keyword">if</span>( edge[j].cut )<br>                du[Belong [i]] ++;<br>    &#125;<br>    <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i = <span class="hljs-number">1</span> ;i&lt;=block ; i++)<br>        <span class="hljs-keyword">if</span>( du [i] == <span class="hljs-number">1</span>)<br>            ans ++;<br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d\n&quot;</span> , ( ans + <span class="hljs-number">1</span>) / <span class="hljs-number">2</span> ) ;<br>&#125;<br><br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>&#123;<br>    <span class="hljs-type">int</span> n , m ;<br>    <span class="hljs-type">int</span> u , v ;<br>    <span class="hljs-keyword">while</span>( <span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%d%d&quot;</span> , &amp; n , &amp; m ) == <span class="hljs-number">2</span>)&#123;<br>        <span class="hljs-built_in">ini</span>() ;<br>        <span class="hljs-keyword">while</span>( m -- )&#123;<br>            <span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%d%d&quot;</span> , &amp;u , &amp; v ) ;<br>            <span class="hljs-built_in">addedge</span>( u , v ) ;<br>            <span class="hljs-built_in">addedge</span>( v , u ) ;<br>        &#125;<br>        <span class="hljs-built_in">solve</span>( n ) ;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h2 id="构造双连通图"><a href="#构造双连通图" class="headerlink" title="构造双连通图"></a>构造双连通图</h2><p>一个有桥的连通图,如何把它通过加边变成边双连通图?<br>方法为首先求出所有的桥,然后删除这些桥边, 剩下的每个连通块都是一个双连通子图。把每个双连通子图收缩为一个顶点,再把桥边加回来,最后的这个图一定是一棵树,边连通度为 1。统计出树中度为 1 的节点的个数,即为叶节点的个数,记为 leaf。则至少在树上添加(leaf + 1) &#x2F; 2 条边,就能使树达到边二连通,所以至少添加的边数就是(leaf + 1) &#x2F; 2。具体方法为,首先把两个最近公共祖先最远的两个叶节点之间连接一条边,这样可以把这两个点到祖先的路径上所有点收缩到一起,因为一个形成的环一定是双连通的。然后再找两个最近公共祖先最远的两个叶节点,这样一对一对找完,恰好是(leaf + 1) &#x2F; 2 次,把所有点收缩到了一起。</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E7%AE%97%E6%B3%95/" class="category-chain-item">算法</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/%E7%AE%97%E6%B3%95/ACM%E7%AB%9E%E8%B5%9B/" class="category-chain-item">ACM竞赛</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/%E7%AE%97%E6%B3%95/ACM%E7%AB%9E%E8%B5%9B/%E5%9B%BE%E8%AE%BA/" class="category-chain-item">图论</a>
+  
+  
+
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>『算法-ACM竞赛-图论』图的割点、桥和双连通分支的基本概念</div>
+      <div>https://chiamzhang.github.io/2024/06/29/『算法-ACM竞赛-图论』图的割点、桥和双连通分支的基本概念/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>Chiam</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>June 29, 2024</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>Licensed under</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2024/06/29/%E3%80%8E%E7%AE%97%E6%B3%95-ACM%E7%AB%9E%E8%B5%9B-%E5%9B%BE%E8%AE%BA%E3%80%8F%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF/" title="『算法-ACM竞赛-图论』学习路线">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">『算法-ACM竞赛-图论』学习路线</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/06/29/%E3%80%8E%E7%AE%97%E6%B3%95-ACM%E7%AB%9E%E8%B5%9B-%E5%9B%BE%E8%AE%BA%E3%80%8F%E5%9B%BE%E7%9A%84%E5%82%A8%E5%AD%98%E6%96%B9%E5%BC%8F%EF%BC%8C%E9%93%BE%E5%BC%8F%E5%89%8D%E5%90%91%E6%98%9F%E6%9C%80%E7%AE%80%E5%8D%95%E5%AE%9E%E7%8E%B0%E6%96%B9%E5%BC%8F%EF%BC%88%E8%BE%B9%E9%9B%86%E6%95%B0%E7%BB%84%EF%BC%89/" title="『算法-ACM竞赛-图论』图的储存方式，链式前向星最简单实现方式（边集数组）">
+                        <span class="hidden-mobile">『算法-ACM竞赛-图论』图的储存方式，链式前向星最简单实现方式（边集数组）</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"fIfc7WqUDZohlQuPc2lz5mJy-MdYXbMMI","appKey":"zjlAG3ZA3o4cBHVAkjzc2Z20","path":"window.location.pathname","placeholder":"留言仅限讨论，禁止广告等行为","avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"https://fifc7wqu.api.lncldglobal.com","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>Table of Contents</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <meta name="referrer" content="no-referrer" /> <footer id="footer" role="contentinfo"> <meta name="referrer" content="no-referrer" /> <div class="divider"> <div class="wall"></div> <img class="animals" src="/img/footer_animals_new.png" srcset="/img/loading.gif" lazyload alt="Footer Animals"> </div> <div class="container" data-index="450"> <p> <a href="https://chiamzhang.github.io" target="_blank">DogEgg</a> <i class="iconfont icon-love"></i> <a href="#" target="_blank">LittePig</a> </p> <p> Powered by  <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-pen"></i> Theme  <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> </p> </div> </footer> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+  
+<script src="/js/love.js"></script>
+<script src="/js/funnyTitle.js"></script>
+<script src="/js/backTop.js"></script>
+<script src="//cdn.jsdelivr.net/gh/bynotes/texiao/source/js/xiaoxuehua.js"></script>
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+</html>

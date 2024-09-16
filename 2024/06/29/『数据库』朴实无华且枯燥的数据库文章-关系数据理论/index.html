@@ -1,0 +1,859 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/Mine.jpg">
+  <link rel="icon" href="/img/Mine.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Chiam">
+  <meta name="keywords" content="Algorithms，Cybersecurity">
+  
+    <meta name="description" content="『数据库』朴实无华且枯燥的数据库文章-关系数据理论『数据库』 朴实无华且枯燥的数据库教程–入门必看！（不收藏，真的吃亏了）@[toc] 问题的提出一、概念回顾关系：描述实体、属性、实体间的联系。从形式上看，它是一张二维表，是所涉及属性的笛卡尔积的一个子集。关系模式：用来定义关系。关系数据库：基于关系模型的数据库，利用关系来描述现实世界。从形式上看，它由一组关系组成。关系数据库的模式：定义这组关系的">
+<meta property="og:type" content="article">
+<meta property="og:title" content="『数据库』朴实无华且枯燥的数据库文章-关系数据理论">
+<meta property="og:url" content="https://chiamzhang.github.io/2024/06/29/%E3%80%8E%E6%95%B0%E6%8D%AE%E5%BA%93%E3%80%8F%E6%9C%B4%E5%AE%9E%E6%97%A0%E5%8D%8E%E4%B8%94%E6%9E%AF%E7%87%A5%E7%9A%84%E6%95%B0%E6%8D%AE%E5%BA%93%E6%96%87%E7%AB%A0-%E5%85%B3%E7%B3%BB%E6%95%B0%E6%8D%AE%E7%90%86%E8%AE%BA/index.html">
+<meta property="og:site_name" content="Homepage of Chiam">
+<meta property="og:description" content="『数据库』朴实无华且枯燥的数据库文章-关系数据理论『数据库』 朴实无华且枯燥的数据库教程–入门必看！（不收藏，真的吃亏了）@[toc] 问题的提出一、概念回顾关系：描述实体、属性、实体间的联系。从形式上看，它是一张二维表，是所涉及属性的笛卡尔积的一个子集。关系模式：用来定义关系。关系数据库：基于关系模型的数据库，利用关系来描述现实世界。从形式上看，它由一组关系组成。关系数据库的模式：定义这组关系的">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200406112314756.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzQ2MDIyNA==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200406120108290.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200406120428795.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200406123247826.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzQ2MDIyNA==,size_16,color_FFFFFF,t_70">
+<meta property="article:published_time" content="2024-06-29T13:16:53.866Z">
+<meta property="article:modified_time" content="2023-12-05T16:18:14.745Z">
+<meta property="article:author" content="Chiam">
+<meta property="article:tag" content="Algorithms，Cybersecurity">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20200406112314756.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzQ2MDIyNA==,size_16,color_FFFFFF,t_70">
+  
+  
+  
+  <title>『数据库』朴实无华且枯燥的数据库文章-关系数据理论 - Homepage of Chiam</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"chiamzhang.github.io","root":"/","version":"1.9.5-a","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":"❡"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":2},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
+
+
+<body>
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Chiam&#39;s Blogs</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                
+                <span>Home</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                
+                <span>Archives</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                
+                <span>Categories</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                
+                <span>About</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                
+                <span>Links</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="『数据库』朴实无华且枯燥的数据库文章-关系数据理论"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-06-29 21:16" pubdate>
+          June 29, 2024 pm
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          8.7k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          73 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">『数据库』朴实无华且枯燥的数据库文章-关系数据理论</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="『数据库』朴实无华且枯燥的数据库文章-关系数据理论"><a href="#『数据库』朴实无华且枯燥的数据库文章-关系数据理论" class="headerlink" title="『数据库』朴实无华且枯燥的数据库文章-关系数据理论"></a>『数据库』朴实无华且枯燥的数据库文章-关系数据理论</h1><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_43627118/article/details/105027257">『数据库』 朴实无华且枯燥的数据库教程–入门必看！（不收藏，真的吃亏了）</a><br>@[toc]</p>
+<h2 id="问题的提出"><a href="#问题的提出" class="headerlink" title="问题的提出"></a>问题的提出</h2><p><strong>一、概念回顾</strong><br><strong>关系</strong>：描述实体、属性、实体间的联系。<br>从形式上看，它是一张二维表，是所涉及属性的笛卡尔积的一个子集。<br><strong>关系模式</strong>：用来定义关系。<br><strong>关系数据库</strong>：基于关系模型的数据库，利用关系来描述现实世界。<br>从形式上看，它由一组关系组成。<br><strong>关系数据库的模式</strong>：定义这组关系的关系模式的全体。</p>
+<p><strong>二、关系模式的形式化定义</strong><br>关系模式由五部分组成，即它是一个五元组：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-built_in">R</span>(U, D, DOM, F)<br>R： 关系名<br>U： 组成该关系的属性名集合<br>D： 属性组U中属性所来自的域<br>DOM： 属性向域的映象集合<br>F： 属性间数据的依赖关系集合<br></code></pre></td></tr></table></figure>
+
+<p><strong>1.属性间的联系</strong></p>
+<p><strong>1）一对一联系</strong><br>设 X，Y 为关系中的属性或属性组，它们的所有可能取值组成两个集合。如果对于 X 中的任一具体值 Y 中至多有一个值与之对应，称 X，Y 这两个属性之间是一对一联系。</p>
+<p><strong>2）一对多联系</strong><br>如果属性值集合 X 中的任一个具体值，至多与 Y 中的一个值相对应，而 Y 中的任一个具体值却可以和 X 中的多个值相对应，则称两个属性间从 X 到 Y 为 m:1 的联系或从 Y 到 X 是 1:m 的联系。<br>注意:这里指的是属性值个数的多少，而不是具有相同属性值的有多少个元组，二者正好相反。</p>
+<p><strong>3）多对多联系</strong><br>在 X，Y 两个属性值集中，如果任一个值都可以至多和另一个属性值集中多个值对应，反之亦然，则称属性 X 和 Y 是 m：n 关系。</p>
+<p><strong>三、什么是数据依赖</strong><br><strong>1. 完整性约束的表现形式</strong></p>
+<ul>
+<li>限定属性取值范围</li>
+<li>定义属性值间的相互关连（主要体现于值的相等与否），这就是数据依赖，它是数据库模式设计的关键</li>
+</ul>
+<p><strong>2. 数据依赖</strong></p>
+<ul>
+<li>一个关系内部属性与属性之间的约束关系</li>
+<li>现实世界属性间相互联系的抽象</li>
+<li>数据内在的性质</li>
+<li>语义的体现</li>
+</ul>
+<p><strong>3. 数据依赖的类型</strong></p>
+<ul>
+<li>函数依赖（Functional Dependency，简记为 FD）</li>
+<li>多值依赖（Multivalued Dependency，简记为 MVD）</li>
+<li>其他</li>
+</ul>
+<p><strong>四、关系模式的简化表示</strong><br>关系模式 R（U, D, DOM, F），简化为一个三元组：R（U, F） 。<br>当且仅当 U 上的一个关系 r 满足 F 时，r 称为关系模式 R （U, F）的一个关系。</p>
+<p><strong>五、数据依赖对关系模式的影响</strong><br><strong>【例 1】</strong> 建立一个描述学校教务的数据库：<br>学生的学号（Sno）、所在系（Sdept）、系主任姓名（Mname）、课程名（Cname）、成绩（Grade）</p>
+<p><strong>【解析】</strong><br>单一的关系模式 ：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs cpp">Student &lt;U、F&gt;<br>U ＝｛ Sno, Sdept, Mname, Cname, Grade ｝<br></code></pre></td></tr></table></figure>
+
+<p><strong>学校数据库的语义：</strong><br>⒈ 一个系有若干学生， 一个学生只属于一个系；<br>⒉ 一个系只有一名主任；<br>⒊ 一个学生可以选修多门课程， 每门课程有若干学生选修；<br>⒋ 每个学生所学的每门课程都有一个成绩。<br>属性组 U 上的一组函数依赖 F：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cpp">F ＝｛ Sno → Sdept, Sdept → Mname, (Sno, Cname) → Grade ｝<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://img-blog.csdnimg.cn/20200406112314756.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzQ2MDIyNA==,size_16,color_FFFFFF,t_70" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br><strong>关系模式 Student&lt;U, F&gt;中存在的问题</strong><br><strong>1.数据冗余太大</strong><br>&#x3D;&#x3D;浪费大量的存储空间&#x3D;&#x3D;<br>例：每一个系主任的姓名重复出现<br><strong>2.更新异常（Update Anomalies）</strong><br>&#x3D;&#x3D;数据冗余 ，更新数据时，维护数据完整性代价大&#x3D;&#x3D;<br>例：某系更换系主任后，系统必须修改与该系学生有关的每一个元组<br><strong>3.插入异常（Insertion Anomalies）</strong><br>&#x3D;&#x3D;该插的数据插不进去&#x3D;&#x3D;<br>例，如果一个系刚成立，尚无学生，我们就无法把这个<br>系及其系主任的信息存入数据库。<br><strong>4.删除异常（Deletion Anomalies）</strong><br>&#x3D;&#x3D;不该删除的数据不得不删&#x3D;&#x3D;<br>例，如果某个系的学生全部毕业了， 我们在删除该系学生信息的同时，把这个系及其系主任的信息也丢掉了。</p>
+<p><strong>分解关系模式</strong><br>把这个单一模式分成 3 个关系模式：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs cpp">S（Sno，Sdept，Sno → Sdept）;<br>SC（Sno，Cno，Grade，（Sno，Cno） → Grade）;<br>DEPT（Sdept，Mname，Sdept→ Mname）<br></code></pre></td></tr></table></figure>
+
+<h2 id="规范化"><a href="#规范化" class="headerlink" title="规范化"></a>规范化</h2><p>规范化理论正是用来改造关系模式，通过分解关系模式来消除其中不合适的数据依赖，以解决插入异常、删除异常、更新异常和数据冗余问题。<br><strong>一、函数依赖</strong><br><strong>1.函数依赖</strong><br>设 R(U)是一个属性集 U 上的关系模式，X 和 Y 是 U 的子集。<br>若对于 R(U)的任意一个可能的关系 r，r 中不可能存在两个元组在 X 上的属性值相等， 而在 Y 上的属性值不等， 则称“X 函数确定 Y” 或 “Y 函数依赖于 X”，记作 X→Y。<br>若 X→Y，则 X 称为这个函数依赖的决定属性组，也称为决定因素（Determinant）。</p>
+<p>函数依赖与属性间的联系类型有关：<br>(1) 一对一联系：X←→Y<br>(2) 多对一联系：X→Y<br>(3) 多对多联系：不存在依赖关系<br>(4) 可从属性间的联系类型来分析属性间的函数依赖</p>
+<p>ps：</p>
+<ol>
+<li>函数依赖不是指关系模式 R 的某个或某些关系实例满足的约束条件，而是指 R 的所有关系实例均要满足的约束条件。</li>
+<li>函数依赖是语义范畴的概念。只能根据数据的语义来确定函数依赖。</li>
+<li>数据库设计者可以对现实世界作强制的规定。</li>
+</ol>
+<p><strong>2.平凡函数依赖与非平凡函数依赖</strong><br>在关系模式 R(U)中，对于 U 的子集 X 和 Y，<br>如果 X→Y，但 Y⊈X，则称 X→Y 是非平凡的函数依赖<br>若 X→Y，但 Y⊆X, 则称 X→Y 是平凡的函数依赖<br>ps：于任一关系模式，平凡函数依赖都是必然成立的，它不反映新的语义，因此若不特别声明， 我们总是讨论非平凡函数依赖。</p>
+<p><strong>3.完全函数依赖与部分函数依赖</strong><br>在 R(U)中，如果 X→Y，并且对于 X 的任何一个真子集 X’，都有 X’ Y, 则称 Y 对 X 完全函数依赖，记作 X F Y。<br>若 X→Y，但 Y 不完全函数依赖于 X，则称 Y 对 X 部分函数依赖，记作$X^P→Y$。 $(S,C)^F→G$ ，$(S,C)^P→SN$</p>
+<p><strong>4.传递函数依赖</strong><br>在 R(U)中，如果$X→Y$，$(Y^{传递}→X)$ ,$Y→X$ ,$Y→Z$，则称 Z 对 X 传递函数依赖。记为：$X → Z$<br>ps:如果$Y→X$， 即$X←→Y$，则 Z 直接依赖于 X。</p>
+<p><strong>二、码</strong><br>设 K 为 R&lt;U,F&gt;中的属性或属性组合。若 K U， 则 K 称为 R 的侯选码（Candidate Key）。<br>若候选码多于一个，则选定其中的一个做为主码（Primary Key）。</p>
+<p><strong>1.主属性与非主属性</strong></p>
+<ul>
+<li>包含在任何一个候选码中的属性 ，称为主属性（Prime attribute）</li>
+<li>不包含在任何码中的属性称为非主属性（Nonprime attribute）或非码属性（Non-key attribute）</li>
+</ul>
+<p><strong>2.全码</strong></p>
+<ul>
+<li>整个属性组是码，称为全码（All-key）</li>
+</ul>
+<p><strong>3.外部码</strong><br>关系模式 R 中属性或属性组 X 并非 R 的码，但 X 是另一个关系模式的码，则称 X 是 R 的外部码（Foreign key）也称外码。<br>主码与外部码一起提供了表示关系间联系的手段</p>
+<p><strong>4.关系码的性质</strong></p>
+<ol>
+<li>每个关系必有码。</li>
+<li>主码具有标识元组的唯一性。主码是用来唯一标识关系中的元组的。</li>
+<li>关系码具有最小性。若抽去主码中任意一属性，则主码就失去标识的唯一性。</li>
+<li>主码中的任一属性值不能取空。</li>
+</ol>
+<p><strong>【返例】</strong><br>关系模式 S(S# , SN , SD , DEAN , C# , G)<br>主码：（S#，C#）<br>函数依赖：<br>$（S，C）^f→G$<br>$S → SN，（S，C）^p→SN$<br>$S → SD，（S，C）^p→ SD$<br>$SD → DEAN， S→ DEAN$<br>$（S，C）^p→DEAN$</p>
+<p><strong>三、范式</strong><br>范式是符合某一种级别的关系模式的集合<br>关系数据库中的关系必须满足一定的要求。满足不同程度要求的为不同范式。<br><strong>范式的种类：</strong></p>
+<ul>
+<li>第一范式(1NF)</li>
+<li>第二范式(2NF)</li>
+<li>第三范式(3NF)</li>
+<li>BC 范式(BCNF)</li>
+<li>第四范式(4NF)</li>
+<li>第五范式(5NF)</li>
+</ul>
+<p><strong>各种范式之间存在联系：</strong><br>1NF ⊃ 2NF ⊃ 3NF ⊃ BCNF ⊃ 4NF ⊃ 5NF<br>某一关系模式 R 为第 n 范式，可简记为 R∈nNF。<br>一个低一级范式的关系模式，通过模式分解可以转换为若干个高一级范式的关系模式的集合，这种过程就叫规范化</p>
+<p><strong>四、2NF</strong><br><strong>1.1NF 的定义</strong><br>如果一个关系模式 R 的所有属性都是不可分的基本数据项， 则 R∈1NF<br>第一范式是对关系模式的最起码的要求。不满足第一范式的数据库模式不能称为关系数据库<br>但是满足第一范式的关系模式并不一定是一个好的关系模式</p>
+<p><strong>2.2NF 的定义</strong><br>若 R∈1NF，且每一个非主属性完全函数依赖于码，则 R∈2NF。</p>
+<ul>
+<li>采用投影分解法将一个 1NF 的关系分解为多个 2NF 的关系，可以在一定程度上减轻原 1NF 关系中存在的插入异常、删除异常、数据冗余度大、修改复杂等问题。</li>
+<li>将一个 1NF 关系分解为多个 2NF 的关系，并不能完全消除关系模式中的各种异常情况和数据冗余</li>
+</ul>
+<p><strong>五、3NF</strong><br><strong>3NF 的定义</strong><br>关系模式 R&lt;U，F&gt; 中若不存在这样的码 X、属性组 Y 及非主属性 Z（Z ⊈ Y）, 使得 X→Y，Y→Z 成立，Y \→ X，则称 R&lt;U，F&gt; ∈ 3NF。<br>若 R∈3NF，则每一个非主属性既不部分依赖于码也不传递依赖于码。<br>(1) 每个非主属性既不部分依赖，也不传递依赖于 R 的任何码。<br>(2) 从 1NF→2NF：消除非主属性对码的部分函数依赖<br>(3) 从 2NF→3NF：消除非主属性对码的传递函数依赖<br>(4) 从一个表中删去不依赖于主码的数据列。</p>
+<ul>
+<li>采用投影分解法将一个 2NF 的关系分解为多个 3NF 的关系，可以在一定程度上解决原 2NF 关系中存在的插入异常、删除异常、数据冗余度大、修改复杂等问题。</li>
+<li>将一个 2NF 关系分解为多个 3NF 的关系后，仍然不能完全消除关系模式中的各种异常情况和数据冗余。</li>
+</ul>
+<p><strong>六、BCNF</strong><br>关系模式 R&lt;U，F&gt;∈1NF，若 X→Y 且 Y ⊈ X 时 X 必含有码，则 R&lt;U，F&gt; ∈BCNF。<br>等价于：每一个决定属性因素都包含码</p>
+<p>若 R∈BCNF<br>▪ 所有非主属性对每一个码都是完全函数依赖<br>▪ 所有的主属性对每一个不包含它的码，也是完全函数依赖<br>▪ 没有任何属性完全函数依赖于非码的任何一组属性</p>
+<p><strong>3NF 与 BCNF 的关系</strong><br><img src="https://img-blog.csdnimg.cn/20200406120108290.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br>如果 R∈3NF，且 R 只有一个候选码<br><img src="https://img-blog.csdnimg.cn/20200406120428795.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br><strong>BCNF 的关系模式所具有的性质</strong> 1.所有非主属性都完全函数依赖于每个候选码 2.所有主属性都完全函数依赖于每个不包含它的候选码 3.没有任何属性完全函数依赖于非码的任何一组属性</p>
+<p><strong>七、多值依赖</strong><br><strong>1.定义</strong><br>设 R(U)是一个属性集 U 上的一个关系模式， X、 Y 和 Z 是 U 的子集，并且 Z ＝ U－X－Y。关系模式 R(U)中多值依赖 X→→Y 成立，当且仅当对 R(U)的任一关系 r， r 在（x，z）上的每个对应一组 Y 的值，这组值仅仅决定于 x 值而与 z 值无关。</p>
+<p><strong>2.多值依赖的另一个等价的形式化的定义：</strong><br>在 R（U）的任一关系 r 中，如果存在元组 t，s 使得 t[X]&#x3D;s[X]，那么就必然存在元组 w，v r，（w，v 可以与 s，t 相同），使得 w[X]&#x3D;v[X]&#x3D;t[X]，而 w[Y]&#x3D;t[Y]，w[Z]&#x3D;s[Z]，v[Y]&#x3D;s[Y]，v[Z]&#x3D;t[Z]<br>（即交换 s，t 元组的 Y 值所得的两个新元组必在 r 中），则 Y 多值依赖于 X，记为 X→→Y。 这里，X，Y 是 U 的子集，Z&#x3D;U-X-Y。</p>
+<p><strong>3.平凡多值依赖和非平凡的多值依赖</strong><br>▪ 若 X→→Y，而 Z ＝ φ，则称 X→→Y 为平凡的多值依赖<br>▪ 否则称 X→→Y 为非平凡的多值依赖</p>
+<p><strong>4.多值依赖的性质</strong><br>（1）多值依赖具有对称性<br>若 X→→Y，则 X→→Z，其中 Z ＝ U－X－Y<br>（2）多值依赖具有传递性<br>若 X→→Y，Y→→Z， 则 X→→Z –Y<br>（3）函数依赖是多值依赖的特殊情况。<br>若 X→Y，则 X→→Y。<br>（4）若 X→→Y，X→→Z，则 X→→Y∪Z。<br>（5）若 X→→Y，X→→Z，则 X→→Y∩Z。<br>（6）若 X→→Y，X→→Z，则 X→→Y-Z，X→→Z -Y</p>
+<p><strong>5.多值依赖与函数依赖的区别</strong><br>(1) 有效性<br>多值依赖的有效性与属性集的范围有关<br>若 X→→Y 在 U 上成立，则在 W（X Y ⊆ W ⊆ U）上一定成立；反之则不然，即 X→→Y 在 W（W ⊂ U）上成立，在 U 上并不一定成立<br>▪ 多值依赖的定义中不仅涉及属性组 X 和 Y，而且涉及 U 中其余属性 Z。<br>▪ 一般地，在 R（U）上若有 X→→Y 在 W（W ⊂ U）上成立，则称 X→→Y 为 R（U）的嵌入型多值依赖</p>
+<p>只要在 R（U）的任何一个关系 r 中，元组在 X 和 Y 上的值满足定义（函数依赖），则函数依赖 X→Y 在任何属性集 W（X Y ⊆ W ⊆ U）上成立。</p>
+<p>(2)<br>▪ 若函数依赖 X→Y 在 R（U）上成立，则对于任何 Y’ ⊂ Y 均有 X→Y’ 成立<br>▪ 多值依赖 X→→Y 若在 R(U)上成立，不能断言对于任何 Y’ ⊂ Y 有 X→→Y’ 成立</p>
+<ul>
+<li>函数依赖规定某些元组不能出现在关系中，也称为相等产生依赖。</li>
+<li>多值依赖要求某种形式的其它元组必须在关系中，称为元组产生依赖。</li>
+</ul>
+<p><strong>八、4NF</strong><br>关系模式 R&lt;U，F&gt;∈1NF，如果对于 R 的每个非平凡多值依赖 X→→Y（Y ⊈ X），X 都含有码，则 R∈4NF。<br>如果 R ∈ 4NF， 则 R ∈ BCNF</p>
+<ul>
+<li>不允许有非平凡且非函数依赖的多值依赖</li>
+<li>允许的非平凡多值依赖是函数依赖</li>
+</ul>
+<p><strong>各级范式的关系</strong><br>(1) 4NF⊂BCNF⊂3NF⊂2NF⊂1NF<br>(2) 如果关系满足某个范式要求，也会满足级别较低的所有范式的要求<br>(3) 较高层次的范式比较低层次的范式更合乎要求</p>
+<p><strong>九、规范化小结</strong></p>
+<ul>
+<li>关系数据库的规范化理论是数据库逻辑设计的工具</li>
+<li>一个关系只要其分量都是不可分的数据项，它就是规范化的关系，但这只是最基本的规范化</li>
+<li>规范化程度可以有多个不同的级别</li>
+<li>规范化程度过低的关系不一定能够很好地描述现实世界，可能会存在插入异常、删除异常、修改复杂、数据冗余等问题</li>
+<li>一个低一级范式的关系模式，通过模式分解可以转换为若干个高一级范式的关系模式集合，这种过程就叫关系模式的规范化</li>
+<li>目的：尽量消除插入、删除异常，修改复杂，数据冗余</li>
+<li>基本思想：逐步消除数据依赖中不合适的部分<br>实质：概念的单一化</li>
+</ul>
+<p><strong>规范化步骤</strong><br><img src="https://img-blog.csdnimg.cn/20200406123247826.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzQ2MDIyNA==,size_16,color_FFFFFF,t_70" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<ul>
+<li>消除不合适的数据依赖</li>
+<li>使各关系模式达到某种程度的“分离”</li>
+<li>采用“一事一地”的模式设计原则<br>让一个关系描述一个概念、一个实体或者实体间的一种联系。若多于一个概念就把它“分离”出去</li>
+<li>所谓规范化实质上是概念的单一化</li>
+<li>不能说规范化程度越高的关系模式就越好</li>
+<li>在设计数据库模式结构时，必须对现实世界的实际情况和用户应用需求作进一步分析，确定一个合适的、能够反映现实世界的模式</li>
+<li>上面的规范化步骤可以在其中任何一步终止</li>
+</ul>
+<h2 id="数据依赖的公理系统"><a href="#数据依赖的公理系统" class="headerlink" title="数据依赖的公理系统"></a>数据依赖的公理系统</h2><p><strong>一、逻辑蕴含</strong><br>对于满足一组函数依赖 F 的关系模式 R &lt;U，F&gt;，其任何一个关系 r，若函数依赖 X→Y 都成立, （即 r 中任意两元组 t，s， 若 t[X］&#x3D;s[X］，则 t[Y］&#x3D;s[Y］），则称 F 逻辑蕴含 X →Y</p>
+<p><strong>二、Armstrong 公理系统</strong><br>一套推理规则，是模式分解算法的理论基础<br>用途</p>
+<ul>
+<li>求给定关系模式的码</li>
+<li>从一组函数依赖求得蕴含的函数依赖</li>
+</ul>
+<p>关系模式 R &lt;U，F &gt;来说有以下的推理规则：<br>A1.自反律（Reflexivity）：若 Y ⊆ X ⊆ U，则 X →Y 为 F 所蕴含。<br>A2.增广律（Augmentation）：若 X→Y 为 F 所蕴含，且 Z ⊆ U，则 XZ→YZ 为 F 所蕴含。<br>A3.传递律（Transitivity）：若 X→Y 及 Y→Z 为 F 所蕴含，则 X→Z 为 F 所蕴含。<br>注意：由自反律所得到的函数依赖均是平凡的函数依赖，自反律的使用并不依赖于 F</p>
+<p><strong>三、函数依赖闭包</strong><br><strong>1.F 的闭包：</strong><br>在关系模式 R&lt;U，F&gt;中为 F 所逻辑蕴含的函数依赖的全体叫作 F 的闭包，记为$F^+$。<br><strong>2.X 关于函数依赖集 F 的闭包：</strong><br>设 F 为属性集 U 上的一组函数依赖，X ⊆U， XF+ &#x3D;{ A|X→A 能由 F 根据 Armstrong 公理导出}， $X_F^+$称为属性集 X 关于函数依赖集 F 的闭包<br><strong>3.关于闭包的引理</strong><br><strong>引理：</strong><br>设 F 为属性集 U 上的一组函数依赖，X，Y ⊆ U，X→Y 能由 F 根据 Armstrong 公理导出的充分必要条件是$Y  ⊆ X_F^+$<br><strong>用途：</strong><br>将判定 X→Y 是否能由 F 根据 Armstrong 公理导出的问题，转化为求出 XF+ 、判定 Y 是否为 XF+的子集的问题<br><strong>4.求闭包的算法</strong><br>求属性集 X（X ⊆ U）关于 U 上的函数依赖集 F 的闭包 X_F^+<br>输入：X，F 输出：$X_F^+$<br>步骤：<br>（1）$令X^{（0）}&#x3D;X，i&#x3D;0$<br>（2）求 B，这里$B &#x3D; { A |(∃ V)( ∃ W)(V→W∈F∧V ⊆ X^{（i）}∧A∈W)}$<br>（3）$X^{（i+1）}&#x3D;B∪X^{（i）}$<br>（4）判断$X^{（i+1）}&#x3D; X^ {（i）}$吗?<br>（5）若相等或$X^{（i）}&#x3D;U$ , 则$X^{（i）}$就是$X_F^+$, 算法终止。<br>（6）若否，则 i&#x3D;i+l，返回第（2）步。</p>
+<p>令 ai &#x3D;|X（i）|，{ai }形成一个步长大于 1 的严格递增的序列，序列的上界是 | U |，因此该算法最多 |U| - |X| 次循环就会终止。</p>
+<p><strong>算法（求属性集的闭包）</strong><br>判定 X→Y 是否能由 F 根据 Armstrong 公理导出，<br>可转化为求$X_F^+$，判定$Y⊆X_F^+$是否成立。<br>输入：X，F<br>输出：<br>1）开始：$X_F^+$ :&#x3D; X;<br>2）考察每个 F 中的函数依赖 A→B， 若 $AX_F^+$ ，则 $X_F^+$:&#x3D; $X_F^+∪B$<br>3）继续考察，直到 不再增大为止。</p>
+<p><strong>5. Armstrong 公理系统的有效性与完备性</strong><br><strong>有效性</strong>：由 F 出发根据 Armstrong 公理推导出来的每一个函数依赖一定在 F+中<br>Armstrong 正确<br><strong>完备性</strong>：F+中的每一个函数依赖，必定可以由 F 出发根据 Armstrong 公理推导出来<br>Armstrong 公理够用，完全<br>完备性：所有不能用 Armstrong 公理推导出来 f, 都不为真；若 f 不能用 Armstrong 公理推导出来， f∉F+</p>
+<p><strong>6. 函数依赖集等价</strong><br>如果$G^+&#x3D;F^+$，就说函数依赖集 F 覆盖 G（F 是 G 的覆盖，或 G 是 F 的覆盖），或 F 与 G 等价。<br>$F^+ &#x3D; G^+$ 的充分必要条件是$F ⊆ G^+$ ，和$G ⊆ F^+$</p>
+<p><strong>7. 最小依赖集</strong><br>如果函数依赖集 F 满足下列条件，则称 F 为一个极小函数依赖集。亦称为最小依赖集或最小覆盖。记作 Fm：<br>(1)单属性化： F 中任一函数依赖的右部仅含有一个属性。<br>(2)无冗余化： F 中不存在这样的函数依赖 X→A，使得 F 与 F-{X→A}等价。<br>(3)既约化： F 中不存在这样的函数依赖 X→A， X 有真子集 Z 使得 F-{X→A}∪{Z→A}与 F 等价</p>
+<p><strong>8. 极小化过程</strong><br>每一个函数依赖集 F 均等价于一个极小函数依赖集 Fm。此 Fm 称为 F 的最小依赖集。<br>(1)逐一检查 F 中各函数依赖 FDi：X→Y，若 Y&#x3D;A1A2 …Ak， k &gt; 2，则用 { X→Aj |j&#x3D;1，2，…， k} 来取代 X→Y。<br>(2)逐一检查 F 中各函数依赖 FDi：X→A，令 G&#x3D;F-{X→A}， 若 A∈XG+， 则从 F 中去掉此函数依赖。<br>(3)逐一取出 F 中各函数依赖 FDi：X→A，设 X&#x3D;B1B2…Bm，逐一考查 Bi （i&#x3D;l，2，…，m），若 A ∈（X-Bi ）F+ ，则以 X-Bi 取代 X。</p>
+<h2 id="模式的分解"><a href="#模式的分解" class="headerlink" title="模式的分解"></a>模式的分解</h2><p>把低一级的关系模式分解为若干个高一级的关系模式的方法不是唯一的<br>只有能够保证分解后的关系模式与原关系模式等价，分解方法才有意义</p>
+<p><strong>三种模式分解等价的定义：</strong> 1.分解具有无损连接性 2.分解要保持函数依赖 3.分解既要保持函数依赖，又要具有无损连接性</p>
+<p><strong>具有无损连接性的模式分解</strong></p>
+<ul>
+<li><p>关系模式 R&lt;U,F&gt;的一个分解 ρ&#x3D;{ R1&lt;U1,F1&gt;，R2&lt;U2,F2&gt;， …， Rn&lt;Un,Fn&gt;}<br>若 R 与 R1、R2、…、Rn 自然连接的结果相等，则称关系模式 R 的这个分解 ρ 具有无损连接性（Lossless join）</p>
+</li>
+<li><p>具有无损连接性的分解保证不丢失信息</p>
+</li>
+<li><p>无损连接性不一定能解决插入异常、删除异常、修改复杂、数据冗余等问题</p>
+</li>
+<li><p>如果一个分解具有无损连接性，则它能够保证不丢失信息</p>
+</li>
+<li><p>如果一个分解保持了函数依赖，则它可以减轻或解决各种异常情况</p>
+</li>
+<li><p>分解具有无损连接性和分解保持函数依赖是两个互相独立的标准。具有无损连接性的分解不一定能够保持函数依赖；同样，保持函数依赖的分解也不一定具有无损连接性。</p>
+</li>
+</ul>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><ul>
+<li>若要求分解具有无损连接性，那么模式分解一定能够达到 4NF</li>
+<li>若要求分解保持函数依赖，那么模式分解一定能够达到 3NF，但不一定能够达到 BCNF</li>
+<li>若要求分解既具有无损连接性，又保持函数依赖，则模式分解一定能够达到 3NF，但不一定能够达到 BCNF</li>
+<li>规范化理论为数据库设计提供了理论的指南和工具<br>也仅仅是指南和工具</li>
+<li>并不是规范化程度越高，模式就越好<br>必须结合应用环境和现实世界的具体情况合理地选择数据库模式<blockquote>
+<p><strong>写在最后：</strong><br>本数据库专栏是由爱吃老谈酸菜的 DV 一同完成的，博客链接在主页友链，是我的好哥们 ✈<br>Name:风骨散人，目前是一名双非在校大学生，预计考研，热爱编程，热爱技术，喜欢分享，知识无界，希望我的分享可以帮到你！名字的含义：我想有一天我能有能力随心所欲不逾矩，不总是向生活低头，有能力让家人拥有富足的生活而不是为了生计而到处奔波。“世人慌慌张张，不过是图碎银几两。偏偏这碎银几两，能解世间惆怅，可让父母安康，可护幼子成长 …”<br><strong>文章主要内容：</strong><br>Python,C++,C 语言,JAVA,C#等语言的教程<br>ACM 题解、模板、算法等，主要是数据结构，数学和图论<br>设计模式，数据库，计算机网络，操作系统，计算机组成原理<br>Python 爬虫、深度学习、机器学习<br>计算机系<strong>408</strong>考研的所有专业课内容<br><strong>目前还在更新中，先关注不迷路。微信公众号，cnblogs（博客园），CSDN 同名“风骨散人”</strong></p>
+</blockquote>
+</li>
+</ul>
+<blockquote>
+<p>如果有什么想看的，可以私信我，如果在能力范围内，我会发布相应的博文！<br>感谢大家的阅读！😘 你的点赞、收藏、关注是对我最大的鼓励！</p>
+</blockquote>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" class="category-chain-item">数据库</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>『数据库』朴实无华且枯燥的数据库文章-关系数据理论</div>
+      <div>https://chiamzhang.github.io/2024/06/29/『数据库』朴实无华且枯燥的数据库文章-关系数据理论/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>Chiam</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>June 29, 2024</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>Licensed under</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2024/06/29/%E3%80%8E%E6%95%B0%E6%8D%AE%E5%BA%93%E3%80%8F%E6%9C%B4%E5%AE%9E%E6%97%A0%E5%8D%8E%E7%9A%84%E6%95%B0%E6%8D%AE%E5%BA%93%E5%A4%9A%E8%A1%A8%E6%9F%A5%E8%AF%A2%EF%BC%8C%E8%BF%9E%E6%8E%A5%E6%9F%A5%E8%AF%A2%E3%80%81%E7%AC%9B%E5%8D%A1%E5%B0%94%E7%A7%AF/" title="『数据库』朴实无华的数据库多表查询，连接查询、笛卡尔积">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">『数据库』朴实无华的数据库多表查询，连接查询、笛卡尔积</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/06/29/%E3%80%8E%E6%95%B0%E6%8D%AE%E5%BA%93%E3%80%8F%E6%97%A0%E8%81%8A%E5%88%B0%E7%88%86%E7%82%B8%E7%9A%84%E6%95%B0%E6%8D%AE%E5%BA%93%E6%96%87%E7%AB%A0-%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9A%84%E5%AE%89%E5%85%A8%E6%80%A7/" title="『数据库』无聊到爆炸的数据库文章-数据库的安全性">
+                        <span class="hidden-mobile">『数据库』无聊到爆炸的数据库文章-数据库的安全性</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"fIfc7WqUDZohlQuPc2lz5mJy-MdYXbMMI","appKey":"zjlAG3ZA3o4cBHVAkjzc2Z20","path":"window.location.pathname","placeholder":"留言仅限讨论，禁止广告等行为","avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"https://fifc7wqu.api.lncldglobal.com","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>Table of Contents</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <meta name="referrer" content="no-referrer" /> <footer id="footer" role="contentinfo"> <meta name="referrer" content="no-referrer" /> <div class="divider"> <div class="wall"></div> <img class="animals" src="/img/footer_animals_new.png" srcset="/img/loading.gif" lazyload alt="Footer Animals"> </div> <div class="container" data-index="450"> <p> <a href="https://chiamzhang.github.io" target="_blank">DogEgg</a> <i class="iconfont icon-love"></i> <a href="#" target="_blank">LittePig</a> </p> <p> Powered by  <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-pen"></i> Theme  <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> </p> </div> </footer> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+  
+<script src="/js/love.js"></script>
+<script src="/js/funnyTitle.js"></script>
+<script src="/js/backTop.js"></script>
+<script src="//cdn.jsdelivr.net/gh/bynotes/texiao/source/js/xiaoxuehua.js"></script>
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+</html>

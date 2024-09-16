@@ -1,0 +1,901 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/Mine.jpg">
+  <link rel="icon" href="/img/Mine.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Chiam">
+  <meta name="keywords" content="Algorithms，Cybersecurity">
+  
+    <meta name="description" content="Constant dripping wears away a stone">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Homepage of Chiam">
+<meta property="og:url" content="https://chiamzhang.github.io/page/68/index.html">
+<meta property="og:site_name" content="Homepage of Chiam">
+<meta property="og:description" content="Constant dripping wears away a stone">
+<meta property="og:locale" content="en_US">
+<meta property="article:author" content="Chiam">
+<meta property="article:tag" content="Algorithms，Cybersecurity">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>Homepage of Chiam</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"chiamzhang.github.io","root":"/","version":"1.9.5-a","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":"❡"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":2},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
+
+
+<body>
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><header>
+    
+
+<div class="header-inner" style="height: 100vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Chiam&#39;s Blogs</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                
+                <span>Home</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                
+                <span>Archives</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                
+                <span>Categories</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                
+                <span>About</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                
+                <span>Links</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/PartyAnimals.webp') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="&lt;font color=White &gt;life&amp;nbsp;&lt;/font&gt;  &lt;font color=White &gt;is&amp;nbsp;&lt;/font&gt;  &lt;font color=White &gt;struggle!!&lt;/font&gt;"></span>
+          
+        </div>
+
+        
+      </div>
+
+      
+        <div class="scroll-down-bar">
+          <i class="iconfont icon-arrowdown"></i>
+        </div>
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      <div class="container nopadding-x-md">
+        <div id="board"
+          style="margin-top: 0">
+          
+          <div class="container">
+            <div class="row">
+              <div class="col-12 col-md-10 m-auto">
+                
+
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2024/06/29/%E3%80%8E%E5%BC%80%E5%8F%91%E3%80%8FXML--XML%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E7%B2%BE%E9%80%9A%20Part%201%20%E8%AE%A4%E8%AF%86XML/" target="_self">
+          『开发』XML--XML从入门到精通 Part 1 认识XML
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2024/06/29/%E3%80%8E%E5%BC%80%E5%8F%91%E3%80%8FXML--XML%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E7%B2%BE%E9%80%9A%20Part%201%20%E8%AE%A4%E8%AF%86XML/" target="_self">
+        <div>
+          『开发』XML–XML 从入门到精通 Part 1 认识 XML XML 指可扩展标记语言（EXtensible Markup Language）  XML 是一种标记语言，很类似 HTML  XML 的设计宗旨是传输数据，而非显示数据  XML 标签没有被预定义。您需要自行定义标签。  XML 被设计为具有自我描述性。  X ML 是 W3C 的推荐标准   可扩展标记语言，标准通用标记语言的子
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2024-06-29 21:16" pubdate>
+              2024-06-29
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E5%BC%80%E5%8F%91/" class="category-chain-item">开发</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2024/06/29/%E3%80%8E%E5%BC%80%E5%8F%91%E3%80%8FSpringboot%E6%8A%A5%E9%94%99/" target="_self">
+          『开发』Springboot报错
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2024/06/29/%E3%80%8E%E5%BC%80%E5%8F%91%E3%80%8FSpringboot%E6%8A%A5%E9%94%99/" target="_self">
+        <div>
+          『开发』Springboot 报错12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667com.fasterxml.jackson.databind.exc.InvalidDefinitionExcept
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2024-06-29 21:16" pubdate>
+              2024-06-29
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E5%BC%80%E5%8F%91/" class="category-chain-item">开发</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2024/06/29/%E3%80%8E%E5%AE%89%E5%8D%93%E3%80%8F%E5%AE%89%E5%8D%93%E5%BC%80%E5%8F%91%E5%9F%BA%E7%A1%80-%E5%9F%BA%E6%9C%AC%E6%8E%A7%E4%BB%B6/" target="_self">
+          『安卓』安卓开发基础-基本控件
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2024/06/29/%E3%80%8E%E5%AE%89%E5%8D%93%E3%80%8F%E5%AE%89%E5%8D%93%E5%BC%80%E5%8F%91%E5%9F%BA%E7%A1%80-%E5%9F%BA%E6%9C%AC%E6%8E%A7%E4%BB%B6/" target="_self">
+        <div>
+          『安卓』安卓开发基础-基本控件1. Textview显示文字，相当于 Panel。一般用来文本展示，继承自 android.view.View，在 android.widget 包中。 12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2024-06-29 21:16" pubdate>
+              2024-06-29
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E5%AE%89%E5%8D%93/" class="category-chain-item">安卓</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2024/06/29/%E3%80%8EWindwos%E3%80%8F%E7%BD%91%E9%80%9F%E6%85%A2%EF%BC%9F%E4%B8%8D%EF%BC%81%E5%8F%AF%E8%83%BD%E6%98%AFDNS%E5%87%BA%E4%BA%86%E9%97%AE%E9%A2%98%EF%BC%81%20%E5%85%AC%E5%85%B1DNS%E4%BC%98%E9%80%89%E4%B9%8B%20BAT%20%20%E7%99%BE%E5%BA%A6%E3%80%81%E8%85%BE%E8%AE%AF%E3%80%81%E9%98%BF%E9%87%8C%E3%80%81%E8%B0%B7%E6%AD%8CDNS%E5%93%AA%E4%B8%AA%E6%9B%B4%E5%BF%AB%EF%BC%9F/" target="_self">
+          『Windwos』网速慢？不！可能是DNS出了问题！ 公共DNS优选之 BAT  百度、腾讯、阿里、谷歌DNS哪个更快？
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2024/06/29/%E3%80%8EWindwos%E3%80%8F%E7%BD%91%E9%80%9F%E6%85%A2%EF%BC%9F%E4%B8%8D%EF%BC%81%E5%8F%AF%E8%83%BD%E6%98%AFDNS%E5%87%BA%E4%BA%86%E9%97%AE%E9%A2%98%EF%BC%81%20%E5%85%AC%E5%85%B1DNS%E4%BC%98%E9%80%89%E4%B9%8B%20BAT%20%20%E7%99%BE%E5%BA%A6%E3%80%81%E8%85%BE%E8%AE%AF%E3%80%81%E9%98%BF%E9%87%8C%E3%80%81%E8%B0%B7%E6%AD%8CDNS%E5%93%AA%E4%B8%AA%E6%9B%B4%E5%BF%AB%EF%BC%9F/" target="_self">
+        <div>
+          『Windwos』网速慢？不！可能是 DNS 出了问题！ 公共 DNS 优选之 BAT 百度、腾讯、阿里、谷歌 DNS 哪个更快？科普一下：DNS 跟翻墙没有任何关系。本篇文章只是 DNS 域名解析服务器的测试与推荐，没有任何翻墙技术。 如果一下还是解决不了你的问题请这边走 首先是 Google 的 DNS：8.8.8.8 丢包严重 PASS 但是能解析世界上，大多数的地址。 二、百度 DNS18
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2024-06-29 21:16" pubdate>
+              2024-06-29
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Windwos/" class="category-chain-item">Windwos</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2024/06/29/%E3%80%8EWindwos%E3%80%8F%E6%8F%90%E9%AB%98%E5%AD%A6%E4%B9%A0%E6%95%88%E7%8E%87-%E4%BB%8E%E4%B8%8B%E8%BD%BD%E6%AD%A3%E7%A1%AE%E8%BD%AF%E4%BB%B6%E5%81%9A%E8%B5%B7/" target="_self">
+          『Windwos』提高学习效率-从下载正确软件做起
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2024/06/29/%E3%80%8EWindwos%E3%80%8F%E6%8F%90%E9%AB%98%E5%AD%A6%E4%B9%A0%E6%95%88%E7%8E%87-%E4%BB%8E%E4%B8%8B%E8%BD%BD%E6%AD%A3%E7%A1%AE%E8%BD%AF%E4%BB%B6%E5%81%9A%E8%B5%B7/" target="_self">
+        <div>
+          『Windwos』提高学习效率-从下载正确软件做起提高学习效率–从下载正确软件做起我们一直都在不断的学习，为了让你的学习过程更加的高效，节约时间，获取更多的知识，今天给大家推荐几个提高学习效率的工具。 一、笔记类工具 笔记类工具目前市场上有很多，为知笔记，印象笔记，有道云笔记之类的，但最近发现一款叫做灵朦的 APP 对于笔记记录整理非常好用。 比较推荐 Onenote，全平台通用，可操作性比较大，
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2024-06-29 21:16" pubdate>
+              2024-06-29
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Windwos/" class="category-chain-item">Windwos</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2024/06/29/%E3%80%8EWindows%E3%80%8F%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%B8%AD%E6%B2%A1%E6%9C%89%E6%B5%8F%E8%A7%88%E5%99%A8%E6%80%8E%E4%B9%88%E5%AE%89%E8%A3%85Edge/" target="_self">
+          『Windows』计算机中没有浏览器怎么安装Edge
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2024/06/29/%E3%80%8EWindows%E3%80%8F%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%B8%AD%E6%B2%A1%E6%9C%89%E6%B5%8F%E8%A7%88%E5%99%A8%E6%80%8E%E4%B9%88%E5%AE%89%E8%A3%85Edge/" target="_self">
+        <div>
+          『Windows』计算机中没有浏览器怎么安装 Edge计算机中没有浏览器怎么安装 Edge1. 电脑中有 winget使用 powershell 直接调用winget install edge 2. 电脑中有 Microsoft Store在 Microsoft Store 查找 Edge 下载即可 3. 使用文件传输工具cURL下载安装包下载安装包 curl “https://c2rsetup.
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2024-06-29 21:16" pubdate>
+              2024-06-29
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Windows/" class="category-chain-item">Windows</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2024/06/29/%E3%80%8EWindwos%E3%80%8F%E5%AE%8C%E7%BE%8E%E8%A7%A3%E5%86%B3Win10%E2%80%9C%E6%97%A0%E6%B3%95%E7%99%BB%E9%99%86%E5%88%B0%E4%BD%A0%E7%9A%84%E8%B4%A6%E6%88%B7%E2%80%9D%E9%97%AE%E9%A2%98%EF%BC%8C%E6%97%A0%E6%B3%95%E7%99%BB%E5%BD%95%E8%B4%A6%E6%88%B7%E7%9A%84%E5%85%A8%E6%96%B9%E9%9D%A2%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88%EF%BC%81/" target="_self">
+          『Windwos』完美解决Win10“无法登陆到你的账户”问题，无法登录账户的全方面解决方案！
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2024/06/29/%E3%80%8EWindwos%E3%80%8F%E5%AE%8C%E7%BE%8E%E8%A7%A3%E5%86%B3Win10%E2%80%9C%E6%97%A0%E6%B3%95%E7%99%BB%E9%99%86%E5%88%B0%E4%BD%A0%E7%9A%84%E8%B4%A6%E6%88%B7%E2%80%9D%E9%97%AE%E9%A2%98%EF%BC%8C%E6%97%A0%E6%B3%95%E7%99%BB%E5%BD%95%E8%B4%A6%E6%88%B7%E7%9A%84%E5%85%A8%E6%96%B9%E9%9D%A2%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88%EF%BC%81/" target="_self">
+        <div>
+          『Windwos』完美解决 Win10“无法登陆到你的账户”问题，无法登录账户的全方面解决方案！因为很多软件涉及环境变量问题，所以如果你的很多软件的数据在 User 目录下，且用的绝对路径，就会导致软件崩溃，但是修改对系统应用不会造成影响，如果有影响那大概率操作失误。环境变量可以查百度改，有些可以从应用里修改，但是还是要说，修改名称有一定的风险，特别是你的软件已经很多了的情况，虽然大部分读者的反馈
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2024-06-29 21:16" pubdate>
+              2024-06-29
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Windwos/" class="category-chain-item">Windwos</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2024/06/29/%E3%80%8EWindows%E3%80%8F%E5%A6%82%E4%BD%95%E4%BC%98%E9%9B%85%E7%9A%84%E5%8D%B8%E8%BD%BDEdge%E6%B5%8F%E8%A7%88%E5%99%A8/" target="_self">
+          『Windows』如何优雅的卸载Edge浏览器
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2024/06/29/%E3%80%8EWindows%E3%80%8F%E5%A6%82%E4%BD%95%E4%BC%98%E9%9B%85%E7%9A%84%E5%8D%B8%E8%BD%BDEdge%E6%B5%8F%E8%A7%88%E5%99%A8/" target="_self">
+        <div>
+          『Windows』如何优雅的卸载 Edge 浏览器​ 如何优雅的卸载 Edge 浏览器如何优雅的卸载 Edge 浏览器由于 Edge 浏览器越来越复杂，功能越来越繁琐我是真的一刻也用不下去了。虽然我主力是火狐浏览器，Edge 用来访问一些只能使用 Chromium 内核的网页作为备用。 但是我现在一打开 Edge 浏览器我就窝火，也懒得再去调整优化，满眼两个大字”吃人” 不对！是“臃肿”“恶心”。
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2024-06-29 21:16" pubdate>
+              2024-06-29
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Windows/" class="category-chain-item">Windows</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2024/06/29/%E3%80%8EWindows%E3%80%8FWindows%E7%B3%BB%E7%BB%9F%E4%BF%AE%E6%94%B9cmd%E7%AA%97%E5%8F%A3%E7%BC%96%E7%A0%81%E6%A0%BC%E5%BC%8F/" target="_self">
+          『Windows』Windows系统修改cmd窗口编码格式
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2024/06/29/%E3%80%8EWindows%E3%80%8FWindows%E7%B3%BB%E7%BB%9F%E4%BF%AE%E6%94%B9cmd%E7%AA%97%E5%8F%A3%E7%BC%96%E7%A0%81%E6%A0%BC%E5%BC%8F/" target="_self">
+        <div>
+          『Windows』Windows 系统修改 cmd 窗口编码格式1. 临时修改进入 cmd 窗口后，直接执行chcp 65001 2. 永久修改在运行中输入 regedit，找到 HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Command Processor然后“右键-新建”，选择“字符串值”，“名称”列填写 autorun，数值数据填写 chcp 65001 3.
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2024-06-29 21:16" pubdate>
+              2024-06-29
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Windows/" class="category-chain-item">Windows</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2024/06/29/%E3%80%8EWindows%E3%80%8FWindows%2010%E9%85%8D%E7%BD%AEVS%20Code%20C++%E7%8E%AF%E5%A2%83%EF%BC%88%E8%B6%85%E8%AF%A6%E7%BB%86%EF%BC%8C%E9%9D%A2%E5%90%91%E5%B0%8F%E7%99%BD%E4%BB%A5%E5%8F%8A%E5%A4%A7%E4%BD%AC%E4%BB%AC%EF%BC%89/" target="_self">
+          『Windows』Windows 10配置VS Code C++环境（超详细，面向小白以及大佬们）
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2024/06/29/%E3%80%8EWindows%E3%80%8FWindows%2010%E9%85%8D%E7%BD%AEVS%20Code%20C++%E7%8E%AF%E5%A2%83%EF%BC%88%E8%B6%85%E8%AF%A6%E7%BB%86%EF%BC%8C%E9%9D%A2%E5%90%91%E5%B0%8F%E7%99%BD%E4%BB%A5%E5%8F%8A%E5%A4%A7%E4%BD%AC%E4%BB%AC%EF%BC%89/" target="_self">
+        <div>
+          『Windows』Windows 10 配置 VS Code C++环境（超详细，面向小白以及大佬们）看完这个，还有下一篇：门在这我看了网上的大佬们配的我是在是看不懂啊？我是一个小白啊？这太难了，这阻挡不了我，想使用这很骚的 IDE，于是在不断的摸索下，终于配置成功，小白们也不用慌，这次非常简单。一定可以的。1.下载 VS Code 下载网址：https://code.visualstudio.c
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2024-06-29 21:16" pubdate>
+              2024-06-29
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Windows/" class="category-chain-item">Windows</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+      </div>
+    </article>
+  </div>
+
+
+
+  <nav aria-label="navigation">
+    <span class="pagination" id="pagination">
+      <a class="extend prev" rel="prev" href="/page/67/#board"><i class="iconfont icon-arrowleft"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/66/#board">66</a><a class="page-number" href="/page/67/#board">67</a><span class="page-number current">68</span><a class="page-number" href="/page/69/#board">69</a><a class="page-number" href="/page/70/#board">70</a><span class="space">&hellip;</span><a class="page-number" href="/page/76/#board">76</a><a class="extend next" rel="next" href="/page/69/#board"><i class="iconfont icon-arrowright"></i></a>
+    </span>
+  </nav>
+
+
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <meta name="referrer" content="no-referrer" /> <footer id="footer" role="contentinfo"> <meta name="referrer" content="no-referrer" /> <div class="divider"> <div class="wall"></div> <img class="animals" src="/img/footer_animals_new.png" srcset="/img/loading.gif" lazyload alt="Footer Animals"> </div> <div class="container" data-index="450"> <p> <a href="https://chiamzhang.github.io" target="_blank">DogEgg</a> <i class="iconfont icon-love"></i> <a href="#" target="_blank">LittePig</a> </p> <p> Powered by  <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-pen"></i> Theme  <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> </p> </div> </footer> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+  
+<script src="/js/love.js"></script>
+<script src="/js/funnyTitle.js"></script>
+<script src="/js/backTop.js"></script>
+<script src="//cdn.jsdelivr.net/gh/bynotes/texiao/source/js/xiaoxuehua.js"></script>
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+</html>

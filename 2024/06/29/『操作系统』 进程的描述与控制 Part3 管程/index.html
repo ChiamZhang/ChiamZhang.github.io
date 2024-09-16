@@ -1,0 +1,823 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/Mine.jpg">
+  <link rel="icon" href="/img/Mine.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Chiam">
+  <meta name="keywords" content="Algorithms，Cybersecurity">
+  
+    <meta name="description" content="『操作系统』 进程的描述与控制 Part3 管程@[toc] 2.6 管程信号量同步机制存在的问题  同步操作分散：信号量机制中，同步操作分散在各个进程中，使用不当就可能导致进程死锁; 易读性差：要了解对于一组共享变量及信号量的操作是否正确，必须通读整个系统或者并发程序； 不利于修改和维护：各模块的独立性差，任一组变量或一段代码的修改都可能影响全局； 正确性难以保证：操作系统或并发程序通常很大，很">
+<meta property="og:type" content="article">
+<meta property="og:title" content="『操作系统』 进程的描述与控制 Part3 管程">
+<meta property="og:url" content="https://chiamzhang.github.io/2024/06/29/%E3%80%8E%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E3%80%8F%20%E8%BF%9B%E7%A8%8B%E7%9A%84%E6%8F%8F%E8%BF%B0%E4%B8%8E%E6%8E%A7%E5%88%B6%20Part3%20%E7%AE%A1%E7%A8%8B/index.html">
+<meta property="og:site_name" content="Homepage of Chiam">
+<meta property="og:description" content="『操作系统』 进程的描述与控制 Part3 管程@[toc] 2.6 管程信号量同步机制存在的问题  同步操作分散：信号量机制中，同步操作分散在各个进程中，使用不当就可能导致进程死锁; 易读性差：要了解对于一组共享变量及信号量的操作是否正确，必须通读整个系统或者并发程序； 不利于修改和维护：各模块的独立性差，任一组变量或一段代码的修改都可能影响全局； 正确性难以保证：操作系统或并发程序通常很大，很">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20201107110635344.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzQ2MDIyNA==,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20201107110827964.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzQ2MDIyNA==,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20201107110955582.png#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20201107112506252.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzQ2MDIyNA==,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="article:published_time" content="2024-06-29T13:16:53.828Z">
+<meta property="article:modified_time" content="2023-12-05T16:18:04.073Z">
+<meta property="article:author" content="Chiam">
+<meta property="article:tag" content="Algorithms，Cybersecurity">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20201107110635344.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzQ2MDIyNA==,size_16,color_FFFFFF,t_70#pic_center">
+  
+  
+  
+  <title>『操作系统』 进程的描述与控制 Part3 管程 - Homepage of Chiam</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"chiamzhang.github.io","root":"/","version":"1.9.5-a","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":"❡"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":2},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
+
+
+<body>
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Chiam&#39;s Blogs</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                
+                <span>Home</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                
+                <span>Archives</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                
+                <span>Categories</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                
+                <span>About</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                
+                <span>Links</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="『操作系统』 进程的描述与控制 Part3 管程"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-06-29 21:16" pubdate>
+          June 29, 2024 pm
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          4.8k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          41 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">『操作系统』 进程的描述与控制 Part3 管程</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="『操作系统』-进程的描述与控制-Part3-管程"><a href="#『操作系统』-进程的描述与控制-Part3-管程" class="headerlink" title="『操作系统』 进程的描述与控制 Part3 管程"></a>『操作系统』 进程的描述与控制 Part3 管程</h1><p>@[toc]</p>
+<h1 id="2-6-管程"><a href="#2-6-管程" class="headerlink" title="2.6 管程"></a>2.6 管程</h1><p><strong>信号量同步机制存在的问题</strong></p>
+<ul>
+<li>同步操作分散：信号量机制中，同步操作分散在各个进程中，使用不当就可能导致进程死锁;</li>
+<li>易读性差：要了解对于一组共享变量及信号量的操作是否正确，必须通读整个系统或者并发程序；</li>
+<li>不利于修改和维护：各模块的独立性差，任一组变量或一段代码的修改都可能影响全局；</li>
+<li>正确性难以保证：操作系统或并发程序通常很大，很难保证这样一个复杂的系统没有逻辑错误；</li>
+</ul>
+<h2 id="管程的基本概念"><a href="#管程的基本概念" class="headerlink" title="管程的基本概念"></a>管程的基本概念</h2><p>管程：管程是关于共享资源的数据结构及一组针对该资源的操作过程所构成的软件模块。<br>管程：管理过程</p>
+<h2 id="1-管程的组成"><a href="#1-管程的组成" class="headerlink" title="1.管程的组成"></a>1.管程的组成</h2><p>（1）名称：<br>（2）数据结构说明：一组局部于管程的共享变量；<br>（3）操作过程：对共享变量进行操作的一组过程；<br>（4）初始化代码：对共享变量进行初始化的代码。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs cpp">TYPE monitor_name = MONITOR;<br>共享变量说明;<br>procedure 过程名（形参表）；<br>		过程局部变量说明；<br>		begin<br>			语句序列；<br>		end;<br>......<br>begin<br>	共享变量初始化语句序列；<br>end;<br></code></pre></td></tr></table></figure>
+
+<h2 id="2-管程的主要特性"><a href="#2-管程的主要特性" class="headerlink" title="2.管程的主要特性"></a>2.管程的主要特性</h2><p>&#x3D;&#x3D;共享性、安全性、互斥性&#x3D;&#x3D;</p>
+<ul>
+<li><strong>模块化</strong>：一个管程是一个基本程序单位，可以单独编译；</li>
+<li><strong>抽象数据类型</strong>：管程是一种特殊的数据类型，其中不仅有数据，而且有对数据进行操作的代码；</li>
+<li><strong>信息封装</strong>：管程中的内部过程（函数）实现了某些功能，至于这些功能是怎样实现的，在其外部则是不可见的；</li>
+<li>局部于管程的数据只能被局部于管程内的过程所访问；</li>
+<li>一个进程只能通过调用管程内的过程才能进入管程访问共享数据；</li>
+<li>每次仅允许一个进程在管程内执行某个内部过程；</li>
+</ul>
+<h2 id="3-条件变量"><a href="#3-条件变量" class="headerlink" title="3.条件变量"></a>3.条件变量</h2><ul>
+<li><strong>条件变量</strong>：当调用管程的进程无法运行时，用于阻塞进程的信号量；</li>
+<li><strong>同步原语 wait</strong>：当一个管程过程发现无法继续时（如发现没有可用资源时），它在某些条件变量上执行 wait，这个动作引起调用进程阻塞；</li>
+<li><strong>同步原语 signal</strong>：唤醒等待队列中的队首进程。</li>
+</ul>
+<p><strong>等待及唤醒操作</strong></p>
+<ul>
+<li>c.wait：进程将自己阻塞在 c 队列上；</li>
+<li>c.signal：将 c 队列中的一个等待进程唤醒。</li>
+<li>signal 操作的作用：<br>唤醒 c 队列中一个被阻塞的进程，<br>若 c 队列为空则 signal 操作不产生任何效果，<br>这与信号量机制中的 signal 操作不同。</li>
+</ul>
+<p><strong>管程要解决的问题</strong><br><strong>（1）互斥</strong><br>管程是互斥进入的： 为了保证管程中数据结构的数据完整性， 管程的互斥性是由编译器负责保证的。<br><strong>（2）同步</strong></p>
+<ul>
+<li>管程内设置条件变量及等待&#x2F;唤醒操作来实现同步；</li>
+<li>可以让一个进程在条件变量上等待(此时，应先释放管程的使用权)；</li>
+<li>也可通过发送信号将等待在条件变量上的进程唤醒。</li>
+</ul>
+<h2 id="4-管程的实现"><a href="#4-管程的实现" class="headerlink" title="4.管程的实现"></a>4.管程的实现</h2><ul>
+<li>各进程必须互斥调用管程</li>
+<li>同步原语具有条件变量，以区别不同条件的 wait 和 signal 同步操作</li>
+</ul>
+<p><strong>HOARE 管程__条件变量的实现</strong><br>条件变量——在管程内部说明和使用的一种特殊类型的变量<br>var c:condition;<br>对于条件变量，可以执行 wait 和 signal 操作</p>
+<p>c.wait：<br>如果紧急等待队列非空，则唤醒第一个等待者，否则释放管程的互斥权；执行此操作的进程进入 c 链末尾。<br>c.signal：<br>如果 c 链为空，则相当于空操作，执行此操作的进程继续执行；否则唤醒第一个等待者，执行此操作的进程进入紧急等待队列的末尾。</p>
+<h2 id="5-管程和进程的异同点"><a href="#5-管程和进程的异同点" class="headerlink" title="5.管程和进程的异同点"></a>5.管程和进程的异同点</h2><p>（1）设置进程和管程的目的不同：<br>进程：实现系统的并发性<br>管程：解决共享资源的使用(互斥)<br>（2）系统管理数据结构不同：<br>进程：PCB<br>管程：等待队列<br>（3）管程被进程调用</p>
+<h3 id="练习题"><a href="#练习题" class="headerlink" title="练习题"></a>练习题</h3><p><strong>1.</strong> 下列关于管程的描述中，哪一个是不正确的？（C）<br>A.管程的主要作用是管理共享资源（数据结构）<br>B.进程只能调用管程提供的过程对管程中的数据结构进行处理<br>&#x3D;&#x3D;C.管程中需要提供互斥量以保证管程的互斥性&#x3D;&#x3D;<br>D.管程有自己的名字</p>
+<p><strong>2.</strong> 下列关于管程的描述，正确的是（BCD）。<br>A.管程只能用于实现进程的互斥<br>&#x3D;&#x3D;B.管程是由程序设计语言支持的进程互斥同步机制&#x3D;&#x3D;<br>&#x3D;&#x3D;C.任何时候只能有一个进程在管程中执行&#x3D;&#x3D;<br>&#x3D;&#x3D;D.管程中定义的变量只能被管程内的过程访问&#x3D;&#x3D;</p>
+<p><strong>3.</strong> [2016 考研真题 32]下列关于管程的叙述中，错误的是：(A)<br>&#x3D;&#x3D;A．管程只能用于实现进程的互斥&#x3D;&#x3D;<br>B．管程是由编程语言支持的进程同步机制<br>C．任何时候只能有一个进程在管程中执行<br>D．管程中定义的变量只能被管程内的过程访问</p>
+<h1 id="2-7-进程通信"><a href="#2-7-进程通信" class="headerlink" title="2.7 进程通信"></a>2.7 进程通信</h1><p>进程之间的信息交换<br>（1）低级通信——进程同步</p>
+<ul>
+<li>低效、少量数据传递</li>
+<li>通信实现细节对用户不透明<br>（2）高级通信——进程通信</li>
+<li>高效、大量数据传递</li>
+<li>通信实现细节对用户透明</li>
+</ul>
+<h2 id="进程通信的类型"><a href="#进程通信的类型" class="headerlink" title="进程通信的类型"></a>进程通信的类型</h2><h3 id="共享存储器系统"><a href="#共享存储器系统" class="headerlink" title="共享存储器系统"></a>共享存储器系统</h3><p>在共享存储器系统中，相互通信的进程共享某些存储区，进程之间能够通过这些空间进行通信。<br><img src="https://img-blog.csdnimg.cn/20201107110635344.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzQ2MDIyNA==,size_16,color_FFFFFF,t_70#pic_center" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<h4 id="练习题-1"><a href="#练习题-1" class="headerlink" title="练习题"></a>练习题</h4><p><strong>1.</strong> 采用共享内存进行进程间通信的方法需要程序员解决的问题是（C）<br>A.保证共享内存空间不被破坏<br>B.分配共享内存空间的大小<br>&#x3D;&#x3D;C.处理进程在使用共享内存过程中的互斥关系&#x3D;&#x3D;<br>D.设计共享内存空间的访问原语</p>
+<h3 id="消息传递系统"><a href="#消息传递系统" class="headerlink" title="消息传递系统"></a>消息传递系统</h3><p>进程间的数据交换，以格式化的消息为单位。</p>
+<p><strong>计算机网络中</strong>：消息称为报文。程序员直接利用系统提供的一组通信命令(原语)进行通信。<img src="https://img-blog.csdnimg.cn/20201107110827964.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzQ2MDIyNA==,size_16,color_FFFFFF,t_70#pic_center" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br><strong>分类</strong></p>
+<ul>
+<li>直接通信方式（消息缓冲机制）</li>
+<li>间接通信方式（信箱通信方式）</li>
+</ul>
+<h3 id="管道通信系统"><a href="#管道通信系统" class="headerlink" title="管道通信系统"></a>管道通信系统</h3><p>所谓“管道”，是指用于连接一个读进程和一个写进程以实现他们之间通信的一个共享文件，又名 pipe 文件。<br><img src="https://img-blog.csdnimg.cn/20201107110955582.png#pic_center" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br>向管道（共享文件）提供输入的发送进程（即写进程），以字符流形式将大量的数据送入管道；<br>而接收管道输出的接收进程（即读进程），可从管道接收数据；<br>由于发送和接收都是利用管道进行通信的，故称为管道通信。</p>
+<p><strong>特点</strong></p>
+<ul>
+<li>管道是半双工的，数据只能向一个方向流动；需要双向通信时，需要建立起两个管道；</li>
+<li>只能用于父子进程或者兄弟进程之间（具有亲缘关系的进程）；</li>
+<li>单独构成一种独立的文件系统：管道对于管道两端的进程而言，就是一个文件，但它不是普通的文件，它不属于某种文件系统，而是自立门户，单独构成一种文件系统，并且只存在于内存中。</li>
+</ul>
+<p><strong>管道通信控制</strong><br>为了协调双方的通信，管道通信机制必须提供以下三方面的协调能力：</p>
+<ul>
+<li><strong>互斥。</strong> 一个进程正在对 pipe 进行读&#x2F;写操作时，另一进程必须等待。</li>
+<li><strong>同步。</strong> 当写（输入）进程把一定数量的数据写入 pipe 后，便去睡眠等待，直到读（输出）进程取走数据将其唤醒；当读进程读空 pipe，也应睡眠等待，直至写进程将数据写入管道，才将其唤醒。</li>
+<li><strong>对方是否存在。</strong> 只有确定对方已存在时，才能进行管道通信，否则会造成因对方不存在而无限期等待。</li>
+</ul>
+<h3 id="客户机-服务器系统"><a href="#客户机-服务器系统" class="headerlink" title="客户机-服务器系统"></a>客户机-服务器系统</h3><p><strong>(1)socket</strong><br>好像一条通信线两端的接口；<br>一对进程通过网络进行通信要用一对 socket，每个进程一个。<br>三个要素：<br><strong>网络地址</strong>:表明一个 socket 用于哪种网络<br><strong>连接类型</strong>:表明网络通信所遵循的模式，主要分为“有连接”和“无连接”模式。<br><strong>网络规程</strong>:表明具体网络的规程。一般来说，网络地址和连接类型结合在一起就基本上确定了适用的规程。<br><img src="https://img-blog.csdnimg.cn/20201107112506252.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzQ2MDIyNA==,size_16,color_FFFFFF,t_70#pic_center" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<h2 id="消息传递通信的实现方法"><a href="#消息传递通信的实现方法" class="headerlink" title="消息传递通信的实现方法"></a>消息传递通信的实现方法</h2><p>在进程之间通信时，源进程可以直接或间接地将消息传送给目标进程。</p>
+<h3 id="直接通信方式"><a href="#直接通信方式" class="headerlink" title="直接通信方式"></a>直接通信方式</h3><p>(1)对称寻址方式：要求发送及接收进程均以显式方式提供对方标识符。</p>
+<ul>
+<li>Send(Receiver, message);<br>发送一个消息给接收进程(Receiver)</li>
+<li>Receive(Sender, message);<br>接收 Sender 发来的消息</li>
+</ul>
+<p>(2)非对称通信方式：接收进程可能需要与多个发送进程通信，无法事先指定发送进程。</p>
+<ul>
+<li>Send(P, message);<br>发送一个消息给接收进程 P</li>
+<li>Receive(id, message);<br>接收来自任何进程发来的消息，id 参数变量的值可以是发送方的进程 id 或名称。</li>
+</ul>
+<h3 id="间接通信方式——信箱"><a href="#间接通信方式——信箱" class="headerlink" title="间接通信方式——信箱"></a>间接通信方式——信箱</h3><ul>
+<li>消息在信箱中可以安全地保存，只允许核准的目标用户随时读取。</li>
+<li>利用信箱通信方式，既可实时通信，又可非实时通信。</li>
+</ul>
+<p><strong>系统为信箱通信提供若干原语</strong></p>
+<ul>
+<li>信箱的创建和撤消</li>
+<li>消息的发送和接收<br>Send(mailbox, message);<br>将一个消息发送到指定信箱<br>Receive(mailbox, message);<br>从指定信箱中接收一个消息</li>
+</ul>
+<p><strong>信箱的分类</strong></p>
+<ul>
+<li>私用信箱</li>
+<li>公用信箱</li>
+<li>共享信箱</li>
+</ul>
+<p><strong>四种关系</strong></p>
+<ul>
+<li>一对一关系</li>
+<li>多对一关系</li>
+<li>一对多关系</li>
+<li>多对多关系</li>
+</ul>
+<h2 id="消息传递系统实现中的若干问题"><a href="#消息传递系统实现中的若干问题" class="headerlink" title="消息传递系统实现中的若干问题"></a>消息传递系统实现中的若干问题</h2><h3 id="1-通信链路"><a href="#1-通信链路" class="headerlink" title="1.通信链路"></a>1.通信链路</h3><p>（1）通信链路的建立：显示、隐式<br>（2）通信链路的链接方法：点-点、多点链接<br>（3）按通信方式分：单向通信、双向通信</p>
+<h3 id="2-消息的格式"><a href="#2-消息的格式" class="headerlink" title="2.消息的格式"></a>2.消息的格式</h3><p>（1）消息：<br>消息头：消息传输时的控制信息</p>
+<ul>
+<li>源进程名</li>
+<li>目标进程名</li>
+<li>消息长度</li>
+<li>消息类型</li>
+<li>日期与时间</li>
+<li>消息编号</li>
+</ul>
+<p>消息正文：传输的数据<br>（2）消息的长度<br>固定长度<br>可变长度</p>
+<h3 id="3-进程同步方式"><a href="#3-进程同步方式" class="headerlink" title="3.进程同步方式"></a>3.进程同步方式</h3><p>⑴<strong>发送进程阻塞、接收进程阻塞。</strong> 用于进程间双向通信，发送进程和接收进程之间无缓冲。即通信双方联系非常紧密,得到对方的应答才能推进。<br>⑵<strong>发送进程不阻塞、接收进程阻塞。</strong> 普遍，适合于那些不等待消息的到来就无法继续工作的进程。如服务器上的服务进程，平时总是处于阻塞状态，只有在请求服务的消息到达时，它们才会被唤醒以便提供服务。<br>⑶<strong>发送进程和接收进程均不阻塞。</strong> 常用于分布式系统中，因为采用阻塞方式进行通信时，一旦传递的数据丢失，将会使阻塞进程无限期地等待下去。而采用非阻塞发送、接收的方式就可以避免这种情况。接收进程有消息时就处理消息，无消息时继续执行。</p>
+<h4 id="练习题-2"><a href="#练习题-2" class="headerlink" title="练习题"></a>练习题</h4><p><strong>1.</strong> 服务器进程为多个客户进程提供服务或资源时，采用（B）的消息传递方式较为常见。<br>A.阻塞发送，阻塞接收<br>&#x3D;&#x3D;B.不阻塞发送，阻塞接收&#x3D;&#x3D;<br>C.不阻塞发送，不阻塞接收<br>D.阻塞发送，不阻塞接收</p>
+<h2 id="消息缓冲队列通信机制"><a href="#消息缓冲队列通信机制" class="headerlink" title="消息缓冲队列通信机制"></a>消息缓冲队列通信机制</h2><p>发送进程利用 Send 原语，将消息直接发送给接收进程；接受进程则利用 Receive 原语接收消息。<br><strong>1.</strong> 消息缓冲队列通信机制中的数据结构<br>(1)消息缓冲区</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">typedef</span> <span class="hljs-keyword">struct</span>&#123;<br>    pid sender;   <span class="hljs-comment">//发送者进程标识符</span><br>    <span class="hljs-type">int</span> size;     <span class="hljs-comment">//消息长度</span><br>    <span class="hljs-type">char</span> text[];  <span class="hljs-comment">//消息正文</span><br>    <span class="hljs-keyword">struct</span> <span class="hljs-title class_">buffer</span> *next;   <span class="hljs-comment">//指向下一个消息缓冲区的指针</span><br>&#125;buffer;<br></code></pre></td></tr></table></figure>
+
+<p>(2)PCB 中有关通信的数据项<br>增加用于对消息队列进行操作和实现同步的信号量，并将它们置入进程的 PCB 中。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-built_in">send</span>(receiver, a)<br>    &#123;<br>        <span class="hljs-built_in">getbuf</span>(a.size, i);   <span class="hljs-comment">//根据a.size申请缓冲区</span><br>        i.sender =a.sender;<br>        i.size =a.size;<br>        i.text =a.text;<br>        i.next =<span class="hljs-number">0</span>;<br>        <span class="hljs-comment">//将发送区a中的信息复制到消息缓冲区中</span><br>        <span class="hljs-built_in">getid</span>(PCB set, receiver,j);   <span class="hljs-comment">//获得接收进程内部标识符</span><br>        <span class="hljs-built_in">wait</span>(j.mutex);<br>        <span class="hljs-built_in">insert</span>(j.mq, i);<br>        <span class="hljs-built_in">signal</span>(j.mutex);<br>        <span class="hljs-built_in">signal</span>(j.sm);<br>        <span class="hljs-comment">//将消息缓冲区插入消息队列</span><br>    &#125;<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-built_in">receive</span>(b)<br>   &#123;<br>        j=internal name;         <span class="hljs-comment">//j为接收进程内部标识符</span><br>        <span class="hljs-built_in">wait</span>(j.sm);<br>        <span class="hljs-built_in">wait</span>(j.mutex);<br>        <span class="hljs-built_in">remove</span>(j.mq, i);         <span class="hljs-comment">//将消息队列中的第i个消息移出</span><br>        <span class="hljs-built_in">signal</span>(j.mutex);<br>        b.sender =i.sender;<br>        b.size =i.size;<br>        b.text =i.text;          <span class="hljs-comment">//将消息缓冲区i中的信息复制到接收区b</span><br>   &#125;<br></code></pre></td></tr></table></figure>
+
+<p><strong>消息缓冲通信的过程如下：</strong></p>
+<ul>
+<li>当某个进程需要向另一个进程发送消息时，便向系统申请一个消息缓冲区，并把要发送的数据送到消息缓冲区；</li>
+<li>调用 Send 原语通过 OS 把该消息插入到接受进程的消息队列中。</li>
+<li>接受进程在接受消息时，通过 Receive 原语从本进程的消息队列中摘下一个消息缓冲区，即可获取所需的信息；</li>
+<li>取出消息后把该消息缓冲区交还给系统。</li>
+</ul>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" class="category-chain-item">操作系统</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>『操作系统』 进程的描述与控制 Part3 管程</div>
+      <div>https://chiamzhang.github.io/2024/06/29/『操作系统』 进程的描述与控制 Part3 管程/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>Chiam</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>June 29, 2024</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>Licensed under</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2024/06/29/%E3%80%8E%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E3%80%8F%20%E8%BF%9B%E7%A8%8B%E7%9A%84%E6%8F%8F%E8%BF%B0%E4%B8%8E%E6%8E%A7%E5%88%B6%20Part4%20%E7%BA%BF%E7%A8%8B/" title="『操作系统』 进程的描述与控制 Part4 线程">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">『操作系统』 进程的描述与控制 Part4 线程</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/06/29/%E3%80%8E%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E3%80%8F%20%E8%BF%9B%E7%A8%8B%E7%9A%84%E6%8F%8F%E8%BF%B0%E4%B8%8E%E6%8E%A7%E5%88%B6%20Part2%20%E8%BF%9B%E7%A8%8B%E5%90%8C%E6%AD%A5/" title="『操作系统』 进程的描述与控制 Part2 进程同步">
+                        <span class="hidden-mobile">『操作系统』 进程的描述与控制 Part2 进程同步</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"fIfc7WqUDZohlQuPc2lz5mJy-MdYXbMMI","appKey":"zjlAG3ZA3o4cBHVAkjzc2Z20","path":"window.location.pathname","placeholder":"留言仅限讨论，禁止广告等行为","avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"https://fifc7wqu.api.lncldglobal.com","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>Table of Contents</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <meta name="referrer" content="no-referrer" /> <footer id="footer" role="contentinfo"> <meta name="referrer" content="no-referrer" /> <div class="divider"> <div class="wall"></div> <img class="animals" src="/img/footer_animals_new.png" srcset="/img/loading.gif" lazyload alt="Footer Animals"> </div> <div class="container" data-index="450"> <p> <a href="https://chiamzhang.github.io" target="_blank">DogEgg</a> <i class="iconfont icon-love"></i> <a href="#" target="_blank">LittePig</a> </p> <p> Powered by  <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-pen"></i> Theme  <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> </p> </div> </footer> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+  
+<script src="/js/love.js"></script>
+<script src="/js/funnyTitle.js"></script>
+<script src="/js/backTop.js"></script>
+<script src="//cdn.jsdelivr.net/gh/bynotes/texiao/source/js/xiaoxuehua.js"></script>
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+</html>

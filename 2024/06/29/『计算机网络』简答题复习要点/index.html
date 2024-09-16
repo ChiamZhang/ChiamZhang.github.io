@@ -1,0 +1,942 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/Mine.jpg">
+  <link rel="icon" href="/img/Mine.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Chiam">
+  <meta name="keywords" content="Algorithms，Cybersecurity">
+  
+    <meta name="description" content="『计算机网络』简答题复习要点计算机网络简答题复习要点面向连接和非连接的服务特点 面向连接的服务：通信双方在进行通信之前，要事先建立一个完整的可以彼此沟通的通道，在通信过程中整个连接的情况可以被实时的监控和管理 面向非链接的服务：不需要预先建立一个联络两个通信节点的连接，传输时发送节点可以往“网络”上送出信息，让信息资助的在网上去传，一般在传输的过程不再加以监控。  请问 PPP 协议在异步传输时解">
+<meta property="og:type" content="article">
+<meta property="og:title" content="『计算机网络』简答题复习要点">
+<meta property="og:url" content="https://chiamzhang.github.io/2024/06/29/%E3%80%8E%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E3%80%8F%E7%AE%80%E7%AD%94%E9%A2%98%E5%A4%8D%E4%B9%A0%E8%A6%81%E7%82%B9/index.html">
+<meta property="og:site_name" content="Homepage of Chiam">
+<meta property="og:description" content="『计算机网络』简答题复习要点计算机网络简答题复习要点面向连接和非连接的服务特点 面向连接的服务：通信双方在进行通信之前，要事先建立一个完整的可以彼此沟通的通道，在通信过程中整个连接的情况可以被实时的监控和管理 面向非链接的服务：不需要预先建立一个联络两个通信节点的连接，传输时发送节点可以往“网络”上送出信息，让信息资助的在网上去传，一般在传输的过程不再加以监控。  请问 PPP 协议在异步传输时解">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2024-06-29T13:16:54.661Z">
+<meta property="article:modified_time" content="2023-12-05T16:20:14.413Z">
+<meta property="article:author" content="Chiam">
+<meta property="article:tag" content="Algorithms，Cybersecurity">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>『计算机网络』简答题复习要点 - Homepage of Chiam</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"chiamzhang.github.io","root":"/","version":"1.9.5-a","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":"❡"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":2},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
+
+
+<body>
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Chiam&#39;s Blogs</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                
+                <span>Home</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                
+                <span>Archives</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                
+                <span>Categories</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                
+                <span>About</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                
+                <span>Links</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="『计算机网络』简答题复习要点"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-06-29 21:16" pubdate>
+          June 29, 2024 pm
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          9.5k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          79 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">『计算机网络』简答题复习要点</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="『计算机网络』简答题复习要点"><a href="#『计算机网络』简答题复习要点" class="headerlink" title="『计算机网络』简答题复习要点"></a>『计算机网络』简答题复习要点</h1><h1 id="计算机网络简答题复习要点"><a href="#计算机网络简答题复习要点" class="headerlink" title="计算机网络简答题复习要点"></a>计算机网络简答题复习要点</h1><h3 id="面向连接和非连接的服务特点"><a href="#面向连接和非连接的服务特点" class="headerlink" title="面向连接和非连接的服务特点"></a>面向连接和非连接的服务特点</h3><ol>
+<li>面向连接的服务：通信双方在进行通信之前，要事先建立一个完整的可以彼此沟通的通道，在通信过程中整个连接的情况可以被实时的监控和管理</li>
+<li>面向非链接的服务：不需要预先建立一个联络两个通信节点的连接，传输时发送节点可以往“网络”上送出信息，让信息资助的在网上去传，一般在传输的过程不再加以监控。</li>
+</ol>
+<h4 id="请问-PPP-协议在异步传输时解决透明传输问题的方法是什么？请简述具体操作。"><a href="#请问-PPP-协议在异步传输时解决透明传输问题的方法是什么？请简述具体操作。" class="headerlink" title="请问 PPP 协议在异步传输时解决透明传输问题的方法是什么？请简述具体操作。"></a>请问 PPP 协议在异步传输时解决透明传输问题的方法是什么？请简述具体操作。</h4><p>PPP 协议在异步传输时解决透明传输问题的方法是字节填充，转义符定义为 0x7D。</p>
+<ol>
+<li>把信息字段中出现的每一个 0x7E 字节转变成为 2 字节序列（0x7D，0x5E）。</li>
+<li>若信息字段中出现一个 0x7D 的字节，则将其转变为 2 字节序列（0x7D，0x5D）。</li>
+<li>若信息字段中出现 ASCII 码的控制字符（即数值小于 0x20 的字符），则在该字符前加入一个 0x7D 字节，同时将该字符的编码加以改变</li>
+<li>请问 PPP 协议在同步传输时解决透明传输问题的方法是什么？请简述具体操作。</li>
+</ol>
+<h3 id="PPP-协议在异步传输时解决透明传输问题的方法是-0-比特填充-用处及做法"><a href="#PPP-协议在异步传输时解决透明传输问题的方法是-0-比特填充-用处及做法" class="headerlink" title="PPP 协议在异步传输时解决透明传输问题的方法是 0 比特填充(用处及做法)"></a>PPP 协议在异步传输时解决透明传输问题的方法是 0 比特填充(用处及做法)</h3><ol>
+<li><p>用处：再 PPP 协议的帧结构中，若在两个标志字段之间的比特串中，碰巧出现了标志字段中（01111110）一样的比特组合，那么就会被误认为帧的边界。为了避免出现这种情况，PPP 在使用 SONSET&#x2F;SDH 链路时，采用零比特填充法使得一帧中，两个标志字段之间不会出现 6 个连续的 1。</p>
+</li>
+<li><p>具体做法:发送端&#x3D;在一串比特流尚未加上标志字段时，先用硬件扫描整个帧。只要发现 5 个连续的 1，就立即填入一个 0，这样保证经过 0 比特填充后的比特流不会出现连续的 6 个 1。接收端&#x3D;在接受时，首先找到帧的起始边界，然后对硬件中的数据进行扫描，每当发现 5 个 1 然后就删除后边的 0，以还原成原来的比特流。这样保证了在所传送的比特流中，不管出现什么的比特组合，也不至于引起帧边界的判定错误。</p>
+</li>
+</ol>
+<h2 id="试简单说明下述协议的作用。"><a href="#试简单说明下述协议的作用。" class="headerlink" title="试简单说明下述协议的作用。"></a>试简单说明下述协议的作用。</h2><p>IP 协议：实现网络互连。使参与互连的性能各异的网络从用户看起来好像是一个统一的网络。网际协议 IP 是 TCP&#x2F;IP 体系中两个最主要的协议之一，与 IP 协议配套使用的还有四个协议。</p>
+<p>ARP 协议：是解决同一个局域网上的主机或路由器的 IP 地址和硬件地址的映射问题。</p>
+<p>RARP：是解决同一个局域网上的主机或路由器的硬件地址和 IP 地址的映射问题。</p>
+<p>ICMP：提供差错报告和询问报文，以提高 IP 数据交付成功的机会</p>
+<p>因特网组管理协议 IGMP：用于探寻、转发本局域网内的组成员关系。</p>
+<h2 id="TCP-TP-协议"><a href="#TCP-TP-协议" class="headerlink" title="TCP&#x2F;TP 协议"></a>TCP&#x2F;TP 协议</h2><p>Transmission Control Protocol&#x2F;Internet Protocol 的简写，中译名为传输控制协议&#x2F;因特网互联协议，又名网络通讯协议，是 Internet 最基本的协议、Internet 国际互联网络的基础，由网络层的 IP 协议和传输层的 TCP 协议组成。TCP&#x2F;IP 定义了电子设备如何连入因特网，以及数据如何在它们之间传输的标准。协议采用了 4 层的层级结构，每一层都呼叫它的下一层所提供的协议来完成自己的需求。通俗而言：TCP 负责发现传输的问题，一有问题就发出信号，要求重新传输，直到所有数据安全正确地传输到目的地。而 IP 是给因特网的每一台联网设备规定一个地址。</p>
+<p>（1）IP</p>
+<p>IP 层接收由更低层（网络接口层例如以太网设备驱动程序）发来的数据包，并把该数据包发送到更高层—TCP 或 UDP 层；相反，IP 层也把从 TCP 或 UDP 层接收来的数据包传送到更低层。IP 数据包是不可靠的，因为 IP 并没有做任何事情来确认数据包是否按顺序发送的或者有没有被破坏，IP 数据包中含有发送它的主机的地址（源地址）和接收它的主机的地址（目的地址）。</p>
+<p>（2）TCP</p>
+<p>TCP 是面向连接的通信协议，通过三次握手建立连接，通讯完成时要拆除连接，由于 TCP 是面向连接的所以只能用于端到端的通讯。</p>
+<p>（3）UDP</p>
+<p>UDP 是面向无连接的通讯协议，UDP 数据包括目的端口号和源端口号信息，由于通讯不需要连接，所以可以实现广播发送。</p>
+<p>（4）ICMP</p>
+<p>ICMP 与 IP 位于同一层，它被用来传送 IP 的控制信息。它主要是用来提供有关通向目的地址的路径信息。</p>
+<p>IP 地址</p>
+<p>在 Internet 上连接的所有计算机，从大型机到微型计算机都是以独立的身份出现，我们称它为主机。为了实现各主机间的通信，每台主机都必须有一个唯一的网络地址。就好像每一个住宅都有唯一的门牌一样，才不至于在传输资料时出现混乱。</p>
+<p>Internet 的网络地址是指连入 Internet 网络的计算机的地址编号。所以，在 Internet 网络中，网络地址唯一地标识一台计算机。</p>
+<p>我们都已经知道，Internet 是由几千万台计算机互相连接而成的。而我们要确认网络上的每一台计算机，靠的就是能唯一标识该计算机的网络地址，这个地址就叫做 IP（Internet Protocol 的简写）地址，即用 Internet 协议语言表示的地址。</p>
+<p>在 Internet 里，IP 地址是一个 32 位的二进制地址，为了便于记忆，将它们分为 4 组，每组 8 位，由小数点分开，用四个字节来表示，而且，用点分开的每个字节的数值范围是 0~255，如 202.116.0.1，这种书写方法叫做点数表示法。</p>
+<h2 id="CSMA-CD-协议要点"><a href="#CSMA-CD-协议要点" class="headerlink" title="CSMA&#x2F;CD 协议要点"></a>CSMA&#x2F;CD 协议要点</h2><ul>
+<li>适配器从网络层获得一个分组，加上以太网的首部和尾部组成以太网帧；</li>
+<li>若检测到信道空闲（96 比特时间内没检测到信号），就发送；若信道忙则继续检测，直到信道空闲持续 96 比特时间就发送这个帧；</li>
+</ul>
+<p>③ 发送过程中未发现碰撞，则发送成功；若检测到碰撞，则终止数据发送，并发送干扰信号；</p>
+<p>④ 在终止发送后，适配器执行退避算法，等待 r 倍 512 比特时间后转 ②。</p>
+<h2 id="以太网交换机是怎样转发帧的？"><a href="#以太网交换机是怎样转发帧的？" class="headerlink" title="以太网交换机是怎样转发帧的？"></a>以太网交换机是怎样转发帧的？</h2><p>答:以太网交换机转发帧的过程:交换机将其首部中的目的地址取出，如果该地址为答:以太网交换机转发帧的过程:交换机将其首部中的目的地址取出，如果该地址为广播地址或组播地址,则向除该帧进入的端口外的所有端口转发此帧:否则，查找转发表，如没有，则通过所有其他接口(但该帧进入交换机的接口除外)进行转发;如有，则按转发表中给出的接口进行转发;若转发表中给出的接口就是该帧进入网桥的接口，则应丢弃这个帧(因为这时不需要经过网桥进行转发)。(2 分)</p>
+<p>以太网交换即按照以下自学习算法建立转发表:若从机器 A 发出的帧从接口 x 进入</p>
+<h2 id="网络协议的三个要素是什么？各有什么含义？"><a href="#网络协议的三个要素是什么？各有什么含义？" class="headerlink" title="网络协议的三个要素是什么？各有什么含义？"></a>网络协议的三个要素是什么？各有什么含义？</h2><p>答：在计算机网络中要做到有条不紊地交换数据，就必须遵守一些事先定好的规则。这些为进行网络中的数据交换而建立的规则、标准或约定即称为网络协议。一个网络协议要由以下三个要素组成：</p>
+<p>（1）语法，即数据与控制信息的结构或格式；</p>
+<p>（2）语义，即需要发出何种控制信息，完成何种动作以及做出何种应答；</p>
+<p>（3）同步，即事件实现顺序的详细说明。</p>
+<p>对于非常复杂的计算机网络协议，其结构最好采用层次式的。</p>
+<h3 id="物理层接口有哪些特性-各包含哪些内容？"><a href="#物理层接口有哪些特性-各包含哪些内容？" class="headerlink" title="物理层接口有哪些特性?各包含哪些内容？"></a>物理层接口有哪些特性?各包含哪些内容？</h3><ol>
+<li>机械特性：指明接口所用的接线器的形状和尺寸、引线数目和排列、固定和锁定装置等等。</li>
+<li>电气特性：指明在接口电缆的各条线上出现的电压的范围。</li>
+<li>功能特性：指明某条线上出现的某一电平的电压表示何意。</li>
+<li>规程特性：说明对于不同功能的各种可能事件的出现顺序。</li>
+<li><ol start="6">
+<li>简述分组交换的要点。</li>
+</ol>
+</li>
+<li>报文分组，加首部</li>
+<li>经路由器储存转发</li>
+<li>在目的地合并</li>
+</ol>
+<h3 id="试从多个方面比较电路交换、报文交换和分组交换的主要优缺点。"><a href="#试从多个方面比较电路交换、报文交换和分组交换的主要优缺点。" class="headerlink" title="试从多个方面比较电路交换、报文交换和分组交换的主要优缺点。"></a>试从多个方面比较电路交换、报文交换和分组交换的主要优缺点。</h3><p>答：（1）电路交换：端对端通信质量因约定了通信资源获得可靠保障，对连续传送大量数据效率高。</p>
+<p>（2）报文交换：无须预约传输带宽，动态逐段利用传输带宽对突发式数据通信效率高，通信迅速。</p>
+<p>（3）分组交换：具有报文交换之高效、迅速的要点，且各分组小，路由灵活，网络生存性能好。</p>
+<ol>
+<li>因特网的发展大致分为哪几个阶段？请指出这几个阶段的主要特点。</li>
+</ol>
+<p>答：从单个网络 APPANET 向互联网发展；TCP&#x2F;IP 协议的初步成型</p>
+<p>建成三级结构的 Internet；分为主干网、地区网和校园网；</p>
+<p>形成多层次 ISP 结构的 Internet；ISP 首次出现。</p>
+<ol>
+<li>常用的传输媒体有哪几种？各有何特点？</li>
+<li>试写出 ADSL 的中文名称并解释其功能和主要特点。</li>
+</ol>
+<p>答：ADSL 的中文名称是非对称数字用户线。ADSL 是一种非对称的 DSL 技术，所谓非对称是指用户数字线的上行速率与下行速率不同，上行速率低，下行速率高。</p>
+<p>该技术使用数字技术对现有的模拟电话用户线进行改造，使它能够承载宽带数字业务。将 0-4kHz 低频留给传统电话使用，将原来没有被利用的 4kHz 之上的高端频谱留给用户上网使用。</p>
+<ol>
+<li>有人认为：“ARP 协议向网络层提供了转换地址的服务，因此 ARP 应当属于数据链路层。”这种说法为什么是错误的？</li>
+</ol>
+<p>答：ARP 不是向网络层提供服务，它本身就是网络层的一部分，帮助向传输层提供服务。在数据链路层不存在 IP 地址的问题。数据链路层协议是像 HDLC 和 PPP 这样的协议，它们把比特串从线路的一端传送到另一端。</p>
+<ol>
+<li>试解释为什么 ARP 高速缓存每存入一个项目就要设置 10~20 分钟的超时计时器。这个时间设置得太大或太小会出现什么问题？</li>
+</ol>
+<p>ARP 为 ARP 高速缓存中的每一个项目都设置生存时间（例如，10~20 分钟）。凡超过生存时间的项目就从高速缓存中删除掉。</p>
+<p>设置高速缓存的原因如下：主机 A 和 B 通信，A 的 ARP 高速缓存存有 B 的物理地址，但 B 的网卡突然坏了，因此立即更换了一块，从而 B 的硬件地址就变了。A 还要和 B 继续通信。A 在其 ARP 高速缓存中查找到 B 原先的硬件地址，并使用该硬件地址向 B 发送数据帧，但 B 原先的硬件地址已经失效了，因此 A 无法找到主机 B。如果过一段时间，A 的 ARP 高速缓存中删除了 B 原先的硬件地址（因为它的生存时间到了），于是 A 重新广播发送 ARP 请求分组，就又找到了 B。</p>
+<p>时间设置太大，造成 A 一直空等而产生通讯时延，网络传输缓慢。若太小，有可能网络状况不好，B 暂时没有应答 A，但 A 已经认为 B 的地址失效，A 重新发送 ARP 请求分组，造成通讯时延。</p>
+<ol>
+<li>至少举出两种不需要发送 ARP 请求分组的情况（即不需要请求将某个项目的 IP 地址解析为相应的硬件地址）</li>
+</ol>
+<p>1）主机 A 和 B 通讯，A 的 ARP 高速缓存里保存有 B 的物理地址，此时不需要发送 ARP 请求分组。</p>
+<p>2）当主机 A 向 B 发送数据报时，很可能不久以后主机 B 还要向 A 发送数据报，因而主机 B 也可能要向 A 发送 ARP 请求分组。为了减少网络上的通信量，主机 A 在发送其 ARP 请求分组时，就将自己 IP 地址到硬件的映射写入 ARP 请求分组。当主机 B 收到 A 的 ARP 请求分组时，就将主机 A 的这一地址映射写入主机 B 自己的 ARP 高速缓存中。这对主机 B 以后向 A 发送数据报时就更方便了。</p>
+<ol>
+<li>简述 RIP、OSPF 和 BGP 协议的主要特点和算法原理</li>
+<li>为什么说 UDP 是面向报文的，而 TCP 是面向字节流的</li>
+</ol>
+<p>发送方的 UDP 对应用层交下来的报文，即不合并，也不拆分，而是保留这些报文的边界，添加首部后向下交付 IP 层，接收方的 UDP，对 IP 层交上来的 UDP 用户数据报，去掉首部后就原封不动地交付给上层应用进程。因此是面向报文的。</p>
+<p>不论应用层发送的报文长度如何，TCP 总时将其看成一串字节流，并对每一个字节进行编号，根据网络拥塞程度和接收方缓存大小，决定应该发送多长的报文段。因此是面向字节流的。</p>
+<ol>
+<li>端口的作用是什么？为什么端口要划分为三种？</li>
+</ol>
+<p>端口的作用是对 TCP&#x2F;IP 体系的应用进程进行统一的标志，使运行不同操作系统的计算机的应用进程能够互相通信。分为以下三种：</p>
+<p>熟知端口，数值一般为 0~1023：标记常规的服务进程；</p>
+<p>登记端口号，数值为 1024~49151：标记没有熟知端口号的非常规的服务进程；</p>
+<p>短暂端口号，其数值范围分别是 49152-65535，供应用程序临时通信使用。</p>
+<ol>
+<li>简述因特网标准制定的几个阶段？</li>
+</ol>
+<p>答：（1）因特网草案(Internet Draft) ——在这个阶段还不是 RFC 文档。</p>
+<p>（2）建议标准(Proposed Standard) ——从这个阶段开始就成为 RFC 文档。</p>
+<p>（3）草案标准(Draft Standard)</p>
+<p>（4） 因特网标准(Internet Standard)</p>
+<ol>
+<li>因特网的两大组成部分（边缘部分与核心部分）的特点是什么？它们的工作方式各有什么特点？</li>
+</ol>
+<p>答：边缘部分：由各主机构成，用户直接进行信息处理和信息共享;低速连入核心网。</p>
+<p>核心部分：由各路由器连网，负责为边缘部分提供高速远程分组交换。</p>
+<ol>
+<li>客户服务器方式与对等通信方式的主要区别是什么？有没有相同的地方？</li>
+</ol>
+<p>答：前者严格区分服务和被服务者，后者无此区别。后者实际上是前者的双向应用。</p>
+<ol>
+<li>协议与服务有何区别？有何关系？</li>
+</ol>
+<p>答：网络协议：为进行网络中的数据交换而建立的规则、标准或约定。由以下三个要素组成：</p>
+<p>（1）语法：即数据与控制信息的结构或格式。</p>
+<p>（2）语义：即需要发出何种控制信息，完成何种动作以及做出何种响应。</p>
+<p>（3）同步：即事件实现顺序的详细说明。</p>
+<p>协议是控制两个对等实体进行通信的规则的集合。在协议的控制下，两个对等实体间的通信使得本层能够向上一层提供服务，而要实现本层协议，还需要使用下面一层提供服务。</p>
+<p>协议和服务的概念的区分：</p>
+<p>1、协议的实现保证了能够向上一层提供服务。本层的服务用户只能看见服务而无法看见下面的协议。下面的协议对上面的服务用户是透明的。</p>
+<p>2、协议是“水平的”，即协议是控制两个对等实体进行通信的规则。但服务是“垂直的”，即服务是由下层通过层间接口向上层提供的。上层使用所提供的服务必须与下层交换一些命令，这些命令在 OSI 中称为服务原语。</p>
+<ol>
+<li>网络协议的三个要素是什么？各有什么含义？</li>
+</ol>
+<p>答：网络协议：为进行网络中的数据交换而建立的规则、标准或约定。由以下三个要素组成：</p>
+<p>（1）语法：即数据与控制信息的结构或格式。</p>
+<p>（2）语义：即需要发出何种控制信息，完成何种动作以及做出何种响应。</p>
+<p>（3）同步：即事件实现顺序的详细说明。</p>
+<ol>
+<li>试解释以下名词：协议栈、实体、对等层、协议数据单元、服务访问点、客户、服务器、客户-服务器方式。</li>
+</ol>
+<p>答：实体(entity) 表示任何可发送或接收信息的硬件或软件进程。</p>
+<p>协议是控制两个对等实体进行通信的规则的集合。</p>
+<p>客户(client)和服务器(server)都是指通信中所涉及的两个应用进程。客户是服务的请求方，服务器是服务的提供方。</p>
+<p>客户服务器方式所描述的是进程之间服务和被服务的关系。</p>
+<p>协议栈:指计算机网络体系结构采用分层模型后,每层的主要功能由对等层协议的运行来实现,因而每层可用一些主要协议来表征,几个层次画在一起很像一个栈的结构.</p>
+<p>对等层:在网络体系结构中,通信双方实现同样功能的层.</p>
+<p>协议数据单元:对等层实体进行信息交换的数据单位.</p>
+<p>服务访问点:在同一系统中相邻两层的实体进行交互（即交换信息）的地方.服务访问点 SAP 是一个抽象的概念,它实体上就是一个逻辑接口.</p>
+<ol>
+<li>试解释以下名词：数据，信号，模拟数据，模拟信号，基带信号，带通信号，数字数据，数字信号，码元，单工通信，半双工通信，全双工通信，串行传输，并行传输。</li>
+</ol>
+<p>答：数据：是运送信息的实体。</p>
+<p>信号：则是数据的电气的或电磁的表现。</p>
+<p>模拟数据：运送信息的模拟信号。</p>
+<p>模拟信号：连续变化的信号。</p>
+<p>数字信号：取值为有限的几个离散值的信号。</p>
+<p>数字数据：取值为不连续数值的数据。</p>
+<p>码元(code)：在使用时间域（或简称为时域）的波形表示数字信号时，代表不同离散数值的基本波形。</p>
+<p>单工通信：即只有一个方向的通信而没有反方向的交互。</p>
+<p>半双工通信：即通信和双方都可以发送信息，但不能双方同时发送（当然也不能同时接收）。这种通信方式是一方发送另一方接收，过一段时间再反过来。</p>
+<p>全双工通信：即通信的双方可以同时发送和接收信息。</p>
+<p>基带信号（即基本频带信号）——来自信源的信号。像计算机输出的代表各种文字或图像文件的数据信号都属于基带信号。</p>
+<p>带通信号——把基带信号经过载波调制后，把信号的频率范围搬移到较高的频段以便在信道中传输（即仅在一段频率范围内能够通过信道）。</p>
+<ol>
+<li>为什么要使用信道复用技术？常用的信道复用技术有哪些？</li>
+</ol>
+<p>答：为了通过共享信道、最大限度提高信道利用率。</p>
+<p>频分、时分、码分、波分。</p>
+<ol>
+<li>数据链路(即逻辑链路)与链路(即物理链路)有何区别? “电路接通了”与”数据链路接通了”的区别何在?</li>
+</ol>
+<p>答：数据链路与链路的区别在于数据链路出链路外，还必须有一些必要的规程来控制数据的传输，因此，数据链路比链路多了实现通信规程所需要的硬件和软件。</p>
+<p>“电路接通了”表示链路两端的结点交换机已经开机，物理连接已经能够传送比特流了，但是，数据传输并不可靠，在物理连接基础上，再建立数据链路连接，才是“数据链路接通了”，此后，由于数据链路连接具有检测、确认和重传功能，才使不太可靠的物理链路变成可靠的数据链路，进行可靠的数据传输当数据链路断开连接时，物理电路连接不一定跟着断开连接。</p>
+<ol>
+<li>网络适配器的作用是什么?网络适配器工作在哪一层?</li>
+</ol>
+<p>答：适配器（即网卡）来实现数据链路层和物理层这两层的协议的硬件和软件</p>
+<p>网络适配器工作在 TCP&#x2F;IP 协议中的网络接口层（OSI 中的数据链里层和物理层）</p>
+<ol>
+<li>数据链路层的三个基本问题(帧定界、透明传输和差错检测)为什么都必须加以解决？</li>
+</ol>
+<p>答：（1）帧定界是分组交换的必然要求；（2）透明传输避免消息符号与帧定界符号相混淆；</p>
+<p>（3）差错检测防止有差错的无效数据帧浪费后续路由上的传输和处理资源。</p>
+<ol>
+<li>常用的局域网的网络拓扑有哪些种类？现在最流行的是哪种结构？为什么早期的以太网选择总线拓扑结构而不是星形拓扑结构，但现在却改为使用星形拓扑结构？</li>
+</ol>
+<p>答：星形网，总线网，环形网，树形网</p>
+<p>当时很可靠的星形拓扑结构较贵，人们都认为无源的总线结构更加可靠，但实践证明，连接有大量站点的总线式以太网很容易出现故障，而现在专用的 ASIC 芯片的使用可以讲星形结构的集线器做的非常可靠，因此现在的以太网一般都使用星形结构的拓扑。</p>
+<ol>
+<li>网桥的工作原理和特点是什么？网桥与转发器以及以太网交换机有何异同？</li>
+</ol>
+<p>答：网桥工作在数据链路层，它根据 MAC 帧的目的地址对收到的帧进行转发。</p>
+<p>网桥具有过滤帧的功能。当网桥收到一个帧时，并不是向所有的接口转发此帧，而是先检查此帧的目的 MAC 地址，然后再确定将该帧转发到哪一个接口</p>
+<p>转发器工作在物理层，它仅简单地转发信号，没有过滤能力</p>
+<p>以太网交换机则为链路层设备，可视为多端口网桥</p>
+<ol>
+<li>作为中间设备，转发器、网桥、路由器和网关有何区别？</li>
+</ol>
+<p>中间设备又称为中间系统或中继(relay)系统。</p>
+<p>物理层中继系统：转发器(repeater)。</p>
+<p>数据链路层中继系统：网桥或桥接器(bridge)。</p>
+<p>网络层中继系统：路由器(router)。</p>
+<p>网桥和路由器的混合物：桥路器(brouter)。</p>
+<p>网络层以上的中继系统：网关(gateway)。</p>
+<p>**4-05.IP****地址分为几类？各如何表示？IP 地址的主要特点是什么？**</p>
+<p>分为 ABCDE 5 类;</p>
+<p>每一类地址都由两个固定长度的字段组成，其中一个字段是网络号 net-id，它标志主机（或路由器）所连接到的网络，而另一个字段则是主机号 host-id，它标志该主机（或路由器）。</p>
+<p>各类地址的网络号字段 net-id 分别为 1，2，3，0，0 字节；主机号字段 host-id 分别为 3 字节、2 字节、1 字节、4 字节、4 字节。</p>
+<p>特点：</p>
+<p>（1）IP 地址是一种分等级的地址结构。分两个等级的好处是：</p>
+<p>第一，IP 地址管理机构在分配 IP 地址时只分配网络号，而剩下的主机号则由得到该网络号的单位自行分配。这样就方便了 IP 地址的管理。</p>
+<p>第二，路由器仅根据目的主机所连接的网络号来转发分组（而不考虑目的主机号），这样就可以使路由表中的项目数大幅度减少，从而减小了路由表所占的存储空间。</p>
+<p>（2）实际上 IP 地址是标志一个主机（或路由器）和一条链路的接口。</p>
+<p>当一个主机同时连接到两个网络上时，该主机就必须同时具有两个相应的 IP 地址，其网络号 net-id 必须是不同的。这种主机称为多归属主机(multihomed host)。</p>
+<p>由于一个路由器至少应当连接到两个网络（这样它才能将 IP 数据报从一个网络转发到另一个网络），因此一个路由器至少应当有两个不同的 IP 地址。</p>
+<p>(3) 用转发器或网桥连接起来的若干个局域网仍为一个网络，因此这些局域网都具有同样的网络号 net-id。</p>
+<p>(4) 所有分配到网络号 net-id 的网络，范围很小的局域网，还是可能覆盖很大地理范围的广域网，都是平等的。</p>
+<p>| 主要特点 | RIP | OSPF | BGP |<br>| 网关协议 | 内部 | 内部 | 外部 |<br>| 路由表内容 | 目的网，下一站，距离 | 目的网，下一站，距离 | 目的网，完整路径 |<br>| 最优通路依据 | 跳数 | 费用 | 多种策略 |<br>| 算法 | 距离矢量 | 链路状态 | 距离矢量 |<br>| 传送方式 | 运输层 UDP | IP 数据报 | 建立 TCP 连接 |<br>| 其他 | 简单、效率低、跳数为 16 不可达、好消息传的快，坏消息传的慢 | 效率高、路由器频繁交换信息，难维持一致性 | 规模大、统一度量为可达性 |</p>
+<ol>
+<li><strong>面向连接和非连接的服务的特点是什么？</strong></li>
+</ol>
+<p>(1)面向连按的服务: 通信双方在进行通信之前，要事先在双方之间建立起一个</p>
+<p>完整的可以被此沟通的通道，在通信过程中，整个连按的情况一直可以被实时地监控和</p>
+<p>管理。</p>
+<p>(2)非连接的服务: 不需要预先建立起一个联络两个通信节点的连接，需要通信的时</p>
+<p>候，发送节点就可以往“网络”上送出信息，让信息白主地在网络上去传，一般在传输</p>
+<p>的过程中不再加以监控。</p>
+<ol>
+<li><strong>为什么说 TCP 协议 中针对某数据包的应答包丢失也不一定导致该数据包重传?</strong></li>
+</ol>
+<p>答: (1) 由于 TCP 协议采用的是面向字符流的累计确认机制;</p>
+<ol>
+<li>当某数据包的应答丢失时，只要接收方还有数据发给发送方，在其应答字段中将包含对前面收到的数据包的应答信息，所以发送方不需要重发该数据包。</li>
+<li><strong>什么是计算机网络的拓扑结构，有哪些常见的拓扑结构?</strong></li>
+</ol>
+<p>备计算机网络的拓扑结构是指网络中通信线路和站点计算机成设备) 的几何排列形式。</p>
+<p>常见的网络拓扑结构有星型网络、总线型网络、树型网络、环型网络和网状型网络。</p>
+<p>**7.****主机人要测览山东农业大学的主页(网址为 wwsdau.d.n)，请说明其主要步骤。并说**</p>
+<p><strong>明用到了那些协议。假设主机 A 之前从未访问过山东农大的 WEB 服务器</strong></p>
+<p>答: (1)在主机 A 的浏览器地址栏中输入农大 WEB 服务器的城名井回车，</p>
+<p>&lt;2) 主机 A 通过域名解析(DNS) 获取农大的 WEB 服务器的 IP 地址</p>
+<p>(3) 主机 A 与 WEB 服务器建立 TCP 连接并发送 HTP 请求;</p>
+<p>(4) WEB 服务器响应 HTTP 请求发回所请求的页面;</p>
+<p>(5) 浏览器显示页面内容。</p>
+<p>该过程用到的协议包括 ARP、IP、UDP（域名解析使用）、TCP、HTTP 等。</p>
+<p>**8.****简述 10M 以太网中的 CSMA&#x2F;CD 协议的要点。**</p>
+<p>答: 0 适配器从网络层获得一个分组，加上以太网的首部和尾部组成以太网帧:</p>
+<p>2 若检测到信道空闲(96 比特时间内没检测到信号)，就发送; 若信道忙则继续检测，直到</p>
+<p>信道空闲持续 96 比特时间就发送这个帧;</p>
+<p>3 发送过程中未发现碰撞，则发送成功; 若检测到碰撞，则终止数据发送，并发送干扰信号:</p>
+<p>在终止发送后，适配器执行退避算法，等待 r 倍 512 比特时间后转 2。</p>
+<p>**9.****简述 TCP 的拥塞控制机制中，什么是慢开始，什么是拥塞避免? 这两种算法各起什么作用?**</p>
+<p>答:国曼开始使拥塞窗口由小到大逐渐增加，每收到- 一个确认都使拥塞窗口增加 1,每一个</p>
+<p>传输轮次使拥塞窗口的值增加一倍。曼开始主要是防止在一开始不知网络负载的情况下立即</p>
+<p>将大量数据注入网络而引起拥塞，</p>
+<p>2 拥塞避免则是使拥塞窗口缓慢增大，每一个传输轮次增加一，这样就使拥塞窗口按线性规</p>
+<p>律缓慢增长。以防止网络过早出现拥塞。</p>
+<ol>
+<li></li>
+</ol>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" class="category-chain-item">计算机网络</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>『计算机网络』简答题复习要点</div>
+      <div>https://chiamzhang.github.io/2024/06/29/『计算机网络』简答题复习要点/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>Chiam</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>June 29, 2024</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>Licensed under</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2024/06/29/%E3%80%8E%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E3%80%8F%E9%83%A8%E5%88%86%E7%AE%80%E7%AD%94%E9%A2%98/" title="『计算机网络』部分简答题">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">『计算机网络』部分简答题</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/06/29/%E3%80%8E%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E3%80%8F%E7%AE%80%E7%AD%94%E9%A2%98/" title="『计算机网络』简答题">
+                        <span class="hidden-mobile">『计算机网络』简答题</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"fIfc7WqUDZohlQuPc2lz5mJy-MdYXbMMI","appKey":"zjlAG3ZA3o4cBHVAkjzc2Z20","path":"window.location.pathname","placeholder":"留言仅限讨论，禁止广告等行为","avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"https://fifc7wqu.api.lncldglobal.com","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>Table of Contents</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <meta name="referrer" content="no-referrer" /> <footer id="footer" role="contentinfo"> <meta name="referrer" content="no-referrer" /> <div class="divider"> <div class="wall"></div> <img class="animals" src="/img/footer_animals_new.png" srcset="/img/loading.gif" lazyload alt="Footer Animals"> </div> <div class="container" data-index="450"> <p> <a href="https://chiamzhang.github.io" target="_blank">DogEgg</a> <i class="iconfont icon-love"></i> <a href="#" target="_blank">LittePig</a> </p> <p> Powered by  <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-pen"></i> Theme  <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> </p> </div> </footer> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+  
+<script src="/js/love.js"></script>
+<script src="/js/funnyTitle.js"></script>
+<script src="/js/backTop.js"></script>
+<script src="//cdn.jsdelivr.net/gh/bynotes/texiao/source/js/xiaoxuehua.js"></script>
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+</html>

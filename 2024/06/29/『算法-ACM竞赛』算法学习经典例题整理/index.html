@@ -1,0 +1,733 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/Mine.jpg">
+  <link rel="icon" href="/img/Mine.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Chiam">
+  <meta name="keywords" content="Algorithms，Cybersecurity">
+  
+    <meta name="description" content="『算法-ACM 竞赛』算法学习经典例题整理陆续会对本篇博客进行更新！搜索：https:&#x2F;&#x2F;vjudge.net&#x2F;contest&#x2F;292597区间 DP：https:&#x2F;&#x2F;vjudge.net&#x2F;contest&#x2F;293892树状背包:https:&#x2F;&#x2F;vjudge.net&#x2F;contest&#x2F;292904分组背包：https:&#x2F;&#x2F;vjudge.net&#x2F;contest&#x2F;292902多重背包：https:&#x2F;&#x2F;vj">
+<meta property="og:type" content="article">
+<meta property="og:title" content="『算法-ACM竞赛』算法学习经典例题整理">
+<meta property="og:url" content="https://chiamzhang.github.io/2024/06/29/%E3%80%8E%E7%AE%97%E6%B3%95-ACM%E7%AB%9E%E8%B5%9B%E3%80%8F%E7%AE%97%E6%B3%95%E5%AD%A6%E4%B9%A0%E7%BB%8F%E5%85%B8%E4%BE%8B%E9%A2%98%E6%95%B4%E7%90%86/index.html">
+<meta property="og:site_name" content="Homepage of Chiam">
+<meta property="og:description" content="『算法-ACM 竞赛』算法学习经典例题整理陆续会对本篇博客进行更新！搜索：https:&#x2F;&#x2F;vjudge.net&#x2F;contest&#x2F;292597区间 DP：https:&#x2F;&#x2F;vjudge.net&#x2F;contest&#x2F;293892树状背包:https:&#x2F;&#x2F;vjudge.net&#x2F;contest&#x2F;292904分组背包：https:&#x2F;&#x2F;vjudge.net&#x2F;contest&#x2F;292902多重背包：https:&#x2F;&#x2F;vj">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2024-06-29T13:16:54.619Z">
+<meta property="article:modified_time" content="2023-12-05T16:20:07.338Z">
+<meta property="article:author" content="Chiam">
+<meta property="article:tag" content="Algorithms，Cybersecurity">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>『算法-ACM竞赛』算法学习经典例题整理 - Homepage of Chiam</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"chiamzhang.github.io","root":"/","version":"1.9.5-a","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":"❡"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":2},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
+
+
+<body>
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Chiam&#39;s Blogs</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                
+                <span>Home</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                
+                <span>Archives</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                
+                <span>Categories</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                
+                <span>About</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                
+                <span>Links</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="『算法-ACM竞赛』算法学习经典例题整理"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-06-29 21:16" pubdate>
+          June 29, 2024 pm
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          7.8k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          65 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">『算法-ACM竞赛』算法学习经典例题整理</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="『算法-ACM-竞赛』算法学习经典例题整理"><a href="#『算法-ACM-竞赛』算法学习经典例题整理" class="headerlink" title="『算法-ACM 竞赛』算法学习经典例题整理"></a>『算法-ACM 竞赛』算法学习经典例题整理</h1><p>陆续会对本篇博客进行更新！<br>搜索：<a target="_blank" rel="noopener" href="https://vjudge.net/contest/292597">https://vjudge.net/contest/292597</a><br>区间 DP：<a target="_blank" rel="noopener" href="https://vjudge.net/contest/293892">https://vjudge.net/contest/293892</a><br>树状背包:<a target="_blank" rel="noopener" href="https://vjudge.net/contest/292904">https://vjudge.net/contest/292904</a><br>分组背包：<a target="_blank" rel="noopener" href="https://vjudge.net/contest/292902">https://vjudge.net/contest/292902</a><br>多重背包：<a target="_blank" rel="noopener" href="https://vjudge.net/contest/292900">https://vjudge.net/contest/292900</a><br>完全背包：<a target="_blank" rel="noopener" href="https://vjudge.net/contest/292898">https://vjudge.net/contest/292898</a><br>01 背包：<a target="_blank" rel="noopener" href="https://vjudge.net/contest/292897">https://vjudge.net/contest/292897</a><br>递归：<a target="_blank" rel="noopener" href="https://vjudge.net/contest/292604">https://vjudge.net/contest/292604</a></p>
+<p>专题一 简单搜索<br>POJ 1321 棋盘问题<br>POJ 2251 Dungeon Master<br>POJ 3278 Catch That Cow<br>POJ 3279 Fliptile<br>POJ 1426 Find The Multiple<br>POJ 3126 Prime Path<br>POJ 3087 Shuffle’m Up<br>POJ 3414 Pots<br>FZU 2150 Fire Game<br>UVA 11624 Fire!<br>POJ 3984 迷宫问题<br>HDU 1241 Oil Deposits<br>HDU 1495 非常可乐<br>HDU 2612 Find a way</p>
+<p>专题二 搜索进阶</p>
+<p>HDU 1043 Eight<br>HDU 3567 Eight II<br>HDU 2181 哈密顿绕行世界问题<br>HDU 3533 Escape<br>HDU 1560 DNA sequence<br>ZOJ 2477 Magic Cube<br>HDU 3085 Nightmare Ⅱ<br>HDU 1067 Gap<br>HDU 2102 A 计划<br>HDU 3001 Travelling</p>
+<p>专题三 Dancing Links</p>
+<p>HUST 1017 Exact cover<br>ZOJ 3209 Treasure Map<br>HDU 2295 Radar<br>FZU 1686 神龙的难题<br>POJ 1084 Square Destroyer<br>POJ 3074 Sudoku<br>ZOJ 3122 Sudoku<br>HDU 4069 Squiggly Sudoku<br>HDU 3335 Divisibility<br>HDU 4979 A simple math problem.<br>HDU 5046 Airport</p>
+<p>专题四 最短路练习</p>
+<p>POJ 2387 Til the Cows Come Home<br>POJ 2253 Frogger<br>POJ 1797 Heavy Transportation<br>POJ 3268 Silver Cow Party<br>POJ 1860 Currency Exchange<br>POJ 3259 Wormholes<br>POJ 1502 MPI Maelstrom<br>POJ 3660 Cow Contest<br>POJ 2240 Arbitrage<br>POJ 1511 Invitation Cards<br>POJ 3159 Candies<br>POJ 2502 Subway<br>POJ 1062 昂贵的聘礼<br>POJ 1847 Tram<br>LightOJ 1074 Extended Traffic<br>HDU 4725 The Shortest Path in Nya Graph<br>HDU 3416 Marriage Match IV<br>HDU 4370 0 or 1<br>POJ 3169 Layout</p>
+<p>专题五 并查集</p>
+<p>POJ 2236 Wireless Network<br>POJ 1611 The Suspects<br>HDU 1213 How Many Tables<br>HDU 3038 How Many Answers Are Wrong<br>POJ 1182 食物链<br>POJ 1417 True Liars<br>POJ 1456 Supermarket<br>POJ 1733 Parity game<br>POJ 1984 Navigation Nightmare<br>POJ 2492 A Bug’s Life<br>POJ 2912 Rochambeau<br>ZOJ 3261 Connections in Galaxy War<br>HDU 1272 小希的迷宫<br>POJ 1308 Is It A Tree?</p>
+<p>专题六 最小生成树</p>
+<p>POJ 1251 Jungle Roads<br>POJ 1287 Networking<br>POJ 2031 Building a Space Station<br>POJ 2421 Constructing Roads<br>ZOJ 1586 QS Network<br>POJ 1789 Truck History<br>POJ 2349 Arctic Network<br>POJ 1751 Highways<br>POJ 1258 Agri-Net<br>POJ 3026 Borg Maze<br>POJ 1679 The Unique MST<br>HDU 1233 还是畅通工程<br>HDU 1301 Jungle Roads<br>HDU 1875 畅通工程再续</p>
+<p>专题七 线段树</p>
+<p>HDU 1166 敌兵布阵<br>HDU 1754 I Hate It<br>POJ 3468 A Simple Problem with Integers<br>POJ 2528 Mayor’s posters<br>HDU 1698 Just a Hook<br>ZOJ 1610 Count the Colors<br>POJ 3264 Balanced Lineup<br>HDU 4027 Can you answer these queries?<br>HDU 1540 Tunnel Warfare<br>HDU 3974 Assign the task<br>HDU 4578 Transformation<br>HDU 4614 Vases and Flowers<br>HDU 4553 约会安排<br>POJ 1177 Picture<br>HDU 1255 覆盖的面积<br>HDU 1542 Atlantis<br>HDU 3642 Get The Treasury</p>
+<p>专题八 生成树</p>
+<p>POJ 1679 The Unique MST<br>HDU 4081 Qin Shi Huang’s National Road System<br>UVA 10600 ACM Contest and Blackout<br>UVA 10462 Is There A Second Way Left?<br>POJ 3164 Command Network<br>UVA 11183 Teen Girl Squad<br>HDU 2121 Ice_cream’s world II<br>HDU 4009 Transfer water<br>UVA 10766 Organising the Organisation<br>SPOJ DETER3 Find The Determinant III<br>URAL 1627 Join<br>HDU 4305 Lightning<br>HDU 4408 Minimum Spanning Tree<br>SPOJ HIGH Highways</p>
+<p>专题九 连通图</p>
+<p>POJ 1236 Network of Schools<br>UVA 315 Network<br>UVA 796 Critical Links<br>POJ 3694 Network<br>POJ 3177 Redundant Paths<br>HDU 4612 Warm up<br>HDU 4635 Strongly connected<br>HDU 4685 Prince and Princess<br>HDU 4738 Caocao’s Bridges</p>
+<p>专题十 匹配问题</p>
+<p>HDU 1045 Fire Net<br>HDU 2444 The Accomodation of Students<br>HDU 1083 Courses<br>HDU 1281 棋盘游戏<br>HDU 2819 Swap<br>HDU 2389 Rain on your Parade<br>HDU 4185 Oil Skimming<br>POJ 3020 Antenna Placement<br>HDU 1054 Strategic Game<br>HDU 1151 Air Raid<br>POJ 2594 Treasure Exploration<br>HDU 3829 Cat VS Dog<br>POJ 2289 Jamie’s Contact Groups<br>POJ 2112 Optimal Milking<br>POJ 3189 Steady Cow Assignment<br>HDU 2255 奔小康赚大钱<br>HDU 3488 Tour<br>URAL 1099 Work Scheduling<br>HDU 4687 Boke and Tsukkomi</p>
+<p>专题十一 网络流</p>
+<p>POJ 3436 ACM Computer Factory<br>POJ 3281 Dining<br>POJ 1087 A Plug for UNIX<br>POJ 2195 Going Home<br>POJ 2516 Minimum Cost<br>POJ 1459 Power Network<br>HDU 4280 Island Transport<br>HDU 4292 Food<br>HDU 4289 Control<br>UVA 10480 Sabotage<br>HDU 2732 Leapin’ Lizards<br>HDU 3338 Kakuro Extension<br>HDU 3605 Escape<br>HDU 3081 Marriage Match II<br>HDU 3416 Marriage Match IV</p>
+<p>专题十二 基础 DP</p>
+<p>HDU 1024 Max Sum Plus Plus<br>HDU 1029 Ignatius and the Princess IV<br>HDU 1069 Monkey and Banana<br>HDU 1074 Doing Homework<br>HDU 1087 Super Jumping! Jumping! Jumping!<br>HDU 1114 Piggy-Bank<br>HDU 1176 免费馅饼<br>HDU 1260 Tickets<br>HDU 1257 最少拦截系统<br>HDU 1160 FatMouse’s Speed<br>POJ 1015 Jury Compromise<br>POJ 1458 Common Subsequence<br>POJ 1661 Help Jimmy<br>POJ 2533 Longest Ordered Subsequence<br>POJ 3186 Treats for the Cows<br>HDU 1078 FatMouse and Cheese<br>HDU 2859 Phalanx<br>POJ 3616 Milking Time<br>POJ 3666 Making the Grade</p>
+<p>专题十三 基础计算几何</p>
+<p>POJ 2318 TOYS<br>POJ 2398 Toy Storage<br>POJ 3304 Segments<br>POJ 1269 Intersecting Lines<br>POJ 1556 The Doors<br>POJ 2653 Pick-up sticks<br>POJ 1066 Treasure Hunt<br>POJ 1410 Intersection<br>POJ 1696 Space Ant<br>POJ 3347 Kadj Squares<br>POJ 2826 An Easy Problem?!<br>POJ 1039 Pipe<br>POJ 3449 Geometric Shapes<br>POJ 1584 A Round Peg in a Ground Hole</p>
+<p>专题十四 数论基础</p>
+<p>LightOJ 1370 Bi-shoe and Phi-shoe<br>LightOJ 1356 Prime Independence<br>LightOJ 1341 Aladdin and the Flying Carpet<br>LightOJ 1336 Sigma Function<br>LightOJ 1282 Leading and Trailing<br>LightOJ 1259 Goldbach&#96;s Conjecture<br>LightOJ 1245 Harmonic Number (II)<br>LightOJ 1236 Pairs Forming LCM<br>LightOJ 1234 Harmonic Number<br>LightOJ 1220 Mysterious Bacteria<br>LightOJ 1214 Large Division<br>LightOJ 1213 Fantasy of a Summation<br>LightOJ 1197 Help Hanzo<br>LightOJ 1138 Trailing Zeroes (III)<br>UVA 11426 GCD - Extreme (II)<br>UVA 11754 Code Feat<br>UVA 11916 Emoogle Grid<br>POJ 1061 青蛙的约会<br>POJ 2115 C Looooops<br>POJ 2116 Death to Binary?<br>HDU 2161 Primes<br>UVA 11827 Maximum GCD<br>UVA 10200 Prime Time<br>SGU 106 The equation<br>POJ 2478 Farey Sequence<br>UVA 11752 The Super Powers</p>
+<p>专题十五 数位 DP</p>
+<p>CodeForces 55D Beautiful numbers<br>HDU 4352 XHXJ’s LIS<br>HDU 2089 不要 62<br>HDU 3555 Bomb<br>POJ 3252 Round Numbers<br>HDU 3709 Balanced Number<br>HDU 3652 B-number<br>HDU 4734 F(x)<br>ZOJ 3494 BCD Code<br>HDU 4507 吉哥系列故事――恨 7 不成妻<br>SPOJ BALNUM Balanced Numbers</p>
+<p>专题十六 KMP &amp; 扩展 KMP &amp; Manacher</p>
+<p>HDU 1711 Number Sequence<br>HDU 1686 Oulipo<br>HDU 2087 剪花布条<br>HDU 3746 Cyclic Nacklace<br>HDU 1358 Period<br>HUST 1010 The Minimum Length<br>POJ 2406 Power Strings<br>POJ 2752 Seek the Name, Seek the Fame<br>POJ 3080 Blue Jeans<br>HDU 2594 Simpsons’ Hidden Talents<br>HDU 3336 Count the string<br>HDU 4300 Clairewd’s message<br>HDU 1238 Substrings<br>HDU 2328 Corporate Identity<br>HDU 3374 String Problem<br>HDU 2609 How many<br>FZU 1901 Period II<br>POJ 3746 Teacher YYF<br>HDU 3613 Best Reward<br>POJ 3376 Finding Palindromes<br>POJ 3974 Palindrome<br>HDU 4513 吉哥系列故事――完美队形 II<br>HDU 3294 Girls’ research<br>HDU 3068 最长回文<br>HDU 4847 Wow! Such Doge!<br>HDU 4763 Theme Section</p>
+<p>专题十七 AC 自动机</p>
+<p>HDU 2222 Keywords Search<br>HDU 2896 病毒侵袭<br>HDU 3065 病毒侵袭持续中<br>ZOJ 3430 Detect the Virus<br>POJ 2778 DNA Sequence<br>HDU 2243 考研路茫茫――单词情结<br>POJ 1625 Censored!<br>HDU 2825 Wireless Password<br>HDU 2296 Ring<br>HDU 2457 DNA repair<br>ZOJ 3228 Searching the String<br>HDU 3341 Lost’s revenge<br>HDU 3247 Resource Archiver<br>ZOJ 3494 BCD Code<br>HDU 4758 Walk Through Squares<br>HDU 4511 小明系列故事――女友的考验</p>
+<p>专题十八 后缀数组</p>
+<p>POJ 1743 Musical Theme<br>POJ 3261 Milk Patterns<br>SPOJ DISUBSTR Distinct Substrings<br>SPOJ SUBST1 New Distinct Substrings<br>POJ 2406 Power Strings<br>SPOJ REPEATS Repeats<br>POJ 3693 Maximum repetition substring<br>POJ 2774 Long Long Message<br>POJ 3415 Common Substrings<br>POJ 3294 Life Forms<br>SPOJ PHRASES Relevant Phrases of Annihilation<br>POJ 1226 Substrings<br>UVA 11475 Extend to Palindrome<br>POJ 3581 Sequence<br>POJ 3450 Corporate Identity<br>POJ 3080 Blue Jeans<br>POJ 2758 Checking the Text</p>
+<p>专题十九 矩阵</p>
+<p>CodeForces 450B Jzzhu and Sequences<br>HDU 5015 233 Matrix<br>HDU 4990 Reading comprehension<br>UVA 11651 Krypton Number System<br>HDU 4965 Fast Matrix Calculation<br>UVA 11551 Experienced Endeavour<br>UVA 10689 Yet another Number Sequence<br>UVA 11149 Power of Matrix<br>UVA 10655 Contemplation! Algebra<br>UVA 1386 Cellular Automaton<br>UVA 10870 Recurrences<br>UVA 11885 Number of Battlefields<br>HDU 4565 So Easy!<br>CodeForces 392C Yet Another Number Sequence<br>CodeForces 385E Bear in the Field<br>FZU 1911 Construct a Matrix<br>UVA 10518 How Many Calls?<br>HDU 4549 M 斐波那契数列<br>HDU 4686 Arc of Dream</p>
+<p>专题二十 斜率 DP</p>
+<p>HDU 3507 Print Article<br>HDU 2829 Lawrence<br>HDU 4528 小明系列故事――捉迷藏<br>HDU 1300 Pearls<br>HDU 2993 MAX Average Problem<br>UVALive 5097 Cross the Wall<br>HDU 3045 Picnic Cows<br>HDU 3516 Tree Construction<br>POJ 1160 Post Office<br>POJ 1180 Batch Scheduling<br>POJ 2018 Best Cow Fences<br>POJ 3709 K-Anonymous Sequence<br>POJ 2841 Navigation Game<br>POJ 1260 Pearls<br>UVA 12594 Naming Babies<br>HDU 3480 Division<br>UVALive 6771 Buffed Buffet</p>
+<p>专题二十一 概率&amp;期望</p>
+<p>LightOJ 1027 A Dangerous Maze<br>LightOJ 1030 Discovering Gold<br>LightOJ 1038 Race to 1 Again<br>LightOJ 1079 Just another Robbery<br>LightOJ 1104 Birthday Paradox<br>LightOJ 1151 Snakes and Ladders<br>LightOJ 1248 Dice (III)<br>LightOJ 1265 Island of Survival<br>LightOJ 1274 Beating the Dataset<br>LightOJ 1284 Lights inside 3D Grid<br>LightOJ 1287 Where to Run<br>LightOJ 1317 Throwing Balls into the Baskets<br>LightOJ 1321 Sending Packets<br>LightOJ 1342 Aladdin and the Magical Sticks<br>LightOJ 1364 Expected Cards<br>LightOJ 1395 A Dangerous Maze (II)<br>LightOJ 1408 Batting Practice</p>
+<p>专题二十二 区间 DP</p>
+<p>ZOJ 3537 Cake<br>LightOJ 1422 Halloween Costumes<br>POJ 2955 Brackets<br>CodeForces 149D Coloring Brackets<br>POJ 1651 Multiplication Puzzle<br>ZOJ 3469 Food Delivery<br>HDU 4283 You Are the One<br>HDU 2476 String painter</p>
+<p>专题二十三 计算几何之半平面交</p>
+<p>POJ 3335 Rotating Scoreboard<br>POJ 3130 How I Mathematician Wonder What You Are!<br>POJ 1474 Video Surveillance<br>POJ 1279 Art Gallery<br>POJ 3525 Most Distant Point from the Sea<br>POJ 3384 Feng Shui<br>POJ 1755 Triathlon<br>POJ 2540 Hotter Colder<br>POJ 2451 Uyuw’s Concert<br>POJ 1271 Nice Milk<br>UVA 11722 Joining with Friend</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E7%AE%97%E6%B3%95/" class="category-chain-item">算法</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/%E7%AE%97%E6%B3%95/ACM%E7%AB%9E%E8%B5%9B/" class="category-chain-item">ACM竞赛</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>『算法-ACM竞赛』算法学习经典例题整理</div>
+      <div>https://chiamzhang.github.io/2024/06/29/『算法-ACM竞赛』算法学习经典例题整理/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>Chiam</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>June 29, 2024</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>Licensed under</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2024/06/29/%E3%80%8E%E7%AE%97%E6%B3%95-ACM%E7%AB%9E%E8%B5%9B%E3%80%8F%E7%AE%97%E6%B3%95%E7%AB%9E%E8%B5%9B%E8%BF%9B%E9%98%B6%E6%8C%87%E5%8D%97-%E5%BF%AB%E9%80%9F%E5%B9%82%EF%BC%8C%E6%B1%82a%5Eb%20mod%20p/" title="『算法-ACM竞赛』算法竞赛进阶指南-快速幂，求a^b mod p">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">『算法-ACM竞赛』算法竞赛进阶指南-快速幂，求a^b mod p</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/06/29/%E3%80%8E%E7%AE%97%E6%B3%95-ACM%E7%AB%9E%E8%B5%9B%E3%80%8F%E7%AE%97%E6%B3%95%E5%88%86%E6%9E%90%E8%AE%BE%E8%AE%A1-%E9%80%92%E5%BD%92%E7%AE%97%E6%B3%95/" title="『算法-ACM竞赛』算法分析设计-递归算法">
+                        <span class="hidden-mobile">『算法-ACM竞赛』算法分析设计-递归算法</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"fIfc7WqUDZohlQuPc2lz5mJy-MdYXbMMI","appKey":"zjlAG3ZA3o4cBHVAkjzc2Z20","path":"window.location.pathname","placeholder":"留言仅限讨论，禁止广告等行为","avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"https://fifc7wqu.api.lncldglobal.com","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>Table of Contents</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <meta name="referrer" content="no-referrer" /> <footer id="footer" role="contentinfo"> <meta name="referrer" content="no-referrer" /> <div class="divider"> <div class="wall"></div> <img class="animals" src="/img/footer_animals_new.png" srcset="/img/loading.gif" lazyload alt="Footer Animals"> </div> <div class="container" data-index="450"> <p> <a href="https://chiamzhang.github.io" target="_blank">DogEgg</a> <i class="iconfont icon-love"></i> <a href="#" target="_blank">LittePig</a> </p> <p> Powered by  <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-pen"></i> Theme  <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> </p> </div> </footer> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+  
+<script src="/js/love.js"></script>
+<script src="/js/funnyTitle.js"></script>
+<script src="/js/backTop.js"></script>
+<script src="//cdn.jsdelivr.net/gh/bynotes/texiao/source/js/xiaoxuehua.js"></script>
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+</html>

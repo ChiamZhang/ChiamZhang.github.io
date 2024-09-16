@@ -1,0 +1,737 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/Mine.jpg">
+  <link rel="icon" href="/img/Mine.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Chiam">
+  <meta name="keywords" content="Algorithms，Cybersecurity">
+  
+    <meta name="description" content="『计算机组成原理』计算机性能指标（附考研题目）一、计算机性能指标：CPU：吞吐量，响应时间，CPU 时钟周期，主频，CPI，CPU 执行时间，MIPS，MFLOPS，GFLOPS，TFLOPS，PFLOPS，利用率，处理机字长；其他：总线宽度。 1.吞吐量一个系统的吞度量（承压能力）与一个请求 request 对 CPU 的消耗、外部接口、IO 等密切关联。单个 reqeust 对 CPU 消耗越">
+<meta property="og:type" content="article">
+<meta property="og:title" content="『计算机组成原理』计算机性能指标（附考研题目）">
+<meta property="og:url" content="https://chiamzhang.github.io/2024/06/29/%E3%80%8E%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86%E3%80%8F%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%80%A7%E8%83%BD%E6%8C%87%E6%A0%87%EF%BC%88%E9%99%84%E8%80%83%E7%A0%94%E9%A2%98%E7%9B%AE%EF%BC%89/index.html">
+<meta property="og:site_name" content="Homepage of Chiam">
+<meta property="og:description" content="『计算机组成原理』计算机性能指标（附考研题目）一、计算机性能指标：CPU：吞吐量，响应时间，CPU 时钟周期，主频，CPI，CPU 执行时间，MIPS，MFLOPS，GFLOPS，TFLOPS，PFLOPS，利用率，处理机字长；其他：总线宽度。 1.吞吐量一个系统的吞度量（承压能力）与一个请求 request 对 CPU 的消耗、外部接口、IO 等密切关联。单个 reqeust 对 CPU 消耗越">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200228164809175.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200228171349235.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200228172653446.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/2020022817271655.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200228172730522.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200228172742521.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200228172752145.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200228172756837.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/2020022817280179.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70">
+<meta property="article:published_time" content="2024-06-29T13:16:54.649Z">
+<meta property="article:modified_time" content="2023-12-05T16:20:11.880Z">
+<meta property="article:author" content="Chiam">
+<meta property="article:tag" content="Algorithms，Cybersecurity">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20200228164809175.png">
+  
+  
+  
+  <title>『计算机组成原理』计算机性能指标（附考研题目） - Homepage of Chiam</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"chiamzhang.github.io","root":"/","version":"1.9.5-a","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":"❡"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":2},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
+
+
+<body>
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Chiam&#39;s Blogs</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                
+                <span>Home</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                
+                <span>Archives</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                
+                <span>Categories</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                
+                <span>About</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                
+                <span>Links</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="『计算机组成原理』计算机性能指标（附考研题目）"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-06-29 21:16" pubdate>
+          June 29, 2024 pm
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          4.6k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          38 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">『计算机组成原理』计算机性能指标（附考研题目）</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="『计算机组成原理』计算机性能指标（附考研题目）"><a href="#『计算机组成原理』计算机性能指标（附考研题目）" class="headerlink" title="『计算机组成原理』计算机性能指标（附考研题目）"></a>『计算机组成原理』计算机性能指标（附考研题目）</h1><h2 id="一、计算机性能指标："><a href="#一、计算机性能指标：" class="headerlink" title="一、计算机性能指标："></a>一、计算机性能指标：</h2><p>CPU：吞吐量，响应时间，CPU 时钟周期，主频，CPI，CPU 执行时间，MIPS，MFLOPS，GFLOPS，TFLOPS，PFLOPS，利用率，处理机字长；<br>其他：总线宽度。</p>
+<h3 id="1-吞吐量"><a href="#1-吞吐量" class="headerlink" title="1.吞吐量"></a>1.吞吐量</h3><p>一个系统的吞度量（承压能力）与一个请求 request 对 CPU 的消耗、外部接口、IO 等密切关联。单个 reqeust 对 CPU 消耗越高，外部系统接口、IO 影响速度越慢，系统吞吐能力越低，反之越高。</p>
+<p><strong>一般系统吞吐量由几个重要关键要素组成：</strong></p>
+<p><strong>QPS：</strong> Queries Per Second 每秒内的查询率。它是指一台服务器每秒能够相应的查询次数，是对一个特定的查询服务器在规定时间内所处理流量多少的衡量标准。QPS 统计方式，一般使用 http_load 进行统计。</p>
+<p><strong>TPS：</strong> TransactionsPerSecond 每秒内的事务数。一个事务是指一个客户机向服务器发送请求然后等待服务器做出反应的过程。客户机在发送请求时开始计时，收到服务器响应后结束计时，以此来计算使用的时间和完成的事务个数，客户机使用加权协函数平均方法来计算得分，最终利用这些信息得出服务器端的整体 TPS 得分。</p>
+<p><strong>并发数：</strong> 系统同时处理的 request&#x2F;事务数。</p>
+<p><strong>响应时间：</strong> 系统平均响应时间。</p>
+<p><strong>计算关系</strong><br>QPS &#x3D; 并发量 &#x2F; 平均响应时间<br>并发量 &#x3D; QPS * 平均响应时间</p>
+<h3 id="2-响应时间-RT"><a href="#2-响应时间-RT" class="headerlink" title="2.响应时间(RT)"></a>2.响应时间(RT)</h3><p>响应时间是指系统对请求作出响应的时间。直观上看，这个指标与人对软件性能的主观感受是非常一致的，因为它完整地记录了整个计算机系统处理请求的时间。由于一个系统通常会提供许多功能，而不同功能的处理逻辑也千差万别，因而不同功能的响应时间也不尽相同，甚至同一功能在不同输入数据的情况下响应时间也不相同。所以，在讨论一个系统的响应时间时，人们通常是指该系统所有功能的平均时间或者所有功能的最大响应时间。当然，往往也需要对每个或每组功能讨论其平均响应时间和最大响应时间。</p>
+<p>对于单机的没有并发操作的应用系统而言，人们普遍认为响应时间是一个合理且准确的性能指标。需要指出的是，响应时间的绝对值并不能直接反映软件的性能的高低，软件性能的高低实际上取决于用户对该响应时间的接受程度。对于一个游戏软件来说，响应时间小于 100 毫秒应该是不错的，响应时间在 1 秒左右可能属于勉强可以接受，如果响应时间达到 3 秒就完全难以接受了。而对于编译系统来说，完整编译一个较大规模软件的源代码可能需要几十分钟甚至更长时间，但这些响应时间对于用户来说都是可以接受的。</p>
+<h3 id="3-CPU-时钟周期和主频"><a href="#3-CPU-时钟周期和主频" class="headerlink" title="3.CPU 时钟周期和主频"></a>3.CPU 时钟周期和主频</h3><p><strong>CPU 时钟周期</strong><br>时钟发生器发出的脉冲信号做出周期变化的最短时间称之为震荡周期，也称为 CPU 时钟周期。它是计算机中最基本的、最小的时间单位。每一次脉冲（即一个震荡周期）到来，芯片内的晶体管就改变一次状态，让整个芯片完成一定任务。一个震荡周期内，晶体管只会改变一次状态。由此，更小的时钟周期就意味着更高的工作频率。<br><strong>主频</strong><br>一秒（1 s）内，震荡周期的个数称为时钟频率，俗称主频。</p>
+<p><strong>主频和时钟周期的关系：</strong></p>
+<p>$时钟频率（主频）&#x3D; \frac{1}{CPU 时钟周期}$</p>
+<p>由上面的关系不难推出，主频越高，CPU 的运算速度就越快。</p>
+<h3 id="4-CPI-（每条指令执行平均时间）"><a href="#4-CPI-（每条指令执行平均时间）" class="headerlink" title="4.CPI （每条指令执行平均时间）"></a>4.CPI （每条指令执行平均时间）</h3><p>CPI（Clock cycle Per Instruction）表示执行某个程序的指令平均时钟周期数，可以用来衡量计算机运行速度。<br>$CPI&#x3D;\frac{TC }{IC}$(IC[instruction counter]表示某个程序的所有指令的条数；TC 表示执行某个程序所花费的时钟周期)</p>
+<h3 id="5-CPU-执行时间"><a href="#5-CPU-执行时间" class="headerlink" title="5.CPU 执行时间"></a>5.CPU 执行时间</h3><p><img src="https://img-blog.csdnimg.cn/20200228164809175.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<h3 id="6-MIPS-每秒处理多少（百万级的指令条数）"><a href="#6-MIPS-每秒处理多少（百万级的指令条数）" class="headerlink" title="6.MIPS 每秒处理多少（百万级的指令条数）"></a>6.MIPS 每秒处理多少（百万级的指令条数）</h3><p>MIPS(Million Instructions Per Second)：单字长定点指令平均执行速度 Million Instructions Per Second 的缩写，每秒处理的百万级的机器语言指令数。这是衡量 CPU 速度的一个指标。</p>
+<h3 id="7-FLOPS-MFLOPS-GFLOPS-TFLOPS-PFLOPS-EFLOPS"><a href="#7-FLOPS-MFLOPS-GFLOPS-TFLOPS-PFLOPS-EFLOPS" class="headerlink" title="7.FLOPS&#x2F;MFLOPS&#x2F;GFLOPS&#x2F;TFLOPS&#x2F;PFLOPS&#x2F;EFLOPS"></a>7.FLOPS&#x2F;MFLOPS&#x2F;GFLOPS&#x2F;TFLOPS&#x2F;PFLOPS&#x2F;EFLOPS</h3><p>FLOPS 是 Floating-point Operations Per Second 每秒所执行的浮点运算次数的英文缩写。它是一个衡量计算机计算能力的量，这个量经常使用在那些需要大量浮点运算的科学运算中。有时也会被记为 flop&#x2F;s。</p>
+<p>MFLOPS(Million Floating-point Operations per Second，每秒百万个浮点操作)，衡量计算机系统的技术指标，不能反映整体情况，只能反映浮点运算情况。</p>
+<p>GFLOPS 就是 Giga Floating-point Operations Per Second,即每秒 10 亿次的浮点运算数,常作为 GPU 性能参数但不一定代表 GPU 的实际表现，因为还要考虑具体如何拆分多边形和像素、以及纹理填充，理论上该数值越高越好。1GFlops &#x3D; 1,000MFlops。</p>
+<p>$\<br>MFLOPS(megaFLOPS)\quad&#x3D;\  每秒一佰万（&#x3D;10^6）次的浮点运算\<br>GFLOPS(gigaFLOPS) \ \ \ \quad&#x3D; \ 每秒拾亿（&#x3D;10^9）次的浮点运算\<br>TFLOPS(teraFLOPS）\ \quad&#x3D;\ 每秒万亿（&#x3D;10^{12}）次的浮点运算\<br>PFLOPS(petaFLOPS) \ \ \  \quad&#x3D;每秒千万亿（&#x3D;10^{15}）次的浮点运算\<br>EFLOPS(exaFLOPS)\qquad&#x3D;每秒百亿亿（&#x3D;10^{18}）次的浮点运算。$</p>
+<h3 id="8-CPU-利用率"><a href="#8-CPU-利用率" class="headerlink" title="8.CPU 利用率"></a>8.CPU 利用率</h3><p>CPU 利用率，是对一个时间段内 CPU 使用状况的统计，通过这个指标可以看出在某一个时间段内 CPU 被占用的情况，如果 CPU 被占用时间很高，那么就需要考虑 CPU 是否已经处于超负荷运作，长期超负荷运作对于机器本身来说是一种损害，因此必须将 CPU 的利用率控制在一定的比例下，以保证机器的正常运作。</p>
+<p>Load Average 是 CPU 的 Load，它所包含的信息不是 CPU 的使用率状况，而是在一段时间内 CPU 正在处理以及等待 CPU 处理的进程数之和的统计信息，也就是 CPU 使用队列的长度的统计信息。</p>
+<h3 id="9-处理机字长"><a href="#9-处理机字长" class="headerlink" title="9.处理机字长"></a>9.处理机字长</h3><p>理机字长是指处理机能同时处理（或运算）的位数，即同时处理多少位（bit）数据。</p>
+<h3 id="10-总线带宽"><a href="#10-总线带宽" class="headerlink" title="10.总线带宽"></a>10.总线带宽</h3><p>1.数据总线<br>数据总线是 CPU 与存储器、CPU 与 I&#x2F;O 接口设备之间传送数据信息(各种指令数据信息)的总线，这些信号通过数据总线往返于 CPU 与存储器、CPU 与 I&#x2F;O 接口设备之间，因此，数据总线上的信息是双向传输的。</p>
+<p>2.地址总线<br>地址总线上传送的是 CPU 向存储器、I&#x2F;O 接口设备发出的地址信息，寻址能力是 CPU 特有的功能，地址总线上传送的地址信息仅由 CPU 发出，因此，地址总线上的信息是单向传输的。</p>
+<p>3.控制总线<br>控制总线传送的是各种控制信号，有 CPU 至存储器、I&#x2F;O 接口设备的控制信号，有 I&#x2F;O 接口送向 CPU 的应答信号、请求信号，因此，控制总线是上的信息是双向传输的。控制信号包括时序信号、状态信号和命令信号(如读写信号、忙信号、中断信号)等。</p>
+<p>总线带宽的计算公式为：总线带宽&#x3D;总线数据传输频率 X 数据总线位数</p>
+<p><img src="https://img-blog.csdnimg.cn/20200228171349235.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<p>拓展资料：</p>
+<p>总线是一组进行互连和传输信息（指令、数据和地址）的信号线。主要参数有总线位宽、总线时钟频率和总线传输速率。&#x2F;传统的 PCI 并行总线和最新的 PCI-E 串行总线带宽。</p>
+<p>总线位宽决定输入&#x2F;输出设备之间一次数据传输的信息量，用位（bit）表示，如总线宽度为 8 位、16 位、32 位和 64 位。</p>
+<p>按照工作模式不同，总线可分为两种类型，一种是并行总线，它在同一时刻可以传输多位数据，好比是一条允许多辆车并排开的宽敞道路，而且它还有双向单向之分；另一种为串行总线，它在同一时刻只能传输一个数据，好比只容许一辆车行走的狭窄道路，数据必须一个接一个传输、看起来仿佛一个长长的数据串，故称为“串行”。</p>
+<p>总线的带宽指的是这条总线在单位时间内可以传输的数据总量，它等于总线位宽与工作频率的乘积。例如，对于 64 位、800MHz 的前端总线，它的数据传输率就等于 64bit×800MHz÷8(Byte)&#x3D;6.4GB&#x2F;s；32 位、33MHz PCI 总线的数据传输率就是 32bit×33MHz÷8&#x3D;132MB&#x2F;s，等等，这项法则可以用</p>
+<h3 id="部分内容参考百度百科"><a href="#部分内容参考百度百科" class="headerlink" title="部分内容参考百度百科"></a>部分内容参考百度百科</h3><h1 id="二、考研题目"><a href="#二、考研题目" class="headerlink" title="二、考研题目"></a>二、考研题目</h1><p><strong>11 年考研真题</strong><br><img src="https://img-blog.csdnimg.cn/20200228172653446.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br><strong>解析：D</strong><br>定义性的东西，FLOPS 是 Floating-point Operations Per Second 每秒所执行的浮点运算次数的英文缩写。它是一个衡量计算机计算能力的量，这个量经常使用在那些需要大量浮点运算的科学运算中。有时也会被记为 flop&#x2F;s。</p>
+<p><strong>12 年考研真题</strong><br><img src="https://img-blog.csdnimg.cn/2020022817271655.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br><strong>解析：D</strong><br>CPU 执行时间为 90s,<br>设该任务的指令共计 M 条，则 90&#x3D;CPI<em>M。<br>现处理每一条的时间为 CPI&#x2F;1.5，则 T&#x3D;CPI</em>M&#x2F;1.5&#x3D;60。<br>因为 I&#x2F;O 时间不变所以共计 60+10</p>
+<p><strong>13 年考研真题</strong><br><img src="https://img-blog.csdnimg.cn/20200228172730522.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br><strong>解析：C</strong><br>先算平均 CPI，0.5<em>2+0.2</em>3+0.1<em>4+0.2</em>5&#x3D;3 注意这里的单位 CPU 时钟周期，<br>一个 CPU 时钟周期为$\frac{1}{1.2G}$<br>CPI&#x3D;$\frac{3}{1.2G}$<br>IPS 为 1S 执行指令条数，现在一条指令执行时间已知即 CPI<br>$IPS&#x3D;1&#x2F;CPI&#x3D;1&#x2F;\frac{3}{1.2G} &#x3D;0.4*1G$<br>MIPS&#x3D;IPS&#x2F;1M&#x3D;0.4*1024≈400</p>
+<p><strong>14 年真题</strong><br><img src="https://img-blog.csdnimg.cn/20200228172742521.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br><strong>解析：D</strong><br>设指令条数为 n 条，则$T&#x3D;n<em>CPI\(单位CPU时钟周期，因为CPU主频没变所以就不将它化为秒了，知道跟秒是成正比的就行）\T2&#x3D;0.7n</em>1.2CPI&#x3D;0.84T&#x3D;16.8s$<br><strong>15 年考研真题</strong><br><img src="https://img-blog.csdnimg.cn/20200228172752145.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br><strong>解析:A</strong><br>计算机只认识 0&#x2F;1，计算机语言程序</p>
+<p><strong>17 年考研真题</strong><br><img src="https://img-blog.csdnimg.cn/20200228172756837.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br><strong>解析：</strong><br>M1 的 CPI&#x3D;2*$\frac{1}{1.5GHZ}$<br>M2 的 CPI&#x3D;1*$\frac{1}{1.2GHZ}$<br>做商&#x3D; $\frac{0.75}{1.2}$为执行一条指令的时间之比，运行时间之比应为反比<br>$\frac{1.2}{0.75}&#x3D;1.6$</p>
+<p><strong>18 年考研真题（这是个多选的）</strong><br><img src="https://img-blog.csdnimg.cn/2020022817280179.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYyNzExOA==,size_16,color_FFFFFF,t_70" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br><strong>解析：123 都对</strong></p>
+<br>
+<br>
+<br>
+
+<blockquote>
+<p><strong><em>写在最后:</em></strong><br>我叫风骨散人，名字的意思是我多想可以不低头的自由生活，可现实却不是这样。家境贫寒，总得向这个世界低头，所以我一直在奋斗，想改变我的命运给亲人好的生活，希望同样被生活绑架的你可以通过自己的努力改变现状，深知成年人的世界里没有容易二字。目前是一名在校大学生，预计考研，热爱编程，热爱技术，喜欢分享，知识无界，希望我的分享可以帮到你！<br>如果有什么想看的，可以私信我，如果在能力范围内，我会发布相应的博文！<br>感谢大家的阅读！😘 你的点赞、收藏、关注是对我最大的鼓励！</p>
+</blockquote>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/" class="category-chain-item">计算机组成原理</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>『计算机组成原理』计算机性能指标（附考研题目）</div>
+      <div>https://chiamzhang.github.io/2024/06/29/『计算机组成原理』计算机性能指标（附考研题目）/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>Chiam</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>June 29, 2024</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>Licensed under</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2024/06/29/%E3%80%8E%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86%E3%80%8F%E8%B7%9F%E7%9D%80%E5%8D%9A%E4%B8%BB%E7%8E%A9%E8%BD%AC%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E7%BB%93%E6%9E%84--%E4%B8%AD%E5%A4%AE%E5%A4%84%E7%90%86%E5%99%A8CPU%EF%BC%88%E4%B8%8D%E7%9F%A5%E9%81%93CPU%E5%B9%B2%E5%95%A5%E7%9A%84%E5%B0%8F%E4%BC%99%E4%BC%B4%E7%9C%8B%E8%BF%87%E6%9D%A5%EF%BC%89/" title="『计算机组成原理』跟着博主玩转计算机组成结构--中央处理器CPU（不知道CPU干啥的小伙伴看过来）">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">『计算机组成原理』跟着博主玩转计算机组成结构--中央处理器CPU（不知道CPU干啥的小伙伴看过来）</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/06/29/%E3%80%8E%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86%E3%80%8F%E6%95%B0%E7%9A%84%E8%A1%A8%E7%A4%BA%E5%8F%8A%E8%AE%A1%E7%AE%97/" title="『计算机组成原理』数的表示及计算">
+                        <span class="hidden-mobile">『计算机组成原理』数的表示及计算</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"fIfc7WqUDZohlQuPc2lz5mJy-MdYXbMMI","appKey":"zjlAG3ZA3o4cBHVAkjzc2Z20","path":"window.location.pathname","placeholder":"留言仅限讨论，禁止广告等行为","avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"https://fifc7wqu.api.lncldglobal.com","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>Table of Contents</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <meta name="referrer" content="no-referrer" /> <footer id="footer" role="contentinfo"> <meta name="referrer" content="no-referrer" /> <div class="divider"> <div class="wall"></div> <img class="animals" src="/img/footer_animals_new.png" srcset="/img/loading.gif" lazyload alt="Footer Animals"> </div> <div class="container" data-index="450"> <p> <a href="https://chiamzhang.github.io" target="_blank">DogEgg</a> <i class="iconfont icon-love"></i> <a href="#" target="_blank">LittePig</a> </p> <p> Powered by  <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-pen"></i> Theme  <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> </p> </div> </footer> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+  
+<script src="/js/love.js"></script>
+<script src="/js/funnyTitle.js"></script>
+<script src="/js/backTop.js"></script>
+<script src="//cdn.jsdelivr.net/gh/bynotes/texiao/source/js/xiaoxuehua.js"></script>
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+</html>

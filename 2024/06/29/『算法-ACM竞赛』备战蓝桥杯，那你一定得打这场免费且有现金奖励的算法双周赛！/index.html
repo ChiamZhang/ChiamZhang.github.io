@@ -1,0 +1,736 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/Mine.jpg">
+  <link rel="icon" href="/img/Mine.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Chiam">
+  <meta name="keywords" content="Algorithms，Cybersecurity">
+  
+    <meta name="description" content="『算法-ACM 竞赛』备战蓝桥杯，那你一定得打这场免费且有现金奖励的算法双周赛！备战蓝桥杯，那你一定得打这场免费且有现金奖励的算法双周赛！失踪人口回归，好久没在 CSDN 上与大家交流了。因为在蓝桥开了一些课程，我的重心已经完全转向读研究生和教授课程。今天，我想向大家推荐一个竞赛，考虑到大家已经学习了很长时间的算法，这个竞赛将为你提供一个不仅可以实现自己的能力，还能够增进你的算法技能的机会。 作为">
+<meta property="og:type" content="article">
+<meta property="og:title" content="『算法-ACM竞赛』备战蓝桥杯，那你一定得打这场免费且有现金奖励的算法双周赛！">
+<meta property="og:url" content="https://chiamzhang.github.io/2024/06/29/%E3%80%8E%E7%AE%97%E6%B3%95-ACM%E7%AB%9E%E8%B5%9B%E3%80%8F%E5%A4%87%E6%88%98%E8%93%9D%E6%A1%A5%E6%9D%AF%EF%BC%8C%E9%82%A3%E4%BD%A0%E4%B8%80%E5%AE%9A%E5%BE%97%E6%89%93%E8%BF%99%E5%9C%BA%E5%85%8D%E8%B4%B9%E4%B8%94%E6%9C%89%E7%8E%B0%E9%87%91%E5%A5%96%E5%8A%B1%E7%9A%84%E7%AE%97%E6%B3%95%E5%8F%8C%E5%91%A8%E8%B5%9B%EF%BC%81/index.html">
+<meta property="og:site_name" content="Homepage of Chiam">
+<meta property="og:description" content="『算法-ACM 竞赛』备战蓝桥杯，那你一定得打这场免费且有现金奖励的算法双周赛！备战蓝桥杯，那你一定得打这场免费且有现金奖励的算法双周赛！失踪人口回归，好久没在 CSDN 上与大家交流了。因为在蓝桥开了一些课程，我的重心已经完全转向读研究生和教授课程。今天，我想向大家推荐一个竞赛，考虑到大家已经学习了很长时间的算法，这个竞赛将为你提供一个不仅可以实现自己的能力，还能够增进你的算法技能的机会。 作为">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/c2b36cb10e33457593a232b571030b1c.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/81e93c9f8c444271b5a4647b22ef7076.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/d3578c1cb65d4423a4e9976e8c6627b9.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/4a78bf9ab01c4af195a9f51498c8729f.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/a42ff750cec84c1486659e046e733735.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/204991cf7f2f4c56b4917d99e7728e93.png">
+<meta property="article:published_time" content="2024-06-29T13:16:54.563Z">
+<meta property="article:modified_time" content="2023-12-05T16:20:01.959Z">
+<meta property="article:author" content="Chiam">
+<meta property="article:tag" content="Algorithms，Cybersecurity">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/c2b36cb10e33457593a232b571030b1c.png">
+  
+  
+  
+  <title>『算法-ACM竞赛』备战蓝桥杯，那你一定得打这场免费且有现金奖励的算法双周赛！ - Homepage of Chiam</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"chiamzhang.github.io","root":"/","version":"1.9.5-a","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":"❡"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":2},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
+
+
+<body>
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Chiam&#39;s Blogs</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                
+                <span>Home</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                
+                <span>Archives</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                
+                <span>Categories</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                
+                <span>About</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                
+                <span>Links</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="『算法-ACM竞赛』备战蓝桥杯，那你一定得打这场免费且有现金奖励的算法双周赛！"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-06-29 21:16" pubdate>
+          June 29, 2024 pm
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.1k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          10 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">『算法-ACM竞赛』备战蓝桥杯，那你一定得打这场免费且有现金奖励的算法双周赛！</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="『算法-ACM-竞赛』备战蓝桥杯，那你一定得打这场免费且有现金奖励的算法双周赛！"><a href="#『算法-ACM-竞赛』备战蓝桥杯，那你一定得打这场免费且有现金奖励的算法双周赛！" class="headerlink" title="『算法-ACM 竞赛』备战蓝桥杯，那你一定得打这场免费且有现金奖励的算法双周赛！"></a>『算法-ACM 竞赛』备战蓝桥杯，那你一定得打这场免费且有现金奖励的算法双周赛！</h1><h1 id="备战蓝桥杯，那你一定得打这场免费且有现金奖励的算法双周赛！"><a href="#备战蓝桥杯，那你一定得打这场免费且有现金奖励的算法双周赛！" class="headerlink" title="备战蓝桥杯，那你一定得打这场免费且有现金奖励的算法双周赛！"></a>备战蓝桥杯，那你一定得打这场免费且有现金奖励的算法双周赛！</h1><p>失踪人口回归，好久没在 CSDN 上与大家交流了。因为在蓝桥开了一些课程，我的重心已经完全转向读研究生和教授课程。今天，我想向大家推荐一个竞赛，考虑到大家已经学习了很长时间的算法，这个竞赛将为你提供一个不仅可以实现自己的能力，还能够增进你的算法技能的机会。</p>
+<p>作为多年的竞赛选手，我对这个比赛印象深刻。首先，它的参赛是免费的，而且还有现金奖励。其次，它可以看作是参加 CCPC、ICPC、蓝桥杯等算法竞赛的一种模拟赛，有助于检验你的学习成果，弥补你知识上的不足。</p>
+<p>希望大家积极参与这个精彩的竞赛，为提升自己的算法技能和竞赛经验添砖加瓦。</p>
+<ul>
+<li><h3 id="赛事简介"><a href="#赛事简介" class="headerlink" title="赛事简介"></a><strong>赛事简介</strong></h3></li>
+</ul>
+<p>蓝桥新上线的算法双周赛，可以看作是一个小型蓝桥杯，专门鼓励新手同学充分利用他们的计算机知识和技能，解决实际问题，有效地提升他们的算法能力，为备战蓝桥杯竞赛提供支持。</p>
+<p>不论你是否拥有算法基础，只要你热衷于算法竞赛和刷题，都可以参加。”蓝桥·算法双周赛”每两周举行一场比赛，最新的一场将于本周六（10 月 14 日）19:00 - 21:00 举行。此次双周赛采用现金奖励，最高奖金可达 600 元！</p>
+<ul>
+<li>比赛地址：<a target="_blank" rel="noopener" href="https://www.lanqiao.cn/oj-contest/">https://www.lanqiao.cn/oj-contest/</a></li>
+<li><img src="https://img-blog.csdnimg.cn/c2b36cb10e33457593a232b571030b1c.png" srcset="/img/loading.gif" lazyload></li>
+<li>比赛性质（免费），参赛资格（人人可参与）、报名和参赛流程（如何报名参赛、报名截止日期和步骤）</li>
+<li>比赛时间：2023 年 10 月 14 日 周六 19:00 - 21:00</li>
+<li>比赛奖励：</li>
+<li><img src="https://img-blog.csdnimg.cn/81e93c9f8c444271b5a4647b22ef7076.png" srcset="/img/loading.gif" lazyload></li>
+</ul>
+<p><strong>四、本场比赛信息</strong></p>
+<ul>
+<li><strong>出题人：</strong>肖志林（ICPC 南京站金牌、蓝桥杯 C++ B 组全国冠军）</li>
+<li><strong>验题人：</strong></li>
+<li>1. 执梗：CSDN 粉丝 6w+、蓝桥杯 Java B 组 国一；<a target="_blank" rel="noopener" href="https://blog.csdn.net/m0_57487901">➡️ 点击前往博主主页</a></li>
+<li>2. 小羊肖恩：北京大学在读，保研本校；力扣全球排名 28 位，竞赛分 3248；<a target="_blank" rel="noopener" href="https://codeforces.com/profile/Little_Sheep_Yawn">➡️ 点击前往博主主页</a></li>
+<li>3. 阿坤老师：蓝桥杯国一 、 Codeforces 橙名；<a target="_blank" rel="noopener" href="https://codeforces.com/profile/Distractions">➡️ 点击前往博主主页</a></li>
+</ul>
+<p><strong>提供赛后解析：10 月 14 日 比赛当日 21:00，由出题人主讲！！</strong></p>
+<p><strong>观看直播地址：</strong><a target="_blank" rel="noopener" href="http://live.bilibili.com/4798053">➡️ 点击预约赛后免费直播讲解</a></p>
+<p><strong>五、赛事交流</strong></p>
+<ul>
+<li><strong>赛后答疑帖：<a target="_blank" rel="noopener" href="https://www.lanqiao.cn/questions/451233/">https://www.lanqiao.cn/questions/451233/</a></strong></li>
+<li><strong>知乎评价：</strong><a target="_blank" rel="noopener" href="https://www.zhihu.com/question/623300418">#如何评价蓝桥云课 10 月 14 日算法双周赛#</a></li>
+</ul>
+<p><strong>六、亮点及竞赛规则</strong></p>
+<ul>
+<li>蓝桥·算法双周赛的计分采用 ACM 赛制的计分方式，答题时可自行选择语言，提交后即出成绩，统一评分不分组，自动生成全国、全省、全校排名！</li>
+<li><img src="https://img-blog.csdnimg.cn/d3578c1cb65d4423a4e9976e8c6627b9.png" srcset="/img/loading.gif" lazyload></li>
+<li>比赛会计算等级分，基础积分 1000 分，根据等级分计算方式，比赛结束后等级分会根据排名上下变动！</li>
+<li><img src="https://img-blog.csdnimg.cn/4a78bf9ab01c4af195a9f51498c8729f.png" srcset="/img/loading.gif" lazyload></li>
+<li>点击某位参赛用户答题时间区域，还可以查看该用户参赛时对此题目首次提交为 true 的代码！</li>
+</ul>
+<p><img src="https://img-blog.csdnimg.cn/a42ff750cec84c1486659e046e733735.png" srcset="/img/loading.gif" lazyload></p>
+<p>大家有问题可以扫描下面的二维码去问问题哈！！！</p>
+<p><img src="https://img-blog.csdnimg.cn/204991cf7f2f4c56b4917d99e7728e93.png" srcset="/img/loading.gif" lazyload></p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E7%AE%97%E6%B3%95/" class="category-chain-item">算法</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/%E7%AE%97%E6%B3%95/ACM%E7%AB%9E%E8%B5%9B/" class="category-chain-item">ACM竞赛</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>『算法-ACM竞赛』备战蓝桥杯，那你一定得打这场免费且有现金奖励的算法双周赛！</div>
+      <div>https://chiamzhang.github.io/2024/06/29/『算法-ACM竞赛』备战蓝桥杯，那你一定得打这场免费且有现金奖励的算法双周赛！/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>Chiam</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>June 29, 2024</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>Licensed under</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2024/06/29/%E3%80%8E%E7%AE%97%E6%B3%95-ACM%E7%AB%9E%E8%B5%9B%E3%80%8F%E5%B8%A6%E6%9D%83%E5%B9%B6%E6%9F%A5%E9%9B%86--hdu3047%20ZJnu%20stadium/" title="『算法-ACM竞赛』带权并查集--hdu3047 ZJnu stadiu">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">『算法-ACM竞赛』带权并查集--hdu3047 ZJnu stadiu</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/06/29/%E3%80%8E%E7%AE%97%E6%B3%95-ACM%E7%AB%9E%E8%B5%9B%E3%80%8F%E5%8D%95%E8%B0%83%E9%98%9F%E5%88%97%E6%A8%A1%E6%9D%BF/" title="『算法-ACM竞赛』单调队列模板">
+                        <span class="hidden-mobile">『算法-ACM竞赛』单调队列模板</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"fIfc7WqUDZohlQuPc2lz5mJy-MdYXbMMI","appKey":"zjlAG3ZA3o4cBHVAkjzc2Z20","path":"window.location.pathname","placeholder":"留言仅限讨论，禁止广告等行为","avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"https://fifc7wqu.api.lncldglobal.com","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>Table of Contents</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <meta name="referrer" content="no-referrer" /> <footer id="footer" role="contentinfo"> <meta name="referrer" content="no-referrer" /> <div class="divider"> <div class="wall"></div> <img class="animals" src="/img/footer_animals_new.png" srcset="/img/loading.gif" lazyload alt="Footer Animals"> </div> <div class="container" data-index="450"> <p> <a href="https://chiamzhang.github.io" target="_blank">DogEgg</a> <i class="iconfont icon-love"></i> <a href="#" target="_blank">LittePig</a> </p> <p> Powered by  <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-pen"></i> Theme  <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> </p> </div> </footer> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+  
+<script src="/js/love.js"></script>
+<script src="/js/funnyTitle.js"></script>
+<script src="/js/backTop.js"></script>
+<script src="//cdn.jsdelivr.net/gh/bynotes/texiao/source/js/xiaoxuehua.js"></script>
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+</html>

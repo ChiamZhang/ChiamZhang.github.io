@@ -1,0 +1,777 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/Mine.jpg">
+  <link rel="icon" href="/img/Mine.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Chiam">
+  <meta name="keywords" content="Algorithms，Cybersecurity">
+  
+    <meta name="description" content="『算法-ACM 竞赛-历程』ACM 一年记，总结报告（希望自己可以走得很远)一、 知识点梳理(一) 先从工具 STL 说起：容器学习了：stack，queue，priority_queue，set&#x2F;multiset，map&#x2F;multimap，vector。1.stack：栈是一种只能在某一端插入和删除数据的特殊线性表。他按照先进先出的原则存储数据，先进的数据被压入栈底，最后进入">
+<meta property="og:type" content="article">
+<meta property="og:title" content="『算法-ACM竞赛-历程』ACM一年记，总结报告（希望自己可以走得很远)">
+<meta property="og:url" content="https://chiamzhang.github.io/2024/06/29/%E3%80%8E%E7%AE%97%E6%B3%95-ACM%E7%AB%9E%E8%B5%9B-%E5%8E%86%E7%A8%8B%E3%80%8FACM%E4%B8%80%E5%B9%B4%E8%AE%B0%EF%BC%8C%E6%80%BB%E7%BB%93%E6%8A%A5%E5%91%8A%EF%BC%88%E5%B8%8C%E6%9C%9B%E8%87%AA%E5%B7%B1%E5%8F%AF%E4%BB%A5%E8%B5%B0%E5%BE%97%E5%BE%88%E8%BF%9C)/index.html">
+<meta property="og:site_name" content="Homepage of Chiam">
+<meta property="og:description" content="『算法-ACM 竞赛-历程』ACM 一年记，总结报告（希望自己可以走得很远)一、 知识点梳理(一) 先从工具 STL 说起：容器学习了：stack，queue，priority_queue，set&#x2F;multiset，map&#x2F;multimap，vector。1.stack：栈是一种只能在某一端插入和删除数据的特殊线性表。他按照先进先出的原则存储数据，先进的数据被压入栈底，最后进入">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2024-06-29T13:16:54.086Z">
+<meta property="article:modified_time" content="2023-12-05T16:18:55.875Z">
+<meta property="article:author" content="Chiam">
+<meta property="article:tag" content="Algorithms，Cybersecurity">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>『算法-ACM竞赛-历程』ACM一年记，总结报告（希望自己可以走得很远) - Homepage of Chiam</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"chiamzhang.github.io","root":"/","version":"1.9.5-a","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":"❡"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":2},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
+
+
+<body>
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Chiam&#39;s Blogs</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                
+                <span>Home</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                
+                <span>Archives</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                
+                <span>Categories</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                
+                <span>About</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                
+                <span>Links</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="『算法-ACM竞赛-历程』ACM一年记，总结报告（希望自己可以走得很远)"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-06-29 21:16" pubdate>
+          June 29, 2024 pm
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          12k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          104 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">『算法-ACM竞赛-历程』ACM一年记，总结报告（希望自己可以走得很远)</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="『算法-ACM-竞赛-历程』ACM-一年记，总结报告（希望自己可以走得很远"><a href="#『算法-ACM-竞赛-历程』ACM-一年记，总结报告（希望自己可以走得很远" class="headerlink" title="『算法-ACM 竞赛-历程』ACM 一年记，总结报告（希望自己可以走得很远)"></a>『算法-ACM 竞赛-历程』ACM 一年记，总结报告（希望自己可以走得很远)</h1><p>一、 知识点梳理<br>(一) 先从工具 STL 说起：<br>容器学习了：stack，queue，priority_queue，set&#x2F;multiset，map&#x2F;multimap，vector。<br>1.stack：<br>栈是一种只能在某一端插入和删除数据的特殊线性表。他按照先进先出的原则存储数据，先进的数据被压入栈底，最后进入的数据在栈顶，需要读数据的时候从栈顶开始弹出数据(最后被压入栈的，最先弹出）。因此栈也称先进后出表。<br>2.queue：<br>是典型的先进先出容器，FIFO（first-in-first-out），通俗点说就，这个容器就像是在排队，走的人在前面走，来的人在后面排，排队的顺序和离开的顺序是相同的。 3. priority_queue：<br>优先队列 priority_queue 可理解为一个大根堆，有特定权值的先出队，也形象的举个例子，拍卖，无论出手多晚，只要出价足够高，就可以拿走拍卖品。(但是，在优先队列里，元素排列绝对不是完全单调的，只能确定队首元素是最大的，保证出队顺序是单调的)<br>4.vector：<br>简单地说，vector 是一个能够存放任意类型的动态数组，能够增加和删除数据，可以直接访问向量内任意元素。 5. set&#x2F;multiset：<br>两容器相似，但 set 为有序集合，元素不能重复，multiset 为有序多重集合，可包含若干相等的元素，可以放结构体，但是一定要重载排列方式，不然编译都过不了，set 的查找于插入元素的复杂度为 log(N),是一个比较好用的容器。<br>PS：但是，在使用结构体时，有几个元素，就要写几个元素的比较，不然会被视为同一个元素：<br>6.map&#x2F;multimap：map 映射容器的元素数据是由一个 Key 和一个 Value 成的，key 与映照 value 之间具有一一映照的关系。map 插入元素的键值不允许重复，类似 multiset，multimap 的 key 可以重复。比较函数只对元素的 key 进行比较，元素的各项数据只能通过 key 检索出来。虽然 map 与 set 采用相同的数据结构，但跟 set 的区别主要是 set 的一个键值和一个映射数据相等，Key&#x3D;Value。就好像是 set 里放的元素是 pair 组成了 map，map 的 key 也可以为自定义数据类型，但是也要像上文 set 一样写重载函数。<br>算法（algorithm）：在算法头文件下包括了好多函数，下面列出常用的。</p>
+<ol>
+<li>count:把标志范围内的元素与输入值比较，返回相等元素个数。</li>
+<li>find:对指定范围内的元素与输入值进行比较。当匹配时，结束搜索，返回该元素的一个迭代器。</li>
+<li>lower_bound:返回一个迭代器它指向在的有序序列中可以插入 value，而不会破坏容器顺序的第一个位置，而这个位置标记了一个不小于 value 的值，即返回第一个大于或等于 value 第一个位置。</li>
+<li>upper_bound: 返回一个迭代器，指向在有序序列范围内插入 value 而不破坏容器顺序的最后一个位置，该位置标志一个大于 value 的值，即返回第一个大于 value 的位置</li>
+<li>unique（可用于离散化）清除序列中重复元素，和 remove 类似，它也不能真正删除元素。</li>
+<li>swap: 交换存储在两个对象中的值。</li>
+<li>next_permutation：取出当前范围内的排列，并重新排序为下一个排列。</li>
+<li>prev_permutation:取出指定范围内的序列并将它重新排序为上一个序列。如果不存在上一个序列则返回 false。</li>
+<li><ol start="5">
+<li>sort: 以升序重新排列指定范围内的元素。使用比较函数自定义比较操作，也可以在自定义对象中。</li>
+</ol>
+</li>
+<li>fill: 将输入值赋给标志范围内的所有元素。（区别于 memset 的是赋值方式）<br>（二）位运算：<br>1、按位与(&amp;)<br>参加运算的两个数，换算为二进制(0、1)后，进行与运算。只有当相应位上的数都是 1 时，该位才否则该为为 0。<br>2、按位或(|)<br>参加运算的两个数，换算为二进制(0、1)后，进行或运算。只要相应位上存在 1，那么该位就取 1，均不为 1，即为 0。<br>3、按位异或(^)<br>参加运算的两个数，换算为二进制(0、1)后，进行异或运算。只有当相应位上的数字不相同时，该为才取 1，若相同，即为 0。<br>任何数与 0 异或，结果都是其本身。利用异或还可以实现一个很好的交换算法，用于交换两个数，算法如下：<br>a &#x3D; a ^ b;<br>b &#x3D; b ^ a;<br>a &#x3D; a ^ b;<br>4、取反(~)<br>参加运算的两个数，换算为二进制(0、1)后，进行取反运算。每个位上都取相反值，1 变成 0，0 变成 1。<br>5、左移(&lt;&lt;)<br>参加运算的两个数，换算为二进制(0、1)后，进行左移运算，用来将一个数各二进制位全部向左移动若干位。左移一位的结果就是原值乘 2，左移两位的结果就是原值乘 4。<br>6、右移(&gt;&gt;)<br>参加运算的两个数，换算为二进制(0、1)后，进行右移运算，用来将一个数各二进制位全部向右移动若干位。对 10 右移 2 位(就相当于在左边加 2 个 0)：右移一位的结果就是原值除 2，又移两位的结果就是原值除 4。<br>延伸操作 1.快速幂（快速模幂）<br>求 a^b%p</li>
+</ol>
+<figure class="highlight axapta"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs axapta"><span class="hljs-built_in">int</span> pow_mod(<span class="hljs-built_in">int</span> a, <span class="hljs-built_in">int</span> k,<span class="hljs-built_in">int</span> <span class="hljs-keyword">mod</span>)  &#123;<br>     <span class="hljs-built_in">int</span> ans = <span class="hljs-number">1</span>%<span class="hljs-keyword">mod</span>;<br>     <span class="hljs-keyword">while</span>(k)  &#123;<br>         <span class="hljs-keyword">if</span>(k &amp;<span class="hljs-number">1</span>)  ans =(<span class="hljs-built_in">long</span> <span class="hljs-built_in">long</span>) ans*a%<span class="hljs-keyword">mod</span>;  <span class="hljs-comment">//防止在对P取模前溢出</span><br>         a = (<span class="hljs-built_in">long</span> <span class="hljs-built_in">long</span>)a*a%<span class="hljs-keyword">mod</span>;<br>         k &gt;&gt;=<span class="hljs-number">1</span>;  <span class="hljs-comment">//比除法快多了</span><br>     &#125;<br>     <span class="hljs-keyword">return</span> ans;<br> &#125;<br></code></pre></td></tr></table></figure>
+
+<p>2.快速乘法<br>方法 ①</p>
+<figure class="highlight axapta"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs axapta"><span class="hljs-built_in">long</span> <span class="hljs-built_in">long</span> quickMul(<span class="hljs-built_in">long</span> <span class="hljs-built_in">long</span> a,<span class="hljs-built_in">long</span> <span class="hljs-built_in">long</span> b,<span class="hljs-built_in">long</span> <span class="hljs-built_in">long</span> <span class="hljs-keyword">mod</span>)<br>&#123;<br>    <span class="hljs-built_in">long</span> <span class="hljs-built_in">long</span> ans=<span class="hljs-number">0</span>;<br>    <span class="hljs-keyword">while</span>(b)&#123;<br>        <span class="hljs-keyword">if</span>(b&amp;<span class="hljs-number">1</span>) ans=(ans+a)%<span class="hljs-keyword">mod</span>;<br>        a=(a+a)%<span class="hljs-keyword">mod</span>;  <span class="hljs-comment">//（计算机加法比乘法快，a+a比a*2快）</span><br>        b&gt;&gt;=<span class="hljs-number">1</span>;<br>    &#125;<br>    <span class="hljs-keyword">return</span> ans;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>方法 ②：高效算法</p>
+<figure class="highlight axapta"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs axapta"><span class="hljs-built_in">long</span> <span class="hljs-built_in">long</span> quickMul(<span class="hljs-built_in">long</span> <span class="hljs-built_in">long</span> a,<span class="hljs-built_in">long</span> <span class="hljs-built_in">long</span> b,<span class="hljs-built_in">long</span> <span class="hljs-built_in">long</span> <span class="hljs-keyword">mod</span>)<br>        &#123;<br>            a%=<span class="hljs-keyword">mod</span>;<br>            b%=<span class="hljs-keyword">mod</span>;<br>            <span class="hljs-built_in">long</span> <span class="hljs-built_in">long</span>  ans=<span class="hljs-number">0</span>;<br>            <span class="hljs-keyword">while</span>(b)&#123;<br>                <span class="hljs-keyword">if</span>(b&amp;<span class="hljs-number">1</span>)&#123;<br>                    ans+=a;<br>                    <span class="hljs-keyword">if</span>(ans&gt;=<span class="hljs-keyword">mod</span>)<br>                       ans-=<span class="hljs-keyword">mod</span>;<br>                &#125;<br>                b&gt;&gt;=<span class="hljs-number">1</span>;<br>                a&lt;&lt;=<span class="hljs-number">1</span>;<br>                <span class="hljs-keyword">if</span>(a&gt;=<span class="hljs-keyword">mod</span>)  a-=<span class="hljs-keyword">mod</span>;<br>            &#125;<br>           <span class="hljs-keyword">return</span> ans;<br>        &#125;<br></code></pre></td></tr></table></figure>
+
+<p>（三）贪心算法<br>解决最优化问题的算法一般包含一系列的步骤，每一步都有若干的选择。对于很多最优化问题，只需要采用简单的贪心算法就可以解决，而不需要采用动态规划方法。贪心算法使所做的局部选择看起来都是当前最佳的，通过局部的最优化选择来产生全局最优解。所以在求最优解问题的过程中，依据某种贪心标准，从问题的初始状态出发，直接去求每一步的最优解，通过若干次的贪心选择，最终得出整个问题的最优解。<br>贪心算法特点：<br>（1）贪心选择性质：一个全局最优解可以通过局部最优解（贪心）选择来达到。即，当考虑做选择时，只考虑对当前问题最佳的选择而不考虑子问题的结果。而在动态规划中，每一步都要做出选择，这些选择依赖于子问题的解。动态规划一般是自底向上，从小问题到大问题。贪心算法通常是自上而下，一个一个地做贪心选择，不断地将给定的问题实例规约为更小的子问题。<br>（2）含有最优子结构： 如果问题的一个最优解包含了其子问题的最优解，则称该问题具有最优子结构。<br>适用题型 1.活动选择问题。 2.可拆分背包问题 3.最优装载问题 4.删数问题 5.多处最优服务次序问题 6.多机调度问题 7.区间覆盖问题<br>虽然贪心能做的 DP 都能做，但是还要秉承能贪心绝不 DP 的传统。贪心虽然是一个学起来简单，感觉用起来简单的题型，有些题贪起心来是真有水平。<br>(四）动态规划<br>我认为 DP 就是剪枝后的大爆搜，几乎也是，列出了所有的可能性，然后寻求最优解，这种方法的特点是牺牲空间来换取时间，。能用动态和规划解决的问题需要有最优子结构，即大问题可以拆成一些子问题，这些子问题和大问题的形式基本是一样的，通过分成小问题，降低了问题的复杂度。最难还是找状态转移方程，刚学的时候，差点被从 ACM 这条路上劝退，找状态转移方程我感觉还是从问题的目的为出发点，要拆分大问题，要看每一步小问题的联系，这一步与上一步的联系，确保我当前选的是这种情况的最优解。<br>其次我认为 DP 是一种思想，而不是一种算法，各种最优解问题，各种思路，生搬永远学不会动态规划。<br>背包问题<br>背包问题是 DP 的一个重点，虽然形式背包九讲种都列出来，但是状态压缩的背包到现在我还是写不出来。<br>1．01 背包问题：<br>有 N 件物品和一个容量为 V 的背包。第 i 件物品的费用是 c[i]，价值是 w[i]。求解将哪些物品装入背包可使价值总和最大，特点是：每种物品仅有一件，可以选择放或不放。想到了贪心，贪心实可以拆，装个西瓜是在装不了可以切，要是装个笔记本还能把电脑分两半吗？这个可拆，不可拆是划分 DP 和贪心的重要标准。<br>for(int i&#x3D;0;i&lt;n;i++) &#x2F;&#x2F;遍历每一件物品<br>for(int j&#x3D;v;j&gt;&#x3D;wei[i];j–)<br>&#x2F;&#x2F;遍历背包容量，表示在上一层的基础上，容量为 J 时，第 i 件物品装或不装的最优解;<br>dp[j]&#x3D;max(dp[j-wei[i]]+val[i],dp[j])；</p>
+<p>初始化时用两种初始化原则若必须装满，就需要出 dp[0]&#x3D;0 外 dp[]赋值为-0x3f3f3f3f 这样在不装时值接近-∞ 所以必须去装满。若不必装满初始化时都赋值为 0，这样不装不会减小。 2.完全背包问题：<br>有 N 种物品和一个容量为 V 的背包，每种物品都有无限件可用。第 i 种物品的费用是 c[i]，价值是 w[i]。求解将哪些物品装入背包可使这些物品的费用总和不超过背包容量，且价值总和最大。这个问题非常类似于 01 背包问题，所不同的是每种物品有无限件。也就是从每种物品的角度考虑，与它相关的策略已并非取或不取两种，而是有取 0 件、取 1 件、取 2 件……等很多种。容量的情况是唯一的，但是其对应的装载情况却不唯一，思想是重量为 W 时的最优解逐步向下推，一直推到装不下的背包重量 Wmax。<br>for(int i&#x3D;0;i&lt;n;i++) &#x2F;&#x2F;遍历每一类物品<br>for(int j&#x3D;wei[i];j&lt;&#x3D;v;j++)&#x2F;&#x2F;遍历容量，此时代表第一类物品选了几件。与 0&#x2F;1 区别正序遍历<br>dp[j]&#x3D;max(dp[j-wei[i]]+val[i],dp[j])； 3. 多重背包问题<br>有 N 种物品和一个容量为 V 的背包。第 i 种物品最多有 n[i]件可用，每件费用是 c[i]，价值是 w[i]。求解将哪些物品装入背包可使这些物品的费用总和不超过背包容量，且价值总和最大。这题目和完全背包问题很类似。思想还是那个思想，一直求的是背包重量为 W 时的最优解。</p>
+<pre><code class="hljs">for(int i=0;i&lt;n;i++)  //遍历每一个物品
+           for(int j=0;j&lt;=num[i];j++)  //遍历物品的数量
+              for(int k=m;k&gt;=weight[i];k--)   //当做01背包来处理
+              &#123;  //取01背包情况的dp[k]和dp[k-weight[i]]+value[i]的最大值
+                dp[k]=max( dp[k],dp[k-weight[i]]+value[i] ）;
+              &#125;
+</code></pre>
+<p>多重背包的二进制优化<br>优化原因：<br>多重背包转换成 01 背包问题就是多了个初始化，把它的件数 C 用 分解成若干个件数的集合，这里面数字可以组合成任意小于等于 C 的件数，而且不会重复，通过数字的二进制转化更容易实现这个过程。<br>比如：7 的二进制 7 &#x3D; 111 它可以分解成 001 010 100 这三个数可以 组合成任意小于等于 7 的数，而且每种组合都会得到不同的数，这样就可以用三个数表示 7 这个 N 个物品。1 2 4 -&gt;3 5 6 7 加上本身就是 1 2 4 5 6 7 完完全全的表示了 7.</p>
+<pre><code class="hljs">for(int i=0;i&lt;n;i++)
+&#123;
+    cin&gt;&gt;w[i]&gt;&gt;v[i]&gt;&gt;c[i];//对每一种类的c[i]件物品进行二进制分解
+    for(int j=1;j&lt;=c[i];j&lt;&lt;=1)&#123;      //右移=*2
+        value[cnt]=j*v[i];
+        weight[cnt]=j*w[i];
+        cnt++;
+        c[i]-=j;
+    &#125;
+    if(c[i]&gt;0)&#123;
+        alue[cnt]=c[i]*v[i];
+        weight[cnt]=c[i]*w[i];
+        cnt++;
+    &#125;
+&#125;
+    4.二维乃至多维背包问题
+</code></pre>
+<p>主要是状压背包写不出来，才会有多维背包这一说，对于每件物品，具有两种不同的费用；选择这件物品必须同时付出这两种代价；对于每种代价都有一个可付出的最大值（背包容量）。问怎样选择物品可以得到最大的价值。嗯就是多了一维的 01 背包，也就是多了一重循环，多维就是多了几重循环，如果数量小的话，可以一试。<br>for(int i &#x3D; 1;i &lt;&#x3D; n;i++)<br>for(int j &#x3D; l;j &gt;&#x3D; wei1[i].t;j–)<br>for(int k &#x3D; m;k &gt;&#x3D; wei2[i];k–)<br>dp[j][k] &#x3D; max(dp[j][k],dp[j- wei1[i]][k- wei2[i]]+val[i]);<br>区间 DP<br>区间 dp 就是在区间上进行动态规划，通过求解某一段区间上的最优解，进而求解包含他的更大一段区间最优解。思想还算简单写起来也有模板，但是用起来就没那么容易了，一个“屌丝“题，自己宛如一个屌丝。看起来 floyd 是偷学了区间 DP。解题思路，从小到大枚举区间长度，得到小区间，然后枚举起点终点（枚举起点，得到终点）使区间移动，再枚举中间点，是的通过小区间最优解来得到大区间的最优解。</p>
+<pre><code class="hljs">for(int len = 1;len&lt;=n;len++)&#123;//枚举长度
+        for(int j = 1;j+len&lt;=n+1;j++)&#123;//枚举起点，ends&lt;=n
+            int ends = j+len - 1;
+            if（ends&gt;n）breask;
+            for(int i = j;i&lt;ends;i++)&#123;//枚举分割点，更新小区间最优解
+                dp[j][ends] = min(dp[j][ends],dp[j][i]+dp[i+1][ends]+something);
+            &#125;
+        &#125;
+    &#125;
+</code></pre>
+<p>（五）递推与递归<br>递归算法：<br>即在程序中不断反复调用自身来达到求解问题的方法。通常把一个大型复杂的问题层层转化为一个与原问题相似的规模较小的问题来求解,编写递归算法时，一定要注意递归终止条件（即寻找边界，控制递归），不然可能先超时间，后爆内存。（搜索可以体现）。<br>递推算法：<br>在已知条件和所求问题之间总存在着某种相互联系的关系，在计算时，如果可以找到前后过程之间的关系。进而列出递推关系式。举个最简单的例子，数学的等差数列，等比数列，通常是给出 An+1 -An 在高中求解时都要先求出通项公式，而通项公式并不都很好求，所以可以由第一项加上关系求出每一项，省去了求通项的，但是地推的时间复杂，要比求通项时间复杂度要高，如果不是通项太难求，或者求不出，首选还是通项。<br>（六）搜索<br>DFS（深度优先搜索）<br>深搜顾名思义，是以深度优先的情况搜索（完全枚举），一头撞南墙，不然不回头，DFS 有两种实现方式，递归实现和栈实现（非递归），目前用栈比较多，既然上边说到 DP 就是剪枝大爆搜，也就是说 DFS 也能做 DP（不过就是超时不超时，兴许剪枝能过），既然深搜是完全枚举，他就适合用在枚举所有情况或是极大部分情况的题型。</p>
+<pre><code class="hljs">void dfs( 某一时刻的情况 )
+&#123;
+    达到目标条件，保存目标值，返回；
+        找到符合条件下一个情况；
+        Dfs（下一个情况）；
+&#125;
+</code></pre>
+<p>BFS（广度优先搜素）<br>广搜顾名思义，是以广度优先的标准进行搜索，这一层还有情况，我绝不往下走一步，按层向下一层层遍历，看起来就像是水波纹一层层展开，然后在某一层出现符合条件的值，即停止搜索。一个点，一个距离（层数）这不就是单源最短路，所以广搜也是解决最短路的一个方法，比其他最短路算法有着兼容性好，适用范围广的有点，缺点容易超时。但是在一些 floyd ，spfa 不能做的奇怪的图的题，bfs 还是十分优秀的。实现方式队列实现，走完这一层，下一层的都放在最后，正好是一层一层向下。</p>
+<pre><code class="hljs">Void bfs（某一情况）
+&#123;
+        进入Queue；
+        While（队列不空）&#123;
+            取出第一个元素，
+            达到目标要求，退出。
+            找出符合要求的延伸情况入队
+            弹出第一个元素
+</code></pre>
+<p>}<br>}<br>（七）单调队列<br>队列中元素之间的关系具有单调性，而且，队首和队尾都可以进行出队操作，只有队尾可以进行入队操作，可以自己写个数组，要是元素太多不确定可以用 deque。单调队列可以优化 DP，但是还没学会。我最开始接触的时单调栈，后来发现单调栈能做的，单调队列都能做，本质上区别不大。<br>维护的话：<br>举个例子：有 7 6 8 12 9 10 3 七个数字，现在让你找出范围（ i-4，i ） 的最小值，那我们就可以这样模拟一遍。<br>先初始化{ 0 } （表示 i&#x3D;0 时的值）<br>i&#x3D;1 -&gt;{ 0 } （表示 i&#x3D;1,时，在其范围内最小的值为 0）-&gt; 7 进队 { 7 } ；<br>i&#x3D;2-&gt;{ 7 }（表示 i&#x3D;2,时，在其范围内最小的值为 7）-&gt; 6 比 7 小，7 出，6 进 { 6 }；<br>i&#x3D;3-&gt; { 6 } （表示 i&#x3D;3,时，在其范围内最小的值为 6）-&gt;8 比 6 大，8 进 { 6, 8}；<br>i&#x3D;4-&gt;{ 6, 8}（表示 i&#x3D;4,时，在其范围内最小的值为 6）-&gt; 12 比 8 大，12 进 {6, 8 , 12};<br>i&#x3D;5-&gt; {6, 8 , 12}（表示 i&#x3D;4,时，在其范围内最小的值为 6）-&gt; 9 比 12 小，12out，9 比 8 大，9 进 {6，8, 9}；<br>i&#x3D;6-&gt; {6，8, 9} 但是 单调队列中元素 6 的下标是 2，不在（2, 6],中，故 6 out，这就是单调队列的精髓了。故单调队列为<br>{ 8,9 }（表示 i&#x3D;5,时，在其范围内最小的值为 8）-&gt;10 比 9 大，10 进 最终 单调队列为{ 8，9, 10} ;<br>i&#x3D;7-&gt;{ 8，9, 10}（表示 i&#x3D;6,时，在其范围内最小的值为 8）-&gt; 3 比单调队列为{ 8，9, 10} 的任意值都小，故全 out，最终集合为 { 3 }；<br>欸？看起来没用啊，我直接求最小值是 3 不就完了，题目要的就是区间最小值，肯定还有别的操作，比 如再乘以端点值求最小，只能单调队列了。<br>（八）二分，三分<br>二分:<br>二分法与二分查找，二分查找是在一个有序集合内，将集合分成两部分，每次选取符合条件的部分继续二分查找，直到寻找到解为止。做二分的题目，主要是找到这个有序集合与二分条件。二分需要注意的是非整数时的精度问题，而是符合条件解不唯一，贪心思想，获得最优解。二分还可以解决一些 DP 题目，一些搜索题目，相比之下二分好写。<br>三分：<br>三分法，常用于求函数单调性，用于不容易求出表达式的函数的极值问题。<br>(九)数据结构<br>数据结构，先讲了栈与队列的原理与实现，但是我觉得还是 STL 好用，明白原理跟实现方式就好了，用的话可以再考虑考虑。<br>树：以递归的方式定义，一棵树有一个根节点和一些子节点，子节点可以是一棵树，也可以是叶子节点。<br>堆：讲了堆的原理及实现，大根堆，小根堆也就说明白了优先队列的实现原理。既然 STL 有优先队列某种特点的根堆，那还是还是 STL 优先队列吧。<br>总的来说，数据结构除了二叉树，我觉得别的都有现成的东西，所以这东西用起来麻烦，还容易出错，果断 STL。<br>（十）欧拉回路，哈密尔顿环<br>欧拉回路是指不重复地走过所有路径的回路，经典的例子是戈尼斯堡七桥问题：解决方法是深搜<br>上次试水赛看到了一次，没做出来。哈密尔顿环与欧拉回路的区别是，哈密尔顿环是不重复经过一个点，遍历所有点。同样是深搜的思想，走不通就回退，走通就向下走，无路可走时若没遍历所有点，此情况不是哈密尔顿环，只有遍历完所有点无才是构成了一个哈密尔顿环。<br>（十二）最短路 并查集 树状数组 线段树<br>这部分的题目都是一些模板题，其实虽然是模板题但还不是仅仅依靠模板就能想出来的，但是我自从知道 floyd 算法之后，我发现原来用 Floyd 加讨论入度出度然后就是传递闭包，然后这道题是我们三个开了一个半小时，开成了拓扑排序，因为当时不知道什么时拓扑排序，只知道有关系排序，可能这就是跟省银的距离吧，就像老师说的要想做出成绩需要 3000 题，要想有能力做完着 3000 题，算法很重要，谁要是能先学完算法，然后做完这 3000 题就会在 ACMer 的路上成为一头大牛，不仅如此，有一种资源掠夺的思想在社会的每一处角落，就是拿到资源的人，用资源提高自己能力从而获取更多资源，滚雪球的形式让别人望尘莫及，也看了山大王瑞他们的成长，其实每个人需要的不是做某一方面天赋，而是坚持的天赋。<br>二、 感悟与收获<br>知识点，csdn 上都有，写的也比我全，一开始我是拒绝的，但是我想了想，老师的用意可能是为了让我们再回顾一下知识点，这一片所有的知识点，是我自己纯手打的，有借鉴，但是从不 ctrl，因为我知道这是我难得的复习机会，也正是因为桥上面的知识点，发现自己还真忘了不少，无论是 DP，还是搜索，都有些细节没想到，想到了 DP 的单调队列优化，斜率优化…….自己还是处于一个师傅领进门修行在个人的菜鸟，要走的路还长，有些人做完这学期，下学期就走了，但是我敢肯定的是每个人在这门课上都有自己的收获，我也算是收获颇丰，<br>自己原来学了这么多算法，还不错。<br>什么时候开始听说 ACM 的呢，从开学的时候，在计算机的迎新群了就开始互相吹捧，有那么几个人总是被称为大佬，什么样的人呢，每个人都会去说是大佬，我在群里认识了姜赫，张智超两位学长，哇，都去了 BAT 工作了，很强是大佬，然后我从他们哪里我知道了 ACM，我问班助 ACM 是啥，我说我想试试，他说 ACM 很难，你可能不行，要不你考虑启航。在一刹那，在所有人眼里，我觉得我好像真的很菜，我想要做 ACM，看了看 ACM 的基本介绍 c++ java python，学长说开学学 C++就开始学 c++，买了一本书 C++从入门到精通，清华大学出版的，只能说很烂，后来看慕课跟着翁恺老师学 c++，开学的时候已经学完了数组跟循环。然后开学 C++第一节课，我问看到费老师，我很清楚的我第一句说了啥“老师你没有学长说的那么凶神恶煞呀？”在这里不吹捧 FLS，然后我觉得这样的授课方式我挺喜欢，做的题目是 OJ，我做的很慢，但是每次都能昨晚，恰巧我有了一间办公室，我每天都泡在办公室，我发现这是我从小到大除了对游戏，第一次是因为自己想做，而去努力。从 oj 到 ACM 新生赛，新生赛我是真的慌了，这些题，我是真的不会做，怎么会这么难，当时我就差点被劝退 ACM，虽然现在看来那些题真的不难，现如今看得更远，发现 ACM 有很长的路要走，但是我不畏惧。我下定决心，我要进校队，我要做这个做下去，当时真的害怕自己没有资格进入校队，因为自己成绩实在是太差，我当时在学生会，部门有个叫 QWX，什么也会说的什么 DP，DFS 说的我一愣一愣的，那一段时间真的是难受到想哭，当时的我只会用个 string，还用不利索的白丁菜鸡，我慢慢知道了 sort，我当时还不知道网上有题解这一说，知道放寒假做 51nod 的时候才知道的，我当时只是会根据自己想要实现的功能去查找方法，自己学习冒泡排序，自己寒假学习了结构体，自己学了 set，学了 map，弄会了大部分的容器，我还是不懂 DP，DFS，好在自己报了 ACM 课，时间就到了这学期了，开始在 ACM 课里学习，我绝对不是学的最快的，学习效率也绝对不是最高的，做题也是很慢，但是我知道自己基础不如别人，我可以拼时间，那段时间做题真的像疯子一样，可是我还是没入门，离门就差一脚，这一脚就是省赛，省赛的两个假期我没有回家，到现在这学期我没回过一次家，尽管家就在济南，第一天被李增琪一个人打爆两个人，吊锤，我问他怎么做的，做了三个小时睡了一觉又出了两个题，嗯，自己挺菜的，第三天，杨航宇，孙昊，回来了，我们三个人跟他们三个人，真正的较量开始了，第三个小时我们出了 5T，他们 AK 了，那种滋味，那个晚上，我一个人哭了，得有三五年没哭过了，那种无力，真的面对现实，没能力改变现状的无助，我不知道怎么办。第二天理智的我，中午把昨天没做出来的题给补了，发现真的不是很难，但是自己真的想不到，那我中午开始做题吧，第一天我自己做，第二天我自己做，第三天杨航宇来了，第四天孙昊来了，电脑就在我的办公室到省赛之前没有拿回去，其实到省赛之前，我们所有的时间全部放在了 ACM 上，讨论题目，做题，一起想题解，一起规划我们的未来，孙昊一开始是经常划水的，我真的想换掉他，可后来他也很努力，我也很感动，我们三个就这样有时候跟他们差一个题，有时候差两个题，每次打比赛我们这里神情凝重，他们那里谈笑风生，我们心态很炸，我们忍着也要把比赛打完，日复一日大概训练到第三周的时候，我们第一次，拿到第一，比赛离结束还有三分钟，我晚上回去发了一篇博客，我想纪念这个日子这 20 天没白干。转眼间来到了省赛，我们不是 18 级最被看好的一支队伍，到比赛的时候我还在想别人是来拿牌的，你是来看看的。省赛最后拿牌我是真的没想到，比赛过程一波又三折，出第一个题的时候一个半小时了，貌似 wa 了 5 发，再后来的四道题 wa 了两发。比赛结束，我知道这次从应该稳了，封榜之前应该在铜中的位置，到大礼堂，我挺开心的，路上有人称赞也有人酸我，我不说话，我就说我不清楚怎么回事，TMD，这都是肝出来的，你们睡觉的时候我们在敲代码，你们玩的时候我们在谈论做的题，你们晚上在宿舍看电影，我在宿舍看着我的黑框框，还好要不是体验赛的抗压，兴许自己就死在了 M 题。又到了现在，做 ACM 的时间又要被压缩，各式各样的考试，不复习还真考不好绩点，为什么总要拿绩点评判学生呢？与其说这是一篇结课论文，不如说是找个机会倒倒苦水，哈哈。 收获是变得更加自律，做事情更加有效率，如果说其他好处，呃，这学期高数比上学期难，但是我学的比上学期快，高数跟 DP 相比，高数还是简单点。做的题难度也一点一点上来了，我也退了学生会，也厌倦学生会里那些商业吹捧的氛围，说话做事，还要看脸色，学生的天职是学习，我踏下心来学习 ACM，全心全意做自己喜爱的事情，也成了别人口中的大牛，也被学长说挺好挺厉害的，人在这时候真的容易飘，我省赛回来我飘了，我很强，我。。。在后来一阵时间里做题不认真，有点划水，拖拖拉拉，队友疯狂的刷 USACO vjudge 的时候，我说都是模板，套套就行。我再也不是那个被人说一句就你也算 ACMer，去努力的那个疯子，宛然自己一个天才。到了我写博客总结自己之前的博客的时候，到了那天半夜 C++，看到玩游戏到凌晨的时候，我明白了自己正向着自己最讨厌的那一类人发展，我要改变命运，我要追我的梦想，我开始连夜刷题，白天复习上课，晚上刷 usaco，这种每天都安排的满满的才是最满足的，因为我自己知道，我不聪明，我没有他们的学习效率，我不想被拉下，我要努力。这是我到目前为止，这一整年的心路历程。<br>学习 ACM 着一整年，我学到的不只是算法，更是学习了一种学习的能力，坚持不懈的能力，我相信这些能力不仅会在 ACM 对我有所帮助，更是人生路上的一块垫脚石，兴许那一天，这些能力就能是我比别人更快上一个台阶，（学 ACM 我从没有报着功利心，那时听说 FLS 的绩点都很低，但是算法是很有用的，我重点不再想保研，计算机保研的那些学长学姐能有几个会熟练用 STL 的。口水）学到了很多，日子也过得充实，比在宿舍打游戏来的快感爽多了，流过汗，流过泪，拼搏过，比起水课，花这些时间是真的值。未来我还要继续努力，做一只虔诚的小菜鸡，用最努力的自己面对最爱的 ACM，如果可以我会打满三年，无论结果如何，我在这里努力，将会是我人生中回忆起来最有意义的一件事。一篇课程总结 5000 字，一万字，写不完自己想写的东西，像一篇日记一样，写出自己的情绪，每一天做 ACM 总有不同的感想，不同的收获，怎么也写不完。彷佛昨天刚刚学学贪心，今晚又在刷题。回头看看自己这一年，无愧于自己。</p>
+<p>三、 题目总结<br>做了很多题，也拿不出一个经典题型，每个题都有代表性，做的题又少，好题又是什么？每一章，FLS 的 vjudge 整理会比我好。我拿出对我比较有意义的题目分析。<br>进制转化，相信任何一个人都会写这个进制转换问题，上学期 Open judge 我逃避了进制转换，以至于期末考试我没做出来，51nod 逃避了 codeforce 比赛又没做出来，到了 USACO 再次遇到，就像心魔一样，这个题我不会，我一定做不出来，比 DP 难吧，应该不好想，还有 ABC 呢怎么表示啊？未来做题不要 cheat，不要逃避，不要到比赛的时候做不出来。<br>#include<iostream><br>#include<algorithm><br>using namespace std;<br>string solve(int a,int b);<br>int main()<br>{<br>int x,y;<br>cin&gt;&gt;x&gt;&gt;y;<br>cout&lt;&lt;solve(x,y)&lt;&lt;endl;<br>return 0;<br>}<br>string solve(int a,int b) &#x2F;&#x2F;A 是原始数字，B 是目标进制<br>{<br>string d;<br>d.clear();<br>int i&#x3D;0;<br>char c;<br>while(a%b!&#x3D;a)<br>{<br>i&#x3D;a%b;<br>if(i&gt;&#x3D;10) c&#x3D;char(i+55);<br>&#x2F;&#x2F; else if( ….) c&#x3D;char(i+?) 当 26 个字符表示不了时可以选择其他字符表示。<br>else c&#x3D;i+’0’;<br>a&#x3D;a&#x2F;b;<br>d.push_back(c);<br>}<br>if(a&gt;&#x3D;10) c&#x3D;char(a+55);<br>&#x2F;&#x2F; else if( ….) c&#x3D;char(i+?)<br>else c&#x3D;a+’0’;<br>d.push_back(c);<br>reverse(d.begin(),d.end());<br>return d;<br>}</p>
+<p>结语：不求自己有多大能力，只求自己明天能比今天更能吃苦。</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E7%AE%97%E6%B3%95/" class="category-chain-item">算法</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/%E7%AE%97%E6%B3%95/ACM%E7%AB%9E%E8%B5%9B/" class="category-chain-item">ACM竞赛</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/%E7%AE%97%E6%B3%95/ACM%E7%AB%9E%E8%B5%9B/%E5%8E%86%E7%A8%8B/" class="category-chain-item">历程</a>
+  
+  
+
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>『算法-ACM竞赛-历程』ACM一年记，总结报告（希望自己可以走得很远)</div>
+      <div>https://chiamzhang.github.io/2024/06/29/『算法-ACM竞赛-历程』ACM一年记，总结报告（希望自己可以走得很远)/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>Chiam</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>June 29, 2024</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>Licensed under</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2024/06/29/%E3%80%8E%E7%AE%97%E6%B3%95-ACM%E7%AB%9E%E8%B5%9B-%E5%8E%86%E7%A8%8B%E3%80%8FACM%E6%80%BB%E7%BB%93%EF%BC%8C%E6%B3%AA%E7%9B%AE%EF%BC%81/" title="『算法-ACM竞赛-历程』ACM总结，泪目！">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">『算法-ACM竞赛-历程』ACM总结，泪目！</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/06/29/%E3%80%8E%E7%AE%97%E6%B3%95-ACM%E7%AB%9E%E8%B5%9B-%E5%8E%86%E7%A8%8B%E3%80%8FACMer%E9%80%80%E5%BD%B9%E8%AE%B0(ACM%E7%9A%84%E5%BF%83%E8%B7%AF%E5%8E%86%E7%A8%8B%EF%BC%89/" title="『算法-ACM竞赛-历程』ACMer退役记(ACM的心路历程）">
+                        <span class="hidden-mobile">『算法-ACM竞赛-历程』ACMer退役记(ACM的心路历程）</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"fIfc7WqUDZohlQuPc2lz5mJy-MdYXbMMI","appKey":"zjlAG3ZA3o4cBHVAkjzc2Z20","path":"window.location.pathname","placeholder":"留言仅限讨论，禁止广告等行为","avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"https://fifc7wqu.api.lncldglobal.com","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>Table of Contents</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <meta name="referrer" content="no-referrer" /> <footer id="footer" role="contentinfo"> <meta name="referrer" content="no-referrer" /> <div class="divider"> <div class="wall"></div> <img class="animals" src="/img/footer_animals_new.png" srcset="/img/loading.gif" lazyload alt="Footer Animals"> </div> <div class="container" data-index="450"> <p> <a href="https://chiamzhang.github.io" target="_blank">DogEgg</a> <i class="iconfont icon-love"></i> <a href="#" target="_blank">LittePig</a> </p> <p> Powered by  <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-pen"></i> Theme  <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> </p> </div> </footer> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+  
+<script src="/js/love.js"></script>
+<script src="/js/funnyTitle.js"></script>
+<script src="/js/backTop.js"></script>
+<script src="//cdn.jsdelivr.net/gh/bynotes/texiao/source/js/xiaoxuehua.js"></script>
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+</html>
