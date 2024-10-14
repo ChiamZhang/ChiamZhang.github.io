@@ -1,0 +1,215 @@
+#footer {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    width: 100%!important;
+    padding: 0!important;
+    margin: 0!important;
+}
+/* party-animals theme */
+
+#footer .divider {
+    width: 100%;
+    top: 0px;
+    position: relative;
+    margin-top: 1.25rem;
+}
+#footer .divider .animals {
+    max-width: min(974px, 100vw);
+    margin: 0 auto;
+    display: block;
+    position: relative;
+}
+#footer .divider .animals {
+    user-select: none; 
+    -moz-user-select: none; 
+    -webkit-user-drag: none; 
+    -webkit-user-select: none; 
+    -ms-user-select: none; 
+}
+#footer .divider .wall {
+    height: 36px;
+    bottom: 0px;
+    width: 100%;
+    position: absolute;
+    max-width: none;
+    background: url(/img/wall.webp) repeat;
+    background-size: auto 100%;
+}
+@media (max-width: 768px) {
+    #footer .divider .wall {
+        height: 4vw;
+    }
+}
+
+#footer .container {
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    max-width: none;
+    padding: 1rem 0 0 0;
+    background-color: #4e443e;
+    color: #bdb3aa;
+    font-size: 12px;
+    font-weight: bold;
+    line-height: 10px;
+}
+@font-face {
+    font-family: "HYZhengYuan";
+    font-display: swap;
+    src: url("/css/HYZhengYuan-65W.55d31eaf.woff"); 
+}
+#navbarSupportedContent {
+    font-family: "HYZhengYuan";
+    font-size: 1.25rem;
+    font-weight: bold;
+    flex-wrap: nowrap;
+    max-width: 960px;
+}
+
+#navbar {
+    left: -10px;
+    right: -10px;
+    background-color: rgba(248,241,228,0.7);
+    -webkit-backdrop-filter: blur(20px);
+    backdrop-filter: blur(20px);
+}
+.navbar-nav .nav-item a {
+    font-family: "HYZhengYuan";
+    font-size: 1.25rem;
+    font-weight: bold;
+    transition: all .4s;
+    margin: auto 10px  auto 5px;
+}
+
+
+#search-btn .nav-link{
+    display: inline-block;
+    height: 2.5rem;
+    width: 2.5rem;
+    line-height: 2.0rem;
+    border-radius: 100%;
+    font-size: .75rem;
+    block-size: 30 30 30 30;
+    background-color: #F8F1E4;
+    color: #333;
+
+}
+
+#search-btn .nav-link:hover{
+
+    background-color:  #2c2a2a;
+    color: #F8F1E4;
+}
+#color-toggle-btn .nav-link:hover{
+
+    background-color:  #2c2a2a;
+    color: #F8F1E4;
+}
+#color-toggle-btn .nav-link{
+    display: inline-block;
+    height: 2.5rem;
+    width: 2.5rem;
+    line-height: 2.0rem;
+    border-radius: 100%;
+    font-size: .75rem;
+    block-size: 30 30 30 30;
+    background-color: #F8F1E4;
+    color: #333;
+}
+.navbar-color .navbar-nav .nav-link, body.use-navbar .dropdown-item>a {
+    color: #4e443e;
+}
+.navbar-color .navbar-nav .nav-link:hover, .navbar-color .navbar-nav .nav-link:focus, body.use-navbar .dropdown-item>a:hover, body.use-navbar .dropdown-item>a:focus, .navbar-color .navbar-nav a.current {
+    color: #f87e35;
+}
+.home-page-title {
+    font-family: "HYZhengYuan", 'Mirages Custom', 'Merriweather', 'Open Sans', 'PingFang SC';
+    font-weight: bold;
+}
+
+.footer-inner{
+    padding: 1rem 0 0 0;
+}
+#footer .container a {
+    color: #bdb3aa;  /* 设置超链接的文字颜色 */
+    text-decoration: none;  /* 去除超链接的下划线 */
+}
+
+#footer .container a:hover {
+    color: #ffffff;  /* 设置超链接悬停时的文字颜色 */
+}
+
+
+#navbar-brand {
+    font-family: "HYZhengYuan";
+    font-size: 1.25rem;
+    font-weight: bold;
+    transition: all .4s;
+    margin: auto 10px  auto 5px;
+}
+#scroll-top-button{
+
+    background-color: transparent;
+    border: transparent;
+ 
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+    margin: 0 0 0 0rem;
+    padding: 0px 0px 0px 0px; 
+    animation-name: scroll-top;
+    animation-duration: 1s;
+    animation-delay: 0.1s;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: infinite;
+    animation-fill-mode: forwards;
+    animation-direction: alternate;
+    position: fixed;
+    z-index: 99;
+ 
+    transition: background-color 0.2s ease-in-out, bottom 0.3s ease;
+    border-radius: 4px;
+    min-width: 40px;
+    min-height: 40px;
+    bottom: -260px;
+    outline: none;
+    display: flex;
+    display: -webkit-flex;
+    align-items: center;
+  
+
+    
+}
+#scroll-top-button .icon-arrowup{
+    background-color: transparent;
+    border: transparent;
+ 
+    width: 4.25rem;
+    height: 195px;
+ 
+    background: url(/img/party-animals-backtop_min.webp) no-repeat;
+    background-size: contain;
+    border-radius: 0;
+    margin: 0 0 0 0rem;
+    padding: 0px 10rem 0px 0; 
+ 
+}
+#scroll-top-button .icon-arrowup::before{
+    /* width: 4.25rem;
+    height: 195px;
+    bottom: 1.25rem;
+    background: url(/img/party-animals-backtop_min.webp) no-repeat;
+    background-size: contain;
+    border-radius: 0;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none; */
+    /* height: 95px;
+    bottom: -1.25rem;
+    background-color: transparent;
+    border: transparent; */
+    content: url();
+    /* animation: _heart_backtop 1.3s ease-in-out infinite alternate; */
+
+}
