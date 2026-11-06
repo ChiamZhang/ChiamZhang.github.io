@@ -354,7 +354,7 @@ span.cm-strikethrough { text-decoration: line-through; }
   --font-serif: "Old Standard TT", Didot, "Modern No. 20", "KhaiTi", STKaiti, Kaiti, sans-serif;
   --font-display: "Bellota", "Tw Cen MT", "HYHuaGuan", "霞鹜文楷", "STLibianSC-Regular", "华文中宋", sans-serif;
   --monospace: "Fira Code", "menlo", "KhaiTi", STKaiti, Kaiti, monospace;
-  --mermaid-font-family: "Old Standard TT", Didot, "Modern No. 20", "KhaiTi", STKaiti, Kaiti, sans-serif;
+  --mermaid-font-family: var(--font-sans);
 
   /* 屏幕编辑器版芯宽度 (860px) */
   --max-width: 860px;
@@ -1239,7 +1239,7 @@ body #write img[alt~="90"], body #write img[title~="90"] { width: 90%; }
 body #write img[alt~="100"], body #write img[title~="100"] { width: 100%; }
 
 /* ==========================================================================
-   图表与思维导图 (Mermaid & Diagrams)
+   图表与思维导图 (Mermaid & Diagrams) - 字体继承与新拟态托底
    ========================================================================== */
 
 body #write pre.md-diagram {
@@ -1249,12 +1249,41 @@ body #write pre.md-diagram {
   text-align: center;
 }
 
+body #write .md-diagram-panel {
+  text-align: center;
+  font-family: var(--mermaid-font-family) !important;
+}
+
 body #write .md-diagram-panel svg {
-  border-radius: 10px;
+  border-radius: 12px;
   background: #ffffff !important;
   border: 1px solid #e2e8f0;
   box-shadow: 0 4px 18px -2px rgba(26, 34, 56, 0.05);
   padding: 1.25rem;
+  font-family: var(--mermaid-font-family) !important;
+}
+
+/* 强制穿透覆盖 Mermaid 内部所有 SVG/HTML 文本节点，完全继承主题中西文字体体系 */
+body #write .md-diagram-panel text,
+body #write .md-diagram-panel tspan,
+body #write .md-diagram-panel .label,
+body #write .md-diagram-panel .labelText,
+body #write .md-diagram-panel .nodeLabel,
+body #write .md-diagram-panel .edgeLabel,
+body #write .md-diagram-panel .cluster-label text,
+body #write .md-diagram-panel .cluster-label span,
+body #write .md-diagram-panel .actor,
+body #write .md-diagram-panel .actor text,
+body #write .md-diagram-panel .messageText,
+body #write .md-diagram-panel .noteText,
+body #write .md-diagram-panel .loopText,
+body #write .md-diagram-panel .titleText,
+body #write .md-diagram-panel foreignObject,
+body #write .md-diagram-panel foreignObject *,
+body #write .md-diagram-panel foreignObject div,
+body #write .md-diagram-panel foreignObject span,
+body #write .md-diagram-panel foreignObject p {
+  font-family: var(--mermaid-font-family) !important;
 }
 
 /* ==========================================================================
