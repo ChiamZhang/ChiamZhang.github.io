@@ -258,11 +258,7 @@ Tailors 支持通过在图片 `alt` 或 `title` 中添加数字，快速实现�
 2. **调整为 30% 宽度**：`![Maine 30](url "30")`
 3. **支持标准步进**：`0, 5, 10, 15, ..., 100`
 
-<center>
-
 ![Tailors Preview 50](https://img2.baidu.com/it/u=3012984283,879707191&fm=253&fmt=auto&app=138&f=JPEG?w=800&h=1200 "50")
-
-</center>
 
 ---
 
