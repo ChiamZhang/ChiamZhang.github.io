@@ -618,21 +618,21 @@ content {
   color: inherit;
 }
 
-/* 三级标题：优雅左侧高亮边框 (珊瑚暖橘) */
+/* 三级标题：优雅左侧高亮边框 (珊瑚暖橘色字体) */
 #write h3 {
   font-size: 1.25rem;
   margin: 1.9rem 0 1rem;
   padding-left: 0.75rem;
   border-left: 4.5px solid var(--h3-r-color);
   border-radius: 2px;
-  color: var(--text-color);
+  color: var(--h3-r-color) !important;
 }
 
-/* 四级标题：精致实心发光圆点 (暮色玫红，8px 等宽规格) */
+/* 四级标题：精致实心发光圆点 (暮色玫红色字体，8px 等宽规格) */
 #write h4 {
   font-size: 1.12rem;
   margin: 1.6rem 0 0.85rem;
-  color: var(--text-color);
+  color: var(--h4-r-color) !important;
   line-height: 1.4;
 }
 
@@ -648,11 +648,11 @@ content {
   vertical-align: middle;
 }
 
-/* 五级标题：精致空心环圈 (暮光罗兰，8px 等宽规格) */
+/* 五级标题：精致空心环圈 (暮光罗兰色字体，8px 等宽规格) */
 #write h5 {
   font-size: 1.02rem;
   margin: 1.4rem 0 0.75rem;
-  color: var(--text-color);
+  color: var(--h5-r-color) !important;
   line-height: 1.4;
 }
 
@@ -669,11 +669,11 @@ content {
   vertical-align: middle;
 }
 
-/* 六级标题：极简等宽短横杠 (深邃天青，8px 等宽规格) */
+/* 六级标题：极简等宽短横杠 (深邃天青色字体，8px 等宽规格) */
 #write h6 {
   font-size: 0.95rem;
   margin: 1.2rem 0 0.65rem;
-  color: var(--text-color-light);
+  color: var(--h6-r-color) !important;
   line-height: 1.4;
 }
 
@@ -1868,6 +1868,22 @@ body.typora-export #write hr,
   #typora-sidebar,
   .md-hover-tip {
     display: none !important;
+  }
+
+  /* Mermaid 图表打印态：纯白画布与清晰墨色，节约耗材 */
+  body #write .md-diagram-panel svg {
+    background: #ffffff !important;
+    border: 1px solid #cbd5e1 !important;
+    box-shadow: none !important;
+  }
+
+  body #write .md-diagram-panel text,
+  body #write .md-diagram-panel tspan,
+  body #write .md-diagram-panel .label,
+  body #write .md-diagram-panel .nodeLabel,
+  body #write .md-diagram-panel .edgeLabel {
+    fill: #0f172a !important;
+    color: #0f172a !important;
   }
 }
 
